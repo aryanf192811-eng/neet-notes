@@ -1,31 +1,20 @@
-const CACHE_NAME = 'neet-mastery-v2';
+const CACHE_NAME = 'neet-mastery-v3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.js',
   './manifest.json',
-  './icon.png',
-  './notes/neet-chem-organic-11.html',
-  './notes/neet-inorganic-v2.html',
-  './notes/neet-physics-11-fixed_copy.html',
-  './notes/neet-physics-12-electromagnetism.html',
-  './notes/neet-physics-12-electrostatics__2_.html',
-  './notes/neet-physics-12-modern-physics.html',
-  './notes/neet-physics-12-optics.html',
-  './notes/neet11_final.html',
-  './notes/neet12_final.html'
+  './icon.png'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Opened cache');
-      return cache.addAll(ASSETS).catch(error => {
-        console.error('Failed to cache assets during install:', error);
-        // Continue anyway if some fail, or use a more granular approach
-      });
+      console.log('Opened cache v3');
+      return cache.addAll(ASSETS);
     })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
@@ -34,32 +23,33 @@ self.addEventListener('activate', event => {
       keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
     ))
   );
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) return cachedResponse;
-      
-      return fetch(event.request).then(networkResponse => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
+  const url = new URL(event.request.url);
+
+  // Network First for HTML and navigations to prevent ERR_FAILED
+  if (event.request.mode === 'navigate' || event.request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      fetch(event.request).then(networkResponse => {
+        const copy = networkResponse.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
         return networkResponse;
-      }).catch(() => {
-        // Return a basic fallback if both fail
-        return new Response('Note not available offline', {
-          status: 503,
-          statusText: 'Service Unavailable',
-          headers: new Headers({ 'Content-Type': 'text/plain' })
+      }).catch(() => caches.match(event.request) || caches.match('./index.html'))
+    );
+  } else {
+    // Cache First for other assets
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        return cachedResponse || fetch(event.request).then(networkResponse => {
+          const copy = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+          return networkResponse;
         });
-      });
-    })
-  );
+      })
+    );
+  }
 });

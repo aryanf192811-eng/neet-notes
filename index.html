@@ -239,6 +239,18 @@ html[data-theme="dark"] .mbox{box-shadow:0 28px 70px rgba(0,0,0,0.65),inset 0 1p
 .fu:nth-child(1){animation-delay:.04s;}.fu:nth-child(2){animation-delay:.09s;}.fu:nth-child(3){animation-delay:.14s;}.fu:nth-child(4){animation-delay:.19s;}.fu:nth-child(5){animation-delay:.24s;}.fu:nth-child(6){animation-delay:.29s;}
 @media(max-width:768px){.hero-stats{grid-template-columns:repeat(3,1fr);}.pinned-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.mob-btn{display:flex;}.contents-btn{display:none;}.hero{margin:8px;}.main{padding:0 8px 80px;}}
 @media(max-width:520px){.psub{display:none;}.hero-stats{grid-template-columns:1fr 1fr;}.np{width:100%;}.sticky-footer{font-size:8px;gap:8px;}}
+.reader-overlay{position:fixed;inset:0;background:var(--bg-color);z-index:9000;display:none;flex-direction:column;animation:rIn .4s cubic-bezier(.4,0,.2,1);}
+@keyframes rIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
+.reader-overlay.open{display:flex;}
+.reader-hdr{height:56px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:var(--nav-bg);backdrop-filter:blur(22px);border-bottom:1px solid var(--nav-b);position:sticky;top:0;z-index:2;}
+.reader-title{font-family:var(--display);font-size:16px;font-weight:700;color:var(--ink);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:15px;}
+.reader-close{background:var(--ar);color:#fff;border:none;border-radius:30px;padding:6px 16px;font-family:var(--hand);font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:transform .2s;}
+.reader-close:hover{transform:scale(1.05);}
+.reader-body{flex:1;overflow-y:auto;background:var(--np-bg);padding:0;}
+.reader-frame{width:100%;height:100%;border:none;display:block;}
+.reader-loading{position:absolute;inset:0;background:var(--bg-color);display:flex;align-items:center;justify-content:center;z-index:1;font-family:var(--hand);color:var(--ink3);flex-direction:column;gap:12px;}
+.reader-loader{width:32px;height:32px;border:2px solid var(--div);border-top-color:var(--at);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 <script>
 (function(){
@@ -326,6 +338,19 @@ html[data-theme="dark"] .mbox{box-shadow:0 28px 70px rgba(0,0,0,0.65),inset 0 1p
   <div>© 2025–2026 NEET Notes Hub · <strong>@Petrol4u</strong> · All rights reserved · Unauthorised reproduction prohibited</div>
 </footer>
 </div>
+<div class="reader-overlay" id="readerOverlay">
+  <div class="reader-hdr">
+    <div class="reader-title" id="readerTitle">Loading Note...</div>
+    <button class="reader-close" onclick="closeNote()">Close Note</button>
+  </div>
+  <div class="reader-body">
+    <div class="reader-loading" id="readerLoading">
+      <div class="reader-loader"></div>
+      <span>Fetching Intelligence Layer...</span>
+    </div>
+    <iframe class="reader-frame" id="readerFrame" title="Note Content"></iframe>
+  </div>
+</div>
 
 <div class="moverlay" id="modal" onclick="mclick(event)">
   <div class="mbox">
@@ -411,14 +436,14 @@ function renderManifest() {
                             '<span class="ftag ft-con">Concept</span>';
 
           branchesHtml += `
-            <a class="file-row" href="${note.file}">
+            <div class="file-row" onclick="openNote('${note.file}', '${note.title.replace(/'/g, "\\'")}')">
               <span class="fnum">${note.num}</span>
               <div class="finfo">
                 <div class="fname">${note.title.replace(' — ', ' — <em style="font-style:italic;color:var(--ink3);font-weight:400">')}</em></div>
                 <div class="fch">${note.desc}</div>
               </div>
               ${typeBadge}<span class="ficon">↗</span>
-            </a>
+            </div>
           `;
         } else {
           branchesHtml += `
@@ -458,6 +483,46 @@ function renderManifest() {
 
   container.innerHTML = html;
 }
+// Reader Logic
+window.openNote = function(file, title) {
+  const overlay = ge('readerOverlay');
+  const frame = ge('readerFrame');
+  const loader = ge('readerLoading');
+  const rTitle = ge('readerTitle');
+  if(!overlay || !frame) return;
+
+  rTitle.textContent = title;
+  overlay.classList.add('open');
+  loader.style.display = 'flex';
+  frame.src = file;
+  
+  frame.onload = () => {
+    loader.style.display = 'none';
+  };
+
+  // Push state for back button support
+  history.pushState({ noteOpen: true }, '', '#' + file.split('/').pop().split('.')[0]);
+};
+
+window.closeNote = function(force) {
+  const overlay = ge('readerOverlay');
+  const frame = ge('readerFrame');
+  if(!overlay || !frame) return;
+
+  overlay.classList.remove('open');
+  frame.src = 'about:blank';
+  
+  if(!force && history.state && history.state.noteOpen) {
+    history.back();
+  }
+};
+
+window.addEventListener('popstate', (e) => {
+  if (ge('readerOverlay').classList.contains('open')) {
+    closeNote(true);
+  }
+});
+
 renderManifest();
 })();
 // Service Worker Registration for PWA
