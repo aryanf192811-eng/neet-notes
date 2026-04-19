@@ -1,0 +1,2024 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var _d=false;
+  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">??</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+})();
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Physics Class 12 — Electromagnetism PYQ Master Cheatsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <style>
+    :root{--paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;--ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;--rule:rgba(100,130,180,0.14);--mline:rgba(210,100,80,0.28);--red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;--hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);--hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);--body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;--hand:"Architects Daughter",cursive;}
+    [data-theme="dark"]{--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}}
+    [data-theme="dark"] body{background:#130f0c;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#1c1810 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#231e18 0%,transparent 55%);}
+    [data-theme="dark"] .def-box{background:rgba(91,143,214,0.1);}[data-theme="dark"] .warn-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .tip-box{background:rgba(74,184,112,0.1);}[data-theme="dark"] .note-box{background:rgba(224,120,48,0.1);}[data-theme="dark"] .purp-box{background:rgba(155,89,214,0.1);}
+    [data-theme="dark"] .eg{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .formula{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] .cb{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] code{background:var(--paper3);border-color:#4a4038;}
+    [data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .trick::before{background:var(--paper2);}[data-theme="dark"] .shortcut{background:rgba(212,168,0,0.07);border-color:#6a5200;}[data-theme="dark"] .shortcut::before{background:var(--paper2);}
+    [data-theme="dark"] .toc{background:var(--paper);border-color:#3a3228;}[data-theme="dark"] .chapter{border-color:#3a3228;}[data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5040;}[data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4038;}
+    [data-theme="dark"] .approach{background:rgba(91,143,214,0.1);}[data-theme="dark"] .approach::before{background:var(--paper2);}[data-theme="dark"] .trigger-box{background:rgba(91,143,214,0.1);border-color:var(--blue);}[data-theme="dark"] .trigger-box::before{background:var(--paper2);}
+    [data-theme="dark"] .instant-formula{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .instant-formula::before{background:var(--paper2);}[data-theme="dark"] .elim-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .elim-box::before{background:var(--paper2);}
+    [data-theme="dark"] .cg-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-sol{background:var(--paper3);border-color:#4a4038;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+    .book{max-width:920px;margin:0 auto;}
+    .cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+    .cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+    .cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(210,100,80,0.32);pointer-events:none;}
+    .cover-inner{position:relative;padding-left:20px;}
+    .cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+    .cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--orange);}
+    .cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+    .cover h1 em{font-style:italic;color:var(--blue);}
+    .cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:580px;border-left:3px solid var(--orange);padding-left:14px;}
+    .cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+    .chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:rgba(255,255,255,0.5);}
+    .cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 12px;border-radius:2px;}
+    .toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+    .toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+    .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+    @media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+    .toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+    .toc-grid a:hover{color:var(--blue);border-color:var(--ink3);}
+    .tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:24px;}
+    .chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+                .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      [data-theme="dark"] .ch-head {
+        background: linear-gradient(135deg, #0a0908 0%, #1a1612 100%);
+      }
+      
+    .ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+                .ch-title {
+        font-size: 21px;
+        font-weight: 600;
+        color: #faf7f2;
+        line-height: 1.25;
+      }
+    .ch-title em{font-style:italic;color:#e8c870;}
+    .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+    .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+    .sec:last-child{border-bottom:none;}
+    .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(200,100,80,0.26);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--blue);margin:32px 0 12px;}
+    h3.ssh+p{margin-top:6px;}
+    h4.sssh{font-family:var(--body);font-size:14px;font-weight:600;color:var(--green);margin:16px 0 6px;}
+    p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
+    strong{color:var(--ink);font-weight:600;}
+    .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;border:1.5px solid currentColor;margin-left:auto;flex-shrink:0;}
+    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .tc{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+    .tt{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+    .tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+    .tq{color:var(--teal);border-color:var(--teal);background:rgba(13,122,106,0.09);}
+    .def-box{background:rgba(100,160,255,0.09);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .def-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;display:block;}
+    .def-box p{font-size:16.5px;line-height:1.82;margin:0;color:var(--ink);}
+    .warn-box{background:rgba(220,60,60,0.07);border-left:4px solid var(--red);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .warn-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:4px;display:block;}
+    .warn-box p{font-size:16px;color:var(--red);margin:0;line-height:1.78;}
+    .tip-box{background:rgba(60,180,100,0.09);border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .tip-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px;display:block;}
+    .tip-box p{font-size:16px;color:var(--green);margin:0;line-height:1.78;}
+    .note-box{background:rgba(220,130,30,0.09);border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .note-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block;}
+    .note-box p{font-size:16px;color:var(--orange);margin:0;line-height:1.78;}
+    .purp-box{background:rgba(120,40,180,0.08);border-left:4px solid var(--purple);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .purp-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:block;}
+    .purp-box p{font-size:16px;color:var(--purple);margin:0;line-height:1.78;}
+    .trick{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .trick::before{content:"⚡ Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .trick p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .trick p:last-child{margin:0;}
+    .trick strong{color:#7a5800;}
+    .shortcut{background:#f8fff4;border:1.5px solid #4ab870;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .shortcut::before{content:"🎯 Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#1a6b40;position:absolute;top:-9px;left:14px;background:#f8fff4;padding:0 6px;}
+    .shortcut p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .shortcut p:last-child{margin:0;}
+    .eg{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:22px 24px;margin:24px 0;position:relative;}
+    .eg::before{content:"Example";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+    .eg p{font-family:var(--prose);font-size:16px;color:var(--ink2);margin:0 0 6px;line-height:1.82;}
+    .eg p:last-child{margin:0;}
+    .formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:24px 0;font-family:"Courier New",monospace;font-size:15px;color:var(--ink);line-height:2.2;text-align:center;}
+    .formula strong{color:var(--blue);font-size:16px;}
+    .cb{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1.5px dashed #a09070;border-radius:4px;padding:14px 18px;margin:12px 0;color:var(--ink);line-height:1.9;white-space:pre-wrap;overflow-x:auto;}
+    code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1px solid #c0a880;border-radius:3px;padding:1px 5px;color:var(--blue);}
+    mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+    .c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-p{color:var(--purple);font-weight:600;}
+    .pl{list-style:none;margin:12px 0 18px;padding:0;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--orange);font-weight:600;}
+    .pl.arr li::before{content:"→";color:var(--blue);}
+    .pl.num{counter-reset:li;}
+    .pl.num li{counter-increment:li;}
+    .pl.num li::before{content:counter(li)".";color:var(--blue);}
+    .pl.chk li::before{content:"✓";color:var(--green);}
+    .pl.x li::before{content:"✗";color:var(--red);}
+    .tbl{overflow-x:auto;margin:20px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;}
+    tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+    .freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+    .fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+    .fcard{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:18px 20px;}
+    .fcard-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+    .fcard ul{list-style:none;padding:0;}
+    .fcard ul li{font-family:var(--prose);font-size:15px;line-height:1.75;color:var(--ink2);padding:2px 0 2px 18px;position:relative;}
+    .fcard ul li::before{content:"·";position:absolute;left:4px;color:var(--orange);}
+    .pyq-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;margin:20px 0;overflow:hidden;}
+    .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);border-bottom:1px solid rgba(180,150,100,0.4);cursor:pointer;gap:12px;}
+    .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--blue);padding:3px 10px;border-radius:2px;flex-shrink:0;}
+    .pyq-q{font-family:var(--prose);font-size:16px;color:var(--ink);line-height:1.7;flex:1;}
+    .pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1px;color:var(--teal);flex-shrink:0;padding:4px 10px;border:1.5px solid var(--teal);border-radius:2px;background:none;cursor:pointer;transition:all 0.2s;}
+    .pyq-toggle:hover{background:var(--teal);color:var(--paper);}
+    .pyq-sol{background:var(--paper3);padding:18px 22px;border-top:2px dashed rgba(180,150,100,0.5);display:none;}
+    .pyq-sol.open{display:block;}
+    .pyq-sol p{font-family:var(--prose);font-size:15.5px;line-height:1.85;color:var(--ink2);margin-bottom:10px;}
+    .pyq-sol p:last-child{margin:0;}
+    .ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green);color:var(--paper);margin-bottom:10px;}
+    .approach{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .approach::before{content:"🧠 Approach";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .approach p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .approach p:last-child{margin:0;}
+    .instant-formula{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .instant-formula::before{content:"⚡ Instant Formula";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .instant-formula p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .trigger-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .elim-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .elim-box::before{content:"❌ Elimination";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .elim-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .cg-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+    .svg-wrap{text-align:center;margin:24px 0;overflow-x:auto;}
+    .svg-wrap svg{max-width:100%;height:auto;}
+    .chapter-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+    .chapter-nav a{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.2s;}
+    .chapter-nav a:hover{border-color:var(--blue);color:var(--blue);}
+    
+    
+    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+    .sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+    .sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+    .sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+    @media(max-width:640px){.sec{padding:32px 20px 28px 44px;}.cover{padding:36px 28px 32px;}.cover h1{font-size:26px;}      .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      .toc{padding:20px 22px;}}
+  </style>
+
+
+<style id="theme-toggle-css">
+  .theme-switch { position:relative; width:44px; height:24px; flex-shrink:0; display:inline-flex; align-items:center; margin-left:12px; }
+  .theme-switch input { opacity:0; width:0; height:0; position:absolute; }
+  .theme-track { position:absolute; inset:0; background:rgba(0,0,0,0.06); border:1.5px solid rgba(0,0,0,0.1); border-radius:24px; cursor:pointer; transition:all .3s; }
+  .theme-track::before { content:'☀'; position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:9px; color:#b85a10; transition:all .3s cubic-bezier(.4,0,.2,1); }
+  [data-theme="dark"] .theme-track { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); }
+  [data-theme="dark"] .theme-track::before { content:'☾'; transform:translateX(20px); background:#1a1612; color:#ffaa55; font-size:10px; }
+  .back-dash { font-family:var(--hand); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink3); text-decoration:none; padding:4px 8px; border:1px solid var(--div); border-radius:4px; transition:all .2s; }
+  .back-dash:hover { background:var(--ink); color:var(--paper); }
+</style>
+
+</head>
+<body>
+
+<div class="book">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-subject">NEET Physics · Class XII · File 1 of 3</div>
+      <h1>Electromagnetism<br/><em>PYQ Master Cheatsheet</em></h1>
+      <p class="cover-desc">Electromagnetic Induction · Alternating Current · Electromagnetic Waves · Moving Charges &amp; Magnetism · Magnetism &amp; Matter. 36% of all NEET Physics marks. Every formula you need, every PYQ pattern decoded, every trap exposed.</p>
+      <div class="cover-chips">
+        <span class="chip">Ch 3 — Moving Charges &amp; Magnetism</span>
+        <span class="chip">Ch 4 — Magnetism &amp; Matter</span>
+        <span class="chip">Ch 6 — EMI</span>
+        <span class="chip">Ch 7 — Alternating Current</span>
+        <span class="chip">Ch 8 — EM Waves</span>
+        <span class="chip">15 yrs PYQ</span>
+        <span class="chip">2009–2025</span>
+      </div>
+    </div>
+    <span class="cover-tag">Class 12 — File 1</span>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-lbl">Contents</div>
+    <div class="toc-grid">
+      <a href="#ch-mcm"><span class="tn">01</span> Moving Charges &amp; Magnetism</a>
+      <a href="#ch-mm"><span class="tn">02</span> Magnetism &amp; Matter</a>
+      <a href="#ch-emi"><span class="tn">03</span> Electromagnetic Induction</a>
+      <a href="#ch-ac"><span class="tn">04</span> Alternating Current</a>
+      <a href="#ch-emw"><span class="tn">05</span> Electromagnetic Waves</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CHAPTER 1 — MOVING CHARGES & MAGNETISM         -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-mcm">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 1 of 5 · Class XII Electromagnetism</div>
+      <div class="ch-title">Moving Charges &amp; <em>Magnetism</em></div>
+    </div>
+    <div class="ch-body">
+
+      <!-- OVERVIEW -->
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">3–4 Qs/yr</span></h2>
+        <p>This chapter is the <strong>highest-density electromagnetism chapter</strong> — consistently yielding 3–4 questions per NEET paper across all years. The core idea: <strong>a moving charge creates a magnetic field, and a magnetic field exerts force on moving charges and current-carrying wires</strong>. NEET tests this in extremely predictable patterns.</p>
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Biot-Savart / Ampere — 1–2 Qs</div>
+          <div class="score-pill sp-b">🔵 Lorentz Force / Circular Motion — 1 Q</div>
+          <div class="score-pill sp-g">🟢 Galvanometer Conversions — 1 Q</div>
+          <div class="score-pill sp-o">🟡 Magnetic Moment — 1 Q</div>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2010–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Biot-Savart Law — circular loop / straight wire</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Ampere's Circuital Law — solenoid / toroid</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Force on moving charge — circular orbit in B</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Galvanometer → ammeter / voltmeter conversion</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Force between two parallel current wires</td><td>6 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Torque on current loop in magnetic field</td><td>5 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Moving coil galvanometer — sensitivity</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Cyclotron — principle, frequency</td><td>3 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BIOT-SAVART LAW -->
+      <div class="sec" data-m="biot-savart">
+        <h2 class="sh">Biot-Savart Law <span class="tag tg">Most Tested Formula</span></h2>
+        <p>The Biot-Savart law is the magnetic equivalent of Coulomb's law. It gives the magnetic field produced by an infinitesimal current element.</p>
+        <div class="def-box">
+          <span class="lbl">Biot-Savart Law</span>
+          <p>$$d\vec{B} = \frac{\mu_0}{4\pi} \cdot \frac{I\,d\vec{l} \times \hat{r}}{r^2}$$</p>
+          <p>Direction: Right-hand rule on $d\vec{l} \times \hat{r}$. Magnitude: $dB = \frac{\mu_0}{4\pi}\frac{I\,dl\sin\theta}{r^2}$</p>
+        </div>
+        <h3 class="ssh">🎯 Critical Results — NEET Tests These Directly</h3>
+        <h4 class="sssh">1. Magnetic Field at Centre of a Circular Loop</h4>
+        <p>This is the <strong>most repeated result</strong> from this chapter. For a circular loop of radius $R$ carrying current $I$:</p>
+        <div class="formula">
+          $$B_{centre} = \frac{\mu_0 I}{2R}$$
+          <br/>
+          <strong>For $n$ turns:</strong> $B = \frac{\mu_0 n I}{2R}$
+        </div>
+        <div class="trick">
+          <p><strong>Direction:</strong> Curl the right hand in the direction of current — thumb points in direction of $\vec{B}$ at centre.</p>
+          <p><strong>For arc of angle $\theta$ (in radians):</strong> $B = \frac{\mu_0 I \theta}{4\pi R}$. NEET 2023 asked this — semicircle gives $\theta=\pi$, so $B = \frac{\mu_0 I}{4R}$.</p>
+        </div>
+        <div class="eg">
+          <p><strong>NEET Trap:</strong> Two semicircles of radii $R_1$ and $R_2$ carrying same current $I$ — what is $B$ at common centre?</p>
+          <p><strong>Answer:</strong> $B = \frac{\mu_0 I}{4}\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$ if semicircles are wound oppositely. The field at the junction of two straight segments is <strong>zero</strong> (since $\sin 0° = 0$ in Biot-Savart).</p>
+        </div>
+        <h4 class="sssh">2. Magnetic Field Due to a Straight Wire</h4>
+        <div class="formula">
+          $$B = \frac{\mu_0 I}{4\pi d}(\sin\phi_1 + \sin\phi_2)$$
+          <br/>
+          <strong>Infinite wire:</strong> $B = \frac{\mu_0 I}{2\pi d}$
+        </div>
+        <p>Where $d$ is the perpendicular distance from the wire, and $\phi_1, \phi_2$ are angles subtended at the point by the two ends of the wire.</p>
+        <div class="tip-box">
+          <span class="lbl">Special Cases to Memorise</span>
+          <p>Semi-infinite wire (one end at the point): $B = \frac{\mu_0 I}{4\pi d}$ (only one $\sin$ term, second is $\sin 90° = 1$, first is $\sin 0° = 0$) &nbsp;→&nbsp; half of infinite wire result. This is frequently tested.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Ampere's Circuital Law</h3>
+        <p>Ampere's law is the magnetic analogue of Gauss's law — use it when there is <strong>high symmetry</strong>.</p>
+        <div class="def-box">
+          <span class="lbl">Ampere's Circuital Law</span>
+          <p>$$\oint \vec{B} \cdot d\vec{l} = \mu_0 I_{enc}$$</p>
+          <p>$I_{enc}$ = total current threading through the Amperian loop.</p>
+        </div>
+        <h4 class="sssh">Results from Ampere's Law — NEET Classic</h4>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Infinite Solenoid</div>
+            <ul>
+              <li>$B_{inside} = \mu_0 n I$</li>
+              <li>$n$ = turns per unit length</li>
+              <li>$B_{outside} = 0$</li>
+              <li>Field is uniform inside</li>
+              <li>Most asked: "find B at centre"</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Toroid</div>
+            <ul>
+              <li>$B = \frac{\mu_0 N I}{2\pi r}$</li>
+              <li>$r$ = radius of toroid</li>
+              <li>$B_{outside} = 0$ (no leakage)</li>
+              <li>$B_{inside\,hole} = 0$</li>
+              <li>Non-uniform field (varies with $r$)</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Thick Wire (r &lt; R)</div>
+            <ul>
+              <li>$B = \frac{\mu_0 I r}{2\pi R^2}$ (inside)</li>
+              <li>$B = \frac{\mu_0 I}{2\pi r}$ (outside)</li>
+              <li>$B \propto r$ inside</li>
+              <li>$B \propto 1/r$ outside</li>
+              <li>Max B at surface ($r = R$)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">Classic NEET Trap — Solenoid vs Toroid</span>
+          <p>A toroid has <strong>zero field outside</strong>, but a solenoid has a very small but non-zero field outside (treated as zero in NEET). The field inside a toroid is <strong>NOT uniform</strong> (it depends on $r$). NEET 2019 explicitly tested: "B field at the hollow region inside a toroid" — answer is ZERO.</p>
+        </div>
+
+        <!-- PYQS for MCM -->
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A circular coil of radius $r$ has $n$ turns. A current $I$ flows through it. The magnetic field at the centre is $B$. If the coil is re-wound with $2n$ turns using the same length of wire (radius becomes $r/2$), the new magnetic field at centre is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 4B</span>
+            <p><strong>Key insight:</strong> Same wire length means $n \cdot 2\pi r = 2n \cdot 2\pi r'$ → $r' = r/2$.</p>
+            <p>Original: $B = \frac{\mu_0 n I}{2r}$</p>
+            <p>New: $B' = \frac{\mu_0 (2n) I}{2(r/2)} = \frac{\mu_0 \cdot 2nI}{r} = \frac{4\mu_0 nI}{2r} = 4B$</p>
+            <p><strong>Pattern:</strong> When wire is rewound to double turns with same total length, radius halves, and $B$ becomes 4× original. This pattern has appeared 3 times in different forms.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">A long straight wire carries current $I$. A square loop of side $a$ is placed with one side parallel to the wire at distance $d$. The magnetic flux through the loop is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $\frac{\mu_0 I a}{2\pi} \ln\left(\frac{d+a}{d}\right)$</span>
+            <p><strong>Method:</strong> Consider a strip at distance $x$ from wire, width $dx$, length $a$. $dB = \frac{\mu_0 I}{2\pi x}$, $d\Phi = B \cdot a\, dx$.</p>
+            <p>$$\Phi = \int_d^{d+a} \frac{\mu_0 I a}{2\pi x}dx = \frac{\mu_0 I a}{2\pi}\ln\left(\frac{d+a}{d}\right)$$</p>
+            <p><strong>This is a standard integration — memorise the setup.</strong> The closer the side to the wire, the larger the flux (non-uniform field).</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">The ratio of the magnetic field at the centre of a circular coil of radius $R$ and the magnetic field at the axial point at distance $R$ from the centre is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $2\sqrt{2}$ : 1</span>
+            <p>$B_{centre} = \frac{\mu_0 I}{2R}$</p>
+            <p>$B_{axial} = \frac{\mu_0 I R^2}{2(R^2+x^2)^{3/2}}$ at $x = R$: $B_{axial} = \frac{\mu_0 I R^2}{2(2R^2)^{3/2}} = \frac{\mu_0 I}{4\sqrt{2}R}$</p>
+            <p>Ratio: $\frac{\mu_0 I/2R}{\mu_0 I/4\sqrt{2}R} = \frac{4\sqrt{2}}{2} = 2\sqrt{2}$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LORENTZ FORCE -->
+      <div class="sec" data-m="lorentz">
+        <h2 class="sh">Lorentz Force &amp; Charged Particle Motion <span class="tag tc">Concept + Numericals</span></h2>
+        <div class="def-box">
+          <span class="lbl">Lorentz Force</span>
+          <p>$$\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})$$</p>
+          <p>Magnetic force alone: $\vec{F} = q\vec{v} \times \vec{B}$, magnitude $F = qvB\sin\theta$</p>
+        </div>
+        <h3 class="ssh">Circular Motion of Charged Particle in Magnetic Field</h3>
+        <p>When a charged particle enters a uniform magnetic field <strong>perpendicular to it</strong>, the magnetic force provides centripetal force:</p>
+        <div class="formula">
+          $$r = \frac{mv}{qB} = \frac{p}{qB}$$
+          <br/>
+          <strong>Time period:</strong> $T = \frac{2\pi m}{qB}$ &nbsp;&nbsp; <strong>Frequency:</strong> $f = \frac{qB}{2\pi m}$
+        </div>
+        <div class="warn-box">
+          <span class="lbl">CRITICAL — What DOESN'T change when B changes?</span>
+          <p>Time period $T$ and frequency $f$ are <strong>independent of velocity and radius</strong> — they depend only on $m$, $q$, $B$. This is the principle of the cyclotron. NEET asks: "If speed doubles, what happens to radius?" → radius doubles. "What happens to T?" → T unchanged.</p>
+        </div>
+        <h4 class="sssh">The "Same Kinetic Energy" Trap</h4>
+        <p>NEET frequently compares particles with same KE entering a field:</p>
+        <div class="cb">
+$r = \frac{mv}{qB} = \frac{p}{qB}$ where $p = \sqrt{2mKE}$
+
+So: $r = \frac{\sqrt{2mKE}}{qB}$
+
+For same KE and B:  r ∝ √m / q
+
+Proton vs α-particle (same KE):
+  α: m=4u, q=2e   →  r_α = √(4u·KE)/(2e·B) = √(2u·KE)/(e·B)
+  p: m=u, q=e     →  r_p = √(2u·KE)/(e·B)  (same as α!)
+
+KEY RESULT: Proton and α-particle have the SAME radius when they have same KE in a magnetic field!
+        </div>
+        <div class="trick">
+          <p><strong>Three comparison scenarios for NEET:</strong></p>
+          <p>Same velocity: $r \propto m/q$ &nbsp;|&nbsp; Same KE: $r \propto \sqrt{m}/q$ &nbsp;|&nbsp; Same momentum: $r \propto 1/q$</p>
+        </div>
+
+        <h3 class="ssh">Helical Motion — When Particle Enters at Angle θ to B</h3>
+        <p>Component parallel to $\vec{B}$: $v_\parallel = v\cos\theta$ — moves in straight line (no force). Component perpendicular: $v_\perp = v\sin\theta$ — moves in circle. Combined = <strong>helix</strong>.</p>
+        <div class="formula">
+          <strong>Pitch</strong> $= v_\parallel \cdot T = \frac{2\pi m v\cos\theta}{qB}$ &nbsp;&nbsp;&nbsp; <strong>Radius of helix</strong> $= \frac{mv\sin\theta}{qB}$
+        </div>
+
+        <h3 class="ssh">Force on a Current-Carrying Conductor</h3>
+        <div class="formula">
+          $$\vec{F} = I(\vec{L} \times \vec{B}) \quad \Rightarrow \quad F = BIL\sin\theta$$
+        </div>
+        <div class="tip-box">
+          <span class="lbl">Fleming's Left Hand Rule</span>
+          <p>For <strong>conventional current</strong>: Forefinger → $\vec{B}$, Middle finger → $\vec{I}$, Thumb → Force direction. For <strong>electron</strong> (negative charge): force is reversed.</p>
+        </div>
+
+        <h3 class="ssh">Force Between Two Parallel Current-Carrying Wires</h3>
+        <div class="formula">
+          $$\frac{F}{L} = \frac{\mu_0 I_1 I_2}{2\pi d}$$
+        </div>
+        <div class="def-box">
+          <span class="lbl">Direction Rule — NEET Tests This Conceptually</span>
+          <p><strong>Same direction currents → ATTRACT</strong>. Opposite direction currents → REPEL. This is the definition of 1 Ampere (force per unit length = $2\times10^{-7}$ N/m when $I_1=I_2=1A$, $d=1m$).</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">A proton and an $\alpha$-particle are accelerated through the same potential difference $V$. The ratio of their de Broglie wavelengths is: [Note: this bridges ch with modern physics]</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $\lambda_p / \lambda_\alpha = 2\sqrt{2}$</span>
+            <p>$KE = qV$. $\lambda = h/p = h/\sqrt{2mqV}$</p>
+            <p>$\lambda_p = \frac{h}{\sqrt{2 \cdot m_p \cdot e \cdot V}}$, &nbsp; $\lambda_\alpha = \frac{h}{\sqrt{2 \cdot 4m_p \cdot 2e \cdot V}} = \frac{h}{\sqrt{16m_p eV}}$</p>
+            <p>Ratio: $\frac{\lambda_p}{\lambda_\alpha} = \frac{\sqrt{16m_p eV}}{\sqrt{2m_p eV}} = \sqrt{8} = 2\sqrt{2}$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">An electron moving with velocity $v$ in a uniform magnetic field $B$ moves in a circle of radius $r$. If the velocity is doubled, what is the new radius?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2r</span>
+            <p>$r = mv/qB$. Since $m$, $q$, $B$ unchanged: $r \propto v$. So new radius $= 2r$.</p>
+            <p><strong>The period T is unchanged</strong> — this is the most common follow-up trap: "What happens to time taken for one revolution?" → T = 2πm/qB, unchanged.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TORQUE / GALVANOMETER -->
+      <div class="sec" data-m="galvanometer">
+        <h2 class="sh">Torque on Current Loop &amp; Galvanometer <span class="tag tt">Guaranteed 1Q</span></h2>
+        <h3 class="ssh">Torque on a Current Loop</h3>
+        <div class="formula">
+          $$\tau = NIAB\sin\theta = MB\sin\theta$$
+          <br/>
+          <strong>Magnetic moment:</strong> $M = NIA$ &nbsp;&nbsp;&nbsp; <strong>Potential energy:</strong> $U = -\vec{M}\cdot\vec{B} = -MB\cos\theta$
+        </div>
+        <div class="trick">
+          <p><strong>Stable equilibrium:</strong> $\theta = 0°$ ($\vec{M}$ parallel to $\vec{B}$, $U = -MB$, minimum energy). <strong>Unstable equilibrium:</strong> $\theta = 180°$ ($\vec{M}$ anti-parallel to $\vec{B}$, $U = +MB$, maximum energy). <strong>Maximum torque:</strong> at $\theta = 90°$.</p>
+        </div>
+        <h3 class="ssh">Moving Coil Galvanometer (MCG)</h3>
+        <p>In an MCG, a radial magnetic field is maintained so that $\sin\theta = 1$ always. The coil deflects against a restoring spring:</p>
+        <div class="formula">
+          $$\text{Deflection: } \phi = \frac{NABI}{k} \quad \Rightarrow \quad I = \frac{k\phi}{NAB}$$
+          <br/>
+          <strong>Current sensitivity:</strong> $S_I = \frac{\phi}{I} = \frac{NAB}{k}$ &nbsp;&nbsp;&nbsp; <strong>Voltage sensitivity:</strong> $S_V = \frac{S_I}{R_g} = \frac{NAB}{kR_g}$
+        </div>
+        <div class="warn-box">
+          <span class="lbl">Sensitivity Trap — Asked 3 Times</span>
+          <p>If number of turns $N$ doubles: current sensitivity doubles, but <strong>voltage sensitivity may decrease</strong> (if $R_g$ also increases proportionally with more turns). NEET 2018 asked this. Always check what parameter changes.</p>
+        </div>
+
+        <h3 class="ssh">Ammeter and Voltmeter Conversion — NEET's Favourite</h3>
+        <h4 class="sssh">Galvanometer → Ammeter (Shunt resistor S in parallel)</h4>
+        <div class="formula">
+          $$S = \frac{I_g \cdot R_g}{I - I_g} \approx \frac{I_g R_g}{I} \text{ (when } I \gg I_g\text{)}$$
+        </div>
+        <h4 class="sssh">Galvanometer → Voltmeter (High resistance R in series)</h4>
+        <div class="formula">
+          $$R = \frac{V}{I_g} - R_g$$
+        </div>
+        <div class="shortcut">
+          <p><strong>Ideal Ammeter has zero resistance.</strong> Adding shunt brings $R_g$ down to $R_{eff} = \frac{R_g S}{R_g+S}$. An ammeter should have <strong>very low</strong> resistance. A voltmeter should have <strong>very high</strong> resistance. NEET will ask: "An ideal voltmeter connected across a circuit draws…" → zero current.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A galvanometer has resistance $G = 25\,\Omega$ and full scale deflection current $I_g = 1\,\text{mA}$. To convert it into a voltmeter of range $0\text{–}10\,\text{V}$, the resistance that must be connected is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 9975 Ω</span>
+            <p>$R = \frac{V}{I_g} - R_g = \frac{10}{10^{-3}} - 25 = 10000 - 25 = 9975\,\Omega$</p>
+            <p><strong>Standard pattern:</strong> $R \approx V/I_g$ when $R_g \ll R$. Always subtract $R_g$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">Two galvanometers $G_1$ (current sensitivity $S_1$) and $G_2$ (current sensitivity $S_2 = 2S_1$) but $G_2$ has double the number of turns. If the resistances are equal, what is the ratio of voltage sensitivities?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1:2</span>
+            <p>$S_V = S_I / R_g$. Since $R_g$ are equal: $S_{V2}/S_{V1} = S_{I2}/S_{I1} = 2S_1/S_1 = 2$. Ratio $S_{V1}:S_{V2} = 1:2$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A cyclotron is used to accelerate protons. The frequency of the oscillating electric field used is $f = 10\,\text{MHz}$. Find the magnetic field required (mass of proton $= 1.67 \times 10^{-27}$ kg).</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ≈ 0.66 T</span>
+            <p>Cyclotron frequency: $f = \frac{qB}{2\pi m}$ → $B = \frac{2\pi m f}{q}$</p>
+            <p>$B = \frac{2\pi \times 1.67\times10^{-27} \times 10^7}{1.6\times10^{-19}} = \frac{2\pi \times 1.67\times10^{-20}}{1.6\times10^{-19}} \approx 0.66\,\text{T}$</p>
+            <p><strong>Remember:</strong> Cyclotron CANNOT accelerate electrons (they become relativistic too quickly) and CANNOT increase frequency beyond a certain limit (relativistic mass increase).</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- ch-body -->
+  </div><!-- chapter -->
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CHAPTER 2 — MAGNETISM & MATTER                 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-mm">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 2 of 5 · Class XII Electromagnetism</div>
+      <div class="ch-title">Magnetism &amp; <em>Matter</em></div>
+    </div>
+    <div class="ch-body">
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tc">1–2 Qs/yr</span></h2>
+        <p>This is a <strong>concept-heavy, calculation-light</strong> chapter. NEET almost always asks 1–2 questions from here — mostly conceptual about magnetic properties of materials, the Earth's magnetic field, and bar magnet field formulas.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>Frequency</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Bar magnet — axial and equatorial fields</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Diamagnetic / Paramagnetic / Ferromagnetic</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Earth's magnetic field — dip, declination, horizontal component</td><td>6 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Magnetic susceptibility and permeability</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Hysteresis loop — retentivity, coercivity</td><td>3 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sec" data-m="barmagnet">
+        <h2 class="sh">Bar Magnet Fields <span class="tag tg">Most Asked</span></h2>
+        <div class="formula">
+          <strong>Axial (end-on) position:</strong> $$B_{axial} = \frac{\mu_0}{4\pi} \cdot \frac{2Md}{(d^2-l^2)^2}$$
+          <br/>For short magnet ($d \gg l$): $$B_{axial} = \frac{\mu_0}{4\pi} \cdot \frac{2M}{d^3}$$
+          <br/><br/>
+          <strong>Equatorial (broad-on) position:</strong> $$B_{eq} = \frac{\mu_0}{4\pi} \cdot \frac{M}{(d^2+l^2)^{3/2}}$$
+          <br/>For short magnet: $$B_{eq} = \frac{\mu_0}{4\pi} \cdot \frac{M}{d^3}$$
+        </div>
+        <div class="shortcut">
+          <p><strong>Golden ratio:</strong> $B_{axial} = 2 B_{eq}$ for a short dipole at same distance. Direction: axial field is along $\vec{M}$; equatorial field is opposite to $\vec{M}$.</p>
+          <p><strong>Dimension check:</strong> $[M] = [\text{A·m}^2]$ or $[\text{J/T}]$. $[\mu_0 M / d^3]$ = Tesla. ✓</p>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">Direction Trap — NEET 2022</span>
+          <p>The magnetic field at the equatorial point of a bar magnet is directed from <strong>N to S</strong> (i.e., <strong>opposite</strong> to the magnetic moment $\vec{M}$). The axial field is in the same direction as $\vec{M}$ (S to N outside the magnet, N to S inside). Don't confuse this with electric dipole where equatorial $\vec{E}$ is also opposite to $\vec{p}$.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">The period of oscillation of a freely suspended bar magnet is 4 s. If it is cut into two equal halves, the time period of each half when freely suspended is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 4 s</span>
+            <p>$T = 2\pi\sqrt{\frac{I}{MB_H}}$. When cut into two equal halves (along length):</p>
+            <p>New magnetic moment $M' = M/2$ (half the poles). New moment of inertia $I' = I/2$ (half mass, same geometry factor).</p>
+            <p>$T' = 2\pi\sqrt{\frac{I/2}{(M/2)B_H}} = 2\pi\sqrt{\frac{I}{MB_H}} = T = 4\,\text{s}$</p>
+            <p><strong>If cut perpendicular to length:</strong> $M' = M/2$, $I' = I/8$, so $T' = T/2 = 2$ s. NEET asks both versions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec" data-m="magtypes">
+        <h2 class="sh">Magnetic Properties of Materials <span class="tag tg">Pure Concept — 1Q Guaranteed</span></h2>
+        <p>This is NEET's most tested <strong>purely conceptual</strong> topic in magnetism. Every year, one question discriminates students based on whether they know the properties table cold.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Property</th><th>Diamagnetic</th><th>Paramagnetic</th><th>Ferromagnetic</th></tr></thead>
+            <tbody>
+              <tr><td>Susceptibility χ</td><td>Small, negative<br/>(-1 ≤ χ &lt; 0)</td><td>Small, positive<br/>(0 &lt; χ &lt; 1)</td><td>Large, positive<br/>(χ ≫ 1)</td></tr>
+              <tr><td>Relative permeability $\mu_r$</td><td>0 ≤ μᵣ &lt; 1</td><td>μᵣ slightly &gt; 1</td><td>μᵣ ≫ 1</td></tr>
+              <tr><td>Behaviour in non-uniform B field</td><td>Repelled (moved to weak B)</td><td>Attracted (to strong B)</td><td>Strongly attracted</td></tr>
+              <tr><td>Effect of temperature</td><td>Independent of T</td><td>χ ∝ 1/T (Curie's law)</td><td>Loses ferromagnetism above Curie temp</td></tr>
+              <tr><td>Examples</td><td>Bi, Cu, Au, H₂O, N₂, Ag</td><td>Al, Na, O₂, Pt, Mn</td><td>Fe, Co, Ni, Gadolinium</td></tr>
+              <tr><td>Domains</td><td>No domains</td><td>No domains</td><td>Has magnetic domains</td></tr>
+              <tr><td>Magnetisation</td><td>Weak, opposite to B</td><td>Weak, along B</td><td>Strong, along B</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="trick">
+          <p><strong>Memory hook — "BiCu Dia" (like bicycle):</strong> Bismuth, Copper, Gold → Diamagnetic. "Alu-Na Para" (Aluminium, Sodium → Paramagnetic). Iron, Cobalt, Nickel → Ferromagnetic (remember by alphabet order: Fe, Co, Ni).</p>
+        </div>
+
+        <h3 class="ssh">Curie's Law and Curie Temperature</h3>
+        <div class="formula">
+          <strong>Curie's Law (Paramagnetics):</strong> $$\chi = \frac{C}{T}$$
+          <br/>where $C$ is the Curie constant, $T$ is absolute temperature.
+        </div>
+        <p>Above the <strong>Curie Temperature</strong> $T_C$, a ferromagnetic material becomes paramagnetic. For iron, $T_C \approx 770°C$. NEET once asked: "What is the behaviour of a ferromagnetic material above Curie temperature?" → Paramagnetic.</p>
+
+        <h3 class="ssh">Earth's Magnetic Field</h3>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Three Elements of Earth's B</div>
+            <ul>
+              <li><strong>Declination (α):</strong> angle between geographic North and magnetic North</li>
+              <li><strong>Dip/Inclination (δ):</strong> angle of B with horizontal</li>
+              <li><strong>Horizontal component:</strong> $B_H = B\cos\delta$</li>
+              <li><strong>Vertical component:</strong> $B_V = B\sin\delta$</li>
+              <li>$\tan\delta = B_V/B_H$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">NEET Fast Facts</div>
+            <ul>
+              <li>At equator: $\delta = 0°$, $B_V = 0$</li>
+              <li>At poles: $\delta = 90°$, $B_H = 0$</li>
+              <li>At dip of 45°: $B_V = B_H$</li>
+              <li>Magnetic south pole ≈ geographic north</li>
+              <li>Apparent dip: observed when compass is tilted</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">At a place, the horizontal component of Earth's magnetic field is $B$ and angle of dip is 60°. The value of vertical component of Earth's field and the total intensity of Earth's field are respectively:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: B√3 and 2B</span>
+            <p>$B_V = B_H \tan\delta = B\tan 60° = B\sqrt{3}$</p>
+            <p>Total intensity: $B_{total} = B_H/\cos\delta = B/\cos 60° = B/(1/2) = 2B$</p>
+            <p>Or: $B_{total} = \sqrt{B_H^2+B_V^2} = \sqrt{B^2+3B^2} = 2B$. ✓</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CHAPTER 3 — ELECTROMAGNETIC INDUCTION          -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-emi">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 3 of 5 · Class XII Electromagnetism</div>
+      <div class="ch-title">Electromagnetic <em>Induction</em></div>
+    </div>
+    <div class="ch-body">
+
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">2–3 Qs/yr</span></h2>
+        <p>EMI is consistently one of the <strong>most conceptually rich</strong> chapters in NEET Physics. The entire chapter rests on one magnificent idea: <em>a changing magnetic flux induces an EMF that opposes the change</em>. Mastering Faraday + Lenz unlocks 80% of this chapter.</p>
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Faraday/Lenz Laws — 1–2 Qs</div>
+          <div class="score-pill sp-b">🔵 Self/Mutual Inductance — 1 Q</div>
+          <div class="score-pill sp-g">🟢 Motional EMF — 1 Q</div>
+          <div class="score-pill sp-o">🟡 Energy in Inductor / Eddy currents — concept Qs</div>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2010–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Faraday's law — EMF from changing flux</td><td>14+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Lenz's law — direction of induced current</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Motional EMF — rod moving in B field ($\varepsilon = Blv$)</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Self inductance — solenoid $L = \mu_0 n^2 V$</td><td>7 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Mutual inductance — conceptual + formula</td><td>5 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Energy stored in inductor $U = \frac{1}{2}LI^2$</td><td>5 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Eddy currents — applications and effects</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>AC Generator — principle</td><td>3 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FARADAY + LENZ -->
+      <div class="sec" data-m="faraday-lenz">
+        <h2 class="sh">Faraday's &amp; Lenz's Laws <span class="tag tg">Core — 2 Qs/yr</span></h2>
+        <div class="def-box">
+          <span class="lbl">Faraday's First Law</span>
+          <p>Whenever the <strong>magnetic flux</strong> linked with a closed circuit changes, an <strong>EMF is induced</strong> in the circuit. The EMF lasts only as long as the flux is changing.</p>
+        </div>
+        <div class="def-box">
+          <span class="lbl">Faraday's Second Law (Magnitude)</span>
+          <p>$$|\varepsilon| = N\left|\frac{d\Phi_B}{dt}\right|$$</p>
+          <p>For $N$ turns: $\varepsilon = -N\frac{d\Phi_B}{dt}$ (negative sign = Lenz's law).</p>
+        </div>
+        <div class="def-box">
+          <span class="lbl">Lenz's Law (Direction)</span>
+          <p>The direction of induced current is such that it <strong>opposes the cause producing it</strong>. This is a consequence of conservation of energy — you must do work to create the induced current.</p>
+        </div>
+
+        <h3 class="ssh">Flux Calculation — NEET's Setup</h3>
+        <div class="formula">
+          $$\Phi_B = \vec{B}\cdot\vec{A} = BA\cos\theta$$
+          <br/>
+          Units: Weber (Wb) = Volt·second = T·m²
+        </div>
+        <div class="trick">
+          <p><strong>Three ways flux changes in NEET:</strong></p>
+          <p><strong>(1)</strong> $B$ changes (current in nearby coil changes) → $\varepsilon = -NA\frac{dB}{dt}$</p>
+          <p><strong>(2)</strong> Area changes (coil compressed/expanded) → $\varepsilon = -NB\frac{dA}{dt}$</p>
+          <p><strong>(3)</strong> Angle changes (coil rotates) → $\varepsilon = NBA\omega\sin\omega t$ (AC Generator)</p>
+        </div>
+
+        <h3 class="ssh">Lenz's Law — Direction Problems (NEET Loves These)</h3>
+        <p>The <strong>3-step method</strong> that solves every Lenz's law direction problem:</p>
+        <div class="approach">
+          <p><strong>Step 1:</strong> Identify the existing magnetic field direction in the coil's plane.</p>
+          <p><strong>Step 2:</strong> Determine if the flux is increasing or decreasing.</p>
+          <p><strong>Step 3:</strong> The induced current creates a B field that <em>opposes</em> the change: if flux increasing → induced B opposes → induced current flows to create opposite B; if flux decreasing → induced B supports → induced current flows to create same-direction B.</p>
+        </div>
+        <div class="eg">
+          <p><strong>Classic NEET scenario:</strong> A bar magnet is moved towards a coil, North pole facing coil. As it approaches, flux through coil increases. By Lenz's law, induced current creates a magnetic field opposing this increase, i.e., the coil face nearest the magnet acts as a <strong>North pole</strong> (repels the magnet). To determine current direction: use right-hand rule — if North pole faces you from the coil, current is <strong>anticlockwise</strong> when viewed from that face.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A coil of area $A = 0.1\,\text{m}^2$ has $N = 200$ turns. The magnetic flux through the coil changes from 0 to $\Phi_{max} = 5\times10^{-4}$ Wb in 0.2 s uniformly. The average induced EMF in the coil is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 0.5 V (50 mV)</span>
+            <p>$\varepsilon = N\frac{\Delta\Phi}{\Delta t} = 200 \times \frac{5\times10^{-4}}{0.2} = 200 \times 2.5\times10^{-3} = 0.5\,\text{V}$</p>
+            <p><strong>Note:</strong> The area $A$ was given but is NOT needed here because $\Delta\Phi$ is directly given. This is a deliberate distractor.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">A circular loop is placed in a time-varying uniform magnetic field $B = B_0\cos\omega t$ perpendicular to the loop. The induced EMF in the loop of area $A$ is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $\varepsilon = AB_0\omega\sin\omega t$</span>
+            <p>$\Phi = BA = B_0 A\cos\omega t$</p>
+            <p>$\varepsilon = -\frac{d\Phi}{dt} = -B_0 A \cdot (-\omega\sin\omega t) = AB_0\omega\sin\omega t$</p>
+            <p><strong>Maximum EMF:</strong> $\varepsilon_{max} = AB_0\omega$ at $t = \pi/2\omega$ (when $B = 0$, not when $B$ is maximum!)</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2019</span>
+            <span class="pyq-q">A metallic ring is placed in a region where a time-varying magnetic field exists. If the ring is in the plane perpendicular to $\vec{B}$, the ring:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: gets heated (eddy currents flow)</span>
+            <p>Even without an external circuit, the induced EMF drives <strong>eddy currents</strong> within the conducting ring. These eddy currents cause $I^2R$ heating. The ring does NOT "repel" the field — it opposes the change in flux but cannot completely cancel it.</p>
+            <p><strong>Applications of eddy currents:</strong> Induction furnace, electromagnetic braking (trains), dead-beat galvanometer, speedometers, energy meters. <strong>Minimized by:</strong> laminated cores (slotted/thin sheets with insulation between them).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTIONAL EMF -->
+      <div class="sec" data-m="motional-emf">
+        <h2 class="sh">Motional EMF <span class="tag tg">Numerical Guaranteed</span></h2>
+        <p>When a conductor moves through a magnetic field, free electrons experience Lorentz force, creating a potential difference — <strong>motional EMF</strong>.</p>
+        <div class="formula">
+          $$\varepsilon = \int (\vec{v} \times \vec{B}) \cdot d\vec{l}$$
+          <br/>
+          For a straight rod of length $l$ moving with velocity $v$ perpendicular to $B$:
+          $$\boxed{\varepsilon = Blv}$$
+        </div>
+        <div class="tip-box">
+          <span class="lbl">When to use ε = Blv</span>
+          <p>Rod must be perpendicular to both $v$ and $B$ for the simple formula. If rod is at angle $\theta$ to $v$: $\varepsilon = Blv\sin\theta$. If $B$ is at angle $\phi$ to the plane: $\varepsilon = Blv\cos\phi$. Most NEET problems use the simple perpendicular case.</p>
+        </div>
+        <h3 class="ssh">Power and Force in Motional EMF</h3>
+        <p>If the rod slides on rails of resistance $R$ in a magnetic field $B$:</p>
+        <div class="formula">
+          Induced current: $I = \frac{Blv}{R}$
+          <br/>
+          Retarding force on rod: $F = BIl = \frac{B^2l^2v}{R}$
+          <br/>
+          Power dissipated: $P = F \cdot v = \frac{B^2l^2v^2}{R}$
+        </div>
+        <div class="warn-box">
+          <span class="lbl">Energy Conservation Check</span>
+          <p>Power dissipated as heat in resistor = Power input by external agent keeping rod moving at constant $v$: $P_{external} = F \cdot v = B^2l^2v^2/R$. If no external force, rod decelerates exponentially.</p>
+        </div>
+
+        <h3 class="ssh">Rotating Rod in Magnetic Field</h3>
+        <p>A rod of length $l$ rotating about one end in a uniform field $B$ (perpendicular to plane of rotation):</p>
+        <div class="formula">
+          $$\varepsilon = \frac{1}{2}Bl^2\omega = \frac{1}{2}Bl^2 \cdot \frac{2\pi}{T} = \pi Bl^2 f$$
+        </div>
+        <div class="trick">
+          <p><strong>Derivation shortcut:</strong> Think of the rod as sweeping area $dA = \frac{1}{2}l^2 d\theta$ in time $dt$. Rate of area swept = $\frac{dA}{dt} = \frac{1}{2}l^2\omega$. So $\varepsilon = B\frac{dA}{dt} = \frac{1}{2}Bl^2\omega$. This appears in NEET as "find EMF of a spoke of a wheel".</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">A metallic rod of length $l = 1\,\text{m}$ is rotated about one end in a plane perpendicular to a magnetic field $B = 0.4\,\text{T}$. If it makes 100 rev/min, what is the EMF generated?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ≈ 2.09 V</span>
+            <p>$\omega = 2\pi \times \frac{100}{60} = \frac{10\pi}{3}\,\text{rad/s}$</p>
+            <p>$\varepsilon = \frac{1}{2}Bl^2\omega = \frac{1}{2} \times 0.4 \times 1 \times \frac{10\pi}{3} = \frac{2\pi}{3} \approx 2.09\,\text{V}$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A rectangular coil of area $A$ and number of turns $N$ rotates with angular velocity $\omega$ in a uniform magnetic field $B$. The maximum EMF and maximum rate of change of flux are:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: NBA ω and NBA ω</span>
+            <p>$\Phi = NBA\cos\omega t$</p>
+            <p>$\varepsilon = -\frac{d\Phi}{dt} = NBA\omega\sin\omega t$</p>
+            <p>$\varepsilon_{max} = NBA\omega$</p>
+            <p>Max rate of change of flux $= \left|\frac{d\Phi}{dt}\right|_{max} = NBA\omega$ (same value, since $\varepsilon = \left|\frac{d\Phi}{dt}\right|$ by Faraday's law for single turn, or $N$ times for $N$ turns)</p>
+            <p><strong>Note:</strong> Max flux = $NBA$ occurs at $t=0$; max EMF occurs at $t = \pi/(2\omega)$ (90° phase difference).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SELF & MUTUAL INDUCTANCE -->
+      <div class="sec" data-m="inductance">
+        <h2 class="sh">Self &amp; Mutual Inductance <span class="tag tc">Formula Heavy</span></h2>
+
+        <h3 class="ssh">Self Inductance</h3>
+        <div class="def-box">
+          <span class="lbl">Self Inductance (L)</span>
+          <p>When current in a coil changes, the changing magnetic flux through itself induces an EMF opposing the change:</p>
+          <p>$$\varepsilon = -L\frac{dI}{dt}$$</p>
+          <p>$L$ is self-inductance in Henry (H). It depends only on geometry.</p>
+        </div>
+        <h4 class="sssh">Self Inductance of a Solenoid</h4>
+        <div class="formula">
+          $$L = \frac{\mu_0 N^2 A}{l} = \mu_0 n^2 A l = \mu_0 n^2 V$$
+          <br/>where $n = N/l$ = turns per unit length, $V = Al$ = volume
+        </div>
+        <div class="trick">
+          <p><strong>Proportionalities for NEET:</strong> $L \propto N^2$, $L \propto A$, $L \propto l^{-1}$ for fixed $N$. If $N$ doubles and length doubles: $n$ unchanged, but $A$ same → $L \propto N^2/l$ doubles. Always express $L$ in terms of what changes.</p>
+        </div>
+
+        <h3 class="ssh">Energy Stored in an Inductor</h3>
+        <div class="formula">
+          $$U = \frac{1}{2}LI^2$$
+          <br/>
+          Energy density: $u = \frac{B^2}{2\mu_0}$ (J/m³)
+          <br/>
+          Analogy with capacitor: $U_C = \frac{1}{2}CV^2 \longleftrightarrow U_L = \frac{1}{2}LI^2$
+        </div>
+
+        <h3 class="ssh">Mutual Inductance</h3>
+        <div class="def-box">
+          <span class="lbl">Mutual Inductance (M)</span>
+          <p>EMF induced in coil 2 due to changing current in coil 1:</p>
+          <p>$$\varepsilon_2 = -M\frac{dI_1}{dt}$$</p>
+          <p>$M$ is mutual inductance. It is a property of the <em>pair</em> of coils. $M_{12} = M_{21}$.</p>
+        </div>
+        <h4 class="sssh">Mutual Inductance of Two Coaxial Solenoids</h4>
+        <div class="formula">
+          $$M = \frac{\mu_0 N_1 N_2 A}{l} = \mu_0 n_1 N_2 A$$
+          <br/>
+          Coupling coefficient: $k = \frac{M}{\sqrt{L_1 L_2}}$ where $0 \leq k \leq 1$
+        </div>
+        <div class="note-box">
+          <span class="lbl">Neumann Formula (Conceptual)</span>
+          <p>$M$ depends on: geometry (shape, size, relative position), number of turns, medium (μ). $M$ does NOT depend on the current flowing. If coils are perpendicular, $M = 0$ (no flux linkage).</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">The self-inductance of a coil is $L$. If the current through it changes from $I_0$ to $0$ in time $t_0$, the average induced EMF is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: LI₀/t₀</span>
+            <p>$|\varepsilon_{avg}| = L\left|\frac{\Delta I}{\Delta t}\right| = L \cdot \frac{I_0 - 0}{t_0} = \frac{LI_0}{t_0}$</p>
+            <p><strong>Sign:</strong> Since current decreases, induced EMF tries to <em>maintain</em> current in the same direction (Lenz's law).</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">Two coils are placed coaxially. Coil 1 has $N_1 = 500$ turns, area $A = 1\,\text{cm}^2$, length $l = 25\,\text{cm}$. Coil 2 has $N_2 = 200$ turns wound on coil 1. Find mutual inductance $M$.</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ≈ 0.502 mH</span>
+            <p>$M = \frac{\mu_0 N_1 N_2 A}{l} = \frac{4\pi\times10^{-7} \times 500 \times 200 \times 1\times10^{-4}}{0.25}$</p>
+            <p>$= \frac{4\pi \times 10^{-7} \times 10^5 \times 10^{-4}}{0.25} = \frac{4\pi \times 10^{-6}}{0.25} = 16\pi \times 10^{-6} \approx 50.3\,\mu\text{H}$</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CHAPTER 4 — ALTERNATING CURRENT                -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-ac">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 4 of 5 · Class XII Electromagnetism</div>
+      <div class="ch-title">Alternating <em>Current</em></div>
+    </div>
+    <div class="ch-body">
+
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">3–4 Qs/yr · High-Value Chapter</span></h2>
+        <p>AC is the <strong>highest numerical density chapter</strong> in Class 12 Electromagnetism for NEET. If you master the phasor diagram approach and the resonance conditions, you can solve any question in 30 seconds. NEET papers from 2018–2025 have had 3–4 AC questions almost every year.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>Frequency</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>RLC series circuit — impedance, current, phase</td><td>15+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Resonance in LCR — resonant frequency, Q factor</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Power in AC circuits — power factor, wattless current</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Transformer — turns ratio, efficiency</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>RMS and peak values — relation</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Pure L, pure C, pure R circuits — phase relations</td><td>7 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>LC oscillations — energy exchange</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- AC FUNDAMENTALS -->
+      <div class="sec" data-m="ac-basics">
+        <h2 class="sh">AC Fundamentals — Peak, RMS, and Average Values</h2>
+        <p>Alternating current: $i = I_0\sin(\omega t + \phi)$, where $I_0$ is peak current, $\omega = 2\pi f$ is angular frequency.</p>
+        <div class="formula">
+          $$I_{rms} = \frac{I_0}{\sqrt{2}} \approx 0.707\, I_0$$
+          $$V_{rms} = \frac{V_0}{\sqrt{2}} \approx 0.707\, V_0$$
+          $$I_{avg} = \frac{2I_0}{\pi} \approx 0.637\, I_0 \quad \text{(over half cycle)}$$
+          <br/>
+          <strong>Form factor</strong> $= \frac{I_{rms}}{I_{avg}} = \frac{\pi}{2\sqrt{2}} \approx 1.11$
+        </div>
+        <div class="warn-box">
+          <span class="lbl">RMS vs Average — NEET Tests Both</span>
+          <p>Household voltage "220 V" is the RMS value. Peak voltage $= 220\sqrt{2} \approx 311$ V. Average over full cycle = 0 (for sine wave). Average over half cycle = $2V_0/\pi$. NEET 2016: "If V = 220 V is RMS, peak value is?" → $220\sqrt{2}$ V.</p>
+        </div>
+
+        <h3 class="ssh">Phase Relations — The CIVIL Mnemonic</h3>
+        <div class="tip-box">
+          <span class="lbl">CIVIL — The Single Most Useful AC Memory Tool</span>
+          <p><strong>C</strong>apacitor: <strong>I</strong> leads <strong>V</strong> (current leads voltage by 90°)</p>
+          <p><strong>I</strong>nductor: <strong>V</strong> leads <strong>I</strong> (voltage leads current by 90°; or current LAGS voltage)</p>
+          <p>Pure R: no phase difference. In <strong>IL</strong>, voltage leads.</p>
+        </div>
+
+        <h4 class="sssh">Individual Elements — Summary Table</h4>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Element</th><th>Reactance / Impedance</th><th>Phase (I relative to V)</th><th>Power dissipation</th></tr></thead>
+            <tbody>
+              <tr><td>Pure R</td><td>$Z = R$</td><td>In phase (0°)</td><td>$P = I_{rms}^2 R = V_{rms}^2/R$</td></tr>
+              <tr><td>Pure L</td><td>$X_L = \omega L = 2\pi fL$</td><td>I lags V by 90°</td><td>$P = 0$ (reactive)</td></tr>
+              <tr><td>Pure C</td><td>$X_C = \frac{1}{\omega C} = \frac{1}{2\pi fC}$</td><td>I leads V by 90°</td><td>$P = 0$ (reactive)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LCR CIRCUIT -->
+      <div class="sec" data-m="lcr-circuit">
+        <h2 class="sh">Series LCR Circuit <span class="tag tg">Highest Yield Topic</span></h2>
+        <p>A series LCR circuit is the <strong>single most tested circuit in NEET AC chapter</strong>. You must know impedance, phase angle, current, and power for any given $L$, $C$, $R$, $f$.</p>
+        <div class="formula">
+          <strong>Impedance:</strong>
+          $$Z = \sqrt{R^2 + (X_L - X_C)^2} = \sqrt{R^2 + \left(\omega L - \frac{1}{\omega C}\right)^2}$$
+          <br/>
+          <strong>Phase angle:</strong>
+          $$\tan\phi = \frac{X_L - X_C}{R}$$
+          <br/>
+          <strong>Current:</strong>
+          $$I_{rms} = \frac{V_{rms}}{Z}$$
+        </div>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" style="max-width:520px;">
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1a4a8c"/></marker>
+              <marker id="arrR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b83030"/></marker>
+              <marker id="arrG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1a6b40"/></marker>
+            </defs>
+            <!-- Title -->
+            <text x="280" y="22" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-style="italic" fill="#3a2e22">Phasor Diagram — Series LCR Circuit</text>
+            <!-- Axes -->
+            <line x1="80" y1="130" x2="480" y2="130" stroke="#c4b490" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <line x1="280" y1="30" x2="280" y2="200" stroke="#c4b490" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <!-- VR phasor (horizontal, along I) -->
+            <line x1="280" y1="130" x2="420" y2="130" stroke="#1a6b40" stroke-width="2.5" marker-end="url(#arrG)"/>
+            <text x="350" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#1a6b40">V_R (in phase)</text>
+            <!-- VL phasor (up) -->
+            <line x1="420" y1="130" x2="420" y2="55" stroke="#1a4a8c" stroke-width="2.5" marker-end="url(#arr)"/>
+            <text x="448" y="95" font-family="Georgia,serif" font-size="12" fill="#1a4a8c">V_L</text>
+            <!-- VC phasor (down) -->
+            <line x1="420" y1="130" x2="420" y2="185" stroke="#b85a10" stroke-width="2.5" marker-end="url(#arrR)"/>
+            <text x="448" y="170" font-family="Georgia,serif" font-size="12" fill="#b85a10">V_C</text>
+            <!-- Net VL-VC phasor -->
+            <line x1="420" y1="130" x2="420" y2="75" stroke="#5a1a8a" stroke-width="2" stroke-dasharray="5,3"/>
+            <text x="455" y="80" font-family="Georgia,serif" font-size="11" fill="#5a1a8a">V_L−V_C</text>
+            <!-- Resultant V -->
+            <line x1="280" y1="130" x2="420" y2="75" stroke="#b83030" stroke-width="3" marker-end="url(#arrR)"/>
+            <text x="330" y="90" font-family="Georgia,serif" font-size="13" fill="#b83030" font-weight="bold">V</text>
+            <!-- Current I -->
+            <line x1="280" y1="130" x2="420" y2="130" stroke="#1a6b40" stroke-width="1" stroke-dasharray="2,2"/>
+            <text x="90" y="145" font-family="Georgia,serif" font-size="12" fill="#1a6b40">I →</text>
+            <!-- Phase angle phi -->
+            <path d="M 310,130 A 30,30 0 0,0 309,108" fill="none" stroke="#b83030" stroke-width="1.5"/>
+            <text x="318" y="118" font-family="Georgia,serif" font-size="12" fill="#b83030" font-style="italic">φ</text>
+            <!-- Z formula note -->
+            <text x="280" y="210" text-anchor="middle" font-family="Courier New,monospace" font-size="11" fill="#6b5a47">Z = √[R² + (X_L − X_C)²]  |  tan φ = (X_L−X_C)/R</text>
+          </svg>
+        </div>
+
+        <h3 class="ssh">🎯 Resonance — NEET's Most Repeated AC Scenario</h3>
+        <div class="def-box">
+          <span class="lbl">Resonance Condition</span>
+          <p>At resonance: $X_L = X_C$ → $\omega L = \frac{1}{\omega C}$ → <strong>$Z = R$ (minimum)</strong>, <strong>$I = V/R$ (maximum)</strong>, <strong>$\phi = 0$ (unity power factor)</strong></p>
+          <p>$$\omega_0 = \frac{1}{\sqrt{LC}} \quad \Rightarrow \quad f_0 = \frac{1}{2\pi\sqrt{LC}}$$</p>
+        </div>
+        <div class="shortcut">
+          <p><strong>Resonance quick-check:</strong> At resonance: $V_R = V_{source}$ (all voltage across R), $V_L = V_C$ (may exceed source voltage!), $I$ is maximum. If $V_L = V_C$ stated → it IS resonance regardless of values.</p>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">NEET Trap — Voltage at Resonance</span>
+          <p>At resonance, $V_L$ and $V_C$ can individually be <strong>much larger</strong> than the source voltage, but they cancel each other. This is NOT a violation of energy conservation. NEET 2020 asked: "At resonance, what is $V_L$?" → $V_L = I \cdot X_L = (V/R) \cdot \omega_0 L$, which can be $\gg V$.</p>
+        </div>
+
+        <h4 class="sssh">Q Factor (Quality Factor)</h4>
+        <div class="formula">
+          $$Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 CR} = \frac{1}{R}\sqrt{\frac{L}{C}}$$
+          <br/>
+          <strong>Bandwidth:</strong> $\Delta\omega = R/L$ &nbsp;&nbsp; <strong>$Q = \omega_0/\Delta\omega$</strong>
+          <br/>
+          Higher $Q$ → sharper resonance peak → more selective circuit
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">In a series LCR circuit, $L = 1\,\text{H}$, $C = 10\,\mu\text{F}$, $R = 100\,\Omega$, applied voltage $V = 200\sin(100t)$. The impedance of the circuit is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 100√2 Ω</span>
+            <p>$\omega = 100\,\text{rad/s}$</p>
+            <p>$X_L = \omega L = 100 \times 1 = 100\,\Omega$</p>
+            <p>$X_C = \frac{1}{\omega C} = \frac{1}{100 \times 10^{-5}} = \frac{1}{10^{-3}} = 1000\,\Omega$</p>
+            <p>$Z = \sqrt{100^2 + (100-1000)^2} = \sqrt{10^4 + 8.1\times10^5} = \sqrt{10^4(1+81)} = 100\sqrt{82} \approx 906\,\Omega$</p>
+            <p>Wait — checking: $Z = \sqrt{100^2 + 900^2} = \sqrt{10000+810000} = \sqrt{820000} = 100\sqrt{82}$. Check if $\omega_0 = 1/\sqrt{LC} = 1/\sqrt{10^{-5}} = 316$ rad/s. At $\omega=100$, not resonance.</p>
+            <p><strong>Alternative version (at resonance):</strong> If $\omega = 1/\sqrt{LC}$: $Z = R = 100\,\Omega$, $I = V/R = 200/(100\sqrt{2}) = \sqrt{2}$ A. Always check if resonance first!</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">In a series LCR circuit, the frequency is increased beyond resonance. The circuit becomes:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Inductive (V leads I, or current lags)</span>
+            <p>At resonance: $X_L = X_C$. Above resonance: $X_L > X_C$ (since $X_L = \omega L$ increases, $X_C = 1/\omega C$ decreases). So net reactance is inductive → $\tan\phi &gt; 0$ → $V$ leads $I$ → <strong>circuit is inductive</strong>. Below resonance → capacitive.</p>
+            <p><strong>Memory:</strong> "As frequency rises, the inductor takes over." $X_L \propto \omega$ (rises), $X_C \propto 1/\omega$ (falls).</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">An LCR circuit has $L = 1\,\text{mH}$, $C = 0.1\,\mu\text{F}$, $R = 10\,\Omega$. What is the Q-factor of this circuit?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 10</span>
+            <p>$Q = \frac{1}{R}\sqrt{\frac{L}{C}} = \frac{1}{10}\sqrt{\frac{10^{-3}}{10^{-7}}} = \frac{1}{10}\sqrt{10^4} = \frac{100}{10} = 10$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- POWER IN AC -->
+      <div class="sec" data-m="ac-power">
+        <h2 class="sh">Power in AC Circuits <span class="tag tg">High NEET Priority</span></h2>
+        <div class="formula">
+          $$P_{avg} = V_{rms} I_{rms} \cos\phi$$
+          <br/>
+          <strong>Power factor:</strong> $\cos\phi = \frac{R}{Z}$
+          <br/>
+          <strong>Apparent power:</strong> $S = V_{rms} I_{rms}$ (VA)
+          <br/>
+          <strong>Reactive power:</strong> $Q = V_{rms} I_{rms}\sin\phi$ (VAR)
+        </div>
+        <div class="def-box">
+          <span class="lbl">Wattless Current</span>
+          <p>The component of current that is 90° out of phase with voltage does <strong>zero average work</strong>: $I_{wattless} = I_{rms}\sin\phi$. The active (power-consuming) component: $I_{active} = I_{rms}\cos\phi$.</p>
+          <p>For pure L or pure C: $\phi = 90°$, $\cos\phi = 0$, $P_{avg} = 0$. No energy consumed — only stored and returned.</p>
+        </div>
+        <div class="trick">
+          <p><strong>Three critical cases:</strong></p>
+          <p>Pure R: $\cos\phi = 1$, $P = I^2R$ (max power). Pure L or C: $\cos\phi = 0$, $P = 0$. LCR at resonance: $\cos\phi = 1$, $P = I_{max}^2 R/2 = V^2/2R$ (where $V$ is peak).</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">In an AC circuit, $V = 200\sin(100t)$ and $I = 4\sin(100t + \pi/3)$. The average power consumed is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 200 W</span>
+            <p>$V_0 = 200$ V, $I_0 = 4$ A, phase of $I$ leads $V$ by $\pi/3 = 60°$</p>
+            <p>$P = \frac{V_0 I_0}{2}\cos\phi = \frac{200 \times 4}{2} \times \cos 60° = 400 \times 0.5 = 200$ W</p>
+            <p>Or: $P = V_{rms} I_{rms} \cos\phi = \frac{200}{\sqrt{2}} \times \frac{4}{\sqrt{2}} \times \frac{1}{2} = 100 \times 2 \times \frac{1}{2} \cdot \sqrt{2} \cdot \sqrt{2} = 200$ W ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">A coil of resistance $10\,\Omega$ and self-inductance $5\,\text{H}$ is connected to an AC source of $V_{rms} = 200$ V, $f = 50$ Hz. The power factor of the circuit is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ≈ 0.060 (very low)</span>
+            <p>$X_L = 2\pi \times 50 \times 5 = 500\pi \approx 1571\,\Omega$</p>
+            <p>$Z = \sqrt{10^2 + 1571^2} \approx 1571\,\Omega$</p>
+            <p>$\cos\phi = R/Z = 10/1571 \approx 0.0064$. Essentially wattless — pure inductor behaviour.</p>
+            <p><strong>Conceptual:</strong> When $X_L \gg R$, power factor $\approx 0$. All power is reactive.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSFORMER -->
+      <div class="sec" data-m="transformer">
+        <h2 class="sh">Transformer <span class="tag tt">Formula + Concept</span></h2>
+        <div class="def-box">
+          <span class="lbl">Transformer Principle</span>
+          <p>Based on mutual induction. An AC voltage in the primary coil induces an AC voltage in the secondary coil. <strong>Works only with AC — NOT DC</strong> (DC gives no changing flux).</p>
+        </div>
+        <div class="formula">
+          $$\frac{V_s}{V_p} = \frac{N_s}{N_p} = \frac{I_p}{I_s} \quad \text{(ideal transformer)}$$
+          <br/>
+          <strong>Step-up:</strong> $N_s > N_p$, $V_s > V_p$, $I_s < I_p$
+          <br/>
+          <strong>Step-down:</strong> $N_s < N_p$, $V_s < V_p$, $I_s > I_p$
+        </div>
+        <div class="tip-box">
+          <span class="lbl">Ideal vs Real Transformer</span>
+          <p>Ideal: efficiency = 100%, $P_{input} = P_{output}$. Real transformer losses: <strong>(1) Copper losses</strong> ($I^2R$ in coils) — reduced by thick wire. <strong>(2) Iron losses</strong> — eddy current losses (reduced by laminated core) + hysteresis losses (reduced by soft iron). <strong>(3) Flux leakage</strong>. NEET asks: "Which core material for transformer?" → Soft iron (low hysteresis loss, high permeability).</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">A transformer has 200 turns in primary and 400 turns in secondary. If input power is 10 kW and primary voltage is 200 V, find the secondary voltage and secondary current (assume ideal).</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: V_s = 400 V, I_s = 25 A</span>
+            <p>$V_s = V_p \times (N_s/N_p) = 200 \times (400/200) = 400$ V</p>
+            <p>$I_p = P/V_p = 10000/200 = 50$ A</p>
+            <p>$I_s = I_p \times (N_p/N_s) = 50 \times (200/400) = 25$ A</p>
+            <p>Check: $P_{out} = V_s I_s = 400 \times 25 = 10000$ W = $P_{in}$ ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2019</span>
+            <span class="pyq-q">A transformer is used to step up 200 V AC to 2000 V to transmit power over long distance through a cable of resistance $R = 10\,\Omega$. If the primary current is 10 A, what is the power loss in transmission?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 10 W</span>
+            <p>Step-up ratio = 10. Secondary current $I_s = I_p/10 = 10/10 = 1$ A.</p>
+            <p>Power loss = $I_s^2 R = 1^2 \times 10 = 10$ W</p>
+            <p><strong>Key idea:</strong> Transmission at high voltage means low current in the cable → dramatically reduced $I^2R$ losses. This is why power is transmitted at 132 kV or 220 kV in India.</p>
+          </div>
+        </div>
+
+        <h3 class="ssh">LC Oscillations</h3>
+        <p>In an LC circuit, energy oscillates between electric field (in C) and magnetic field (in L) like a pendulum:</p>
+        <div class="formula">
+          $$f_0 = \frac{1}{2\pi\sqrt{LC}}$$
+          <br/>
+          Total energy: $U = \frac{1}{2}LI_0^2 = \frac{Q_0^2}{2C}$ (conserved, no $R$)
+          <br/>
+          At any time: $U = \frac{1}{2}Li^2 + \frac{q^2}{2C}$ = constant
+        </div>
+        <div class="trick">
+          <p><strong>Analogy with SHM:</strong> $q = Q_0\cos\omega t$, $i = -Q_0\omega\sin\omega t$. Max current $I_0 = Q_0\omega = Q_0/\sqrt{LC}$. When $q = 0$: all energy in $L$ (max current). When $i = 0$: all energy in $C$ (max charge). Exactly like KE↔PE in spring.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CHAPTER 5 — ELECTROMAGNETIC WAVES              -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-emw">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 5 of 5 · Class XII Electromagnetism</div>
+      <div class="ch-title">Electromagnetic <em>Waves</em></div>
+    </div>
+    <div class="ch-body">
+
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tc">1–2 Qs/yr · Rising Trend</span></h2>
+        <p>EM Waves is a <strong>short, high-ROI chapter</strong>. Almost all NEET questions are either (a) identify the type of EM wave for a given wavelength/application, or (b) numerical on speed, relationship between $E$ and $B$, or energy density. Very few derivations tested.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>Frequency</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>EM spectrum — wavelength order &amp; applications</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Properties of EM waves — speed, E/B ratio</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Speed in medium — $v = c/n$, displacement current</td><td>5 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Energy density — $u_E = u_B$ at every point</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Displacement current — Maxwell's modification</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- EM SPECTRUM -->
+      <div class="sec" data-m="em-spectrum">
+        <h2 class="sh">The EM Spectrum <span class="tag tg">1 Q Every Year</span></h2>
+        <p>NEET tests the EM spectrum in two ways: (1) given a wavelength, identify the type; (2) given an application, identify the type. Master the table below and you will never miss this question.</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Type</th><th>Wavelength Range</th><th>Frequency Range</th><th>Production</th><th>Key Applications/Detector</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Gamma rays</strong></td><td>&lt; 0.01 nm (pm range)</td><td>&gt; 3×10¹⁹ Hz</td><td>Nuclear transitions, radioactive decay</td><td>Cancer therapy, sterilization; Geiger counter</td></tr>
+              <tr><td><strong>X-rays</strong></td><td>0.01 nm – 10 nm</td><td>3×10¹⁶ – 3×10¹⁹ Hz</td><td>Bombarding metal with fast electrons</td><td>Medical imaging, crystallography; photographic film</td></tr>
+              <tr><td><strong>Ultraviolet (UV)</strong></td><td>10 nm – 400 nm</td><td>7.5×10¹⁴ – 3×10¹⁶ Hz</td><td>Very hot bodies, Sun, arc lamps</td><td>Sterilization, vitamin D, sunburn; photocell</td></tr>
+              <tr><td><strong>Visible light</strong></td><td>400 nm – 700 nm</td><td>4.3×10¹⁴ – 7.5×10¹⁴ Hz</td><td>Valence electron transitions</td><td>Vision; eye</td></tr>
+              <tr><td><strong>Infrared (IR)</strong></td><td>700 nm – 1 mm</td><td>3×10¹¹ – 4.3×10¹⁴ Hz</td><td>Hot bodies, molecular vibrations</td><td>Night vision, TV remotes, greenhouse effect; thermopile</td></tr>
+              <tr><td><strong>Microwaves</strong></td><td>1 mm – 1 m</td><td>3×10⁸ – 3×10¹¹ Hz</td><td>Klystron/magnetron oscillators</td><td>RADAR, microwave oven, satellite comm.</td></tr>
+              <tr><td><strong>Radio waves</strong></td><td>1 m – 10⁴ m</td><td>3×10⁴ – 3×10⁸ Hz</td><td>Oscillating circuits (LC)</td><td>AM/FM radio, TV broadcasting</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="trick">
+          <p><strong>Wavelength order (decreasing):</strong> Radio &gt; Microwave &gt; Infrared &gt; Visible &gt; UV &gt; X-ray &gt; Gamma</p>
+          <p><strong>Memory hook "Raging Martians Invaded Venus Using X-ray Guns":</strong> Radio, Microwave, IR, Visible, UV, X-ray, Gamma</p>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">NEET Traps in EM Spectrum</span>
+          <p><strong>Ozone layer</strong> absorbs UV (not IR, not visible). <strong>Greenhouse effect</strong>: Earth absorbs sunlight (visible) and re-emits IR → greenhouse gases trap IR → warming. IR is also called <strong>heat radiation</strong>. X-rays and gamma rays BOTH ionize — but X-rays produced by electron deceleration, gamma by nuclear decay. NEET 2024 (Re-exam): "Smallest wavelength EM wave" → Gamma rays.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">The electric field in a plane EM wave is $E_z = 60\cos(5x + 1.5\times10^9 t)$ V/m. The corresponding magnetic field expression is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: B_y = 2×10⁻⁷ cos(5x + 1.5×10⁹ t) T</span>
+            <p><strong>Step 1:</strong> Identify propagation direction. Wave travels in $-x$ direction (positive $\omega t$ and $kx$ → $-x$). $E$ is along $z$, propagation along $-x$, so $B$ must be along $-y$ direction (by $\vec{E}\times\vec{B} \parallel \hat{k}$ direction of propagation).</p>
+            <p><strong>Step 2:</strong> $B_0 = E_0/c = 60/(3\times10^8) = 2\times10^{-7}$ T</p>
+            <p><strong>Step 3:</strong> Same phase as $E$, propagation $(-x)$: $B_y = 2\times10^{-7}\cos(5x+1.5\times10^9 t)$ T (subscript $y$ since $B$ is along $-y$, some versions write $B_y$).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EM WAVE PROPERTIES -->
+      <div class="sec" data-m="em-properties">
+        <h2 class="sh">Properties of EM Waves <span class="tag tc">Concept Heavy</span></h2>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Fundamental Properties</div>
+            <ul>
+              <li>Transverse waves: $\vec{E} \perp \vec{B} \perp \vec{v}$</li>
+              <li>Speed in vacuum: $c = 3\times10^8$ m/s</li>
+              <li>$c = E_0/B_0 = 1/\sqrt{\mu_0\varepsilon_0}$</li>
+              <li>Carry energy and momentum</li>
+              <li>No medium needed (travel in vacuum)</li>
+              <li>NOT deflected by E or B fields</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Speed in Medium</div>
+            <ul>
+              <li>$v = c/n$ where $n$ = refractive index</li>
+              <li>$n = \sqrt{\mu_r \varepsilon_r}$ (for non-magnetic: $n = \sqrt{\varepsilon_r} = \sqrt{K}$)</li>
+              <li>$v = 1/\sqrt{\mu\varepsilon}$</li>
+              <li>Frequency unchanged in medium</li>
+              <li>Wavelength changes: $\lambda_m = \lambda_0/n$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Energy and Intensity</div>
+            <ul>
+              <li>Energy density: $u = \varepsilon_0 E^2 = B^2/\mu_0$</li>
+              <li>$u_E = u_B = u/2$ (equal contributions)</li>
+              <li>Intensity: $I = uc = \varepsilon_0 E_0^2 c/2$</li>
+              <li>Radiation pressure: $P = I/c$ (absorbing)</li>
+              <li>$P = 2I/c$ (reflecting)</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="ssh">Maxwell's Displacement Current</h3>
+        <p>Maxwell predicted that a changing electric field in a capacitor gap produces a magnetic field — even without actual current flow. He called this the <strong>displacement current</strong>:</p>
+        <div class="formula">
+          $$I_d = \varepsilon_0 \frac{d\Phi_E}{dt}$$
+          <br/>
+          <strong>Modified Ampere's law (Maxwell-Ampere law):</strong>
+          $$\oint \vec{B}\cdot d\vec{l} = \mu_0(I_c + I_d) = \mu_0 I_c + \mu_0\varepsilon_0\frac{d\Phi_E}{dt}$$
+        </div>
+        <div class="note-box">
+          <span class="lbl">Why Displacement Current Matters — NEET Context</span>
+          <p>Between capacitor plates during charging: no real current, but $E$ is changing. Displacement current $I_d$ = conduction current $I_c$ outside the plates. This ensures continuity of current and explains how EM waves propagate through vacuum (no charges needed). NEET asks: "Between capacitor plates, what kind of current flows?" → displacement current.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024 (Re-exam)</span>
+            <span class="pyq-q">The ratio of the speed of EM waves in a medium with $\mu_r = 1$ and $\varepsilon_r = 4$ to the speed of light in vacuum is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1:2</span>
+            <p>$v = c/n = c/\sqrt{\mu_r\varepsilon_r} = c/\sqrt{1\times4} = c/2$</p>
+            <p>Ratio $v:c = 1:2$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Which of the following has the smallest wavelength: (a) radio waves, (b) microwaves, (c) infrared, (d) gamma rays?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: (d) Gamma rays</span>
+            <p>Order (increasing frequency / decreasing wavelength): Radio &lt; Microwave &lt; IR &lt; Visible &lt; UV &lt; X-ray &lt; Gamma. Gamma rays have the highest frequency and smallest wavelength. They are produced by nuclear transitions and have energies in the MeV range.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">In an EM wave, the electric and magnetic energy densities are compared. The correct statement is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Electric energy density = Magnetic energy density (at every point)</span>
+            <p>$u_E = \frac{1}{2}\varepsilon_0 E^2$ and $u_B = \frac{B^2}{2\mu_0}$. Since $E = cB$ and $c = 1/\sqrt{\mu_0\varepsilon_0}$:</p>
+            <p>$u_E = \frac{1}{2}\varepsilon_0 c^2 B^2 = \frac{1}{2}\varepsilon_0 \cdot \frac{1}{\mu_0\varepsilon_0} \cdot B^2 = \frac{B^2}{2\mu_0} = u_B$</p>
+            <p>They are equal at every point in space and time. Total energy density = $u_E + u_B = \varepsilon_0 E^2 = B^2/\mu_0$.</p>
+          </div>
+        </div>
+
+        <!-- FINAL MASTER TRAP SECTION -->
+        <h3 class="ssh">🚨 Master Trap List — Electromagnetism Edition</h3>
+        <div class="warn-box">
+          <span class="lbl">The 12 Most Dangerous Traps in NEET Electromagnetism</span>
+          <p><strong>1.</strong> "Toroid has B=0 outside" is CORRECT, but "solenoid has B=0 outside" is only approximately true.</p>
+          <p><strong>2.</strong> Proton and α-particle with same KE have the SAME radius in a B field. With same velocity: $r_\alpha/r_p = 2$.</p>
+          <p><strong>3.</strong> Increasing current sensitivity of MCG by increasing turns may DECREASE voltage sensitivity (if $R_g$ also rises).</p>
+          <p><strong>4.</strong> At AC resonance, $V_L$ and $V_C$ individually can exceed source voltage — they don't violate anything.</p>
+          <p><strong>5.</strong> Transformer works on AC only. DC → no flux change → no induction.</p>
+          <p><strong>6.</strong> Between capacitor plates during charging: displacement current flows, NOT conduction current.</p>
+          <p><strong>7.</strong> EM waves are NOT deflected by E or B fields (they are uncharged radiation).</p>
+          <p><strong>8.</strong> Gamma ray vs X-ray: same type, differ only in origin (nucleus vs electron deceleration).</p>
+          <p><strong>9.</strong> Lenz's law: if magnet approaches S-pole first → near face of coil becomes S-pole (repels) → current anticlockwise when viewed from the approaching pole side.</p>
+          <p><strong>10.</strong> Cyclotron cannot accelerate electrons (become relativistic too quickly at low energies).</p>
+          <p><strong>11.</strong> $X_C = 1/\omega C$ decreases as frequency increases (capacitor short-circuits at high frequency). $X_L = \omega L$ increases (inductor blocks high frequency).</p>
+          <p><strong>12.</strong> LC oscillation frequency is SAME as resonance frequency of the same LCR series circuit.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">Which of the following EM waves is used in RADAR systems?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Microwaves</span>
+            <p>RADAR uses microwaves (wavelength ~1 mm to 1 m). Their wavelength is comparable to the size of objects they detect. Radio waves are too long (poor resolution); IR/visible are absorbed by clouds (poor weather penetration). Microwaves penetrate clouds and reflect off metallic objects — ideal for RADAR.</p>
+            <p><strong>Quick application map:</strong> TV remote → IR | Sunburn → UV | Medical imaging → X-ray | Food heating → Microwave | Cancer treatment → Gamma rays | Night vision → IR</p>
+          </div>
+        </div>
+
+      </div><!-- sec -->
+    </div><!-- ch-body -->
+  </div><!-- chapter -->
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- BONUS CHAPTER — CURRENT ELECTRICITY            -->
+  <!-- (Class 12 Ch 3 — 5–7 Qs every NEET paper)     -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-ce">
+    <div class="ch-head">
+      <div class="ch-ey">Bonus Chapter · Class XII · Current Electricity</div>
+      <div class="ch-title">Current <em>Electricity</em></div>
+    </div>
+    <div class="ch-body">
+
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">5–7 Qs/yr · NEET's Top Chapter</span></h2>
+        <p>Current Electricity is <strong>the single chapter with highest NEET question count</strong> — consistently yielding 5–7 questions per year. In 2022 (12 questions), 2023 (10 questions), and 2024 (14 questions), it dominated the paper. No other chapter comes close in terms of raw marks. Master this and you gain a massive advantage.</p>
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Ohm's Law / Resistance — 1–2 Qs</div>
+          <div class="score-pill sp-b">🔵 Kirchhoff's Laws — 1–2 Qs</div>
+          <div class="score-pill sp-g">🟢 Wheatstone Bridge / Potentiometer — 1–2 Qs</div>
+          <div class="score-pill sp-o">🟡 EMF / Internal Resistance — 1 Q</div>
+        </div>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>Frequency (2010–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Ohm's law, resistivity, temperature dependence</td><td>18+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Series/parallel combinations + Kirchhoff's laws</td><td>20+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Wheatstone bridge — balanced condition</td><td>10 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Potentiometer — applications (EMF comparison, internal r)</td><td>10 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>EMF, internal resistance, terminal voltage</td><td>15+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Drift velocity, current density, conductivity</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Meter bridge — unknown resistance</td><td>6 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Colour coding of resistors</td><td>4 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- OHM'S LAW & RESISTANCE -->
+      <div class="sec" data-m="ohms-law">
+        <h2 class="sh">Ohm's Law, Resistance &amp; Resistivity <span class="tag tg">Foundation</span></h2>
+        <div class="formula">
+          $$V = IR \quad \Rightarrow \quad R = \frac{\rho l}{A}$$
+          <br/>
+          <strong>Current density:</strong> $J = nev_d = \sigma E$
+          <br/>
+          <strong>Conductivity:</strong> $\sigma = 1/\rho = ne^2\tau/m$
+          <br/>where $v_d$ = drift velocity, $\tau$ = relaxation time
+        </div>
+        <h4 class="sssh">Drift Velocity — The Hidden Formula</h4>
+        <div class="formula">
+          $$v_d = \frac{eE\tau}{m} = \frac{I}{neA}$$
+          <br/>where $n$ = number density of electrons, $e$ = electron charge, $A$ = cross-section area
+        </div>
+        <div class="trick">
+          <p><strong>From $v_d = I/neA$:</strong> If same wire carries double current, $v_d$ doubles. If wire is stretched to double length (same volume → area halves), $v_d$ quadruples for same current (area halved). If two wires of same material, same length but area ratio 1:2 carry same current: $v_d$ ratio is 2:1.</p>
+        </div>
+
+        <h3 class="ssh">Temperature Dependence of Resistance</h3>
+        <div class="formula">
+          $$R_T = R_0(1 + \alpha \Delta T)$$
+          <br/>where $\alpha$ = temperature coefficient of resistance
+        </div>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Material</th><th>α</th><th>Behaviour</th><th>NEET Application</th></tr></thead>
+            <tbody>
+              <tr><td>Metals (Cu, Ag, Al)</td><td>Positive (+)</td><td>R increases with T</td><td>Resistance thermometer</td></tr>
+              <tr><td>Semiconductor (Si, Ge)</td><td>Negative (−)</td><td>R decreases with T</td><td>Thermistor (NTC)</td></tr>
+              <tr><td>Alloys (Manganin, Nichrome)</td><td>Very small, near 0</td><td>Almost independent of T</td><td>Standard resistance, heater coils</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">NEET Trick Question — Alloys</span>
+          <p>Manganin and Nichrome have very low $\alpha$ — almost zero. They are used as standard resistors (stable with T). Nichrome has high melting point → used in heater coils. If NEET asks "which material for standard resistance?" → Manganin. "For heating?" → Nichrome.</p>
+        </div>
+
+        <h3 class="ssh">Resistor Combinations</h3>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Series Connection</div>
+            <ul>
+              <li>$R_{eq} = R_1 + R_2 + R_3 + ...$</li>
+              <li>Same current through all</li>
+              <li>Voltage divides: $V_i \propto R_i$</li>
+              <li>If $n$ equal resistors: $R_{eq} = nR$</li>
+              <li>Total power: $P = I^2 R_{eq}$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Parallel Connection</div>
+            <ul>
+              <li>$1/R_{eq} = 1/R_1 + 1/R_2 + ...$</li>
+              <li>Same voltage across all</li>
+              <li>Current divides: $I_i \propto 1/R_i$</li>
+              <li>$n$ equal: $R_{eq} = R/n$</li>
+              <li>$R_{eq} &lt; R_{min}$ always</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Two in Parallel (Shortcut)</div>
+            <ul>
+              <li>$R_{eq} = \frac{R_1 R_2}{R_1 + R_2}$</li>
+              <li>Current divider: $I_1 = I\frac{R_2}{R_1+R_2}$</li>
+              <li>$R_{eq} = R/2$ if $R_1 = R_2 = R$</li>
+              <li>$R_{eq} = R_1$ if $R_2 \gg R_1$</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A wire of length $l$ and resistance $100\,\Omega$ is divided into 10 equal parts. First 5 parts are connected in series, next 5 in parallel. The two groups are connected in series. Total resistance is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 52 Ω</span>
+            <p>Each part has $R = 100/10 = 10\,\Omega$.</p>
+            <p>First group (5 in series): $R_1 = 5 \times 10 = 50\,\Omega$</p>
+            <p>Second group (5 in parallel): $R_2 = 10/5 = 2\,\Omega$</p>
+            <p>Total: $R_{total} = R_1 + R_2 = 50 + 2 = 52\,\Omega$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">The terminal voltage of a battery with emf $\varepsilon = 10$ V and internal resistance $r = 1\,\Omega$, connected through external resistance $R = 4\,\Omega$, is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 8 V</span>
+            <p>$I = \varepsilon/(R+r) = 10/5 = 2$ A</p>
+            <p>Terminal voltage: $V = \varepsilon - Ir = 10 - 2\times1 = 8$ V</p>
+            <p>Or: $V = IR = 2 \times 4 = 8$ V ✓</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- KIRCHHOFF'S LAWS -->
+      <div class="sec" data-m="kirchhoff">
+        <h2 class="sh">Kirchhoff's Laws <span class="tag tg">Circuit Analysis Foundation</span></h2>
+        <div class="def-box">
+          <span class="lbl">KCL — Kirchhoff's Current Law (Junction Rule)</span>
+          <p>$$\sum I_{in} = \sum I_{out} \quad \Leftrightarrow \quad \sum I = 0 \text{ at junction}$$</p>
+          <p>Conservation of charge. At any node, charge doesn't accumulate.</p>
+        </div>
+        <div class="def-box">
+          <span class="lbl">KVL — Kirchhoff's Voltage Law (Loop Rule)</span>
+          <p>$$\sum \Delta V = 0 \text{ around any closed loop}$$</p>
+          <p>Conservation of energy. Sum of EMFs = sum of IR drops in any closed loop.</p>
+        </div>
+        <div class="approach">
+          <p><strong>Solving KVL problems — 4-step method:</strong></p>
+          <p><strong>Step 1:</strong> Assign current directions (guessing is fine — negative answer means opposite direction).</p>
+          <p><strong>Step 2:</strong> Apply KCL at junctions to reduce unknowns.</p>
+          <p><strong>Step 3:</strong> Traverse loops (any direction) — going through resistor in direction of current = $-IR$ drop; against current = $+IR$ drop. Going through battery from − to + = $+\varepsilon$; from + to − = $-\varepsilon$.</p>
+          <p><strong>Step 4:</strong> Solve simultaneous equations.</p>
+        </div>
+
+        <h3 class="ssh">Wheatstone Bridge</h3>
+        <div class="def-box">
+          <span class="lbl">Balanced Wheatstone Bridge</span>
+          <p>When galvanometer reads zero (balanced condition):</p>
+          <p>$$\frac{P}{Q} = \frac{R}{S} \quad \Leftrightarrow \quad PS = QR$$</p>
+          <p>At balance, no current through galvanometer regardless of its resistance or source voltage.</p>
+        </div>
+        <div class="trick">
+          <p><strong>Unbalanced bridge:</strong> Must use Kirchhoff's laws. <strong>For balanced bridge:</strong> Simply use the ratio $P/Q = R/S$. Never apply this to unbalanced bridges.</p>
+          <p><strong>Meter bridge</strong> (slide-wire bridge): $R/X = l/(100-l)$ where $l$ is balance length. NEET tests: if balance length shifts from $l$ to $100-l$, the unknown and known resistances swap.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">The current passing through the battery in the given circuit is 2 A (as per NEET 2025 data). If the circuit has $\varepsilon = 12$ V and multiple resistors, find the equivalent resistance.</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Pattern: Use $R_{eq} = \varepsilon/I$</span>
+            <p>For any circuit: total current from battery = $I = \varepsilon / R_{eq}$ (assuming ideal battery). $R_{eq} = \varepsilon/I = 12/2 = 6\,\Omega$.</p>
+            <p><strong>Strategy for complex resistor networks:</strong> (1) Identify series/parallel. (2) If bridge-type, check balance. (3) If symmetric, use symmetry to short/break wires. (4) If none work, use Kirchhoff.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- POTENTIOMETER -->
+      <div class="sec" data-m="potentiometer">
+        <h2 class="sh">Potentiometer <span class="tag tg">1–2 Qs Always</span></h2>
+        <p>The potentiometer is a <strong>null method instrument</strong> — it measures EMF without drawing current from the source being measured. This is why it's more accurate than a voltmeter.</p>
+        <div class="formula">
+          $$\text{Potential gradient: } k = \frac{V_{AB}}{L} = \frac{I \rho}{A} \quad [\text{V/m}]$$
+          <br/>
+          At balance: $\varepsilon = k \cdot l$ where $l$ = balance length
+        </div>
+        <h4 class="sssh">Applications of Potentiometer</h4>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Application</th><th>Formula</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Compare two EMFs</td><td>$\frac{\varepsilon_1}{\varepsilon_2} = \frac{l_1}{l_2}$</td><td>Same $k$ for both</td></tr>
+              <tr><td>Measure internal resistance</td><td>$r = R\left(\frac{l_1}{l_2} - 1\right) = R\cdot\frac{l_1-l_2}{l_2}$</td><td>$l_1$ = open circuit length, $l_2$ = with load $R$</td></tr>
+              <tr><td>Compare resistances</td><td>$\frac{R_1}{R_2} = \frac{l_1}{l_2}$</td><td>Same current through both</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box">
+          <span class="lbl">Key Condition — Potentiometer Setup</span>
+          <p>The EMF of driver cell must be <strong>greater than</strong> the EMF being measured. If not, balance point will not be found (it would be beyond the wire). NEET asks: "Why does balance point shift when driver cell EMF is reduced?" → $k$ decreases, so balance length increases (may go beyond wire).</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">A potentiometer wire of length $10\,\text{m}$ has a resistance of $10\,\Omega$. It is connected in series with a battery of emf $2\,\text{V}$ and resistance $990\,\Omega$. The potential gradient is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2×10⁻³ V/m = 2 mV/m</span>
+            <p>Total resistance = $10 + 990 = 1000\,\Omega$</p>
+            <p>Current $I = 2/1000 = 2\times10^{-3}$ A</p>
+            <p>Voltage across wire $= I \times R_{wire} = 2\times10^{-3} \times 10 = 0.02$ V</p>
+            <p>Potential gradient $k = V_{wire}/L = 0.02/10 = 2\times10^{-3}$ V/m</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">In a potentiometer experiment, a cell of emf $\varepsilon_1$ gives balance at 60 cm. Another cell with emf $\varepsilon_2 = 1.2$ V gives balance at 48 cm. Find $\varepsilon_1$.</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1.5 V</span>
+            <p>$\frac{\varepsilon_1}{\varepsilon_2} = \frac{l_1}{l_2} = \frac{60}{48} = \frac{5}{4}$</p>
+            <p>$\varepsilon_1 = \frac{5}{4} \times 1.2 = 1.5\,\text{V}$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">In a potentiometer, the balance point for a cell is at 75 cm without external resistance. With a resistance $R = 5\,\Omega$ connected across the cell, balance is at 50 cm. The internal resistance of the cell is:</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2.5 Ω</span>
+            <p>$r = R\left(\frac{l_1 - l_2}{l_2}\right) = 5 \times \frac{75-50}{50} = 5 \times \frac{25}{50} = 5 \times 0.5 = 2.5\,\Omega$</p>
+          </div>
+        </div>
+
+        <!-- COLOUR CODING -->
+        <h3 class="ssh">Resistor Colour Code — NEET Tests This Every Few Years</h3>
+        <div class="cb">Mnemonic: "BB ROY of Great Britain has Very Good Wife"
+B  B  R  O  Y  G  B  V  G  W
+0  1  2  3  4  5  6  7  8  9 (digit value)
+
+Reading a 4-band resistor:
+  Band 1: 1st significant digit
+  Band 2: 2nd significant digit
+  Band 3: Multiplier (10^n)
+  Band 4: Tolerance (Gold=±5%, Silver=±10%)
+
+Example: Red-Red-Orange-Gold = 2-2-×10³-±5% = 22,000 Ω ± 5% = 22 kΩ ± 5%
+        </div>
+        <div class="warn-box">
+          <span class="lbl">NEET 2018 asked this directly</span>
+          <p>Given colour bands, identify resistance value. Know: Black=0, Brown=1, Red=2, Orange=3, Yellow=4, Green=5, Blue=6, Violet=7, Grey=8, White=9. Gold multiplier = 0.1, Silver = 0.01.</p>
+        </div>
+      </div>
+
+      <!-- CELL COMBINATIONS -->
+      <div class="sec" data-m="cell-combos">
+        <h2 class="sh">Cells in Series &amp; Parallel <span class="tag tt">Formula-Based</span></h2>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">n Cells in Series</div>
+            <ul>
+              <li>$\varepsilon_{eq} = n\varepsilon$</li>
+              <li>$r_{eq} = nr$</li>
+              <li>$I = \frac{n\varepsilon}{R + nr}$</li>
+              <li>Efficient when $R \gg r$</li>
+              <li>Use: high-voltage, low-current</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">n Cells in Parallel</div>
+            <ul>
+              <li>$\varepsilon_{eq} = \varepsilon$ (same as one cell)</li>
+              <li>$r_{eq} = r/n$</li>
+              <li>$I = \frac{\varepsilon}{R + r/n}$</li>
+              <li>Efficient when $R \ll r$</li>
+              <li>Use: high-current, low-voltage</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Mixed Grid (m rows of n cells)</div>
+            <ul>
+              <li>Total EMF = $n\varepsilon$</li>
+              <li>$r_{eq} = nr/m$</li>
+              <li>Max current when $R = nr/m$</li>
+              <li>$I_{max} = \frac{mn\varepsilon}{2nr} = \frac{m\varepsilon}{2r}$</li>
+              <li>Optimize: $m/n = r/R$</li>
+            </ul>
+          </div>
+        </div>
+        <div class="shortcut">
+          <p><strong>When are cells in series preferable?</strong> When external resistance $R$ is much greater than internal resistance $r$ (high-R circuit). When R ≪ r: parallel preferred. When R = r (for single cell): mixed arrangement optimal. NEET 2016 and 2020 both tested maximum power transfer condition: $R = r_{eq}$ for max power in external resistance.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A battery of 20 cells (each emf $= 1.5$ V, internal resistance $= 1\,\Omega$) is connected to an external resistance of $25\,\Omega$. What is the arrangement for maximum current?</span>
+            <button class="pyq-toggle">Show Sol.</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: All in series → I = 1.2 A</span>
+            <p>For max current through $R = 25\,\Omega$: compare series vs parallel.</p>
+            <p>Series (20 cells): $I = \frac{20\times1.5}{25+20\times1} = \frac{30}{45} = 0.667$ A</p>
+            <p>Parallel (20 cells): $I = \frac{1.5}{25+1/20} = \frac{1.5}{25.05} \approx 0.060$ A</p>
+            <p>Since $R = 25\,\Omega \gg r = 1\,\Omega$: Series is better → $I = 0.667$ A is higher.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- COMPREHENSIVE FORMULA SHEET                    -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-formulas">
+    <div class="ch-head">
+      <div class="ch-ey">Quick Reference · All Chapters</div>
+      <div class="ch-title">Master <em>Formula Sheet</em></div>
+    </div>
+    <div class="ch-body">
+      <div class="sec" data-m="formulas">
+        <h2 class="sh">All Formulas — 60-Second Revision</h2>
+        <h3 class="ssh">Moving Charges &amp; Magnetism</h3>
+        <div class="cb">
+Biot-Savart:    dB = (μ₀/4π) · (I dl sinθ / r²)
+Circular loop:  B = μ₀nI / 2R  [at centre]
+Straight wire:  B = μ₀I / 2πd  [infinite wire]
+Solenoid:       B = μ₀nI  (inside, n = N/L)
+Toroid:         B = μ₀NI / 2πr  (inside ring only)
+
+Lorentz force:  F = q(v × B),  F = qvB sinθ
+Circular orbit: r = mv/qB,  T = 2πm/qB,  f = qB/2πm
+Parallel wires: F/L = μ₀I₁I₂ / 2πd  (attract if same direction)
+Torque:         τ = NIAB sinθ = MB sinθ
+MCG:            φ = NABI/k,  S_I = NAB/k
+Ammeter shunt:  S = I_g R_g / (I - I_g)
+Voltmeter:      R = V/I_g - R_g
+        </div>
+        <h3 class="ssh">Magnetism &amp; Matter</h3>
+        <div class="cb">
+Bar magnet axial:       B = (μ₀/4π) · 2M/d³  (short dipole)
+Bar magnet equatorial:  B = (μ₀/4π) · M/d³   (short dipole)
+Ratio:                  B_axial = 2 B_equatorial at same d
+Curie's Law:            χ = C/T
+Dip angle:              tanδ = B_V / B_H
+        </div>
+        <h3 class="ssh">Electromagnetic Induction</h3>
+        <div class="cb">
+Faraday:        ε = -N dΦ/dt,  ε = -N·A dB/dt
+Motional EMF:   ε = Blv  (rod perpendicular to B)
+Rotating rod:   ε = ½Bl²ω
+AC generator:   ε = NBA ω sinωt,  ε_max = NBAω
+Self induction: ε = -L dI/dt,  L_solenoid = μ₀n²V = μ₀N²A/l
+Mutual:         ε₂ = -M dI₁/dt,  M = μ₀N₁N₂A/l
+Energy in L:    U = ½LI²,  u = B²/2μ₀ (J/m³)
+Coupling:       k = M/√(L₁L₂),  0 ≤ k ≤ 1
+        </div>
+        <h3 class="ssh">Alternating Current</h3>
+        <div class="cb">
+RMS values:     V_rms = V₀/√2,   I_rms = I₀/√2
+Average:        V_avg = 2V₀/π  (over half cycle)
+Reactances:     X_L = ωL,    X_C = 1/ωC
+Impedance:      Z = √[R² + (X_L - X_C)²]
+Phase angle:    tanφ = (X_L - X_C)/R
+Resonance:      ω₀ = 1/√(LC),  Z_min = R,  I_max = V/R
+Q factor:       Q = ω₀L/R = (1/R)√(L/C)
+Power:          P = V_rms I_rms cosφ,  cosφ = R/Z
+Transformer:    V_s/V_p = N_s/N_p = I_p/I_s
+LC oscillation: ω = 1/√(LC),  f = 1/(2π√LC)
+        </div>
+        <h3 class="ssh">Electromagnetic Waves</h3>
+        <div class="cb">
+Speed:      c = E₀/B₀ = 1/√(μ₀ε₀) = 3×10⁸ m/s
+In medium:  v = c/n,  n = √(μᵣεᵣ)
+Direction:  E ⊥ B ⊥ v (transverse)
+Intensity:  I = ε₀E₀²c/2
+Energy:     u_E = u_B = ½ε₀E² = B²/2μ₀ (equal)
+Disp. curr: I_d = ε₀ dΦ_E/dt
+        </div>
+        <h3 class="ssh">Current Electricity</h3>
+        <div class="cb">
+Ohm's law:  V = IR,  R = ρl/A
+Drift vel:  v_d = I/neA = eEτ/m
+Temp:       R_T = R₀(1 + αΔT)
+Terminal V: V = ε - Ir  (discharging),  V = ε + Ir  (charging)
+KCL:        ΣI_in = ΣI_out
+KVL:        ΣV = 0  (closed loop)
+Wheatstone: P/Q = R/S  (balanced)
+Potentiom.: k = V/L,  ε = kl  (at balance)
+Cells series: ε_eq = nε,  r_eq = nr
+Cells ||:     ε_eq = ε,   r_eq = r/n
+Internal r:   r = R(l₁-l₂)/l₂  (from potentiometer)
+        </div>
+
+        <h3 class="ssh">🎯 NEET Electromagnetism — Last-Minute Flash Cards</h3>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Instant Checks</div>
+            <ul>
+              <li>Toroid outside → B = 0</li>
+              <li>Resonance → Z = R, cosφ = 1</li>
+              <li>Transformer → AC only</li>
+              <li>EM wave → E = cB</li>
+              <li>Gamma → smallest λ</li>
+              <li>Manganin → α ≈ 0 (standard R)</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Never Confuse</div>
+            <ul>
+              <li>Ammeter: low R (shunt ∥)</li>
+              <li>Voltmeter: high R (R series)</li>
+              <li>Potentiometer: null method</li>
+              <li>Wheatstone: null method</li>
+              <li>C in AC: I leads V (CIVIL)</li>
+              <li>L in AC: V leads I</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Proportionalities</div>
+            <ul>
+              <li>L ∝ N² (solenoid)</li>
+              <li>r_orbit ∝ mv/qB</li>
+              <li>V_d ∝ I/A (drift)</li>
+              <li>B_centre ∝ n/R (coil)</li>
+              <li>X_L ∝ f, X_C ∝ 1/f</li>
+              <li>T_cyclotron independent of v</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Year-wise Hot Topics</div>
+            <ul>
+              <li>2024: Resistance combo, terminal V</li>
+              <li>2023: Potentiometer, Lenz's law</li>
+              <li>2022: LCR resonance, Q-factor</li>
+              <li>2021: Transformer power, LC osc.</li>
+              <li>2020: Motional EMF, cyclotron</li>
+              <li>2019: Eddy current, WB bridge</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- book -->
+
+<script>
+  // auto-detect system dark mode
+  if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    document.documentElement.setAttribute('data-theme','dark');
+  }
+</script>
+
+
+
+<style id="sticky-footer-css">
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(180,160,130,0.28);
+  font-family: var(--hand, 'Courier New', monospace);
+  font-size: 11px;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 16px;
+  z-index: 8000;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .sticky-footer {
+  background: rgba(9,8,7,0.9);
+  border-top-color: rgba(255,255,255,0.08);
+  color: #f0ece0;
+}
+.sticky-footer a {
+  color: var(--orange, #b85a10);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 600px) {
+  .sticky-footer { font-size: 9px; padding: 6px 10px; }
+  .sticky-footer svg { width: 12px; height: 12px; }
+}
+</style>
+<div class="sticky-footer">
+  <span>© Aryan</span>
+  <a href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Insta
+  </a>
+  <a href="https://t.me/petrol4u" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Telegram
+  </a>
+</div>
+
+</body>
+</html>

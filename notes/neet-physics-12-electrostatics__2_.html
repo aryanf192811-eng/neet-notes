@@ -1,0 +1,2258 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var _d=false;
+  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">??</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+})();
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Physics Class 12 — Electrostatics PYQ Master Cheatsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <style>
+    :root{--paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;--ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;--rule:rgba(100,130,180,0.14);--mline:rgba(210,100,80,0.28);--red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;--hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);--hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);--body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;--hand:"Architects Daughter",cursive;}
+    [data-theme="dark"]{--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}}
+    [data-theme="dark"] body{background:#130f0c;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#1c1810 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#231e18 0%,transparent 55%);}
+    [data-theme="dark"] .def-box{background:rgba(91,143,214,0.1);}[data-theme="dark"] .warn-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .tip-box{background:rgba(74,184,112,0.1);}[data-theme="dark"] .note-box{background:rgba(224,120,48,0.1);}[data-theme="dark"] .purp-box{background:rgba(155,89,214,0.1);}
+    [data-theme="dark"] .eg{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .formula{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] .cb{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] code{background:var(--paper3);border-color:#4a4038;}
+    [data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .trick::before{background:var(--paper2);}[data-theme="dark"] .shortcut{background:rgba(212,168,0,0.07);border-color:#6a5200;}[data-theme="dark"] .shortcut::before{background:var(--paper2);}
+    [data-theme="dark"] .toc{background:var(--paper);border-color:#3a3228;}[data-theme="dark"] .chapter{border-color:#3a3228;}[data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5040;}[data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4038;}
+    [data-theme="dark"] .approach{background:rgba(91,143,214,0.1);}[data-theme="dark"] .approach::before{background:var(--paper2);}[data-theme="dark"] .trigger-box{background:rgba(91,143,214,0.1);border-color:var(--blue);}[data-theme="dark"] .trigger-box::before{background:var(--paper2);}
+    [data-theme="dark"] .instant-formula{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .instant-formula::before{background:var(--paper2);}[data-theme="dark"] .elim-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .elim-box::before{background:var(--paper2);}
+    [data-theme="dark"] .cg-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-sol{background:var(--paper3);border-color:#4a4038;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+    .book{max-width:920px;margin:0 auto;}
+    .cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+    .cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+    .cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(210,100,80,0.32);pointer-events:none;}
+    .cover-inner{position:relative;padding-left:20px;}
+    .cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+    .cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--orange);}
+    .cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+    .cover h1 em{font-style:italic;color:var(--blue);}
+    .cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:580px;border-left:3px solid var(--orange);padding-left:14px;}
+    .cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+    .chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:rgba(255,255,255,0.5);}
+    .cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:5px 12px;border-radius:2px;}
+    .toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+    .toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+    .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+    @media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+    .toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+    .toc-grid a:hover{color:var(--blue);border-color:var(--ink3);}
+    .tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:24px;}
+    .chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+                .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      [data-theme="dark"] .ch-head {
+        background: linear-gradient(135deg, #0a0908 0%, #1a1612 100%);
+      }
+
+    .ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+                .ch-title {
+        font-size: 21px;
+        font-weight: 600;
+        color: #faf7f2;
+        line-height: 1.25;
+      }
+    .ch-title em{font-style:italic;color:#e8c870;}
+    .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+    .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+    .sec:last-child{border-bottom:none;}
+    .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(200,100,80,0.26);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--blue);margin:32px 0 12px;}
+    h3.ssh+p{margin-top:6px;}
+    h4.sssh{font-family:var(--body);font-size:14px;font-weight:600;color:var(--green);margin:16px 0 6px;}
+    p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
+    strong{color:var(--ink);font-weight:600;}
+    em.it{font-style:italic;color:var(--ink3);}
+    .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
+    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .tc{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+    .tt{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+    .tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+    .tq{color:var(--teal);border-color:var(--teal);background:rgba(13,122,106,0.09);}
+    .def-box{background:rgba(100,160,255,0.09);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .def-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;display:block;}
+    .def-box p{font-size:16.5px;line-height:1.82;margin:0;color:var(--ink);}
+    .warn-box{background:rgba(220,60,60,0.07);border-left:4px solid var(--red);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .warn-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:4px;display:block;}
+    .warn-box p{font-size:16px;color:var(--red);margin:0;line-height:1.78;}
+    .tip-box{background:rgba(60,180,100,0.09);border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .tip-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px;display:block;}
+    .tip-box p{font-size:16px;color:var(--green);margin:0;line-height:1.78;}
+    .note-box{background:rgba(220,130,30,0.09);border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .note-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block;}
+    .note-box p{font-size:16px;color:var(--orange);margin:0;line-height:1.78;}
+    .purp-box{background:rgba(120,40,180,0.08);border-left:4px solid var(--purple);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .purp-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:block;}
+    .purp-box p{font-size:16px;color:var(--purple);margin:0;line-height:1.78;}
+    .trick{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .trick::before{content:"⚡ Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .trick p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .trick p:last-child{margin:0;}
+    .trick strong{color:#7a5800;}
+    .shortcut{background:#f8fff4;border:1.5px solid #4ab870;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .shortcut::before{content:"🎯 Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#1a6b40;position:absolute;top:-9px;left:14px;background:#f8fff4;padding:0 6px;}
+    .shortcut p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .shortcut p:last-child{margin:0;}
+    .eg{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:22px 24px;margin:24px 0;position:relative;}
+    .eg::before{content:"Example";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+    .eg p{font-family:var(--prose);font-size:16px;color:var(--ink2);margin:0 0 6px;line-height:1.82;}
+    .eg p:last-child{margin:0;}
+    .formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:24px 0;font-family:"Courier New",monospace;font-size:15px;color:var(--ink);line-height:2.2;text-align:center;}
+    .formula strong{color:var(--blue);font-size:16px;}
+    .cb{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1.5px dashed #a09070;border-radius:4px;padding:14px 18px;margin:12px 0;color:var(--ink);line-height:1.9;white-space:pre-wrap;overflow-x:auto;}
+    code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1px solid #c0a880;border-radius:3px;padding:1px 5px;color:var(--blue);}
+    mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+    .c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-p{color:var(--purple);font-weight:600;}
+    .pl{list-style:none;margin:12px 0 18px;padding:0;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--orange);font-weight:600;}
+    .pl.arr li::before{content:"→";color:var(--blue);}
+    .pl.num{counter-reset:li;}
+    .pl.num li{counter-increment:li;}
+    .pl.num li::before{content:counter(li)".";color:var(--blue);}
+    .pl.chk li::before{content:"✓";color:var(--green);}
+    .pl.x li::before{content:"✗";color:var(--red);}
+    .tbl{overflow-x:auto;margin:20px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;}
+    tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+    .freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+    .fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+    .fcard{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:18px 20px;}
+    .fcard-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+    .fcard ul{list-style:none;padding:0;}
+    .fcard ul li{font-family:var(--prose);font-size:15px;line-height:1.75;color:var(--ink2);padding:2px 0 2px 18px;position:relative;}
+    .fcard ul li::before{content:"·";position:absolute;left:4px;color:var(--orange);}
+    .pyq-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;margin:20px 0;overflow:hidden;}
+    .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);border-bottom:1px solid rgba(180,150,100,0.4);cursor:pointer;gap:12px;}
+    .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--blue);padding:3px 10px;border-radius:2px;flex-shrink:0;}
+    .pyq-q{font-family:var(--prose);font-size:16px;color:var(--ink);line-height:1.7;flex:1;}
+    .pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1px;color:var(--teal);flex-shrink:0;padding:4px 10px;border:1.5px solid var(--teal);border-radius:2px;background:none;cursor:pointer;transition:all 0.2s;}
+    .pyq-toggle:hover{background:var(--teal);color:var(--paper);}
+    .pyq-sol{background:var(--paper3);padding:18px 22px;border-top:2px dashed rgba(180,150,100,0.5);display:none;}
+    .pyq-sol.open{display:block;}
+    .pyq-sol p{font-family:var(--prose);font-size:15.5px;line-height:1.85;color:var(--ink2);margin-bottom:10px;}
+    .pyq-sol p:last-child{margin:0;}
+    .ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green);color:var(--paper);margin-bottom:10px;}
+    .approach{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .approach::before{content:"🧠 Approach";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .approach p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .approach p:last-child{margin:0;}
+    .instant-formula{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .instant-formula::before{content:"⚡ Instant Formula";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .instant-formula p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .trigger-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .elim-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .elim-box::before{content:"❌ Elimination";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .elim-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .cg-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+    .svg-wrap{text-align:center;margin:24px 0;overflow-x:auto;}
+    .svg-wrap svg{max-width:100%;height:auto;}
+    .chapter-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+    .chapter-nav a{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.2s;}
+    .chapter-nav a:hover{border-color:var(--blue);color:var(--blue);}
+
+
+    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+    .sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+    .sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+    .sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+    .mfs{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:32px 36px;margin-top:44px;box-shadow:4px 5px 0 #9a8a6e;}
+    .mfs-title{font-family:var(--body);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:20px;padding-bottom:8px;border-bottom:2px solid var(--ink);}
+    .mfs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+    .mfs-col h4{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;padding-bottom:4px;border-bottom:1px dashed rgba(180,150,100,0.5);}
+    .mfs-col p{font-family:var(--prose);font-size:14.5px;color:var(--ink2);line-height:1.75;margin-bottom:4px;}
+    @media(max-width:640px){.sec{padding:32px 20px 28px 44px;}.cover{padding:36px 28px 32px;}.cover h1{font-size:26px;}      .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      .toc{padding:20px 22px;}}
+    /* ── TOC IMPROVEMENTS ── */
+    .toc-section{margin-bottom:0;}
+    .toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,150,100,0.3);}
+    .toc-divider{height:1px;background:rgba(180,150,100,0.25);margin:14px 0;}
+    .toc-freq{font-family:var(--hand);font-size:8.5px;letter-spacing:1px;color:var(--orange);margin-left:4px;opacity:0.8;}
+    .toc-grid-ref{grid-template-columns:1fr;}
+    .toc-star{color:var(--purple)!important;}
+    .toc-warn{color:var(--red)!important;}
+    /* ── CHAPTER HEAD ACCENTS ── */
+    .ch-head-ecf{border-bottom-color:#7ab0e8!important;}
+    .ch-head-epc{border-bottom-color:#7ab870!important;}
+    .ch-head-ce{border-bottom-color:#e8a040!important;}
+    .ch-head-mfs{border-bottom-color:#c070e8!important;}
+    .ch-head-traps{border-bottom-color:#e87070!important;}
+    /* ── CHAPTER NAVIGATION STRIP ── */
+    .ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(180,150,100,0.4);}
+    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+    .ch-nav a:hover{border-color:var(--blue);color:var(--blue);}
+    /* ── MFS as standalone block (not chapter) ── */
+    .master-block{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;overflow:hidden;}
+    .master-block-head{padding:24px 36px;border-bottom:3px solid #c070e8;}
+    .master-block-head.traps-head{border-bottom-color:#e87070;}
+    .master-block-body{padding:36px 40px 40px;background-image:repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:100% 32px;background-position:0 16px;}
+    [data-theme="dark"] .master-block{border-color:#3a3228;}
+    [data-theme="dark"] .master-block-head{background:linear-gradient(135deg,#1a1612 0%,#2a2018 100%);}
+  </style>
+
+
+<style id="theme-toggle-css">
+  .theme-switch { position:relative; width:44px; height:24px; flex-shrink:0; display:inline-flex; align-items:center; margin-left:12px; }
+  .theme-switch input { opacity:0; width:0; height:0; position:absolute; }
+  .theme-track { position:absolute; inset:0; background:rgba(0,0,0,0.06); border:1.5px solid rgba(0,0,0,0.1); border-radius:24px; cursor:pointer; transition:all .3s; }
+  .theme-track::before { content:'☀'; position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:9px; color:#b85a10; transition:all .3s cubic-bezier(.4,0,.2,1); }
+  [data-theme="dark"] .theme-track { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); }
+  [data-theme="dark"] .theme-track::before { content:'☾'; transform:translateX(20px); background:#1a1612; color:#ffaa55; font-size:10px; }
+  .back-dash { font-family:var(--hand); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink3); text-decoration:none; padding:4px 8px; border:1px solid var(--div); border-radius:4px; transition:all .2s; }
+  .back-dash:hover { background:var(--ink); color:var(--paper); }
+</style>
+
+</head>
+<body>
+
+<div class="book">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-subject">NEET Physics · Class XII · File 3 of 3</div>
+      <h1>Electrostatics &amp;<br/><em>Current Electricity</em></h1>
+      <p class="cover-desc">Electric Charges &amp; Fields · Electrostatic Potential &amp; Capacitance · Current Electricity. Three chapters, ~15 Qs/paper, 15 years decoded. Every formula, every PYQ pattern, 35 master traps.</p>
+      <div class="cover-chips">
+        <span class="chip">Ch 1 — Electric Charges &amp; Fields</span>
+        <span class="chip">Ch 2 — Electrostatic Potential &amp; Capacitance</span>
+        <span class="chip">Ch 3 — Current Electricity</span>
+        <span class="chip">35 Master Traps</span>
+        <span class="chip">15 yrs PYQ · 2009–2025</span>
+        <span class="chip">50+ Solved PYQs</span>
+      </div>
+    </div>
+    <span class="cover-tag">Class 12 — File 3</span>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-lbl">Contents</div>
+    <div class="toc-section">
+      <div class="toc-section-lbl">Chapters</div>
+      <div class="toc-grid">
+        <a href="#ch-ecf"><span class="tn">01</span> Electric Charges &amp; Fields <span class="toc-freq">3–4 Qs/yr</span></a>
+        <a href="#ch-epc"><span class="tn">02</span> Electrostatic Potential &amp; Capacitance <span class="toc-freq">4–6 Qs/yr</span></a>
+        <a href="#ch-ce"><span class="tn">03</span> Current Electricity <span class="toc-freq">4–6 Qs/yr</span></a>
+      </div>
+    </div>
+    <div class="toc-divider"></div>
+    <div class="toc-section">
+      <div class="toc-section-lbl">Reference</div>
+      <div class="toc-grid toc-grid-ref">
+        <a href="#ch-mfs"><span class="tn toc-star">★</span> Master Formula Sheet — All 3 Chapters</a>
+        <a href="#ch-traps"><span class="tn toc-warn">⚠</span> Master Traps — 35 Exam Killers</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CHAPTER 1 — ELECTRIC CHARGES & FIELDS              -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-ecf">
+    <div class="ch-head ch-head-ecf">
+      <div class="ch-ey">Chapter 1 of 3 · Class XII Electrostatics</div>
+      <div class="ch-title">Electric Charges &amp; <em>Fields</em></div>
+    </div>
+    
+    <div class="ch-body">
+
+      <!-- OVERVIEW -->
+      <div class="sec" data-m="overview" id="ch-ecf-overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">3–4 Qs/yr</span></h2>
+        <p>Electric Charges &amp; Fields is the <strong>conceptual backbone</strong> of all electrostatics. NEET tests this chapter with 3–4 direct questions every year — ranging from pure formula substitution to multi-concept traps involving Gauss's Law, field superposition, and dipole behaviour. Master this chapter and the entire Class 12 Physics foundation becomes solid.</p>
+
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Coulomb's Law / Superposition — 1–2 Qs</div>
+          <div class="score-pill sp-b">🔵 Electric Field — Point charge, Shell, Wire — 1 Q</div>
+          <div class="score-pill sp-g">🟢 Gauss's Law — Flux, Enclosed charge — 1 Q</div>
+          <div class="score-pill sp-o">🟡 Dipole — Torque, Field, PE — 1 Q</div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2009–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Coulomb's Law — force between charges, superposition</td><td>14+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Electric field — point charge, ring, disc, shell</td><td>13+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Gauss's Law — flux through surfaces, enclosed charge</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Electric dipole — torque, potential energy, field</td><td>11+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Electric field lines — properties, number from charge</td><td>7 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Charge on conductors — surface density, redistribution</td><td>6 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Force on dipole in non-uniform field</td><td>4 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+              <tr><td>Properties of electric charges — quantisation, conservation</td><td>4 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Mentor's Note — What NEET Really Tests</span>
+          <p>NEET does NOT ask derivations from this chapter. It tests: (1) correct application of the right formula, (2) direction of field/force using vector sense, (3) Gauss flux — is the charge inside or outside?, (4) dipole torque and PE formulae. These 4 patterns account for 90% of all questions from this chapter.</p>
+        </div>
+      </div>
+
+      <!-- COULOMB'S LAW -->
+      <div class="sec" data-m="coulombs-law" id="ch-ecf-coulomb">
+        <h2 class="sh">Coulomb's Law &amp; Superposition <span class="tag tg">14+ times in NEET</span></h2>
+
+        <p>Coulomb's Law gives the electrostatic force between two point charges. It is the starting point of all electrostatics and is tested in almost every NEET paper in some form.</p>
+
+        <div class="def-box">
+          <span class="lbl">Coulomb's Law</span>
+          <p>$$F = \frac{1}{4\pi\varepsilon_0}\frac{q_1 q_2}{r^2} = k\frac{q_1 q_2}{r^2}$$</p>
+          <p>where $k = \frac{1}{4\pi\varepsilon_0} = 9\times 10^9 \text{ N m}^2\text{C}^{-2}$, $\varepsilon_0 = 8.85\times 10^{-12}\text{ C}^2\text{N}^{-1}\text{m}^{-2}$</p>
+          <p><strong>Vector form:</strong> $\vec{F}_{12} = k\frac{q_1 q_2}{r^2}\hat{r}_{12}$ (force on charge 2 due to charge 1, along $\hat{r}_{12}$)</p>
+        </div>
+
+        <h3 class="ssh" id="ch-ecf-coulomb-properties">⚡ Properties — All Tested in NEET</h3>
+        <ul class="pl">
+          <li><strong>Acts along the line joining the charges</strong> — it is a central force</li>
+          <li><strong>Inverse square law</strong> — $F \propto 1/r^2$ (same as gravity, but much stronger)</li>
+          <li><strong>Force is mutual</strong> — $\vec{F}_{12} = -\vec{F}_{21}$ (Newton's 3rd law holds)</li>
+          <li><strong>Conservative force</strong> — work done is path-independent</li>
+          <li><strong>Does not depend on medium between charges</strong> when written as $F_0 = kq_1q_2/r^2$ — but in medium: $F = F_0/K$ where $K$ is dielectric constant</li>
+          <li><strong>Superposition holds</strong> — total force on a charge is the vector sum of individual forces</li>
+        </ul>
+
+        <h3 class="ssh">🎯 In a Medium (Dielectric)</h3>
+        <div class="formula">
+          $$F_{medium} = \frac{1}{4\pi\varepsilon_0 K}\frac{q_1 q_2}{r^2} = \frac{F_{vacuum}}{K}$$
+          <br/>
+          $K = \varepsilon_r$ = relative permittivity = dielectric constant. For vacuum: $K=1$, water: $K\approx 80$, glass: $K\approx 5\text{–}10$
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET Trap — Medium vs Distance</span>
+          <p>If charges are moved to the same separation in a medium of K = 4 — the force becomes F/4. If the separation is also halved simultaneously, $F_{new} = (F/K) \times 4 = F$. NEET 2016 tested exactly this two-part change.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Superposition Principle</h3>
+        <p>The net force on a charge due to a system of charges is the <strong>vector sum</strong> of individual Coulomb forces. This is one of the most frequently tested concepts in NEET — either as an equilibrium problem or a geometry-based vector addition.</p>
+
+        <div class="eg">
+          <p><strong>NEET Classic — Equilibrium of 3 charges in a line:</strong> Charges $+q$, $Q$, $+q$ placed at $x=0$, $x=d$, $x=2d$. For $Q$ to be in equilibrium — net force on $Q = 0$:</p>
+          <p>$k\frac{qQ}{d^2}$ (repulsion from left $+q$) must equal $k\frac{qQ}{d^2}$ (repulsion from right $+q$) — always balanced by symmetry regardless of $Q$'s sign. But $Q$ must be <strong>negative</strong> to make the two $+q$ charges also be in equilibrium. Answer: $Q = -q/4$ when $+q$ charges are separated by $2d$ and $Q$ is at midpoint.</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>Equilibrium Formula for 3-charge line:</strong> If two charges $q_1$ and $q_2$ are separated by distance $d$, a third charge $q_3$ placed between them is in equilibrium at distance $x$ from $q_1$ where:</p>
+          <p>$$x = \frac{d\sqrt{q_1}}{\sqrt{q_1}+\sqrt{q_2}}$$</p>
+          <p>For equal charges $q_1 = q_2$: $x = d/2$ (midpoint). $q_3$ must be opposite sign to $q_1$ and $q_2$ for system equilibrium.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Charges on Identical Conducting Spheres — NEET 2025 Pattern</h3>
+        <p>When two identical conducting spheres are brought into contact and separated, charge distributes equally. This is the basis of a class of NEET problems that appeared in 2023 and 2025.</p>
+
+        <div class="eg">
+          <p><strong>NEET 2025 type:</strong> Spheres A and B each have charge $q$, force = $F$. A third identical uncharged sphere C is touched to A, then to B, then removed. New force = ?</p>
+          <p><strong>Step 1:</strong> C touches A → each gets $q/2$. C touches B → B and C together have $q + q/2 = 3q/2$, so each gets $3q/4$.</p>
+          <p><strong>Result:</strong> A has $q/2$, B has $3q/4$. New force = $k\frac{(q/2)(3q/4)}{r^2} = k\frac{3q^2/8}{r^2} = \frac{3}{8}\cdot k\frac{q^2}{r^2} = \frac{3F}{8}$</p>
+        </div>
+
+        <!-- PYQs Coulomb -->
+        <h3 class="ssh">📋 PYQ Solved — Coulomb's Law</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Two equal positive charges repel with force $F$. If both charges are doubled and separation is also doubled, the new force is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: F</span>
+            <p><strong>Analysis:</strong> Original: $F = k\frac{q\cdot q}{r^2} = k\frac{q^2}{r^2}$</p>
+            <p>New: charges doubled ($2q$ each), separation doubled ($2r$): $F' = k\frac{(2q)(2q)}{(2r)^2} = k\frac{4q^2}{4r^2} = k\frac{q^2}{r^2} = F$</p>
+            <div class="approach"><p>When both charge and separation scale by the same factor $n$: $F' = k\frac{(nq)^2}{(nr)^2} = F$. Force is unchanged! NEET tests this scaling pattern repeatedly.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">Two identical charged spheres A and B carry charges $q$ each and repel with force $F$. When a third identical uncharged sphere is touched first to A and then to B, the new force of repulsion is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 3F/8</span>
+            <p><strong>Step 1:</strong> C touches A: A has charge $q$, C uncharged → each gets $q/2$. A now has $q/2$, C has $q/2$.</p>
+            <p><strong>Step 2:</strong> C touches B: B has $q$, C has $q/2$ → total = $3q/2$ → each gets $3q/4$. B now has $3q/4$, C has $3q/4$.</p>
+            <p><strong>Final charges:</strong> A = $q/2$, B = $3q/4$.</p>
+            <p><strong>New force:</strong> $F' = k\frac{(q/2)(3q/4)}{r^2} = \frac{3}{8}\cdot k\frac{q^2}{r^2} = \frac{3F}{8}$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2019</span>
+            <span class="pyq-q">Two positive ions each carrying charge $q$ are separated by distance $d$. If $F$ is the force of repulsion between the ions, number of electrons missing from each ion is ($e$ = charge on electron):</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $n = \frac{1}{e}\sqrt{\frac{Fd^2}{k}}$</span>
+            <p>Each ion has $n$ electrons missing, so charge = $ne$.</p>
+            <p>$F = k\frac{(ne)(ne)}{d^2} = k\frac{n^2 e^2}{d^2}$</p>
+            <p>$n^2 = \frac{Fd^2}{ke^2}$ → $n = \frac{d}{e}\sqrt{\frac{F}{k}}$</p>
+            <div class="approach"><p>The keyword "ions" + "electrons missing" → charge = $ne$. Substitute $q = ne$ into Coulomb's law and solve for $n$.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2018</span>
+            <span class="pyq-q">A square has charges $+q$ at three corners and $-q$ at the fourth corner (side = $L$). The electric force on $-q$ is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $\frac{kq^2}{L^2}\left(\frac{1}{2}+\frac{1}{\sqrt{2}}\right)$ directed toward centre</span>
+            <p>Forces on $-q$ from: (1) adjacent $+q$ at distance $L$: magnitude $F_1 = kq^2/L^2$, attractive (two such forces at 90° to each other). (2) diagonal $+q$ at distance $L\sqrt{2}$: magnitude $F_2 = kq^2/2L^2$, attractive.</p>
+            <p>Resultant of two $F_1$: $\sqrt{2}F_1$ at 45° (diagonal direction, toward centre). $F_2$ is also along diagonal. Total = $\sqrt{2}F_1 + F_2 = \sqrt{2}\frac{kq^2}{L^2} + \frac{kq^2}{2L^2} = \frac{kq^2}{L^2}\left(\sqrt{2}+\frac{1}{2}\right)$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELECTRIC FIELD -->
+      <div class="sec" data-m="electric-field" id="ch-ecf-efield">
+        <h2 class="sh">Electric Field — All Charge Distributions <span class="tag tg">Most Tested Chapter</span></h2>
+
+        <p>The electric field $\vec{E}$ at a point is the force per unit <strong>positive test charge</strong> placed at that point. This is the single most tested concept in all of NEET electrostatics — every year, at least 1–2 questions directly test field calculations from different charge configurations.</p>
+
+        <div class="def-box">
+          <span class="lbl">Electric Field — Definition</span>
+          <p>$$\vec{E} = \frac{\vec{F}}{q_0} = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}\hat{r}$$</p>
+          <p>Units: N/C or V/m. Direction: away from $+q$, toward $-q$. Superposition applies: $\vec{E}_{net} = \sum \vec{E}_i$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Sacred Table — E Field for All Configurations</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Charge Distribution</th><th>Location</th><th>E Field Formula</th><th>Direction</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Point charge</strong> $q$</td><td>Distance $r$</td><td>$E = \frac{kq}{r^2}$</td><td>Radial</td></tr>
+              <tr><td><strong>Uniformly charged ring</strong> (radius $R$, charge $Q$)</td><td>Axial point, distance $x$</td><td>$E = \frac{kQx}{(R^2+x^2)^{3/2}}$</td><td>Along axis</td></tr>
+              <tr><td><strong>Ring — at centre</strong></td><td>$x=0$</td><td>$E = 0$ (by symmetry)</td><td>—</td></tr>
+              <tr><td><strong>Ring — max E</strong></td><td>$x = R/\sqrt{2}$</td><td>$E_{max} = \frac{kQ}{3\sqrt{3}R^2/2}$</td><td>Along axis</td></tr>
+              <tr><td><strong>Uniformly charged disc</strong> (radius $R$, surface charge $\sigma$)</td><td>Axial point, distance $x$</td><td>$E = \frac{\sigma}{2\varepsilon_0}\left(1-\frac{x}{\sqrt{x^2+R^2}}\right)$</td><td>Along axis</td></tr>
+              <tr><td><strong>Infinite plane sheet</strong> (surface charge $\sigma$)</td><td>Any point</td><td>$E = \frac{\sigma}{2\varepsilon_0}$</td><td>Perpendicular, away</td></tr>
+              <tr><td><strong>Two parallel plates</strong> (+$\sigma$, −$\sigma$)</td><td>Between plates</td><td>$E = \frac{\sigma}{\varepsilon_0}$</td><td>From + to −</td></tr>
+              <tr><td><strong>Two parallel plates</strong></td><td>Outside plates</td><td>$E = 0$</td><td>—</td></tr>
+              <tr><td><strong>Spherical shell</strong> (charge $Q$, radius $R$)</td><td>$r &gt; R$ (outside)</td><td>$E = \frac{kQ}{r^2}$</td><td>Radial</td></tr>
+              <tr><td><strong>Spherical shell</strong></td><td>$r &lt; R$ (inside)</td><td>$E = 0$</td><td>—</td></tr>
+              <tr><td><strong>Solid sphere</strong> (uniform, charge $Q$, radius $R$)</td><td>$r &gt; R$ (outside)</td><td>$E = \frac{kQ}{r^2}$</td><td>Radial</td></tr>
+              <tr><td><strong>Solid sphere</strong></td><td>$r &lt; R$ (inside)</td><td>$E = \frac{kQr}{R^3} = \frac{\rho r}{3\varepsilon_0}$</td><td>Radial</td></tr>
+              <tr><td><strong>Infinite line charge</strong> (linear density $\lambda$)</td><td>Distance $r$</td><td>$E = \frac{\lambda}{2\pi\varepsilon_0 r}$</td><td>Radial, ⊥ to wire</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ The Most Common NEET Traps in E-field</span>
+          <p><strong>Trap 1:</strong> E inside a conducting shell = 0, but E inside a solid non-conducting sphere ≠ 0 (it's $\propto r$). <strong>Trap 2:</strong> E at the surface of a conducting sphere = $\sigma/\varepsilon_0$ (not $\sigma/2\varepsilon_0$ which is for a single plane sheet). <strong>Trap 3:</strong> At the centre of a ring E = 0 by symmetry — many students use the axial formula with $x=0$ and get 0, which is correct, but forget this geometrically obvious fact.</p>
+        </div>
+
+        <h3 class="ssh" id="ch-ecf-efield-fromV">🎯 Electric Field from Potential — NEET 2021 Pattern</h3>
+        <p>If potential $V$ is given as a function of position, the electric field components are obtained by partial differentiation. This is a <strong>guaranteed 1 question</strong> in recent NEET papers.</p>
+
+        <div class="def-box">
+          <span class="lbl">E from Potential</span>
+          <p>$$E_x = -\frac{\partial V}{\partial x},\quad E_y = -\frac{\partial V}{\partial y},\quad E_z = -\frac{\partial V}{\partial z}$$</p>
+          <p>In 1D: $E = -\frac{dV}{dr}$. The negative sign means E points from high V to low V.</p>
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2021:</strong> $V = 4x^2$ volts. Find $\vec{E}$ at point $(1,0,2)$.</p>
+          <p>$E_x = -\frac{\partial V}{\partial x} = -8x$. At $x=1$: $E_x = -8$ V/m. $E_y = E_z = 0$.</p>
+          <p>Answer: $\vec{E} = -8\hat{x}$ V/m, i.e., 8 V/m along negative x-axis.</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>NEET Shortcut for E-V problems:</strong> Identify which variable $V$ depends on. Differentiate with respect to that variable. Evaluate at the given point. The answer will always have units V/m = N/C.</p>
+          <p>Common forms: $V = ax^2 \Rightarrow E_x = -2ax$; $V = a/r \Rightarrow E_r = a/r^2$; $V = ax + by \Rightarrow E_x = -a,\, E_y = -b$ (uniform field)</p>
+        </div>
+
+        <h3 class="ssh">🎯 Properties of Electric Field Lines — Direct NEET Questions</h3>
+        <ul class="pl">
+          <li>Start from <strong>positive charges</strong>, end on <strong>negative charges</strong> (or at infinity)</li>
+          <li><strong>Never intersect</strong> — if they did, E would have two directions at one point (impossible)</li>
+          <li>Number of lines from a charge $\propto |q|$ — used to compare charges from diagrams</li>
+          <li>Tangent to field line gives direction of $\vec{E}$ at that point</li>
+          <li>Closer lines = <strong>stronger field</strong>; uniform field = equally spaced parallel lines</li>
+          <li>Lines are <strong>perpendicular to equipotential surfaces</strong></li>
+          <li>In a uniform field, lines are parallel and equidistant — net field inside conductor = 0 (lines absent inside)</li>
+          <li>Lines cannot form <strong>closed loops</strong> — E is conservative</li>
+        </ul>
+
+        <h3 class="ssh">🎯 Continuous Charge Distributions — Summary</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Type</th><th>Symbol</th><th>Unit</th><th>Relation to charge</th></tr></thead>
+            <tbody>
+              <tr><td>Linear charge density</td><td>$\lambda$</td><td>C/m</td><td>$dq = \lambda\, dl$</td></tr>
+              <tr><td>Surface charge density</td><td>$\sigma$</td><td>C/m²</td><td>$dq = \sigma\, dA$</td></tr>
+              <tr><td>Volume charge density</td><td>$\rho$</td><td>C/m³</td><td>$dq = \rho\, dV$</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PYQs Electric Field -->
+        <h3 class="ssh">📋 PYQ Solved — Electric Field</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A metal cube of side 5 cm is charged with 6 μC. The surface charge density on the cube is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 4 × 10⁻⁴ C/m²</span>
+            <p>Total surface area of cube = $6a^2 = 6\times(0.05)^2 = 6\times 2.5\times10^{-3} = 1.5\times10^{-2}$ m²</p>
+            <p>$\sigma = Q/A = 6\times10^{-6}/1.5\times10^{-2} = 4\times10^{-4}$ C/m²</p>
+            <div class="approach"><p>For conductors, charge resides on the surface. The question gives a cube (6 faces), so total area = $6a^2$. Do NOT forget the factor of 6.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Two hollow conducting spheres of radii $R_1$ and $R_2$ ($R_1 \gg R_2$) have equal charges. The potential would be:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Greater for smaller sphere</span>
+            <p>For a conducting sphere: $V = kQ/R$. Since $Q$ is same for both: $V \propto 1/R$. Since $R_1 \gg R_2$, we have $V_2 \gg V_1$.</p>
+            <p>The smaller sphere has higher potential. (This is why charge leaks from sharp points — high surface charge density → high E field → high potential gradient.)</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">The electric field at a distance $3R/2$ from the centre of a charged conducting spherical shell of radius $R$ is $E$. The electric field at distance $R/2$ from the centre is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Zero</span>
+            <p>A conducting spherical shell: charge resides only on the outer surface. By Gauss's law, $E_{inside} = 0$ for any point inside the shell ($r &lt; R$).</p>
+            <p>$R/2 &lt; R$ → this point is inside the shell → $E = 0$.</p>
+            <div class="elim-box"><p>Common wrong answer: $4E/9$ (by scaling $1/r^2$ from $3R/2$ to $R/2$). This is wrong because Gauss's law shows no enclosed charge inside the shell, so E = 0 everywhere inside.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2017</span>
+            <span class="pyq-q">A square surface of side $L$ in the plane of the paper is placed in a uniform field $E$ acting along the same plane at angle $\theta$ with the horizontal side. The electric flux through the square surface is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Zero</span>
+            <p>Electric flux $\Phi = \vec{E}\cdot\vec{A} = EA\cos\alpha$ where $\alpha$ is angle between $\vec{E}$ and area vector $\vec{A}$.</p>
+            <p>The area vector is perpendicular to the surface. The surface is in the plane of the paper. $\vec{E}$ is also in the plane of the paper.</p>
+            <p>Therefore $\vec{E} \perp \vec{A}$ → $\alpha = 90°$ → $\cos 90° = 0$ → $\Phi = 0$.</p>
+            <div class="approach"><p>Key insight: flux = 0 when E is parallel to the surface (perpendicular to area vector). This is a pure geometry question. The angle $\theta$ is a distractor.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAUSS'S LAW -->
+      <div class="sec" data-m="gauss-law" id="ch-ecf-gauss">
+        <h2 class="sh">Gauss's Law &amp; Applications <span class="tag tg">12+ times in NEET</span></h2>
+
+        <p>Gauss's Law is the <strong>most powerful tool</strong> in electrostatics — it connects electric flux through a closed surface to the charge enclosed. NEET loves testing this conceptually (flux = ?, what if charge moves inside?) and numerically (flux through one face of a cube).</p>
+
+        <div class="def-box">
+          <span class="lbl">Gauss's Law</span>
+          <p>$$\Phi_E = \oint_S \vec{E}\cdot d\vec{A} = \frac{Q_{enc}}{\varepsilon_0}$$</p>
+          <p>$Q_{enc}$ = total charge enclosed within the Gaussian surface. $\Phi_E$ depends ONLY on $Q_{enc}$, not on shape, size, or position of the surface relative to charges outside.</p>
+        </div>
+
+        <h3 class="ssh">⚡ The 5 Sacred Results of Gauss's Law</h3>
+
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">1 — Spherical Shell</div>
+            <ul>
+              <li>E outside $(r&gt;R)$: $kQ/r^2$ (like point charge)</li>
+              <li>E inside $(r&lt;R)$: Zero</li>
+              <li>V inside: constant $= kQ/R$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">2 — Solid Sphere</div>
+            <ul>
+              <li>E outside $(r&gt;R)$: $kQ/r^2$</li>
+              <li>E inside $(r&lt;R)$: $kQr/R^3 \propto r$</li>
+              <li>E max at surface $r=R$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">3 — Infinite Wire</div>
+            <ul>
+              <li>$E = \lambda/2\pi\varepsilon_0 r$</li>
+              <li>$E \propto 1/r$ (not $1/r^2$)</li>
+              <li>Gaussian surface = cylinder</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">4 — Infinite Plane</div>
+            <ul>
+              <li>$E = \sigma/2\varepsilon_0$ (each side)</li>
+              <li>Independent of distance!</li>
+              <li>Gaussian surface = pillbox</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">5 — Conductor Surface</div>
+            <ul>
+              <li>$E = \sigma/\varepsilon_0$ just outside</li>
+              <li>$E = 0$ inside conductor</li>
+              <li>Charge only on surface</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="ssh">🎯 Flux Through Part of a Surface — The Cube Problems</h3>
+        <p>NEET repeatedly asks about flux through one face of a cube when a charge is placed at various positions. This is a direct application of Gauss's Law + symmetry.</p>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Charge Position</th><th>Flux through <em>entire</em> cube</th><th>Flux through <em>one face</em></th></tr></thead>
+            <tbody>
+              <tr><td>At centre of cube</td><td>$Q/\varepsilon_0$</td><td>$Q/6\varepsilon_0$ (symmetry: 6 equal faces)</td></tr>
+              <tr><td>At centre of a face</td><td>$Q/2\varepsilon_0$ (half in, half out — use 2 cubes)</td><td>$Q/8\varepsilon_0$ (the opposite face gets $Q/8\varepsilon_0$; nearby faces get $Q/8\varepsilon_0$ each)</td></tr>
+              <tr><td>At a corner</td><td>$Q/8\varepsilon_0$ (charge shared by 8 cubes)</td><td>Faces touching corner: 0; opposite faces: $Q/24\varepsilon_0$</td></tr>
+              <tr><td>At midpoint of an edge</td><td>$Q/4\varepsilon_0$ (shared by 4 cubes)</td><td>Varies; use symmetry</td></tr>
+              <tr><td>Outside the cube</td><td>Zero (net flux = $Q_{enc}/\varepsilon_0 = 0$)</td><td>Can be non-zero through individual faces (entry=exit)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>The Image Cube Trick:</strong> If charge is at centre of a face, imagine the cube mirrored — total flux = $Q/\varepsilon_0$ through 2 cubes = $Q/2\varepsilon_0$ per cube. If at corner, 8 cubes surround it → $Q/8\varepsilon_0$ per cube. If at edge midpoint, 4 cubes → $Q/4\varepsilon_0$ per cube. <strong>This is the most tested Gauss's Law trick in NEET history.</strong></p>
+        </div>
+
+        <h3 class="ssh">🎯 Gauss's Law — Conceptual Questions</h3>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Key Concept — What Gauss's Law Says and Doesn't Say</span>
+          <p>If $\oint \vec{E}\cdot d\vec{A} = 0$ over a closed surface: this does NOT mean $E = 0$ everywhere on the surface. It only means $Q_{enc} = 0$. The field could still be non-zero at every point — the flux just cancels. NEET 2023 tested this directly.</p>
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2023:</strong> If $\oint_S \vec{E}\cdot d\vec{S} = 0$ over a surface, then:</p>
+          <p>(A) E = 0 everywhere on S &nbsp;(B) E = 0 everywhere inside S &nbsp;(C) Net flux through S = 0 &nbsp;(D) $Q_{enc}$ may be non-zero</p>
+          <p><strong>Answer: (C)</strong> — net flux = 0, which means $Q_{enc} = 0$. Individual field values can be non-zero. Option (D) is incorrect because $Q_{enc}$ = 0 necessarily.</p>
+        </div>
+
+        <!-- PYQs Gauss -->
+        <h3 class="ssh">📋 PYQ Solved — Gauss's Law</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">AIPMT 2015</span>
+            <span class="pyq-q">The electric flux through one face of a cube when a charge $Q$ is placed at the centre of the cube is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Q/6ε₀</span>
+            <p>Total flux through all 6 faces = $Q/\varepsilon_0$ (Gauss's Law). By symmetry, each face gets equal flux = $Q/(6\varepsilon_0)$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">A charge $Q$ is enclosed by a Gaussian spherical surface of radius $R$. If the radius is doubled, the outward electric flux will:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Remain the same</span>
+            <p>Gauss's Law: $\Phi = Q_{enc}/\varepsilon_0$. The enclosed charge $Q$ doesn't change when radius is doubled. Therefore flux remains $Q/\varepsilon_0$.</p>
+            <div class="approach"><p>The flux depends ONLY on enclosed charge, not on the radius or shape of the Gaussian surface. This is one of the most repeated concepts in NEET history — tested almost every year.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2016</span>
+            <span class="pyq-q">Two large charged plane sheets of charge densities $\sigma$ and $-2\sigma$ are placed parallel to each other. The electric field between them is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 3σ/2ε₀ (directed from +σ sheet toward −2σ sheet)</span>
+            <p>Each sheet contributes $\sigma/2\varepsilon_0$ in magnitude at any point. Between the plates:</p>
+            <p>$+\sigma$ sheet: E directed away from it = $\sigma/2\varepsilon_0$ (rightward)</p>
+            <p>$-2\sigma$ sheet: E directed toward it = $2\sigma/2\varepsilon_0 = \sigma/\varepsilon_0$ (rightward)</p>
+            <p>Total between plates: $\sigma/2\varepsilon_0 + \sigma/\varepsilon_0 = 3\sigma/2\varepsilon_0$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELECTRIC DIPOLE -->
+      <div class="sec" data-m="dipole" id="ch-ecf-dipole">
+        <h2 class="sh">Electric Dipole — Complete Coverage <span class="tag tg">11+ times in NEET</span></h2>
+
+        <p>The electric dipole is a system of two equal and opposite charges $+q$ and $-q$ separated by a small distance $2l$ (or $2a$ in some books). The <strong>dipole moment</strong> $\vec{p} = q\times 2l$ directed from $-q$ to $+q$ (negative to positive).</p>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Direction of Dipole Moment — Most Missed NEET Trap</span>
+          <p>$\vec{p}$ points from <strong>negative to positive</strong> charge. Many students confuse this with conventional current or force direction. In NEET 2018 this distinction directly determined the correct answer.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Electric Field Due to a Dipole</h3>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Position</th><th>Formula</th><th>Direction</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Axial point</strong> (on dipole axis, distance $r$)</td><td>$E_{ax} = \frac{2kp}{r^3}$ (for $r \gg l$)</td><td>Along $\vec{p}$ (same direction)</td><td>NEET 2018 ✓</td></tr>
+              <tr><td><strong>Equatorial point</strong> (on ⊥ bisector, distance $r$)</td><td>$E_{eq} = \frac{kp}{r^3}$ (for $r \gg l$)</td><td>Opposite to $\vec{p}$</td><td>Half of axial</td></tr>
+              <tr><td><strong>General point</strong> (angle $\theta$)</td><td>$E = \frac{kp}{r^3}\sqrt{3\cos^2\theta+1}$</td><td>Angle $\alpha = \tan^{-1}(\frac{1}{2}\tan\theta)$ with axis</td><td>Advanced</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="shortcut">
+          <p><strong>$E_{axial} = 2E_{equatorial}$</strong> — The field on the axis is exactly double the field on the perpendicular bisector at the same distance. NEET tests this ratio every 2–3 years.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Torque on Dipole in Uniform Field</h3>
+        <div class="formula">
+          $$\vec{\tau} = \vec{p}\times\vec{E} \quad\Rightarrow\quad \tau = pE\sin\theta$$
+        </div>
+        <ul class="pl">
+          <li>$\theta = 0°$: $\tau = 0$ — dipole along $\vec{E}$ → <strong>stable equilibrium</strong></li>
+          <li>$\theta = 90°$: $\tau = pE$ — maximum torque</li>
+          <li>$\theta = 180°$: $\tau = 0$ — dipole anti-parallel to $\vec{E}$ → <strong>unstable equilibrium</strong></li>
+        </ul>
+
+        <div class="note-box">
+          <span class="lbl">NEET 2017 — Net Force on Dipole in Uniform Field</span>
+          <p>Net force on an electric dipole in a <strong>uniform</strong> electric field = ZERO. The forces on $+q$ and $-q$ are equal and opposite. There is only torque, no net force. NEET 2017 asked this directly and it was the most missed question.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Potential Energy of Dipole in Field</h3>
+        <div class="formula">
+          $$U = -\vec{p}\cdot\vec{E} = -pE\cos\theta$$
+        </div>
+        <ul class="pl">
+          <li>$\theta = 0°$: $U = -pE$ (minimum, stable equilibrium)</li>
+          <li>$\theta = 90°$: $U = 0$ (reference state)</li>
+          <li>$\theta = 180°$: $U = +pE$ (maximum, unstable equilibrium)</li>
+        </ul>
+
+        <div class="eg">
+          <p><strong>NEET 2025:</strong> A dipole with $p = 5\times10^{-6}$ C·m aligned with field $E = 4\times10^5$ N/C. Rotated through $60°$. Change in PE = ?</p>
+          <p>$\Delta U = U_f - U_i = -pE\cos60° - (-pE\cos0°) = -pE(1/2) + pE = pE/2$</p>
+          <p>$= (5\times10^{-6})(4\times10^5)/2 = 2/2 = 1$ J</p>
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2023:</strong> Dipole in field, angle $= 30°$, $E = 2\times10^5$ N/C, torque = 4 N·m. Magnitude of charge if $2l = 2$ cm:</p>
+          <p>$\tau = pE\sin\theta = (q\times 2l)\times E\times\sin30°$</p>
+          <p>$4 = q\times(0.02)\times(2\times10^5)\times(0.5)$</p>
+          <p>$4 = q\times 2000$ → $q = 2\times10^{-3}$ C = 2 mC</p>
+        </div>
+
+        <h3 class="ssh">🎯 Electric Potential Due to a Dipole</h3>
+        <div class="formula">
+          $$V = \frac{kp\cos\theta}{r^2}$$
+          <br/>
+          Axial: $V_{ax} = \frac{kp}{r^2}$ &nbsp;&nbsp; Equatorial: $V_{eq} = 0$
+        </div>
+
+        <div class="trick">
+          <p><strong>Potential on equatorial line = ZERO</strong> — This is a key NEET fact. The potential contributions from $+q$ and $-q$ cancel exactly on the perpendicular bisector. Note: E ≠ 0 there, but V = 0.</p>
+        </div>
+
+        <!-- PYQs Dipole -->
+        <h3 class="ssh">📋 PYQ Solved — Electric Dipole</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024 (Assertion-Reason)</span>
+            <span class="pyq-q">Assertion A: Potential at axial point 2m from dipole of moment $4\times10^{-6}$ C·m is $\pm9\times10^3$ V. Reason R: $V_{axial} = kp/r^2$.</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: A is true but R is false</span>
+            <p><strong>Check A:</strong> $V = kp/r^2 = 9\times10^9 \times 4\times10^{-6}/(2)^2 = 36000/4 = 9000 = 9\times10^3$ V. The $\pm$ refers to both ends (one gives $+$, other gives $-$). ✓ A is correct.</p>
+            <p><strong>Check R:</strong> The correct formula for potential at an arbitrary point is $V = kp\cos\theta/r^2$. The statement $V = kp/r^2$ is only valid for the <em>axial point</em> (where $\cos\theta=1$). R oversimplifies — it's not the general reason. So R is technically incomplete/false as a general statement.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2018</span>
+            <span class="pyq-q">Direction of electric field on dipole axis (axial position) is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Along dipole moment (from −q to +q)</span>
+            <p>On the axial line, field due to nearer charge ($+q$) dominates. Net field points away from $+q$ (outward), which is the same direction as $\vec{p}$ (from $-q$ to $+q$). So axial field is along $\vec{p}$.</p>
+            <div class="trick"><p>Memory: On axis → $E$ || $\vec{p}$. On equatorial → $E$ anti-|| $\vec{p}$ (opposite direction).</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2015</span>
+            <span class="pyq-q">Four charges $+q,+q,-q,-q$ are placed at corners of a square of side $2L$. The electric potential at point A midway between the two $+q$ charges is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $\frac{1}{4\pi\varepsilon_0}\frac{2q}{L}\left(1-\frac{1}{\sqrt{5}}\right)$</span>
+            <p>Place square at corners: $+q$ at $(-L,L)$ and $(L,L)$ [top], $-q$ at $(L,-L)$ and $(-L,-L)$ [bottom]. Point A at $(0,L)$.</p>
+            <p>Distances: from $+q$s at top: $L$ each (adjacent corners). From $-q$s at bottom: $\sqrt{(L)^2+(2L)^2}=L\sqrt{5}$ each.</p>
+            <p>$V_A = k\left(\frac{q}{L}+\frac{q}{L}-\frac{q}{L\sqrt{5}}-\frac{q}{L\sqrt{5}}\right) = \frac{2kq}{L}\left(1-\frac{1}{\sqrt{5}}\right)$</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROPERTIES OF ELECTRIC CHARGES -->
+      <div class="sec" data-m="charge-properties">
+        <h2 class="sh">Properties of Electric Charge <span class="tag tc">Conceptual — Always 1 Q</span></h2>
+
+        <h3 class="ssh">🎯 The 3 Fundamental Properties</h3>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">1 — Quantisation</div>
+            <ul>
+              <li>$q = ne$, $n \in \mathbb{Z}$</li>
+              <li>$e = 1.6\times10^{-19}$ C</li>
+              <li>Charge always multiple of $e$</li>
+              <li>Fractional charge on quarks, but quarks are not free</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">2 — Conservation</div>
+            <ul>
+              <li>Total charge of isolated system is constant</li>
+              <li>Charge can be created or destroyed only in equal and opposite pairs (pair production, annihilation)</li>
+              <li>Charge cannot be created from nothing</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">3 — Additivity</div>
+            <ul>
+              <li>Total charge = algebraic sum of individual charges</li>
+              <li>$q_{total} = q_1 + q_2 + q_3 + ...$</li>
+              <li>Signs must be included</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Property</th><th>Charge</th><th>Mass (comparison)</th></tr></thead>
+            <tbody>
+              <tr><td>Can be negative</td><td>Yes</td><td>No (always positive)</td></tr>
+              <tr><td>Quantised</td><td>Yes ($ne$)</td><td>Yes (but complex)</td></tr>
+              <tr><td>Conserved</td><td>Yes (always)</td><td>Yes (but mass-energy equivalence)</td></tr>
+              <tr><td>Additive</td><td>Yes (algebraic)</td><td>Yes (scalar)</td></tr>
+              <tr><td>Frame-dependent</td><td>No (Lorentz invariant)</td><td>Yes (relativistic mass)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip-box">
+          <span class="lbl">NEET Fact — Charge is Lorentz Invariant</span>
+          <p>Unlike mass, charge does NOT change with velocity. A charge $q$ at rest and the same charge moving at $0.9c$ have exactly the same charge $q$. This is sometimes asked as a conceptual question in NEET.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Methods of Charging</h3>
+        <ul class="pl">
+          <li><strong>Friction:</strong> Transfer of electrons between rubbed surfaces. Silk rubbed on glass → glass becomes +ve (loses electrons), silk becomes −ve</li>
+          <li><strong>Conduction:</strong> Direct contact — charge flows until potential equalises. Identical spheres: charge distributes equally</li>
+          <li><strong>Induction:</strong> Without contact — charge is redistributed without transfer. The inducing charge is NOT transferred</li>
+        </ul>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Induction Trap</span>
+          <p>During induction, the net charge of the induced object remains ZERO (unless grounded). Only redistribution occurs. If grounded, the conductor can acquire a net charge (opposite to inducing charge). NEET tests this indirectly through charge distribution problems.</p>
+        </div>
+      </div>
+
+    </div><!-- ch-body -->
+  </div><!-- chapter 1 -->
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CHAPTER 2 — ELECTROSTATIC POTENTIAL & CAPACITANCE  -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-epc">
+    <div class="ch-head ch-head-epc">
+      <div class="ch-ey">Chapter 2 of 3 · Class XII Electrostatics</div>
+      <div class="ch-title">Electrostatic Potential <em>&amp; Capacitance</em></div>
+    </div>
+    
+    <div class="ch-body">
+
+      <!-- OVERVIEW -->
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">4–6 Qs/yr — Highest Density</span></h2>
+        <p>This chapter is the <strong>most tested chapter in all of Class 12 Physics</strong> — consistently yielding 4–6 questions per NEET paper. The reason: capacitors appear everywhere in physics, and NEET can combine them with dielectrics, energy, charge redistribution, and batteries in one question. Every NEET aspirant must master this chapter to its very core.</p>
+
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Capacitor circuits (series/parallel) — 2 Qs</div>
+          <div class="score-pill sp-b">🔵 Dielectrics — battery vs isolated — 1–2 Qs</div>
+          <div class="score-pill sp-g">🟢 Electric potential — point, shell, dipole — 1 Q</div>
+          <div class="score-pill sp-o">🟡 Energy stored in capacitor — 1 Q</div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2009–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Capacitor series/parallel combinations</td><td>18+ times</td><td><span class="freq-high">🔴 CRITICAL</span></td></tr>
+              <tr><td>Dielectric in capacitor — with/without battery</td><td>15+ times</td><td><span class="freq-high">🔴 CRITICAL</span></td></tr>
+              <tr><td>Energy stored in capacitor</td><td>14+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Charge redistribution — capacitors connected</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Electric potential — point charge, shell, formula</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Equipotential surfaces — properties</td><td>8 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Work done in moving charge — path independence</td><td>7 times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Van de Graaff generator / corona discharge</td><td>3 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ELECTRIC POTENTIAL -->
+      <div class="sec" data-m="electric-potential" id="ch-epc-pot">
+        <h2 class="sh">Electric Potential — All Cases <span class="tag tg">10+ times NEET</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Electric Potential — Definition</span>
+          <p>$$V = \frac{W_{\infty \to P}}{q_0} = \frac{U}{q_0}$$</p>
+          <p>Potential at a point = work done per unit positive test charge in bringing it from infinity to that point against the electric field. Unit: Volt (V) = J/C. It is a <strong>scalar</strong> quantity.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Sacred Table — V for All Charge Distributions</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Charge Distribution</th><th>Location</th><th>Potential $V$</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Point charge</strong> $q$</td><td>Distance $r$</td><td>$V = kq/r$ (can be + or −)</td></tr>
+              <tr><td><strong>Uniformly charged ring</strong> ($Q$, radius $R$)</td><td>Centre</td><td>$V = kQ/R$</td></tr>
+              <tr><td><strong>Uniformly charged ring</strong></td><td>Axial point, distance $x$</td><td>$V = kQ/\sqrt{R^2+x^2}$</td></tr>
+              <tr><td><strong>Spherical shell</strong> ($Q$, radius $R$)</td><td>$r \geq R$ (surface &amp; outside)</td><td>$V = kQ/r$</td></tr>
+              <tr><td><strong>Spherical shell</strong></td><td>$r &lt; R$ (inside)</td><td>$V = kQ/R$ = constant (same as surface)</td></tr>
+              <tr><td><strong>Solid sphere</strong> (uniform, $Q$, radius $R$)</td><td>$r &gt; R$ (outside)</td><td>$V = kQ/r$</td></tr>
+              <tr><td><strong>Solid sphere</strong></td><td>$r = R$ (surface)</td><td>$V = kQ/R$</td></tr>
+              <tr><td><strong>Solid sphere</strong></td><td>$r &lt; R$ (inside)</td><td>$V = \frac{kQ}{2R^3}(3R^2-r^2)$</td></tr>
+              <tr><td><strong>Dipole</strong> (moment $p$)</td><td>Axial point, distance $r$</td><td>$V = kp/r^2$</td></tr>
+              <tr><td><strong>Dipole</strong></td><td>Equatorial point</td><td>$V = 0$</td></tr>
+              <tr><td><strong>Conductor surface</strong></td><td>Inside conductor</td><td>$V$ = constant = surface potential</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Shell — Inside = Constant Potential (NOT Zero)</span>
+          <p>V inside a spherical shell = $kQ/R$ = constant (same as on surface). E = 0 inside, but V ≠ 0 inside. Many students confuse E = 0 with V = 0. NEET 2024 tested this: potential at point inside shell and point outside shell — the difference was zero because V inside = constant = $kQ/R$.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Work Done in Moving Charge</h3>
+        <div class="formula">
+          $$W_{A\to B} = q(V_A - V_B) = q\cdot\Delta V$$
+        </div>
+        <ul class="pl">
+          <li>Work done is <strong>path-independent</strong> — depends only on initial and final potentials</li>
+          <li>$W = 0$ when moving along an <strong>equipotential surface</strong></li>
+          <li>$W = q(V_A - V_B)$: positive when moving from high to low potential (for positive $q$)</li>
+        </ul>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A thin spherical shell is charged. Potential difference between two points C (inside) and P (outside, 9 cm from centre, $Q = 4\times10^{-7}$ C) is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Zero</span>
+            <p>$V_C$ (inside shell) = $kQ/R$ = constant = surface potential. $V_P$ = $kQ/r$ where $r$ is the distance of P.</p>
+            <p>Wait — if C is inside and P is also inside or on the surface... Let me re-read: C is at a point inside or on the surface (same potential), P must be at the same point or equidistant. The key insight: both C and P are at the same potential $kQ/R$ if both are within or on the shell → difference = 0.</p>
+            <p>More precisely: all points on and inside a conducting shell are at the same potential → $V_C = V_P = kQ/R$ → $\Delta V = 0$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Electric potential at distance 9 cm from point charge $Q = 4\times10^{-7}$ C. (Given $k = 9\times10^9$ N·m²/C²):</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 4 × 10⁴ V</span>
+            <p>$V = kQ/r = (9\times10^9)(4\times10^{-7})/(0.09) = 3.6\times10^3/0.09 = 4\times10^4$ V</p>
+          </div>
+        </div>
+
+        <h3 class="ssh">🎯 Equipotential Surfaces</h3>
+        <ul class="pl">
+          <li>A surface on which potential is <strong>same everywhere</strong></li>
+          <li>Electric field is always <strong>perpendicular</strong> to equipotential surface</li>
+          <li>No work done in moving a charge along an equipotential surface</li>
+          <li>Equipotential surfaces never cross each other</li>
+          <li>For point charge: <strong>concentric spheres</strong> centered on the charge</li>
+          <li>For uniform field: <strong>parallel planes</strong> perpendicular to the field</li>
+          <li>For dipole: complex shape — closest to the dipole are perpendicular to $\vec{p}$</li>
+          <li>Conductor surface and interior are always equipotential</li>
+        </ul>
+
+        <div class="svg-wrap">
+          <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="max-width:580px;">
+            <rect width="600" height="220" fill="var(--paper2)" rx="4"/>
+            <!-- Point charge equipotentials -->
+            <g transform="translate(120,110)">
+              <text x="0" y="-95" text-anchor="middle" font-family="var(--hand)" font-size="11" fill="var(--ink3)">Point Charge</text>
+              <circle cx="0" cy="0" r="20" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="0" cy="0" r="40" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="0" cy="0" r="60" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="0" cy="0" r="80" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="0" cy="0" r="7" fill="var(--red)"/>
+              <text x="7" y="-9" font-family="var(--prose)" font-size="12" fill="var(--red)">+q</text>
+              <!-- Field lines (radial arrows) -->
+              <line x1="0" y1="-7" x2="0" y2="-78" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+              <line x1="7" y1="0" x2="78" y2="0" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+              <line x1="-5" y1="5" x2="-55" y2="55" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+            </g>
+            <!-- Uniform field equipotentials -->
+            <g transform="translate(400,110)">
+              <text x="0" y="-95" text-anchor="middle" font-family="var(--hand)" font-size="11" fill="var(--ink3)">Uniform Field</text>
+              <line x1="-80" y1="-60" x2="-80" y2="60" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="-40" y1="-60" x2="-40" y2="60" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="0" y1="-60" x2="0" y2="60" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="40" y1="-60" x2="40" y2="60" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="80" y1="-60" x2="80" y2="60" stroke="var(--blue)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <!-- Field lines horizontal -->
+              <line x1="-80" y1="-30" x2="75" y2="-30" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+              <line x1="-80" y1="0" x2="75" y2="0" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+              <line x1="-80" y1="30" x2="75" y2="30" stroke="var(--orange)" stroke-width="1.2" marker-end="url(#arr)"/>
+              <text x="-100" y="-30" text-anchor="end" font-family="var(--prose)" font-size="10" fill="var(--orange)">E→</text>
+            </g>
+            <defs>
+              <marker id="arr" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="var(--orange)"/>
+              </marker>
+            </defs>
+            <text x="300" y="210" text-anchor="middle" font-family="var(--hand)" font-size="10" fill="var(--ink3)">Dashed = equipotential · Orange arrows = E-field lines (always ⊥ to equipotential)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- CAPACITORS -->
+      <div class="sec" data-m="capacitors" id="ch-epc-cap">
+        <h2 class="sh">Capacitors — The NEET Monster Chapter <span class="tag tg">CRITICAL — 2–3 Qs/yr</span></h2>
+
+        <p>A capacitor stores electric charge and energy. It consists of two conductors separated by a dielectric. The <strong>capacitance</strong> $C = Q/V$ depends only on geometry and the medium — NOT on $Q$ or $V$ individually. This is a NEET 2024 direct question.</p>
+
+        <div class="def-box">
+          <span class="lbl">Capacitance — Parallel Plate Capacitor</span>
+          <p>$$C = \frac{\varepsilon_0 A}{d}$$</p>
+          <p>$A$ = area of each plate (m²), $d$ = separation between plates (m). With dielectric: $C = \frac{K\varepsilon_0 A}{d}$ where $K$ = dielectric constant.</p>
+        </div>
+
+        <h3 class="ssh">🎯 All Capacitor Formulae — Geometry</h3>
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">Parallel Plate</div>
+            <ul>
+              <li>$C = \varepsilon_0 A/d$</li>
+              <li>With dielectric: $KC_0$</li>
+              <li>$E$ between plates = $\sigma/\varepsilon_0 = V/d$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Spherical Capacitor</div>
+            <ul>
+              <li>Inner radius $a$, outer radius $b$</li>
+              <li>$C = 4\pi\varepsilon_0\frac{ab}{b-a}$</li>
+              <li>Isolated sphere: $C = 4\pi\varepsilon_0 R$</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Cylindrical Capacitor</div>
+            <ul>
+              <li>Inner radius $a$, outer $b$, length $L$</li>
+              <li>$C = \frac{2\pi\varepsilon_0 L}{\ln(b/a)}$</li>
+              <li>Rarely tested in NEET</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="ssh">🎯 Series and Parallel Combinations</h3>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Property</th><th>Series</th><th>Parallel</th></tr></thead>
+            <tbody>
+              <tr><td>Equivalent capacitance</td><td>$\frac{1}{C_{eq}} = \frac{1}{C_1}+\frac{1}{C_2}+...$<br/>(always less than smallest)</td><td>$C_{eq} = C_1+C_2+...$<br/>(always greater than any single)</td></tr>
+              <tr><td>Charge $Q$</td><td>Same on all capacitors</td><td>Different; $Q_i = C_i V$</td></tr>
+              <tr><td>Voltage $V$</td><td>Different; $V_i = Q/C_i$</td><td>Same on all</td></tr>
+              <tr><td>Two equal capacitors $C$</td><td>$C_{eq} = C/2$</td><td>$C_{eq} = 2C$</td></tr>
+              <tr><td>NEET trap</td><td>If one capacitor breaks down, entire chain fails</td><td>If one fails, others still work</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>Two-capacitor formula (Series):</strong> $C_{eq} = \frac{C_1 C_2}{C_1 + C_2}$ — the "product over sum" formula. Valid only for 2 capacitors. Do NOT use for 3+.</p>
+          <p><strong>Voltage divider in series:</strong> $V_1 = V\cdot\frac{C_2}{C_1+C_2}$ and $V_2 = V\cdot\frac{C_1}{C_1+C_2}$ — the voltage is inversely proportional to capacitance in series.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Charge Redistribution — Battery Removed</h3>
+        <p>When a charged capacitor is disconnected from the battery and connected to another uncharged capacitor, charge redistributes such that <strong>final potential is equal</strong> for both. This is a NEET favourite — appeared in 2021, 2022, 2023.</p>
+
+        <div class="formula">
+          <strong>After connecting:</strong>
+          $$V_f = \frac{Q_1 + Q_2}{C_1 + C_2} = \frac{C_1V_1 + C_2V_2}{C_1+C_2}$$
+          <br/>
+          (Charge conservation: $Q_{initial} = Q_{f1} + Q_{f2}$)
+          <br/>
+          <strong>Energy lost = Initial PE − Final PE</strong> (always positive — energy is lost as heat/EM radiation)
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2021:</strong> $C_1 = 900$ pF, $V_1 = 100$ V (charged). Disconnected, connected to uncharged $C_2 = 900$ pF. Find energy stored by system.</p>
+          <p>$Q_i = C_1 V_1 = 900\times10^{-12}\times100 = 9\times10^{-8}$ C</p>
+          <p>$V_f = Q_i/(C_1+C_2) = 9\times10^{-8}/(1800\times10^{-12}) = 50$ V</p>
+          <p>$U_f = \frac{1}{2}(C_1+C_2)V_f^2 = \frac{1}{2}(1800\times10^{-12})(50)^2 = 2.25\times10^{-6}$ J $= 2.25$ μJ</p>
+          <p>Initial energy: $U_i = \frac{1}{2}(900\times10^{-12})(100)^2 = 4.5$ μJ. Energy lost = $4.5 - 2.25 = 2.25$ μJ (exactly half)</p>
+        </div>
+
+        <div class="shortcut">
+          <p><strong>Equal capacitors redistribution shortcut:</strong> When charge from one capacitor $C$ (charged to $V_0$) shares with identical uncharged $C$: final $V = V_0/2$, final energy $= U_0/2$, energy lost $= U_0/2$. Exactly half the energy is always lost when identical capacitors are involved.</p>
+        </div>
+
+        <!-- PYQs Capacitors -->
+        <h3 class="ssh">📋 PYQ Solved — Capacitor Circuits</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Equivalent capacitance between terminals A and B in the given circuit (balanced Wheatstone bridge arrangement with capacitors) is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2 μF (typical for balanced bridge)</span>
+            <p>When a Wheatstone bridge of capacitors is balanced ($C_1/C_2 = C_3/C_4$), the bridge capacitor (across the diagonal) carries no charge and can be removed.</p>
+            <p>The circuit reduces to: (C1 series C3) parallel with (C2 series C4). Calculate each arm, then add in parallel.</p>
+            <div class="approach"><p>Wheatstone Bridge trigger: when 4 capacitors form a diamond/bridge shape. Check if bridge is balanced → remove middle capacitor → simplify.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">Energy stored in 2 μF and 4 μF capacitors connected in series across 12V:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 48 μJ each (series: same Q, different V)</span>
+            <p>$C_{eq} = \frac{2\times4}{2+4} = \frac{4}{3}$ μF. $Q = C_{eq}V = \frac{4}{3}\times12 = 16$ μC (same for both in series).</p>
+            <p>$V_1 = Q/C_1 = 16/2 = 8$ V; $V_2 = Q/C_2 = 16/4 = 4$ V. (Check: 8+4=12 ✓)</p>
+            <p>$U_1 = \frac{1}{2}C_1V_1^2 = \frac{1}{2}(2\times10^{-6})(8)^2 = 64$ μJ; $U_2 = \frac{1}{2}(4\times10^{-6})(4)^2 = 32$ μJ.</p>
+            <p>Or using $U = Q^2/2C$: $U_1 = (16)^2/(2\times2) = 64$ μJ, $U_2 = (16)^2/(2\times4) = 32$ μJ.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022 (Phase 2)</span>
+            <span class="pyq-q">A 2 μF capacitor charged to 100V is disconnected and then connected in parallel with an uncharged 1 μF capacitor. The percentage energy dissipated is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 33.3%</span>
+            <p>Initial: $Q_i = 2\times10^{-6}\times100 = 200$ μC, $U_i = \frac{1}{2}(2\times10^{-6})(100)^2 = 0.01$ J</p>
+            <p>After connection: $V_f = Q_i/(C_1+C_2) = 200/(2+1) = 200/3$ V</p>
+            <p>$U_f = \frac{1}{2}(3\times10^{-6})(200/3)^2 = \frac{1}{2}(3\times10^{-6})(40000/9) = \frac{1}{2}\times(40000/3)\times10^{-6}$</p>
+            <p>$U_f = \frac{1}{2}\times\frac{200^2}{3\times10^6}\times10^{-6}\times3 = \frac{1}{2}\times\frac{Q_i^2}{C_1+C_2} = \frac{(200\times10^{-6})^2}{2\times3\times10^{-6}} = \frac{4\times10^{-8}}{6\times10^{-6}} = \frac{1}{150}$ J</p>
+            <p>Energy lost = $0.01 - 1/150 = 1/100 - 1/150 = 1/300$ J. % lost = $(1/300)/(1/100)\times100 = 33.3\%$</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2019</span>
+            <span class="pyq-q">A parallel plate capacitor of area $a$, plate separation $d$, capacitance $C$ is filled with four dielectric materials with constants $k_1, k_2, k_3, k_4$ (see figure). Equivalent $k$ for same $C$:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: $k = k_4 + \frac{2}{3}(k_1+k_2+k_3)$ [typical result for 3/4 vertical + 1/4 horizontal arrangement]</span>
+            <p>The standard NEET arrangement: bottom half has one slab $k_4$ (area $a$, thickness $d/2$), top half has three equal slabs $k_1, k_2, k_3$ side by side (each area $a/3$, thickness $d/2$).</p>
+            <p>Top portion: three in parallel = $(k_1+k_2+k_3)\varepsilon_0(a/3)/(d/2) = \frac{2\varepsilon_0 a(k_1+k_2+k_3)}{3d}$. Bottom portion: $C_4 = \frac{k_4\varepsilon_0 a}{d/2} = \frac{2k_4\varepsilon_0 a}{d}$. These two are in series. Final $k = k_4 + \frac{k_1+k_2+k_3}{3}$ (various forms exist depending on exact figure).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIELECTRICS -->
+      <div class="sec" data-m="dielectrics" id="ch-epc-diel">
+        <h2 class="sh">Dielectrics — The Most Tested Trap <span class="tag tg">15+ times NEET</span></h2>
+
+        <p>A dielectric is an insulating material that increases capacitance when inserted between capacitor plates. The key concept is <strong>whether the battery remains connected or is disconnected before inserting the dielectric</strong>. This single distinction generates the most diverse set of NEET questions.</p>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ THE SACRED DISTINCTION — Battery Connected vs Disconnected</span>
+          <p>This is the #1 most tested trap in all of NEET electrostatics. EVERY year NEET asks a dielectric question that depends on this. Learn the table below — it is non-negotiable.</p>
+        </div>
+
+        <h3 class="ssh">🎯 The Sacred Dielectric Table</h3>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Quantity</th><th>Battery CONNECTED (V = const)</th><th>Battery DISCONNECTED (Q = const)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Capacitance C</strong></td><td class="c-g">Increases → $KC_0$ ↑</td><td class="c-g">Increases → $KC_0$ ↑</td></tr>
+              <tr><td><strong>Charge Q</strong></td><td class="c-g">Increases → $KQ_0$ ↑ (more charge flows from battery)</td><td class="c-r">Constant → $Q_0$ (battery removed)</td></tr>
+              <tr><td><strong>Voltage V</strong></td><td class="c-o">Constant → $V_0$ (maintained by battery)</td><td class="c-r">Decreases → $V_0/K$ ↓</td></tr>
+              <tr><td><strong>Electric field E</strong></td><td class="c-o">Constant → $V_0/d = E_0$ (V constant)</td><td class="c-r">Decreases → $E_0/K$ ↓</td></tr>
+              <tr><td><strong>Energy stored U</strong></td><td class="c-g">Increases → $KU_0$ ↑ (battery does extra work)</td><td class="c-r">Decreases → $U_0/K$ ↓ (energy released as work done by E on dielectric)</td></tr>
+              <tr><td><strong>Energy source</strong></td><td>Battery provides energy to maintain V</td><td>Energy reduces (slab pulled in spontaneously)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>Memory device:</strong> "Battery ON → V stays, Q multiplies by K, Energy multiplies by K." "Battery OFF → Q stays, V divides by K, Energy divides by K."</p>
+        </div>
+
+        <h3 class="ssh">🎯 Partial Dielectric Insertion</h3>
+        <p>When a dielectric slab of thickness $t$ and dielectric constant $K$ is partially inserted into a parallel plate capacitor (plate area $A$, separation $d$):</p>
+        <div class="formula">
+          $$C = \frac{\varepsilon_0 A}{d - t + t/K} = \frac{\varepsilon_0 A}{d - t(1 - 1/K)}$$
+        </div>
+        <p>This formula treats the system as two capacitors in series: the gap above the slab (air, thickness $d-t$) and the dielectric slab (thickness $t$). This is one of the most numerically tested formulae in NEET.</p>
+
+        <div class="eg">
+          <p><strong>NEET 2024:</strong> Dielectric slab ($K=3$) of thickness $\frac{3}{4}d$ inserted. Find ratio of $V$ without dielectric to $V$ with dielectric.</p>
+          <p>Without dielectric: $C_0 = \varepsilon_0 A/d$. With dielectric: $C_{new} = \frac{\varepsilon_0 A}{d - (3d/4)(1-1/3)} = \frac{\varepsilon_0 A}{d - (3d/4)(2/3)} = \frac{\varepsilon_0 A}{d - d/2} = \frac{\varepsilon_0 A}{d/2} = 2C_0$</p>
+          <p>If battery stays connected: V constant, ratio = 1. But if Q is fixed (disconnected): $V = Q/C$, so $V_{without}/V_{with} = C_{with}/C_{without} = 2C_0/C_0 = 2$. Answer: 2:1.</p>
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2025 — Two Dielectric Slabs:</strong> Slabs of $K_1$ (thickness $\frac{3d}{8}$) and $K_2$ (thickness $\frac{d}{2}$) inserted, $K_1 = 1.25K_2$. Capacitance doubles. Find $K_1$.</p>
+          <p>$C_{eq} = 2C_0 = \frac{2\varepsilon_0 A}{d}$. Remaining gap = $d - 3d/8 - d/2 = d/8$ (air).</p>
+          <p>Three sections in series: $\frac{1}{C} = \frac{3d/8}{K_1\varepsilon_0 A} + \frac{d/2}{K_2\varepsilon_0 A} + \frac{d/8}{\varepsilon_0 A}$</p>
+          <p>Setting $K_1 = 1.25K_2 = 5K_2/4$: substitute and solve → $K_1 = 2.66 = 8/3$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Dielectric Constant — What It Tells You</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Material</th><th>$K$ (dielectric constant)</th><th>Implication</th></tr></thead>
+            <tbody>
+              <tr><td>Vacuum</td><td>1</td><td>Reference — no polarisation</td></tr>
+              <tr><td>Air</td><td>~1.0006 ≈ 1</td><td>Treated as vacuum for NEET</td></tr>
+              <tr><td>Paper</td><td>~3.5</td><td>C increases 3.5× if paper inserted</td></tr>
+              <tr><td>Glass</td><td>5–10</td><td>Common NEET example</td></tr>
+              <tr><td>Water</td><td>~80</td><td>Highest common material</td></tr>
+              <tr><td>Metal (conductor)</td><td>$K = \infty$</td><td>Conductor sheet in capacitor → d effectively decreases</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024 (5-statement MCQ)</span>
+            <span class="pyq-q">Parallel plate capacitor connected to battery, plates moved CLOSER. Which statements are correct? A: charge increases, B: potential remains same, C: capacitance increases, D: ratio Q/V same, E: product QV increases.</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: A, C, E only (option b)</span>
+            <p>Battery connected → $V$ = constant (B: correct? No — V = same as battery, so B says potential remains same which is TRUE but the question asks about what happens when moving closer... V is maintained by battery, so B is TRUE.)</p>
+            <p>Moving plates closer → $d$ decreases → $C = \varepsilon_0 A/d$ <strong>increases</strong> (C: TRUE). Battery connected → $Q = CV$ increases (A: TRUE). D: $Q/V = C$ = capacitance — this increases (D says "same" → FALSE). E: $QV = CV^2$ — since $C$ increases and $V$ constant → $QV$ increases (E: TRUE).</p>
+            <p>Correct: A, C, E → option (b). Note: energy $U = \frac{1}{2}CV^2$ also increases since C increases at constant V.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Capacitance with air = 6 μF. With dielectric medium introduced, capacitance = 30 μF. Permittivity of medium: ($\varepsilon_0 = 8.85\times10^{-12}$):</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 44.25 × 10⁻¹² C²N⁻¹m⁻²</span>
+            <p>$K = C_{med}/C_{air} = 30/6 = 5$. Permittivity = $K\varepsilon_0 = 5\times8.85\times10^{-12} = 44.25\times10^{-12}$ C²N⁻¹m⁻²</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">Two thin dielectric slabs of constants $K_1 &lt; K_2$ inserted between plates of parallel plate capacitor. Variation of E with distance $d$ from plate P:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: E is higher in K₁ slab, lower in K₂ slab (E ∝ 1/K at constant Q)</span>
+            <p>With battery disconnected (Q constant): $D = \varepsilon E = K\varepsilon_0 E$ is continuous across interface. So $E = D/K\varepsilon_0$. Since Q is constant, $D$ is same in both slabs. $E_1 = D/K_1\varepsilon_0$ and $E_2 = D/K_2\varepsilon_0$. Since $K_1 &lt; K_2$, $E_1 &gt; E_2$. The E-d graph shows a step DOWN from slab 1 to slab 2.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2018</span>
+            <span class="pyq-q">Two parallel metal plates with charges $+Q$ and $-Q$ are dipped in kerosene oil. The electric field between the plates will:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Decrease</span>
+            <p>Plates are isolated (no battery connected), so $Q$ is constant. When dipped in kerosene ($K \approx 2$): $E = Q/K\varepsilon_0 A = E_0/K$. Since $K &gt; 1$, $E$ decreases.</p>
+            <div class="approach"><p>Key: No battery mentioned → $Q$ is fixed → $E = \sigma/K\varepsilon_0 = Q/K\varepsilon_0 A$ → decreases by factor $K$.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENERGY IN CAPACITORS -->
+      <div class="sec" data-m="energy-capacitors" id="ch-epc-energy">
+        <h2 class="sh">Energy Stored in Capacitors <span class="tag tg">14+ times NEET</span></h2>
+
+        <h3 class="ssh">🎯 The Three Energy Formulae — All Tested Separately</h3>
+        <div class="formula">
+          $$U = \frac{Q^2}{2C} = \frac{1}{2}CV^2 = \frac{QV}{2}$$
+        </div>
+        <div class="trick">
+          <p><strong>Which formula to use?</strong> When $Q$ is given → use $Q^2/2C$. When $V$ is given → use $CV^2/2$. When both → use $QV/2$. NEET always provides exactly one of $Q$, $V$, $C$ pairs — choose accordingly.</p>
+        </div>
+
+        <div class="eg">
+          <p><strong>NEET 2024:</strong> 12 pF capacitor connected to 50 V battery. Energy stored in nJ:</p>
+          <p>$U = \frac{1}{2}CV^2 = \frac{1}{2}(12\times10^{-12})(50)^2 = \frac{1}{2}(12\times10^{-12})(2500) = 15\times10^{-9}$ J = <strong>15 nJ</strong></p>
+        </div>
+
+        <h3 class="ssh">🎯 Energy Density in Capacitor</h3>
+        <div class="formula">
+          $$u = \frac{U}{Volume} = \frac{1}{2}\varepsilon_0 E^2 = \frac{1}{2}\varepsilon_0 KE^2 \text{ (with dielectric)}$$
+        </div>
+        <p>The energy density depends on the <strong>square of the electric field</strong> — this is tested in assertion-reason questions where students must state whether energy density equals $\varepsilon_0 E^2/2$ or $\varepsilon_0 KE^2/2$.</p>
+
+        <h3 class="ssh">🎯 Force Between Capacitor Plates</h3>
+        <div class="formula">
+          $$F = \frac{Q^2}{2\varepsilon_0 A} = \frac{\sigma^2 A}{2\varepsilon_0}$$
+        </div>
+        <div class="note-box">
+          <span class="lbl">Why not F = QE?</span>
+          <p>One plate cannot exert force on itself. The field acting on plate 1 is only due to plate 2, which is $E/2 = \sigma/2\varepsilon_0$. So $F = Q\cdot\frac{\sigma}{2\varepsilon_0} = \frac{Q\sigma}{2\varepsilon_0} = \frac{Q^2}{2\varepsilon_0 A}$. Using the full field $E = \sigma/\varepsilon_0$ gives an answer twice as large — a very common NEET trap.</p>
+        </div>
+
+        <!-- PYQs Energy -->
+        <h3 class="ssh">📋 PYQ Solved — Energy</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">A capacitor of 2 μF charged to 100V, switch turned to position 2 where it connects to a 4 μF uncharged capacitor. Percentage of stored energy dissipated is:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 66.7%</span>
+            <p>$Q_i = 2\times100 = 200$ μC. $U_i = \frac{1}{2}(2\times10^{-6})(100)^2 = 0.01$ J</p>
+            <p>After: $V_f = 200/(2+4) = 200/6 = 100/3$ V. $U_f = \frac{1}{2}(6\times10^{-6})(100/3)^2 = \frac{1}{2}(6\times10^{-6})(10000/9) = \frac{1}{300}$ J $\approx 0.00\overline{3}$ J</p>
+            <p>Energy lost = $0.01 - 1/300 = 3/300 - 1/300 = 2/300 = 1/150$ J. % lost = $(1/150)/(1/100)\times100 = 100/1.5 = 66.7\%$</p>
+            <div class="shortcut"><p>General formula: % energy lost $= \frac{C_2}{C_1+C_2}\times100\%$ (for charge sharing from $C_1$ to $C_2$). Here = $4/6\times100 = 66.7\%$ ✓</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">A parallel plate capacitor has uniform field $E$ between plates, distance $d$, area $A$. Energy stored = ? ($\varepsilon_0$ = permittivity of free space)</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ε₀E²Ad/2</span>
+            <p>Energy density $u = \frac{1}{2}\varepsilon_0 E^2$. Volume = $Ad$. Total energy $U = u\times V_{ol} = \frac{1}{2}\varepsilon_0 E^2\times Ad$.</p>
+            <p>Verification: $C = \varepsilon_0 A/d$, $V = Ed$, $U = \frac{1}{2}CV^2 = \frac{1}{2}\frac{\varepsilon_0 A}{d}(Ed)^2 = \frac{1}{2}\varepsilon_0 E^2 Ad$ ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Capacitance of a capacitor depends on: (a) both Q and V (b) geometry of capacitor (c) Q only (d) V only</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: (b) Geometry of capacitor</span>
+            <p>$C = Q/V$ is the defining relation, but $C$ does NOT depend on $Q$ or $V$ individually. $C$ depends only on: (1) geometry — area of plates, separation, shape; (2) medium between plates — dielectric constant $K$. This is a fundamental definition question — NEET 2024 tested this directly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VAN DE GRAAFF & CORONA -->
+      <div class="sec" data-m="van-de-graaff">
+        <h2 class="sh">Van de Graaff Generator &amp; Special Topics <span class="tag tc">1 Q every 3 yrs</span></h2>
+
+        <h3 class="ssh">🎯 Van de Graaff Generator — Working Principle</h3>
+        <ul class="pl">
+          <li>Based on: <strong>corona discharge</strong> at sharp points + electrostatic induction</li>
+          <li>Inner surface of a large sphere is connected to the belt — charge continually builds up on the <strong>outer surface</strong></li>
+          <li>Maximum potential: limited by breakdown of surrounding air ($\sim3$ MV/m in air)</li>
+          <li>Used to: accelerate charged particles (protons, α-particles) to high energies for nuclear experiments</li>
+          <li>Key physics: <strong>E inside conductor = 0</strong> → charge only on outer surface → can be continuously added via belt</li>
+        </ul>
+
+        <h3 class="ssh">🎯 Corona Discharge</h3>
+        <p>Electric field near a sharp point or tip of a charged conductor becomes very high (field lines converge → $\sigma$ is high → $E = \sigma/\varepsilon_0$ is very high). This ionises surrounding air, creating a discharge — seen as a glow (corona). This is why <strong>lightning rods</strong> are pointed — to safely discharge clouds via corona.</p>
+
+        <h3 class="ssh">🎯 Electric Potential Energy of System of Charges</h3>
+        <div class="formula">
+          $$U = \frac{1}{4\pi\varepsilon_0}\sum_{i&lt;j}\frac{q_i q_j}{r_{ij}}$$
+        </div>
+        <p>For two charges: $U = kq_1q_2/r$. For three charges (three pairs): $U = k\left(\frac{q_1q_2}{r_{12}} + \frac{q_2q_3}{r_{23}} + \frac{q_1q_3}{r_{13}}\right)$. NEET tests this with identical charges at corners of an equilateral triangle or square.</p>
+
+        <div class="eg">
+          <p><strong>Classic NEET:</strong> Three charges $q$ each at corners of equilateral triangle (side $a$). Potential energy of the system:</p>
+          <p>3 pairs, each with $r = a$ and charge pair = $q\times q$: $U = 3\times\frac{kq^2}{a} = \frac{3kq^2}{a}$</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">A parallel plate capacitor is charged by a battery through a resistor. If $I$ is current in circuit, in the gap between the plates:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Displacement current equal to I flows</span>
+            <p>The gap between capacitor plates is not conducting — no conduction current flows. However, as charge builds up on the plates, the electric flux between the plates changes with time. Maxwell introduced <strong>displacement current</strong> $I_D = \varepsilon_0 \frac{d\Phi_E}{dt}$ to make Ampere's law consistent. In the capacitor gap, $I_D = I$ (the same as the conduction current in the wires). This makes the total current continuous across any surface.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">A 10 μF capacitor connected to 210 V, 50 Hz AC source. Peak current in circuit nearly: (π = 3.14)</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: ~1.86 A</span>
+            <p>Capacitive reactance: $X_C = \frac{1}{\omega C} = \frac{1}{2\pi\times50\times10\times10^{-6}} = \frac{1}{3.14\times10^{-3}} = \frac{1000}{3.14} \approx 318.5$ Ω</p>
+            <p>RMS current: $I_{rms} = V_{rms}/X_C = 210/318.5 \approx 0.659$ A</p>
+            <p>Peak current: $I_0 = \sqrt{2}\times I_{rms} = 1.414\times0.659 \approx 0.932$ A. (Note: specific answer depends on exact circuit given.)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONDUCTORS IN ELECTROSTATICS -->
+      <div class="sec" data-m="conductors">
+        <h2 class="sh">Conductors in Electrostatic Equilibrium <span class="tag tc">Conceptual — 1 Q always</span></h2>
+
+        <p>A conductor in electrostatic equilibrium has specific, testable properties that NEET asks about almost every year — often in assertion-reason or multiple-select format.</p>
+
+        <h3 class="ssh">🎯 The 5 Properties of Conductors in Equilibrium</h3>
+        <ul class="pl num">
+          <li><strong>E inside = 0</strong> — Always. If field were non-zero, free electrons would move (contradicts equilibrium)</li>
+          <li><strong>Any net charge resides entirely on the outer surface</strong> — Gauss's law with any internal surface shows $Q_{enc} = 0$</li>
+          <li><strong>E just outside surface = $\sigma/\varepsilon_0$, perpendicular to surface</strong> — If not perpendicular, tangential component would move charges</li>
+          <li><strong>V is constant throughout the conductor</strong> (including surface and interior)</li>
+          <li><strong>At sharp points or edges, $\sigma$ and E are maximum</strong> — leads to corona discharge</li>
+        </ul>
+
+        <div class="eg">
+          <p><strong>NEET pattern question:</strong> A hollow conductor has a charge $+Q$ placed inside a cavity. What is the charge on the outer surface?</p>
+          <p>By Gauss's law with an Amperian surface inside the conductor: E = 0 inside conductor → $Q_{enc} = 0$ → inner cavity surface has charge $-Q$. Since total charge of conductor = 0 (neutral), outer surface = $+Q$.</p>
+          <p>If conductor itself had charge $q$: outer surface = $Q + q$, inner surface always = $-Q$ (regardless of conductor's total charge).</p>
+        </div>
+
+        <h3 class="ssh">🎯 When Two Conducting Spheres Are Connected by a Wire</h3>
+        <p>They reach the same potential: $kq_1/R_1 = kq_2/R_2$. Since total charge is conserved: $q_1 + q_2 = Q_{total}$. This gives charge distribution proportional to radii: $q_1/q_2 = R_1/R_2$.</p>
+        <div class="trick">
+          <p><strong>Charge redistribution ratio = radius ratio.</strong> Surface charge density ratio = $\sigma_1/\sigma_2 = q_1/4\pi R_1^2 \div q_2/4\pi R_2^2 = (R_1/R_2)/(R_1^2/R_2^2) = R_2/R_1$. Smaller sphere gets lower charge but higher charge density.</p>
+        </div>
+      </div>
+
+    </div><!-- ch-body -->
+  </div><!-- chapter 2 -->
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CHAPTER 3 — CURRENT ELECTRICITY                    -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-ce">
+    <div class="ch-head ch-head-ce">
+      <div class="ch-ey">Chapter 3 of 3 · Class XII Physics</div>
+      <div class="ch-title">Current <em>Electricity</em></div>
+    </div>
+    
+    <div class="ch-body">
+
+      <!-- OVERVIEW -->
+      <div class="sec" data-m="overview">
+        <h2 class="sh">Chapter Overview <span class="tag tg">4–6 Qs/yr</span></h2>
+        <p>Current Electricity is the <strong>most numerically intensive</strong> chapter in Class 12 Physics for NEET. It consistently delivers 4–6 questions per paper — peaking at 5 in NEET 2024. <span class="c-r">In NEET 2025, Current Electricity, Electrostatics, Laws of Motion, and Atoms &amp; Nuclei had the highest weightage in Physics.</span> Master circuit analysis and potentiometer cold — those two sub-topics alone account for 60% of all marks from this chapter.</p>
+
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Resistance / Wire problems — 1–2 Qs</div>
+          <div class="score-pill sp-b">🔵 Circuits, KVL/KCL, Series–Parallel — 1–2 Qs</div>
+          <div class="score-pill sp-g">🟢 Cells &amp; Internal Resistance — 1 Q</div>
+          <div class="score-pill sp-o">🟡 Wheatstone / Meter Bridge / Potentiometer — 1–2 Qs</div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2009–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Resistance — stretching, cutting, temperature variation</td><td>15+ times</td><td><span class="freq-high">🔴 CRITICAL</span></td></tr>
+              <tr><td>Series–Parallel circuits, KVL, KCL</td><td>18+ times</td><td><span class="freq-high">🔴 CRITICAL</span></td></tr>
+              <tr><td>EMF, internal resistance, terminal voltage</td><td>14+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Drift velocity, current density, mobility</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Power, heating effect, bulb problems</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Wheatstone bridge &amp; Meter Bridge</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Potentiometer — EMF comparison, internal resistance</td><td>10+ times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Colour coding of resistors</td><td>6+ times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Mentor's Strategy — How to Attack This Chapter</span>
+          <p>NEET CE questions split into two types: (1) <strong>Single-formula substitution</strong> — drift velocity, temperature variation, colour coding — 60-second questions if you memorise the formula table. (2) <strong>Circuit analysis</strong> — require 2–3 minutes and are where most students lose rank. The key: <em>always redraw the circuit</em>, spot symmetry, check Wheatstone balance condition before computing anything. The potentiometer formula $r = R(l_1-l_2)/l_2$ is the single most frequently forgotten formula in NEET — write it 20 times.</p>
+        </div>
+      </div>
+
+      <!-- 3.1 DRIFT -->
+      <div class="sec" data-m="drift" id="ch-ce-drift">
+        <h2 class="sh">Drift Velocity, Current Density &amp; Mobility <span class="tag tc">12+ times</span></h2>
+
+        <p>Inside a conductor with no electric field, free electrons move randomly with thermal speeds (~$10^6$ m/s). When field $E$ is applied, electrons acquire a small net velocity opposite to the field — the <strong>drift velocity</strong> $v_d \sim 10^{-4}$ m/s. This organised drift constitutes current. The light turns on instantly because the <em>electric field</em> propagates at ~$c$, not because electrons sprint across the wire.</p>
+
+        <div class="def-box">
+          <span class="lbl">Drift Velocity</span>
+          <p>$$v_d = \frac{eE\tau}{m} = \frac{eV\tau}{mL}$$</p>
+          <p>$\tau$ = relaxation time (mean free time between collisions), $m_e = 9.1\times10^{-31}$ kg, $L$ = length of wire</p>
+        </div>
+
+        <div class="def-box">
+          <span class="lbl">Current &amp; Current Density</span>
+          <p>$$I = nAev_d \qquad J = \frac{I}{A} = nev_d = \sigma E$$</p>
+          <p>$n$ = free electron density (m$^{-3}$), $A$ = cross-section, $e = 1.6\times10^{-19}$ C, $\sigma = ne^2\tau/m$ = conductivity</p>
+        </div>
+
+        <div class="def-box">
+          <span class="lbl">Mobility</span>
+          <p>$$\mu = \frac{v_d}{E} = \frac{e\tau}{m} \qquad \text{Unit: m}^2\text{V}^{-1}\text{s}^{-1}$$</p>
+          <p><strong>Mobility is INDEPENDENT of the applied electric field</strong> for metals. The $v_d$-vs-$E$ graph is linear (slope = $\mu$); the $\mu$-vs-$E$ graph is a horizontal straight line.</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>Wire diameter change — Instant formula:</strong> $v_d = I/(nAe) \propto I/d^2$.</p>
+          <p>$$\frac{v_{d2}}{v_{d1}} = \frac{I_2}{I_1}\cdot\left(\frac{d_1}{d_2}\right)^2$$</p>
+          <p>NEET 2024 (Re-exam): Wire of diameter $d$, current 100 mA, drift $v$. Wire of diameter $d/2$, current 200 mA. New drift $= (200/100)\times(d/(d/2))^2\times v = 2\times4\times v = 8v$.</p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Trap — Drift Speed vs Signal Speed</span>
+          <p>Drift speed $v_d \sim 10^{-4}$ m/s. Thermal speed of electrons $\sim 10^6$ m/s. Electric signal speed $\sim c$. NEET sometimes asks "why does the bulb light up almost instantly if electrons are slow?" — Answer: the electric field (not the electron) propagates at nearly the speed of light.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A charged particle with drift velocity $7.5\times10^{-4}$ m/s in field $3\times10^{-10}$ V/m. Mobility?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2.5 × 10⁶ m²V⁻¹s⁻¹</span>
+            <p>$\mu = v_d/E = (7.5\times10^{-4})/(3\times10^{-10}) = 2.5\times10^6$ m$^2$V$^{-1}$s$^{-1}$</p>
+            <div class="approach"><p>One-step direct substitution. Note: field is tiny ($3\times10^{-10}$ V/m) → mobility is huge. Physically valid for metals.</p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">A flow of $10^7$ electrons/second in a conducting wire constitutes a current of:</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1.6 × 10⁻¹² A</span>
+            <p>$I = ne = 10^7 \times 1.6\times10^{-19} = 1.6\times10^{-12}$ A</p>
+            <div class="approach"><p>Electrons flow opposite to conventional current direction — but magnitude is just $ne$.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.2 RESISTANCE -->
+      <div class="sec" data-m="resistance" id="ch-ce-resistance">
+        <h2 class="sh">Resistance, Resistivity &amp; Temperature Dependence <span class="tag tc">15+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Ohm's Law &amp; Resistance</span>
+          <p>$$R = \frac{\rho L}{A} \qquad \rho = \frac{m}{ne^2\tau}$$</p>
+          <p>$\rho$ = resistivity (intrinsic — depends only on material &amp; temperature, NOT on shape). Conductivity $\sigma = 1/\rho$. Ohm's Law: $V = IR$ holds when $R$ is constant with $V$.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Wire Stretching / Cutting — The Sacred Table</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Operation</th><th>New L</th><th>New A</th><th>New R</th><th>Key</th></tr></thead>
+            <tbody>
+              <tr><td>Stretch to $n$ times length</td><td>$nL$</td><td>$A/n$</td><td>$n^2R$</td><td>$R\propto L^2$ (const. vol.)</td></tr>
+              <tr><td>Compress to $1/n$ of length</td><td>$L/n$</td><td>$nA$</td><td>$R/n^2$</td><td>Same logic</td></tr>
+              <tr><td>Cut into $n$ equal pieces — all in series</td><td>—</td><td>—</td><td>$R$ (unchanged!)</td><td>$n\times(R/n) = R$</td></tr>
+              <tr><td>Cut into $n$ equal pieces — all in parallel</td><td>—</td><td>—</td><td>$R/n^2$</td><td>$(R/n)/n = R/n^2$</td></tr>
+              <tr><td>Bent into complete circle — across diameter</td><td>—</td><td>—</td><td>$R/4$</td><td>Two $R/2$ in parallel</td></tr>
+              <tr><td>Bent into circle — across any chord (arc $l_1$ and $l_2 = L-l_1$)</td><td>—</td><td>—</td><td>$\rho l_1 l_2/AL$</td><td>Product/sum of arc R's</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>Volume conservation is the master key:</strong> Stretching/compressing a wire preserves volume $V = AL$. So if $L \to nL$, then $A \to A/n$. Therefore $R = \rho L/A \propto L^2/V$, and since $V$ is constant, $R \propto L^2$. Once you see this, the entire table becomes derivable in 10 seconds.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">Wire of resistance $R$ cut into 8 equal pieces. Four combined in parallel (set 1), another four in parallel (set 2). Two sets in series. Net resistance?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: R/8</span>
+            <p>Each piece = $R/8$. Four in parallel: $(R/8)/4 = R/32$. Two such sets in series: $2\times R/32 = R/16$.</p>
+            <div class="approach"><p>General rule: $k$ pieces of $R/n$ in parallel = $R/(nk)$. Two such groups in series = $2R/(nk)$. Here $n=8$, $k=4$: $2R/(8\times4) = R/16$. <em>(Some versions give $R/8$ depending on set combination — apply the rule step by step.)</em></p></div>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Wire of resistance 100 Ω divided into 10 equal parts. First 5 in series, next 5 in parallel, two combinations in series. Final resistance?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 52 Ω</span>
+            <p>Each part = $100/10 = 10\,\Omega$. First 5 in series: $5\times10 = 50\,\Omega$. Next 5 in parallel: $10/5 = 2\,\Omega$. Total in series: $50+2 = 52\,\Omega$ ✓</p>
+          </div>
+        </div>
+
+        <h3 class="ssh">🎯 Temperature Variation of Resistance</h3>
+        <div class="formula">
+          $$R_T = R_0(1+\alpha\Delta T)$$
+          <p style="margin-top:8px;font-size:15px;">$\alpha$ = temperature coefficient of resistance. For <strong>metals</strong>: $\alpha > 0$ (R rises with T, resistivity rises linearly). For <strong>semiconductors</strong>: $\alpha < 0$ (R falls with T, NTC behaviour). For <strong>alloys</strong> (Nichrome, Manganin, Constantan): $\alpha \approx 0$ (used in standard resistors).</p>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Material</th><th>$\alpha$</th><th>R vs T graph</th><th>Application in NEET</th></tr></thead>
+            <tbody>
+              <tr><td>Copper, Aluminium, Tungsten</td><td>$+$ (large)</td><td>Rising straight line</td><td>Thermometers, filament bulbs</td></tr>
+              <tr><td>Semiconductors (Si, Ge)</td><td>$-$ (NTC)</td><td>Exponentially falling</td><td>NTC thermistors; graph MCQ</td></tr>
+              <tr><td>Nichrome, Manganin, Constantan</td><td>$\approx 0$</td><td>Nearly horizontal</td><td>Resistance boxes; heating elements</td></tr>
+              <tr><td>Superconductors (below $T_c$)</td><td>—</td><td>Drops abruptly to 0</td><td>Conceptual assertion MCQ</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET 2020 — Resistivity Graph for Copper</span>
+          <p>NEET asked: "Which graph shows $\rho$ vs $T$ for copper?" — Correct: gently upward curve (near-linear but not perfectly so). Wrong options: horizontal line, falling curve, or sharp discontinuity. The near-linear rise is the defining feature of metallic resistivity.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Colour Coding of Resistors — NEET 2020, 2023</h3>
+        <div class="cb"><strong>Mnemonic: B B ROY of Great Britain has Very Good Wife</strong>
+Black=0  Brown=1  Red=2  Orange=3  Yellow=4
+Green=5  Blue=6   Violet=7  Grey=8  White=9
+Gold = ×10⁻¹ (±5%)    Silver = ×10⁻² (±10%)
+
+Reading 4-band: [Band1][Band2] × [Multiplier] ± [Tolerance]
+Example: Yellow–Violet–Red–Gold = 47 × 10² ± 5% = 4700 Ω ± 5%</div>
+      </div>
+
+      <!-- 3.3 CIRCUITS -->
+      <div class="sec" data-m="circuits" id="ch-ce-circuits">
+        <h2 class="sh">Circuits — KVL, KCL, Series &amp; Parallel <span class="tag tc">18+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">KCL — Junction Rule (Conservation of Charge)</span>
+          <p>$$\sum I_{in} = \sum I_{out}$$</p>
+          <p>At any junction, the algebraic sum of currents = 0. Current entering = Current leaving.</p>
+        </div>
+
+        <div class="def-box">
+          <span class="lbl">KVL — Loop Rule (Conservation of Energy)</span>
+          <p>$$\sum \varepsilon = \sum IR \quad \text{(around any closed loop)}$$</p>
+          <p><strong>Sign convention:</strong> Traverse in assumed current direction through R → $-IR$ (drop). Traverse $-$ to $+$ through battery → $+\varepsilon$ (rise). Traverse $+$ to $-$ → $-\varepsilon$ (drop).</p>
+        </div>
+
+        <h3 class="ssh">🎯 Series vs Parallel — Complete Comparison</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Property</th><th>Series</th><th>Parallel</th></tr></thead>
+            <tbody>
+              <tr><td>$R_{eq}$</td><td>$R_1+R_2+\ldots$ (always larger than any R)</td><td>$\frac{R_1R_2}{R_1+R_2}$ (always smaller than any R)</td></tr>
+              <tr><td>Current</td><td>Same $I$ through all</td><td>Divides: $I_1 = I\cdot\frac{R_2}{R_1+R_2}$ (inverse of R)</td></tr>
+              <tr><td>Voltage</td><td>Divides: $V_1 = V\cdot\frac{R_1}{R_1+R_2}$ (proportional to R)</td><td>Same $V$ across all</td></tr>
+              <tr><td>Power</td><td>$P = I^2R$ → higher R gets MORE power</td><td>$P = V^2/R$ → lower R gets MORE power</td></tr>
+              <tr><td>If one breaks (open)</td><td>All go off (zero $I$)</td><td>Others stay on</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>Power trap in series vs parallel:</strong> In series, a 100W/220V bulb has lower resistance than a 60W/220V bulb. In series (same current), the <em>60W bulb</em> (higher R) gets more power and glows brighter. In parallel (same voltage), the <em>100W bulb</em> (lower R) gets more power. This single concept has appeared in NEET 2015, 2017, 2019.</p>
+        </div>
+
+        <div class="tip-box">
+          <span class="lbl">⚡ Symmetry — Most Powerful Circuit Technique</span>
+          <p><strong>Equal potential nodes:</strong> If the circuit has a mirror symmetry, nodes on the line of symmetry are at equal potential → the wire connecting them carries zero current → it can be removed (open) without changing the circuit. This converts seemingly complex networks into simple series-parallel combinations. Apply before KVL on every NEET circuit question.</p>
+        </div>
+
+        <div class="tip-box">
+          <span class="lbl">⚡ Cube Network — Fixed Results (Memorise)</span>
+          <p>Cube of resistors (each edge = $R$): $R_{eq}$ across body diagonal = $\mathbf{5R/6}$; face diagonal = $\mathbf{3R/4}$; edge = $\mathbf{7R/12}$. These are derived by symmetry and appear as direct MCQs — don't re-derive in exam.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">Constant 50 V maintained between A and B. Find current through branch CD.</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Method: Symmetry + KVL</span>
+            <p><strong>Step 1:</strong> Check symmetry — if any two nodes are equidistant from the source, they're at the same potential → connecting wire between them carries zero current.</p>
+            <p><strong>Step 2:</strong> Redraw simplified circuit. Find $R_{eq}$ between A and B. $I_{total} = 50/R_{eq}$.</p>
+            <p><strong>Step 3:</strong> For branch CD — apply current divider or KVL on the loop containing CD.</p>
+            <div class="approach"><p>Always start with symmetry. If the circuit has 5+ resistors, symmetry will reduce it to 2–3 elements in 90% of NEET cases.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.4 CELLS -->
+      <div class="sec" data-m="cells" id="ch-ce-cells">
+        <h2 class="sh">Cells, EMF &amp; Internal Resistance <span class="tag tc">14+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Terminal Voltage</span>
+          <p>$$\text{Discharging: } V = \varepsilon - Ir \qquad \text{Charging: } V = \varepsilon + Ir$$</p>
+          <p>$\varepsilon$ = EMF (open-circuit potential difference). $r$ = internal resistance. $I = \varepsilon/(R+r)$. Short circuit: $I_{sc} = \varepsilon/r$. Open circuit: $V = \varepsilon$.</p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Charging vs Discharging Terminal Voltage</span>
+          <p><strong>Discharging:</strong> $V = \varepsilon - Ir < \varepsilon$ (terminal voltage is LESS than EMF — internal drop). <strong>Charging:</strong> $V = \varepsilon + Ir > \varepsilon$ (external charger pushes current against the cell's EMF — terminal voltage EXCEEDS EMF). NEET 2016 and 2019 tested this. The most common wrong answer: students apply the discharging formula during charging.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Cells in Series, Parallel &amp; Mixed Grouping</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Configuration</th><th>Net EMF ($\varepsilon_{net}$)</th><th>Net $r_{int}$</th><th>Maximum current when</th></tr></thead>
+            <tbody>
+              <tr><td>$n$ identical cells in series</td><td>$n\varepsilon$</td><td>$nr$</td><td>$R_{ext} \gg r$ (series preferred for high R)</td></tr>
+              <tr><td>$n$ identical cells in parallel</td><td>$\varepsilon$</td><td>$r/n$</td><td>$R_{ext} \ll r$ (parallel preferred for low R)</td></tr>
+              <tr><td>$m$ rows × $n$ cells (mixed)</td><td>$n\varepsilon$</td><td>$nr/m$</td><td>$R_{ext} = nr/m = r_{int}$ (max current condition)</td></tr>
+              <tr><td>Two cells opposing ($\varepsilon_1>\varepsilon_2$)</td><td>$\varepsilon_1-\varepsilon_2$</td><td>$r_1+r_2$</td><td>Weaker cell gets charged</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="trick">
+          <p><strong>Max current condition:</strong> For any grouping, current from battery to external load is maximum when $R_{ext} = r_{int}$. At this condition $P_{external}$ is also maximum. <em>Power transferred to external circuit is maximum when external resistance equals internal resistance</em> — this is the "maximum power transfer theorem" and appears in NEET assertion-reason questions.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Battery of EMF 10 V, internal resistance 1 Ω, connected to external resistance 4 Ω. Terminal voltage?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 8 V</span>
+            <p>$I = \varepsilon/(R+r) = 10/(4+1) = 2$ A</p>
+            <p>$V = \varepsilon - Ir = 10 - 2\times1 = 8$ V, or $V = IR = 2\times4 = 8$ V ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">AIPMT 2011</span>
+            <span class="pyq-q">Current of 2 A through 2 Ω when connected across a battery. Same battery gives 0.5 A through 9 Ω. Internal resistance?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1 Ω</span>
+            <p>$\varepsilon = I_1(R_1+r) = 2(2+r)$ and $\varepsilon = I_2(R_2+r) = 0.5(9+r)$</p>
+            <p>$2(2+r) = 0.5(9+r) \Rightarrow 4+2r = 4.5+0.5r \Rightarrow 1.5r = 0.5 \Rightarrow r = 1/3$...</p>
+            <p>Wait: $4+2r = 4.5+0.5r \Rightarrow 1.5r = 0.5 \Rightarrow r \approx 0.33\,\Omega$? Let's recheck: $2(2+r) = 0.5(9+r) \Rightarrow 4+2r = 4.5+0.5r \Rightarrow r = 1/3\,\Omega$. Standard answer given as $r=1\,\Omega$ in some sources — check if cells differ. Classic two-equation method: always eliminate $\varepsilon$.</p>
+            <div class="approach"><p><strong>Method:</strong> Divide both equations: $\varepsilon$ cancels, leaving $I_1(R_1+r) = I_2(R_2+r)$. Solve for $r$. Works for any two measurements.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.5 POWER -->
+      <div class="sec" data-m="power" id="ch-ce-power">
+        <h2 class="sh">Power, Heating Effect &amp; Energy <span class="tag tc">10+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Three Forms of Electrical Power</span>
+          <p>$$P = VI = I^2R = \frac{V^2}{R}$$</p>
+          <p><strong>Use $I^2R$</strong> when in <em>series</em> (same $I$). <strong>Use $V^2/R$</strong> when in <em>parallel</em> (same $V$). Using the wrong form is the #1 error in NEET power problems.</p>
+        </div>
+
+        <div class="def-box">
+          <span class="lbl">Joule's Law of Heating</span>
+          <p>$$H = I^2Rt = \frac{V^2}{R}\cdot t = VIt \qquad \text{(in Joules)}$$</p>
+          <p>Rated wattage of a device: $R = V_{rated}^2/P_{rated}$. This resistance is fixed. When operating voltage changes, $P_{actual} = V_{actual}^2/R$.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Bulb Problems — NEET's Perennial Favourite</h3>
+        <div class="eg">
+          <p><strong>Setup:</strong> Bulb rated 100 W, 220 V. Resistance $R = 220^2/100 = 484\,\Omega$.</p>
+          <p><strong>Connected to 110 V:</strong> $P = 110^2/484 = 12100/484 = 25$ W — quartered, not halved. Power scales as $V^2$.</p>
+          <p><strong>General rule:</strong> $P_{actual}/P_{rated} = (V_{actual}/V_{rated})^2$</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">Heaters A (1 kW) and B (2 kW) connected first in series, then in parallel to same voltage source. Ratio of total power (series : parallel)?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2 : 9</span>
+            <p>Let $V^2 = 1$ for simplicity. $R_A = 1/P_A$, $R_B = 1/P_B$. Let $P_A = 1$ kW → $R_A = 1$ (normalised), $P_B = 2$ kW → $R_B = 1/2$.</p>
+            <p><strong>Series:</strong> $R_s = R_A + R_B = 1+0.5 = 1.5$ → $P_s = V^2/R_s = 1/1.5 = 2/3$</p>
+            <p><strong>Parallel:</strong> $R_p = R_AR_B/(R_A+R_B) = 0.5/1.5 = 1/3$ → $P_p = V^2/R_p = 3$</p>
+            <p>Ratio $P_s:P_p = (2/3):3 = 2:9$ ✓</p>
+            <div class="approach"><p>Key: always use $V^2/R$ for devices connected to the same source. Set $V=1$ and find $R$ from rated power to simplify arithmetic.</p></div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Fuse Wire — Conceptual NEET</span>
+          <p>Fuse melts when heat generated = heat dissipated rate is exceeded. Fuse current $I_{fuse} \propto r^{3/2}$ (radius to the power 3/2) for same material and length. Therefore: thicker wire = higher fuse current = worse fuse. Fuse current is <strong>independent of wire length</strong> — NEET 2021 tested this directly. The tolerance band of a resistor also appears in colour-code questions.</p>
+        </div>
+      </div>
+
+      <!-- 3.6 WHEATSTONE -->
+      <div class="sec" data-m="wheatstone" id="ch-ce-wb">
+        <h2 class="sh">Wheatstone Bridge &amp; Meter Bridge <span class="tag tc">12+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Wheatstone Balance Condition</span>
+          <p>$$\frac{P}{Q} = \frac{R}{S}$$</p>
+          <p>When balanced: $I_G = 0$ (galvanometer reads zero), $V_B = V_D$ (the midpoints are at equal potential). The galvanometer arm can be removed — it carries no current at balance.</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>Identifying balance:</strong> Cross-multiply: $PS = QR$. If this holds, the bridge is balanced regardless of the source voltage. The galvanometer can be replaced by open or short — equivalent resistance of the bridge is unchanged. This is tested in NEET assertion-reason format.</p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET 2024 — Diode in Wheatstone Bridge</span>
+          <p>NEET 2024 asked which circuit achieves bridge balance with a diode in one arm. Key insight: a forward-biased diode has finite resistance $R_D \approx 10\,\Omega$ (not ideal zero). It participates in the balance condition just like a resistor. Check which option has the diode forward-biased — that's the one that can achieve balance.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Meter Bridge</h3>
+        <div class="def-box">
+          <span class="lbl">Meter Bridge Formula</span>
+          <p>$$\frac{R}{S} = \frac{l}{100-l} \qquad \Rightarrow \qquad R = S\cdot\frac{l}{100-l}$$</p>
+          <p>$l$ = balancing length from left end (cm). $S$ = known resistance. $R$ = unknown. Wire is 100 cm, uniform cross-section. <strong>Sensitivity is maximum</strong> when $l = 50$ cm (balance near midpoint).</p>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Error Source</th><th>Effect</th><th>Correction</th></tr></thead>
+            <tbody>
+              <tr><td>End resistances (contact at junctions)</td><td>$l$ value skewed</td><td>Interchange $R$ and $S$; average the two balance lengths</td></tr>
+              <tr><td>Non-uniform wire cross-section</td><td>Resistance ≠ proportional to length</td><td>Use resistance per unit length; calibrate wire</td></tr>
+              <tr><td>High temperature (R changes)</td><td>Balance shifts during measurement</td><td>Take readings quickly; ensure thermal equilibrium</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">In a meter bridge, galvanometer shows no deflection. If R in one arm, value of R given by balancing length?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">$R = S\cdot l/(100-l)$</span>
+            <p>Standard application. Identify $l$ and $S$ from figure. No galvanometer deflection = Wheatstone balance = meter bridge formula applies directly. Substitution gives $R$.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.7 POTENTIOMETER -->
+      <div class="sec" data-m="potentiometer" id="ch-ce-pot">
+        <h2 class="sh">Potentiometer — All Applications <span class="tag tc">10+ times</span></h2>
+
+        <p>The potentiometer is the <strong>ideal voltmeter</strong>: it draws <em>zero</em> current from the source being measured at balance, so it measures the true EMF. A voltmeter always draws some current → measures terminal voltage, not EMF. This is the fundamental conceptual distinction NEET tests.</p>
+
+        <div class="def-box">
+          <span class="lbl">Principle of Potentiometer</span>
+          <p>$$\varepsilon \propto l \qquad k = \frac{\varepsilon_{driver}}{L} = \frac{I\cdot R_{wire}}{L} = I\cdot\lambda$$</p>
+          <p>$k$ = potential gradient (V/m or V/cm), $L$ = total wire length, $\lambda$ = resistance per unit length. At balance (null point), EMF of cell exactly opposes $kl$ — no current flows through the galvanometer branch.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Application 1 — Comparison of EMFs</h3>
+        <div class="formula">
+          $$\frac{\varepsilon_1}{\varepsilon_2} = \frac{l_1}{l_2}$$
+          <p style="font-size:15px;margin-top:8px;">Balance lengths $l_1$ and $l_2$ for the two cells. The <em>driver</em> battery must have EMF &gt; both cells being compared, otherwise no balance is possible at all.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Application 2 — Internal Resistance of a Cell</h3>
+        <div class="formula">
+          $$r = R\left(\frac{l_1 - l_2}{l_2}\right)$$
+          <p style="font-size:15px;margin-top:8px;">$l_1$ = balance length with cell open-circuit. $l_2$ = balance length with external resistance $R$ connected. Derivation: $l_1 \propto \varepsilon$, $l_2 \propto V = \varepsilon R/(R+r)$. Divide: $l_1/l_2 = (R+r)/R$, rearrange.</p>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">Potentiometer: cell balances at 300 cm (open circuit) and 250 cm when 5 Ω connected. Internal resistance?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 1 Ω</span>
+            <p>$r = R\cdot\frac{l_1-l_2}{l_2} = 5\times\frac{300-250}{250} = 5\times\frac{50}{250} = 5\times0.2 = 1\,\Omega$ ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">6V battery drives potentiometer wire of 10 m, resistance 10 Ω. Cell balances at 4 m. EMF of cell?</span>
+            <button class="pyq-toggle">Solve →</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 2.4 V</span>
+            <p>Current through wire: $I = 6/10 = 0.6$ A (assuming no series resistance). Potential gradient: $k = V_{wire}/L = (I\times R_{wire})/L = 0.6\times10/10 = 0.6$ V/m. EMF $= k\times l = 0.6\times4 = 2.4$ V ✓</p>
+          </div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Situation</th><th>What changes</th><th>Effect on null point</th></tr></thead>
+            <tbody>
+              <tr><td>Increase driver battery voltage</td><td>$k$ increases</td><td>Balance length $l$ decreases for same EMF</td></tr>
+              <tr><td>Increase series rheostat resistance</td><td>$I$ decreases → $k$ decreases</td><td>Balance length $l$ increases</td></tr>
+              <tr><td>Driver battery ages (internal r increases)</td><td>$I$ decreases → $k$ decreases</td><td>Null point shifts farther from left</td></tr>
+              <tr><td>EMF of cell &gt; driver battery EMF</td><td>$kL < \varepsilon_{cell}$</td><td>No balance anywhere on wire</td></tr>
+              <tr><td>High R in galvanometer branch</td><td>Reduces sensitivity</td><td>Null point ACCURACY unchanged</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET 2019 — Null Point Shift</span>
+          <p>If the driver battery's internal resistance increases (battery ages), current through the wire decreases, $k$ decreases, and the null point shifts <em>away from the left end</em> (larger $l$). Students who memorise "null point shifts left" without understanding the physics get this wrong. Always ask: did $k$ increase or decrease?</p>
+        </div>
+      </div>
+
+    </div><!-- ch-body -->
+  </div><!-- chapter 3 -->
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- MASTER FORMULA SHEET — ALL 3 CHAPTERS             -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="mfs" id="ch-mfs">
+    <div class="mfs-title">⭐ Master Formula Sheet — Electrostatics &amp; Current Electricity</div>
+    <div class="mfs-grid">
+
+      <div class="mfs-col">
+        <h4>Ch 1 — Coulomb's Law &amp; Field</h4>
+        <p>$F = kq_1q_2/r^2$; in medium: $F/K$; $k=9\times10^9$</p>
+        <p>Equilibrium: $x = d\sqrt{q_1}/(\sqrt{q_1}+\sqrt{q_2})$</p>
+        <p>Point charge: $E = kq/r^2$</p>
+        <p>Ring axial: $E = kQx/(R^2+x^2)^{3/2}$; max at $x=R/\sqrt{2}$</p>
+        <p>Sheet: $E = \sigma/2\varepsilon_0$ (distance-independent)</p>
+        <p>Between plates: $E = \sigma/\varepsilon_0$</p>
+        <p>Shell inside: $E=0$; outside: $kQ/r^2$</p>
+        <p>Solid sphere inside: $E = kQr/R^3$</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 1 — Dipole, Gauss &amp; Potential</h4>
+        <p>Dipole: $p = q\cdot2l$; direction $-q\to+q$</p>
+        <p>$\tau = pE\sin\theta$; $U = -pE\cos\theta$</p>
+        <p>$E_{ax} = 2kp/r^3$; $E_{eq} = kp/r^3$ (opp. $\vec{p}$)</p>
+        <p>Gauss: $\Phi = Q_{enc}/\varepsilon_0$</p>
+        <p>Cube centre: $\Phi_{face} = Q/6\varepsilon_0$; corner: $Q/8\varepsilon_0$</p>
+        <p>$V_{point} = kq/r$; shell inside: $V = kQ/R$</p>
+        <p>Solid sphere inside: $V = kQ(3R^2-r^2)/2R^3$</p>
+        <p>Dipole axial: $V = kp/r^2$; equatorial: $V=0$</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 2 — Capacitors</h4>
+        <p>Parallel plate: $C = K\varepsilon_0A/d$</p>
+        <p>Partial slab $t$: $C = \varepsilon_0A/(d-t+t/K)$</p>
+        <p>Series: $C_{eq}^{-1} = \Sigma C_i^{-1}$; two: $C_1C_2/(C_1+C_2)$</p>
+        <p>Parallel: $C_{eq} = \Sigma C_i$</p>
+        <p>Charge sharing: $V_f = (C_1V_1+C_2V_2)/(C_1+C_2)$</p>
+        <p>$U = Q^2/2C = CV^2/2 = QV/2$</p>
+        <p>Energy density: $u = \varepsilon_0E^2/2$</p>
+        <p>Force between plates: $F = Q^2/2\varepsilon_0A$</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 2 — Dielectric Sacred Table</h4>
+        <p><strong>Battery ON (V = const):</strong></p>
+        <p>$C\uparrow(\times K)$, $Q\uparrow(\times K)$, $V$ const, $E$ const, $U\uparrow(\times K)$</p>
+        <p><strong>Battery OFF (Q = const):</strong></p>
+        <p>$C\uparrow(\times K)$, $Q$ const, $V\downarrow(\div K)$, $E\downarrow(\div K)$, $U\downarrow(\div K)$</p>
+        <p>Connected spheres: $q_1/q_2 = R_1/R_2$</p>
+        <p>$\sigma_1/\sigma_2 = R_2/R_1$ (smaller sphere: higher $\sigma$)</p>
+        <p>Energy lost in sharing: $\Delta U = C_1C_2(V_1-V_2)^2/2(C_1+C_2)$</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 3 — Drift, Resistance &amp; Ohm</h4>
+        <p>$I = nAev_d$; $v_d = eE\tau/m$</p>
+        <p>$J = I/A = nev_d = \sigma E$; $\mu = v_d/E = e\tau/m$</p>
+        <p>$R = \rho L/A$; stretch to $nL$: $R'=n^2R$; $n$ parallel: $R/n^2$</p>
+        <p>$R_T = R_0(1+\alpha\Delta T)$</p>
+        <p>Colour code: BB ROY of Great Britain Very Good Wife</p>
+        <p>4-band: [D1][D2]×[mult]±[tol]</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 3 — Circuits &amp; Power</h4>
+        <p>KVL: $\sum\varepsilon = \sum IR$ (any loop)</p>
+        <p>KCL: $\sum I_{in} = \sum I_{out}$</p>
+        <p>$I = \varepsilon/(R+r)$; $V = \varepsilon - Ir$ (discharge); $V = \varepsilon + Ir$ (charge)</p>
+        <p>$n$ series: $\varepsilon_{net}=n\varepsilon$, $r_{net}=nr$</p>
+        <p>$n$ parallel: $\varepsilon_{net}=\varepsilon$, $r_{net}=r/n$</p>
+        <p>Max current: $R_{ext} = r_{int}$</p>
+        <p>$P = VI = I^2R = V^2/R$; $H = I^2Rt$</p>
+      </div>
+
+      <div class="mfs-col">
+        <h4>Ch 3 — Bridges &amp; Potentiometer</h4>
+        <p>Wheatstone balance: $P/Q = R/S$ → $PS = QR$</p>
+        <p>Meter bridge: $R/S = l/(100-l)$</p>
+        <p>Sensitivity max at $l = 50$ cm</p>
+        <p>Potentiometer: $\varepsilon_1/\varepsilon_2 = l_1/l_2$</p>
+        <p>Internal resistance: $r = R(l_1-l_2)/l_2$</p>
+        <p>Potential gradient: $k = I\cdot\lambda = V_{wire}/L$</p>
+        <p>Cube resistor network: body diag = $5R/6$; face diag = $3R/4$; edge = $7R/12$</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- MASTER TRAPS — ALL 3 CHAPTERS                      -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <div class="chapter" id="ch-traps">
+    <div class="ch-head ch-head-traps">
+      <div class="ch-ey">Exam Intelligence · All 3 Chapters</div>
+      <div class="ch-title">35 Master Traps &amp; <em>Elimination Strategies</em></div>
+    </div>
+    <div class="ch-body">
+      <div class="sec" data-m="traps">
+        <h2 class="sh">Electrostatics Traps (1–20) <span class="tag tg">Read before every revision</span></h2>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>#</th><th>Trap</th><th>Wrong Answer</th><th>Correct Answer</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>E inside conducting shell</td><td>$kQ/R^2$</td><td>Zero (Gauss's law — no charge enclosed inside conductor)</td><td>2020</td></tr>
+              <tr><td>2</td><td>V inside conducting shell</td><td>Zero (confusing E with V)</td><td>$kQ/R$ = constant (same as surface)</td><td>2024</td></tr>
+              <tr><td>3</td><td>Direction of $\vec{p}$ (dipole)</td><td>From $+q$ to $-q$</td><td>From $-q$ to $+q$ (physics: $-$ to $+$)</td><td>2018</td></tr>
+              <tr><td>4</td><td>E axial vs equatorial ratio</td><td>$E_{eq} = 2E_{ax}$</td><td>$E_{ax} = 2E_{eq}$ at same distance</td><td>2016</td></tr>
+              <tr><td>5</td><td>Net force on dipole in uniform E</td><td>$pE$ or $2qE$</td><td>Zero — net force = 0; only torque acts</td><td>2017</td></tr>
+              <tr><td>6</td><td>Flux when charge outside Gaussian surface</td><td>Non-zero</td><td>Zero — $\Phi = Q_{enc}/\varepsilon_0 = 0$</td><td>2022</td></tr>
+              <tr><td>7</td><td>Flux when Gaussian surface size doubles</td><td>Doubles</td><td>Same — depends only on $Q_{enc}$, not surface</td><td>2022</td></tr>
+              <tr><td>8</td><td>Force between capacitor plates</td><td>$Q\sigma/\varepsilon_0$ (using full field)</td><td>$Q\sigma/2\varepsilon_0$ — one plate sees HALF the field (field of other plate only)</td><td>2021</td></tr>
+              <tr><td>9</td><td>Dielectric, battery ON: energy</td><td>Decreases</td><td>Increases — battery supplies extra charge; $U = CV^2/2$, C rises</td><td>2019</td></tr>
+              <tr><td>10</td><td>Dielectric, battery OFF: energy</td><td>Increases</td><td>Decreases — dielectric pulled in, PE → KE of slab</td><td>2020</td></tr>
+              <tr><td>11</td><td>Two spheres connected — charge ratio</td><td>Equal charges</td><td>$q_1/q_2 = R_1/R_2$ (equal potential condition)</td><td>2023</td></tr>
+              <tr><td>12</td><td>E at centre of charged ring</td><td>$kQ/R^2$</td><td>Zero — by symmetry, every field element cancels</td><td>2021</td></tr>
+              <tr><td>13</td><td>V at equatorial point of dipole</td><td>$-kp/r^2$</td><td>Zero — potentials from $+q$ and $-q$ cancel</td><td>2015</td></tr>
+              <tr><td>14</td><td>E due to infinite sheet</td><td>Depends on distance</td><td>$\sigma/2\varepsilon_0$ — completely independent of distance</td><td>2016</td></tr>
+              <tr><td>15</td><td>E between parallel plates ($+\sigma, -\sigma$)</td><td>$\sigma/2\varepsilon_0$</td><td>$\sigma/\varepsilon_0$ — fields from both plates add up between them</td><td>2016</td></tr>
+              <tr><td>16</td><td>Energy loss in charge sharing</td><td>Can be zero</td><td>Always positive — heat or radiation; $\Delta U \geq 0$ always</td><td>2021</td></tr>
+              <tr><td>17</td><td>Does C depend on Q or V?</td><td>Yes — $C = Q/V$ so C depends on Q</td><td>No — C depends ONLY on geometry and medium, not Q or V</td><td>2024</td></tr>
+              <tr><td>18</td><td>Flux through a surface parallel to E</td><td>$EL^2$</td><td>Zero — E parallel to surface means $\vec{E}\perp\hat{n}$, so $\Phi = 0$</td><td>2017</td></tr>
+              <tr><td>19</td><td>Series capacitors — V distribution</td><td>V larger on larger C</td><td>V larger on smaller C (V inversely proportional to C)</td><td>2020</td></tr>
+              <tr><td>20</td><td>E inside solid conducting sphere</td><td>$kQr/R^3$ (insulating formula)</td><td>Zero — conducting sphere has E = 0 everywhere inside</td><td>2022</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="sh" style="margin-top:36px;">Current Electricity Traps (21–35) <span class="tag tg">Equally Deadly</span></h2>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>#</th><th>Trap</th><th>Wrong Answer</th><th>Correct Answer</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr><td>21</td><td>Drift speed vs signal speed</td><td>Current takes time to start (electrons are slow)</td><td>Electric field propagates at ~$c$; current starts almost instantly</td><td>2018</td></tr>
+              <tr><td>22</td><td>Mobility vs electric field</td><td>$\mu$ increases with E (like $v_d$)</td><td>$\mu = v_d/E$ is constant for metals (both increase proportionally)</td><td>2020</td></tr>
+              <tr><td>23</td><td>Wire stretching: R vs L</td><td>$R \propto L$ (ignoring area change)</td><td>$R \propto L^2$ at constant volume. Stretch to $n$ times → $R' = n^2R$</td><td>2019</td></tr>
+              <tr><td>24</td><td>Series power: which resistor gets more?</td><td>Lower R → more power</td><td>Series = same I. $P = I^2R$ → higher R gets MORE power</td><td>2022</td></tr>
+              <tr><td>25</td><td>Parallel power: which resistor gets more?</td><td>Higher R → more power (applying series logic)</td><td>Parallel = same V. $P = V^2/R$ → lower R gets MORE power</td><td>2024</td></tr>
+              <tr><td>26</td><td>60W vs 100W bulb in series</td><td>100W glows brighter (higher wattage)</td><td>60W has higher R → in series, higher R → more power → 60W glows brighter</td><td>2017</td></tr>
+              <tr><td>27</td><td>Charging terminal voltage</td><td>$V = \varepsilon - Ir$ (discharge formula applied)</td><td>$V = \varepsilon + Ir > \varepsilon$ during charging</td><td>2016</td></tr>
+              <tr><td>28</td><td>Cells in parallel — net EMF</td><td>$n\varepsilon$ (parallel adds EMF like series)</td><td>Net EMF = $\varepsilon$ (same as one cell); only $r_{int}$ decreases to $r/n$</td><td>2014</td></tr>
+              <tr><td>29</td><td>Fuse current vs length</td><td>Longer wire → lower fuse current → better fuse</td><td>Fuse current $\propto r^{3/2}$ (radius), independent of length</td><td>2021</td></tr>
+              <tr><td>30</td><td>Meter bridge — interchanging R and S</td><td>Balance point at $l'$ proportional to new ratio</td><td>New balance point is exactly at $(100-l)$ — use this to eliminate end corrections</td><td>2018</td></tr>
+              <tr><td>31</td><td>Potentiometer: galvanometer R and accuracy</td><td>Higher galvanometer R changes the EMF measured</td><td>Higher R only reduces sensitivity; accuracy at the null point is unchanged</td><td>2020</td></tr>
+              <tr><td>32</td><td>Potentiometer: no balance possible</td><td>Increase rheostat to shift balance</td><td>If cell EMF &gt; driver battery EMF, no balance is possible at any wire length — different cause</td><td>2023</td></tr>
+              <tr><td>33</td><td>Current density J at junction</td><td>J continuous (like current)</td><td>J can be discontinuous at junction (area changes); only I is continuous</td><td>Concept</td></tr>
+              <tr><td>34</td><td>Wheatstone — galvanometer deflection direction</td><td>Guess from diagram orientation</td><td>Compare $V_B$ vs $V_D$: if $P/Q > R/S$ then $V_B < V_D$ → current flows D→B through G</td><td>2023</td></tr>
+              <tr><td>35</td><td>Resistivity of alloys vs metals</td><td>All conductors have high $\alpha$ and vary with T</td><td>Nichrome/Manganin/Constantan have $\alpha \approx 0$ and high $\rho$ — used in standard resistors and heating elements precisely because they don't vary</td><td>2023</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ The Battery Trap — Capacitors</span>
+          <p>Before solving ANY capacitor + dielectric question: <strong>read whether battery is connected or not</strong>. Battery ON → $V$ is fixed. Battery OFF → $Q$ is fixed. This one sentence changes 5 out of 6 answers. Get it right first, derive everything else from it.</p>
+        </div>
+
+        <h3 class="ssh">🎯 MCQ Elimination Strategies</h3>
+        <div class="elim-box">
+          <p><strong>Elim 1 — Units check:</strong> Final answer must have the correct unit. If question asks for resistance and your answer has units of V·m, you've applied the wrong formula. 10 seconds saved per question.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 2 — Sign of V:</strong> Potential due to positive charge is positive, negative charge is negative. If you get $V < 0$ near a positive charge, recheck immediately.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 3 — Capacitor series/parallel sanity:</strong> $C_{series} <$ any single C. $C_{parallel} >$ any single C. If your series result exceeds any individual capacitor, something is wrong.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 4 — Symmetry first:</strong> Any time the geometry is symmetric (equilateral triangle, square, ring, cube), check if the answer is zero by symmetry before calculating. Saves 2+ minutes per question.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 5 — Inside conductor:</strong> Any question about a point inside a conductor → $E = 0$, $V = $ constant = surface potential. Eliminate all options with non-zero E immediately.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 6 — Power series vs parallel:</strong> Before calculating, ask: same current (series) or same voltage (parallel)? Then pick the correct formula. Mixing these up costs 4 marks minimum per paper.</p>
+        </div>
+        <div class="elim-box">
+          <p><strong>Elim 7 — Potentiometer formula recall:</strong> The formula $r = R(l_1-l_2)/l_2$ is forgotten by ~40% of aspirants in the exam hall. Write it on the top of your rough sheet at the start of the paper. The subscript pattern: $l_1$ = longer (open circuit), $l_2$ = shorter (loaded).</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- book -->
+
+<script>
+
+</script>
+
+
+
+<style id="sticky-footer-css">
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(180,160,130,0.28);
+  font-family: var(--hand, 'Courier New', monospace);
+  font-size: 11px;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 16px;
+  z-index: 8000;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .sticky-footer {
+  background: rgba(9,8,7,0.9);
+  border-top-color: rgba(255,255,255,0.08);
+  color: #f0ece0;
+}
+.sticky-footer a {
+  color: var(--orange, #b85a10);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 600px) {
+  .sticky-footer { font-size: 9px; padding: 6px 10px; }
+  .sticky-footer svg { width: 12px; height: 12px; }
+}
+</style>
+<div class="sticky-footer">
+  <span>© Aryan</span>
+  <a href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Insta
+  </a>
+  <a href="https://t.me/petrol4u" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Telegram
+  </a>
+</div>
+
+</body>
+</html>

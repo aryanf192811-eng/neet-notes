@@ -1,0 +1,2063 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var _d=false;
+  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">??</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+})();
+</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEET Physics Class 12 — Modern Physics PYQ Master Cheatsheet</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+      onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"
+    ></script>
+    <style>
+      :root {
+        --paper: #faf7f2;
+        --paper2: #f3ede3;
+        --paper3: #ece5d8;
+        --ink: #1c1510;
+        --ink2: #3a2e22;
+        --ink3: #6b5a47;
+        --rule: rgba(100, 130, 180, 0.14);
+        --mline: rgba(210, 100, 80, 0.28);
+        --red: #b83030;
+        --blue: #1a4a8c;
+        --green: #1a6b40;
+        --orange: #b85a10;
+        --purple: #5a1a8a;
+        --teal: #0d7a6a;
+        --hl-y: rgba(255, 236, 60, 0.42);
+        --hl-b: rgba(100, 160, 255, 0.17);
+        --hl-g: rgba(60, 180, 100, 0.17);
+        --hl-r: rgba(220, 60, 60, 0.12);
+        --hl-o: rgba(220, 130, 30, 0.14);
+        --hl-p: rgba(120, 40, 180, 0.11);
+        --body: "Lora", Georgia, serif;
+        --prose: "Crimson Pro", Georgia, serif;
+        --hand: "Architects Daughter", cursive;
+      }
+      [data-theme="dark"] {
+        --paper: #1a1612; --paper2: #211d18; --paper3: #2a2520;
+        --ink: #f0ebe0; --ink2: #d4cfc4; --ink3: #9a9080;
+        --rule: rgba(100,130,180,0.12); --mline: rgba(210,100,80,0.18);
+        --red: #e05050; --blue: #5b8fd6; --green: #4ab870;
+        --orange: #e07830; --purple: #9b59d6; --teal: #2db89a;
+        --hl-y: rgba(255,236,60,0.22); --hl-b: rgba(100,160,255,0.14);
+        --hl-g: rgba(60,180,100,0.14); --hl-r: rgba(220,60,60,0.14);
+        --hl-o: rgba(220,130,30,0.14); --hl-p: rgba(160,80,220,0.14);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;
+          --rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;
+          --green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+          --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);
+          --hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+        }
+      }
+      [data-theme="dark"] body { background:#130f0c; background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#1c1810 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#231e18 0%,transparent 55%); }
+      [data-theme="dark"] .def-box { background:rgba(91,143,214,0.1); }
+      [data-theme="dark"] .warn-box { background:rgba(224,80,80,0.1); }
+      [data-theme="dark"] .tip-box { background:rgba(74,184,112,0.1); }
+      [data-theme="dark"] .note-box { background:rgba(224,120,48,0.1); }
+      [data-theme="dark"] .purp-box { background:rgba(155,89,214,0.1); }
+      [data-theme="dark"] .eg { background:var(--paper2); border-color:#3a3228; }
+      [data-theme="dark"] .formula { background:var(--paper3); border-color:#4a4038; }
+      [data-theme="dark"] .cb { background:var(--paper3); border-color:#4a4038; }
+      [data-theme="dark"] code { background:var(--paper3); border-color:#4a4038; }
+      [data-theme="dark"] .trick { background:rgba(212,168,0,0.08); border-color:#6a5200; }
+      [data-theme="dark"] .trick::before { background:var(--paper2); }
+      [data-theme="dark"] .cg-card { background:var(--paper2); border-color:#3a3228; }
+      [data-theme="dark"] .fcard { background:var(--paper); border-color:#4a4038; }
+      [data-theme="dark"] .shortcut { background:rgba(212,168,0,0.07); border-color:#6a5200; }
+      [data-theme="dark"] .shortcut::before { background:var(--paper2); }
+      [data-theme="dark"] .toc { background:var(--paper); border-color:#3a3228; }
+      [data-theme="dark"] .chapter { border-color:#3a3228; }
+      [data-theme="dark"] .cover { background:var(--paper2); border-color:#5a5040; }
+      [data-theme="dark"] .approach { background:rgba(91,143,214,0.1); }
+      [data-theme="dark"] .approach::before { background:var(--paper2); }
+      [data-theme="dark"] .trigger-box { background:rgba(91,143,214,0.1); border-color:var(--blue); }
+      [data-theme="dark"] .trigger-box::before { background:var(--paper2); }
+      [data-theme="dark"] .instant-formula { background:rgba(212,168,0,0.08); border-color:#6a5200; }
+      [data-theme="dark"] .instant-formula::before { background:var(--paper2); }
+      [data-theme="dark"] .elim-box { background:rgba(224,80,80,0.1); }
+      [data-theme="dark"] .elim-box::before { background:var(--paper2); }
+      [data-theme="dark"] .shortcut::before { background:var(--paper2); }
+      [data-theme="dark"] .exam-mode { background:var(--paper2); border-color:var(--ink3); }
+      [data-theme="dark"] .instr-box { background:rgba(155,89,214,0.08); }
+      [data-theme="dark"] .instr-box::before { background:var(--paper2); }
+      [data-theme="dark"] .sticky-copyright { background:rgba(26,22,18,0.96); border-top-color:rgba(212,207,196,0.16); box-shadow:0 -10px 24px rgba(0,0,0,0.3); }
+      [data-theme="dark"] .how-box { background:rgba(91,143,214,0.10); }
+      [data-theme="dark"] .trap-wrong { background:rgba(224,80,80,0.10); }
+      [data-theme="dark"] .trap-right { background:rgba(74,184,112,0.10); }
+      [data-theme="dark"] .recall-line { background:var(--paper3); border-color:#4a4038; }
+
+      #dm-toggle { position:fixed; top:16px; right:16px; z-index:1000; background:var(--ink); color:var(--paper); border:none; border-radius:20px; padding:7px 15px; font-family:var(--hand); font-size:11px; letter-spacing:1px; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.3); transition:all 0.2s; }
+      #dm-toggle:hover { opacity:.85; transform:translateY(-1px); }
+
+      .eg-sol { position:relative; }
+      .sol-reveal-btn { display:block; width:100%; background:var(--ink); color:var(--paper); border:none; border-radius:4px; padding:9px 16px; font-family:var(--hand); font-size:10px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; margin-bottom:0; transition:all 0.2s; text-align:center; }
+      .sol-reveal-btn:hover { opacity:.85; }
+      .sol-content { overflow:hidden; transition:max-height 0.4s ease, opacity 0.3s ease; }
+      .sol-content.hidden { max-height:0; opacity:0; pointer-events:none; }
+      .sol-content.visible { max-height:3000px; opacity:1; }
+      .sol-reveal-btn.active { background:var(--green); }
+      .sol-reveal-btn.active::after { content:" ✓"; }
+
+      * { margin:0; padding:0; box-sizing:border-box; }
+      html { scroll-behavior:smooth; }
+      body { background:#bfb49a; background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%); font-family:var(--body); color:var(--ink); min-height:100vh; padding:24px 16px 116px; }
+      .book { max-width:920px; margin:0 auto; }
+      .cover { background:var(--paper2); border:2px solid var(--ink); border-radius:4px; padding:52px 56px 44px; margin-bottom:28px; position:relative; overflow:hidden; box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28); }
+      .cover::before { content:""; position:absolute; inset:0; background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px); background-size:100% 32px; background-position:0 48px; pointer-events:none; }
+      .cover::after { content:""; position:absolute; top:0; bottom:0; left:52px; width:1.5px; background:rgba(210,100,80,0.32); pointer-events:none; }
+      .cover-inner { position:relative; padding-left:20px; }
+      .cover-subject { font-family:var(--hand); font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--ink3); margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+      .cover-subject::before { content:""; display:inline-block; width:28px; height:1.5px; background:var(--orange); }
+      .cover h1 { font-family:var(--body); font-size:38px; font-weight:700; line-height:1.15; color:var(--ink); }
+      .cover h1 em { font-style:italic; color:var(--blue); }
+      .cover-desc { font-family:var(--prose); font-size:17px; color:var(--ink3); margin-top:14px; line-height:1.8; max-width:580px; border-left:3px solid var(--orange); padding-left:14px; }
+      .cover-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+      .chip { font-family:var(--hand); font-size:10px; border:1.5px solid #b0a080; border-radius:2px; padding:4px 12px; color:var(--ink3); background:rgba(255,255,255,0.5); }
+      .cover-tag { position:absolute; top:20px; right:24px; font-family:var(--hand); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--paper); background:var(--ink); padding:5px 12px; border-radius:2px; }
+      .toc { background:var(--paper); border:1.5px solid #b0a080; border-radius:4px; padding:28px 36px; margin-bottom:36px; box-shadow:3px 4px 0 #9a8a6e; }
+      .toc-lbl { font-family:var(--hand); font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--ink3); margin-bottom:12px; }
+      .toc-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px 24px; }
+      @media (max-width:560px) { .toc-grid { grid-template-columns:1fr; } }
+      .toc-grid a { font-family:var(--prose); font-size:15.5px; color:var(--ink2); text-decoration:none; display:flex; align-items:baseline; gap:7px; padding:4px 0; border-bottom:1px dashed transparent; transition:all 0.2s; }
+      .toc-grid a:hover { color:var(--blue); border-color:var(--ink3); }
+      .tn { font-family:var(--hand); font-size:11px; color:var(--ink3); min-width:24px; }
+      .chapter { background:var(--paper); border:1.5px solid #b0a088; border-radius:4px; margin-bottom:44px; box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50; }
+                  .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      [data-theme="dark"] .ch-head {
+        background: linear-gradient(135deg, #0a0908 0%, #1a1612 100%);
+      }
+      
+      .ch-ey { font-family:var(--hand); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(245,240,230,0.38); margin-bottom:3px; }
+                  .ch-title {
+        font-size: 21px;
+        font-weight: 600;
+        color: #faf7f2;
+        line-height: 1.25;
+      }
+      .ch-title em { font-style:italic; color:#e8c870; }
+      .ch-body { background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px); background-size:54px 100%,100% 32px; background-position:0 0,0 16px; box-shadow:inset 0 4px 12px rgba(0,0,0,0.04); }
+      .sec { padding:44px 40px 40px 72px; border-bottom:1px dashed rgba(180,150,110,0.5); position:relative; }
+      .sec:last-child { border-bottom:none; }
+      .sec::before { content:attr(data-m); position:absolute; left:10px; top:34px; font-family:var(--hand); font-size:10px; color:rgba(200,100,80,0.26); writing-mode:vertical-lr; transform:rotate(180deg); letter-spacing:1px; text-transform:uppercase; }
+      h2.sh { font-family:var(--body); font-size:20px; font-weight:700; color:var(--ink); margin-bottom:22px; padding-bottom:8px; border-bottom:2px solid var(--ink); display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+      .sec[data-m="overview"] h2.sh { border-color:var(--orange); }
+      .sec[data-m="triggers"] h2.sh { border-color:var(--blue); }
+      h3.ssh { font-family:var(--body); font-size:16px; font-weight:600; font-style:italic; color:var(--blue); margin:32px 0 12px; }
+      h3.ssh + p { margin-top:6px; }
+      h4.sssh { font-family:var(--body); font-size:14px; font-weight:600; color:var(--green); margin:16px 0 6px; }
+      p { font-family:var(--prose); font-size:17.5px; line-height:2.05; color:var(--ink2); margin-bottom:14px; }
+      strong { color:var(--ink); font-weight:600; }
+      .tag { font-family:var(--hand); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:3px 8px; border-radius:2px; border:1.5px solid currentColor; margin-left:auto; flex-shrink:0; }
+      .tg { color:var(--red); border-color:var(--red); background:var(--hl-r); }
+      .tc { color:var(--blue); border-color:var(--blue); background:var(--hl-b); }
+      .tt { color:var(--orange); border-color:var(--orange); background:var(--hl-o); }
+      .tp { color:var(--purple); border-color:var(--purple); background:var(--hl-p); }
+      .tq { color:var(--teal); border-color:var(--teal); background:rgba(13,122,106,0.09); }
+      .def-box { background:rgba(100,160,255,0.09); border-left:4px solid var(--blue); border-radius:0 6px 6px 0; padding:18px 22px; margin:22px 0; }
+      .def-box .lbl { font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:5px; display:block; }
+      .def-box p { font-size:16.5px; line-height:1.82; margin:0; color:var(--ink); }
+      .warn-box { background:rgba(220,60,60,0.07); border-left:4px solid var(--red); border-radius:0 6px 6px 0; padding:18px 22px; margin:22px 0; }
+      .warn-box .lbl { font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:4px; display:block; }
+      .warn-box p { font-size:16px; color:var(--red); margin:0; line-height:1.78; }
+      .tip-box { background:rgba(60,180,100,0.09); border-left:4px solid var(--green); border-radius:0 6px 6px 0; padding:18px 22px; margin:22px 0; }
+      .tip-box .lbl { font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:4px; display:block; }
+      .tip-box p { font-size:16px; color:var(--green); margin:0; line-height:1.78; }
+      .note-box { background:rgba(220,130,30,0.09); border-left:4px solid var(--orange); border-radius:0 6px 6px 0; padding:18px 22px; margin:22px 0; }
+      .note-box .lbl { font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:4px; display:block; }
+      .note-box p { font-size:16px; color:var(--orange); margin:0; line-height:1.78; }
+      .purp-box { background:rgba(120,40,180,0.08); border-left:4px solid var(--purple); border-radius:0 6px 6px 0; padding:18px 22px; margin:22px 0; }
+      .purp-box .lbl { font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--purple); margin-bottom:4px; display:block; }
+      .purp-box p { font-size:16px; color:var(--purple); margin:0; line-height:1.78; }
+      .trick { background:#fffcf0; border:1.5px solid #c49a00; border-radius:6px; padding:20px 22px; margin:24px 0; position:relative; }
+      .trick::before { content:"⚡ Trick"; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#a07800; position:absolute; top:-9px; left:14px; background:#fffbea; padding:0 6px; }
+      .trick p { font-family:var(--prose); font-size:16.5px; color:var(--ink); margin:0 0 6px; line-height:1.82; }
+      .trick p:last-child { margin:0; }
+      .trick strong { color:#7a5800; }
+      .eg { background:var(--paper2); border:1.5px solid #c4b490; border-radius:6px; padding:22px 24px; margin:24px 0; position:relative; }
+      .eg::before { content:"Example"; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--ink3); position:absolute; top:-9px; left:14px; background:var(--paper2); padding:0 6px; }
+      .eg p { font-family:var(--prose); font-size:16px; color:var(--ink2); margin:0 0 6px; line-height:1.82; }
+      .eg p:last-child { margin:0; }
+      .eg-pyq::before { content:"PYQ — Pattern"; }
+      .eg-sol::before { content:"Solution Walkthrough"; }
+      .formula { background:var(--paper3); border:2px solid var(--ink); border-radius:6px; padding:22px 28px; margin:24px 0; font-family:"Courier New",monospace; font-size:15px; color:var(--ink); line-height:2.2; text-align:center; }
+      .formula strong { color:var(--blue); font-size:16px; }
+      .cb { font-family:"Courier New",monospace; font-size:13.5px; background:var(--paper3); border:1.5px dashed #a09070; border-radius:4px; padding:14px 18px; margin:12px 0; color:var(--ink); line-height:1.9; white-space:pre-wrap; overflow-x:auto; }
+      code { font-family:"Courier New",monospace; font-size:13.5px; background:var(--paper3); border:1px solid #c0a880; border-radius:3px; padding:1px 5px; color:var(--blue); }
+      mark { background:var(--hl-y); padding:0 2px; border-radius:2px; color:var(--ink); }
+      .c-r { color:var(--red); font-weight:600; }
+      .c-b { color:var(--blue); font-weight:600; }
+      .c-g { color:var(--green); font-weight:600; }
+      .c-o { color:var(--orange); font-weight:600; }
+      .c-p { color:var(--purple); font-weight:600; }
+      .good { color:var(--green); font-weight:600; }
+      .ok { color:var(--orange); font-weight:600; }
+      .bad { color:var(--red); font-weight:600; }
+      .pl { list-style:none; margin:12px 0 18px; padding:0; }
+      .pl li { font-family:var(--prose); font-size:16.5px; line-height:1.88; color:var(--ink2); padding:5px 0 5px 26px; position:relative; }
+      .pl li::before { content:"—"; position:absolute; left:0; color:var(--orange); font-weight:600; }
+      .pl.arr li::before { content:"→"; color:var(--blue); }
+      .pl.chk li::before { content:"✓"; color:var(--green); }
+      .pl.num { counter-reset:li; }
+      .pl.num li { counter-increment:li; }
+      .pl.num li::before { content:counter(li)"."; color:var(--blue); font-family:var(--hand); font-size:12px; font-weight:600; }
+      .tbl { overflow-x:auto; margin:28px 0; }
+      table { width:100%; border-collapse:collapse; font-family:var(--prose); font-size:15.5px; }
+      thead tr { background:var(--ink); }
+      th { padding:11px 16px; text-align:left; color:var(--paper); font-weight:400; font-size:12px; font-family:var(--hand); letter-spacing:1px; }
+      td { padding:11px 16px; border-bottom:1px dashed #c0a880; line-height:1.65; vertical-align:top; color:var(--ink2); }
+      tr:nth-child(even) td { background:rgba(0,0,0,0.024); }
+      tr:hover td { background:rgba(255,240,150,0.22); }
+      .cg { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin:24px 0; }
+      .cg-card { background:var(--paper2); border:1.5px solid #b0a080; border-radius:6px; padding:18px 20px; }
+      .cg-card .ct { font-family:var(--hand); font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--ink3); margin-bottom:6px; padding-bottom:4px; border-bottom:1px solid #c0a880; }
+      .cg-card p { font-family:var(--prose); font-size:15px; line-height:1.75; color:var(--ink2); margin:0; }
+      .fcards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin:24px 0; }
+      .fcard { background:var(--paper); border:2px solid var(--ink); border-radius:6px; padding:20px 22px; box-shadow:3px 4px 0 #9a8a6e; }
+      .fcard-title { font-family:var(--hand); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ink); margin-bottom:10px; padding-bottom:6px; border-bottom:2px solid var(--ink); }
+      .fcard ul { list-style:none; margin:0; padding:0; }
+      .fcard ul li { font-family:"Courier New",monospace; font-size:12.5px; color:var(--ink2); padding:3px 0; border-bottom:1px dashed #d0c0a0; line-height:1.55; }
+      .fcard ul li:last-child { border-bottom:none; }
+      .trap-row { display:grid; grid-template-columns:auto 1fr 1fr; gap:0; border:1.5px solid #b0a080; border-radius:6px; overflow:hidden; margin:20px 0; }
+      .trap-num { background:var(--ink); color:var(--paper); font-family:var(--hand); font-size:14px; padding:12px 14px; display:flex; align-items:flex-start; justify-content:center; min-width:44px; }
+      .trap-wrong { background:rgba(220,60,60,0.07); padding:16px 18px; border-right:1px dashed #c0a880; }
+      .trap-right { background:rgba(60,180,100,0.09); padding:16px 18px; }
+      .trap-wrong p,.trap-right p { font-family:var(--prose); font-size:15px; margin:0; line-height:1.7; }
+      .trap-wrong p { color:var(--red); }
+      .trap-right p { color:var(--green); }
+      .trap-lbl { font-family:var(--hand); font-size:8px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:3px; }
+      .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:14px 0; }
+      .visual { margin:32px 0; display:flex; flex-direction:column; align-items:center; gap:12px; overflow:hidden; border-radius:4px; }
+      .visual-lbl { font-family:var(--hand); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink3); }
+      .visual svg { max-width:100%; height:auto; display:block; }
+      .how-box { background:rgba(100,160,255,0.09); border:1.5px solid var(--blue); border-radius:6px; padding:22px 28px; margin-bottom:36px; display:flex; gap:20px; align-items:flex-start; }
+      .how-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+      .how-box p { font-family:var(--prose); font-size:15.5px; color:var(--ink2); margin:0; line-height:1.82; }
+      .how-box strong { color:var(--blue); }
+      .freq-badge { display:inline-flex; align-items:center; gap:5px; font-family:var(--hand); font-size:10px; padding:3px 10px; border-radius:12px; margin:2px; }
+      .freq-high { background:var(--hl-r); color:var(--red); border:1.5px solid var(--red); }
+      .freq-med { background:var(--hl-o); color:var(--orange); border:1.5px solid var(--orange); }
+      .freq-low { background:var(--hl-g); color:var(--green); border:1.5px solid var(--green); }
+      .approach { background:rgba(100,160,255,0.11); border:1.5px solid var(--blue); border-radius:6px; padding:22px 26px; margin:24px 0; position:relative; }
+      .approach::before { content:"🎯 How to Approach"; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); position:absolute; top:-10px; left:14px; background:var(--paper); padding:0 8px; }
+      .approach p { font-family:var(--prose); font-size:16px; color:var(--ink2); margin:0 0 6px; line-height:1.82; }
+      .approach p:last-child { margin:0; }
+      .shortcut { background:#fffcf0; border:1.5px solid #c49a00; border-radius:6px; padding:20px 22px; margin:24px 0; position:relative; }
+      .shortcut::before { content:"🔑 Shortcut"; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#a07800; position:absolute; top:-9px; left:14px; background:#fffbea; padding:0 6px; }
+      .shortcut p { font-family:var(--prose); font-size:16px; color:var(--ink2); margin:0 0 5px; line-height:1.8; }
+      .shortcut p:last-child { margin:0; }
+      .pyq-strip { display:flex; flex-wrap:wrap; gap:16px; background:var(--paper3); border-radius:6px; padding:20px 24px; margin:24px 0; align-items:center; border:1px solid rgba(180,160,120,0.3); }
+      .pyq-stat { font-family:var(--hand); font-size:10px; color:var(--ink3); display:flex; flex-direction:column; align-items:center; min-width:60px; }
+      .pyq-stat strong { font-size:22px; color:var(--ink); font-family:var(--body); display:block; line-height:1.1; }
+      hr.dv { border:none; border-top:1.5px dashed #c0a880; margin:36px 0; }
+      .bt { display:block; text-align:right; font-family:var(--hand); font-size:10px; color:var(--ink3); text-decoration:none; padding:10px 32px 0; letter-spacing:1px; }
+      .bt:hover { color:var(--blue); }
+      .footer { text-align:center; font-family:var(--hand); font-size:10px; color:#7a6a50; letter-spacing:2px; padding:20px 0; margin-bottom:16px; }
+      .footer-meta { display:block; }
+      .footer-note { margin-top:8px; display:block; letter-spacing:1px; color:#a07800; }
+      .sticky-copyright { position:fixed; left:0; right:0; bottom:0; z-index:1500; display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 16px; background:rgba(250,247,242,0.96); border-top:1px solid rgba(122,106,80,0.28); box-shadow:0 -10px 24px rgba(28,21,16,0.12); backdrop-filter:blur(10px); font-family:var(--hand); font-size:10px; letter-spacing:1.4px; color:#7a6a50; }
+      .progress-bar { position:fixed; top:0; left:0; right:0; height:4px; background:linear-gradient(to right,var(--blue),var(--green),var(--orange)); width:0%; z-index:1001; transition:width 0.1s ease; box-shadow:0 0 8px rgba(26,74,140,0.3); }
+      .fab-back-to-top { position:fixed; bottom:72px; right:24px; width:48px; height:48px; border-radius:50%; background:var(--blue); color:var(--paper); border:none; cursor:pointer; font-size:20px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.3); opacity:0; transition:opacity 0.3s ease,transform 0.2s ease; z-index:999; pointer-events:none; font-family:var(--hand); }
+      .fab-back-to-top.visible { opacity:1; pointer-events:auto; }
+      .fab-back-to-top:hover { transform:translateY(-3px); box-shadow:0 6px 16px rgba(0,0,0,0.4); }
+      .trigger-box { background:rgba(100,160,255,0.10); border:1.5px solid var(--blue); border-radius:6px; padding:22px 26px; margin:24px 0; position:relative; }
+      .trigger-box::before { content:'🔍 If You See → Do This'; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); position:absolute; top:-10px; left:14px; background:var(--paper); padding:0 8px; }
+      .trigger-box p { font-family:var(--prose); font-size:16px; color:var(--ink2); margin:0 0 5px; line-height:1.8; }
+      .trigger-box p:last-child { margin:0; }
+      .trigger-box strong { color:var(--blue); }
+      .instant-formula { background:#fffcf0; border:1.5px solid #c49a00; border-radius:6px; padding:22px 26px; margin:24px 0; position:relative; text-align:center; }
+      .instant-formula::before { content:'⚡ Use in < 5 sec'; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#a07800; position:absolute; top:-10px; left:14px; background:#fffbea; padding:0 8px; }
+      .instant-formula p { font-family:'Courier New',monospace; font-size:15px; color:var(--ink); margin:0 0 4px; line-height:1.8; }
+      .instant-formula p:last-child { margin:0; }
+      .instant-formula strong { color:var(--blue); font-size:16px; }
+      .elim-box { background:rgba(220,60,60,0.07); border:1.5px solid var(--red); border-radius:6px; padding:20px 24px; margin:24px 0; position:relative; }
+      .elim-box::before { content:'❌ Eliminate First'; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--red); position:absolute; top:-10px; left:14px; background:var(--paper); padding:0 8px; }
+      .elim-box p { font-family:var(--prose); font-size:15.5px; color:var(--red); margin:0 0 5px; line-height:1.8; }
+      .elim-box p:last-child { margin:0; }
+      .elim-box strong { color:var(--ink); }
+      .recall-line { background:var(--paper3); border:2px solid var(--ink); border-radius:4px; padding:14px 22px; margin:24px 0; text-align:center; font-family:var(--body); font-size:15.5px; font-weight:600; color:var(--blue); letter-spacing:0.5px; }
+      .recall-line::before { content:'🧾 '; }
+      .exam-mode { background:var(--paper2); border:1.5px solid var(--ink3); border-radius:6px; padding:26px 30px; margin:28px 0; }
+      .exam-mode h3 { font-family:var(--body); font-size:16px; font-weight:700; color:var(--ink); margin:16px 0 8px; padding-bottom:4px; border-bottom:1.5px dashed var(--ink3); }
+      .exam-mode h3:first-child { margin-top:0; }
+      .exam-mode p,.exam-mode li { font-family:var(--prose); font-size:15px; color:var(--ink2); line-height:1.75; margin:0 0 4px; }
+      .exam-mode ol,.exam-mode ul { padding-left:20px; margin:6px 0; }
+      .instr-box { background:rgba(120,40,180,0.08); border:1.5px solid var(--purple); border-radius:6px; padding:22px 26px; margin:24px 0; position:relative; }
+      .instr-box::before { content:"⚛️ Quantum Insight"; font-family:var(--hand); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--purple); position:absolute; top:-10px; left:14px; background:var(--paper); padding:0 8px; }
+      .instr-box p { font-family:var(--prose); font-size:16px; color:var(--ink2); margin:0 0 6px; line-height:1.82; }
+      .instr-box p:last-child { margin:0; }
+      .instr-box strong { color:var(--purple); }
+
+      body.protected-page,.book,.book * { user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; }
+      body.protected-page img,body.protected-page svg { -webkit-user-drag:none; }
+
+      @media (max-width:600px) {
+        body { padding:18px 10px 128px; }
+        .cover { padding:28px 22px; }
+        .cover h1 { font-size:26px; }
+              .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      
+        .sec { padding:28px 16px 28px 48px; }
+        .trap-row { grid-template-columns:auto 1fr; }
+        .trap-right { grid-column:2; border-top:1px dashed #c0a880; }
+        .fcards,.cg { grid-template-columns:1fr; }
+        .two-col { grid-template-columns:1fr; }
+        .pyq-strip { flex-direction:column; gap:6px; }
+        .pyq-stat { flex-direction:row; gap:8px; min-width:unset; }
+      }
+      @media print {
+        body::before { content:"Printing is disabled for these protected notes."; display:block; padding:48px 24px; font-family:Georgia,serif; font-size:24px; text-align:center; }
+        .book,#dm-toggle,.sol-reveal-btn,.fab-back-to-top,.progress-bar,.sticky-copyright { display:none !important; }
+      }
+    </style>
+  
+
+<style id="theme-toggle-css">
+  .theme-switch { position:relative; width:44px; height:24px; flex-shrink:0; display:inline-flex; align-items:center; margin-left:12px; }
+  .theme-switch input { opacity:0; width:0; height:0; position:absolute; }
+  .theme-track { position:absolute; inset:0; background:rgba(0,0,0,0.06); border:1.5px solid rgba(0,0,0,0.1); border-radius:24px; cursor:pointer; transition:all .3s; }
+  .theme-track::before { content:'☀'; position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:9px; color:#b85a10; transition:all .3s cubic-bezier(.4,0,.2,1); }
+  [data-theme="dark"] .theme-track { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); }
+  [data-theme="dark"] .theme-track::before { content:'☾'; transform:translateX(20px); background:#1a1612; color:#ffaa55; font-size:10px; }
+  .back-dash { font-family:var(--hand); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink3); text-decoration:none; padding:4px 8px; border:1px solid var(--div); border-radius:4px; transition:all .2s; }
+  .back-dash:hover { background:var(--ink); color:var(--paper); }
+</style>
+
+</head>
+  <body>
+
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    
+
+    <div class="book">
+
+      <!-- COVER -->
+      <div class="cover" id="top">
+        <span class="cover-tag">NEET 2026</span>
+        <div class="cover-inner">
+          <div class="cover-subject">Physics · Class 12 · PYQ Master Series — Book 3 of 3</div>
+          <h1>NEET Physics <em>Modern Physics</em><br />Complete PYQ Cheatsheet</h1>
+          <p class="cover-desc">
+            Every Modern Physics question type from NEET 2007–2025 dissected. Dual Nature, Atoms, Nuclei, Semiconductors — frequency data, derivation-level understanding, approach frameworks, NEET traps, and exam-day shortcuts. Built deeper than any Allen or PW module.
+          </p>
+          <div class="cover-chips">
+            <span class="chip">Ch 1 · Dual Nature of Radiation</span>
+            <span class="chip">Ch 2 · Atoms (Bohr Model)</span>
+            <span class="chip">Ch 3 · Nuclei &amp; Radioactivity</span>
+            <span class="chip">Ch 4 · Semiconductors</span>
+            <span class="chip">~22–28 marks in NEET</span>
+            <span class="chip">PYQ 2007–2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="how-box">
+        <div class="how-icon">📌</div>
+        <p>
+          <strong>How to use this sheet:</strong> Modern Physics is 4 chapters that together fetch <strong>5–7 questions/year (~20–28 marks)</strong>. The chapters build on each other: Dual Nature → Atoms → Nuclei → Semiconductors. Each section opens with a PYQ frequency strip, then covers every tested pattern with the concept, NEET PYQ, solution logic, shortcut, and trap. <strong>Red tag = high frequency (4+ times), Orange = medium (2–3×), Green = appeared once.</strong> Semiconductor questions are conceptual — memorize the logic table. Nuclear questions are numerical — learn the decay chains.
+        </p>
+      </div>
+
+      <!-- TOC -->
+      <div class="toc">
+        <div class="toc-lbl">Contents — Modern Physics (Class 12)</div>
+        <div class="toc-grid">
+          <a href="#ch1"><span class="tn">01</span>Dual Nature of Radiation &amp; Matter</a>
+          <a href="#ch2"><span class="tn">02</span>Atoms — Bohr's Model &amp; Spectra</a>
+          <a href="#ch3"><span class="tn">03</span>Nuclei — Radioactivity &amp; Energy</a>
+          <a href="#ch4"><span class="tn">04</span>Semiconductor Electronics</a>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- CHAPTER 1: DUAL NATURE OF RADIATION & MATTER -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <article class="chapter" id="ch1">
+        <div class="ch-head">
+          <div class="ch-ey">Chapter 01 · Class 12 · Modern Physics</div>
+          <div class="ch-title">Dual Nature of Radiation &amp; Matter — <em>Photoelectric Effect &amp; de Broglie</em></div>
+        </div>
+        <div class="ch-body">
+
+          <!-- OVERVIEW -->
+          <div class="sec" data-m="overview">
+            <h2 class="sh">PYQ Frequency Overview <span class="tag tg">2–3 Qs/year</span></h2>
+            <div class="pyq-strip">
+              <div class="pyq-stat"><strong>~28</strong>questions<br />2007–2025</div>
+              <div class="pyq-stat"><strong>50%</strong>Photoelectric<br />Effect</div>
+              <div class="pyq-stat"><strong>30%</strong>de Broglie<br />Wavelength</div>
+              <div class="pyq-stat"><strong>12%</strong>Photon<br />Properties</div>
+              <div class="pyq-stat"><strong>8%</strong>Electron<br />Emission</div>
+            </div>
+
+            <p>This chapter is the <strong>gateway to quantum mechanics</strong>. NEET consistently asks 2–3 questions from it — almost always a numerical on stopping potential + KE<sub>max</sub>, and one conceptual on de Broglie wavelength comparisons. The key equation is Einstein's photoelectric equation; everything else derives from it.</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Sub-topic</th><th>NEET Frequency (2007–2025)</th><th>Priority</th></tr></thead>
+                <tbody>
+                  <tr><td>Stopping potential and KE<sub>max</sub> calculations</td><td>10 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Work function and threshold frequency/wavelength</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>de Broglie wavelength (accelerated particles)</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Photon energy and momentum</td><td>5 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Effect of intensity vs frequency on photoelectric current</td><td>5 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>de Broglie wavelength at temperature T (thermal)</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Davisson-Germer experiment concept</td><td>2 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+                  <tr><td>Heisenberg uncertainty principle</td><td>2 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION: PHOTON PROPERTIES -->
+          <div class="sec" data-m="photon">
+            <h2 class="sh">Photon: Particle Nature of Light <span class="tag tg">Core Foundation</span></h2>
+
+            <p>Einstein's revolutionary idea (1905, Nobel Prize 1921): <strong>light is not a continuous wave but a stream of discrete packets of energy called photons</strong>. Each photon carries energy proportional to frequency, not amplitude. This directly explains why blue light ejects electrons from caesium but red light cannot — regardless of intensity.</p>
+
+            <div class="def-box">
+              <span class="lbl">Photon Definition</span>
+              <p>A photon is a massless quantum of electromagnetic radiation. It travels at speed $c$ in vacuum, carries energy $E = h\nu$ and momentum $p = h/\lambda = h\nu/c$. It has zero rest mass but non-zero relativistic momentum.</p>
+            </div>
+
+            <div class="fcards">
+              <div class="fcard">
+                <div class="fcard-title">Photon Energy</div>
+                <ul>
+                  <li>$E = h\nu = hc/\lambda$</li>
+                  <li>$h = 6.626 \times 10^{-34}$ J·s</li>
+                  <li>$hc = 1240$ eV·nm (memorise!)</li>
+                  <li>$E$ (in eV) $= 1240/\lambda$ (nm)</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Photon Momentum</div>
+                <ul>
+                  <li>$p = h/\lambda = E/c = h\nu/c$</li>
+                  <li>Perfectly reflecting surface: $\Delta p = 2p = 2h/\lambda$</li>
+                  <li>Perfectly absorbing: $\Delta p = h/\lambda$</li>
+                  <li>Photon has NO charge, NO rest mass</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Number of Photons</div>
+                <ul>
+                  <li>$n = P/E = P\lambda/(hc)$</li>
+                  <li>$P$ = power of source (W)</li>
+                  <li>Intensity $I \propto n$ (not frequency)</li>
+                  <li>Photon count per second = $n$</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="trick">
+              <p><strong>$hc = 1240$ eV·nm</strong> — The single most important constant combination in Modern Physics. Memorise it cold. With this, you can calculate photon energy from wavelength in 2 seconds: $E(\text{eV}) = 1240/\lambda(\text{nm})$. Example: $\lambda = 400$ nm → $E = 3.1$ eV. No calculator needed.</p>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 1: Photon Energy Calculation</h3>
+            <p><strong>What NEET tests:</strong> Given wavelength (or frequency), find energy in eV. Or given power and wavelength, find number of photons per second.</p>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2024:</strong> Light of wavelength $\lambda = \frac{hc}{e}$ metre is incident on a photosensitive surface. If the work function is $\phi$ eV, the stopping potential is:</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p><strong>Step 1:</strong> Find photon energy. $E = hc/\lambda$. Given $\lambda = hc/e$ metres, so $E = hc/(hc/e) = e$ joules $= 1$ eV.</p>
+                <p><strong>Step 2:</strong> Apply Einstein's equation: $eV_s = E - \phi \Rightarrow V_s = 1 - \phi$ volts.</p>
+                <p>If $\phi < 1$ eV, stopping potential = $(1-\phi)$ V. If $\phi \geq 1$ eV, no emission.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: PHOTOELECTRIC EFFECT -->
+          <div class="sec" data-m="photoelectric">
+            <h2 class="sh">Photoelectric Effect — Einstein's Equation <span class="tag tg">Most Tested</span></h2>
+
+            <p>When light of frequency $\nu > \nu_0$ (threshold) falls on a metal surface, electrons are ejected. The <strong>key insight</strong>: a single photon interacts with a single electron — this is a one-to-one collision. Extra photon energy beyond the work function becomes the electron's kinetic energy.</p>
+
+            <div class="formula">
+              <strong>Einstein's Photoelectric Equation</strong><br/>
+              $KE_{max} = h\nu - \phi_0 = h\nu - h\nu_0$<br/>
+              $eV_s = h\nu - \phi_0$<br/>
+              $V_s = \frac{h\nu - \phi_0}{e} = \frac{h(\nu - \nu_0)}{e}$
+            </div>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Work Function $\phi_0$</div>
+                <p>Minimum energy needed to eject an electron from the metal surface. $\phi_0 = h\nu_0 = hc/\lambda_0$. Measured in eV. Depends only on the metal, not on incident light.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Threshold Frequency $\nu_0$</div>
+                <p>Minimum frequency of light that can eject electrons. $\nu_0 = \phi_0/h$. Below $\nu_0$, no emission regardless of intensity. $\lambda_0 = hc/\phi_0$.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Stopping Potential $V_s$</div>
+                <p>The retarding potential needed to stop the most energetic photoelectron. $eV_s = KE_{max}$. Does NOT depend on intensity — only on frequency and work function.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Saturation Current</div>
+                <p>Maximum photoelectric current when all emitted electrons are collected. Proportional to <em>intensity</em> (more photons → more electrons). Independent of frequency (above $\nu_0$).</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">What Changes What: The Sacred Table</h3>
+            <div class="tbl">
+              <table>
+                <thead><tr><th>What you change</th><th>KE<sub>max</sub> / V<sub>s</sub></th><th>Saturation Current</th><th>Threshold</th></tr></thead>
+                <tbody>
+                  <tr><td>Increase <strong>frequency</strong> (same metal, same intensity)</td><td class="good">↑ Increases</td><td class="ok">No change</td><td>No change</td></tr>
+                  <tr><td>Increase <strong>intensity</strong> (same frequency)</td><td class="bad">No change</td><td class="good">↑ Increases</td><td>No change</td></tr>
+                  <tr><td>Change <strong>metal</strong> (increase $\phi_0$)</td><td class="bad">↓ Decreases</td><td>No change</td><td class="bad">$\nu_0$ ↑</td></tr>
+                  <tr><td>Apply forward <strong>anode voltage</strong></td><td>No change to KE<sub>max</sub></td><td class="good">↑ More collected</td><td>No change</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="warn-box">
+              <span class="lbl">🚨 #1 NEET Trap — Intensity vs Frequency</span>
+              <p>Students confuse intensity with frequency. <strong>Intensity affects only the NUMBER of electrons ejected, NOT their kinetic energy.</strong> $V_s$ (stopping potential) is independent of intensity. Doubling intensity doubles current, but stopping potential stays the same. This distinction is tested almost every year.</p>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 2: Stopping Potential Calculation (Highest Frequency)</h3>
+            <p><strong>What NEET tests:</strong> Electron in hydrogen atom jumps from state $n$ to $n=1$, emitting a photon. This photon irradiates a metal with work function $\phi$. Find stopping potential.</p>
+
+            <div class="approach">
+              <p><strong>Step 1:</strong> Find photon energy using Bohr's formula: $E = 13.6\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$ eV (for H-atom).</p>
+              <p><strong>Step 2:</strong> Apply Einstein: $eV_s = E_{photon} - \phi_0$.</p>
+              <p><strong>Step 3:</strong> $V_s = (E_{photon} - \phi_0)/e$ volts. Note: if $E_{photon} < \phi_0$, no emission.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (Classic — appeared 3 times):</strong> The electron in H-atom jumps from $n=3$ to $n=1$. The emitted photon irradiates a photosensitive material with work function 5.1 eV. Find stopping potential. [$E_n = -13.6/n^2$ eV]</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p><strong>Step 1:</strong> $E_{photon} = E_3 - E_1 = \left(-\frac{13.6}{9}\right) - (-13.6) = -1.511 + 13.6 = 12.09$ eV $\approx 12.1$ eV.</p>
+                <p><strong>Step 2:</strong> $eV_s = 12.1 - 5.1 = 7.0$ eV → $V_s = 7$ V.</p>
+                <p><strong>Key check:</strong> $12.1 > 5.1$, so emission occurs. Answer: <strong>7 V</strong>.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2010:</strong> Monochromatic radiation emitted when electron in H-atom jumps from first excited state (n=2) to ground state (n=1) irradiates a photosensitive material. Stopping potential = 3.57 V. Find threshold frequency.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p><strong>Step 1:</strong> $E_{photon}$ for $n=2 \to n=1$: $\Delta E = 13.6(1/1^2 - 1/2^2) = 13.6 \times 3/4 = 10.2$ eV.</p>
+                <p><strong>Step 2:</strong> $\phi_0 = E_{photon} - eV_s = 10.2 - 3.57 = 6.63$ eV.</p>
+                <p><strong>Step 3:</strong> $\nu_0 = \phi_0/h = (6.63 \times 1.6 \times 10^{-19})/(6.626 \times 10^{-34}) \approx 1.6 \times 10^{15}$ Hz.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 3: Frequency Doubled — New KE<sub>max</sub></h3>
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (repeated pattern):</strong> Work function of metal is $\phi$. Incident frequency $\nu$ gives KE<sub>max</sub> $= E$. If frequency is doubled, find new KE<sub>max</sub>.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Original: $E = h\nu - \phi \Rightarrow h\nu = E + \phi$.</p>
+                <p>Doubled frequency: $KE' = h(2\nu) - \phi = 2h\nu - \phi = 2(E+\phi) - \phi = 2E + \phi$.</p>
+                <p><strong>Answer: $KE' = 2E + \phi$.</strong> This is NOT $2E$ — the trap is forgetting that $\phi$ is subtracted only once.</p>
+              </div>
+            </div>
+
+            <div class="shortcut">
+              <p><strong>Frequency doubled trick:</strong> If $\nu \to 2\nu$, then $KE_{new} = 2KE_{old} + \phi_0$. Never $2KE_{old}$.</p>
+              <p><strong>Wavelength halved trick:</strong> Same as doubling frequency, so same formula applies.</p>
+            </div>
+
+            <h3 class="ssh">Graphical Analysis — V<sub>s</sub> vs Frequency Graph</h3>
+            <p>The graph of stopping potential ($V_s$) vs frequency ($\nu$) is a <strong>straight line</strong>: $V_s = (h/e)\nu - \phi_0/e$. The slope is $h/e$ — the same for ALL metals. The x-intercept (where $V_s = 0$) gives $\nu_0$ — different for each metal.</p>
+
+            <div class="visual">
+              <div class="visual-lbl">Stopping Potential vs Frequency</div>
+              <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="max-width:500px">
+                <rect width="500" height="280" fill="var(--paper2)" rx="4"/>
+                <!-- Axes -->
+                <line x1="60" y1="220" x2="460" y2="220" stroke="var(--ink)" stroke-width="2"/>
+                <line x1="60" y1="220" x2="60" y2="30" stroke="var(--ink)" stroke-width="2"/>
+                <!-- Arrow heads -->
+                <polygon points="460,215 468,220 460,225" fill="var(--ink)"/>
+                <polygon points="55,30 60,22 65,30" fill="var(--ink)"/>
+                <!-- Labels -->
+                <text x="470" y="224" font-family="Lora,serif" font-size="14" fill="var(--ink)">ν</text>
+                <text x="30" y="30" font-family="Lora,serif" font-size="13" fill="var(--ink)">Vs</text>
+                <!-- Metal 1 line (lower φ) -->
+                <line x1="110" y1="220" x2="440" y2="60" stroke="#1a4a8c" stroke-width="2.5"/>
+                <!-- Metal 2 line (higher φ) -->
+                <line x1="175" y1="220" x2="440" y2="80" stroke="#b83030" stroke-width="2.5" stroke-dasharray="6,4"/>
+                <!-- ν0 markers -->
+                <line x1="110" y1="220" x2="110" y2="230" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="95" y="244" font-family="Architects Daughter,cursive" font-size="11" fill="#1a4a8c">ν₀(M1)</text>
+                <line x1="175" y1="220" x2="175" y2="230" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="160" y="244" font-family="Architects Daughter,cursive" font-size="11" fill="#b83030">ν₀(M2)</text>
+                <!-- Slope label -->
+                <text x="340" y="115" font-family="Architects Daughter,cursive" font-size="12" fill="#1a6b40">slope = h/e</text>
+                <text x="318" y="130" font-family="Architects Daughter,cursive" font-size="11" fill="#6b5a47">(same for all metals)</text>
+                <!-- Metal labels -->
+                <text x="280" y="75" font-family="Architects Daughter,cursive" font-size="12" fill="#1a4a8c">Metal 1 (low φ)</text>
+                <text x="280" y="95" font-family="Architects Daughter,cursive" font-size="12" fill="#b83030">- - Metal 2 (high φ)</text>
+                <!-- Vs axis line -->
+                <line x1="52" y1="220" x2="68" y2="220" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="30" y="224" font-family="Architects Daughter,cursive" font-size="11" fill="var(--ink3)">0</text>
+              </svg>
+            </div>
+
+            <div class="tip-box">
+              <span class="lbl">✅ Key Insight from Graph</span>
+              <p>All metals give <strong>parallel lines</strong> (same slope = $h/e$) but with different x-intercepts ($\nu_0$ values). The slope of this graph was historically used to measure Planck's constant $h$ accurately. NEET asks: "From the graph, which quantity is the slope?" — Answer: $h/e$.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: DE BROGLIE -->
+          <div class="sec" data-m="debroglie">
+            <h2 class="sh">de Broglie Hypothesis — Matter Waves <span class="tag tg">3rd Most Tested</span></h2>
+
+            <p>Louis de Broglie's 1924 hypothesis: <strong>every moving particle has an associated wavelength</strong>. This was the reverse of Einstein's photon idea — if waves can behave as particles, particles can behave as waves. Verified experimentally by Davisson and Germer (1927) through electron diffraction from a nickel crystal.</p>
+
+            <div class="formula">
+              <strong>de Broglie Wavelength</strong><br/>
+              $\lambda = \frac{h}{p} = \frac{h}{mv}$<br/><br/>
+              For particle accelerated through voltage $V$:<br/>
+              $\lambda = \frac{h}{\sqrt{2mqV}}$<br/><br/>
+              For particle at temperature $T$:<br/>
+              $\lambda = \frac{h}{\sqrt{2m k_B T}} = \frac{h}{\sqrt{3m k_B T}}$ (rms speed)
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 4: Comparing de Broglie Wavelengths (Most Common!)</h3>
+            <p>NEET repeatedly asks: compare $\lambda$ for electron, proton, neutron, alpha particle — all accelerated through the same voltage $V$, or all having the same kinetic energy.</p>
+
+            <div class="approach">
+              <p><strong>For same voltage $V$:</strong> $\lambda = h/\sqrt{2mqV}$. Here $q$ is the charge. Write $\lambda \propto 1/\sqrt{mq}$.</p>
+              <p><strong>For same kinetic energy $KE$:</strong> $p = \sqrt{2m \cdot KE}$, so $\lambda = h/\sqrt{2m \cdot KE} \propto 1/\sqrt{m}$. Lighter particle → longer wavelength.</p>
+              <p><strong>For same momentum $p$:</strong> $\lambda = h/p$ → all have the same wavelength (obvious!)</p>
+            </div>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Particle</th><th>Mass (u)</th><th>Charge</th><th>$mq$ (relative)</th><th>$\lambda$ rank (same V)</th></tr></thead>
+                <tbody>
+                  <tr><td>Electron ($e^-$)</td><td>0.00055</td><td>1e</td><td>Very small</td><td class="good">Longest $\lambda$</td></tr>
+                  <tr><td>Proton ($p$)</td><td>1</td><td>1e</td><td>1</td><td>—</td></tr>
+                  <tr><td>Deuteron ($d$)</td><td>2</td><td>1e</td><td>2</td><td>—</td></tr>
+                  <tr><td>Alpha ($\alpha$)</td><td>4</td><td>2e</td><td>8</td><td class="bad">Shortest $\lambda$</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2024 (Re-exam):</strong> Electron and alpha particle are accelerated by same potential difference. Let $\lambda_e$ and $\lambda_\alpha$ denote their de Broglie wavelengths. Then:</p>
+              <p>(a) $\lambda_e > \lambda_\alpha$ (b) $\lambda_e = 4\lambda_\alpha$ (c) $\lambda_e = \lambda_\alpha$ (d) $\lambda_e < \lambda_\alpha$</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$\lambda \propto 1/\sqrt{mq}$. For electron: $m_e q_e$ is very small. For alpha: $m_\alpha = 4m_p \approx 7280 m_e$, $q_\alpha = 2e$. So $m_\alpha q_\alpha \gg m_e q_e$.</p>
+                <p>Therefore $\lambda_e \gg \lambda_\alpha$. <strong>Answer: (a) $\lambda_e > \lambda_\alpha$</strong>.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2025:</strong> A photon and an electron (mass $m$) have the same energy $E$. The ratio $\lambda_{photon}/\lambda_{electron}$ is: ($c$ = speed of light)</p>
+              <p>(a) $\sqrt{2mE}/c \cdot h^{-1}$ &nbsp;&nbsp; (b) $c\sqrt{2m/E}$ &nbsp;&nbsp; (c) $\sqrt{E/(2mc^2)}$ &nbsp;&nbsp; (d) $\sqrt{2mE} \cdot c$</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Photon: $E = hc/\lambda_{photon} \Rightarrow \lambda_{photon} = hc/E$.</p>
+                <p>Electron: $E = p^2/(2m) \Rightarrow p = \sqrt{2mE} \Rightarrow \lambda_{electron} = h/\sqrt{2mE}$.</p>
+                <p>Ratio: $\frac{\lambda_{photon}}{\lambda_{electron}} = \frac{hc/E}{h/\sqrt{2mE}} = \frac{c\sqrt{2mE}}{E} = c\sqrt{2m/E}$.</p>
+                <p><strong>Answer: (b) $c\sqrt{2m/E}$</strong>.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">de Broglie Wavelength for Particle at Temperature T</h3>
+            <p>For particles in thermal equilibrium at temperature $T$: using kinetic theory, $KE = \frac{3}{2}k_BT$ (for rms) or $KE = \frac{3}{2}k_BT$ depending on context. NEET uses $\lambda = h/\sqrt{2mk_BT}$ for most problems (using average KE = $k_BT$) or sometimes the full $3k_BT/2$ version.</p>
+
+            <div class="shortcut">
+              <p><strong>Neutron in thermal equilibrium (NEET 2013):</strong> $\lambda = h/\sqrt{2mk_BT}$. For neutron: $m = 1.67\times10^{-27}$ kg, plugging in gives $\lambda = 30.8/\sqrt{T}$ Å. This exact numerical result has appeared in NEET — memorise it.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2013:</strong> de Broglie wavelength of neutrons in thermal equilibrium at temperature $T$ is:</p>
+              <p>(a) $3.08/\sqrt{T}$ Å &nbsp;&nbsp; (b) $0.308/\sqrt{T}$ Å &nbsp;&nbsp; (c) $0.0308/\sqrt{T}$ Å &nbsp;&nbsp; (d) $30.8/\sqrt{T}$ Å</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$\lambda = h/\sqrt{2mk_BT}$. Plugging: $h = 6.63\times10^{-34}$, $m = 1.67\times10^{-27}$ kg, $k_B = 1.38\times10^{-23}$ J/K.</p>
+                <p>$\lambda = \frac{6.63\times10^{-34}}{\sqrt{2 \times 1.67\times10^{-27} \times 1.38\times10^{-23} \times T}} = \frac{6.63\times10^{-34}}{\sqrt{4.608\times10^{-50}T}} = \frac{6.63\times10^{-34}}{6.789\times10^{-25}\sqrt{T}}$</p>
+                <p>$= 9.77\times10^{-10}/\sqrt{T}$ m $\approx 30.8/\sqrt{T}$ Å. <strong>Answer: (d)</strong>.</p>
+                <p><em>Tip: Just memorise the final result — $30.8/\sqrt{T}$ Å for neutron.</em></p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: ELECTRON EMISSION TYPES -->
+          <div class="sec" data-m="emission">
+            <h2 class="sh">Electron Emission Mechanisms <span class="tag tt">Low Frequency</span></h2>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Thermionic Emission</div>
+                <p>Metal heated to high temperature. Thermal energy overcomes work function. Used in cathode ray tubes, electron guns. Example: tungsten filaments.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Photoelectric Emission</div>
+                <p>Light of $\nu > \nu_0$ falls on metal surface. Photon energy overcomes work function. Basis of photodetectors, solar cells.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Field Emission</div>
+                <p>Strong electric field (~$10^8$ V/m) applied. Quantum tunnelling allows electrons to escape without thermal energy. Used in field emission displays.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Secondary Emission</div>
+                <p>High-energy electrons bombard metal surface, ejecting secondary electrons. Used in photomultiplier tubes. Ratio of secondary to primary electrons is secondary emission ratio.</p>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <span class="lbl">📝 NEET 2025 Specific</span>
+              <p>In the Davisson-Germer experiment, electrons showed diffraction peaks at specific angles — confirming wave nature of electrons. The experiment used a nickel crystal as diffraction grating. The accelerating voltage was 54 V → $\lambda = 1.67$ Å, matching Bragg diffraction peak at 50°. Key fact: this was the first direct experimental proof of de Broglie hypothesis.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: TRAPS -->
+          <div class="sec" data-m="traps1">
+            <h2 class="sh">NEET Trap Analysis — Dual Nature <span class="tag tg">Exam Survival</span></h2>
+
+            <div class="trap-row">
+              <div class="trap-num">1</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong Think</div><p>"Increasing intensity of light above threshold increases stopping potential"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>Intensity increases only the number of photoelectrons (current). $V_s$ depends only on frequency: $eV_s = h\nu - \phi_0$</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">2</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong Think</div><p>"de Broglie wavelength depends on charge and nature of particle"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>$\lambda = h/mv$ — depends on mass and velocity (momentum). Charge does NOT appear in de Broglie formula. (NEET 2024 Statement I was incorrect)</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">3</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong Think</div><p>"Photon has positive charge" or "photon mass = $h\nu/c^2$"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>Photon has zero charge and zero REST mass. Its energy-momentum relation is $E = pc$ (massless particle). $m = 0$, not $h\nu/c^2$.</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">4</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong Think</div><p>"For same KE, heavier particle has shorter de Broglie wavelength"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>$\lambda \propto 1/\sqrt{m}$ for same KE. YES — heavier particle → shorter $\lambda$. But for same MOMENTUM, all have same $\lambda$. Distinguish the condition!</p></div>
+            </div>
+
+            <div class="exam-mode">
+              <h3>Chapter 1 — Last 5-Minute Recall</h3>
+              <ul>
+                <li>$E_{photon} = h\nu = hc/\lambda$. Use $hc = 1240$ eV·nm always.</li>
+                <li>Einstein: $KE_{max} = h\nu - \phi_0 = eV_s$</li>
+                <li>$V_s \propto \nu$, $I_{sat} \propto$ Intensity. These are independent.</li>
+                <li>$\lambda_{dB} = h/p = h/\sqrt{2mKE} = h/\sqrt{2mqV}$</li>
+                <li>Same voltage: $\lambda \propto 1/\sqrt{mq}$ → electron has longest $\lambda$</li>
+                <li>Same KE: $\lambda \propto 1/\sqrt{m}$ → lightest has longest $\lambda$</li>
+                <li>Photon: $p = E/c = h/\lambda$, zero charge, zero rest mass</li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- ch-body -->
+        <a href="#top" class="bt">↑ back to top</a>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- CHAPTER 2: ATOMS — BOHR'S MODEL -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <article class="chapter" id="ch2">
+        <div class="ch-head">
+          <div class="ch-ey">Chapter 02 · Class 12 · Modern Physics</div>
+          <div class="ch-title">Atoms — <em>Bohr's Model, Spectra &amp; Hydrogen Atom</em></div>
+        </div>
+        <div class="ch-body">
+
+          <!-- OVERVIEW -->
+          <div class="sec" data-m="overview">
+            <h2 class="sh">PYQ Frequency Overview <span class="tag tg">2–4 Qs/year</span></h2>
+            <div class="pyq-strip">
+              <div class="pyq-stat"><strong>~40</strong>questions<br />2007–2025</div>
+              <div class="pyq-stat"><strong>35%</strong>Spectral Series<br />identification</div>
+              <div class="pyq-stat"><strong>30%</strong>Energy level<br />transitions</div>
+              <div class="pyq-stat"><strong>20%</strong>Bohr radius<br />&amp; velocity</div>
+              <div class="pyq-stat"><strong>15%</strong>Rydberg<br />formula</div>
+            </div>
+
+            <p>This is the <strong>highest-yield chapter in Modern Physics</strong>. Atoms contributes on average 3–4 questions per year. The entire chapter reduces to 3 pillars: Bohr's postulates, the Rydberg formula, and spectral series limits. Master these and every atoms question becomes mechanical.</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Sub-topic</th><th>NEET Frequency</th><th>Priority</th></tr></thead>
+                <tbody>
+                  <tr><td>Spectral series identification (Lyman/Balmer/Paschen etc.)</td><td>12 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Energy of photon emitted in transition $n_2 \to n_1$</td><td>10 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Bohr radius and orbit speed dependence on $n$</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Number of spectral lines from a given excited state</td><td>7 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Ratio of wavelengths of different series lines</td><td>6 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Rutherford model / distance of closest approach</td><td>4 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Time period and frequency of revolution</td><td>4 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Angular momentum quantisation</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Hydrogen-like ions (He$^+$, Li$^{2+}$)</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION: RUTHERFORD MODEL -->
+          <div class="sec" data-m="rutherford">
+            <h2 class="sh">Rutherford's Nuclear Model <span class="tag tt">Foundation Context</span></h2>
+            <p>Geiger-Marsden alpha scattering experiment (1909–1911): alpha particles fired at thin gold foil. Most passed through, very few bounced back at large angles. This proved:</p>
+            <ul class="pl chk">
+              <li>Atom is mostly empty space</li>
+              <li>All positive charge and most mass is concentrated in a tiny nucleus (~$10^{-15}$ m)</li>
+              <li>Electrons orbit around the nucleus</li>
+            </ul>
+
+            <div class="def-box">
+              <span class="lbl">Distance of Closest Approach (r₀)</span>
+              <p>When an alpha particle ($Z_1 = 2$) approaches a nucleus ($Z_2$) head-on and momentarily stops: all KE converts to electrostatic PE. $r_0 = \frac{2kZ_1Z_2 e^2}{mv^2} = \frac{kZ_1Z_2e^2}{KE}$. This gives the nuclear diameter estimate.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (Pattern):</strong> When an alpha particle (energy 5 MeV) bombards a gold nucleus ($Z = 79$), find the distance of closest approach.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>At closest approach: $KE = PE \Rightarrow 5 \text{ MeV} = \frac{kq_1q_2}{r_0}$</p>
+                <p>$r_0 = \frac{9\times10^9 \times 2 \times 1.6\times10^{-19} \times 79 \times 1.6\times10^{-19}}{5 \times 10^6 \times 1.6\times10^{-19}}$</p>
+                <p>$r_0 = \frac{9\times10^9 \times 2 \times 79 \times (1.6)^2 \times 10^{-38}}{8\times10^{-13}} \approx 4.55 \times 10^{-14}$ m $\approx 45.5$ fm</p>
+              </div>
+            </div>
+
+            <div class="warn-box">
+              <span class="lbl">⚠ Rutherford's Model Failure</span>
+              <p>An orbiting (accelerating) electron should continuously radiate energy, spiralling into the nucleus in ~$10^{-8}$ s. The model predicts no stable atoms and no discrete spectra — both contradicted by experiment. This is why Bohr's model was necessary.</p>
+            </div>
+          </div>
+
+          <!-- SECTION: BOHR'S MODEL -->
+          <div class="sec" data-m="bohr">
+            <h2 class="sh">Bohr's Model — The Three Postulates <span class="tag tg">Most Asked</span></h2>
+
+            <p>Bohr (1913) fixed Rutherford's model with three revolutionary postulates that worked perfectly for hydrogen:</p>
+
+            <ul class="pl num">
+              <li><strong>Stable Orbits:</strong> Electrons can orbit in certain allowed circular orbits without radiating energy. In these orbits they have fixed energy (stationary states).</li>
+              <li><strong>Angular Momentum Quantisation:</strong> Orbital angular momentum $L = mvr = n\hbar = nh/2\pi$ where $n = 1, 2, 3, \ldots$ (principal quantum number).</li>
+              <li><strong>Quantum Radiation:</strong> When an electron jumps from orbit $n_2$ to $n_1$ ($n_2 > n_1$), it emits a photon of energy $E = h\nu = E_{n_2} - E_{n_1}$.</li>
+            </ul>
+
+            <h3 class="ssh">All Bohr Formulas — Complete and Derivation-Aware</h3>
+
+            <div class="formula">
+              <strong>For Hydrogen Atom ($Z=1$) and Hydrogen-like Ion (atomic number $Z$)</strong><br/><br/>
+              Radius of $n$th orbit: $r_n = \frac{n^2 a_0}{Z}$ where $a_0 = 0.529$ Å (Bohr radius)<br/>
+              $r_n = \frac{0.529 \times n^2}{Z}$ Å = $\frac{n^2}{Z} \times 0.529$ Å<br/><br/>
+              Speed in $n$th orbit: $v_n = \frac{v_0 Z}{n}$ where $v_0 = 2.18 \times 10^6$ m/s<br/><br/>
+              Energy of $n$th orbit: $E_n = -\frac{13.6 Z^2}{n^2}$ eV<br/><br/>
+              Time period: $T_n \propto n^3/Z^2$ (since $T = 2\pi r/v$)<br/>
+              Frequency of revolution: $f_n \propto Z^2/n^3$<br/>
+              Angular momentum: $L_n = n\hbar = nh/2\pi$
+            </div>
+
+            <div class="fcards">
+              <div class="fcard">
+                <div class="fcard-title">Scaling Laws ($\propto$)</div>
+                <ul>
+                  <li>$r_n \propto n^2/Z$</li>
+                  <li>$v_n \propto Z/n$</li>
+                  <li>$E_n \propto -Z^2/n^2$</li>
+                  <li>$T_n \propto n^3/Z^2$</li>
+                  <li>$L_n \propto n$</li>
+                  <li>$KE_n = -E_n = 13.6Z^2/n^2$ eV</li>
+                  <li>$PE_n = 2E_n = -27.2Z^2/n^2$ eV</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">H-atom Energy Levels</div>
+                <ul>
+                  <li>$E_1 = -13.6$ eV (ground)</li>
+                  <li>$E_2 = -3.4$ eV</li>
+                  <li>$E_3 = -1.51$ eV</li>
+                  <li>$E_4 = -0.85$ eV</li>
+                  <li>$E_5 = -0.544$ eV</li>
+                  <li>$E_\infty = 0$ (ionised)</li>
+                  <li>IE from ground = 13.6 eV</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Key Transitions (eV)</div>
+                <ul>
+                  <li>$n=2\to1$: 10.2 eV (Lyman)</li>
+                  <li>$n=3\to1$: 12.09 eV</li>
+                  <li>$n=4\to1$: 12.75 eV</li>
+                  <li>$n=3\to2$: 1.89 eV (Balmer)</li>
+                  <li>$n=4\to2$: 2.55 eV</li>
+                  <li>$n=4\to3$: 0.66 eV (Paschen)</li>
+                  <li>$n=\infty\to1$: 13.6 eV (series limit)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="trick">
+              <p><strong>KE and PE in Bohr orbits:</strong> $KE = -E_n$ (positive), $PE = 2E_n$ (negative). Total $E = KE + PE = -KE$. So for $E_1 = -13.6$ eV: $KE_1 = +13.6$ eV, $PE_1 = -27.2$ eV. This exact relation (PE = 2E) comes from the virial theorem for Coulomb force.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: SPECTRAL SERIES -->
+          <div class="sec" data-m="spectra">
+            <h2 class="sh">Hydrogen Spectral Series — Complete Map <span class="tag tg">Most Asked</span></h2>
+
+            <p>When electrons in excited hydrogen atoms return to lower energy levels, they emit photons of specific wavelengths forming discrete spectral series. <strong>NEET loves questions on: which region each series lies in, the first and last line wavelengths, and ratio calculations.</strong></p>
+
+            <div class="formula">
+              <strong>Rydberg Formula</strong><br/>
+              $\frac{1}{\lambda} = R_H \left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$ where $n_2 > n_1$<br/>
+              $R_H = 1.097 \times 10^7$ m$^{-1}$ (Rydberg constant)<br/>
+              Wave number: $\bar{\nu} = 1/\lambda$
+            </div>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Series</th><th>$n_1$ (final)</th><th>$n_2$ range</th><th>Spectrum region</th><th>First line $n_2$</th><th>Series limit $n_2 = \infty$</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Lyman</strong></td><td>1</td><td>2, 3, 4 …</td><td>UV</td><td>$n=2 \to 1$: 121.5 nm</td><td>91.2 nm</td></tr>
+                  <tr><td><strong>Balmer</strong></td><td>2</td><td>3, 4, 5 …</td><td>Visible (mainly)</td><td>$n=3 \to 2$: 656 nm (red, H$\alpha$)</td><td>364.6 nm</td></tr>
+                  <tr><td><strong>Paschen</strong></td><td>3</td><td>4, 5, 6 …</td><td>IR (near)</td><td>$n=4 \to 3$: 1875 nm</td><td>820 nm</td></tr>
+                  <tr><td><strong>Brackett</strong></td><td>4</td><td>5, 6, 7 …</td><td>IR (mid)</td><td>$n=5 \to 4$</td><td>1458 nm</td></tr>
+                  <tr><td><strong>Pfund</strong></td><td>5</td><td>6, 7, 8 …</td><td>IR (far)</td><td>$n=6 \to 5$</td><td>2278 nm</td></tr>
+                  <tr><td><strong>Humphreys</strong></td><td>6</td><td>7, 8 …</td><td>Far IR</td><td>$n=7 \to 6$</td><td>3282 nm</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tip-box">
+              <span class="lbl">✅ Memory Trick — Series Regions</span>
+              <p>"<strong>L</strong>et <strong>B</strong>oys <strong>P</strong>lay <strong>B</strong>asketball <strong>P</strong>rofessionally <strong>H</strong>appily" = Lyman(UV), Balmer(Visible), Paschen(IR), Brackett(IR), Pfund(IR), Humphreys(Far IR). Only Balmer is partly visible — the rest are invisible without instruments.</p>
+            </div>
+
+            <div class="visual">
+              <div class="visual-lbl">Hydrogen Energy Level Diagram — NEET Map</div>
+              <svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg" style="max-width:520px">
+                <rect width="520" height="380" fill="var(--paper2)" rx="4"/>
+                <!-- Energy axis -->
+                <line x1="60" y1="20" x2="60" y2="350" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="10" y="200" font-family="Architects Daughter" font-size="10" fill="var(--ink3)" transform="rotate(-90,10,200)">Energy (eV)</text>
+
+                <!-- Energy levels (n=1 bottom, n=∞ top) -->
+                <!-- n=∞ -->
+                <line x1="65" y1="30" x2="220" y2="30" stroke="var(--ink)" stroke-width="1.2" stroke-dasharray="4,3"/>
+                <text x="225" y="34" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=∞ &nbsp; 0 eV</text>
+                <!-- n=5 -->
+                <line x1="65" y1="65" x2="220" y2="65" stroke="var(--ink)" stroke-width="1"/>
+                <text x="225" y="69" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=5 &nbsp; −0.54 eV</text>
+                <!-- n=4 -->
+                <line x1="65" y1="90" x2="220" y2="90" stroke="var(--ink)" stroke-width="1"/>
+                <text x="225" y="94" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=4 &nbsp; −0.85 eV</text>
+                <!-- n=3 -->
+                <line x1="65" y1="135" x2="220" y2="135" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="225" y="139" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=3 &nbsp; −1.51 eV</text>
+                <!-- n=2 -->
+                <line x1="65" y1="215" x2="220" y2="215" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="225" y="219" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=2 &nbsp; −3.4 eV</text>
+                <!-- n=1 -->
+                <line x1="65" y1="340" x2="220" y2="340" stroke="var(--ink)" stroke-width="2.5"/>
+                <text x="225" y="344" font-family="Crimson Pro,serif" font-size="12" fill="var(--ink2)">n=1 &nbsp; −13.6 eV</text>
+
+                <!-- Lyman series (UV) -->
+                <line x1="85" y1="215" x2="85" y2="340" stroke="#1a4a8c" stroke-width="2" marker-end="url(#arrow-b)"/>
+                <line x1="95" y1="135" x2="95" y2="340" stroke="#1a4a8c" stroke-width="1.5"/>
+                <line x1="105" y1="90" x2="105" y2="340" stroke="#1a4a8c" stroke-width="1.2"/>
+                <text x="68" y="275" font-family="Architects Daughter" font-size="10" fill="#1a4a8c" transform="rotate(-90,68,275)">LYMAN (UV)</text>
+
+                <!-- Balmer series (visible) -->
+                <line x1="145" y1="135" x2="145" y2="215" stroke="#b83030" stroke-width="2"/>
+                <line x1="155" y1="90" x2="155" y2="215" stroke="#b83030" stroke-width="1.5"/>
+                <line x1="165" y1="65" x2="165" y2="215" stroke="#b83030" stroke-width="1.2"/>
+                <text x="130" y="175" font-family="Architects Daughter" font-size="10" fill="#b83030" transform="rotate(-90,130,175)">BALMER (Vis)</text>
+
+                <!-- Paschen series (IR) -->
+                <line x1="195" y1="90" x2="195" y2="135" stroke="#1a6b40" stroke-width="2"/>
+                <line x1="205" y1="65" x2="205" y2="135" stroke="#1a6b40" stroke-width="1.5"/>
+                <text x="182" y="108" font-family="Architects Daughter" font-size="10" fill="#1a6b40" transform="rotate(-90,182,108)">PASCHEN</text>
+
+                <!-- n labels -->
+                <text x="45" y="34" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">∞</text>
+                <text x="47" y="69" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">5</text>
+                <text x="47" y="94" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">4</text>
+                <text x="47" y="139" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">3</text>
+                <text x="47" y="219" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">2</text>
+                <text x="47" y="344" font-family="Architects Daughter" font-size="11" fill="var(--ink3)">1</text>
+              </svg>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 5: Number of Spectral Lines from Excited State</h3>
+            <p>If an atom is excited to state $n$, the number of possible spectral lines when it de-excites to ground state is $\binom{n}{2} = \frac{n(n-1)}{2}$. This counts all possible transitions, not just the direct ones.</p>
+
+            <div class="instant-formula">
+              <p><strong>Number of spectral lines</strong> from $n$th excited state</p>
+              <p>$N = \frac{n(n-1)}{2}$</p>
+              <p>From 4th excited state ($n=5$): $N = \frac{5 \times 4}{2} = 10$ lines</p>
+              <p>From 3rd excited state ($n=4$): $N = \frac{4 \times 3}{2} = 6$ lines</p>
+            </div>
+
+            <div class="warn-box">
+              <span class="lbl">⚠ Careful: n vs "nth excited state"</span>
+              <p>Ground state is $n=1$. <strong>1st excited state is $n=2$</strong>, 2nd is $n=3$, 3rd is $n=4$. So "$n$th excited state" = principal quantum number $n+1$. Number of lines from $n$th excited state = $\frac{(n+1)n}{2}$. Don't confuse "excited state number" with principal quantum number $n$.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (multiple times):</strong> H-atom in ground state is excited by radiation $\lambda = 975$ Å. Number of spectral lines emitted?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$E_{photon} = hc/\lambda = 1240\text{ eV·nm}/(97.5\text{ nm}) = 12.72$ eV.</p>
+                <p>H-atom in ground state: $E_1 = -13.6$ eV. After absorbing: $E_{final} = -13.6 + 12.72 = -0.88 \approx -0.85$ eV $\approx E_4$. So excited to $n=4$.</p>
+                <p>Number of lines: $\frac{4 \times 3}{2} = 6$. <strong>Answer: 6 spectral lines.</strong></p>
+              </div>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 6: Ratio of Wavelengths of Different Lines</h3>
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2017:</strong> Ratio of wavelengths of last line (series limit) of Balmer series to last line of Lyman series is:</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Last (limiting) line means $n_2 = \infty$.</p>
+                <p>Balmer series limit: $1/\lambda_B = R_H(1/4 - 0) = R_H/4 \Rightarrow \lambda_B = 4/R_H$.</p>
+                <p>Lyman series limit: $1/\lambda_L = R_H(1/1 - 0) = R_H \Rightarrow \lambda_L = 1/R_H$.</p>
+                <p>Ratio: $\lambda_B/\lambda_L = 4$. <strong>Answer: 4</strong>.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2012 (classic):</strong> Electron in H-atom jumps from 3rd orbit to 2nd orbit, emitting photon of wavelength $\lambda$. When it jumps from 4th orbit to 3rd orbit, what is the wavelength?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$3 \to 2$: $1/\lambda = R_H(1/4 - 1/9) = R_H \times 5/36 \Rightarrow \lambda = 36/(5R_H)$.</p>
+                <p>$4 \to 3$: $1/\lambda' = R_H(1/9 - 1/16) = R_H \times 7/144 \Rightarrow \lambda' = 144/(7R_H)$.</p>
+                <p>$\lambda'/\lambda = \frac{144/(7R_H)}{36/(5R_H)} = \frac{144 \times 5}{36 \times 7} = \frac{720}{252} = \frac{20}{7}$</p>
+                <p>So $\lambda' = \frac{20\lambda}{7}$.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 7: Bohr Model — Dependence on n and Z</h3>
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (NEET 2013 Karnataka):</strong> Time period in initial state is 8 times in final state. Possible values of $n_1$ and $n_2$?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$T \propto n^3$. So $T_1/T_2 = n_1^3/n_2^3 = 8 \Rightarrow n_1/n_2 = 2$.</p>
+                <p>Possible: $n_1 = 2, n_2 = 1$; $n_1 = 4, n_2 = 2$; $n_1 = 6, n_2 = 3$.</p>
+                <p>NEET options usually give $(n_1=2, n_2=1)$ — the simplest valid pair.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">Hydrogen-like Ions (He⁺, Li²⁺, etc.)</h3>
+            <p>For an ion with nuclear charge $Z$, simply replace $Z$ in all Bohr formulas. The energy levels scale as $Z^2$: $E_n(Z) = -13.6 Z^2/n^2$ eV. The radius scales as $1/Z$.</p>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2010:</strong> Ground state energy of H-atom is $-13.6$ eV. Energy of He$^+$ ion in first excited state ($n=2$) is:</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>He$^+$ has $Z=2$. First excited state is $n=2$.</p>
+                <p>$E_2(\text{He}^+) = -13.6 \times 4/4 = -13.6$ eV.</p>
+                <p>Wait — $E_n = -13.6Z^2/n^2 = -13.6 \times 4/4 = -13.6$ eV. <strong>Answer: $-13.6$ eV.</strong></p>
+                <p>Note: He$^+$ in $n=2$ has same energy as H in $n=1$. This is because $Z/n$ ratio is the same.</p>
+              </div>
+            </div>
+
+            <div class="trick">
+              <p><strong>He$^+$ shortcut:</strong> He$^+$ in $n$th state = H in $(n/Z)$th state energy-wise. Since $Z=2$ for He$^+$: He$^+$ in $n=1$ has same energy as H in $n=1/2$ (impossible), but He$^+$ in $n=2$ has energy $-13.6 \times 4/4 = -13.6$ eV = same as H ground state. He$^+$ in $n=4$ = H in $n=2$ energy-wise.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: BOHR TRAPS -->
+          <div class="sec" data-m="traps2">
+            <h2 class="sh">NEET Trap Analysis — Atoms <span class="tag tg">Exam Survival</span></h2>
+
+            <div class="trap-row">
+              <div class="trap-num">1</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong</div><p>"Paschen series is in visible region"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>Paschen series ($n_1=3$) is in the <strong>infrared (IR)</strong> region. Only Balmer is in the visible region (and its first few lines). Lyman is UV.</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">2</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong</div><p>"Speed of electron decreases with increasing $n$"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>Yes, $v \propto 1/n$ — speed DECREASES. But kinetic energy also decreases: $KE \propto 1/n^2$. Angular momentum $L = mvr \propto n$ — INCREASES. Don't confuse v, KE, and L.</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">3</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong</div><p>"Maximum number of lines when atom de-excites from $n=4$ is 4"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>$N = n(n-1)/2 = 4\times3/2 = 6$ lines. The trap is thinking only 1 line per jump or only the direct path to ground state.</p></div>
+            </div>
+            <div class="trap-row">
+              <div class="trap-num">4</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Wrong</div><p>"Potential energy of electron in Bohr's atom is positive"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>PE is <strong>negative</strong> (attractive Coulomb). $PE = -2 \times |E_n|$. Total energy = KE + PE = negative. $KE = +|E_n|$, $PE = -2|E_n|$, $E_{total} = -|E_n|$.</p></div>
+            </div>
+
+            <div class="exam-mode">
+              <h3>Chapter 2 — Last 5-Minute Recall</h3>
+              <ul>
+                <li>$r_n = 0.529 n^2/Z$ Å; $v_n = 2.18\times10^6 Z/n$ m/s; $E_n = -13.6Z^2/n^2$ eV</li>
+                <li>$T \propto n^3/Z^2$; $L = nh/2\pi \propto n$; $KE = -E_n$; $PE = 2E_n$</li>
+                <li>Lyman=UV($n_1=1$), Balmer=Visible($n_1=2$), Paschen=IR($n_1=3$)</li>
+                <li>Series limit: $n_2=\infty$; First line: $n_2 = n_1+1$</li>
+                <li>Number of lines from $n$: $N = n(n-1)/2$</li>
+                <li>$hc = 1240$ eV·nm; $R_H = 1.097\times10^7$ m$^{-1}$</li>
+                <li>H-atom IE = 13.6 eV; $n=1\to2$: need 10.2 eV</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <a href="#top" class="bt">↑ back to top</a>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- CHAPTER 3: NUCLEI & RADIOACTIVITY -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <article class="chapter" id="ch3">
+        <div class="ch-head">
+          <div class="ch-ey">Chapter 03 · Class 12 · Modern Physics</div>
+          <div class="ch-title">Nuclei — <em>Nuclear Properties, Radioactivity &amp; Nuclear Energy</em></div>
+        </div>
+        <div class="ch-body">
+
+          <!-- OVERVIEW -->
+          <div class="sec" data-m="overview">
+            <h2 class="sh">PYQ Frequency Overview <span class="tag tg">2–5 Qs/year</span></h2>
+            <div class="pyq-strip">
+              <div class="pyq-stat"><strong>~45</strong>questions<br />2007–2025</div>
+              <div class="pyq-stat"><strong>40%</strong>Radioactive<br />decay law</div>
+              <div class="pyq-stat"><strong>25%</strong>Binding energy<br />&amp; mass defect</div>
+              <div class="pyq-stat"><strong>20%</strong>Nuclear<br />reactions (α,β,γ)</div>
+              <div class="pyq-stat"><strong>15%</strong>Fission, fusion<br />&amp; nuclear force</div>
+            </div>
+
+            <p><strong>2024 had 5 questions from nuclei alone</strong> — the highest ever. This chapter is explosively numerical: half-life decay, activity, mass defect to MeV, binding energy per nucleon. The conceptual questions test decay sequence tracking and nuclear force properties.</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Sub-topic</th><th>NEET Frequency</th><th>Priority</th></tr></thead>
+                <tbody>
+                  <tr><td>Half-life calculations (remaining fraction, time)</td><td>14 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Radioactive decay sequence (α,β,γ chains)</td><td>10 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Binding energy per nucleon and mass defect</td><td>9 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Activity and decay constant</td><td>7 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Nuclear radius formula</td><td>6 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Properties of α, β, γ radiations</td><td>5 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Nuclear fission / Q-value</td><td>4 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Carbon dating / age of rock problems</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION: NUCLEAR PROPERTIES -->
+          <div class="sec" data-m="nucleus">
+            <h2 class="sh">Nuclear Properties — Size, Density, Composition <span class="tag tg">Foundation</span></h2>
+
+            <div class="formula">
+              <strong>Nuclear Radius</strong><br/>
+              $R = R_0 A^{1/3}$ where $R_0 = 1.2$ fm (femtometre = $10^{-15}$ m)<br/>
+              Nuclear volume: $V \propto A$ → <strong>nuclear density is constant</strong> (same for all nuclei!)
+            </div>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Composition</div>
+                <p>Nucleus = protons (Z) + neutrons (N). Mass number $A = Z + N$. Notation: ${}^A_Z X$.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Nuclear Density</div>
+                <p>$\rho_{nucleus} \approx 2.3 \times 10^{17}$ kg/m³. This is constant for ALL nuclei — the most important fact about nuclear density. $\sim 10^{14}$ times water density.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Isotopes/Isobars/Isotones</div>
+                <p><strong>Isotopes:</strong> same Z, different A (same element). <strong>Isobars:</strong> same A, different Z. <strong>Isotones:</strong> same N, different Z. NEET tests definitions + examples every 2 years.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Nuclear Force</div>
+                <p>Strongest force in nature. Short range (~2–3 fm). Charge-independent (same for p-p, n-n, p-n). Saturates (nucleon only interacts with neighbours). Non-central.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2012:</strong> If nuclear radius of $^{27}$Al is 3.6 fm, find approximate nuclear radius of $^{64}$Cu.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$R \propto A^{1/3}$. $R_{Cu}/R_{Al} = (64/27)^{1/3} = (64/27)^{1/3} = 4/3$.</p>
+                <p>$R_{Cu} = 3.6 \times 4/3 = 4.8$ fm. <strong>Answer: 4.8 fm</strong>.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: MASS DEFECT & BINDING ENERGY -->
+          <div class="sec" data-m="binding">
+            <h2 class="sh">Mass Defect &amp; Binding Energy <span class="tag tg">High Yield</span></h2>
+
+            <p><strong>The key insight:</strong> The mass of a nucleus is LESS than the sum of masses of its constituent protons and neutrons. This "missing mass" (mass defect $\Delta m$) has been converted into the energy that binds the nucleons together.</p>
+
+            <div class="formula">
+              <strong>Mass Defect and Binding Energy</strong><br/>
+              $\Delta m = [Zm_p + Nm_n] - M_{nucleus}$<br/>
+              Binding Energy: $BE = \Delta m \times c^2$<br/>
+              In practical units: $BE = \Delta m \times 931.5$ MeV (if $\Delta m$ in atomic mass units, u)<br/>
+              Binding Energy Per Nucleon: $BE/A$
+            </div>
+
+            <div class="tip-box">
+              <span class="lbl">✅ Key Conversion</span>
+              <p>$1$ u $= 931.5$ MeV/c². This single conversion factor converts mass defect in u to binding energy in MeV. Memorise: <strong>$\Delta m$(u) $\times 931$ = $BE$ (MeV)</strong>.</p>
+            </div>
+
+            <h3 class="ssh">BE/A Curve — The Most Important Graph in Nuclear Physics</h3>
+
+            <div class="visual">
+              <div class="visual-lbl">Binding Energy Per Nucleon vs Mass Number</div>
+              <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg" style="max-width:500px">
+                <rect width="500" height="260" fill="var(--paper2)" rx="4"/>
+                <line x1="55" y1="220" x2="470" y2="220" stroke="var(--ink)" stroke-width="1.5"/>
+                <line x1="55" y1="220" x2="55" y2="20" stroke="var(--ink)" stroke-width="1.5"/>
+                <text x="475" y="224" font-family="Crimson Pro,serif" font-size="13" fill="var(--ink)">A</text>
+                <text x="20" y="120" font-family="Architects Daughter" font-size="9" fill="var(--ink3)" transform="rotate(-90,20,120)">BE/A (MeV)</text>
+                <!-- Curve: rises steeply for small A, peaks near A=56, then slowly decreases -->
+                <path d="M55,210 Q70,140 90,80 Q110,55 130,42 Q160,35 200,32 Q240,30 280,30 Q320,31 360,33 Q400,36 440,42 Q460,46 470,50" stroke="#1a4a8c" stroke-width="2.5" fill="none"/>
+                <!-- Peak marker at Fe-56 -->
+                <line x1="266" y1="29" x2="266" y2="220" stroke="#b83030" stroke-width="1.2" stroke-dasharray="4,3"/>
+                <text x="258" y="245" font-family="Architects Daughter" font-size="10" fill="#b83030">⁵⁶Fe</text>
+                <text x="248" y="258" font-family="Architects Daughter" font-size="9" fill="#b83030">peak ~8.8 MeV</text>
+                <!-- Y-axis ticks -->
+                <text x="35" y="33" font-family="Architects Daughter" font-size="10" fill="var(--ink3)">9</text>
+                <text x="35" y="83" font-family="Architects Daughter" font-size="10" fill="var(--ink3)">7</text>
+                <text x="35" y="133" font-family="Architects Daughter" font-size="10" fill="var(--ink3)">5</text>
+                <text x="35" y="183" font-family="Architects Daughter" font-size="10" fill="var(--ink3)">2</text>
+                <!-- Annotations -->
+                <text x="70" y="130" font-family="Architects Daughter" font-size="9" fill="var(--green)">Fusion</text>
+                <text x="60" y="142" font-family="Architects Daughter" font-size="8" fill="var(--green)">releases energy</text>
+                <text x="370" y="60" font-family="Architects Daughter" font-size="9" fill="var(--red)">Fission</text>
+                <text x="360" y="72" font-family="Architects Daughter" font-size="8" fill="var(--red)">releases energy</text>
+                <!-- He-4 point -->
+                <circle cx="95" cy="68" r="4" fill="#5a1a8a"/>
+                <text x="98" y="60" font-family="Architects Daughter" font-size="9" fill="var(--purple)">⁴He (~7.1)</text>
+                <!-- D-2 point -->
+                <circle cx="70" cy="175" r="3" fill="var(--ink3)"/>
+                <text x="72" y="168" font-family="Architects Daughter" font-size="9" fill="var(--ink3)">²H(1.1)</text>
+                <!-- U-238 -->
+                <circle cx="458" cy="48" r="3" fill="var(--orange)"/>
+                <text x="432" y="40" font-family="Architects Daughter" font-size="9" fill="var(--orange)">²³⁸U (~7.6)</text>
+              </svg>
+            </div>
+
+            <div class="def-box">
+              <span class="lbl">Reading the BE/A Curve</span>
+              <p><strong>Fusion (light nuclei → heavier):</strong> BE/A increases → energy released. Sun's energy = fusion of H to He. <br/><strong>Fission (heavy nuclei → lighter):</strong> BE/A increases → energy released. $^{235}$U splits → Fe-range products with higher BE/A. <br/><strong>Iron-56 ($^{56}$Fe) has the highest BE/A ≈ 8.8 MeV/nucleon</strong> — most stable nucleus. Cannot release energy by either fission or fusion.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (classic):</strong> Binding energy per nucleon of D$_2$ (deuterium) and He nuclei are 1.1 MeV and 7.0 MeV respectively. If two D nuclei fuse to form He, energy released per fusion is:</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$^2_1H + ^2_1H \to ^4_2He$.</p>
+                <p>BE of 2 deuterons: $2 \times (2 \times 1.1) = 4.4$ MeV.</p>
+                <p>BE of He-4: $4 \times 7.0 = 28.0$ MeV.</p>
+                <p>Energy released = $BE_{products} - BE_{reactants} = 28.0 - 4.4 = 23.6$ MeV.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: RADIOACTIVITY -->
+          <div class="sec" data-m="radioactivity">
+            <h2 class="sh">Radioactivity — Decay Law, Half-life &amp; Activity <span class="tag tg">Highest Frequency</span></h2>
+
+            <p>Radioactive decay is a <strong>statistical, spontaneous process</strong>. It cannot be accelerated, slowed, or stopped by any physical or chemical means (temperature, pressure, chemical state — irrelevant). The only factor is the isotope's intrinsic decay constant $\lambda$.</p>
+
+            <div class="formula">
+              <strong>Radioactive Decay Law</strong><br/>
+              $N(t) = N_0 e^{-\lambda t}$<br/>
+              Half-life: $T_{1/2} = \ln 2/\lambda = 0.693/\lambda$<br/>
+              $N = N_0 \left(\frac{1}{2}\right)^{t/T_{1/2}}$<br/>
+              Activity: $A = \lambda N = A_0 e^{-\lambda t}$<br/>
+              Mean life: $\tau = 1/\lambda = T_{1/2}/0.693 \approx 1.443 T_{1/2}$
+            </div>
+
+            <div class="trick">
+              <p><strong>$(1/2)^n$ method:</strong> After $n$ half-lives, remaining fraction $= (1/2)^n$. After 1 half-life: 50% remains. After 2: 25%. After 3: 12.5%. After 4: 6.25%. After 10: $(1/1024) \approx 0.1\%$. This method avoids exponential calculations — use it in NEET.</p>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 8: Half-life Calculation (Most Common Type)</h3>
+
+            <div class="approach">
+              <p><strong>Type A:</strong> Given $T_{1/2}$, find fraction remaining/decayed after time $t$.</p>
+              <p>Number of half-lives: $n = t/T_{1/2}$. Remaining: $(1/2)^n$. Decayed: $1 - (1/2)^n$.</p>
+              <p><strong>Type B:</strong> Given initial and final amounts, find time elapsed.</p>
+              <p>$N/N_0 = (1/2)^n \Rightarrow n = \log_2(N_0/N) \Rightarrow t = n \times T_{1/2}$.</p>
+              <p><strong>Type C:</strong> Given two decay constants, find when ratio of activities equals specific value.</p>
+              <p>Use $A_1/A_2 = (\lambda_1 N_{01} e^{-\lambda_1 t}) / (\lambda_2 N_{02} e^{-\lambda_2 t})$.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2021:</strong> Half-life of radioactive nuclide is 100 hours. The fraction of original activity that remains after 150 hours is:</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$n = t/T_{1/2} = 150/100 = 1.5$ half-lives.</p>
+                <p>$A/A_0 = (1/2)^{1.5} = (1/2)^1 \times (1/2)^{0.5} = 0.5 \times (1/\sqrt{2}) = 1/(2\sqrt{2}) = \sqrt{2}/4$.</p>
+                <p><strong>Answer: $1/(2\sqrt{2})$ or equivalently $\sqrt{2}/4 \approx 0.354$.</strong></p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (classic — multiple times):</strong> A radioactive sample has $T_{1/2} = 20$ minutes. How long to go from 40% decay to 85% decay?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>40% decayed → 60% remaining: $(1/2)^{n_1} = 0.6$. → Not a nice number. Use: $N = N_0 e^{-\lambda t_1}$, $0.6 = e^{-\lambda t_1}$.</p>
+                <p>85% decayed → 15% remaining: $0.15 = e^{-\lambda t_2}$.</p>
+                <p>$\Delta t = t_2 - t_1 = \frac{\ln(0.6/0.15)}{\lambda} = \frac{\ln 4}{\lambda} = \frac{2\ln 2}{\lambda} = 2T_{1/2} = 40$ min.</p>
+                <p><strong>Answer: 40 minutes (= 2 half-lives).</strong></p>
+                <p>Key: $0.6/0.15 = 4 = 2^2$ → exactly 2 half-lives difference.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2017:</strong> Radioactive material A has decay constant $8\lambda$, material B has decay constant $\lambda$. Initially same number of nuclei. After what time is ratio of B to A equal to $e$?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$N_B/N_A = e^{-\lambda t} / e^{-8\lambda t} = e^{7\lambda t} = e^1$.</p>
+                <p>$7\lambda t = 1 \Rightarrow t = 1/(7\lambda)$. <strong>Answer: $t = 1/(7\lambda)$.</strong></p>
+              </div>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 9: Age of Rock / Carbon Dating</h3>
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (multiple):</strong> Radioactive X with half-life $1.4 \times 10^9$ years decays to stable Y. Rock sample has X and Y in ratio 1:7. Age of rock?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Ratio X:Y = 1:7. So if $N$ = X now, originally $N_0 = N + 7N = 8N$ (Y came from X). </p>
+                <p>$N/N_0 = 1/8 = (1/2)^3$. So 3 half-lives have passed.</p>
+                <p>Age = $3 \times T_{1/2} = 3 \times 1.4\times10^9 = 4.2 \times 10^9$ years.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: NUCLEAR DECAY TYPES -->
+          <div class="sec" data-m="decaytypes">
+            <h2 class="sh">Alpha, Beta, Gamma Decay — Tracking Nuclear Changes <span class="tag tg">High Frequency</span></h2>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Decay</th><th>Particle emitted</th><th>Change in A</th><th>Change in Z</th><th>Change in N</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>α decay</strong></td><td>$^4_2$He nucleus</td><td class="bad">−4</td><td class="bad">−2</td><td class="bad">−2</td></tr>
+                  <tr><td><strong>β⁻ decay</strong></td><td>Electron ($e^-$) + antineutrino</td><td>0</td><td class="good">+1</td><td class="bad">−1</td></tr>
+                  <tr><td><strong>β⁺ decay</strong> (positron)</td><td>Positron ($e^+$) + neutrino</td><td>0</td><td class="bad">−1</td><td class="good">+1</td></tr>
+                  <tr><td><strong>Electron Capture</strong></td><td>K-electron absorbed; neutrino emitted</td><td>0</td><td class="bad">−1</td><td class="good">+1</td></tr>
+                  <tr><td><strong>γ decay</strong></td><td>γ photon (EM radiation)</td><td>0</td><td>0</td><td>0</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="trick">
+              <p><strong>α-decay memory trick:</strong> "Alpha eats 4 mass and 2 charge." — A drops by 4, Z drops by 2. After α-emission, daughter is 2 positions to the LEFT in periodic table.</p>
+              <p><strong>β⁻ decay:</strong> Neutron → proton + electron + antineutrino. Z increases by 1. Think: "neutron becomes proton, birth of electron." Daughter is 1 position RIGHT.</p>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 10: Tracking Decay Chains</h3>
+            <div class="eg eg-pyq">
+              <p><strong>PYQ 2024:</strong> $^{290}_{82}X \xrightarrow{\alpha} Y \xrightarrow{e^+} Z \xrightarrow{\beta^-} P \xrightarrow{e^-} Q$. Find mass number and atomic number of Q.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Start: $^{290}_{82}X$. Track each step:</p>
+                <p>→ α: $A: 290-4=286$, $Z: 82-2=80$ → Y = $^{286}_{80}Y$</p>
+                <p>→ $e^+$ (positron/β⁺): $A: 286$, $Z: 80-1=79$ → Z = $^{286}_{79}Z$</p>
+                <p>→ β⁻: $A: 286$, $Z: 79+1=80$ → P = $^{286}_{80}P$</p>
+                <p>→ electron capture ($e^-$): $A: 286$, $Z: 80-1=79$ → Q = $^{286}_{79}Q$</p>
+                <p><strong>Answer: A=286, Z=79.</strong> (Option d in NEET 2024)</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">Properties of α, β, γ Radiations (Comparison)</h3>
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Property</th><th>α</th><th>β</th><th>γ</th></tr></thead>
+                <tbody>
+                  <tr><td>Nature</td><td>He-4 nucleus (2p+2n)</td><td>Fast electrons</td><td>EM radiation</td></tr>
+                  <tr><td>Charge</td><td>+2e</td><td>−e (β⁻) or +e (β⁺)</td><td>0</td></tr>
+                  <tr><td>Mass (u)</td><td>4</td><td>1/1836</td><td>0</td></tr>
+                  <tr><td>Ionisation power</td><td class="good">Highest</td><td>Medium</td><td class="bad">Lowest</td></tr>
+                  <tr><td>Penetration power</td><td class="bad">Lowest (cm in air)</td><td>Medium (mm Al)</td><td class="good">Highest (cm Pb)</td></tr>
+                  <tr><td>Speed</td><td>~0.05c</td><td>~0.99c (relativistic)</td><td>c</td></tr>
+                  <tr><td>Deflection by field</td><td>Yes (little)</td><td>Yes (much)</td><td>No</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note-box">
+              <span class="lbl">📝 Recall Pattern — Same Energy</span>
+              <p>If α, β, γ all have the <strong>same energy</strong>: penetration order = γ > β > α, and ionisation order = α > β > γ. These orders are ALWAYS the same regardless of energy condition. NEET has asked this directly.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: NUCLEAR REACTIONS -->
+          <div class="sec" data-m="reactions">
+            <h2 class="sh">Nuclear Reactions — Fission, Fusion &amp; Q-value <span class="tag tt">Medium Frequency</span></h2>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Nuclear Fission</div>
+                <p>Heavy nucleus splits into medium-mass fragments + neutrons + energy. $^{235}$U + $^1_0$n → fission products + 2–3 neutrons + ~200 MeV. Slow (thermal) neutrons more effective. Chain reaction possible.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Nuclear Fusion</div>
+                <p>Light nuclei combine into heavier one + energy. $^2H + ^3H \to ^4He + n + 17.6$ MeV. Requires extremely high temperature (~$10^7$ K) to overcome Coulomb repulsion. Sun's energy source.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Q-value</div>
+                <p>$Q = (m_{reactants} - m_{products})c^2$ in MeV. $Q > 0$: exothermic (energy released). $Q < 0$: endothermic (energy needed). $Q = \Delta m \times 931.5$ MeV.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Critical Mass</div>
+                <p>Minimum mass of fissile material for self-sustaining chain reaction. Below critical mass: more neutrons escape than cause fission. At critical mass: exactly 1 neutron per fission causes next fission.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (mass-energy):</strong> Certain mass of hydrogen is changed to helium by fusion. Mass defect = 0.02866 u. Energy liberated per u is (1 u = 931 MeV):</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Total energy = $0.02866 \times 931 = 26.7$ MeV.</p>
+                <p>Total mass involved in 4H → He: 4 u approximately. Energy per u = $26.7/4 \approx 6.675$ MeV/u.</p>
+                <p>NEET option check: answer should be ~6.67 MeV. This tests mass-energy calculation.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (reactor power):</strong> Power obtained in reactor using U-235 disintegration is 1000 kW. Mass decay of U-235 per hour?</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$P = (\Delta m/t) \cdot c^2 \Rightarrow \Delta m/t = P/c^2$.</p>
+                <p>$P = 10^6$ W, $c = 3\times10^8$ m/s.</p>
+                <p>$\Delta m/t = 10^6 / (9\times10^{16}) = 1.11\times10^{-11}$ kg/s.</p>
+                <p>Per hour: $1.11\times10^{-11} \times 3600 = 4\times10^{-8}$ kg = $4\times10^{-5}$ g.</p>
+              </div>
+            </div>
+
+            <div class="exam-mode">
+              <h3>Chapter 3 — Last 5-Minute Recall</h3>
+              <ul>
+                <li>$R = R_0 A^{1/3}$, $R_0 = 1.2$ fm. Nuclear density = constant.</li>
+                <li>$\Delta m$ (u) × 931.5 = BE (MeV). For He-4: BE ≈ 28.3 MeV.</li>
+                <li>$N = N_0(1/2)^{t/T_{1/2}}$; Activity $A = \lambda N$; Mean life = $1.44 T_{1/2}$</li>
+                <li>α: A−4, Z−2. β⁻: A same, Z+1. β⁺: A same, Z−1. γ: no change.</li>
+                <li>Ionisation: α>β>γ. Penetration: γ>β>α.</li>
+                <li>BE/A max at Fe-56 (~8.8 MeV). Fusion (light) + Fission (heavy) both release energy.</li>
+                <li>Age problem: count half-lives from ratio $N_0/N = 2^n$.</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+        <a href="#top" class="bt">↑ back to top</a>
+      </article>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- CHAPTER 4: SEMICONDUCTORS -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <article class="chapter" id="ch4">
+        <div class="ch-head">
+          <div class="ch-ey">Chapter 04 · Class 12 · Modern Physics</div>
+          <div class="ch-title">Semiconductor Electronics — <em>Diodes, Transistors &amp; Logic Gates</em></div>
+        </div>
+        <div class="ch-body">
+
+          <!-- OVERVIEW -->
+          <div class="sec" data-m="overview">
+            <h2 class="sh">PYQ Frequency Overview <span class="tag tg">2–3 Qs/year</span></h2>
+            <div class="pyq-strip">
+              <div class="pyq-stat"><strong>~30</strong>questions<br />2007–2025</div>
+              <div class="pyq-stat"><strong>30%</strong>Logic gates<br />&amp; circuits</div>
+              <div class="pyq-stat"><strong>25%</strong>p-n junction<br />diode</div>
+              <div class="pyq-stat"><strong>20%</strong>Transistor<br />action</div>
+              <div class="pyq-stat"><strong>15%</strong>Energy bands<br />&amp; conductivity</div>
+              <div class="pyq-stat"><strong>10%</strong>Special<br />diodes</div>
+            </div>
+
+            <p>Semiconductors is the <strong>most conceptual, least numerical chapter</strong> in Modern Physics. Almost no calculations — questions are about identifying gate output, understanding p-n junction behaviour, transistor configuration logic, and band theory. High ROI: learn 3–4 concepts, answer 2–3 questions.</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Sub-topic</th><th>NEET Frequency</th><th>Priority</th></tr></thead>
+                <tbody>
+                  <tr><td>Logic gates — truth tables and identification</td><td>9 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>p-n junction: forward/reverse bias, depletion region</td><td>8 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Transistor as switch / amplifier (CE configuration)</td><td>6 times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+                  <tr><td>Energy band theory (conductor/semiconductor/insulator)</td><td>5 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Rectifier circuits (half-wave, full-wave)</td><td>4 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Zener diode as voltage regulator</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>Photodiode, LED, solar cell</td><td>3 times</td><td><span class="freq-med">🟠 MEDIUM</span></td></tr>
+                  <tr><td>n-type, p-type doping</td><td>2 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- SECTION: ENERGY BANDS -->
+          <div class="sec" data-m="bands">
+            <h2 class="sh">Energy Band Theory — Classification of Solids <span class="tag tt">Foundation</span></h2>
+
+            <p>In isolated atoms, electrons have discrete energy levels. In a crystal with $N$ atoms, each level splits into $N$ closely spaced levels forming an <strong>energy band</strong>. The two most important bands are the <strong>valence band</strong> (highest filled) and the <strong>conduction band</strong> (lowest empty).</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Material</th><th>Band Gap ($E_g$)</th><th>Conductivity</th><th>Example</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Conductor</strong></td><td>Zero (bands overlap)</td><td class="good">Very high (~$10^7$ S/m)</td><td>Cu, Ag, Al</td></tr>
+                  <tr><td><strong>Semiconductor</strong></td><td>~0.1–3 eV (small)</td><td>Intermediate</td><td>Si (1.1 eV), Ge (0.7 eV)</td></tr>
+                  <tr><td><strong>Insulator</strong></td><td>&gt;3 eV (large)</td><td class="bad">Very low (~$10^{-11}$ S/m)</td><td>Diamond (5.5 eV), Glass</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Intrinsic Semiconductor</div>
+                <p>Pure Si or Ge. At 0K: insulator. At room temp: thermal energy excites some electrons to conduction band. Equal holes and electrons: $n_e = n_h = n_i$.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">n-type (Donor doping)</div>
+                <p>Add pentavalent impurity (P, As, Sb). 4 bonds with Si, 1 extra electron is free carrier. $n_e \gg n_h$. Electrons are majority carriers. Donor level is just below conduction band.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">p-type (Acceptor doping)</div>
+                <p>Add trivalent impurity (B, Al, In). 3 bonds with Si, 1 hole created. $n_h \gg n_e$. Holes are majority carriers. Acceptor level is just above valence band.</p>
+              </div>
+            </div>
+
+            <div class="warn-box">
+              <span class="lbl">⚠ Common Misconception — Doped Semiconductors</span>
+              <p>n-type semiconductor has excess electrons BUT it is electrically <strong>neutral overall</strong> — the donor atoms contribute both the free electron AND become positively charged ions. Similarly p-type is neutral. A doped semiconductor is NOT charged.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: P-N JUNCTION -->
+          <div class="sec" data-m="pnjunction">
+            <h2 class="sh">p-n Junction Diode <span class="tag tg">High Frequency</span></h2>
+
+            <p>When p-type and n-type semiconductors are joined, electrons diffuse from n to p and holes from p to n. This creates a <strong>depletion region</strong> with a built-in electric field (barrier potential ~0.3V for Ge, ~0.7V for Si) opposing further diffusion.</p>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Forward Bias</div>
+                <p>p-side connected to +ve terminal. Reduces barrier potential. Depletion region narrows. Current flows above ~0.3V (Ge) or ~0.7V (Si). Low resistance.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Reverse Bias</div>
+                <p>p-side to −ve terminal. Increases barrier potential. Depletion region widens. Only tiny leakage current (minority carriers). High resistance. Acts as open switch.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Breakdown</div>
+                <p>At high reverse voltage: avalanche or Zener breakdown. Diode conducts heavily. Normal diodes damaged. Zener diodes designed to operate safely in breakdown.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">Diode as Rectifier</h3>
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Half-wave Rectifier</div>
+                <p>1 diode. Conducts only in positive half-cycle. Output: pulsating DC with 50% efficiency. Output frequency = input frequency.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Full-wave Rectifier (Bridge)</div>
+                <p>4 diodes in bridge. Conducts in both half-cycles. Better efficiency (~81%). Output ripple frequency = 2× input frequency.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">Special Purpose Diodes</h3>
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Diode</th><th>Principle</th><th>Application</th><th>Biasing</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Zener Diode</strong></td><td>Reverse breakdown at fixed voltage</td><td>Voltage regulator</td><td>Reverse bias</td></tr>
+                  <tr><td><strong>LED</strong></td><td>Direct recombination → photon (electroluminescence)</td><td>Display, indicator</td><td>Forward bias</td></tr>
+                  <tr><td><strong>Photodiode</strong></td><td>Photon creates e-h pair → current</td><td>Light detector</td><td>Reverse bias (usually)</td></tr>
+                  <tr><td><strong>Solar Cell</strong></td><td>Photovoltaic effect → EMF</td><td>Energy conversion</td><td>No external bias</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tip-box">
+              <span class="lbl">✅ LED vs Photodiode Bias</span>
+              <p>LED = forward biased. Photodiode for detection = reverse biased. Solar cell = no bias (generates its own EMF). Zener for regulation = reverse biased. This table is asked directly in NEET — memorise the biasing.</p>
+            </div>
+
+          </div>
+
+          <!-- SECTION: TRANSISTORS -->
+          <div class="sec" data-m="transistors">
+            <h2 class="sh">Transistor — Amplifier &amp; Switch Action <span class="tag tg">High Frequency</span></h2>
+
+            <p>A transistor (BJT) has three regions: Emitter (highly doped), Base (very thin, lightly doped), Collector (moderately doped). Two types: n-p-n and p-n-p. Emitter-base is forward biased, collector-base is reverse biased in active mode.</p>
+
+            <div class="formula">
+              <strong>Transistor Current Relations</strong><br/>
+              $I_E = I_B + I_C$ (KCL)<br/>
+              Current gain: $\beta = I_C/I_B$ (common emitter, CE)<br/>
+              $\alpha = I_C/I_E$ (common base, CB)<br/>
+              Relation: $\beta = \alpha/(1-\alpha)$; $\alpha = \beta/(\beta+1)$<br/>
+              Voltage gain (CE amp): $A_V = \beta \times R_L/R_i$
+            </div>
+
+            <div class="cg">
+              <div class="cg-card">
+                <div class="ct">Transistor as Switch</div>
+                <p>When base current $I_B = 0$: transistor OFF (open switch, $I_C \approx 0$). When $I_B$ is sufficient: transistor ON (saturated, acts as closed switch). Digital circuits use this.</p>
+              </div>
+              <div class="cg-card">
+                <div class="ct">Transistor as Amplifier</div>
+                <p>Small change in base current causes large change in collector current. CE configuration gives both voltage and current amplification. $A_V \approx 10–1000$.</p>
+              </div>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (pattern):</strong> For a transistor in CE configuration: $\beta = 50$, $I_B = 0.02$ mA, $R_C = 2$ kΩ. Find $I_C$, $I_E$, and voltage drop across $R_C$.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>$I_C = \beta \times I_B = 50 \times 0.02 = 1$ mA.</p>
+                <p>$I_E = I_C + I_B = 1 + 0.02 = 1.02$ mA.</p>
+                <p>$V_{RC} = I_C \times R_C = 1\times10^{-3} \times 2\times10^3 = 2$ V.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SECTION: LOGIC GATES -->
+          <div class="sec" data-m="logic">
+            <h2 class="sh">Logic Gates — Truth Tables &amp; Boolean Expressions <span class="tag tg">Highest Yield in Semiconductors</span></h2>
+
+            <p>Logic gates are the most reliably tested sub-topic. NEET gives a circuit diagram or Boolean expression and asks you to identify the output or the gate type. Master the truth tables cold — no derivation needed.</p>
+
+            <div class="tbl">
+              <table>
+                <thead><tr><th>Gate</th><th>Symbol/Operation</th><th>A=0,B=0</th><th>A=0,B=1</th><th>A=1,B=0</th><th>A=1,B=1</th><th>Key Property</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>AND</strong></td><td>$Y = A \cdot B$</td><td>0</td><td>0</td><td>0</td><td class="good">1</td><td>Output 1 only if BOTH inputs are 1</td></tr>
+                  <tr><td><strong>OR</strong></td><td>$Y = A + B$</td><td>0</td><td class="good">1</td><td class="good">1</td><td class="good">1</td><td>Output 0 only if BOTH inputs are 0</td></tr>
+                  <tr><td><strong>NOT</strong></td><td>$Y = \bar{A}$</td><td colspan="2">0→1</td><td colspan="2">1→0</td><td>Inverts input</td></tr>
+                  <tr><td><strong>NAND</strong></td><td>$Y = \overline{A \cdot B}$</td><td class="good">1</td><td class="good">1</td><td class="good">1</td><td>0</td><td>Output 0 only if BOTH inputs are 1 (Universal gate)</td></tr>
+                  <tr><td><strong>NOR</strong></td><td>$Y = \overline{A + B}$</td><td class="good">1</td><td>0</td><td>0</td><td>0</td><td>Output 1 only if BOTH inputs are 0 (Universal gate)</td></tr>
+                  <tr><td><strong>XOR</strong></td><td>$Y = A \oplus B$</td><td>0</td><td class="good">1</td><td class="good">1</td><td>0</td><td>Output 1 if inputs are DIFFERENT</td></tr>
+                  <tr><td><strong>XNOR</strong></td><td>$Y = \overline{A \oplus B}$</td><td class="good">1</td><td>0</td><td>0</td><td class="good">1</td><td>Output 1 if inputs are SAME</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="trick">
+              <p><strong>Universal gates:</strong> NAND and NOR are called universal gates because any logic function can be implemented using NAND gates alone, or NOR gates alone. NEET frequently asks which gate is universal — answer: <strong>both NAND and NOR</strong>.</p>
+            </div>
+
+            <h3 class="ssh">🎯 PATTERN 11: Identify Gate from Circuit Diagram</h3>
+            <p>NEET shows two diode/transistor circuits and asks which gate is implemented. Strategy: trace current path for all 4 input combinations (00, 01, 10, 11) and match with truth table.</p>
+
+            <div class="approach">
+              <p><strong>Diode AND gate:</strong> Two diodes connected such that output is HIGH only when both inputs are HIGH. If either input is LOW, the diode conducts and pulls output LOW.</p>
+              <p><strong>Diode OR gate:</strong> Two diodes connected such that output is HIGH when at least one input is HIGH. If both are LOW, output is LOW.</p>
+              <p><strong>Transistor NOT gate:</strong> Single transistor in CE mode. When input is HIGH (transistor ON), output at collector is LOW. When input is LOW (transistor OFF), output is HIGH. Perfect inverter.</p>
+            </div>
+
+            <div class="eg eg-pyq">
+              <p><strong>PYQ (pattern — appears every 2 years):</strong> In the circuit, two inputs A and B are given. For A=1, B=0 the output Y = 1. For A=1, B=1, Y = 0. Identify the gate.</p>
+            </div>
+            <div class="eg eg-sol">
+              <button class="sol-reveal-btn" onclick="this.classList.toggle('active');var s=this.nextElementSibling;s.classList.toggle('hidden');s.classList.toggle('visible');">▶ Show Solution</button>
+              <div class="sol-content hidden">
+                <p>Check against truth tables: Y=0 when A=1,B=1; Y=1 when A=1,B=0.</p>
+                <p>For NAND: (1,1)→0 ✓; (1,0)→1 ✓. This matches NAND behaviour. <strong>Answer: NAND gate.</strong></p>
+                <p>Alternatively, check XOR: (1,1)→0 ✓; (1,0)→1 ✓. Also matches! Need more input combos to distinguish. For (0,0): NAND gives 1, XOR gives 0 — that would be the discriminating input.</p>
+              </div>
+            </div>
+
+            <h3 class="ssh">Boolean Algebra — Key Identities NEET Uses</h3>
+            <div class="fcards">
+              <div class="fcard">
+                <div class="fcard-title">De Morgan's Laws</div>
+                <ul>
+                  <li>$\overline{A+B} = \bar{A}\cdot\bar{B}$ (NOR = AND of NOT)</li>
+                  <li>$\overline{A\cdot B} = \bar{A}+\bar{B}$ (NAND = OR of NOT)</li>
+                  <li>Used to build any gate from NAND/NOR</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Basic Boolean</div>
+                <ul>
+                  <li>$A \cdot 0 = 0$; $A \cdot 1 = A$</li>
+                  <li>$A + 0 = A$; $A + 1 = 1$</li>
+                  <li>$A \cdot A = A$; $A + A = A$</li>
+                  <li>$A \cdot \bar{A} = 0$; $A + \bar{A} = 1$</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">NAND Realisations</div>
+                <ul>
+                  <li>NOT: single NAND with A=B</li>
+                  <li>AND: NAND + NOT</li>
+                  <li>OR: NAND(NAND(A,A), NAND(B,B))</li>
+                  <li>NOR: NAND(NAND(A,B)|NAND)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="trap-row">
+              <div class="trap-num">T</div>
+              <div class="trap-wrong"><div class="trap-lbl bad">❌ Trap</div><p>"NAND output is 1 when both inputs are 1"</p></div>
+              <div class="trap-right"><div class="trap-lbl good">✓ Correct</div><p>NAND output is 0 ONLY when both inputs are 1. For all other combinations (00,01,10), output is 1. Think: NAND = NOT AND.</p></div>
+            </div>
+
+            <div class="exam-mode">
+              <h3>Chapter 4 — Last 5-Minute Recall</h3>
+              <ul>
+                <li>Conductor: bands overlap. Semiconductor: small $E_g$ (~1eV). Insulator: large $E_g$ (&gt;3eV).</li>
+                <li>n-type: pentavalent dopant, electrons majority. p-type: trivalent, holes majority.</li>
+                <li>Forward bias: p→+ve. Reverse bias: p→−ve. Only Zener works in reverse breakdown.</li>
+                <li>LED = forward. Photodiode = reverse. Solar cell = no bias. Zener = reverse.</li>
+                <li>$I_E = I_B + I_C$; $\beta = I_C/I_B$; $\alpha = I_C/I_E$; $\beta = \alpha/(1-\alpha)$.</li>
+                <li>AND: 1 only if both 1. OR: 0 only if both 0. NAND: 0 only if both 1. NOR: 1 only if both 0. XOR: 1 if different.</li>
+                <li>Universal gates: NAND and NOR.</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+        <a href="#top" class="bt">↑ back to top</a>
+      </article>
+
+      <!-- MASTER FORMULA REFERENCE -->
+      <article class="chapter" id="masterref">
+        <div class="ch-head">
+          <div class="ch-ey">Quick Reference · Class 12 Modern Physics</div>
+          <div class="ch-title">Master Formula Sheet — <em>All Chapters Combined</em></div>
+        </div>
+        <div class="ch-body">
+          <div class="sec" data-m="formulas">
+            <h2 class="sh">Complete Formula Reference <span class="tag tc">Revision Grid</span></h2>
+
+            <div class="fcards">
+              <div class="fcard">
+                <div class="fcard-title">Photon &amp; Photoelectric</div>
+                <ul>
+                  <li>$E = h\nu = hc/\lambda$</li>
+                  <li>$hc = 1240$ eV·nm</li>
+                  <li>$p = h/\lambda = E/c$</li>
+                  <li>$KE_{max} = h\nu - \phi_0 = eV_s$</li>
+                  <li>$\phi_0 = h\nu_0 = hc/\lambda_0$</li>
+                  <li>$n_{photons} = P\lambda/hc$</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">de Broglie</div>
+                <ul>
+                  <li>$\lambda = h/p = h/mv$</li>
+                  <li>Same V: $\lambda \propto 1/\sqrt{mq}$</li>
+                  <li>Same KE: $\lambda \propto 1/\sqrt{m}$</li>
+                  <li>At temp T: $\lambda = h/\sqrt{2mk_BT}$</li>
+                  <li>Neutron: $\lambda = 30.8/\sqrt{T}$ Å</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Bohr Model</div>
+                <ul>
+                  <li>$r_n = 0.529 n^2/Z$ Å</li>
+                  <li>$v_n = 2.18\times10^6 Z/n$ m/s</li>
+                  <li>$E_n = -13.6Z^2/n^2$ eV</li>
+                  <li>$L = nh/2\pi$</li>
+                  <li>$KE = -E_n$; $PE = 2E_n$</li>
+                  <li>Lines: $n(n-1)/2$</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Spectral Series</div>
+                <ul>
+                  <li>$1/\lambda = R_H(1/n_1^2 - 1/n_2^2)$</li>
+                  <li>$R_H = 1.097\times10^7$ m$^{-1}$</li>
+                  <li>Lyman: $n_1=1$ (UV)</li>
+                  <li>Balmer: $n_1=2$ (Visible)</li>
+                  <li>Paschen: $n_1=3$ (IR)</li>
+                  <li>Series limit: $n_2=\infty$</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Nuclear</div>
+                <ul>
+                  <li>$R = 1.2 A^{1/3}$ fm</li>
+                  <li>$BE = \Delta m \times 931.5$ MeV</li>
+                  <li>$N = N_0 e^{-\lambda t}$</li>
+                  <li>$T_{1/2} = 0.693/\lambda$</li>
+                  <li>$\tau = 1.443 T_{1/2}$</li>
+                  <li>$A = \lambda N$</li>
+                </ul>
+              </div>
+              <div class="fcard">
+                <div class="fcard-title">Transistor</div>
+                <ul>
+                  <li>$I_E = I_B + I_C$</li>
+                  <li>$\beta = I_C/I_B$ (CE)</li>
+                  <li>$\alpha = I_C/I_E$ (CB)</li>
+                  <li>$\beta = \alpha/(1-\alpha)$</li>
+                  <li>$A_V = \beta R_L/R_i$</li>
+                  <li>Si barrier: 0.7V; Ge: 0.3V</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="ssh">Constants to Memorise for NEET</h3>
+            <div class="cb">
+h = 6.626 × 10⁻³⁴ J·s (Planck's constant)
+hc = 1240 eV·nm = 12400 eV·Å (critical shortcut)
+e = 1.6 × 10⁻¹⁹ C
+m_e = 9.11 × 10⁻³¹ kg
+m_p = 1.67 × 10⁻²⁷ kg (same for neutron approximately)
+k_B = 1.38 × 10⁻²³ J/K
+1 u = 1.66 × 10⁻²⁷ kg = 931.5 MeV/c²
+c = 3 × 10⁸ m/s
+R_H (Rydberg) = 1.097 × 10⁷ m⁻¹
+R₀ (nuclear) = 1.2 fm = 1.2 × 10⁻¹⁵ m
+Bohr radius a₀ = 0.529 Å = 0.0529 nm
+            </div>
+
+            <h3 class="ssh">NEET High-Value Number Facts</h3>
+            <ul class="pl chk">
+              <li>Ground state H-atom energy: $-13.6$ eV. Ionisation energy: $13.6$ eV.</li>
+              <li>$n=1\to2$ excitation energy: 10.2 eV. $n=2\to3$: 1.89 eV. $n=3\to1$: 12.09 eV.</li>
+              <li>He-4 binding energy: ~28.3 MeV. BE/A ≈ 7.07 MeV.</li>
+              <li>Fe-56 has highest BE/A ≈ 8.8 MeV/nucleon.</li>
+              <li>H-α line (Balmer, $n=3\to2$): 656.3 nm (red).</li>
+              <li>Lyman series limit: 91.2 nm. Balmer limit: 364.6 nm.</li>
+              <li>U-235 fission energy: ~200 MeV per fission. Deuterium fusion: ~17.6 MeV.</li>
+              <li>Nuclear density: $2.3\times10^{17}$ kg/m³ (constant for all nuclei).</li>
+            </ul>
+
+          </div>
+        </div>
+        <a href="#top" class="bt">↑ back to top</a>
+      </article>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <span class="footer-meta">NEET Physics Class 12 · Modern Physics · PYQ Master Series</span>
+        <span class="footer-note">Chapters: Dual Nature · Atoms · Nuclei · Semiconductors</span>
+        <span class="footer-note">Every pattern from NEET 2007–2025 · Built for 160+/180 Physics</span>
+      </div>
+
+    </div><!-- .book -->
+
+    <div class="sticky-copyright">
+      NEET Physics 12 · Modern Physics · PYQ Master Series · Built for NEET 2026
+    </div>
+
+    <script>
+      // Progress bar
+      const bar = document.getElementById('progress-bar');
+      const fab = document.getElementById('fab');
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        bar.style.width = pct + '%';
+        fab.classList.toggle('visible', h.scrollTop > 400);
+      });
+
+      // Dark mode toggle on load
+      const toggle = document.getElementById('dm-toggle');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggle.textContent = '☀ Light';
+      }
+
+      // Body protection
+      document.body.classList.add('protected-page');
+
+      // Solution toggles
+      document.querySelectorAll('.sol-reveal-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            content.classList.add('visible');
+            this.classList.add('active');
+            this.textContent = '▼ Hide Solution';
+          } else {
+            content.classList.remove('visible');
+            content.classList.add('hidden');
+            this.classList.remove('active');
+            this.textContent = '▶ Show Solution';
+          }
+        });
+      });
+    </script>
+  
+
+<style id="sticky-footer-css">
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(180,160,130,0.28);
+  font-family: var(--hand, 'Courier New', monospace);
+  font-size: 11px;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 16px;
+  z-index: 8000;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .sticky-footer {
+  background: rgba(9,8,7,0.9);
+  border-top-color: rgba(255,255,255,0.08);
+  color: #f0ece0;
+}
+.sticky-footer a {
+  color: var(--orange, #b85a10);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 600px) {
+  .sticky-footer { font-size: 9px; padding: 6px 10px; }
+  .sticky-footer svg { width: 12px; height: 12px; }
+}
+</style>
+<div class="sticky-footer">
+  <span>© Aryan</span>
+  <a href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Insta
+  </a>
+  <a href="https://t.me/petrol4u" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Telegram
+  </a>
+</div>
+
+</body>
+</html>

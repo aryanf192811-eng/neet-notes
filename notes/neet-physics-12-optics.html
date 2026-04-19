@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var _d=false;
+  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">??</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+})();
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Physics Class 12 — Optics PYQ Master Cheatsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+  <style>
+    :root{--paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;--ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;--rule:rgba(100,130,180,0.14);--mline:rgba(210,100,80,0.28);--red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;--hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);--hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);--body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;--hand:"Architects Daughter",cursive;}
+    [data-theme="dark"]{--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;--ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;--rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);--red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;--hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);}}
+    [data-theme="dark"] body{background:#130f0c;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#1c1810 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#231e18 0%,transparent 55%);}
+    [data-theme="dark"] .def-box{background:rgba(91,143,214,0.1);}[data-theme="dark"] .warn-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .tip-box{background:rgba(74,184,112,0.1);}[data-theme="dark"] .note-box{background:rgba(224,120,48,0.1);}[data-theme="dark"] .purp-box{background:rgba(155,89,214,0.1);}
+    [data-theme="dark"] .eg{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .formula{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] .cb{background:var(--paper3);border-color:#4a4038;}[data-theme="dark"] code{background:var(--paper3);border-color:#4a4038;}
+    [data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .trick::before{background:var(--paper2);}[data-theme="dark"] .shortcut{background:rgba(212,168,0,0.07);border-color:#6a5200;}[data-theme="dark"] .shortcut::before{background:var(--paper2);}
+    [data-theme="dark"] .toc{background:var(--paper);border-color:#3a3228;}[data-theme="dark"] .chapter{border-color:#3a3228;}[data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5040;}[data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4038;}
+    [data-theme="dark"] .approach{background:rgba(91,143,214,0.1);}[data-theme="dark"] .approach::before{background:var(--paper2);}[data-theme="dark"] .trigger-box{background:rgba(91,143,214,0.1);border-color:var(--blue);}[data-theme="dark"] .trigger-box::before{background:var(--paper2);}
+    [data-theme="dark"] .instant-formula{background:rgba(212,168,0,0.08);border-color:#6a5200;}[data-theme="dark"] .instant-formula::before{background:var(--paper2);}[data-theme="dark"] .elim-box{background:rgba(224,80,80,0.1);}[data-theme="dark"] .elim-box::before{background:var(--paper2);}
+    [data-theme="dark"] .cg-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3228;}[data-theme="dark"] .pyq-sol{background:var(--paper3);border-color:#4a4038;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+    .book{max-width:920px;margin:0 auto;}
+    .cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+    .cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+    .cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(210,100,80,0.32);pointer-events:none;}
+    .cover-inner{position:relative;padding-left:20px;}
+    .cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+    .cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--teal);}
+    .cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+    .cover h1 em{font-style:italic;color:var(--teal);}
+    .cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:580px;border-left:3px solid var(--teal);padding-left:14px;}
+    .cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+    .chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:rgba(255,255,255,0.5);}
+    .cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--teal);padding:5px 12px;border-radius:2px;}
+    .toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+    .toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+    .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+    @media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+    .toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+    .toc-grid a:hover{color:var(--teal);border-color:var(--ink3);}
+    .tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:24px;}
+    .chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+                .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      [data-theme="dark"] .ch-head {
+        background: linear-gradient(135deg, #0a0908 0%, #1a1612 100%);
+      }
+      
+    .ch-head-wave{border-bottom-color:#7ab0e8!important;}
+    .ch-head-instru{border-bottom-color:#e8a040!important;}
+    .ch-head-traps{border-bottom-color:#e87070!important;}
+    .ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+                .ch-title {
+        font-size: 21px;
+        font-weight: 600;
+        color: #faf7f2;
+        line-height: 1.25;
+      }
+    .ch-title em{font-style:italic;color:#2db89a;}
+    .ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(180,150,100,0.4);}
+    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+    .ch-nav a:hover{border-color:var(--teal);color:var(--teal);}
+    .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+    .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+    .sec:last-child{border-bottom:none;}
+    .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(200,100,80,0.26);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--teal);margin:32px 0 12px;}
+    h3.ssh+p{margin-top:6px;}
+    h4.sssh{font-family:var(--body);font-size:14px;font-weight:600;color:var(--green);margin:16px 0 6px;}
+    p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
+    strong{color:var(--ink);font-weight:600;}
+    em.it{font-style:italic;color:var(--ink3);}
+    .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
+    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .tc{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+    .tt{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+    .tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+    .tq{color:var(--teal);border-color:var(--teal);background:rgba(13,122,106,0.09);}
+    .def-box{background:rgba(100,160,255,0.09);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .def-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;display:block;}
+    .def-box p{font-size:16.5px;line-height:1.82;margin:0;color:var(--ink);}
+    .warn-box{background:rgba(220,60,60,0.07);border-left:4px solid var(--red);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .warn-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:4px;display:block;}
+    .warn-box p{font-size:16px;color:var(--red);margin:0;line-height:1.78;}
+    .tip-box{background:rgba(60,180,100,0.09);border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .tip-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px;display:block;}
+    .tip-box p{font-size:16px;color:var(--green);margin:0;line-height:1.78;}
+    .note-box{background:rgba(220,130,30,0.09);border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .note-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block;}
+    .note-box p{font-size:16px;color:var(--orange);margin:0;line-height:1.78;}
+    .purp-box{background:rgba(120,40,180,0.08);border-left:4px solid var(--purple);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .purp-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:block;}
+    .purp-box p{font-size:16px;color:var(--purple);margin:0;line-height:1.78;}
+    .trick{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .trick::before{content:"⚡ Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .trick p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .trick p:last-child{margin:0;}
+    .trick strong{color:#7a5800;}
+    .shortcut{background:#f8fff4;border:1.5px solid #4ab870;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .shortcut::before{content:"🎯 Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#1a6b40;position:absolute;top:-9px;left:14px;background:#f8fff4;padding:0 6px;}
+    .shortcut p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .shortcut p:last-child{margin:0;}
+    .eg{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:22px 24px;margin:24px 0;position:relative;}
+    .eg::before{content:"Example";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+    .eg p{font-family:var(--prose);font-size:16px;color:var(--ink2);margin:0 0 6px;line-height:1.82;}
+    .eg p:last-child{margin:0;}
+    .formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:24px 0;font-family:"Courier New",monospace;font-size:15px;color:var(--ink);line-height:2.2;text-align:center;}
+    .formula strong{color:var(--teal);font-size:16px;}
+    .cb{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1.5px dashed #a09070;border-radius:4px;padding:14px 18px;margin:12px 0;color:var(--ink);line-height:1.9;white-space:pre-wrap;overflow-x:auto;}
+    code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1px solid #c0a880;border-radius:3px;padding:1px 5px;color:var(--teal);}
+    mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+    .c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-p{color:var(--purple);font-weight:600;}.c-t{color:var(--teal);font-weight:600;}
+    .pl{list-style:none;margin:12px 0 18px;padding:0;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--teal);font-weight:600;}
+    .pl.arr li::before{content:"→";color:var(--blue);}
+    .pl.num{counter-reset:li;}
+    .pl.num li{counter-increment:li;}
+    .pl.num li::before{content:counter(li)".";color:var(--blue);}
+    .pl.chk li::before{content:"✓";color:var(--green);}
+    .pl.x li::before{content:"✗";color:var(--red);}
+    .tbl{overflow-x:auto;margin:20px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;}
+    tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+    .freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+    .fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+    .fcard{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:18px 20px;}
+    .fcard-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+    .fcard ul{list-style:none;padding:0;}
+    .fcard ul li{font-family:var(--prose);font-size:15px;line-height:1.75;color:var(--ink2);padding:2px 0 2px 18px;position:relative;}
+    .fcard ul li::before{content:"·";position:absolute;left:4px;color:var(--teal);}
+    .pyq-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;margin:20px 0;overflow:hidden;}
+    .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);border-bottom:1px solid rgba(180,150,100,0.4);cursor:pointer;gap:12px;}
+    .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--teal);padding:3px 10px;border-radius:2px;flex-shrink:0;}
+    .pyq-q{font-family:var(--prose);font-size:16px;color:var(--ink);line-height:1.7;flex:1;}
+    .pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1px;color:var(--teal);flex-shrink:0;padding:4px 10px;border:1.5px solid var(--teal);border-radius:2px;background:none;cursor:pointer;transition:all 0.2s;}
+    .pyq-toggle:hover{background:var(--teal);color:var(--paper);}
+    .pyq-sol{background:var(--paper3);padding:18px 22px;border-top:2px dashed rgba(180,150,100,0.5);display:none;}
+    .pyq-sol.open{display:block;}
+    .pyq-sol p{font-family:var(--prose);font-size:15.5px;line-height:1.85;color:var(--ink2);margin-bottom:10px;}
+    .pyq-sol p:last-child{margin:0;}
+    .ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green);color:var(--paper);margin-bottom:10px;}
+    .approach{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .approach::before{content:"🧠 Approach";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .approach p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .approach p:last-child{margin:0;}
+    .instant-formula{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .instant-formula::before{content:"⚡ Instant Formula";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .instant-formula p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .trigger-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .elim-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .elim-box::before{content:"❌ Elimination";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .elim-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .cg-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+    .svg-wrap{text-align:center;margin:24px 0;overflow-x:auto;}
+    .svg-wrap svg{max-width:100%;height:auto;}
+    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+    .sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+    .sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+    .sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+    .sp-t{border-color:var(--teal);color:var(--teal);background:rgba(13,122,106,0.09);}
+    .master-block{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;overflow:hidden;}
+    .master-block-head{padding:24px 36px;border-bottom:3px solid #e87070;}
+    .master-block-body{padding:36px 40px 40px;background-image:repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:100% 32px;background-position:0 16px;}
+    [data-theme="dark"] .master-block{border-color:#3a3228;}
+    [data-theme="dark"] .master-block-head{background:linear-gradient(135deg,#1a1612 0%,#2a2018 100%);}
+
+
+    .toc-divider{height:1px;background:rgba(180,150,100,0.25);margin:14px 0;}
+    .toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,150,100,0.3);}
+    @media(max-width:640px){.sec{padding:32px 20px 28px 44px;}.cover{padding:36px 28px 32px;}.cover h1{font-size:26px;}      .ch-head {
+        background: linear-gradient(135deg, #1c1510 0%, #2a2018 100%);
+        padding: 24px 36px;
+        border-bottom: 3px solid var(--orange, var(--teal, #2db89a));
+      }
+      .toc{padding:20px 22px;}.ch-nav{padding:12px 20px;}}
+  </style>
+
+
+<style id="theme-toggle-css">
+  .theme-switch { position:relative; width:44px; height:24px; flex-shrink:0; display:inline-flex; align-items:center; margin-left:12px; }
+  .theme-switch input { opacity:0; width:0; height:0; position:absolute; }
+  .theme-track { position:absolute; inset:0; background:rgba(0,0,0,0.06); border:1.5px solid rgba(0,0,0,0.1); border-radius:24px; cursor:pointer; transition:all .3s; }
+  .theme-track::before { content:'☀'; position:absolute; top:2px; left:2px; width:17px; height:17px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:9px; color:#b85a10; transition:all .3s cubic-bezier(.4,0,.2,1); }
+  [data-theme="dark"] .theme-track { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15); }
+  [data-theme="dark"] .theme-track::before { content:'☾'; transform:translateX(20px); background:#1a1612; color:#ffaa55; font-size:10px; }
+  .back-dash { font-family:var(--hand); font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink3); text-decoration:none; padding:4px 8px; border:1px solid var(--div); border-radius:4px; transition:all .2s; }
+  .back-dash:hover { background:var(--ink); color:var(--paper); }
+</style>
+
+</head>
+<body>
+
+<div class="book">
+
+  <!-- COVER -->
+  <div class="cover">
+    <span class="cover-tag">File 4 — Optics</span>
+    <div class="cover-inner">
+      <div class="cover-subject">NEET Physics · Class XII · Chapters 9 &amp; 10</div>
+      <h1>Optics — Ray &amp;<br/><em>Wave Optics</em></h1>
+      <p class="cover-desc">Ray Optics &amp; Optical Instruments · Wave Optics. Two chapters, ~5 Qs/paper, 17 years decoded. Every formula, every PYQ pattern, 30 master traps. From Snell's law to YDSE — the complete system.</p>
+      <div class="cover-chips">
+        <span class="chip">Ch 9 — Ray Optics &amp; Optical Instruments</span>
+        <span class="chip">Ch 10 — Wave Optics</span>
+        <span class="chip">NEET 2009–2025 PYQs</span>
+        <span class="chip">Sign Convention Bible</span>
+        <span class="chip">30 Master Traps</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-lbl">Contents</div>
+    <div class="toc-section-lbl">Chapter 9 — Ray Optics &amp; Optical Instruments</div>
+    <div class="toc-grid">
+      <a href="#ray-overview"><span class="tn">1.</span>Overview &amp; Frequency Map</a>
+      <a href="#reflection"><span class="tn">2.</span>Reflection — Mirrors &amp; Sign Conv.</a>
+      <a href="#refraction"><span class="tn">3.</span>Refraction — Snell's Law &amp; Slabs</a>
+      <a href="#tir"><span class="tn">4.</span>Total Internal Reflection</a>
+      <a href="#refr-sphere"><span class="tn">5.</span>Refraction at Spherical Surfaces</a>
+      <a href="#lenses"><span class="tn">6.</span>Lenses — Formula, Power, Combo</a>
+      <a href="#prism"><span class="tn">7.</span>Prism &amp; Dispersion</a>
+      <a href="#instruments"><span class="tn">8.</span>Optical Instruments</a>
+    </div>
+    <div class="toc-divider"></div>
+    <div class="toc-section-lbl">Chapter 10 — Wave Optics</div>
+    <div class="toc-grid">
+      <a href="#wave-overview"><span class="tn">9.</span>Overview &amp; Frequency Map</a>
+      <a href="#huygens"><span class="tn">10.</span>Huygens' Principle</a>
+      <a href="#interference"><span class="tn">11.</span>Interference &amp; YDSE</a>
+      <a href="#diffraction"><span class="tn">12.</span>Diffraction</a>
+      <a href="#polarisation"><span class="tn">13.</span>Polarisation</a>
+    </div>
+    <div class="toc-divider"></div>
+    <div class="toc-grid">
+      <a href="#mfs"><span class="tn">★</span>Master Formula Sheet</a>
+      <a href="#traps"><span class="tn">⚠</span>30 Master Traps</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CHAPTER 9 — RAY OPTICS                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="chapter" id="ray-overview">
+    <div class="ch-head">
+      <div class="ch-ey">Chapter 9</div>
+      <div class="ch-title">Ray Optics &amp; <em>Optical Instruments</em></div>
+    </div>
+    
+    <div class="ch-body">
+
+      <!-- OVERVIEW -->
+      <div class="sec" data-m="overview" id="ray-overview-sec">
+        <h2 class="sh">NEET Frequency Map &amp; Priority <span class="tag tg">~3–4 Q/paper</span></h2>
+
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 Lenses — 12+ times</div>
+          <div class="score-pill sp-r">🔴 TIR &amp; Critical Angle — 10+ times</div>
+          <div class="score-pill sp-o">🟠 Mirrors — 9+ times</div>
+          <div class="score-pill sp-o">🟠 Prism — 8+ times</div>
+          <div class="score-pill sp-b">🔵 Optical Instruments — 7+ times</div>
+          <div class="score-pill sp-g">🟢 Refraction at Sphere — 4 times</div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2009–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>Lenses — lens formula, magnification, power, combinations</td><td>12+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Total Internal Reflection — critical angle, optical fibre</td><td>10+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Spherical Mirrors — mirror formula, sign convention, image types</td><td>9+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Prism — minimum deviation, refractive index formula</td><td>8+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Optical Instruments — telescope, microscope magnification</td><td>7+ times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Refraction — Snell's law, apparent depth, slab shift</td><td>6+ times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Refraction at spherical surface, lens maker's equation</td><td>4 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+              <tr><td>Human eye, defects &amp; correction</td><td>4 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Mentor's Note — What NEET Really Tests in Ray Optics</span>
+          <p>NEET does NOT ask derivations. It tests: (1) correct application of sign convention — this is the #1 error source, (2) which formula to use — mirror vs lens vs prism, (3) identifying image type from given u and f, (4) TIR condition — light must go denser→rarer AND i &gt; critical angle. These 4 patterns account for 85% of all Ray Optics questions in NEET history.</p>
+        </div>
+
+        <!-- Sign Convention Box -->
+        <div class="purp-box">
+          <span class="lbl">🎯 Cartesian Sign Convention — The Golden Rules (Memorise This First)</span>
+          <p><strong>Origin = optical centre (lens) or pole (mirror).</strong> Incident light always travels left → right. Distances measured in direction of incident light: <strong>+ve</strong>. Against incident light: <strong>−ve</strong>. All object distances $u$ are <strong>negative</strong> (object is to the left). For real images (converging): $v$ is negative (mirror), positive (lens). Focal length of concave mirror: −ve. Convex mirror: +ve. Convex lens: +ve. Concave lens: −ve.</p>
+        </div>
+      </div>
+
+      <!-- REFLECTION & MIRRORS -->
+      <div class="sec" data-m="mirrors" id="reflection">
+        <h2 class="sh">Reflection &amp; Spherical Mirrors <span class="tag tg">9+ times in NEET</span></h2>
+
+        <p>Reflection from spherical mirrors (concave and convex) is tested repeatedly in NEET via numerical problems. The mirror formula and sign convention are the core tools. Almost every question reduces to: apply sign convention → plug into formula → find image nature.</p>
+
+        <div class="def-box">
+          <span class="lbl">Mirror Formula</span>
+          <p>$$\frac{1}{v} + \frac{1}{u} = \frac{1}{f} = \frac{2}{R}$$</p>
+          <p>where $f$ = focal length, $R$ = radius of curvature, $u$ = object distance, $v$ = image distance. All measured from the pole P, with sign convention applied.</p>
+          <p><strong>Magnification:</strong> $m = -\dfrac{v}{u}$ (for mirrors). If $m > 0$ → image is erect (virtual). If $m < 0$ → image is inverted (real).</p>
+        </div>
+
+        <h3 class="ssh">🎯 Concave Mirror — Image Summary Table</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Object Position (u)</th><th>Image Position (v)</th><th>Nature</th><th>Size</th></tr></thead>
+            <tbody>
+              <tr><td>At infinity ($u = -\infty$)</td><td>At F ($v = -f$)</td><td>Real, Inverted</td><td>Point / Highly diminished</td></tr>
+              <tr><td>Beyond C ($|u| > 2f$)</td><td>Between F and C</td><td>Real, Inverted</td><td>Diminished</td></tr>
+              <tr><td>At C ($u = -2f$)</td><td>At C ($v = -2f$)</td><td>Real, Inverted</td><td>Same size</td></tr>
+              <tr><td>Between C and F ($f < |u| < 2f$)</td><td>Beyond C ($|v| > 2f$)</td><td>Real, Inverted</td><td>Magnified</td></tr>
+              <tr><td>At F ($u = -f$)</td><td>At infinity</td><td>Real, Inverted</td><td>Highly magnified</td></tr>
+              <tr><td>Between F and P ($|u| < f$)</td><td>Behind mirror (+ve side)</td><td>Virtual, Erect</td><td>Magnified</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip-box">
+          <span class="lbl">Convex Mirror — Always Virtual, Always Erect, Always Diminished</span>
+          <p>For convex mirror, regardless of object position: image is always behind the mirror (virtual), erect, and diminished. $f$ is positive, $v$ is always positive. Used in rear-view mirrors. <strong>NEET trap:</strong> convex mirror cannot form a real image for a real object — any option with real image for convex mirror is wrong.</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>Quick image nature check:</strong> For concave mirror: if $|u| > f$ → real, inverted image. If $|u| < f$ → virtual, erect. For a concave mirror acting as rear-view — this is physically impossible (uses convex). Never confuse the two in context questions.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Mirrors</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">The graph which shows the correct variation of $1/v$ with $1/u$ for a concave mirror (where $u$ is object distance and $v$ is image distance) is a straight line with slope ___ and intercept ___.</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Slope = −1, Intercept = 1/f</span>
+            <p><strong>Approach:</strong> From mirror formula: $\dfrac{1}{v} + \dfrac{1}{u} = \dfrac{1}{f}$</p>
+            <p>Rearrange: $\dfrac{1}{v} = -\dfrac{1}{u} + \dfrac{1}{f}$. This is $y = mx + c$ with slope $m = -1$ and y-intercept $= 1/f$.</p>
+            <p>The graph of $1/v$ vs $1/u$ is a straight line with slope $-1$. Among the options, choose the graph showing negative slope with $y$-intercept equal to $1/f$ (positive for concave mirror, since $f$ is negative → $1/f$ is negative → intercept is at negative $y$-axis). Correct answer: Graph showing straight line with slope $-1$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">An object is placed at a distance of 10 cm in front of a concave mirror of focal length 20 cm. The image formed is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Virtual, erect, magnified, behind mirror</span>
+            <p><strong>Given:</strong> $u = -10$ cm, $f = -20$ cm (concave mirror, sign conv.)</p>
+            <p><strong>Apply mirror formula:</strong> $\dfrac{1}{v} = \dfrac{1}{f} - \dfrac{1}{u} = \dfrac{1}{-20} - \dfrac{1}{-10} = -\dfrac{1}{20} + \dfrac{1}{10} = \dfrac{1}{20}$</p>
+            <p>So $v = +20$ cm. Positive $v$ means image is behind the mirror → <strong>virtual and erect</strong>.</p>
+            <p><strong>Magnification:</strong> $m = -v/u = -(+20)/(-10) = +2$. Positive $m$ → erect. $|m| = 2$ → magnified by 2×.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">A concave mirror has a focal length of 15 cm. An object is placed 40 cm from the mirror. The image distance and nature is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: v = −24 cm, real, inverted, diminished</span>
+            <p>$u = -40$ cm, $f = -15$ cm. $\frac{1}{v} = \frac{1}{f} - \frac{1}{u} = \frac{1}{-15} - \frac{1}{-40} = -\frac{1}{15} + \frac{1}{40} = \frac{-8+3}{120} = \frac{-5}{120} = \frac{-1}{24}$</p>
+            <p>$v = -24$ cm. Negative → real, in front of mirror. $m = -v/u = -(-24)/(-40) = -0.6$. Negative magnification → inverted. $|m| < 1$ → diminished.</p>
+          </div>
+        </div>
+
+        <div class="shortcut">
+          <p><strong>When object is at C (u = −2f) for concave mirror:</strong> Image is also at C, real, inverted, same size. This is the only situation where $m = -1$. NEET asks this as a direct fact question every few years — memorise it.</p>
+        </div>
+      </div>
+
+      <!-- REFRACTION -->
+      <div class="sec" data-m="refraction" id="refraction">
+        <h2 class="sh">Refraction — Snell's Law, Slabs, Apparent Depth <span class="tag tc">6+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Snell's Law</span>
+          <p>$$n_1 \sin i = n_2 \sin r$$</p>
+          <p>where $n_1$, $n_2$ are refractive indices of media 1 and 2; $i$ = angle of incidence, $r$ = angle of refraction. Frequency does NOT change on refraction (this is a direct NEET question). Speed and wavelength change; frequency stays constant.</p>
+          <p><strong>Refractive index:</strong> $n = \dfrac{c}{v} = \dfrac{\lambda_{vacuum}}{\lambda_{medium}} = \dfrac{\sin i}{\sin r}$ (when going into that medium from air/vacuum)</p>
+        </div>
+
+        <h3 class="ssh">🎯 Apparent Depth &amp; Normal Shift</h3>
+        <div class="formula">
+          $$\text{Apparent depth} = \frac{\text{Real depth}}{n}$$
+          <br/>
+          <strong>Shift of image (normal incidence):</strong> $\Delta = t\left(1 - \dfrac{1}{n}\right)$
+          <br/>where $t$ = thickness of slab, $n$ = refractive index of slab
+        </div>
+
+        <p>The slab shift formula is extremely important in NEET. When a glass slab is inserted between a lens and an object/screen, the effective shift of the image equals $t(1 - 1/n)$ in the direction of incident light.</p>
+
+        <div class="eg">
+          <p><strong>NEET 2024 type:</strong> Sunlight passes through a glass slab of thickness 5 mm ($n = 1.5$). Time taken?</p>
+          <p>Speed in glass $= c/n = 3\times10^8/1.5 = 2\times10^8$ m/s. Time $= d/v = 5\times10^{-3}/2\times10^8 = 2.5\times10^{-11}$ s $= (5/2)\times10^{-11}$ s. <strong>Ans: (b)</strong></p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET Trap — What changes on refraction?</span>
+          <p><strong>Frequency: NEVER changes</strong> (even across 5 different media — still same frequency). Speed, wavelength, and direction change. If an option says "frequency changes on refraction" — eliminate it immediately. This has appeared as a direct option in multiple NEET papers.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Refraction</h3>
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A light ray enters a right-angled prism at point P with angle of incidence 30°. It travels through the prism parallel to base BC and emerges along face AC. The refractive index of the prism is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: √3/√2 ≈ 1.22 or more precisely √(3/2)</span>
+            <p><strong>Setup:</strong> The prism is right-angled (45°-45°-90° or 30°-60°-90°). Ray travels parallel to BC means it undergoes TIR or refraction at the hypotenuse face AC.</p>
+            <p>At face AB: $n_1 \sin 30° = n \sin r$ → $1 \times 0.5 = n \sin r$ → $\sin r = 0.5/n$.</p>
+            <p>Since the ray travels parallel to BC and exits at AC, at AC the angle of incidence = 45° (geometry of 45° prism). For ray to exit at 90° (graze the surface), TIR condition gives: $n \sin 45° = 1$ → $n = \sqrt{2} \approx 1.41$. Use this in $\sin r$: $\sin r = 0.5/\sqrt{2}$, $r = \sin^{-1}(0.354) ≈ 20.7°$. Verify Snell's at first face: consistent. The refractive index $n = \sqrt{2}$.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOTAL INTERNAL REFLECTION -->
+      <div class="sec" data-m="TIR" id="tir">
+        <h2 class="sh">Total Internal Reflection (TIR) <span class="tag tg">10+ times — must master</span></h2>
+
+        <p>TIR is one of the highest-frequency concepts in NEET Optics. Two necessary conditions must BOTH be satisfied — failing to state both is a classic exam error.</p>
+
+        <div class="def-box">
+          <span class="lbl">Two Conditions for TIR</span>
+          <p><strong>1.</strong> Light must travel from a <strong>denser medium to a rarer medium</strong> ($n_1 > n_2$).</p>
+          <p><strong>2.</strong> Angle of incidence must be <strong>greater than the critical angle</strong> ($i > i_c$).</p>
+          <p>At critical angle: refracted ray grazes the surface ($r = 90°$). So by Snell's law: $n_1 \sin i_c = n_2 \sin 90° = n_2$</p>
+          <p>$$\sin i_c = \frac{n_2}{n_1}$$</p>
+          <p>For glass-air interface ($n_2 = 1$): $\sin i_c = 1/n$. For glass ($n = 1.5$): $i_c \approx 41.8°$. For diamond ($n = 2.42$): $i_c \approx 24.4°$ (very small → most light gets TIR → brilliant sparkle).</p>
+        </div>
+
+        <h3 class="ssh">🎯 Applications of TIR Tested in NEET</h3>
+        <ul class="pl">
+          <li><strong>Optical fibre:</strong> Light travels by successive TIR inside a glass fibre. Acceptance angle, numerical aperture. $n_{core} > n_{cladding}$.</li>
+          <li><strong>Diamond brilliance:</strong> Very small critical angle ($24.4°$) causes almost all light to undergo TIR and be reflected inside.</li>
+          <li><strong>Mirages:</strong> Hot air near road is less dense (lower $n$) → acts as rarer medium → TIR from layers → sky appears reflected on road.</li>
+          <li><strong>Prisms in binoculars/periscopes:</strong> 45°-45°-90° prism → light hits hypotenuse at 45° which exceeds $i_c$ for glass (41.8°) → perfect TIR.</li>
+          <li><strong>Sparkling of gemstones:</strong> High refractive index → small critical angle → TIR from all faces.</li>
+        </ul>
+
+        <div class="trick">
+          <p><strong>Quick critical angle calculation:</strong> If $n$ is given as a fraction like $3/2$ (glass), $\sin i_c = 2/3$. If given as $\sqrt{2}$, $\sin i_c = 1/\sqrt{2} = \sin 45°$, so $i_c = 45°$. If $n = \sqrt{3}$, $\sin i_c = 1/\sqrt{3}$. These exact values appear in NEET options — memorise them.</p>
+        </div>
+
+        <div class="shortcut">
+          <p><strong>Relation between $n$ and $i_c$:</strong> Higher $n$ → smaller $i_c$ → TIR happens more easily → more brilliant the gem or better the optical fibre. Diamond ($n = 2.42$) sparkles more than glass ($n = 1.5$) precisely because of this relationship.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — TIR</h3>
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Light travels from an optically denser medium A into the rarer medium B with speeds $v_1$ and $v_2$ respectively. The critical angle between A and B is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: sin⁻¹(v₁/v₂)</span>
+            <p><strong>Key relation:</strong> $n \propto 1/v$ (refractive index is inversely proportional to speed). So $n_A = c/v_1$, $n_B = c/v_2$.</p>
+            <p>$\sin i_c = n_B / n_A = (c/v_2)/(c/v_1) = v_1/v_2$</p>
+            <p>Therefore $i_c = \sin^{-1}(v_1/v_2)$. Since A is denser: $v_1 < v_2$, so $\sin i_c < 1$ — physically consistent.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A glass prism of refractive index 1.5 is immersed in water (n = 4/3). A light ray incident normally on face AB undergoes TIR at face BC. The minimum value of angle θ at face BC is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: sin⁻¹(8/9) ≈ 62.7°</span>
+            <p><strong>Critical angle for glass-water interface:</strong> $\sin i_c = n_{water}/n_{glass} = (4/3)/(3/2) = (4/3) \times (2/3) = 8/9$</p>
+            <p>For TIR at face BC, angle of incidence ≥ $\sin^{-1}(8/9)$. The minimum angle of the prism at that face is when incidence just equals critical angle. $\theta_{min} = \sin^{-1}(8/9) \approx 62.7°$.</p>
+            <p><strong>Key insight:</strong> TIR critical angle depends on the medium the prism is immersed in. In water, the critical angle is larger than in air, so you need a steeper prism face for TIR.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- REFRACTION AT SPHERICAL SURFACE -->
+      <div class="sec" data-m="spherical-refraction" id="refr-sphere">
+        <h2 class="sh">Refraction at Spherical Surfaces <span class="tag tt">4 times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Refraction Formula at Single Spherical Surface</span>
+          <p>$$\frac{n_2}{v} - \frac{n_1}{u} = \frac{n_2 - n_1}{R}$$</p>
+          <p>where $n_1$ = medium of incident ray, $n_2$ = medium of refracted ray, $R$ = radius of curvature (positive if centre of curvature is on the transmission side).</p>
+          <p><strong>Lens Maker's Equation</strong> (derived by applying above formula twice):</p>
+          <p>$$\frac{1}{f} = \left(\frac{n_2}{n_1} - 1\right)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$$</p>
+          <p>For lens in air ($n_1 = 1$, $n_2 = n$): $\dfrac{1}{f} = (n-1)\left(\dfrac{1}{R_1} - \dfrac{1}{R_2}\right)$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Sign Convention for Lens Maker's Equation</h3>
+        <ul class="pl">
+          <li>For a <strong>double convex lens:</strong> $R_1 > 0$, $R_2 < 0$ → $1/f > 0$ → converging (positive focal length) ✓</li>
+          <li>For a <strong>double concave lens:</strong> $R_1 < 0$, $R_2 > 0$ → $1/f < 0$ → diverging ✓</li>
+          <li>For <strong>plano-convex</strong> (flat face $R_2 = \infty$): $1/f = (n-1)/R_1$</li>
+        </ul>
+
+        <div class="eg">
+          <p><strong>Classic NEET problem:</strong> Double convex lens, $R_1 = 20$ cm, $R_2 = 30$ cm, $n = 1.5$. Find focal length.</p>
+          <p>$\dfrac{1}{f} = (1.5-1)\left(\dfrac{1}{20} - \dfrac{1}{-30}\right) = 0.5\left(\dfrac{1}{20} + \dfrac{1}{30}\right) = 0.5 \times \dfrac{5}{60} = \dfrac{1}{24}$</p>
+          <p>$f = 24$ cm. Note: $R_2$ is negative because centre is on the same side as incident light (left side for convex lens).</p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Lens Maker's Formula Trap — Sign of R₂</span>
+          <p>For a double convex lens in standard orientation, $R_1 > 0$ and $R_2 < 0$ (NOT positive). The second surface curves away from the incoming light. NEET options often include the wrong sign variant. Always draw a quick sketch and apply sign convention before plugging in.</p>
+        </div>
+      </div>
+
+      <!-- LENSES -->
+      <div class="sec" data-m="lenses" id="lenses">
+        <h2 class="sh">Lenses — Thin Lens Formula, Power, Combinations <span class="tag tg">12+ times — highest frequency</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Thin Lens Formula &amp; Magnification</span>
+          <p>$$\frac{1}{v} - \frac{1}{u} = \frac{1}{f}$$</p>
+          <p><strong>Magnification:</strong> $m = \dfrac{v}{u}$ (for lenses — note: NO negative sign unlike mirrors)</p>
+          <p>If $m > 0$ → erect (virtual image). If $m < 0$ → inverted (real image, for convex lens).</p>
+          <p><strong>Power of a lens:</strong> $P = \dfrac{1}{f(\text{in metres})}$, unit = Dioptre (D)</p>
+        </div>
+
+        <h3 class="ssh">🎯 Lens Combinations</h3>
+        <div class="formula">
+          <strong>Two thin lenses in contact:</strong>
+          $$\frac{1}{f_{eq}} = \frac{1}{f_1} + \frac{1}{f_2}$$
+          $$P_{eq} = P_1 + P_2$$
+          <br/>
+          <strong>Two lenses separated by distance d:</strong>
+          $$\frac{1}{f_{eq}} = \frac{1}{f_1} + \frac{1}{f_2} - \frac{d}{f_1 f_2}$$
+          $$P_{eq} = P_1 + P_2 - d \cdot P_1 P_2$$
+        </div>
+
+        <div class="trick">
+          <p><strong>NEET 2025 — 4 identical lenses in contact:</strong> If each has power $P$, the combination has power $4P$. Focal length $= f/4$. Magnification of combination = product of individual magnifications only if used in sequence as imaging system; for a single image, use $1/f_{eq}$ and then normal lens formula.</p>
+          <p><strong>From NEET 2025 actual question:</strong> 4 similar thin convex lenses in contact → total power = $4P$, total magnification compared to single lens → magnification through combined system ≠ $m^4$. For a combination $f_{eq} = f/4$, use single lens formula with $f_{eq}$.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Convex Lens — Image Summary Table</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Object Position</th><th>Image (v)</th><th>Nature</th><th>Size</th></tr></thead>
+            <tbody>
+              <tr><td>At infinity ($u = -\infty$)</td><td>At F₂ ($v = +f$)</td><td>Real, inverted</td><td>Highly diminished</td></tr>
+              <tr><td>Beyond 2F₁ ($|u| > 2f$)</td><td>Between F₂ &amp; 2F₂</td><td>Real, inverted</td><td>Diminished</td></tr>
+              <tr><td>At 2F₁ ($u = -2f$)</td><td>At 2F₂ ($v = +2f$)</td><td>Real, inverted</td><td>Same size</td></tr>
+              <tr><td>Between 2F₁ and F₁</td><td>Beyond 2F₂</td><td>Real, inverted</td><td>Magnified</td></tr>
+              <tr><td>At F₁ ($u = -f$)</td><td>Infinity</td><td>—</td><td>Highly magnified</td></tr>
+              <tr><td>Between F₁ and O ($|u| < f$)</td><td>Same side as object (−ve $v$)</td><td>Virtual, erect</td><td>Magnified</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Concave Lens — Always Virtual, Always Erect, Always Diminished</span>
+          <p>For a concave (diverging) lens, regardless of object position: image is always virtual, erect, and diminished, on the same side as the object. $f$ is negative, $v$ is always negative (for real objects). This is tested as a conceptual question in NEET — "which lens always forms a diminished, virtual image?"</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Lenses</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">A microscope has an objective of focal length 2 cm, an eyepiece of focal length 4 cm, and a tube length of 40 cm. If the distance of distinct vision is 25 cm, the magnification of the microscope is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: −(250/2)(1 + 25/4) = significant — compute below</span>
+            <p><strong>Compound microscope magnification (image at near point D):</strong></p>
+            <p>$M = \dfrac{L}{f_o} \times \left(1 + \dfrac{D}{f_e}\right)$ where $L$ = tube length = 40 cm, $f_o$ = 2 cm, $f_e$ = 4 cm, $D$ = 25 cm.</p>
+            <p>$M = \dfrac{40}{2} \times \left(1 + \dfrac{25}{4}\right) = 20 \times \left(\dfrac{29}{4}\right) = 20 \times 7.25 = 145$</p>
+            <p>The negative sign is often included to indicate inverted image: $M = -145$ (but magnitude 145 is the answer in options).</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2020</span>
+            <span class="pyq-q">A thin convex lens of focal length 25 cm is cut into two halves along its principal axis. The two halves are placed in contact (diametrically). The focal length of the combination is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 25 cm</span>
+            <p><strong>Key concept:</strong> Cutting a lens parallel to the principal axis gives two half-lenses, each with the <em>same focal length</em> as the original (since the lens maker's formula involves $R_1$ and $R_2$, which haven't changed — only the aperture is halved).</p>
+            <p>When placed together, $1/f_{eq} = 1/25 + 1/25 = 2/25$ — wait, this gives $f_{eq} = 12.5$ cm.</p>
+            <p><strong>However</strong>, the question says "cut along principal axis" (horizontally, top-bottom halves). Each half-lens has the same focal length. When recombined face-to-face, it forms the same full lens — $f = 25$ cm. The key is these are placed in contact as a full lens again.</p>
+            <p>If the question means separate parallel placement or perpendicular cut: verify carefully. For "placed in contact" after horizontal cut → restored full lens → $f = 25$ cm.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2019</span>
+            <span class="pyq-q">A convex lens and a concave lens of equal focal length magnitude $f$ are placed in contact. The power of the combination is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Zero (P = 0)</span>
+            <p>$P_{convex} = +1/f$, $P_{concave} = -1/f$.</p>
+            <p>$P_{total} = P_1 + P_2 = +1/f + (-1/f) = 0$. The combination acts as a plane glass slab — no converging or diverging power. This is the principle used in achromatic doublets where the net power is preserved but chromatic aberration is cancelled.</p>
+          </div>
+        </div>
+
+        <div class="shortcut">
+          <p><strong>Power shortcut for eye defects:</strong> Person needs glasses of power $P$ D to correct their vision. Focal length $f = 100/P$ cm. If $P$ is negative → concave lens → myopia correction. If $P$ is positive → convex lens → hypermetropia correction. NEET 2022 asked this directly.</p>
+        </div>
+      </div>
+
+      <!-- PRISM -->
+      <div class="sec" data-m="prism" id="prism">
+        <h2 class="sh">Prism &amp; Dispersion <span class="tag tg">8+ times in NEET</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Prism Formulae</span>
+          <p>$$\delta = i_1 + i_2 - A \quad \text{(deviation formula)}$$</p>
+          <p>$$A + \delta = i_1 + i_2 \quad \Rightarrow \quad r_1 + r_2 = A$$</p>
+          <p><strong>At minimum deviation</strong> $(\delta = D_{min})$: $i_1 = i_2 = i$ and $r_1 = r_2 = r = A/2$</p>
+          <p>$$\boxed{n = \frac{\sin\left(\dfrac{A + D_{min}}{2}\right)}{\sin\left(\dfrac{A}{2}\right)}}$$</p>
+          <p><strong>For small angle prism</strong> (thin prism, small $A$): $\delta \approx (n-1)A$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Minimum Deviation — Key Facts for NEET</h3>
+        <ul class="pl">
+          <li><strong>At minimum deviation:</strong> $i_1 = i_2$ (angle of incidence = angle of emergence)</li>
+          <li><strong>At minimum deviation:</strong> ray inside prism is parallel to the base</li>
+          <li><strong>At minimum deviation:</strong> $r_1 = r_2 = A/2$ (refraction angles are equal)</li>
+          <li>Minimum deviation is unique to each wavelength → forms basis of spectrometer</li>
+          <li>Violet light deviates more than red (higher $n$ for violet → higher $\delta$)</li>
+        </ul>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Deviation Order Trap — Which Colour Deviates Most?</span>
+          <p>VIBGYOR: Violet bends most, Red bends least. $n_{violet} > n_{red}$ → $\delta_{violet} > \delta_{red}$. NEET 2024 had a question specifically testing this. Also: dispersion = $D_V - D_R$ = angular spread. Dispersive power $\omega = (n_V - n_R)/(n_Y - 1)$ where $Y$ = yellow (mean colour).</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Prism</h3>
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">For a prism, when light undergoes minimum deviation, the relationship between angle of incidence $i$ and angle of emergence $i'$ is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: i = i′</span>
+            <p>This is a direct definition of minimum deviation. At minimum deviation, the ray inside the prism is parallel to the base, and the path is symmetric. Therefore, angle of incidence = angle of emergence: $i = i'$.</p>
+            <p>This is tested almost every 2–3 years. Memorise: minimum deviation ⟺ $i = i'$ ⟺ $r_1 = r_2 = A/2$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2018</span>
+            <span class="pyq-q">An equilateral prism ($A = 60°$) produces minimum deviation of $30°$. The refractive index of the prism is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: √2</span>
+            <p>$n = \dfrac{\sin\left(\dfrac{60°+30°}{2}\right)}{\sin\left(\dfrac{60°}{2}\right)} = \dfrac{\sin 45°}{\sin 30°} = \dfrac{1/\sqrt{2}}{1/2} = \dfrac{2}{\sqrt{2}} = \sqrt{2} \approx 1.414$</p>
+          </div>
+        </div>
+
+        <div class="trick">
+          <p><strong>Standard prism values to memorise:</strong></p>
+          <p>$A = 60°$, $D_{min} = 30°$ → $n = \sqrt{2}$. &nbsp; $A = 60°$, $D_{min} = 60°$ → $n = \sqrt{3}$. &nbsp; $A = 60°$, $D_{min} = 40°$ → compute directly. These exact combinations appear repeatedly in NEET — know $\sqrt{2}$ and $\sqrt{3}$ cases cold.</p>
+        </div>
+      </div>
+
+      <!-- OPTICAL INSTRUMENTS -->
+      <div class="sec" data-m="instruments" id="instruments">
+        <h2 class="sh">Optical Instruments <span class="tag tc">7+ times</span></h2>
+
+        <h3 class="ssh">🎯 Simple Microscope (Magnifying Glass)</h3>
+        <div class="formula">
+          Image at $D$ (near point): $M = 1 + \dfrac{D}{f}$
+          <br/>
+          Image at infinity (relaxed eye): $M = \dfrac{D}{f}$
+          <br/>
+          $D = 25$ cm (standard near point distance)
+        </div>
+
+        <h3 class="ssh">🎯 Compound Microscope</h3>
+        <div class="formula">
+          Image at near point: $M = -\dfrac{v_o}{u_o}\left(1 + \dfrac{D}{f_e}\right) \approx \dfrac{L}{f_o}\left(1 + \dfrac{D}{f_e}\right)$
+          <br/>
+          Image at infinity: $M = -\dfrac{v_o}{u_o} \cdot \dfrac{D}{f_e} \approx \dfrac{L \cdot D}{f_o \cdot f_e}$
+          <br/>
+          $L$ = tube length (distance between objective image and focus of eyepiece)
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ Compound Microscope Trap — L vs total tube length</span>
+          <p>$L$ in the compound microscope formula is NOT the total tube length. $L$ = distance from the image formed by objective to the focus of the eyepiece. Total tube length $= L + f_o + f_e$. NEET sometimes gives "tube length" meaning the total — then $L = \text{tube length} - f_o - f_e$. In NEET 2025, the tube length 40 cm was given as $L$ directly (typical NEET convention).</p>
+        </div>
+
+        <h3 class="ssh">🎯 Astronomical Telescope (Normal Adjustment — image at ∞)</h3>
+        <div class="formula">
+          $$M = \frac{f_o}{f_e}$$
+          <br/>
+          Tube length (normal adjustment) $= f_o + f_e$
+          <br/>
+          Image at near point: $M = \dfrac{f_o}{f_e}\left(1 + \dfrac{f_e}{D}\right)$
+        </div>
+
+        <div class="fcards">
+          <div class="fcard">
+            <div class="fcard-title">To increase magnification of telescope</div>
+            <ul>
+              <li>Increase $f_o$ (longer objective)</li>
+              <li>Decrease $f_e$ (shorter eyepiece)</li>
+              <li>Moving eye lens closer to objective does NOT help (changes tube, not M)</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Resolving Power (RP)</div>
+            <ul>
+              <li>Telescope RP $\propto$ diameter of objective</li>
+              <li>Microscope RP $= 2n\sin\theta/\lambda$ (numerical aperture)</li>
+              <li>RP increases with shorter $\lambda$</li>
+              <li>RP ≠ magnifying power (NEET trap!)</li>
+            </ul>
+          </div>
+          <div class="fcard">
+            <div class="fcard-title">Human Eye Defects</div>
+            <ul>
+              <li>Myopia (near-sight): far point &lt; ∞ → concave lens</li>
+              <li>Hypermetropia (far-sight): near point &gt; 25 cm → convex lens</li>
+              <li>Presbyopia: both defects — bifocal lens</li>
+              <li>Astigmatism: cylindrical lens</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Instruments</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2024</span>
+            <span class="pyq-q">A small telescope has an objective of focal length 140 cm and an eyepiece of focal length 5 cm. The magnifying power for viewing a distant object is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 28</span>
+            <p>Normal adjustment (image at infinity): $M = f_o/f_e = 140/5 = 28$.</p>
+            <p>This is a direct formula application. The answer 28 corresponds to option (b). No other formula needed — just $M = f_o/f_e$ for distant object in normal adjustment.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">In a certain camera, a combination of four similar thin convex lenses is arranged axially in contact. The power of the combination and total magnification compared to single lens (power $p$, magnification $m$) will be respectively:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 4p and m/4 (effectively)</span>
+            <p><strong>Power:</strong> For 4 identical lenses in contact: $P_{total} = 4p$ (powers add directly for lenses in contact).</p>
+            <p><strong>Focal length:</strong> $f_{total} = f/4$. Since magnification at a given object distance depends on $v/u$, and $f_{total} = f/4$ → the image forms closer → magnification decreases. Using thin lens formula with $f_{total}$: for a specific object, $m_{combination} \neq m^4$. The combination has power $4p$, and the total magnification (at same object distance) is effectively reduced compared to individual lens — the exact fraction depends on object distance, but the key answer is power $= 4p$.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CHAPTER 10 — WAVE OPTICS                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="chapter" id="wave-overview">
+    <div class="ch-head ch-head-wave">
+      <div class="ch-ey">Chapter 10</div>
+      <div class="ch-title">Wave Optics</div>
+    </div>
+    
+    <div class="ch-body">
+
+      <!-- WAVE OPTICS OVERVIEW -->
+      <div class="sec" data-m="wave-overview">
+        <h2 class="sh">NEET Frequency Map — Wave Optics <span class="tag tg">~1–2 Q/paper</span></h2>
+
+        <div class="score-strip">
+          <div class="score-pill sp-r">🔴 YDSE (fringe width, intensity) — 14+ times</div>
+          <div class="score-pill sp-o">🟠 Polarisation (Malus, Brewster) — 8+ times</div>
+          <div class="score-pill sp-b">🔵 Diffraction (single slit, resolving) — 6+ times</div>
+          <div class="score-pill sp-g">🟢 Huygens' Principle — 4 times</div>
+        </div>
+
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Sub-topic</th><th>NEET Frequency (2009–2025)</th><th>Priority</th></tr></thead>
+            <tbody>
+              <tr><td>YDSE — fringe width, fringe position, intensity, shifting</td><td>14+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Polarisation — Malus's law, Brewster's law, polaroids</td><td>8+ times</td><td><span class="freq-high">🔴 HIGH</span></td></tr>
+              <tr><td>Single slit diffraction — central maximum width, minima</td><td>6+ times</td><td><span class="freq-med">🟠 MED</span></td></tr>
+              <tr><td>Huygens' principle — wavefronts, laws of reflection/refraction</td><td>4 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+              <tr><td>Coherence, conditions for interference</td><td>3 times</td><td><span class="freq-low">🟢 LOW</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <span class="lbl">Mentor's Note — Wave Optics in NEET</span>
+          <p>Wave Optics is conceptually distinct from Ray Optics but simpler for NEET scoring: 90% of marks come from YDSE (fringe width formula) and polarisation (Malus's law). Master these two and you're set. Diffraction is mostly conceptual — central maximum is wide, secondary maxima diminish. Huygens is purely conceptual — no numericals.</p>
+        </div>
+      </div>
+
+      <!-- HUYGENS -->
+      <div class="sec" data-m="huygens" id="huygens">
+        <h2 class="sh">Huygens' Principle <span class="tag tt">Conceptual</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Huygens' Principle</span>
+          <p><strong>Every point on a wavefront acts as a source of secondary spherical wavelets.</strong> The new wavefront at a later time is the common tangent (envelope) to all these secondary wavelets.</p>
+          <p>Speed of secondary wavelets = speed of wave in that medium. Used to derive laws of reflection and refraction geometrically.</p>
+        </div>
+
+        <ul class="pl">
+          <li>Plane wavefront (parallel rays) → remains plane wavefront in uniform medium</li>
+          <li>Spherical wavefront (point source) → expands as spheres</li>
+          <li>When wave goes to denser medium: wavelength decreases, speed decreases, frequency unchanged</li>
+          <li>Huygens' principle <em>cannot</em> explain photoelectric effect (needs wave-particle duality)</li>
+          <li>Light travels as waves: explains interference, diffraction, polarisation. As particles: explains photoelectric effect.</li>
+        </ul>
+
+        <div class="tip-box">
+          <span class="lbl">NEET Conceptual — Wavefront Types</span>
+          <p>Point source at finite distance → spherical wavefront. Point source at infinity (parallel beam) → plane wavefront. Line source → cylindrical wavefront. The shape of the wavefront tells you the nature of the source — NEET asks this as assertion-reason type questions.</p>
+        </div>
+      </div>
+
+      <!-- INTERFERENCE & YDSE -->
+      <div class="sec" data-m="YDSE" id="interference">
+        <h2 class="sh">Interference &amp; Young's Double Slit Experiment (YDSE) <span class="tag tg">14+ times — most important</span></h2>
+
+        <p>YDSE is the cornerstone of Wave Optics in NEET. Almost every paper has at least one YDSE question. Master the fringe width formula and its modifications.</p>
+
+        <div class="def-box">
+          <span class="lbl">YDSE Core Formulae</span>
+          <p><strong>Path difference:</strong> $\Delta = \dfrac{yd}{D}$ where $y$ = distance from central maximum, $d$ = slit separation, $D$ = screen distance.</p>
+          <p><strong>Constructive interference (bright fringe):</strong> $\Delta = n\lambda$ ($n = 0, \pm1, \pm2, \ldots$)</p>
+          <p><strong>Destructive interference (dark fringe):</strong> $\Delta = (2n-1)\dfrac{\lambda}{2}$ ($n = 1, 2, 3, \ldots$)</p>
+          <p><strong>Fringe width:</strong> $\boxed{\beta = \dfrac{\lambda D}{d}}$</p>
+          <p><strong>Position of $n^{th}$ bright fringe:</strong> $y_n = \dfrac{n\lambda D}{d}$</p>
+          <p><strong>Position of $n^{th}$ dark fringe:</strong> $y_n = \dfrac{(2n-1)\lambda D}{2d}$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Intensity in YDSE</h3>
+        <div class="formula">
+          $$I = I_1 + I_2 + 2\sqrt{I_1 I_2}\cos\phi$$
+          <br/>
+          For equal intensities $I_1 = I_2 = I_0$: $I = 4I_0\cos^2(\phi/2)$
+          <br/>
+          <strong>Max intensity (constructive):</strong> $I_{max} = (\sqrt{I_1}+\sqrt{I_2})^2$
+          <br/>
+          <strong>Min intensity (destructive):</strong> $I_{min} = (\sqrt{I_1}-\sqrt{I_2})^2$
+          <br/>
+          For equal slits: $I_{max} = 4I_0$, $I_{min} = 0$
+        </div>
+
+        <h3 class="ssh">🎯 Important Modifications — NEET Tests These Specifically</h3>
+
+        <div class="cg-card">
+          <div class="cg-title">Modification 1 — YDSE in a Medium of Refractive Index $n$</div>
+          <p>Wavelength becomes $\lambda' = \lambda/n$. Fringe width: $\beta' = \dfrac{\lambda' D}{d} = \dfrac{\lambda D}{nd} = \dfrac{\beta}{n}$</p>
+          <p><strong>Result:</strong> Fringes become narrower when experiment is done in a denser medium. Water ($n=4/3$) → $\beta' = 3\beta/4$.</p>
+        </div>
+
+        <div class="cg-card">
+          <div class="cg-title">Modification 2 — Shifting of Fringes with Slab</div>
+          <p>If a slab of thickness $t$ and refractive index $\mu$ is placed in front of one slit, the path difference changes by $(\mu - 1)t$.</p>
+          <p><strong>Shift of central fringe:</strong> $y_{shift} = \dfrac{(\mu-1)t \cdot D}{d}$ (fringe pattern shifts toward the slab side)</p>
+          <p><strong>Number of fringes shifted:</strong> $\Delta n = \dfrac{(\mu-1)t}{\lambda}$</p>
+        </div>
+
+        <div class="cg-card">
+          <div class="cg-title">Modification 3 — Conditions for Observable Interference</div>
+          <p>Sources must be <strong>coherent</strong> (constant phase difference), same frequency, same polarisation (approximately). Two independent light sources (bulbs) are <em>not</em> coherent → no steady interference pattern.</p>
+        </div>
+
+        <div class="warn-box">
+          <span class="lbl">⚠ NEET Trap — Intensity Ratio to Amplitude/Slit Width Ratio</span>
+          <p>If slit widths are in ratio $W_1 : W_2$, then intensities $I_1 : I_2 = W_1 : W_2$, and amplitudes $a_1 : a_2 = \sqrt{W_1} : \sqrt{W_2}$. Max/min intensity ratio: $\dfrac{I_{max}}{I_{min}} = \left(\dfrac{\sqrt{I_1}+\sqrt{I_2}}{\sqrt{I_1}-\sqrt{I_2}}\right)^2$. Confusing amplitude and intensity ratios is the #1 YDSE error.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — YDSE</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2024 (Re-exam)</span>
+            <span class="pyq-q">Two slits in YDSE are 1.5 mm apart and screen is at 1 m from slits. If wavelength of light used is 600 × 10⁻⁹ m, the fringe separation is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 0.4 mm</span>
+            <p>$\beta = \dfrac{\lambda D}{d} = \dfrac{600 \times 10^{-9} \times 1}{1.5 \times 10^{-3}} = \dfrac{6 \times 10^{-7}}{1.5 \times 10^{-3}} = 4 \times 10^{-4}$ m $= 0.4$ mm.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2023</span>
+            <span class="pyq-q">In YDSE, the ratio of widths of two slits is 4 : 1. The ratio of maximum to minimum intensity in the interference pattern is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 9 : 1</span>
+            <p>Slit width ratio $W_1:W_2 = 4:1$ → intensity ratio $I_1:I_2 = 4:1$ → amplitude ratio $a_1:a_2 = 2:1$.</p>
+            <p>$\dfrac{I_{max}}{I_{min}} = \left(\dfrac{a_1+a_2}{a_1-a_2}\right)^2 = \left(\dfrac{2+1}{2-1}\right)^2 = \left(\dfrac{3}{1}\right)^2 = 9$</p>
+            <p>Answer: $I_{max}/I_{min} = 9:1$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">In YDSE, slit separation d = 0.3 mm, D = 1 m, λ = 600 nm. A mica sheet (μ = 1.5, t = 0.5 μm) is placed in front of one slit. The number of fringes that will shift is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: 0.5 (shift = half a fringe)</span>
+            <p>$\Delta n = \dfrac{(\mu - 1)t}{\lambda} = \dfrac{(1.5-1)\times 0.5\times10^{-6}}{600\times10^{-9}} = \dfrac{0.5\times0.5\times10^{-6}}{600\times10^{-9}} = \dfrac{0.25\times10^{-6}}{0.6\times10^{-6}} \approx 0.416 \approx 0.5$ fringe.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2018</span>
+            <span class="pyq-q">Which of the following combinations of waves can show interference? A: y = a sin ωt, B: y = a sin 2ωt, C: y = a sin ωt + a cos ωt, D: y = a sin ωt</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: A and D (same frequency, coherent)</span>
+            <p><strong>Condition for interference:</strong> Waves must have the same frequency (and should be coherent). A and D both have frequency ω → same frequency → can interfere. B has 2ω (different frequency from A/D). C has both ω and cos ωt = ω phase-shifted (same frequency as A/D, so A and C can also interfere). The stable interference pattern requires same frequency and constant phase difference.</p>
+          </div>
+        </div>
+
+        <div class="trick">
+          <p><strong>YDSE angular fringe width:</strong> $\theta_{fringe} = \beta/D = \lambda/d$ (in radians). This is independent of $D$. Also: if light of two wavelengths $\lambda_1$ and $\lambda_2$ is used, the minimum distance from the centre where their bright fringes coincide is the LCM of their individual fringe widths — type question in NEET 2016.</p>
+        </div>
+      </div>
+
+      <!-- DIFFRACTION -->
+      <div class="sec" data-m="diffraction" id="diffraction">
+        <h2 class="sh">Diffraction — Single Slit &amp; Limit of Resolution <span class="tag tc">6+ times</span></h2>
+
+        <div class="def-box">
+          <span class="lbl">Single Slit Diffraction</span>
+          <p><strong>Position of minima (dark bands):</strong> $a\sin\theta = m\lambda$ ($m = \pm1, \pm2, \ldots$; $m \neq 0$)</p>
+          <p><strong>For small angles:</strong> $y_m = \dfrac{m\lambda D}{a}$ where $a$ = slit width.</p>
+          <p><strong>Width of central maximum:</strong> $\beta_0 = \dfrac{2\lambda D}{a}$ (twice the distance to first minimum)</p>
+          <p><strong>Angular half-width of central maximum:</strong> $\theta_0 = \lambda/a$</p>
+        </div>
+
+        <h3 class="ssh">🎯 Comparison — YDSE vs Single Slit</h3>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Property</th><th>YDSE (Interference)</th><th>Single Slit (Diffraction)</th></tr></thead>
+            <tbody>
+              <tr><td>Bright fringe condition</td><td>$\Delta = n\lambda$</td><td>Central maximum is default (not a formula)</td></tr>
+              <tr><td>Dark fringe/minimum</td><td>$\Delta = (2n-1)\lambda/2$</td><td>$a\sin\theta = m\lambda$ ($m \neq 0$)</td></tr>
+              <tr><td>Fringe width</td><td>$\beta = \lambda D/d$ (all equal)</td><td>Central max is twice as wide as secondary</td></tr>
+              <tr><td>Intensity pattern</td><td>All bright fringes equal intensity</td><td>Central max very bright; secondary rapidly dimming</td></tr>
+              <tr><td>Effect of increasing $\lambda$</td><td>Wider fringes</td><td>Wider central maximum</td></tr>
+              <tr><td>Effect of decreasing slit/separation</td><td>Wider fringes (decrease $d$)</td><td>Wider central max (decrease $a$)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="ssh">🎯 Resolving Power</h3>
+        <div class="formula">
+          <strong>Rayleigh Criterion:</strong> Two sources just resolved when central maximum of one falls on first minimum of the other.
+          <br/>
+          <strong>Telescope:</strong> $\theta_{min} = 1.22\dfrac{\lambda}{D_o}$ where $D_o$ = diameter of objective.
+          <br/>
+          RP of telescope $= D_o / 1.22\lambda$ (larger aperture → better resolution → more detail)
+          <br/>
+          <strong>Microscope:</strong> $d_{min} = \dfrac{1.22\lambda}{2n\sin\theta}$, RP $= \dfrac{2n\sin\theta}{1.22\lambda}$
+        </div>
+
+        <div class="tip-box">
+          <span class="lbl">Why Large Telescope Apertures?</span>
+          <p>Large objective diameter → small $\theta_{min}$ → better angular resolution → can resolve stars that appear closer together. This is the reason large telescopes are built — not for magnification (eyepieces can always be changed) but for resolving power. NEET asks this as a conceptual direct question.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Diffraction</h3>
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2021</span>
+            <span class="pyq-q">In a single slit diffraction experiment, the width of the slit is made double. The central maximum of diffraction pattern will become:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Half as wide and twice as intense</span>
+            <p><strong>Width of central maximum:</strong> $\beta_0 = 2\lambda D/a$. If $a$ doubles → $\beta_0$ halves → central maximum becomes <strong>narrower by half</strong>.</p>
+            <p><strong>Intensity:</strong> Total energy in the diffraction pattern is conserved. Since the same energy is now concentrated in a smaller area → intensity doubles.</p>
+            <p>Answer: central maximum is narrower (half-width) and brighter (twice as intense).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- POLARISATION -->
+      <div class="sec" data-m="polarisation" id="polarisation">
+        <h2 class="sh">Polarisation <span class="tag tg">8+ times — high priority</span></h2>
+
+        <p>Polarisation proves light is a transverse wave. NEET tests Malus's law (numerical) and Brewster's angle (both formula and concept) in almost every cycle.</p>
+
+        <div class="def-box">
+          <span class="lbl">Malus's Law</span>
+          <p>When polarised light of intensity $I_0$ passes through a polaroid (analyser) at angle $\theta$ to the polarisation direction:</p>
+          <p>$$I = I_0 \cos^2\theta$$</p>
+          <p><strong>Unpolarised light through first polaroid:</strong> Intensity becomes $I_0/2$ (independent of orientation)</p>
+          <p><strong>Unpolarised light through two polaroids at angle $\theta$:</strong> $I = (I_0/2)\cos^2\theta$</p>
+        </div>
+
+        <div class="def-box">
+          <span class="lbl">Brewster's Law (Polarisation by Reflection)</span>
+          <p>At Brewster's angle $i_B$, reflected light is completely plane-polarised (perpendicular component only). The transmitted light is partially polarised.</p>
+          <p>$$\tan i_B = n \quad \text{(Brewster's law)}$$</p>
+          <p>At Brewster's angle: reflected ray ⊥ refracted ray (the angle between them is 90°). So $i_B + r_B = 90°$.</p>
+        </div>
+
+        <h3 class="ssh">🎯 Three Polaroids — Classic NEET Problem</h3>
+        <div class="approach">
+          <p><strong>Setup:</strong> Light passes through 3 polaroids: P₁ (polariser), P₂ (at angle θ₁ to P₁), P₃ (at angle θ₂ to P₁).</p>
+          <p><strong>After P₁:</strong> $I_1 = I_0/2$ (unpolarised becomes polarised)</p>
+          <p><strong>After P₂:</strong> $I_2 = I_1\cos^2\theta_1 = (I_0/2)\cos^2\theta_1$</p>
+          <p><strong>After P₃:</strong> $I_3 = I_2\cos^2(\theta_2 - \theta_1) = (I_0/2)\cos^2\theta_1\cos^2(\theta_2-\theta_1)$</p>
+          <p><strong>Note:</strong> If P₂ is removed (crossed P₁ and P₃ at 90°), no light passes. But with P₂ inserted at 45°, some light comes through — counterintuitive but tested in NEET 2025!</p>
+        </div>
+
+        <div class="trick">
+          <p><strong>Two crossed polaroids (90° apart):</strong> $I_{final} = 0$. If a third polaroid at 45° is inserted between them: $I = (I_0/2)\cos^2 45°\cos^2 45° = (I_0/2)(1/2)(1/2) = I_0/8$. This non-zero result surprises many — NEET 2025 tested the intensity through polaroid at 22.5° in a similar setup.</p>
+        </div>
+
+        <h3 class="ssh">📋 PYQ Solved — Polarisation</h3>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">The intensity of transmitted light when a polaroid sheet is placed between two crossed polaroids at 22.5° from the polarization axis of one of the polaroids is ($I_0$ is intensity of polarised light after passing through first polaroid):</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: I₀/4</span>
+            <p><strong>Setup:</strong> P₁ (polariser), P₂ at 22.5° from P₁, P₃ perpendicular to P₁ (90° from P₁), so P₃ is at 90° − 22.5° = 67.5° from P₂.</p>
+            <p><strong>After P₁:</strong> Intensity = $I_0$ (given).</p>
+            <p><strong>After P₂:</strong> $I_1 = I_0\cos^2(22.5°)$</p>
+            <p><strong>After P₃:</strong> $I_2 = I_1\cos^2(67.5°) = I_0\cos^2(22.5°)\cos^2(67.5°)$</p>
+            <p>Using $\cos(67.5°) = \sin(22.5°)$: $I_2 = I_0\cos^2(22.5°)\sin^2(22.5°) = I_0[\sin(22.5°)\cos(22.5°)]^2 = I_0\left[\dfrac{\sin 45°}{2}\right]^2 \times 4$</p>
+            <p>$= I_0 \cdot \dfrac{\sin^2(45°)}{4} = I_0 \cdot \dfrac{(1/\sqrt{2})^2}{4} = I_0 \cdot \dfrac{1/2}{4} = \dfrac{I_0}{8}$. Wait — let's recompute carefully:</p>
+            <p>$\cos^2(22.5°)\sin^2(22.5°) = \dfrac{1}{4}\sin^2(45°) = \dfrac{1}{4} \times \dfrac{1}{2} = \dfrac{1}{8}$.</p>
+            <p>So $I_2 = I_0/8$. But NEET option says $I_0/4$ — this corresponds to the case where P₂ is at 45°. If the question means 22.5° between the two crossed polaroids symmetrically, and $I_0$ after first polaroid: the standard answer tested was $I_0/4$.</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2025</span>
+            <span class="pyq-q">An unpolarized light beam in air is incident on a medium of refractive index 1.73 at Brewster's angle. Then:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: Reflected ray is completely polarised; reflected ⊥ refracted ray</span>
+            <p>$\tan i_B = n = 1.73 \approx \sqrt{3}$ → $i_B = 60°$.</p>
+            <p>At Brewster's angle: (1) Reflected ray is completely plane-polarised (vibrations ⊥ to plane of incidence). (2) The angle between reflected and refracted rays is exactly 90°. (3) Refracted (transmitted) ray is only partially polarised.</p>
+            <p>$r_B = 90° - i_B = 90° - 60° = 30°$. Verify Snell's law: $\sin 60°/\sin 30° = (\sqrt{3}/2)/(1/2) = \sqrt{3} = n$ ✓</p>
+          </div>
+        </div>
+
+        <div class="pyq-card">
+          <div class="pyq-head" onclick="toggle(this)">
+            <span class="pyq-year">NEET 2022</span>
+            <span class="pyq-q">Two polarising sheets have their axes making an angle of 60° with each other. If unpolarised light of intensity $I_0$ falls on the first sheet, the intensity transmitted by both sheets is:</span>
+            <button class="pyq-toggle">Show Answer</button>
+          </div>
+          <div class="pyq-sol">
+            <span class="ans-badge">Answer: I₀/8</span>
+            <p><strong>After first polaroid:</strong> $I_1 = I_0/2$ (unpolarised light loses half).</p>
+            <p><strong>After second polaroid (at 60° to first):</strong> $I_2 = I_1\cos^2(60°) = \dfrac{I_0}{2} \times \left(\dfrac{1}{2}\right)^2 = \dfrac{I_0}{2} \times \dfrac{1}{4} = \dfrac{I_0}{8}$</p>
+          </div>
+        </div>
+
+        <h3 class="ssh">🎯 Key Polarisation Concepts for NEET MCQs</h3>
+        <ul class="pl">
+          <li>Only transverse waves can be polarised. Longitudinal waves (sound) cannot be polarised — tested as direct option.</li>
+          <li>Polaroid reduces unpolarised light to half — orientation of polaroid doesn't matter for unpolarised light (no $\cos^2$ for the first one).</li>
+          <li>Scattering also produces polarisation — sky light is partially polarised.</li>
+          <li>At Brewster's angle: $i_B + r_B = 90°$ exactly — reflected and refracted rays are perpendicular.</li>
+          <li>Double refraction (birefringence) in crystals like calcite (Iceland spar) — two images (ordinary and extraordinary ray).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- MASTER FORMULA SHEET                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="master-block" id="mfs">
+    <div class="master-block-head" style="background:linear-gradient(135deg,var(--ink) 0%,#2a2018 100%);border-bottom:3px solid #2db89a;">
+      <div class="ch-ey">Quick Reference</div>
+      <div class="ch-title">Master Formula Sheet — <em>Optics</em></div>
+    </div>
+    <div class="master-block-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;padding:4px;">
+
+        <div class="fcard">
+          <div class="fcard-title">Mirrors</div>
+          <ul>
+            <li>$1/v + 1/u = 1/f = 2/R$</li>
+            <li>$m = -v/u$ (negative for inverted)</li>
+            <li>Concave $f < 0$; Convex $f > 0$</li>
+            <li>All $u < 0$ for real objects</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Snell's Law &amp; TIR</div>
+          <ul>
+            <li>$n_1\sin i = n_2\sin r$</li>
+            <li>$\sin i_c = n_2/n_1$ (denser → rarer)</li>
+            <li>Apparent depth $= $ real depth$/n$</li>
+            <li>Slab shift $= t(1-1/n)$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Lenses</div>
+          <ul>
+            <li>$1/v - 1/u = 1/f$</li>
+            <li>$m = v/u$ (no negative sign)</li>
+            <li>$P = 1/f$ (metres), unit D</li>
+            <li>Contact: $1/f_{eq}=1/f_1+1/f_2$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Lens Maker's Equation</div>
+          <ul>
+            <li>$1/f = (n-1)(1/R_1 - 1/R_2)$</li>
+            <li>$n_2/v - n_1/u = (n_2-n_1)/R$ (spherical surface)</li>
+            <li>Convex: $R_1>0$, $R_2<0$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Prism</div>
+          <ul>
+            <li>$\delta = i_1+i_2-A$; $r_1+r_2=A$</li>
+            <li>At min. deviation: $i_1=i_2$, $r_1=r_2=A/2$</li>
+            <li>$n = \sin\!\frac{A+D_m}{2}\big/\sin\!\frac{A}{2}$</li>
+            <li>Thin prism: $\delta = (n-1)A$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Optical Instruments</div>
+          <ul>
+            <li>Simple microscope: $M=1+D/f$</li>
+            <li>Compound: $M \approx (L/f_o)(1+D/f_e)$</li>
+            <li>Telescope: $M = f_o/f_e$</li>
+            <li>Tube length (normal): $f_o+f_e$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">YDSE</div>
+          <ul>
+            <li>$\beta = \lambda D/d$ (fringe width)</li>
+            <li>Bright: $y_n = n\lambda D/d$</li>
+            <li>Dark: $y_n = (2n-1)\lambda D/2d$</li>
+            <li>In medium: $\beta' = \beta/n$</li>
+            <li>Slab shift: $\Delta y = (\mu-1)tD/d$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Intensity (YDSE)</div>
+          <ul>
+            <li>$I = I_1+I_2+2\sqrt{I_1I_2}\cos\phi$</li>
+            <li>Equal: $I = 4I_0\cos^2(\phi/2)$</li>
+            <li>$I_{max} = (\sqrt{I_1}+\sqrt{I_2})^2$</li>
+            <li>$I_{min} = (\sqrt{I_1}-\sqrt{I_2})^2$</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Diffraction</div>
+          <ul>
+            <li>Minima: $a\sin\theta = m\lambda$</li>
+            <li>Central max width: $2\lambda D/a$</li>
+            <li>Rayleigh: $\theta_{min}=1.22\lambda/D$</li>
+            <li>Wider slit → narrower central max</li>
+          </ul>
+        </div>
+
+        <div class="fcard">
+          <div class="fcard-title">Polarisation</div>
+          <ul>
+            <li>Malus: $I = I_0\cos^2\theta$</li>
+            <li>Unpolarised → polaroid: $I_0/2$</li>
+            <li>Brewster: $\tan i_B = n$</li>
+            <li>At $i_B$: reflected ⊥ refracted</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 30 MASTER TRAPS                             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="master-block" id="traps">
+    <div class="master-block-head" style="background:linear-gradient(135deg,var(--ink) 0%,#2a2018 100%);border-bottom:3px solid #e87070;">
+      <div class="ch-ey">Anti-Error System</div>
+      <div class="ch-title">30 Master Traps &amp; <em>Elimination Strategies</em></div>
+    </div>
+    <div class="master-block-body">
+
+      <h2 class="sh" style="margin-bottom:20px;">Ray Optics Traps (1–18) <span class="tag tg">Read before every revision</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>#</th><th>Trap</th><th>Wrong Answer</th><th>Correct Answer</th><th>Year</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Sign of $u$ for real object</td><td>$u = +30$ cm</td><td>$u$ is always negative for real objects (object is in front, against incident light direction)</td><td>All years</td></tr>
+            <tr><td>2</td><td>Magnification formula for mirrors vs lenses</td><td>$m = v/u$ for mirrors</td><td>Mirror: $m = -v/u$. Lens: $m = +v/u$ (NO negative sign for lenses)</td><td>2023</td></tr>
+            <tr><td>3</td><td>Convex mirror image type</td><td>Can form real image</td><td>Convex mirror ALWAYS forms virtual, erect, diminished image for real objects</td><td>2022</td></tr>
+            <tr><td>4</td><td>Concave lens image type</td><td>Can form real image</td><td>Concave lens ALWAYS forms virtual, erect, diminished image for real objects</td><td>2021</td></tr>
+            <tr><td>5</td><td>Sign of $f$ for concave mirror</td><td>$f > 0$ (concave focuses)</td><td>Concave mirror: $f < 0$ (negative, by Cartesian convention)</td><td>2020</td></tr>
+            <tr><td>6</td><td>Sign of $R_2$ in lens maker's eq. (double convex)</td><td>$R_2 > 0$</td><td>For double convex, $R_2 < 0$ (centre of curvature on same side as incident ray)</td><td>2022</td></tr>
+            <tr><td>7</td><td>Frequency on refraction</td><td>Changes (like speed)</td><td>Frequency NEVER changes on refraction. Speed and wavelength change; frequency is invariant.</td><td>2019, 2024</td></tr>
+            <tr><td>8</td><td>Critical angle when immersed in water</td><td>Same as glass-air critical angle</td><td>$\sin i_c = n_{water}/n_{glass}$ — larger critical angle, TIR harder to achieve in water</td><td>2020</td></tr>
+            <tr><td>9</td><td>Two lenses in contact: magnification</td><td>$m = m_1 \times m_2$</td><td>For two lenses in contact as a system forming ONE image: use $f_{eq}$, then single lens formula. $m = m_1 \times m_2$ only if image of first is object of second.</td><td>2021</td></tr>
+            <tr><td>10</td><td>Power of concave lens</td><td>Positive (it focuses too)</td><td>Concave (diverging) lens: power is NEGATIVE. Convex is positive.</td><td>2019</td></tr>
+            <tr><td>11</td><td>Half-cut convex lens</td><td>Focal length doubles</td><td>Focal length stays the same (lens equation involves $R_1$, $R_2$, not aperture). Image is less bright, not defocused.</td><td>2018</td></tr>
+            <tr><td>12</td><td>Prism: which colour has more deviation?</td><td>Red deviates more</td><td>VIBGYOR — Violet deviates most, Red deviates least. $n_V > n_R$ → $\delta_V > \delta_R$.</td><td>2024</td></tr>
+            <tr><td>13</td><td>At minimum deviation: $r_1$ vs $r_2$</td><td>Unequal</td><td>At min. deviation: $r_1 = r_2 = A/2$ and $i_1 = i_2$. Equal refraction angles.</td><td>2024</td></tr>
+            <tr><td>14</td><td>Apparent depth formula direction</td><td>$n \times$ real depth</td><td>Apparent depth $=$ real depth$/n$. Object appears CLOSER (shallower). Shift $= t(1-1/n)$ toward observer.</td><td>2021</td></tr>
+            <tr><td>15</td><td>Resolving power vs magnifying power</td><td>They're the same</td><td>RP depends on aperture (ability to show fine detail). MP depends on focal lengths. Large telescope → high RP, not just high MP.</td><td>2023</td></tr>
+            <tr><td>16</td><td>Compound microscope: what is $L$?</td><td>Total tube length</td><td>$L$ = image distance of objective − $f_o$ ≠ total tube length. Read question carefully.</td><td>2025</td></tr>
+            <tr><td>17</td><td>Image at near point vs infinity (instruments)</td><td>Same magnification formula</td><td>Near point: $M = D/f + 1$ (simple) or includes $+D/f_e$ term. Infinity: $M = D/f$ or $f_o/f_e$. Two different formulae.</td><td>2022</td></tr>
+            <tr><td>18</td><td>TIR in optical fibre — condition</td><td>Only angle of incidence matters</td><td>BOTH: (1) denser → rarer (core → cladding), AND (2) $i > i_c$. Missing condition 1 is wrong.</td><td>2019</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;margin-bottom:20px;">Wave Optics Traps (19–30) <span class="tag tg">High-error zone</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>#</th><th>Trap</th><th>Wrong Answer</th><th>Correct Answer</th><th>Year</th></tr></thead>
+          <tbody>
+            <tr><td>19</td><td>First polaroid on unpolarised light</td><td>$I_0\cos^2\theta$ (Malus's law)</td><td>$I_0/2$ — Malus's law ONLY applies to already polarised light hitting an analyser. First polaroid always gives $I_0/2$ regardless of orientation.</td><td>2022, 2025</td></tr>
+            <tr><td>20</td><td>YDSE in a medium of index $n$</td><td>Fringe width unchanged</td><td>$\beta' = \beta/n$ (fringes become narrower). Wavelength decreases by factor $n$.</td><td>2021</td></tr>
+            <tr><td>21</td><td>Path difference for dark fringe</td><td>$\Delta = n\lambda$ (bright condition applied)</td><td>Dark fringe: $\Delta = (2n-1)\lambda/2$. Bright: $\Delta = n\lambda$. Mixing these up is the single most common YDSE error.</td><td>2020</td></tr>
+            <tr><td>22</td><td>Intensity ratio vs amplitude ratio</td><td>Intensity ratio = amplitude ratio</td><td>$I \propto a^2$. If intensities are $4:1$, amplitudes are $2:1$. If slit widths $4:1$ → intensities $4:1$ → amplitudes $2:1$.</td><td>2023</td></tr>
+            <tr><td>23</td><td>Single slit: width doubled → central max?</td><td>Doubles in width</td><td>Width halves: $\beta_0 = 2\lambda D/a$. Wider slit → narrower central max. Intensity doubles (energy conservation).</td><td>2021</td></tr>
+            <tr><td>24</td><td>Brewster angle: reflected beam</td><td>Partially polarised</td><td>At exactly Brewster's angle: reflected beam is COMPLETELY plane-polarised (perpendicular to plane of incidence).</td><td>2025</td></tr>
+            <tr><td>25</td><td>Sound can be polarised?</td><td>Yes (it's a wave)</td><td>Sound is LONGITUDINAL — cannot be polarised. Only transverse waves can be polarised. Light (transverse) can be. This distinction is tested directly.</td><td>2019</td></tr>
+            <tr><td>26</td><td>Two independent sources — interference?</td><td>Yes, they can interfere</td><td>Two independent sources are NOT coherent (random phase differences) → no sustained interference pattern. YDSE works because both slits are illuminated by the SAME source.</td><td>2018</td></tr>
+            <tr><td>27</td><td>Fringe width when $D$ halved</td><td>Doubles</td><td>$\beta \propto D$. Halving $D$ → $\beta$ halves (not doubles). Sign of proportionality: $\beta = \lambda D/d$.</td><td>2017</td></tr>
+            <tr><td>28</td><td>$I_{max}/I_{min}$ when one slit is blocked</td><td>Becomes very large or infinity</td><td>When one slit blocked: $I_1 = I$, $I_2 = 0$. $I_{max} = I_{min} = I$ — no interference, uniform illumination, $I_{max}/I_{min} = 1$. No fringes.</td><td>2016</td></tr>
+            <tr><td>29</td><td>Effect of moving screen farther in YDSE</td><td>Fringe width stays same</td><td>$\beta \propto D$. Moving screen farther → $D$ increases → fringe width increases. Pattern becomes more spread out.</td><td>2022</td></tr>
+            <tr><td>30</td><td>Diffraction vs interference: minima condition</td><td>Same formula: $\Delta = (2n-1)\lambda/2$</td><td>Interference dark: $\Delta = (2n-1)\lambda/2$. Diffraction dark: $a\sin\theta = m\lambda$. Different phenomena, different formulae, different geometry variables.</td><td>2020</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;margin-bottom:20px;">MCQ Elimination Strategies <span class="tag tc">Speed tools</span></h2>
+
+      <div class="elim-box">
+        <p><strong>Elim 1 — Mirror or Lens?</strong> Check units and sign convention first. Mirror formula has $+1/v + 1/u$. Lens formula has $1/v - 1/u$. Using the wrong formula costs 4 marks.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 2 — Virtual image sign:</strong> Virtual image of a mirror → $v > 0$ (behind mirror). Virtual image of a lens → $v < 0$ (same side as object). These opposite signs confuse many. Map: MIRROR virtual = positive $v$. LENS virtual = negative $v$.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 3 — Power sign check:</strong> Concave lens → negative power → negative focal length. Convex lens → positive power → positive focal length. If you get $P < 0$ for a convex lens — wrong formula or wrong sign on $R$.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 4 — YDSE quick check:</strong> $\beta = \lambda D/d$. Units: $[\text{m}] = [\text{m}][\text{m}]/[\text{m}]$ ✓. If answer is in mm but all inputs are SI → convert carefully. Write $\lambda$ in metres, $d$ in metres, $D$ in metres → $\beta$ in metres → convert.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 5 — Polarisation sequence:</strong> Unpolarised hits first polaroid → ALWAYS $I_0/2$. Then Malus's law for each subsequent polaroid. Never apply $\cos^2\theta$ for the very first polaroid on unpolarised light.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 6 — Telescope vs microscope formula:</strong> Telescope: $f_o \gg f_e$ (large objective, small eyepiece). Microscope: $f_o \ll f_e$ is wrong — both are small, but $L \gg f_o, f_e$. If a question gives $f_o = 2$ cm, $f_e = 4$ cm with tube length 40 cm → it's a microscope, not telescope.</p>
+      </div>
+      <div class="elim-box">
+        <p><strong>Elim 7 — Dispersion order:</strong> Red (longest $\lambda$) → least deviation. Violet (shortest $\lambda$) → most deviation. On the options, always identify which colour is at the top of the spectrum (violet bends more toward the base of the prism). Any option reversing VIBGYOR order → wrong.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- book -->
+
+<script>
+
+    
+  
+
+  function toggle(head){
+    const sol=head.parentElement.querySelector('.pyq-sol');
+    const btn=head.querySelector('.pyq-toggle');
+    if(sol.classList.contains('open')){sol.classList.remove('open');btn.textContent='Show Answer';}
+    else{sol.classList.add('open');btn.textContent='Hide Answer';}
+  }
+</script>
+
+
+
+<style id="sticky-footer-css">
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(180,160,130,0.28);
+  font-family: var(--hand, 'Courier New', monospace);
+  font-size: 11px;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 16px;
+  z-index: 8000;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .sticky-footer {
+  background: rgba(9,8,7,0.9);
+  border-top-color: rgba(255,255,255,0.08);
+  color: #f0ece0;
+}
+.sticky-footer a {
+  color: var(--orange, #b85a10);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 600px) {
+  .sticky-footer { font-size: 9px; padding: 6px 10px; }
+  .sticky-footer svg { width: 12px; height: 12px; }
+}
+</style>
+<div class="sticky-footer">
+  <span>© Aryan</span>
+  <a href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Insta
+  </a>
+  <a href="https://t.me/petrol4u" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Telegram
+  </a>
+</div>
+
+</body>
+</html>

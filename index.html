@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>NEET Mastery Hub · PYQ Decision Engine</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a0908">
+<link rel="apple-touch-icon" href="icon.png">
+
+<meta name="description" content="Complete NEET preparation notes — Physics (Class 11 & 12), Inorganic Chemistry, and Biology. PYQ cheatsheets, formula intelligence sheets. Structured for NEET 2025-26."/>
+<meta name="keywords" content="NEET notes, NEET physics, NEET chemistry, NEET biology, NEET PYQ, electrostatics, optics, modern physics, inorganic chemistry, NEET 2026"/>
+<meta name="author" content="@Petrol4u"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="NEET Notes Hub — Physics · Chemistry · Biology"/>
+<meta property="og:description" content="One dashboard. Zero chaos. Complete NEET notes with PYQ analysis and formula sheets."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Architects+Daughter&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,600&display=swap" rel="stylesheet">
+<script>
+(function(){
+  try{
+    var raw=localStorage.getItem('neet_dark');
+    if(raw!==null){
+      var val=JSON.parse(raw);
+      var isDark=(val===true||val==='1'||val===1);
+      if(isDark)document.documentElement.setAttribute('data-theme','dark');
+      else document.documentElement.removeAttribute('data-theme');
+    }
+  }catch(e){}
+})();
+</script>
+<style>
+:root {
+  --body:'Lora',Georgia,serif;--prose:'Crimson Pro',Georgia,serif;--hand:'Architects Daughter',cursive;--display:'Fraunces',Georgia,serif;
+  --fs-xs:clamp(9px,1.8vw,10px);--fs-sm:clamp(11px,2.4vw,12.5px);--fs-base:clamp(13px,3vw,15.5px);--fs-md:clamp(12.5px,2.8vw,14.5px);--fs-lg:clamp(14px,3.2vw,17px);--fs-xl:clamp(20px,4.5vw,34px);--fs-hero:clamp(26px,5vw,48px);
+  --bg-color:#bfb49a;
+  --bg-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);
+  --glass:rgba(250,247,242,0.82);--glass-b:rgba(180,160,130,0.35);
+  --glass-sh:0 8px 32px rgba(100,80,50,0.14),0 2px 8px rgba(100,80,50,0.08),inset 0 1px 0 rgba(255,255,255,0.72);
+  --glass-hov:rgba(252,249,244,0.96);
+  --glass-hover-sh:0 14px 42px rgba(100,80,50,0.22),0 4px 14px rgba(100,80,50,0.12),inset 0 1px 0 rgba(255,255,255,0.85);
+  --nav-bg:rgba(248,244,238,0.92);--nav-b:rgba(180,160,130,0.28);
+  --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;--ink4:#9a8878;
+  --ar:#b83030;--ab:#1a4a8c;--ag:#1a6b40;--ao:#b85a10;--ap:#5a1a8a;--at:#0d7a6a;
+  --stat-bg:rgba(248,244,238,0.72);--stat-b:rgba(180,160,130,0.32);
+  --row-bg:rgba(252,249,244,0.88);--row-b:rgba(180,160,130,0.22);
+  --exp-bg:rgba(245,241,235,0.55);--div:rgba(150,130,100,0.18);
+  --btn-bg:#1c3a6b;--btn-txt:#f5f0e8;--btn-shadow:0 6px 24px rgba(28,58,107,0.35);
+  --np-bg:rgba(252,249,244,0.99);--np-b:rgba(180,160,130,0.28);--mo-bg:rgba(252,249,244,0.99);--sb:rgba(150,130,100,0.32);
+}
+html[data-theme="dark"]{
+  --bg-color:#0a0908;
+  --bg-image:radial-gradient(ellipse 70% 50% at 15% 20%,#141210 0%,transparent 60%),radial-gradient(ellipse 55% 60% at 85% 80%,#0e0c0a 0%,transparent 55%),linear-gradient(160deg,#111009 0%,#0a0908 50%,#080706 100%);
+  --glass:rgba(255,255,255,0.055);--glass-b:rgba(255,255,255,0.09);
+  --glass-sh:0 8px 40px rgba(0,0,0,0.65),0 2px 8px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.06);
+  --glass-hov:rgba(255,255,255,0.09);
+  --glass-hover-sh:0 16px 52px rgba(0,0,0,0.75),0 4px 16px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.08);
+  --nav-bg:rgba(6,5,4,0.93);--nav-b:rgba(255,255,255,0.07);
+  --ink:#f0ece0;--ink2:#d8d0bc;--ink3:#9a8e78;--ink4:#6a6050;
+  --ar:#ff6b6b;--ab:#7ab4ff;--ag:#5ddb9a;--ao:#ffaa55;--ap:#c792ea;--at:#45d4cc;
+  --stat-bg:rgba(255,255,255,0.04);--stat-b:rgba(255,255,255,0.07);
+  --row-bg:rgba(255,255,255,0.025);--row-b:rgba(255,255,255,0.055);
+  --exp-bg:rgba(0,0,0,0.22);--div:rgba(255,255,255,0.07);
+  --btn-bg:#2a5ab0;--btn-txt:#f0ece0;--btn-shadow:0 6px 24px rgba(42,90,176,0.4);
+  --np-bg:rgba(9,8,7,0.99);--np-b:rgba(255,255,255,0.08);--mo-bg:rgba(9,8,7,0.99);--sb:rgba(255,255,255,0.12);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{font-family:var(--body);color:var(--ink);background-color:var(--bg-color);background-image:var(--bg-image);background-attachment:fixed;min-height:100vh;transition:color .3s,background-color .38s;}
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--sb);border-radius:3px;}
+.hub-theme-switch{position:relative;width:52px;height:28px;flex-shrink:0;display:inline-flex;align-items:center;}
+.hub-theme-switch input{opacity:0;width:0;height:0;position:absolute;}
+.hub-theme-track{position:absolute;inset:0;background:rgba(13,122,106,0.2);border:1.5px solid rgba(13,122,106,0.38);border-radius:28px;cursor:pointer;transition:background .3s,border-color .3s;}
+.hub-theme-track::before{content:'☀';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;line-height:20px;text-align:center;color:#0d7a6a;transition:transform .3s cubic-bezier(.4,0,.2,1),background .3s,color .3s;}
+html[data-theme="dark"] .hub-theme-track{background:rgba(122,180,255,0.22);border-color:rgba(122,180,255,0.38);}
+html[data-theme="dark"] .hub-theme-track::before{content:'☾';transform:translateX(24px);background:#1a2240;color:#7ab4ff;font-size:12px;}
+.nav{position:sticky;top:0;z-index:100;height:52px;background:var(--nav-bg);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--nav-b);padding:0 clamp(14px,3vw,32px);display:flex;align-items:center;justify-content:space-between;transition:background .35s,border-color .35s;}
+html[data-theme="dark"] .nav{box-shadow:0 1px 0 rgba(255,255,255,0.04),0 4px 24px rgba(0,0,0,0.55);}
+.nav-brand{font-family:var(--body);font-size:clamp(13px,2.5vw,16px);font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:5px;}
+.neet-tag{color:var(--at);font-weight:700;}
+.nav-links{display:flex;align-items:center;gap:clamp(8px,2vw,22px);}
+.nav-link{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:4px 0;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;}
+.nav-link:hover,.nav-link.active{color:var(--ink);border-bottom-color:var(--at);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.contents-btn{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);background:transparent;border:1px dashed var(--glass-b);border-radius:3px;padding:5px 11px;cursor:pointer;transition:all .2s;}
+.contents-btn:hover{background:var(--glass);color:var(--ink);}
+.mob-btn{display:none;background:none;border:none;color:var(--ink3);cursor:pointer;font-size:19px;}
+.dash-inner{max-width:900px;margin:0 auto;width:100%;}
+.hero{margin:clamp(12px,2.5vw,22px) clamp(12px,3vw,28px);background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--glass-b);border-radius:20px;box-shadow:var(--glass-sh);overflow:hidden;position:relative;transition:background .35s,border-color .35s,box-shadow .35s;}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.055) 31px,rgba(100,130,180,0.055) 32px);background-size:100% 32px;pointer-events:none;}
+html[data-theme="dark"] .hero::before{background:repeating-linear-gradient(transparent,transparent 31px,rgba(255,255,255,0.025) 31px,rgba(255,255,255,0.025) 32px);background-size:100% 32px;}
+.hero::after{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(13,122,106,0.1) 0%,transparent 65%);pointer-events:none;}
+html[data-theme="dark"] .hero::after{background:radial-gradient(circle,rgba(69,212,204,0.08) 0%,transparent 65%);}
+.hero-inner{position:relative;padding:clamp(28px,5vw,50px) clamp(22px,4.5vw,52px);}
+.hero-tag{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--at);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.hero-tag::before{content:'';width:26px;height:1.5px;background:var(--at);flex-shrink:0;}
+.hero-title{font-family:var(--display);font-size:var(--fs-hero);font-weight:700;line-height:1.06;color:var(--ink);}
+.hero-title em{font-style:italic;font-weight:300;color:var(--at);display:block;font-size:0.88em;}
+.hero-desc{font-family:var(--prose);font-size:var(--fs-lg);color:var(--ink3);line-height:1.8;margin-top:16px;max-width:500px;border-left:3px solid var(--at);padding-left:15px;}
+.hero-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:24px;}
+.stat-box{background:var(--stat-bg);backdrop-filter:blur(10px);border:1px solid var(--stat-b);border-radius:12px;padding:clamp(10px,2vw,16px) clamp(8px,2vw,16px);text-align:center;position:relative;overflow:hidden;transition:all .25s;}
+.stat-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.18) 0%,transparent 55%);pointer-events:none;}
+html[data-theme="dark"] .stat-box::before{background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 55%);}
+.stat-box:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12);}
+.stat-num{font-family:var(--display);font-size:clamp(20px,4vw,32px);font-weight:700;line-height:1;display:block;}
+.stat-num.r{color:var(--ar);}.stat-num.b{color:var(--ab);}.stat-num.g{color:var(--ag);}.stat-num.o{color:var(--ao);}.stat-num.t{color:var(--at);}
+.stat-lbl{font-family:var(--hand);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ink4);margin-top:4px;display:block;}
+.hero-acts{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+.btn-primary{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1.5px;text-transform:uppercase;background:var(--btn-bg);color:var(--btn-txt);border:none;border-radius:40px;padding:clamp(10px,2vw,13px) clamp(18px,3.5vw,26px);cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:var(--btn-shadow);transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s;}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 36px rgba(28,58,107,0.45);}
+.main{padding:0 clamp(12px,3vw,28px) clamp(36px,8vw,72px);}
+.sec-head{display:flex;align-items:center;gap:12px;margin:clamp(18px,3.5vw,32px) 0 clamp(8px,1.5vw,14px);}
+.sec-lbl{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--ink3);white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--div);}
+.pinned-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.pinned-card{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--glass-b);border-radius:16px;box-shadow:var(--glass-sh);padding:clamp(13px,2.5vw,20px) clamp(14px,3vw,22px);display:flex;align-items:center;gap:clamp(10px,2vw,16px);cursor:pointer;text-decoration:none;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.pinned-card:hover{background:var(--glass-hov);transform:translateY(-3px);box-shadow:var(--glass-hover-sh);}
+.picon{width:clamp(40px,7vw,52px);height:clamp(40px,7vw,52px);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,3.5vw,23px);flex-shrink:0;}
+.pi-bm{background:linear-gradient(135deg,#ffe0d0,#ffb8a0);border:1px solid rgba(184,48,48,0.15);}
+.pi-nt{background:linear-gradient(135deg,#d8e8ff,#b8d0ff);border:1px solid rgba(26,74,140,0.15);}
+html[data-hub-dark] .pi-bm{background:linear-gradient(135deg,rgba(255,107,107,0.22),rgba(200,60,60,0.1));border-color:rgba(255,107,107,0.2);}
+html[data-hub-dark] .pi-nt{background:linear-gradient(135deg,rgba(122,180,255,0.22),rgba(60,130,200,0.1));border-color:rgba(122,180,255,0.2);}
+.pmeta{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink4);margin-bottom:3px;display:block;}
+.ptitle{font-family:var(--body);font-size:clamp(13px,2.8vw,15.5px);font-weight:700;color:var(--ink);}
+.ptitle em{font-style:italic;color:var(--ab);font-weight:400;}
+.psub{font-family:var(--prose);font-size:var(--fs-md);color:var(--ink3);line-height:1.5;margin-top:2px;}
+.parrow{position:absolute;right:clamp(10px,2vw,16px);color:var(--ink4);font-size:14px;transition:transform .2s;}
+.pinned-card:hover .parrow{transform:translateX(4px);}
+.pcnt{position:absolute;top:9px;right:9px;background:var(--ar);color:#fff;font-family:var(--hand);font-size:8px;letter-spacing:1px;border-radius:20px;padding:2px 7px;display:none;font-weight:700;}
+.pcnt.on{display:inline-block;}
+.track-card{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--glass-b);border-radius:16px;box-shadow:var(--glass-sh);margin-bottom:11px;overflow:hidden;transition:box-shadow .25s,border-color .25s,background .35s;position:relative;}
+.track-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.32),transparent);pointer-events:none;}
+html[data-hub-dark] .track-card::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent);}
+.track-card.open{border-color:rgba(13,122,106,0.42);}
+html[data-hub-dark] .track-card.open{border-color:rgba(69,212,204,0.28);}
+.track-hdr{display:flex;align-items:center;gap:clamp(10px,2.5vw,17px);padding:clamp(14px,2.5vw,20px) clamp(14px,3vw,22px);cursor:pointer;transition:background .2s;}
+.track-hdr:hover{background:rgba(100,80,50,0.04);}
+html[data-hub-dark] .track-hdr:hover{background:rgba(255,255,255,0.03);}
+.ticon{width:clamp(42px,7vw,52px);height:clamp(42px,7vw,52px);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,3.5vw,24px);flex-shrink:0;}
+.ti-ph{background:linear-gradient(135deg,#dce8ff,#b8ccff);border:1px solid rgba(26,74,140,0.18);}
+.ti-ch{background:linear-gradient(135deg,#d0f0e8,#a0dcc8);border:1px solid rgba(13,122,106,0.18);}
+.ti-bi{background:linear-gradient(135deg,#d8f0e0,#a8dca8);border:1px solid rgba(26,107,64,0.18);}
+html[data-theme="dark"] .ti-ph{background:linear-gradient(135deg,rgba(122,180,255,0.22),rgba(60,110,200,0.1));border-color:rgba(122,180,255,0.2);}
+html[data-theme="dark"] .ti-ch{background:linear-gradient(135deg,rgba(69,212,204,0.22),rgba(13,122,106,0.1));border-color:rgba(69,212,204,0.2);}
+html[data-theme="dark"] .ti-bi{background:linear-gradient(135deg,rgba(93,219,154,0.22),rgba(40,160,90,0.1));border-color:rgba(93,219,154,0.2);}
+.tmeta{flex:1;min-width:0;}
+.ttag{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink4);margin-bottom:3px;display:block;}
+.ttitle{font-family:var(--body);font-size:clamp(14px,3.2vw,19px);font-weight:700;color:var(--ink);}
+.ttitle em{font-style:italic;font-weight:400;}
+.ttitle .t-ph{color:var(--ab);}.ttitle .t-ch{color:var(--at);}.ttitle .t-bi{color:var(--ag);}
+.tsub{font-family:var(--prose);font-size:var(--fs-md);color:var(--ink3);margin-top:3px;line-height:1.5;}
+.tchev{color:var(--ink4);font-size:13px;transition:transform .3s;flex-shrink:0;}
+.track-card.open .tchev{transform:rotate(90deg);}
+.track-body{display:none;border-top:1px solid var(--div);background:var(--exp-bg);}
+.track-card.open .track-body{display:block;}
+.branch-sep{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2.5px;text-transform:uppercase;color:var(--ink4);padding:10px clamp(12px,2.8vw,20px) 4px;border-bottom:1px solid var(--row-b);display:flex;align-items:center;gap:10px;}
+.branch-sep::after{content:'';flex:1;height:1px;background:var(--div);}
+.file-row{display:flex;align-items:center;gap:clamp(9px,2vw,15px);padding:clamp(10px,2vw,14px) clamp(12px,2.8vw,20px);border-bottom:1px solid var(--row-b);background:var(--row-bg);text-decoration:none;color:inherit;transition:all .2s;cursor:pointer;}
+.file-row:last-child{border-bottom:none;}
+.file-row:hover{background:rgba(100,80,50,0.07);padding-left:clamp(18px,4vw,28px);}
+html[data-theme="dark"] .file-row:hover{background:rgba(255,255,255,0.055);}
+.file-row.soon{opacity:.55;cursor:default;}
+.file-row.soon:hover{background:var(--row-bg);padding-left:clamp(12px,2.8vw,20px);}
+.soon-badge{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:1px dashed var(--ap);color:var(--ap);white-space:nowrap;flex-shrink:0;}
+.fnum{font-family:var(--hand);font-size:var(--fs-sm);color:var(--ink3);min-width:26px;text-align:center;flex-shrink:0;}
+.finfo{flex:1;min-width:0;}
+.fname{font-family:var(--body);font-size:clamp(12.5px,2.6vw,14.5px);font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fch{font-family:var(--prose);font-size:var(--fs-md);color:var(--ink4);margin-top:1px;}
+.ftag{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:1px solid currentColor;white-space:nowrap;flex-shrink:0;opacity:.85;}
+.ft-pyq{color:var(--ar);}.ft-fml{color:var(--ao);}.ft-con{color:var(--at);}
+.ficon{color:var(--ink4);font-size:12px;flex-shrink:0;}
+.np{position:fixed;right:0;top:52px;bottom:0;width:clamp(280px,31vw,370px);background:var(--np-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-left:1px solid var(--np-b);box-shadow:-8px 0 40px rgba(0,0,0,0.12);z-index:95;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .36s cubic-bezier(.4,0,.2,1);font-family:var(--body);}
+html[data-theme="dark"] .np{box-shadow:-8px 0 40px rgba(0,0,0,0.55);}
+.np.open{transform:translateX(0);}
+.np-hdr{padding:16px 18px 12px;border-bottom:1px solid var(--np-b);display:flex;align-items:center;justify-content:space-between;}
+.np-title{font-size:clamp(12.5px,2.8vw,14.5px);font-weight:700;color:var(--ink);}
+.np-close{background:none;border:none;font-size:17px;color:var(--ink3);cursor:pointer;padding:3px;border-radius:4px;transition:color .2s;}
+.np-close:hover{color:var(--ar);}
+.np-tabs{display:flex;border-bottom:1px solid var(--np-b);}
+.np-tab{flex:1;padding:10px;text-align:center;cursor:pointer;font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1.5px;text-transform:uppercase;color:var(--ink4);background:none;border:none;border-bottom:2px solid transparent;transition:all .2s;}
+.np-tab.on{color:var(--at);border-bottom-color:var(--at);}
+.np-body{flex:1;overflow-y:auto;padding:14px 16px;scrollbar-width:thin;scrollbar-color:var(--sb) transparent;}
+.np-pane{display:none;}.np-pane.on{display:block;}
+.np-ta{width:100%;min-height:150px;resize:vertical;padding:11px 12px;border-radius:6px;background:rgba(150,130,100,0.1);border:1px solid var(--np-b);color:var(--ink);font-family:var(--prose);font-size:13.5px;line-height:1.75;outline:none;transition:border-color .2s,box-shadow .2s;}
+html[data-hub-dark] .np-ta{background:rgba(255,255,255,0.05);}
+.np-ta::placeholder{color:var(--ink4);}
+.np-ta:focus{border-color:var(--at);box-shadow:0 0 0 3px rgba(13,122,106,0.1);}
+.np-sv{width:100%;margin-top:9px;padding:10px;background:var(--btn-bg);color:var(--btn-txt);border:none;border-radius:6px;cursor:pointer;font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1.5px;text-transform:uppercase;box-shadow:var(--btn-shadow);transition:opacity .2s,transform .15s;}
+.np-sv:hover{opacity:.88;transform:translateY(-1px);}
+.list-lbl{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--ink4);margin:14px 0 8px;display:block;}
+.ncard,.bmcard{background:rgba(150,130,100,0.1);border:1px solid var(--np-b);border-radius:7px;padding:11px 12px;margin-bottom:9px;position:relative;}
+html[data-hub-dark] .ncard,html[data-hub-dark] .bmcard{background:rgba(255,255,255,0.04);}
+.bmcard{border-left:3px solid var(--at);}
+.ntime,.bmfile{font-family:var(--hand);font-size:9px;color:var(--ink4);display:block;margin-bottom:3px;}
+.ntxt{font-family:var(--prose);font-size:13px;color:var(--ink2);line-height:1.65;}
+.bmsec{font-family:var(--body);font-size:13px;font-weight:600;color:var(--ink);}
+.cdel{position:absolute;top:7px;right:7px;background:none;border:none;color:var(--ink4);cursor:pointer;font-size:12px;opacity:.5;transition:opacity .2s,color .2s;line-height:1;padding:2px;}
+.cdel:hover{opacity:1;color:var(--ar);}
+.empty{text-align:center;padding:28px 14px;font-family:var(--prose);font-size:13.5px;color:var(--ink4);line-height:1.75;}
+.ei{font-size:30px;display:block;margin-bottom:10px;opacity:.4;}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;}
+html[data-theme="dark"] .moverlay{background:rgba(0,0,0,0.62);}
+.moverlay.open{display:flex;}
+.mbox{background:var(--mo-bg);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--glass-b);border-radius:20px;width:100%;max-width:740px;max-height:88vh;overflow-y:auto;box-shadow:0 28px 70px rgba(0,0,0,0.26);animation:mIn .3s cubic-bezier(.4,0,.2,1);}
+html[data-theme="dark"] .mbox{box-shadow:0 28px 70px rgba(0,0,0,0.65),inset 0 1px 0 rgba(255,255,255,0.05);}
+@keyframes mIn{from{opacity:0;transform:scale(.95) translateY(14px);}to{opacity:1;transform:none;}}
+.mhdr{padding:22px 26px 16px;border-bottom:1px solid var(--div);display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:var(--mo-bg);backdrop-filter:blur(28px);border-radius:20px 20px 0 0;z-index:2;}
+.mtitle{font-family:var(--display);font-size:clamp(16px,4vw,22px);font-weight:700;color:var(--ink);}
+.msub{font-family:var(--prose);font-size:var(--fs-md);color:var(--ink3);margin-top:3px;}
+.mclose{background:none;border:none;color:var(--ink3);cursor:pointer;font-size:19px;padding:4px;margin-left:12px;transition:color .2s;}
+.mclose:hover{color:var(--ink);}
+.mbody{padding:22px 26px 26px;}
+.sq-track{margin-bottom:26px;}
+.sq-lbl{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:3px;text-transform:uppercase;color:var(--ink4);display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+.sq-lbl::after{content:'';flex:1;height:1px;background:var(--div);}
+.sq-file{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:var(--stat-bg);border:1px solid var(--stat-b);border-radius:10px;margin-bottom:7px;}
+.sqn{font-family:var(--hand);font-size:var(--fs-sm);color:var(--ink4);min-width:26px;text-align:center;margin-top:1px;}
+.sq-info{flex:1;}
+.sqname{font-family:var(--body);font-size:clamp(12.5px,2.8vw,14.5px);font-weight:600;color:var(--ink);}
+.sqdesc{font-family:var(--prose);font-size:var(--fs-md);color:var(--ink3);line-height:1.5;margin-top:2px;}
+.sqchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.sqchip{font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:var(--stat-bg);border:1px solid var(--stat-b);color:var(--ink3);}
+.sqcon{display:flex;align-items:center;justify-content:center;height:18px;gap:7px;font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1px;text-transform:uppercase;color:var(--ink4);margin:2px 0;}
+.sqcon::before,.sqcon::after{content:'';flex:1;max-width:52px;height:1px;background:var(--div);}
+.sqcon span{color:var(--at);}
+.sq-soon{opacity:.55;border-style:dashed!important;}
+.mob-nav{position:fixed;inset:0;z-index:110;display:none;}
+.mob-nav.open{display:block;}
+.mob-ov{position:absolute;inset:0;background:rgba(0,0,0,0.42);backdrop-filter:blur(4px);}
+.mob-drw{position:absolute;top:0;left:0;bottom:0;width:250px;background:var(--np-bg);backdrop-filter:blur(24px);border-right:1px solid var(--np-b);padding:20px;display:flex;flex-direction:column;gap:5px;}
+.mob-brand{font-family:var(--body);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--div);}
+.mob-lnk{font-family:var(--hand);font-size:clamp(10.5px,3vw,12.5px);letter-spacing:2px;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:10px 12px;border-radius:8px;transition:all .2s;display:block;}
+.mob-lnk:hover{background:var(--glass);color:var(--ink);}
+.site-footer{text-align:center;padding:28px clamp(14px,3vw,32px) 40px;border-top:1px solid var(--div);font-family:var(--hand);font-size:9.5px;letter-spacing:1px;color:var(--ink4);display:flex;flex-direction:column;gap:10px;align-items:center;}
+.footer-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.footer-link{color:var(--ink3);text-decoration:none;display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;border:1px solid var(--div);font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s;}
+.footer-link:hover{background:var(--glass);color:var(--ink);border-color:var(--glass-b);}
+.fu{opacity:0;transform:translateY(16px);animation:fu .5s ease forwards;}
+@keyframes fu{to{opacity:1;transform:none;}}
+.fu:nth-child(1){animation-delay:.04s;}.fu:nth-child(2){animation-delay:.09s;}.fu:nth-child(3){animation-delay:.14s;}.fu:nth-child(4){animation-delay:.19s;}.fu:nth-child(5){animation-delay:.24s;}.fu:nth-child(6){animation-delay:.29s;}
+@media(max-width:768px){.hero-stats{grid-template-columns:repeat(3,1fr);}.pinned-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}.mob-btn{display:flex;}.contents-btn{display:none;}.hero{margin:8px;}.main{padding:0 8px 56px;}}
+@media(max-width:520px){.psub{display:none;}.hero-stats{grid-template-columns:1fr 1fr;}.np{width:100%;}}
+</style>
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  window.addEventListener('beforeprint',function(e){e.preventDefault();document.body.style.display='none';setTimeout(function(){document.body.style.display='';},100);});
+  var _d=false;
+  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">🔒</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+  var ss=document.createElement('style');ss.textContent='body{-webkit-user-select:none!important;user-select:none!important;}textarea,input{-webkit-user-select:text!important;user-select:text!important;}';document.head.appendChild(ss);
+})();
+</script>
+<script src="manifest.js"></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="#" class="nav-brand"><span class="neet-tag">NEET</span> Notes Hub</a>
+  <div class="nav-links">
+    <a href="#" class="nav-link active" data-s="home">Home</a>
+    <a href="#physics" class="nav-link" data-s="physics">Physics</a>
+    <a href="#chem" class="nav-link" data-s="chem">Chemistry</a>
+    <a href="#bio" class="nav-link" data-s="bio">Biology</a>
+  </div>
+  <div class="nav-right">
+    <button class="contents-btn" onclick="openModal()">SYLLABUS MAP ▾</button>
+    <label class="hub-theme-switch" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <input type="checkbox" id="dashThemeCb" onchange="dashSetDark(this.checked)">
+      <span class="hub-theme-track"></span>
+    </label>
+    <button class="mob-btn" onclick="openMob()">☰</button>
+  </div>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <div class="mob-ov" onclick="closeMob()"></div>
+  <div class="mob-drw">
+    <div class="mob-brand"><span style="color:var(--at)">NEET</span> Notes Hub</div>
+    <a href="#" class="mob-lnk" onclick="closeMob()">🏠 Home</a>
+    <a href="#physics" class="mob-lnk" onclick="closeMob()">⚛️ Physics</a>
+    <a href="#chem" class="mob-lnk" onclick="closeMob()">🧪 Chemistry</a>
+    <a href="#bio" class="mob-lnk" onclick="closeMob()">🧬 Biology</a>
+    <div style="flex:1"></div>
+    <button onclick="openModal();closeMob();" style="background:var(--btn-bg);color:var(--btn-txt);border:none;border-radius:8px;padding:12px;font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:var(--btn-shadow);">VIEW SYLLABUS MAP</button>
+  </div>
+</div>
+<div class="dash-inner">
+<section class="hero fu" id="home">
+  <div class="hero-inner">
+    <div class="hero-tag">NEET Preparation System · 2025–26</div>
+    <h1 class="hero-title">NEET Notes Hub<em>Physics · Chemistry · Biology</em></h1>
+    <p class="hero-desc">Eight notes live. PYQ cheatsheets and formula intelligence sheets — built for NEET pattern recognition, zero filler.</p>
+    <div class="hero-stats">
+      <div class="stat-box"><span class="stat-num b">8</span><span class="stat-lbl">Notes Live</span></div>
+      <div class="stat-box"><span class="stat-num r">5</span><span class="stat-lbl">PYQ Files</span></div>
+      <div class="stat-box"><span class="stat-num t">3</span><span class="stat-lbl">Subjects</span></div>
+      <div class="stat-box"><span class="stat-num o">2</span><span class="stat-lbl">Formula Sheets</span></div>
+      <div class="stat-box"><span class="stat-num g">26</span><span class="stat-lbl">NEET Target</span></div>
+    </div>
+    <div class="hero-acts">
+      <button class="btn-primary" onclick="openModal()">📋 View Syllabus Map</button>
+    </div>
+  </div>
+</section>
+<main class="main">
+
+  <!-- Dynamic Container -->
+  <div id="dynamic-tracks"></div>
+</main>
+<footer class="site-footer">
+  <div class="footer-links">
+    <a class="footer-link" href="https://t.me/Petrol4u" target="_blank" rel="noopener">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.95 8.15-1.97 9.28c-.14.63-.52.79-.99.48l-2.85-2.1-1.37 1.32c-.15.15-.28.28-.58.28l.2-2.93 5.3-4.79c.23-.21-.05-.33-.35-.12L6.93 14.4l-2.78-.87c-.6-.19-.62-.6.13-.89l10.88-4.19c.5-.18.94.12.79.7z"/></svg>
+      Telegram @Petrol4u
+    </a>
+    <a class="footer-link" href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank" rel="noopener">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+  <div>© 2025–2026 NEET Notes Hub · <strong>@Petrol4u</strong> · All rights reserved · Unauthorised reproduction prohibited</div>
+</footer>
+</div>
+
+<div class="moverlay" id="modal" onclick="mclick(event)">
+  <div class="mbox">
+    <div class="mhdr">
+      <div><div class="mtitle">📋 NEET Syllabus Map</div><div class="msub">Recommended study sequence · Physics → Chemistry → Biology</div></div>
+      <button class="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mbody">
+      <div class="sq-track">
+        <div class="sq-lbl">Physics · Class 11 · Start Here</div>
+        <div class="sq-file"><span class="sqn">01</span><div class="sq-info"><div class="sqname">Physics 11 — PYQ Master Cheatsheet</div><div class="sqdesc">Mechanics, waves, thermodynamics, KTG, SHM. PYQ pattern analysis per chapter.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">Class 11</span><span class="sqchip">Start Here</span></div></div></div>
+        <div class="sqcon"><span>↓ pair with</span></div>
+        <div class="sq-file"><span class="sqn">02</span><div class="sq-info"><div class="sqname">Physics 11 — Formula Intelligence System</div><div class="sqdesc">All formulae with PYQ traps, shortcut maps and quick revision.</div><div class="sqchips"><span class="sqchip">Formula</span><span class="sqchip">Class 11</span></div></div></div>
+      </div>
+      <div class="sq-track">
+        <div class="sq-lbl">Physics · Class 12 · 5 Files</div>
+        <div class="sq-file"><span class="sqn">03</span><div class="sq-info"><div class="sqname">Electrostatics · PYQ Cheatsheet</div><div class="sqdesc">Coulomb, Gauss law, capacitors, field & potential. High NEET weightage.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">High Weightage</span></div></div></div>
+        <div class="sqcon"><span>↓</span></div>
+        <div class="sq-file"><span class="sqn">04</span><div class="sq-info"><div class="sqname">Electromagnetism · PYQ Cheatsheet</div><div class="sqdesc">Magnetic force, EMI, Faraday, AC circuits, transformers.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">High Weightage</span></div></div></div>
+        <div class="sqcon"><span>↓</span></div>
+        <div class="sq-file"><span class="sqn">05</span><div class="sq-info"><div class="sqname">Optics · PYQ Cheatsheet</div><div class="sqdesc">Ray optics, wave optics, interference, diffraction.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">High Weightage</span></div></div></div>
+        <div class="sqcon"><span>↓</span></div>
+        <div class="sq-file"><span class="sqn">06</span><div class="sq-info"><div class="sqname">Modern Physics · PYQ Cheatsheet</div><div class="sqdesc">Photoelectric, dual nature, atoms, nuclei, semiconductors.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">Medium Weightage</span></div></div></div>
+        <div class="sqcon"><span>↓ revise with</span></div>
+        <div class="sq-file"><span class="sqn">07</span><div class="sq-info"><div class="sqname">Physics 12 — Complete Formula Sheet</div><div class="sqdesc">All formulae, derivation shortcuts, unit cheatsheet, PYQ patterns.</div><div class="sqchips"><span class="sqchip">Formula</span><span class="sqchip">Class 12</span></div></div></div>
+      </div>
+      <div class="sq-track">
+        <div class="sq-lbl">Chemistry · Inorganic Live · Physical & Organic Incoming</div>
+        <div class="sq-file"><span class="sqn">C1</span><div class="sq-info"><div class="sqname">Inorganic Chemistry — PYQ Master Cheatsheet v2</div><div class="sqdesc">p-block, d-block, coordination compounds, metallurgy, qualitative analysis.</div><div class="sqchips"><span class="sqchip">PYQ</span><span class="sqchip">Inorganic</span><span class="sqchip">Live</span></div></div></div>
+        <div class="sqcon"><span>↓ incoming</span></div>
+        <div class="sq-file sq-soon"><span class="sqn">C2</span><div class="sq-info"><div class="sqname">Physical Chemistry — Thermo, Kinetics, Electrochemistry, Solutions</div><div class="sqdesc">All physical chemistry with formulae and PYQ patterns.</div><div class="sqchips"><span class="sqchip">Coming Soon</span></div></div></div>
+        <div class="sqcon"><span>↓ incoming</span></div>
+        <div class="sq-file sq-soon"><span class="sqn">C3</span><div class="sq-info"><div class="sqname">Organic Chemistry — GOC, Hydrocarbons, Functional Groups</div><div class="sqdesc">Named reactions, mechanisms, NEET-pattern questions.</div><div class="sqchips"><span class="sqchip">Coming Soon</span></div></div></div>
+      </div>
+      <div class="sq-track">
+        <div class="sq-lbl">Biology · All Incoming · 7 Notes Planned</div>
+        <div class="sq-file sq-soon"><span class="sqn">B1–B7</span><div class="sq-info"><div class="sqname">Complete Biology — 7 Notes Planned</div><div class="sqdesc">Plant physiology, plant kingdom, reproduction, human physiology, animal kingdom, genetics & molecular bio, ecology.</div><div class="sqchips"><span class="sqchip">Botany</span><span class="sqchip">Zoology</span><span class="sqchip">Genetics</span><span class="sqchip">Ecology</span><span class="sqchip">Coming Soon</span></div></div></div>
+      </div>
+      <div style="background:var(--stat-bg);border:1px solid var(--stat-b);border-left:3px solid var(--at);border-radius:10px;padding:14px 18px;margin-top:6px;">
+        <div style="font-family:var(--hand);font-size:var(--fs-xs);letter-spacing:2px;text-transform:uppercase;color:var(--at);margin-bottom:7px;">Recommended Order</div>
+        <div style="font-family:var(--prose);font-size:var(--fs-md);color:var(--ink2);line-height:1.8;"><strong style="color:var(--ink)">01→02</strong> Physics 11 &nbsp;·&nbsp; <strong style="color:var(--ink)">03→04→05→06→07</strong> Physics 12 &nbsp;·&nbsp; <strong style="color:var(--ink)">C1</strong> Inorganic &nbsp;·&nbsp; <strong style="color:var(--ink)">C2→C3</strong> Phys+Org Chem &nbsp;·&nbsp; <strong style="color:var(--ink)">B1–B7</strong> Biology</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var KD='neet_dark';
+function st(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function ld(k,fb){try{var r=localStorage.getItem(k);return r!==null?JSON.parse(r):fb;}catch(e){return fb;}}
+function ge(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function applyDark(dark){if(dark)document.documentElement.setAttribute('data-theme','dark');else document.documentElement.removeAttribute('data-theme');var cb=ge('dashThemeCb');if(cb)cb.checked=!!dark;}
+window.dashSetDark=function(v){st(KD,!!v);applyDark(v);try{var bc=new BroadcastChannel('neet_hub_theme');bc.postMessage({dark:!!v});}catch(e){};};
+(function initTheme(){try{var raw=ld(KD,false);var dark=(raw===true||raw==='1'||raw===1);applyDark(dark);}catch(e){}
+try{var bc=new BroadcastChannel('neet_hub_theme');bc.addEventListener('message',function(ev){applyDark(ev.data.dark);st(KD,!!ev.data.dark);});}catch(e){}})();
+window.tog=function(id){var c=ge(id);if(c)c.classList.toggle('open');};
+window.openModal=function(){var m=ge('modal');if(m)m.classList.add('open');};
+window.closeModal=function(){var m=ge('modal');if(m)m.classList.remove('open');};
+window.mclick=function(e){if(e.target===ge('modal'))closeModal();};
+window.openMob=function(){var n=ge('mobNav');if(n)n.classList.add('open');};
+window.closeMob=function(){var n=ge('mobNav');if(n)n.classList.remove('open');};
+window.addEventListener('scroll',function(){var s=window.scrollY+65;document.querySelectorAll('[data-s]').forEach(function(lnk){var id=lnk.dataset.s,el=id==='home'?ge('home'):ge(id);if(!el)return;lnk.classList.toggle('active',s>=el.offsetTop&&s<el.offsetTop+el.offsetHeight);});},{passive:true});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMob();}});
+
+// Dynamic rendering from MANIFEST
+function renderManifest() {
+  const container = document.getElementById('dynamic-tracks');
+  if (!container || typeof MANIFEST === 'undefined') return;
+
+  let html = '';
+  MANIFEST.subjects.forEach(sub => {
+    let branchesHtml = '';
+
+    sub.branches.forEach(branch => {
+      branchesHtml += `<div class="branch-sep">${branch.label}</div>`;
+
+      branch.notes.forEach(note => {
+        if (note.live) {
+          const typeBadge = note.type === 'pyq' ? '<span class="ftag ft-pyq">PYQ</span>' :
+                            note.type === 'formula' ? '<span class="ftag ft-fml">Formula</span>' :
+                            '<span class="ftag ft-con">Concept</span>';
+
+          branchesHtml += `
+            <a class="file-row" href="${note.file}">
+              <span class="fnum">${note.num}</span>
+              <div class="finfo">
+                <div class="fname">${note.title.replace(' — ', ' — <em style="font-style:italic;color:var(--ink3);font-weight:400">')}</em></div>
+                <div class="fch">${note.desc}</div>
+              </div>
+              ${typeBadge}<span class="ficon">↗</span>
+            </a>
+          `;
+        } else {
+          branchesHtml += `
+            <div class="file-row soon">
+              <span class="fnum">—</span>
+              <div class="finfo">
+                <div class="fname">${note.title}</div>
+                <div class="fch">${note.desc}</div>
+              </div>
+              <span class="soon-badge">Coming Soon</span>
+            </div>
+          `;
+        }
+      });
+    });
+
+    html += `
+    <div id="${sub.id}">
+      <div class="sec-head"><span class="sec-lbl">${sub.title} · ${sub.label}</span><div class="sec-line"></div></div>
+      <div class="track-card fu" id="tc-${sub.id}">
+        <div class="track-hdr" onclick="tog('tc-${sub.id}')">
+          <div class="ticon ${sub.iconStyle}">${sub.icon}</div>
+          <div class="tmeta">
+            <span class="ttag">${sub.label}</span>
+            <div class="ttitle">${sub.title} · <em class="${sub.titleColor}">${sub.titleEm}</em></div>
+            <div class="tsub">${sub.sub}</div>
+          </div>
+          <span class="tchev">▶</span>
+        </div>
+        <div class="track-body">
+          ${branchesHtml}
+        </div>
+      </div>
+    </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+renderManifest();
+})();
+// Service Worker Registration for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+      console.log('SW Registered');
+    }).catch(err => {
+      console.log('SW Registration failed', err);
+    });
+  });
+}
+</script>
+
+<style id="sticky-footer-css">
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border-top: 1px solid rgba(180,160,130,0.28);
+  font-family: var(--hand, 'Courier New', monospace);
+  font-size: 11px;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 8px 16px;
+  z-index: 8000;
+  backdrop-filter: blur(10px);
+}
+[data-theme="dark"] .sticky-footer {
+  background: rgba(9,8,7,0.9);
+  border-top-color: rgba(255,255,255,0.08);
+  color: #f0ece0;
+}
+.sticky-footer a {
+  color: var(--orange, #b85a10);
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 600px) {
+  .sticky-footer { font-size: 9px; padding: 6px 10px; }
+  .sticky-footer svg { width: 12px; height: 12px; }
+}
+</style>
+<div class="sticky-footer">
+  <span>© Aryan || Drop suggestions --></span>
+  <a href="https://www.instagram.com/homosapiennnnnnnnnnnnnnnnn?igsh=MWtnaTdqN21lMGJwOQ==" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> Insta
+  </a>
+  <a href="https://t.me/petrol4u" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Telegram
+  </a>
+</div>
+</body>
+</html>

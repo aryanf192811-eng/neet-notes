@@ -1,0 +1,17 @@
+{
+  "name": "NEET Mastery Hub",
+  "short_name": "NEET Mastery",
+  "description": "High-performance revision and PYQ decision engine for NEET aspirants.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0908",
+  "theme_color": "#0a0908",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
