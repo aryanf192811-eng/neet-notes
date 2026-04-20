@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#1a0d00;--paper:#fdf6ee;--paper2:#f0faf5;--red:#8c1a1a;--green:#1a6b40;--blue:#1a4a8c;--gold:#8c6b00;--purple:#5b1a8c;--orange:#8c4a00;--teal:#0d6b5a;--border:#b8d8c8;--shadow:rgba(0,0,0,.08);--accent:#0d6b5a;--tag-r:rgba(140,26,26,.12);--tag-g:rgba(26,107,64,.12);--tag-b:rgba(26,74,140,.12);--tag-p:rgba(91,26,140,.12);--tag-o:rgba(140,74,0,.12);}
-[data-theme="dark"]{--ink:#e0f5ec;--paper:#09120e;--paper2:#0d1a14;--border:#1e3a2a;--shadow:rgba(0,0,0,.5);}
+[data-theme="dark"]{--ink:#e0f5ec;--paper:#09120e;--paper2:#0d1a14;--border:#1e3a2a;--shadow:rgba(0,0,0,.5);--red:#ff6b6b;--green:#5ddb9a;--blue:#7ab4ff;--gold:#e8c840;--purple:#c792ea;--orange:#ffaa55;--teal:#45d4cc;--accent:#45d4cc;--tag-r:rgba(255,107,107,.15);--tag-g:rgba(93,219,154,.13);--tag-b:rgba(122,180,255,.13);--tag-p:rgba(199,146,234,.13);--tag-o:rgba(255,170,85,.12);}
 *{box-sizing:border-box;margin:0;padding:0;}html{font-size:16px;scroll-behavior:smooth;}
 body{background:var(--paper);color:var(--ink);font-family:'Crimson Pro',Georgia,serif;line-height:1.7;min-height:100vh;-webkit-user-select:none;user-select:none;}
 .top-bar{position:sticky;top:0;z-index:100;background:var(--paper2);border-bottom:2px solid var(--accent);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
@@ -69,7 +69,7 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:rgba(13,107,90,.03);
 .pyq-sol{display:none;padding:12px 16px;border-top:1px solid var(--border);font-size:.88rem;background:var(--paper);}
 .pyq-sol.open{display:block;}
 .ans-badge{display:inline-block;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:rgba(26,107,64,.12);color:var(--green);border-radius:14px;padding:2px 12px;margin-bottom:8px;}
-.dl-block{border:2px solid var(--accent);border-radius:10px;padding:14px 18px;margin:14px 0;background:rgba(13,107,90,.04);}
+.dl-block{border:2px solid var(--accent);border-radius:10px;padding:14px 18px;margin:14px 0;background:rgba(13,107,90,.04);width:100%;box-sizing:border-box;max-width:100%;overflow:hidden;}
 .dl-head{font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;border-bottom:1px dashed rgba(13,107,90,.3);padding-bottom:6px;}
 .dl-ans{color:var(--green);font-weight:600;margin-top:6px;}
 .elim-chain{padding:8px 12px;background:rgba(140,26,26,.04);border-radius:6px;margin:6px 0;}
@@ -83,7 +83,7 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:rgba(13,107,90,.03);
 .trap-list{list-style:none;padding:0;margin:6px 0;}
 .trap-list li{padding:5px 0;border-bottom:1px dotted var(--border);font-size:.87rem;}
 .trap-list li::before{content:"⚠ ";}
-.revision-engine{border:2px solid var(--accent);border-radius:14px;padding:22px 26px;margin:26px 0;background:rgba(13,107,90,.04);}
+.revision-engine{border:2px solid var(--accent);border-radius:14px;padding:22px 26px;margin:26px 0;background:rgba(13,107,90,.04);width:100%;box-sizing:border-box;max-width:100%;}
 .re-section{margin:18px 0;}
 .re-sh{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
 .re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;}
@@ -93,6 +93,13 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:rgba(13,107,90,.03);
 .page-footer{text-align:center;padding:26px;font-size:.8rem;color:var(--border);border-top:1px solid var(--border);}
 [data-theme="dark"] .chapter,[data-theme="dark"] .fcard,[data-theme="dark"] .cg-card,[data-theme="dark"] .pyq-sol{background:var(--paper2);}
 [data-theme="dark"] th{background:rgba(13,107,90,.22);}
+[data-theme="dark"] .elim-box{background:rgba(255,107,107,.06);border-color:rgba(255,107,107,.3);}
+[data-theme="dark"] .elim-chain{background:rgba(255,107,107,.05);}
+[data-theme="dark"] .elim-chain .wr{color:#ff9090;}
+[data-theme="dark"] .elim-chain .cr{color:#5ddb9a;}
+[data-theme="dark"] .cause-chain{background:rgba(13,107,90,.08);}
+[data-theme="dark"] .trigger-pill{background:var(--paper2);}
+[data-theme="dark"] .re-item{background:var(--paper2);}
 @media(max-width:600px){.ch-body,.ch-head{padding:14px 12px;}.fcards{grid-template-columns:1fr;}.hero{padding:34px 14px 26px;}}
 </style>
 </head>
