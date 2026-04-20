@@ -1,0 +1,2289 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var ss=document.createElement('style');ss.textContent='body{-webkit-user-select:none!important;user-select:none!important;}textarea,input{-webkit-user-select:text!important;user-select:text!important;}';document.head.appendChild(ss);
+})();
+</script>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Biology — Botany Complete PYQ Master Cheatsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;
+      --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;
+      --rule:rgba(100,130,180,0.14);--mline:rgba(80,160,80,0.28);
+      --red:#b83030;--blue:#1a4a8c;--green:#1a6b40;
+      --orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;
+      --bio:#1a7a20;--bio2:#2a8c30;--bio3:#4aae50;
+      --hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);
+      --hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);
+      --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);
+      --hl-bio:rgba(26,122,32,0.12);
+      --body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;
+      --hand:"Architects Daughter",cursive;
+    }
+    [data-theme="dark"]{
+      --paper:#1a1c12;--paper2:#20221a;--paper3:#282a20;
+      --ink:#f0ece0;--ink2:#d4cfc4;--ink3:#9a9080;
+      --rule:rgba(100,160,100,0.12);--mline:rgba(80,180,80,0.18);
+      --red:#e05050;--blue:#5b8fd6;--green:#4ab870;
+      --orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+      --bio:#4ab850;--bio2:#5acc60;--bio3:#7ae080;
+      --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);
+      --hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);
+      --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+      --hl-bio:rgba(74,184,80,0.12);
+    }
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+      --paper:#1a1c12;--paper2:#20221a;--paper3:#282a20;
+      --ink:#f0ece0;--ink2:#d4cfc4;--ink3:#9a9080;
+      --rule:rgba(100,160,100,0.12);--mline:rgba(80,180,80,0.18);
+      --red:#e05050;--blue:#5b8fd6;--green:#4ab870;
+      --orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+      --bio:#4ab850;--bio2:#5acc60;--bio3:#7ae080;
+      --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);
+      --hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);
+      --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+      --hl-bio:rgba(74,184,80,0.12);
+    }}
+    [data-theme="dark"] body{background:#0e100a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#141810 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#181c14 0%,transparent 55%);}
+    [data-theme="dark"] .def-box{background:rgba(91,143,214,0.1);}
+    [data-theme="dark"] .warn-box{background:rgba(224,80,80,0.1);}
+    [data-theme="dark"] .tip-box{background:rgba(74,184,112,0.1);}
+    [data-theme="dark"] .note-box{background:rgba(224,120,48,0.1);}
+    [data-theme="dark"] .purp-box{background:rgba(155,89,214,0.1);}
+    [data-theme="dark"] .bio-box{background:rgba(74,184,80,0.08);}
+    [data-theme="dark"] .eg{background:var(--paper2);border-color:#3a3a28;}
+    [data-theme="dark"] .formula{background:var(--paper3);border-color:#4a4a38;}
+    [data-theme="dark"] .cb{background:var(--paper3);border-color:#4a4a38;}
+    [data-theme="dark"] code{background:var(--paper3);border-color:#4a4a38;}
+    [data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}
+    [data-theme="dark"] .trick::before{background:var(--paper2);}
+    [data-theme="dark"] .shortcut{background:rgba(212,168,0,0.07);border-color:#6a5200;}
+    [data-theme="dark"] .shortcut::before{background:var(--paper2);}
+    [data-theme="dark"] .toc{background:var(--paper);border-color:#3a3a28;}
+    [data-theme="dark"] .chapter{border-color:#3a3a28;}
+    [data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5a40;}
+    [data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4a38;}
+    [data-theme="dark"] .approach{background:rgba(91,143,214,0.1);}
+    [data-theme="dark"] .approach::before{background:var(--paper2);}
+    [data-theme="dark"] .trigger-box{background:rgba(91,143,214,0.1);border-color:var(--blue);}
+    [data-theme="dark"] .trigger-box::before{background:var(--paper2);}
+    [data-theme="dark"] .elim-box{background:rgba(224,80,80,0.1);}
+    [data-theme="dark"] .elim-box::before{background:var(--paper2);}
+    [data-theme="dark"] .cg-card{background:var(--paper2);border-color:#3a3a28;}
+    [data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3a28;}
+    [data-theme="dark"] .pyq-sol{background:var(--paper3);border-color:#4a4a38;}
+    [data-theme="dark"] .svg-wrap svg text{fill:var(--ink);}
+    [data-theme="dark"] .ncert-box{background:rgba(74,184,80,0.08);border-color:var(--bio);}
+    [data-theme="dark"] .ncert-box::before{background:var(--paper2);}
+
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:#c5c0a6;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b8c0a0 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc8a8 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 120px;}
+    .book{max-width:940px;margin:0 auto;}
+    .cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a9060,9px 10px 0 #6a7040,12px 14px 28px rgba(0,0,0,0.28);}
+    .cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(80,160,80,0.1) 31px,rgba(80,160,80,0.1) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+    .cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(80,160,80,0.35);pointer-events:none;}
+    .cover-inner{position:relative;padding-left:20px;}
+    .cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+    .cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--bio);}
+    .cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+    .cover h1 em{font-style:italic;color:var(--bio);}
+    .cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:620px;border-left:3px solid var(--bio);padding-left:14px;}
+    .cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+    .chip{font-family:var(--hand);font-size:10px;border:1.5px solid #a0b080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:rgba(255,255,255,0.5);}
+    .cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--bio);padding:5px 12px;border-radius:2px;}
+    .toc{background:var(--paper);border:1.5px solid #a0b080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a9a6e;}
+    .toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+    .toc-divider{height:1px;background:rgba(160,180,100,0.3);margin:14px 0;}
+    .toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--bio);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(160,180,100,0.3);}
+    .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+    @media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+    .toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+    .toc-grid a:hover{color:var(--bio);border-color:var(--ink3);}
+    .tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:24px;}
+    .chapter{background:var(--paper);border:1.5px solid #a0b088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a9a6e,7px 8px 0 #7a8050;}
+    .ch-head{background:linear-gradient(135deg,#0e240e 0%,#1a3a1a 100%);padding:24px 36px;border-bottom:3px solid var(--bio);}
+    [data-theme="dark"] .ch-head{background:linear-gradient(135deg,#080e08 0%,#0e180e 100%);}
+    .ch-head-phys{border-bottom-color:#4aae50!important;}
+    .ch-head-morph{border-bottom-color:#e8a040!important;}
+    .ch-head-repro{border-bottom-color:#e87070!important;}
+    .ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+    .ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
+    .ch-title em{font-style:italic;color:var(--bio3);}
+    .ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(160,180,100,0.4);}
+    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+    .ch-nav a:hover{border-color:var(--bio);color:var(--bio);}
+    .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+    .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(160,180,110,0.5);position:relative;}
+    .sec:last-child{border-bottom:none;}
+    .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(80,160,80,0.28);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--bio);margin:32px 0 12px;}
+    h4.sssh{font-family:var(--body);font-size:14px;font-weight:600;color:var(--green);margin:16px 0 6px;}
+    p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
+    strong{color:var(--ink);font-weight:600;}
+    em.it{font-style:italic;color:var(--ink3);}
+    .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
+    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .tc{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+    .tt{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+    .tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+    .tb{color:var(--bio);border-color:var(--bio);background:var(--hl-bio);}
+    .def-box{background:rgba(100,160,255,0.09);border-left:4px solid var(--blue);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .def-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:5px;display:block;}
+    .def-box p{font-size:16.5px;line-height:1.82;margin:0;color:var(--ink);}
+    .warn-box{background:rgba(220,60,60,0.07);border-left:4px solid var(--red);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .warn-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:4px;display:block;}
+    .warn-box p{font-size:16px;color:var(--red);margin:0;line-height:1.78;}
+    .tip-box{background:rgba(60,180,100,0.09);border-left:4px solid var(--green);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .tip-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px;display:block;}
+    .tip-box p{font-size:16px;color:var(--green);margin:0;line-height:1.78;}
+    .note-box{background:rgba(220,130,30,0.09);border-left:4px solid var(--orange);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .note-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px;display:block;}
+    .note-box p{font-size:16px;color:var(--orange);margin:0;line-height:1.78;}
+    .purp-box{background:rgba(120,40,180,0.08);border-left:4px solid var(--purple);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .purp-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:4px;display:block;}
+    .purp-box p{font-size:16px;color:var(--purple);margin:0;line-height:1.78;}
+    .bio-box{background:rgba(26,122,32,0.07);border-left:4px solid var(--bio);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .bio-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);margin-bottom:4px;display:block;}
+    .bio-box p{font-size:16px;color:var(--bio);margin:0;line-height:1.78;}
+    .ncert-box{background:rgba(26,122,32,0.06);border:1.5px solid var(--bio);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .ncert-box::before{content:"📗 NCERT Direct";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .ncert-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .trick{background:#fffcf0;border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .trick::before{content:"⚡ Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#a07800;position:absolute;top:-9px;left:14px;background:#fffbea;padding:0 6px;}
+    .trick p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .trick p:last-child{margin:0;}
+    .trick strong{color:#7a5800;}
+    .shortcut{background:#f8fff4;border:1.5px solid #4ab870;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .shortcut::before{content:"🎯 Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#1a6b40;position:absolute;top:-9px;left:14px;background:#f8fff4;padding:0 6px;}
+    .shortcut p{font-family:var(--prose);font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .shortcut p:last-child{margin:0;}
+    .eg{background:var(--paper2);border:1.5px solid #c4c090;border-radius:6px;padding:22px 24px;margin:24px 0;position:relative;}
+    .eg::before{content:"Example";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+    .eg p{font-family:var(--prose);font-size:16px;color:var(--ink2);margin:0 0 6px;line-height:1.82;}
+    .eg p:last-child{margin:0;}
+    .formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:24px 0;font-family:"Courier New",monospace;font-size:15px;color:var(--ink);line-height:2.2;text-align:center;}
+    .formula strong{color:var(--bio);font-size:16px;}
+    .cb{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1.5px dashed #a0a070;border-radius:4px;padding:14px 18px;margin:12px 0;color:var(--ink);line-height:1.9;white-space:pre-wrap;overflow-x:auto;}
+    code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper3);border:1px solid #c0a880;border-radius:3px;padding:1px 5px;color:var(--bio);}
+    mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+    .c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-p{color:var(--purple);font-weight:600;}.c-t{color:var(--teal);font-weight:600;}.c-bio{color:var(--bio);font-weight:600;}
+    .pl{list-style:none;margin:12px 0 18px;padding:0;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--bio);font-weight:600;}
+    .pl.arr li::before{content:"→";color:var(--blue);}
+    .pl.num{counter-reset:li;}
+    .pl.num li{counter-increment:li;}
+    .pl.num li::before{content:counter(li)".";color:var(--blue);}
+    .pl.chk li::before{content:"✓";color:var(--green);}
+    .pl.x li::before{content:"✗";color:var(--red);}
+    .pl.bio li::before{content:"🌿";font-size:12px;}
+    .pl.leaf li::before{content:"🍃";}
+    .tbl{overflow-x:auto;margin:20px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(160,180,100,0.3);color:var(--ink2);line-height:1.65;}
+    tr:nth-child(even) td{background:rgba(160,180,100,0.07);}
+    .freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+    .freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+    .fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;}
+    .fcard{background:var(--paper);border:1.5px solid #c4c090;border-radius:6px;padding:18px 20px;}
+    .fcard-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(160,180,100,0.4);}
+    .fcard ul{list-style:none;padding:0;}
+    .fcard ul li{font-family:var(--prose);font-size:15px;line-height:1.75;color:var(--ink2);padding:2px 0 2px 18px;position:relative;}
+    .fcard ul li::before{content:"·";position:absolute;left:4px;color:var(--bio);}
+    .pyq-card{background:var(--paper);border:1.5px solid #c4c090;border-radius:6px;margin:20px 0;overflow:hidden;}
+    .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);border-bottom:1px solid rgba(160,180,100,0.4);cursor:pointer;gap:12px;}
+    .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--bio);padding:3px 10px;border-radius:2px;flex-shrink:0;}
+    .pyq-q{font-family:var(--prose);font-size:16px;color:var(--ink);line-height:1.7;flex:1;}
+    .pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1px;color:var(--bio);flex-shrink:0;padding:4px 10px;border:1.5px solid var(--bio);border-radius:2px;background:none;cursor:pointer;transition:all 0.2s;}
+    .pyq-toggle:hover{background:var(--bio);color:var(--paper);}
+    .pyq-sol{background:var(--paper3);padding:18px 22px;border-top:2px dashed rgba(160,180,100,0.5);display:none;}
+    .pyq-sol.open{display:block;}
+    .pyq-sol p{font-family:var(--prose);font-size:15.5px;line-height:1.85;color:var(--ink2);margin-bottom:10px;}
+    .pyq-sol p:last-child{margin:0;}
+    .ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green);color:var(--paper);margin-bottom:10px;}
+    .approach{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+    .approach::before{content:"🧠 Approach";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .approach p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0 0 6px;line-height:1.82;}
+    .approach p:last-child{margin:0;}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .trigger-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .elim-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .elim-box::before{content:"❌ Elimination";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .elim-box p{font-family:var(--prose);font-size:16px;color:var(--ink);margin:0;line-height:1.82;}
+    .cg-card{background:var(--paper);border:1.5px solid #c4c090;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+    .svg-wrap{text-align:center;margin:24px 0;overflow-x:auto;}
+    .svg-wrap svg{max-width:100%;height:auto;}
+    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+    .sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+    .sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+    .sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+    .sp-t{border-color:var(--teal);color:var(--teal);background:rgba(13,122,106,0.09);}
+    .sp-bio{border-color:var(--bio);color:var(--bio);background:var(--hl-bio);}
+    .theme-switch{position:relative;width:44px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;margin-left:12px;}
+    .theme-switch input{opacity:0;width:0;height:0;position:absolute;}
+    .theme-track{position:absolute;inset:0;background:rgba(0,0,0,0.06);border:1.5px solid rgba(0,0,0,0.1);border-radius:24px;cursor:pointer;transition:all .3s;}
+    .theme-track::before{content:'☀';position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--bio);transition:all .3s cubic-bezier(.4,0,.2,1);}
+    [data-theme="dark"] .theme-track{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);}
+    [data-theme="dark"] .theme-track::before{content:'☾';transform:translateX(20px);background:#1a1c12;color:#7ae080;font-size:10px;}
+    .back-dash{font-family:var(--hand);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:4px 8px;border:1px solid var(--ink3);border-radius:4px;transition:all .2s;}
+    .back-dash:hover{background:var(--ink);color:var(--paper);}
+    .top-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 0 20px;margin-bottom:4px;}
+    .ncert-ref{font-family:var(--hand);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);background:var(--hl-bio);padding:2px 8px;border-radius:2px;border:1px solid var(--bio);}
+    @media(max-width:640px){.sec{padding:32px 20px 28px 44px;}.cover{padding:36px 28px 32px;}.cover h1{font-size:26px;}.ch-nav{padding:12px 20px;}}
+    .pathway-wrap{background:var(--paper3);border-radius:8px;padding:20px;margin:20px 0;overflow-x:auto;}
+    .pathway-row{display:flex;align-items:center;gap:0;flex-wrap:nowrap;min-width:max-content;}
+    .p-node{background:var(--paper);border:1.5px solid var(--bio);border-radius:6px;padding:8px 14px;font-family:var(--hand);font-size:10px;letter-spacing:1px;color:var(--bio);text-align:center;white-space:nowrap;}
+    .p-arrow{color:var(--ink3);font-size:18px;padding:0 6px;flex-shrink:0;}
+    .p-node.atp{border-color:var(--orange);color:var(--orange);}
+    .p-node.nadh{border-color:var(--blue);color:var(--blue);}
+    .p-node.red{border-color:var(--red);color:var(--red);}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
+    @media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<div class="book">
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="../index.html" class="back-dash">← Back to Hub</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="ncert-ref">NCERT Class 11 &amp; 12</span>
+    <label class="theme-switch" title="Toggle dark mode">
+      <input type="checkbox" id="themeCb" onchange="setTheme(this.checked)">
+      <span class="theme-track"></span>
+    </label>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <span class="cover-tag">Botany Complete</span>
+  <div class="cover-inner">
+    <div class="cover-subject">NEET Biology · Botany · Class 11 &amp; 12</div>
+    <h1>Botany — <em>The Complete<br/>NEET Intelligence System</em></h1>
+    <p class="cover-desc">Plant Kingdom &amp; Morphology · Plant Physiology · Reproduction in Plants. Three units, ~12–18 Qs/paper, 17 years decoded. Every concept, every PYQ pattern, every NCERT diagram explained. From algae classification to double fertilisation — the complete system.</p>
+    <div class="cover-chips">
+      <span class="chip">Part A — Plant Kingdom &amp; Morphology</span>
+      <span class="chip">Part B — Plant Physiology</span>
+      <span class="chip">Part C — Reproduction in Plants</span>
+      <span class="chip">NEET 2009–2025 PYQs</span>
+      <span class="chip">NCERT Fully Mapped</span>
+      <span class="chip">~18 Qs Coverage</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <div class="toc-lbl">Contents — All Three Botany Units</div>
+
+  <div class="toc-section-lbl">Part A — Plant Kingdom &amp; Morphology (NCERT Class 11, Ch 3, 5, 6)</div>
+  <div class="toc-grid">
+    <a href="#plant-kingdom"><span class="tn">1.</span>Plant Kingdom Classification</a>
+    <a href="#algae"><span class="tn">2.</span>Algae — All Three Groups</a>
+    <a href="#bryophyta"><span class="tn">3.</span>Bryophyta — Liverworts &amp; Mosses</a>
+    <a href="#pteridophyta"><span class="tn">4.</span>Pteridophyta</a>
+    <a href="#gymno-angio"><span class="tn">5.</span>Gymnosperms &amp; Angiosperms</a>
+    <a href="#morphology"><span class="tn">6.</span>Morphology — Root, Stem, Leaf</a>
+    <a href="#flower-fruit"><span class="tn">7.</span>Flower, Fruit &amp; Seed</a>
+  </div>
+
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Part B — Plant Physiology (NCERT Class 11, Ch 11–15)</div>
+  <div class="toc-grid">
+    <a href="#transport"><span class="tn">8.</span>Transport in Plants</a>
+    <a href="#mineral"><span class="tn">9.</span>Mineral Nutrition</a>
+    <a href="#photosynthesis"><span class="tn">10.</span>Photosynthesis in Higher Plants</a>
+    <a href="#respiration"><span class="tn">11.</span>Respiration in Plants</a>
+    <a href="#growth"><span class="tn">12.</span>Plant Growth &amp; Development</a>
+  </div>
+
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Part C — Sexual Reproduction in Flowering Plants (NCERT Class 12, Ch 2)</div>
+  <div class="toc-grid">
+    <a href="#pre-fert"><span class="tn">13.</span>Pre-fertilisation Events</a>
+    <a href="#pollination"><span class="tn">14.</span>Pollination &amp; Pollen-Pistil Interaction</a>
+    <a href="#double-fert"><span class="tn">15.</span>Double Fertilisation</a>
+    <a href="#post-fert"><span class="tn">16.</span>Post-fertilisation — Seed &amp; Fruit</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PART A: PLANT KINGDOM & MORPHOLOGY                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="plant-kingdom">
+  <div class="ch-head">
+    <div class="ch-ey">Part A · NCERT Class 11 Ch 3</div>
+    <div class="ch-title">Plant Kingdom &amp; <em>Classification</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#plant-kingdom">Overview</a>
+    <a href="#algae">Algae</a>
+    <a href="#bryophyta">Bryophyta</a>
+    <a href="#pteridophyta">Pteridophyta</a>
+    <a href="#gymno-angio">Gymno &amp; Angio</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- OVERVIEW / FREQUENCY MAP -->
+    <div class="sec" data-m="overview" id="pk-overview">
+      <h2 class="sh">NEET Frequency Map — Plant Kingdom <span class="tag tg">~3–4 Q/paper</span></h2>
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Algae examples &amp; features — 8+ times</div>
+        <div class="score-pill sp-r">🔴 Alternation of generations — 7+ times</div>
+        <div class="score-pill sp-o">🟠 Bryophyta examples — 6+ times</div>
+        <div class="score-pill sp-o">🟠 Gymnosperms features — 5+ times</div>
+        <div class="score-pill sp-b">🔵 Pteridophyta — 4+ times</div>
+        <div class="score-pill sp-bio">🌿 Monocot vs Dicot — 5+ times</div>
+      </div>
+
+      <!-- MASTER COMPARISON TABLE -->
+      <h3 class="ssh">🌿 Master Comparison: All Plant Divisions</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Algae</th><th>Bryophyta</th><th>Pteridophyta</th><th>Gymnospermae</th><th>Angiospermae</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Plant body</strong></td><td>Thallus</td><td>Thalloid/Leafy</td><td>Root, stem, leaf</td><td>Root, stem, leaf</td><td>Root, stem, leaf</td></tr>
+            <tr><td><strong>Vascular tissue</strong></td><td>Absent</td><td>Absent</td><td>Present</td><td>Present</td><td>Present</td></tr>
+            <tr><td><strong>Seeds</strong></td><td>Absent</td><td>Absent</td><td>Absent</td><td>Naked (ovules exposed)</td><td>Enclosed in fruit</td></tr>
+            <tr><td><strong>Flowers</strong></td><td>Absent</td><td>Absent</td><td>Absent</td><td>Absent</td><td>Present</td></tr>
+            <tr><td><strong>Dominant phase</strong></td><td>Gametophyte</td><td>Gametophyte</td><td>Sporophyte</td><td>Sporophyte</td><td>Sporophyte</td></tr>
+            <tr><td><strong>Habitat</strong></td><td>Aquatic mainly</td><td>Amphibious</td><td>Moist, shady</td><td>Cool, dry</td><td>All habitats</td></tr>
+            <tr><td><strong>Fertilisation</strong></td><td>Needs water</td><td>Needs water</td><td>Needs water</td><td>Pollen tube</td><td>Pollen tube</td></tr>
+            <tr><td><strong>Examples</strong></td><td>Spirogyra, Fucus</td><td>Funaria, Riccia</td><td>Selaginella, Dryopteris</td><td>Pinus, Cycas</td><td>Mango, Wheat</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SVG: Alternation of Generations -->
+      <h3 class="ssh">🔄 Alternation of Generations — Key Visual</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 760 220" width="760" height="220" font-family="Architects Daughter, cursive" font-size="12">
+          <!-- Background panels -->
+          <rect x="10" y="10" width="220" height="200" rx="8" fill="rgba(26,122,32,0.08)" stroke="#1a7a20" stroke-width="1.5"/>
+          <rect x="270" y="10" width="220" height="200" rx="8" fill="rgba(26,74,140,0.08)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <rect x="530" y="10" width="220" height="200" rx="8" fill="rgba(180,48,48,0.08)" stroke="#b83030" stroke-width="1.5"/>
+
+          <!-- Labels -->
+          <text x="120" y="35" text-anchor="middle" fill="#1a7a20" font-weight="700" font-size="13">GAMETOPHYTE (n)</text>
+          <text x="120" y="52" text-anchor="middle" fill="#6b5a47" font-size="10">Haploid · Sexual Reproduction</text>
+          <text x="380" y="35" text-anchor="middle" fill="#1a4a8c" font-weight="700" font-size="13">GAMETES (n)</text>
+          <text x="380" y="52" text-anchor="middle" fill="#6b5a47" font-size="10">Male + Female</text>
+          <text x="640" y="35" text-anchor="middle" fill="#b83030" font-weight="700" font-size="13">SPOROPHYTE (2n)</text>
+          <text x="640" y="52" text-anchor="middle" fill="#6b5a47" font-size="10">Diploid · Asexual (spores)</text>
+
+          <!-- Examples per group -->
+          <text x="120" y="85" text-anchor="middle" fill="#1c1510" font-size="11" font-weight="600">Dominant in:</text>
+          <text x="120" y="102" text-anchor="middle" fill="#1a7a20" font-size="11">Algae, Bryophytes</text>
+          <text x="380" y="85" text-anchor="middle" fill="#1c1510" font-size="11" font-weight="600">Syngamy → Zygote</text>
+          <text x="380" y="102" text-anchor="middle" fill="#6b5a47" font-size="11">sperm + egg = zygote (2n)</text>
+          <text x="640" y="85" text-anchor="middle" fill="#1c1510" font-size="11" font-weight="600">Dominant in:</text>
+          <text x="640" y="102" text-anchor="middle" fill="#b83030" font-size="11">Pteridophytes, Seeds plants</text>
+
+          <!-- Cycle arrows -->
+          <path d="M240 110 Q255 110 265 110" stroke="#1a4a8c" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+          <path d="M500 110 Q515 110 525 110" stroke="#b83030" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+
+          <!-- MEIOSIS label below sporophyte -->
+          <text x="640" y="140" text-anchor="middle" fill="#6b5a47" font-size="11">Meiosis → Spores (n)</text>
+          <text x="380" y="140" text-anchor="middle" fill="#6b5a47" font-size="11">Fertilisation (Syngamy)</text>
+          <text x="120" y="140" text-anchor="middle" fill="#6b5a47" font-size="11">Mitosis → Gametes</text>
+
+          <!-- Return arrows -->
+          <path d="M530 155 Q380 180 270 155" stroke="#b83030" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrd)"/>
+          <text x="400" y="195" text-anchor="middle" fill="#b83030" font-size="10">Meiosis → Spores → Gametophyte</text>
+
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#1a4a8c"/>
+            </marker>
+            <marker id="arrd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#b83030"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 NEET Master Principle — Life Cycles</span>
+        <p><strong>Gametophyte dominant → Algae &amp; Bryophytes.</strong> Sporophyte dominant → Pteridophytes, Gymnosperms, Angiosperms. In Algae, both phases can be free-living (isomorphic) or one can dominate (heteromorphic). In Bryophytes, sporophyte is partially/fully dependent on gametophyte. In Pteridophytes, gametophyte (prothallus) is free-living but very small. Both phases are free-living in Pteridophytes — this is the NEET trap!</p>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ Most Tested NEET Trap — Gametophyte vs Sporophyte</span>
+        <p><strong>Moss (Funaria):</strong> Sporophyte (capsule on stalk) is dependent on gametophyte. <strong>Fern:</strong> Both free-living — this question has appeared 3+ times directly. <strong>Seed plants:</strong> Female gametophyte is the embryo sac (7 cells, 8 nuclei) — highly reduced, dependent.</p>
+      </div>
+    </div>
+
+    <!-- ALGAE -->
+    <div class="sec" data-m="algae" id="algae">
+      <h2 class="sh">Algae — All Three Classes <span class="tag tb">8+ times in NEET</span></h2>
+
+      <p>Algae are chlorophyll-bearing, simple, thalloid, autotrophic, and largely aquatic organisms. They may be unicellular (Chlamydomonas) to filamentous (Spirogyra) to colonial (Volvox). They fix ~50% of global CO₂.</p>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Class</th><th>Pigments</th><th>Reserve Food</th><th>Cell Wall</th><th>Habitat</th><th>Key Examples (NEET)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Chlorophyceae</strong> (Green)</td><td>Chl a, b; carotenoids</td><td>Starch</td><td>Cellulose (outer), pectin</td><td>Freshwater mainly</td><td class="c-bio"><strong>Chlamydomonas, Volvox, Ulothrix, Spirogyra, Chara</strong></td></tr>
+            <tr><td><strong>Phaeophyceae</strong> (Brown)</td><td>Chl a, c; fucoxanthin</td><td>Laminarin, mannitol</td><td>Cellulose + algin</td><td>Marine (mostly)</td><td class="c-bio"><strong>Ectocarpus, Dictyota, Laminaria, Sargassum, Fucus</strong></td></tr>
+            <tr><td><strong>Rhodophyceae</strong> (Red)</td><td>Chl a, d; phycoerythrin</td><td>Floridean starch</td><td>Cellulose + pectin + polysulphate esters</td><td>Warm marine</td><td class="c-bio"><strong>Polysiphonia, Porphyra, Gracilaria, Gelidium</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT Direct Fact:</strong> Algin is extracted from brown algae (Phaeophyceae); Carrageen from red algae (Rhodophyceae). Agar-agar is obtained from <em>Gelidium</em> and <em>Gracilaria</em> (Red algae). <em>Chlorella</em> (Green) is used as space food due to high protein content. <em>Chara</em> is called "stonewort" due to calcified walls.</p>
+      </div>
+
+      <h3 class="ssh">🌊 Algal Reproduction — NEET Critical Points</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Chlamydomonas</div>
+          <ul>
+            <li>Unicellular, biflagellate</li>
+            <li>Vegetative: fragmentation</li>
+            <li>Asexual: zoospores</li>
+            <li>Sexual: isogamous, anisogamous, or oogamous depending on species</li>
+            <li>Flagella at anterior end</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Spirogyra</div>
+          <ul>
+            <li>Filamentous, freshwater</li>
+            <li>Ribbon-like, spiral chloroplast</li>
+            <li>Vegetative: fragmentation</li>
+            <li>Sexual: conjugation (lateral or scalariform)</li>
+            <li>No flagellated cells</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Volvox</div>
+          <ul>
+            <li>Colonial — thousands of cells</li>
+            <li>Sexual: oogamous</li>
+            <li>Division of labour: somatic + reproductive cells</li>
+            <li>Inversion of daughter colony</li>
+            <li>Motile colony</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Fucus (Brown)</div>
+          <ul>
+            <li>Marine, on rocky shores</li>
+            <li>Concept of receptacles</li>
+            <li>Diploid dominant</li>
+            <li>Oogamous reproduction</li>
+            <li>Algin in cell wall</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>Mnemonics for Algae examples — NEET loves these!</strong></p>
+        <p><strong>Green (CGV-US-C):</strong> <span class="c-bio">C</span>hlamydomonas, <span class="c-bio">V</span>olvox, <span class="c-bio">U</span>lothrix, <span class="c-bio">S</span>pirogyra, <span class="c-bio">C</span>hara</p>
+        <p><strong>Brown (EDS-LF):</strong> <span class="c-o">E</span>ctocarpus, <span class="c-o">D</span>ictyota, <span class="c-o">S</span>argassum, <span class="c-o">L</span>aminaria, <span class="c-o">F</span>ucus</p>
+        <p><strong>Red (PPG-G):</strong> <span class="c-r">P</span>olysiphonia, <span class="c-r">P</span>orphyra, <span class="c-r">G</span>elidium, <span class="c-r">G</span>racilaria</p>
+      </div>
+
+      <h3 class="ssh">📋 PYQs — Algae</h3>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">In which of the following, is the reserve food material "Floridean starch" found?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Rhodophyceae (Red Algae)</span>
+          <p><strong>Key:</strong> Floridean starch is characteristic of Red algae. It resembles amylopectin (branched). Green algae store true starch, Brown algae store laminarin and mannitol. This has appeared multiple times — know all three reserve foods.</p>
+        </div>
+      </div>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2020</span>
+          <span class="pyq-q">Which one of the following algae is used as a source of agar-agar?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Gelidium and Gracilaria (Red algae)</span>
+          <p>Agar-agar is a polysaccharide extracted from red algae <em>Gelidium</em> and <em>Gracilaria</em>. It is used in microbiological culture media, as food additive, and in ice cream production. <strong>Trap:</strong> Do not confuse with algin (Brown) or carrageen (Red).</p>
+        </div>
+      </div>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2019</span>
+          <span class="pyq-q">Identify the algal example where sexual reproduction occurs by conjugation:</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Spirogyra</span>
+          <p>In Spirogyra, the two filaments align side by side (scalariform conjugation) or cells of the same filament conjugate (lateral conjugation). The gametes lack flagella — this is isogamous but non-motile. <strong>No flagellated cells</strong> in Spirogyra despite being green algae.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRYOPHYTA -->
+    <div class="sec" data-m="bryophyta" id="bryophyta">
+      <h2 class="sh">Bryophyta — Amphibians of Plant Kingdom <span class="tag tb">5–6 Q/decade</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Key Definition</span>
+        <p>Bryophytes are called "amphibians of plant kingdom" because they need water for sexual reproduction (flagellated spermatozoids) but can survive on land. No vascular tissue. <strong>Gametophyte is dominant</strong>; sporophyte is partially/fully dependent on gametophyte.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Liverworts</th><th>Mosses</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Plant body</strong></td><td>Thalloid (Marchantia) or leafy</td><td>Leafy, with rhizoids, stem-like axis</td></tr>
+            <tr><td><strong>Rhizoids</strong></td><td>Unicellular, smooth</td><td>Multicellular, branched (Funaria)</td></tr>
+            <tr><td><strong>Protonema</strong></td><td>Absent or poorly developed</td><td>Well developed (filamentous)</td></tr>
+            <tr><td><strong>Vegetative reprod.</strong></td><td>Gemmae in gemma cups</td><td>Fragmentation, budding</td></tr>
+            <tr><td><strong>Sporophyte</strong></td><td>Simple, foot + capsule</td><td>Foot + seta + capsule</td></tr>
+            <tr><td><strong>NEET Examples</strong></td><td class="c-bio">Riccia, Marchantia</td><td class="c-bio">Funaria, Polytrichum, Sphagnum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT Direct:</strong> <em>Sphagnum</em> (peat moss) provides peat that can be used as fuel, and is also of great economic importance. <em>Marchantia</em> reproduces vegetatively through gemma — a specialised vegetative body formed in gemma cups on the dorsal surface of thallus. The sporophyte of bryophytes is not able to live independently.</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>Bryophyte sporophyte dependency:</strong> In <em>Riccia</em> = most dependent (embedded in gametophyte, no seta). In <em>Pellia/Marchantia</em> = partially dependent. In liverworts generally: foot only for attachment. In Mosses: foot + seta + capsule — capsule has stomata and photosynthesises partially. <strong>Only bryophyte sporophyte with stomata = Funaria capsule.</strong></p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">In which of the following, gemmae (vegetative reproductive structure) are found in cup-like structures called gemma cups?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Marchantia</span>
+          <p>Gemma cups are small cup-like structures seen on the dorsal surface of <em>Marchantia</em> thallus. Gemmae (disc-like multicellular asexual bodies) are produced in these cups and get detached to form new individuals. This is vegetative reproduction.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PTERIDOPHYTA -->
+    <div class="sec" data-m="pteridophyta" id="pteridophyta">
+      <h2 class="sh">Pteridophyta — First Vascular Land Plants <span class="tag tc">4+ times</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Key Features</span>
+        <p>Pteridophytes are the first terrestrial plants to possess vascular tissue (xylem and phloem). Sporophyte is dominant and independent. Gametophyte (prothallus) is free-living, photosynthetic, monoecious. Fertilisation still requires water. First plant group with Leaves (microphylls in Selaginella; megaphylls in ferns).</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Order</th><th>Examples</th><th>Key Feature</th></tr></thead>
+          <tbody>
+            <tr><td>Psilopsida</td><td class="c-bio">Psilotum</td><td>Rootless; simplest living vascular plant</td></tr>
+            <tr><td>Lycopsida</td><td class="c-bio">Selaginella, Lycopodium</td><td>Selaginella: heterosporous; "living fossil"</td></tr>
+            <tr><td>Sphenopsida</td><td class="c-bio">Equisetum</td><td>Jointed stem; whorled leaves; "horsetails"</td></tr>
+            <tr><td>Pteropsida</td><td class="c-bio">Dryopteris, Adiantum, Marsilea</td><td>True ferns; megaphylls</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Heterospory — Critical NEET Concept</span>
+        <p><strong>Heterospory</strong> (production of two kinds of spores — microspores and megaspores) is first seen in Pteridophytes (<em>Selaginella, Salvinia</em>). This is the precursor to seed habit. The megaspore germinates into female gametophyte; microspore into male gametophyte — all within the spore wall. This is the evolutionary step towards seeds.</p>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT Direct:</strong> Gametophyte of pteridophytes is called <strong>prothallus</strong>. It is small, inconspicuous, free-living, and mostly photosynthetic. Prothallus bears both antheridia (male) and archegonia (female). The prothallus requires cool, damp conditions. <em>Marsilea</em> is heterosporous and aquatic.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">Identify the correct statement about the fern gametophyte (prothallus):</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: It is free-living, photosynthetic and haploid</span>
+          <p>The prothallus is a free-living, autotrophic (photosynthetic) haploid structure — the gametophyte generation of ferns. It bears antheridia (producing biflagellate antherozoids) and archegonia (producing the egg). Fertilisation occurs in the presence of water. The zygote (2n) develops into the sporophyte — the familiar fern plant.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GYMNOSPERMS & ANGIOSPERMS -->
+    <div class="sec" data-m="gymno-angio" id="gymno-angio">
+      <h2 class="sh">Gymnosperms &amp; Angiosperms <span class="tag tb">5+ times each</span></h2>
+
+      <div class="two-col">
+        <div class="cg-card">
+          <div class="cg-title">Gymnosperms</div>
+          <ul class="pl bio">
+            <li>Naked seeds (ovules not enclosed in ovary)</li>
+            <li>Pollen tube — no water needed for fertilisation</li>
+            <li>Microsporophylls (♂) &amp; megasporophylls (♀) in cones (strobili)</li>
+            <li>Mostly evergreen; needle-like leaves — reduced transpiration</li>
+            <li>Cycas: <strong>only living gymnosperm with coralloid roots</strong> (house Anabaena — N₂ fixing)</li>
+            <li>Pinus: resin ducts; two types of branches (long + dwarf)</li>
+            <li>Ephedra: source of drug ephedrine</li>
+            <li>Sequoia: tallest living tree</li>
+          </ul>
+        </div>
+        <div class="cg-card">
+          <div class="cg-title">Angiosperms</div>
+          <ul class="pl bio">
+            <li>Seeds enclosed in fruits (carpel/ovary)</li>
+            <li>Flowers present — most diverse plant group</li>
+            <li>Double fertilisation — unique feature</li>
+            <li>Triploid endosperm (3n) — nutritive tissue</li>
+            <li>Monocots: one cotyledon, parallel venation, fibrous root</li>
+            <li>Dicots: two cotyledons, reticulate venation, tap root</li>
+            <li>Class Monocotyledonae &amp; Dicotyledonae</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT Direct — Gymnosperm reproduction:</strong> In Pinus, the male cones (microsporangiate) bear microsporophylls each with 2 microsporangia. The microsporangia produce pollen grains (microspores). The female cone (megasporangiate) bears megasporophylls, each with 2 naked ovules. Wind pollination (anemophily). Pollen tube carries male gametes to archegonium.</p>
+      </div>
+
+      <div class="tip-box">
+        <span class="lbl">Monocot vs Dicot — Quick Fire (NEET 5 direct Qs)</span>
+        <p><strong>Monocot:</strong> 1 cotyledon, parallel venation, fibrous/adventitious root, trimerous flower (petals in 3s), closed vascular bundles, no secondary growth (except Dracaena/Yucca as exception). <strong>Dicot:</strong> 2 cotyledons, reticulate venation, tap root, tetramerous/pentamerous flower, open vascular bundles, secondary growth present.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In which of the following plants are the ovules naked (not enclosed in an ovary)?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Pinus (Gymnosperm)</span>
+          <p>In Gymnosperms, the ovules are not enclosed within an ovary — they are borne directly on megasporophylls. The word "Gymnosperm" means "naked seed" (Greek: gymnos = naked, sperma = seed). In Angiosperms, ovules are enclosed in the carpel/ovary.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end ch-body -->
+</div><!-- end chapter plant kingdom -->
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MORPHOLOGY OF FLOWERING PLANTS                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="morphology">
+  <div class="ch-head ch-head-morph">
+    <div class="ch-ey">Part A · NCERT Class 11 Ch 5 &amp; 6</div>
+    <div class="ch-title">Morphology of <em>Flowering Plants</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#root-sec">Root</a>
+    <a href="#stem-sec">Stem</a>
+    <a href="#leaf-sec">Leaf</a>
+    <a href="#flower-fruit">Flower &amp; Fruit</a>
+    <a href="#seed-sec">Seed</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" data-m="overview" id="morph-overview">
+      <h2 class="sh">NEET Frequency — Morphology <span class="tag tg">~4–5 Q/paper</span></h2>
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Stem modifications — 7+ times</div>
+        <div class="score-pill sp-r">🔴 Flower structure — 8+ times</div>
+        <div class="score-pill sp-o">🟠 Leaf modifications — 5+ times</div>
+        <div class="score-pill sp-o">🟠 Root modifications — 5+ times</div>
+        <div class="score-pill sp-bio">🌿 Inflorescence types — 4+ times</div>
+      </div>
+      <div class="note-box">
+        <span class="lbl">Mentor's Note</span>
+        <p>NEET tests morphology through matching examples to correct modification type, or identifying the correct family feature. Always identify: (A) is the modification — root/stem/leaf? (B) Underground stem modifications are the most confusing — know all 5 types cold. Flower formula writing is tested in NCERT exemplar-level questions.</p>
+      </div>
+    </div>
+
+    <!-- ROOT -->
+    <div class="sec" data-m="root" id="root-sec">
+      <h2 class="sh">Root — Types &amp; Modifications <span class="tag tc">5+ times</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Modification</th><th>Function</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">STORAGE ROOTS</td></tr>
+            <tr><td>Fusiform (spindle-shaped)</td><td>Food storage</td><td class="c-bio">Radish (Raphanus)</td></tr>
+            <tr><td>Napiform (top-shaped)</td><td>Food storage</td><td class="c-bio">Turnip (Brassica rapa), Sugar beet</td></tr>
+            <tr><td>Conical (cone-shaped)</td><td>Food storage</td><td class="c-bio">Carrot (Daucus carota)</td></tr>
+            <tr><td>Tuberous (irregular)</td><td>Food storage</td><td class="c-bio">Sweet potato (Ipomoea batatas)</td></tr>
+
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">SUPPORT ROOTS (Adventitious)</td></tr>
+            <tr><td>Prop roots (pillar-like)</td><td>Mechanical support</td><td class="c-bio">Banyan (Ficus benghalensis)</td></tr>
+            <tr><td>Stilt roots (oblique)</td><td>Support in waterlogged soil</td><td class="c-bio">Maize, Sugarcane, Pandanus</td></tr>
+            <tr><td>Buttress roots (plank-like)</td><td>Support tall trees</td><td class="c-bio">Terminalia</td></tr>
+
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">SPECIAL ROOTS</td></tr>
+            <tr><td>Pneumatophores (respiratory)</td><td>Gaseous exchange (upward-growing)</td><td class="c-bio">Avicennia, Rhizophora (mangroves)</td></tr>
+            <tr><td>Sucking (haustorial)</td><td>Absorb nutrients from host</td><td class="c-bio">Cuscuta (dodder — parasitic)</td></tr>
+            <tr><td>Assimilatory (green, photosynthetic)</td><td>Photosynthesis</td><td class="c-bio">Tinospora</td></tr>
+            <tr><td>Nodulated</td><td>N₂ fixation (Rhizobium)</td><td class="c-bio">Legumes (Pea, Gram, Groundnut)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET Trap — Sweet Potato vs Potato</span>
+        <p><strong>Sweet potato (Ipomoea) — tuberous root (adventitious root modification).</strong> <strong>Potato (Solanum) — stem tuber (underground stem modification).</strong> This distinction is tested almost every 2 years. Root tubers have no nodes/internodes/eyes. Stem tubers have eyes (nodes) with buds.</p>
+      </div>
+    </div>
+
+    <!-- STEM -->
+    <div class="sec" data-m="stem" id="stem-sec">
+      <h2 class="sh">Stem Modifications — The Most Tested Section <span class="tag tg">7+ times</span></h2>
+
+      <h3 class="ssh">Underground Stem Modifications</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Key Features</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Rhizome</strong></td><td>Horizontal, nodes+internodes, scale leaves, terminal/axillary buds</td><td class="c-bio">Ginger (Zingiber), Turmeric (Curcuma), Fern, Lotus, Banana</td></tr>
+            <tr><td><strong>Corm</strong></td><td>Vertical, swollen, solid, short internodes; scale leaves; terminal bud</td><td class="c-bio">Colocasia (arvi/taro), Saffron (Crocus), Amorphophallus (yam), Gladiolus</td></tr>
+            <tr><td><strong>Stem tuber</strong></td><td>Terminal parts of underground stem swell; have "eyes" (nodes with buds)</td><td class="c-bio">Potato (Solanum tuberosum), Jerusalem artichoke</td></tr>
+            <tr><td><strong>Bulb</strong></td><td>Condensed disc-shaped stem; concentric fleshy leaves (scale leaves)</td><td class="c-bio">Onion (Allium cepa), Garlic (Allium sativum), Lily</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Aerial &amp; Sub-aerial Stem Modifications</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Modification</th><th>Function</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">SUB-AERIAL (Weak Stem Runners)</td></tr>
+            <tr><td>Runner</td><td>Vegetative propagation; creeps on soil surface</td><td class="c-bio">Oxalis, Cynodon (grass/doob)</td></tr>
+            <tr><td>Stolon</td><td>Arises from base: creeps, roots at tip</td><td class="c-bio">Strawberry, Jasmine</td></tr>
+            <tr><td>Offset</td><td>Short, thick, grows horizontally in water</td><td class="c-bio">Pistia (water lettuce), Eichhornia (water hyacinth)</td></tr>
+            <tr><td>Sucker</td><td>Arises from underground stem; emerges obliquely</td><td class="c-bio">Banana (Musa), Chrysanthemum, Mint (Mentha)</td></tr>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">AERIAL MODIFICATIONS</td></tr>
+            <tr><td>Stem tendril</td><td>Climbing — modified stem</td><td class="c-bio">Passiflora (stem), Cucumber, Grapevine (Vitis)</td></tr>
+            <tr><td>Thorn</td><td>Protection (axillary, can't be removed without tearing)</td><td class="c-bio">Citrus (lemon/orange), Bougainvillea</td></tr>
+            <tr><td>Phylloclade</td><td>Flattened stem; photosynthesis in xerophytes</td><td class="c-bio">Opuntia (cactus), Euphorbia, Casuarina</td></tr>
+            <tr><td>Bulbil</td><td>Vegetative propagation (modified axillary bud)</td><td class="c-bio">Agave, Dioscorea, Globba</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>Spine vs Thorn vs Prickle — NEET loves this confusion!</strong></p>
+        <p><strong>Thorn</strong> = modified stem (axillary bud) → can't peel off easily → <em>Citrus, Bougainvillea</em></p>
+        <p><strong>Spine</strong> = modified leaf or stipule → <em>Cactus (Opuntia)</em> — the spines are leaves!</p>
+        <p><strong>Prickle</strong> = epidermal outgrowth (no vascular tissue) → <em>Rose</em> — easily removed!</p>
+      </div>
+    </div>
+
+    <!-- LEAF -->
+    <div class="sec" data-m="leaf" id="leaf-sec">
+      <h2 class="sh">Leaf — Types, Venation, Modifications <span class="tag tt">5+ times</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Simple Leaf</th><th>Compound Leaf</th></tr></thead>
+          <tbody>
+            <tr><td>Lamina</td><td>Undivided (may be lobed but not separate)</td><td>Divided into leaflets (pinnate or palmate)</td></tr>
+            <tr><td>Bud in axil</td><td>One bud in each axil</td><td>Bud at the base of petiole, NOT at base of leaflets</td></tr>
+            <tr><td>Pinnate compound</td><td>—</td><td>Leaflets on either side of rachis → <span class="c-bio">Neem (Azadirachta), Cassia</span></td></tr>
+            <tr><td>Palmate compound</td><td>—</td><td>Leaflets arise from tip of petiole → <span class="c-bio">Silk cotton (Bombax), Cannabis</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Leaf Modifications — NEET Hot Topics</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Leaf Spine</div>
+          <ul>
+            <li>Protection / reduced transpiration</li>
+            <li>Opuntia — leaves into spines</li>
+            <li>Aloe — leaf margin spiny</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Leaf Tendril</div>
+          <ul>
+            <li>Climbing support</li>
+            <li>Pea (Pisum) — terminal leaflets into tendrils</li>
+            <li>Gloriosa — leaf tip into tendril</li>
+            <li>Smilax — stipules into tendrils</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Leaf Pitcher (Insectivorous)</div>
+          <ul>
+            <li>Leaf forms pitcher to trap insects</li>
+            <li>Nepenthes (pitcher plant)</li>
+            <li>Secretes digestive enzymes</li>
+            <li>Grows in N-deficient soil</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Phyllode</div>
+          <ul>
+            <li>Petiole becomes flat, leaf-like, photosynthetic</li>
+            <li>True leaves absent/reduced</li>
+            <li>Australian Acacia</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT: Phyllotaxy</strong> — The arrangement of leaves on stem. <strong>Alternate</strong> (one leaf per node, alternating sides): China rose, Sunflower. <strong>Opposite</strong> (two leaves per node, opposite): Calotropis, Guava. <strong>Whorled</strong> (more than two per node): Alstonia, Nerium. Most common: alternate &gt; opposite &gt; whorled.</p>
+      </div>
+    </div>
+
+    <!-- FLOWER, FRUIT & SEED -->
+    <div class="sec" data-m="flower" id="flower-fruit">
+      <h2 class="sh">Inflorescence, Flower Structure &amp; Fruit <span class="tag tg">8+ times</span></h2>
+
+      <h3 class="ssh">Inflorescence Types</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Main axis</th><th>Opening order</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td colspan="4" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">RACEMOSE (Acropetal — lower first)</td></tr>
+            <tr><td>Raceme</td><td>Elongated, pedicellate flowers</td><td>Acropetal</td><td class="c-bio">Radish, Mustard</td></tr>
+            <tr><td>Spike</td><td>Elongated, sessile flowers</td><td>Acropetal</td><td class="c-bio">Adhatoda, Wheat</td></tr>
+            <tr><td>Catkin</td><td>Drooping spike, unisexual</td><td>Acropetal</td><td class="c-bio">Mulberry, Oak, Birch</td></tr>
+            <tr><td>Spadix</td><td>Thick, fleshy spike, spathe present</td><td>Acropetal</td><td class="c-bio">Colocasia, Banana, Maize (♀)</td></tr>
+            <tr><td>Corymb</td><td>Elongated, pedicels vary in length — flat-topped</td><td>Acropetal</td><td class="c-bio">Candytuft (Iberis)</td></tr>
+            <tr><td>Umbel</td><td>Short axis, all pedicels equal — umbrella shape</td><td>Centripetal</td><td class="c-bio">Coriander, Fennel (family Apiaceae)</td></tr>
+            <tr><td>Capitulum (Head)</td><td>Flattened/convex receptacle; sessile florets</td><td>Centripetal</td><td class="c-bio">Sunflower, Marigold (Asteraceae/Compositae)</td></tr>
+            <tr><td colspan="4" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">CYMOSE (Basipetal — central/top first)</td></tr>
+            <tr><td>Monochasium</td><td>One branch at a time</td><td>Basipetal</td><td class="c-bio">Heliotrope (scorpioid), Begonia</td></tr>
+            <tr><td>Dichasium</td><td>Two branches per node</td><td>Basipetal</td><td class="c-bio">Bougainvillea, Teak</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FLOWER STRUCTURE SVG -->
+      <h3 class="ssh">🌸 Flower Structure — NCERT Diagram Reference</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 380" width="700" height="380" font-family="Architects Daughter, cursive" font-size="11">
+          <!-- Receptacle/Peduncle -->
+          <rect x="330" y="340" width="20" height="30" rx="3" fill="#6b5a47"/>
+          <text x="305" y="365" fill="#6b5a47" font-size="10">Peduncle</text>
+          <ellipse cx="340" cy="340" rx="26" ry="8" fill="#8a7a60"/>
+          <text x="360" y="348" fill="#8a7a60" font-size="10">Receptacle (thalamus)</text>
+
+          <!-- Calyx (Sepals) — green -->
+          <ellipse cx="340" cy="305" rx="60" ry="12" fill="none" stroke="#1a7a20" stroke-width="2"/>
+          <path d="M295 305 Q310 270 340 260 Q370 270 385 305" fill="rgba(26,122,32,0.2)" stroke="#1a7a20" stroke-width="1.5"/>
+          <text x="240" y="308" fill="#1a7a20" font-size="10" font-weight="700">Sepal (Calyx)</text>
+          <line x1="291" y1="305" x2="240" y2="305" stroke="#1a7a20" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <!-- Petals — colored -->
+          <ellipse cx="340" cy="205" rx="50" ry="55" fill="rgba(184,90,16,0.15)" stroke="#b85a10" stroke-width="2"/>
+          <text x="400" y="175" fill="#b85a10" font-size="10" font-weight="700">Petal (Corolla)</text>
+          <line x1="384" y1="205" x2="400" y2="180" stroke="#b85a10" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <!-- Stamens (Androecium) — anthers -->
+          <line x1="340" y1="260" x2="310" y2="215" stroke="#b83030" stroke-width="1.5"/>
+          <ellipse cx="305" cy="210" rx="12" ry="7" fill="#b83030"/>
+          <line x1="340" y1="260" x2="358" y2="215" stroke="#b83030" stroke-width="1.5"/>
+          <ellipse cx="363" cy="210" rx="12" ry="7" fill="#b83030"/>
+          <line x1="340" y1="260" x2="330" y2="200" stroke="#b83030" stroke-width="1.5"/>
+          <ellipse cx="328" cy="195" rx="12" ry="7" fill="#b83030"/>
+          <text x="165" y="215" fill="#b83030" font-size="10" font-weight="700">Stamen (Androecium)</text>
+          <text x="175" y="228" fill="#b83030" font-size="9">Anther + Filament</text>
+          <line x1="290" y1="210" x2="230" y2="218" stroke="#b83030" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <!-- Pistil (Gynoecium) -->
+          <ellipse cx="340" cy="270" rx="16" ry="10" fill="rgba(26,74,140,0.3)" stroke="#1a4a8c" stroke-width="2"/>
+          <rect x="333" y="220" width="14" height="50" rx="4" fill="rgba(26,74,140,0.2)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <ellipse cx="340" cy="218" rx="12" ry="6" fill="rgba(26,74,140,0.4)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <text x="390" y="252" fill="#1a4a8c" font-size="10" font-weight="700">Pistil (Gynoecium)</text>
+          <text x="395" y="264" fill="#1a4a8c" font-size="9">Stigma ← Style ← Ovary</text>
+          <line x1="388" y1="250" x2="352" y2="240" stroke="#1a4a8c" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <text x="325" y="218" fill="#1a4a8c" font-size="9">Stigma</text>
+          <text x="348" y="240" fill="#1a4a8c" font-size="9">Style</text>
+          <text x="348" y="273" fill="#1a4a8c" font-size="9">Ovary</text>
+
+          <!-- Ovule inside ovary -->
+          <ellipse cx="340" cy="272" rx="6" ry="4" fill="#5b8fd6"/>
+          <text x="245" y="278" fill="#5b8fd6" font-size="9">Ovule</text>
+          <line x1="334" y1="272" x2="250" y2="278" stroke="#5b8fd6" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+          <!-- Title -->
+          <text x="340" y="30" text-anchor="middle" fill="#1c1510" font-size="14" font-weight="700">Parts of a Flower — NCERT Reference</text>
+          <text x="340" y="48" text-anchor="middle" fill="#6b5a47" font-size="10">Bisexual, Actinomorphic, Hypogynous (ovary superior)</text>
+
+          <!-- Floral symmetry labels -->
+          <text x="60" y="120" fill="#5a1a8a" font-size="10" font-weight="700">Symmetry Types:</text>
+          <text x="60" y="135" fill="#5a1a8a" font-size="10">• Actinomorphic (regular) = radial</text>
+          <text x="60" y="150" fill="#5a1a8a" font-size="10">• Zygomorphic (irregular) = bilateral</text>
+          <text x="60" y="165" fill="#5a1a8a" font-size="10">• Asymmetric = Canna</text>
+
+          <text x="60" y="200" fill="#0d7a6a" font-size="10" font-weight="700">Ovary Position:</text>
+          <text x="60" y="215" fill="#0d7a6a" font-size="10">• Superior (hypogynous): above</text>
+          <text x="60" y="230" fill="#0d7a6a" font-size="10">• Half-inferior (perigynous): Plum</text>
+          <text x="60" y="245" fill="#0d7a6a" font-size="10">• Inferior (epigynous): Guava, Ray</text>
+        </svg>
+      </div>
+
+      <h3 class="ssh">Fruit Types — NEET Classification</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Features</th><th>Key Examples</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">SIMPLE DRY FRUITS</td></tr>
+            <tr><td>Legume (Pod)</td><td>Dry, dehiscent; from monocarpellary ovary</td><td class="c-bio">Pea, Bean, Gram</td></tr>
+            <tr><td>Siliqua</td><td>Long pod; bicarpellary ovary with false septum</td><td class="c-bio">Mustard (Brassica)</td></tr>
+            <tr><td>Capsule</td><td>Multicarpellary, dehiscent</td><td class="c-bio">Cotton, Datura, Poppy</td></tr>
+            <tr><td>Achene</td><td>Small, dry, indehiscent; pericarp separate from seed</td><td class="c-bio">Sunflower</td></tr>
+            <tr><td>Caryopsis (Grain)</td><td>Pericarp fused with seed coat</td><td class="c-bio">Wheat, Rice, Maize</td></tr>
+            <tr><td>Nut</td><td>Hard pericarp</td><td class="c-bio">Cashew, Litchi (outer edible part = aril)</td></tr>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">SIMPLE FLESHY FRUITS</td></tr>
+            <tr><td>Berry</td><td>Entire pericarp fleshy; many seeds</td><td class="c-bio">Tomato, Brinjal, Banana, Grapes</td></tr>
+            <tr><td>Pepo</td><td>Berry with hard rind</td><td class="c-bio">Cucumber, Watermelon, Gourd</td></tr>
+            <tr><td>Hesperidium</td><td>Berry with leathery rind &amp; juice sacs</td><td class="c-bio">Orange, Lemon (Citrus)</td></tr>
+            <tr><td>Drupe (Stone fruit)</td><td>Outer fleshy, inner stony endocarp</td><td class="c-bio">Mango, Coconut, Peach, Almond</td></tr>
+            <tr><td colspan="3" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">FALSE FRUITS (formed from parts other than ovary)</td></tr>
+            <tr><td>Apple (Pome)</td><td>Thalamus (receptacle) becomes fleshy — NOT ovary wall</td><td class="c-bio">Apple, Pear, Quince</td></tr>
+            <tr><td>Strawberry</td><td>Fleshy thalamus; actual fruits are achenes on surface</td><td class="c-bio">Strawberry</td></tr>
+            <tr><td>Cashew</td><td>Pedicel swells (cashew apple); true fruit is the nut</td><td class="c-bio">Cashew (Anacardium)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET Classic — Coconut edible part?</span>
+        <p><strong>Coconut:</strong> Drupe. Coir = mesocarp fibres. Coconut shell = hard endocarp. White kernel = endosperm (edible solid part). Coconut water = coconut milk = liquid endosperm (nuclear type, free-nuclear stage). The "coconut" we eat (shell with husk) = fruit. Coconut water is NOT endosperm per se — it's free nuclei in liquid before cellular endosperm forms. <strong>The hard white part (kernel) = solid/cellular endosperm.</strong></p>
+      </div>
+    </div>
+
+    <!-- SEED -->
+    <div class="sec" data-m="seed" id="seed-sec">
+      <h2 class="sh">Seed Structure — Dicot vs Monocot <span class="tag tb">3+ times</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Part</th><th>Dicot Seed (Bean/Gram)</th><th>Monocot Seed (Maize/Wheat)</th></tr></thead>
+          <tbody>
+            <tr><td>Seed coat</td><td>Testa (outer) + Tegmen (inner)</td><td>Testa + Tegmen fused</td></tr>
+            <tr><td>Cotyledons</td><td>2 large, food-storing</td><td>1 — Scutellum (shield-shaped)</td></tr>
+            <tr><td>Endosperm</td><td>Absent at maturity (non-endospermic, or used in development)</td><td>Large, persistent endosperm</td></tr>
+            <tr><td>Embryo axis</td><td>Radicle + Plumule; epicotyl + hypocotyl</td><td>Radicle + Plumule; coleorhiza covers radicle, coleoptile covers plumule</td></tr>
+            <tr><td>Germination</td><td>Epigeal — cotyledons above soil</td><td>Hypogeal — cotyledons remain underground</td></tr>
+            <tr><td>Examples</td><td class="c-bio">Gram (Cicer), Pea, Soybean, Castor (*endospermic dicot)</td><td class="c-bio">Maize (Zea mays), Wheat, Rice</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT: Castor (Ricinus communis)</strong> is an <em>endospermic</em> dicot seed — exception to note. <strong>Maize grain = caryopsis</strong> (pericarp fused with seed coat). The aleurone layer in maize is the outermost layer of endosperm (protein-rich). In pea, endosperm is completely absorbed by cotyledons during development.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">In maize, which structure protects the plumule and radicle?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Coleoptile (plumule) and Coleorhiza (radicle)</span>
+          <p><strong>Coleoptile</strong> = hollow, cylindrical, protective sheath around plumule in monocot seeds. <strong>Coleorhiza</strong> = protective sheath around radicle. These are unique to monocots (Poaceae family). In dicots, no such protective sheaths — radicle and plumule emerge directly.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end ch-body morphology -->
+</div><!-- end chapter morphology -->
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PART B: PLANT PHYSIOLOGY                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="transport">
+  <div class="ch-head ch-head-phys">
+    <div class="ch-ey">Part B · NCERT Class 11 Ch 11</div>
+    <div class="ch-title">Transport in <em>Plants</em></div>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" data-m="overview" id="transport-overview">
+      <h2 class="sh">NEET Physics — Transport in Plants <span class="tag tb">3–4 Q/paper</span></h2>
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Water potential &amp; osmosis — 8+ times</div>
+        <div class="score-pill sp-r">🔴 Ascent of sap theory — 6+ times</div>
+        <div class="score-pill sp-o">🟠 Stomatal mechanism — 5+ times</div>
+        <div class="score-pill sp-o">🟠 Phloem transport — 4+ times</div>
+      </div>
+
+      <h3 class="ssh">🔬 Diffusion, Osmosis &amp; Water Potential</h3>
+
+      <div class="def-box">
+        <span class="lbl">Water Potential (ψ)</span>
+        <p><strong>ψ = ψs + ψp</strong></p>
+        <p>ψs = solute potential (always negative — solutes lower water potential)</p>
+        <p>ψp = pressure potential (usually positive, helps turgor; negative in xylem under tension)</p>
+        <p>Pure water: ψ = 0. Water moves from <strong>high ψ → low ψ</strong> (high to low water potential = from dilute to concentrated).</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Concept</th><th>Definition</th><th>NEET Key Fact</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Osmosis</strong></td><td>Movement of water across semi-permeable membrane from hypo → hypertonic</td><td>Passive process; requires no energy</td></tr>
+            <tr><td><strong>Plasmolysis</strong></td><td>Cell placed in hypertonic solution → water leaves → protoplast shrinks away from wall</td><td>Cell is now flaccid; Incipient plasmolysis = just begins</td></tr>
+            <tr><td><strong>Turgor pressure</strong></td><td>Pressure exerted by cell contents on cell wall</td><td>Responsible for stomatal opening; wilting when lost</td></tr>
+            <tr><td><strong>DPD</strong></td><td>Deficit of water; old term = Suction Pressure = ψs - ψp</td><td>NCERT removed DPD; use water potential now</td></tr>
+            <tr><td><strong>Imbibition</strong></td><td>Absorption of water by colloids (starch, proteins)</td><td>Generates imbibitional pressure; seeds absorb water this way</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">🌊 Ascent of Sap — Theories</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Theory</th><th>Proposed by</th><th>Mechanism</th><th>NEET Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Cohesion-Tension Theory</strong> ★</td><td>Dixon &amp; Jolly (1894)</td><td>Transpiration pull creates tension; cohesion of water molecules maintains continuous column</td><td class="freq-high">ACCEPTED — Most tested</td></tr>
+            <tr><td>Root Pressure Theory</td><td>Guttation evidence</td><td>Osmotic pressure from roots pushes water up</td><td class="freq-med">Insufficient for tall trees</td></tr>
+            <tr><td>Capillarity Theory</td><td>Sachs</td><td>Xylem acts as capillary tubes</td><td class="freq-low">Insufficient alone</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Cohesion-Tension — NEET Explanation</span>
+        <p><strong>Step 1:</strong> Transpiration from leaves creates water deficit → tension (negative pressure) in mesophyll cells. <strong>Step 2:</strong> This suction transmitted down through continuous water column in xylem vessels via cohesion (H-bonding between water molecules). <strong>Step 3:</strong> Adhesion to xylem walls prevents column break. <strong>Step 4:</strong> Root absorbs water to replace what's lost. Water potential gradient: root &gt; stem &gt; leaf &gt; atmosphere.</p>
+      </div>
+
+      <h3 class="ssh">🌬️ Transpiration</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Types of Transpiration</div>
+          <ul>
+            <li>Stomatal — 80–90% (most)</li>
+            <li>Cuticular — 5–10%</li>
+            <li>Lenticular — &lt;1%</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Factors Increasing Transpiration</div>
+          <ul>
+            <li>High temperature</li>
+            <li>Low humidity</li>
+            <li>Wind</li>
+            <li>High light (opens stomata)</li>
+            <li>Low CO₂ concentration</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Guard Cell Mechanism</div>
+          <ul>
+            <li>Light → K⁺ pumped into guard cells</li>
+            <li>Osmotic pressure increases → water enters</li>
+            <li>Guard cells become turgid → stomata open</li>
+            <li>Inner wall thicker than outer wall</li>
+            <li>ABA causes stomatal closure</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Guttation vs Transpiration</div>
+          <ul>
+            <li>Guttation: liquid water loss via hydathodes</li>
+            <li>Occurs at night (high humidity, low transpiration)</li>
+            <li>Due to root pressure</li>
+            <li>Liquid ≠ pure water (has salts)</li>
+            <li>Stomatal transpiration: vapour</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="ssh">🔄 Phloem Transport — Pressure Flow / Mass Flow</h3>
+      <div class="def-box">
+        <span class="lbl">Munch's Pressure Flow Hypothesis (1930)</span>
+        <p><strong>Source (leaf):</strong> Photosynthesis → sucrose → actively loaded into phloem SE → decreases ψ → water from xylem enters by osmosis → turgor pressure increases.</p>
+        <p><strong>Sink (root/storage):</strong> Sucrose unloaded → ψ increases → water returns to xylem → turgor drops.</p>
+        <p><strong>Result:</strong> Pressure gradient from source to sink drives mass flow of sap in phloem. <strong>Phloem transport is bidirectional</strong> (unlike xylem which is unidirectional upward). Sucrose is the main form of transport in phloem.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following transport is responsible for bidirectional flow in plants?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Phloem transport</span>
+          <p>Phloem transports organic solutes (sucrose) bidirectionally — from source to sink. A leaf at the bottom can act as source for roots (downward) while a leaf at the top acts as source for growing apical meristem (upward). Xylem is strictly unidirectional (root → leaves).</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- MINERAL NUTRITION -->
+<div class="chapter" id="mineral">
+  <div class="ch-head ch-head-phys">
+    <div class="ch-ey">Part B · NCERT Class 11 Ch 12</div>
+    <div class="ch-title">Mineral Nutrition &amp; <em>Nitrogen Fixation</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="mineral" id="mineral-sec">
+      <h2 class="sh">Essential Elements — Criteria &amp; Functions <span class="tag tb">3+ times</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Criteria for Essentiality (Arnon &amp; Stout)</span>
+        <p>1. Element must be absolutely necessary for growth — deficiency causes death. 2. Requirement must be specific — no other element can substitute. 3. Element must be directly involved in plant metabolism (not just environmental).</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Category</th><th>Elements</th><th>Key Roles</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Macronutrients (&gt;10 mmole/kg)</strong></td><td>N, P, K, Ca, Mg, S, C, H, O</td><td>Major structural components; enzyme cofactors</td></tr>
+            <tr><td><strong>Micronutrients (&lt;10 mmole/kg)</strong></td><td>Fe, Mn, Cu, Zn, Mo, B, Cl, Ni</td><td>Enzyme activators; electron carriers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">🎯 Deficiency Symptoms — NEET Direct Questions</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Element</th><th>Mobile/Immobile</th><th>Deficiency Symptom</th><th>Reason / NEET Trick</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nitrogen (N)</strong></td><td>Mobile</td><td>Chlorosis (old leaves first); stunted growth; anthocyanin in leaves</td><td>Protein synthesis; N is in amino acids, chlorophyll</td></tr>
+            <tr><td><strong>Potassium (K)</strong></td><td>Mobile</td><td>Scorching of leaf tips and margins</td><td>Osmotic regulation; stomatal opening; enzyme activator</td></tr>
+            <tr><td><strong>Phosphorus (P)</strong></td><td>Mobile</td><td>Purple/red-violet discolouration (anthocyanin)</td><td>ATP, nucleic acids; P deficiency → poor root development</td></tr>
+            <tr><td><strong>Magnesium (Mg)</strong></td><td>Mobile</td><td>Interveinal chlorosis (veins stay green)</td><td>Central atom of chlorophyll; enzyme activator</td></tr>
+            <tr><td><strong>Calcium (Ca)</strong></td><td><span class="c-r">Immobile</span></td><td>Chlorosis &amp; necrosis of young leaves (tip burn); root apex dies</td><td>Pectate in middle lamella; cell wall structure</td></tr>
+            <tr><td><strong>Sulphur (S)</strong></td><td><span class="c-r">Immobile</span></td><td>Chlorosis of young leaves first</td><td>Amino acids (cysteine, methionine); immobile like Ca</td></tr>
+            <tr><td><strong>Iron (Fe)</strong></td><td><span class="c-r">Immobile</span></td><td>Interveinal chlorosis of young leaves</td><td>Electron carrier; cytochrome; chlorophyll synthesis</td></tr>
+            <tr><td><strong>Manganese (Mn)</strong></td><td><span class="c-r">Immobile</span></td><td>Interveinal chlorosis; necrotic spots</td><td>Photolysis of water in PS2</td></tr>
+            <tr><td><strong>Boron (B)</strong></td><td><span class="c-r">Immobile</span></td><td>Death of shoot apex; poor pollen germination</td><td>Cell wall synthesis; membrane permeability</td></tr>
+            <tr><td><strong>Zinc (Zn)</strong></td><td>—</td><td>Interveinal chlorosis; small leaves (little leaf disease)</td><td>Tryptophan synthesis (IAA precursor); enzyme activator</td></tr>
+            <tr><td><strong>Molybdenum (Mo)</strong></td><td>—</td><td>Necrosis; whiptail in cauliflower</td><td>Nitrogenase enzyme (N₂ fixation); nitrate reductase</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>Mobile vs Immobile Nutrients — Key Trick:</strong></p>
+        <p><strong>Mobile (old leaves affected first):</strong> N, P, K, Mg, Cl — can be remobilised from old to young</p>
+        <p><strong>Immobile (young leaves/meristems affected first):</strong> Ca, S, Fe, Mn, B, Cu, Zn — cannot be retranslocated</p>
+        <p>NEET question type: "Deficiency first visible in young leaves" → answer is immobile element like Ca, Fe, B, S.</p>
+      </div>
+
+      <h3 class="ssh">🌿 Nitrogen Fixation — Full NEET Coverage</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Biological N₂ Fixation</div>
+          <ul>
+            <li>Key enzyme: <strong>Nitrogenase</strong></li>
+            <li>Requires Mo, Fe, ATP, reduced ferredoxin</li>
+            <li>N₂ + 8H⁺ + 8e⁻ + 16ATP → 2NH₃ + H₂ + 16ADP</li>
+            <li>Requires <strong>anaerobic conditions</strong></li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Symbiotic N₂ Fixers</div>
+          <ul>
+            <li>Rhizobium in legume root nodules</li>
+            <li>Anabaena in Azolla (Pteridophyte)</li>
+            <li>Anabaena in Cycas coralloid roots</li>
+            <li>Frankia in non-legumes (Alnus)</li>
+            <li>Nostoc in Anthoceros (Bryophyte)</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Free-living N₂ Fixers</div>
+          <ul>
+            <li>Aerobic: Azotobacter, Beijerinckia</li>
+            <li>Anaerobic: Clostridium</li>
+            <li>Photosynthetic: Rhodospirillum</li>
+            <li>Cyanobacteria: Anabaena, Nostoc, Oscillatoria</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Rhizobium — Important Facts</div>
+          <ul>
+            <li>Gram-negative, rod-shaped</li>
+            <li>Leghemoglobin gives pink color to nodules</li>
+            <li>Leghemoglobin scavenges O₂ (protects nitrogenase)</li>
+            <li>Nod factors (lipo-chitin) trigger nodule formation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET Trap — Leghemoglobin</span>
+        <p><strong>Leghemoglobin</strong> is a pinkish protein found in root nodules of legumes. The <em>globin</em> part is encoded by plant genes; the <em>heme</em> part is synthesized under bacterial influence. It is an <strong>oxygen scavenger</strong> — maintains anaerobic conditions essential for nitrogenase activity. NEET question: "Pink colour of root nodules is due to?" → Leghemoglobin.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following is required for the activity of nitrogenase enzyme?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Molybdenum (Mo)</span>
+          <p>Nitrogenase is a Mo-Fe protein. Molybdenum is the metal component of nitrogenase that catalyses the reduction of N₂ to NH₃. This is why Mo deficiency specifically affects nitrogen-fixing organisms. Mo is required in the smallest quantities of all essential elements but is critical for nitrogenase and nitrate reductase.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PHOTOSYNTHESIS -->
+<div class="chapter" id="photosynthesis">
+  <div class="ch-head ch-head-phys">
+    <div class="ch-ey">Part B · NCERT Class 11 Ch 13</div>
+    <div class="ch-title">Photosynthesis in <em>Higher Plants</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="photosyn" id="photo-sec">
+      <h2 class="sh">Photosynthesis — Complete NEET Coverage <span class="tag tg">5–6 Q/paper</span></h2>
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Light reactions / Z-scheme — 8+ times</div>
+        <div class="score-pill sp-r">🔴 C3 vs C4 differences — 7+ times</div>
+        <div class="score-pill sp-o">🟠 Calvin cycle intermediates — 5+ times</div>
+        <div class="score-pill sp-bio">🌿 Photorespiration — 4+ times</div>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Overall Equation</span>
+        <p>6CO₂ + 12H₂O → C₆H₁₂O₆ + 6H₂O + 6O₂</p>
+        <p><strong>Chloroplast structure:</strong> Thylakoid membranes (grana) = site of light reactions. Stroma = site of Calvin cycle (dark reactions). Quantasomes = photosynthetic units on thylakoid membranes.</p>
+      </div>
+
+      <h3 class="ssh">⚡ Light Reactions — Z-Scheme</h3>
+
+      <!-- Z-SCHEME SVG -->
+      <div class="svg-wrap">
+        <svg viewBox="0 0 780 280" width="780" height="280" font-family="Architects Daughter, cursive" font-size="11">
+          <!-- Background -->
+          <rect x="5" y="5" width="770" height="270" rx="8" fill="rgba(26,74,140,0.04)" stroke="#1a4a8c" stroke-width="1"/>
+
+          <text x="390" y="25" text-anchor="middle" fill="#1a4a8c" font-size="14" font-weight="700">Z-Scheme of Light Reactions</text>
+
+          <!-- Energy axis -->
+          <text x="15" y="240" fill="#6b5a47" font-size="9" transform="rotate(-90 15 240)">← Higher Energy (more negative redox potential)</text>
+
+          <!-- PS2 complex -->
+          <rect x="60" y="60" width="90" height="50" rx="6" fill="rgba(180,48,48,0.15)" stroke="#b83030" stroke-width="2"/>
+          <text x="105" y="82" text-anchor="middle" fill="#b83030" font-size="11" font-weight="700">P680</text>
+          <text x="105" y="98" text-anchor="middle" fill="#b83030" font-size="10">(PS II)</text>
+          <text x="105" y="113" text-anchor="middle" fill="#6b5a47" font-size="9">680 nm</text>
+
+          <!-- P680 excited -->
+          <rect x="60" y="120" width="90" height="35" rx="6" fill="rgba(180,48,48,0.25)" stroke="#b83030" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="105" y="140" text-anchor="middle" fill="#b83030" font-size="10">P680* (excited)</text>
+
+          <!-- Water splitting -->
+          <text x="55" y="225" fill="#1a4a8c" font-size="10">2H₂O → 4H⁺ + 4e⁻ + O₂</text>
+          <text x="55" y="240" fill="#1a4a8c" font-size="9">(Photolysis — Mn required)</text>
+          <line x1="105" y1="220" x2="105" y2="155" stroke="#1a4a8c" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+          <!-- ETC: PQ-->
+          <rect x="200" y="140" width="65" height="30" rx="4" fill="rgba(90,26,138,0.15)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="232" y="160" text-anchor="middle" fill="#5a1a8a" font-size="10">PQ (plastoquinone)</text>
+          <line x1="150" y1="137" x2="200" y2="155" stroke="#5a1a8a" stroke-width="2" marker-end="url(#arr3)"/>
+
+          <!-- Cyt b6f -->
+          <rect x="290" y="155" width="70" height="30" rx="4" fill="rgba(90,26,138,0.15)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="325" y="175" text-anchor="middle" fill="#5a1a8a" font-size="10">Cyt b6f complex</text>
+          <line x1="265" y1="155" x2="290" y2="168" stroke="#5a1a8a" stroke-width="2" marker-end="url(#arr3)"/>
+
+          <!-- PC -->
+          <rect x="385" y="140" width="65" height="30" rx="4" fill="rgba(90,26,138,0.15)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="417" y="160" text-anchor="middle" fill="#5a1a8a" font-size="10">PC (plastocyanin)</text>
+          <line x1="360" y1="168" x2="385" y2="155" stroke="#5a1a8a" stroke-width="2" marker-end="url(#arr3)"/>
+
+          <!-- PS1 -->
+          <rect x="490" y="100" width="80" height="50" rx="6" fill="rgba(13,122,106,0.15)" stroke="#0d7a6a" stroke-width="2"/>
+          <text x="530" y="122" text-anchor="middle" fill="#0d7a6a" font-size="11" font-weight="700">P700</text>
+          <text x="530" y="138" text-anchor="middle" fill="#0d7a6a" font-size="10">(PS I)</text>
+          <text x="530" y="153" text-anchor="middle" fill="#6b5a47" font-size="9">700 nm</text>
+          <line x1="450" y1="148" x2="490" y2="130" stroke="#0d7a6a" stroke-width="2" marker-end="url(#arr4)"/>
+
+          <!-- PS1 excited -->
+          <rect x="490" y="50" width="80" height="35" rx="6" fill="rgba(13,122,106,0.25)" stroke="#0d7a6a" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="530" y="72" text-anchor="middle" fill="#0d7a6a" font-size="10">P700* (excited)</text>
+
+          <!-- Fd and NADPH -->
+          <rect x="600" y="50" width="60" height="30" rx="4" fill="rgba(26,74,140,0.15)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <text x="630" y="70" text-anchor="middle" fill="#1a4a8c" font-size="10">Fd (ferredoxin)</text>
+          <line x1="570" y1="67" x2="600" y2="65" stroke="#1a4a8c" stroke-width="2" marker-end="url(#arr2)"/>
+          <line x1="490" y1="67" x2="572" y2="67" stroke="#1a4a8c" stroke-width="2" marker-end="url(#arr2)"/>
+
+          <!-- NADPH -->
+          <rect x="680" y="50" width="80" height="30" rx="4" fill="rgba(13,122,106,0.25)" stroke="#0d7a6a" stroke-width="2"/>
+          <text x="720" y="70" text-anchor="middle" fill="#0d7a6a" font-size="11" font-weight="700">NADPH</text>
+          <line x1="660" y1="65" x2="680" y2="65" stroke="#0d7a6a" stroke-width="2" marker-end="url(#arr4)"/>
+          <text x="720" y="90" text-anchor="middle" fill="#6b5a47" font-size="9">(FNR enzyme)</text>
+
+          <!-- ATP synthesis label -->
+          <text x="325" y="210" text-anchor="middle" fill="#b85a10" font-size="10" font-weight="700">ATP synthesised here</text>
+          <text x="325" y="225" text-anchor="middle" fill="#b85a10" font-size="9">(Photophosphorylation by CF₀-CF₁ ATP synthase)</text>
+
+          <!-- Cyclic arrow for cyclic photophosphorylation -->
+          <path d="M665 65 Q700 200 570 200 Q480 200 480 150" stroke="#b83030" stroke-width="1" fill="none" stroke-dasharray="5,3" marker-end="url(#arrc)"/>
+          <text x="620" y="215" fill="#b83030" font-size="9">Cyclic = PS I only → ATP (no NADPH, no O₂)</text>
+
+          <defs>
+            <marker id="arr2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#1a4a8c"/>
+            </marker>
+            <marker id="arr3" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#5a1a8a"/>
+            </marker>
+            <marker id="arr4" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#0d7a6a"/>
+            </marker>
+            <marker id="arrc" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#b83030"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Light Reactions — Products &amp; Balance Sheet</span>
+        <p><strong>Non-cyclic photophosphorylation</strong> (PS1 + PS2): 2H₂O → O₂ + 4H⁺; produces <strong>ATP + NADPH + O₂</strong>. <strong>Cyclic photophosphorylation</strong> (PS1 only): produces <strong>only ATP</strong> — no NADPH, no O₂. Per 2 H₂O split: 4e⁻ (released), 4H⁺ (go to stroma), 1 O₂. Light absorbed by P680 (PS2) = 680 nm red light. Light absorbed by P700 (PS1) = 700 nm far-red light.</p>
+      </div>
+
+      <h3 class="ssh">🔄 Calvin Cycle (C3 Pathway) — Dark Reactions</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Stage</th><th>Process</th><th>Key Molecules</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Carboxylation</strong></td><td>CO₂ + RuBP (5C) → 2× 3-PGA (3C) (via RuBisCO)</td><td>RuBP, 3-PGA (3-phosphoglycerate)</td></tr>
+            <tr><td><strong>2. Reduction</strong></td><td>3-PGA → G3P (glyceraldehyde-3-phosphate)</td><td>ATP + NADPH consumed here</td></tr>
+            <tr><td><strong>3. Regeneration</strong></td><td>G3P → RuBP (regeneration of acceptor)</td><td>ATP consumed here</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula">
+        <strong>Calvin Cycle Balance for 1 CO₂ fixed:</strong><br/>
+        3 ATP + 2 NADPH used per CO₂<br/>
+        For 1 glucose (6CO₂): 18 ATP + 12 NADPH consumed<br/>
+        First stable product of Calvin cycle = <strong>3-PGA (3-phosphoglyceric acid)</strong>
+      </div>
+
+      <h3 class="ssh">🌴 C3 vs C4 Photosynthesis — High NEET Yield</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>C3 Plants</th><th>C4 Plants</th></tr></thead>
+          <tbody>
+            <tr><td>First stable product</td><td class="c-r"><strong>3-PGA (3C)</strong></td><td class="c-bio"><strong>OAA (4C, oxaloacetate)</strong></td></tr>
+            <tr><td>Primary CO₂ acceptor</td><td>RuBP (ribulose bisphosphate)</td><td>PEP (phosphoenolpyruvate)</td></tr>
+            <tr><td>CO₂ fixation enzyme</td><td>RuBisCO (mesophyll)</td><td>PEP carboxylase (mesophyll); RuBisCO (bundle sheath)</td></tr>
+            <tr><td>Leaf anatomy</td><td>No Kranz anatomy</td><td>Kranz anatomy: mesophyll + bundle sheath cells</td></tr>
+            <tr><td>Photorespiration</td><td>Present (significant)</td><td>Absent/negligible</td></tr>
+            <tr><td>Optimal temperature</td><td>Lower</td><td>Higher</td></tr>
+            <tr><td>Water use efficiency</td><td>Lower</td><td>Higher</td></tr>
+            <tr><td>Examples</td><td class="c-bio">Rice, Wheat, Oat, Sunflower, Potato, Soybean</td><td class="c-bio">Maize, Sugarcane, Sorghum, Amaranthus, Saccharum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Hatch-Slack Pathway (C4):</strong> CO₂ fixed in mesophyll cells as OAA → malate/aspartate → transported to bundle sheath cells → decarboxylated → CO₂ enters Calvin cycle. PEP carboxylase has no oxygenase activity (unlike RuBisCO) — hence no photorespiration. <strong>CAM plants</strong> (Cactus, Agave, Pineapple): fix CO₂ at night (stomata open at night, closed day) as OAA → malate; stored in vacuole. Day: decarboxylated → Calvin cycle.</p>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET Trap — Photorespiration</span>
+        <p><strong>Photorespiration:</strong> When O₂ &gt; CO₂, RuBisCO fixes O₂ instead of CO₂ → 2-phosphoglycolate (2C, wasteful) → requires peroxisome + mitochondria to recover carbon. No ATP is produced — only CO₂ is released. Does NOT occur in C4 (bundle sheath has high CO₂). The question "which pathway occurs in peroxisome?" → Photorespiration (glyoxylate pathway).</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In C4 plants, the primary CO₂ acceptor is:</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Phosphoenolpyruvate (PEP)</span>
+          <p>In C4 plants: PEP (3C) + CO₂ → OAA (4C), catalysed by PEP carboxylase in mesophyll cells. OAA is then converted to malate or aspartate and transported to bundle sheath cells. In contrast, C3 plants use RuBP as CO₂ acceptor. The question is a classic NEET pattern.</p>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following is NOT produced in the light reactions of photosynthesis?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Glucose (C₆H₁₂O₆)</span>
+          <p>Light reactions produce: ATP, NADPH, O₂. Glucose is produced in the dark reactions (Calvin cycle) using ATP and NADPH. The light reaction products (ATP + NADPH) are called assimilatory powers. G3P (glyceraldehyde-3-phosphate) is the first carbohydrate, not glucose directly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- RESPIRATION -->
+<div class="chapter" id="respiration">
+  <div class="ch-head ch-head-phys">
+    <div class="ch-ey">Part B · NCERT Class 11 Ch 14</div>
+    <div class="ch-title">Respiration in <em>Plants</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="respiration" id="resp-sec">
+      <h2 class="sh">Cellular Respiration — Complete Pathways <span class="tag tg">4–5 Q/paper</span></h2>
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 ATP yield / balance sheet — 6+ times</div>
+        <div class="score-pill sp-r">🔴 Krebs cycle intermediates — 7+ times</div>
+        <div class="score-pill sp-o">🟠 ETC / Chemiosmosis — 5+ times</div>
+        <div class="score-pill sp-bio">🌿 RQ values — 4+ times</div>
+      </div>
+
+      <h3 class="ssh">1. Glycolysis (Embden-Meyerhof-Parnas) — In Cytoplasm</h3>
+      <div class="pathway-wrap">
+        <div class="pathway-row">
+          <div class="p-node">Glucose (C₆)<br/>6C</div>
+          <span class="p-arrow">→ -2ATP</span>
+          <div class="p-node">Fructose-1,6-bisphosphate<br/>6C</div>
+          <span class="p-arrow">→</span>
+          <div class="p-node">2× G3P<br/>3C each</div>
+          <span class="p-arrow">→ +2NADH</span>
+          <div class="p-node">2× 1,3-BPG<br/>(3C)</div>
+          <span class="p-arrow">→ +2ATP (substrate)</span>
+          <div class="p-node nadh">2× 3-PGA</div>
+          <span class="p-arrow">→ +2ATP</span>
+          <div class="p-node atp">2× Pyruvate<br/>(3C)</div>
+        </div>
+      </div>
+
+      <div class="formula">
+        <strong>Glycolysis Net Yield (per glucose):</strong><br/>
+        Net ATP = +2 (4 produced − 2 used)<br/>
+        NADH = +2<br/>
+        Pyruvate = 2 molecules<br/>
+        Location: CYTOPLASM (anaerobic or aerobic)
+      </div>
+
+      <h3 class="ssh">2. Pyruvate Oxidation (Link Reaction) — Matrix of Mitochondria</h3>
+      <div class="def-box">
+        <span class="lbl">Per Pyruvate</span>
+        <p>Pyruvate (3C) → Acetyl-CoA (2C) + CO₂ + NADH</p>
+        <p>Enzyme: Pyruvate dehydrogenase complex. Per glucose: 2 pyruvates → 2 Acetyl-CoA + 2CO₂ + 2NADH</p>
+      </div>
+
+      <h3 class="ssh">3. Krebs Cycle (TCA / Citric Acid Cycle) — Matrix</h3>
+
+      <!-- KREBS CYCLE SVG -->
+      <div class="svg-wrap">
+        <svg viewBox="0 0 580 420" width="580" height="420" font-family="Architects Daughter, cursive" font-size="11">
+          <text x="290" y="20" text-anchor="middle" fill="#1c1510" font-size="13" font-weight="700">Krebs Cycle (per Acetyl-CoA)</text>
+
+          <!-- Circle -->
+          <circle cx="290" cy="220" r="130" fill="none" stroke="rgba(26,122,32,0.3)" stroke-width="2" stroke-dasharray="8,4"/>
+
+          <!-- Compounds clockwise from top -->
+          <!-- Citrate (6C) -->
+          <rect x="240" y="60" width="100" height="30" rx="4" fill="rgba(13,122,106,0.15)" stroke="#0d7a6a" stroke-width="1.5"/>
+          <text x="290" y="80" text-anchor="middle" fill="#0d7a6a" font-weight="700">Citrate (6C)</text>
+
+          <!-- Isocitrate -->
+          <rect x="380" y="100" width="110" height="30" rx="4" fill="rgba(13,122,106,0.1)" stroke="#0d7a6a" stroke-width="1"/>
+          <text x="435" y="120" text-anchor="middle" fill="#0d7a6a">Isocitrate (6C)</text>
+
+          <!-- α-KG -->
+          <rect x="420" y="180" width="130" height="30" rx="4" fill="rgba(180,48,48,0.1)" stroke="#b83030" stroke-width="1.5"/>
+          <text x="485" y="200" text-anchor="middle" fill="#b83030">α-Ketoglutarate (5C)</text>
+          <text x="485" y="215" text-anchor="middle" fill="#b83030" font-size="9">−CO₂, +NADH</text>
+
+          <!-- Succinyl-CoA -->
+          <rect x="380" y="260" width="120" height="30" rx="4" fill="rgba(26,74,140,0.1)" stroke="#1a4a8c" stroke-width="1"/>
+          <text x="440" y="280" text-anchor="middle" fill="#1a4a8c">Succinyl-CoA (4C)</text>
+
+          <!-- Succinate -->
+          <rect x="290" y="330" width="100" height="30" rx="4" fill="rgba(26,74,140,0.1)" stroke="#1a4a8c" stroke-width="1"/>
+          <text x="340" y="350" text-anchor="middle" fill="#1a4a8c">Succinate (4C)</text>
+
+          <!-- Fumarate -->
+          <rect x="150" y="300" width="100" height="30" rx="4" fill="rgba(90,26,138,0.1)" stroke="#5a1a8a" stroke-width="1"/>
+          <text x="200" y="320" text-anchor="middle" fill="#5a1a8a">Fumarate (4C)</text>
+
+          <!-- Malate -->
+          <rect x="80" y="220" width="90" height="30" rx="4" fill="rgba(90,26,138,0.1)" stroke="#5a1a8a" stroke-width="1"/>
+          <text x="125" y="240" text-anchor="middle" fill="#5a1a8a">Malate (4C)</text>
+
+          <!-- OAA -->
+          <rect x="120" y="120" width="90" height="30" rx="4" fill="rgba(184,90,16,0.15)" stroke="#b85a10" stroke-width="2"/>
+          <text x="165" y="140" text-anchor="middle" fill="#b85a10" font-weight="700">OAA (4C)</text>
+
+          <!-- Acetyl-CoA entry -->
+          <text x="200" y="85" fill="#1a7a20" font-size="10" font-weight="700">Acetyl-CoA (2C) →</text>
+          <line x1="245" y1="85" x2="260" y2="82" stroke="#1a7a20" stroke-width="1.5" marker-end="url(#arrg)"/>
+
+          <!-- Arrows (curved) -->
+          <path d="M340 75 Q390 75 380 115" stroke="#0d7a6a" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <path d="M490 115 Q510 150 488 178" stroke="#0d7a6a" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <text x="520" y="155" fill="#b83030" font-size="9">−CO₂</text>
+          <text x="520" y="167" fill="#1a4a8c" font-size="9">+NADH</text>
+
+          <path d="M488 213 Q480 243 498 260" stroke="#1a4a8c" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <text x="510" y="245" fill="#6b5a47" font-size="9">−CO₂+NADH+GTP</text>
+
+          <path d="M395 275 Q360 310 388 333" stroke="#1a4a8c" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <text x="360" y="310" fill="#6b5a47" font-size="9">+GTP</text>
+
+          <path d="M290 348 Q240 350 248 315" stroke="#5a1a8a" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <text x="240" y="348" fill="#6b5a47" font-size="9">+FADH₂</text>
+
+          <path d="M157 298 Q130 270 130 253" stroke="#5a1a8a" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+          <text x="100" y="275" fill="#6b5a47" font-size="9">+NADH</text>
+
+          <path d="M130 218 Q138 175 145 153" stroke="#b85a10" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+
+          <path d="M207 120 Q245 90 250 78" stroke="#b85a10" stroke-width="1.5" fill="none" marker-end="url(#arr5)"/>
+
+          <!-- Yield summary -->
+          <rect x="10" y="340" width="160" height="70" rx="6" fill="rgba(26,122,32,0.1)" stroke="#1a7a20" stroke-width="1.5"/>
+          <text x="90" y="358" text-anchor="middle" fill="#1a7a20" font-size="11" font-weight="700">Per Acetyl-CoA:</text>
+          <text x="90" y="373" text-anchor="middle" fill="#6b5a47" font-size="10">3 NADH, 1 FADH₂</text>
+          <text x="90" y="388" text-anchor="middle" fill="#6b5a47" font-size="10">1 GTP (= 1 ATP), 2 CO₂</text>
+          <text x="90" y="403" text-anchor="middle" fill="#b83030" font-size="10">Per glucose: ×2</text>
+
+          <defs>
+            <marker id="arr5" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#6b5a47"/>
+            </marker>
+            <marker id="arrg" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#1a7a20"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <h3 class="ssh">4. Oxidative Phosphorylation (ETC) — Inner Mitochondrial Membrane</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Carrier</th><th>Location</th><th>NEET Key</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Complex I</strong> (NADH dehydrogenase)</td><td>NADH → FMN → FeS</td><td>Accepts electrons from NADH</td></tr>
+            <tr><td><strong>Complex II</strong> (Succinate dehydrogenase)</td><td>FADH₂ → FeS</td><td>Accepts electrons from FADH₂; starts at lower energy level</td></tr>
+            <tr><td><strong>Ubiquinone (CoQ)</strong></td><td>Lipid-soluble; mobile in membrane</td><td>Receives from Complex I &amp; II → sends to Complex III</td></tr>
+            <tr><td><strong>Complex III</strong> (Cytochrome bc1)</td><td>CoQ → Cyt b → Cyt c₁</td><td>Pumps H⁺ (protons) into intermembrane space</td></tr>
+            <tr><td><strong>Cytochrome c</strong></td><td>Peripheral, mobile protein</td><td>Shuttles electrons Complex III → IV</td></tr>
+            <tr><td><strong>Complex IV</strong> (Cytochrome c oxidase)</td><td>Cyt c → Cu → Cyt aa₃</td><td>Final electron acceptor = O₂ → forms H₂O</td></tr>
+            <tr><td><strong>Complex V</strong> (ATP synthase / CF₀-CF₁)</td><td>Inner membrane</td><td>Chemiosmosis: H⁺ gradient drives ATP synthesis</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula">
+        <strong>ATP Balance Sheet for 1 Glucose (Aerobic Respiration):</strong><br/>
+        Glycolysis: 2 ATP + 2 NADH (2×2.5 = 5 ATP if in mitochondria) or 2×1.5 = 3<br/>
+        Pyruvate oxidation: 2 NADH = 2×2.5 = 5 ATP<br/>
+        Krebs: 6 NADH (×2.5=15) + 2 FADH₂ (×1.5=3) + 2 GTP = 20 ATP<br/>
+        <strong>Total = 30–32 ATP (modern) or 36–38 ATP (NEET textbook)</strong><br/>
+        NCERT/NEET boards still use: <strong>36–38 ATP</strong>
+      </div>
+
+      <h3 class="ssh">Respiratory Quotient (RQ) — Direct NEET Questions</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Substrate</th><th>RQ Value</th><th>Reason</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Carbohydrates</td><td class="c-bio"><strong>= 1</strong></td><td>CO₂ released = O₂ consumed</td><td>Glucose, starch</td></tr>
+            <tr><td>Fats</td><td class="c-o"><strong>&lt; 1 (≈ 0.7)</strong></td><td>H-rich, needs more O₂; less CO₂ per O₂</td><td>Fatty acids, oils</td></tr>
+            <tr><td>Proteins</td><td class="c-b"><strong>≈ 0.9</strong></td><td>Rough estimate; depends on protein</td><td>Albumin</td></tr>
+            <tr><td>Organic acids</td><td class="c-r"><strong>&gt; 1</strong></td><td>Already partially oxidised; less O₂ needed</td><td>Oxalic acid RQ = 4</td></tr>
+            <tr><td>Anaerobic respiration</td><td class="c-p"><strong>∞ or undefined</strong></td><td>No O₂ consumed; CO₂ released</td><td>Yeast fermentation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Fermentation:</strong> In anaerobic conditions, pyruvate → ethanol + CO₂ (in yeast, by alcohol dehydrogenase) or pyruvate → lactic acid (in muscles, by lactate dehydrogenase). No ATP from ETC — only 2 ATP from glycolysis. Fermentation is inefficient. CO₂ causes bread to rise (from yeast). RQ of fermentation = undefined (infinite) as no O₂ consumed.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">During aerobic respiration, the final electron acceptor in ETC is:</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Molecular Oxygen (O₂)</span>
+          <p>In Complex IV (Cytochrome c oxidase), electrons from cytochrome c reduce O₂ to water: O₂ + 4H⁺ + 4e⁻ → 2H₂O. This is why aerobic respiration requires O₂. The "aerobic" in aerobic respiration specifically refers to O₂ acting as the final electron acceptor. Without O₂, ETC stops and fermentation occurs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PLANT GROWTH & DEVELOPMENT -->
+<div class="chapter" id="growth">
+  <div class="ch-head ch-head-phys">
+    <div class="ch-ey">Part B · NCERT Class 11 Ch 15</div>
+    <div class="ch-title">Plant Growth &amp; <em>Development</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="pgr" id="pgr-sec">
+      <h2 class="sh">Plant Growth Regulators (PGRs) — All 5 Hormones <span class="tag tg">4–5 Q/paper</span></h2>
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Auxin functions &amp; source — 7+ times</div>
+        <div class="score-pill sp-o">🟠 Gibberellin effects — 5+ times</div>
+        <div class="score-pill sp-o">🟠 ABA (stress hormone) — 5+ times</div>
+        <div class="score-pill sp-b">🔵 Ethylene effects — 4+ times</div>
+        <div class="score-pill sp-bio">🌿 Photoperiodism types — 5+ times</div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>PGR</th><th>Chemical Nature</th><th>Site of Synthesis</th><th>Key Functions</th><th>NEET Tricks</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Auxin (IAA)</strong></td>
+              <td>Indoleacetic acid (Tryptophan derivative)</td>
+              <td>Shoot apex (apical meristem)</td>
+              <td>
+                • Cell elongation (promotes)<br/>
+                • Apical dominance (suppresses lateral buds)<br/>
+                • Fruit development (parthenocarpy)<br/>
+                • Rooting (NAA in cuttings)<br/>
+                • Tropisms — phototropism, geotropism
+              </td>
+              <td>High conc. inhibits root growth; low conc promotes. Weedicide: 2,4-D (herbicide)</td>
+            </tr>
+            <tr>
+              <td><strong>Gibberellins (GA₃)</strong></td>
+              <td>Diterpenoid acid</td>
+              <td>Young leaves, root tips, seeds</td>
+              <td>
+                • Stem elongation (bolting)<br/>
+                • Fruit elongation (seedless grapes — parthenocarpy)<br/>
+                • Seed germination (breaks dormancy)<br/>
+                • Delays senescence<br/>
+                • Triggers α-amylase in germinating seeds
+              </td>
+              <td>Bolting in rosette plants = GA effect. Genetic dwarf mutants corrected by GA application.</td>
+            </tr>
+            <tr>
+              <td><strong>Cytokinins (Zeatin)</strong></td>
+              <td>Adenine derivative (purine)</td>
+              <td>Root apex, seeds, fruits</td>
+              <td>
+                • Cell division (cytokinesis)<br/>
+                • Counters apical dominance<br/>
+                • Delays leaf senescence (Richmond-Lang effect)<br/>
+                • Nutrient mobilisation<br/>
+                • Promotes axillary bud growth
+              </td>
+              <td>Naturally occurring: Zeatin. Richmond-Lang effect = leaf disk treated with cytokinin stays green longer.</td>
+            </tr>
+            <tr>
+              <td><strong>Abscisic Acid (ABA)</strong></td>
+              <td>Sesquiterpene (isoprene derivative)</td>
+              <td>Leaves, roots, stem</td>
+              <td>
+                • Stomatal closure during stress<br/>
+                • Seed/bud dormancy<br/>
+                • Inhibits growth<br/>
+                • Abscission of leaves<br/>
+                • "Stress hormone" — responds to water stress
+              </td>
+              <td>Only inhibitory PGR dominantly. "Dormin" = old name. Antagonist to GA (dormancy).</td>
+            </tr>
+            <tr>
+              <td><strong>Ethylene</strong></td>
+              <td>Gaseous hydrocarbon (C₂H₄)</td>
+              <td>Ripening fruits, nodes of stems</td>
+              <td>
+                • Fruit ripening (breathe in banana ripening chambers)<br/>
+                • Senescence &amp; abscission<br/>
+                • Triple response in etiolated seedlings<br/>
+                • Promotes feminism in flowers<br/>
+                • Breaks seed/bud dormancy (some)
+              </td>
+              <td>Ethephon (2-CEPA) releases ethylene. Triple response: horizontal growth, apical hook, shortened thickened stem. Only gaseous PGR.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">🌙 Photoperiodism — Flowering Control</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Requirement</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Short Day Plants (SDP)</strong></td><td>Dark period &gt; critical period (long nights)</td><td class="c-bio">Xanthium, Tobacco, Chrysanthemum, Cocklebur, Soybean</td></tr>
+            <tr><td><strong>Long Day Plants (LDP)</strong></td><td>Dark period &lt; critical period (short nights)</td><td class="c-bio">Wheat, Radish, Spinach, Henbane (Hyoscyamus niger)</td></tr>
+            <tr><td><strong>Day-Neutral Plants (DNP)</strong></td><td>Not affected by photoperiod</td><td class="c-bio">Tomato, Cucumber, Maize, Cotton</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Photoperiodism Key Concept (NEET 2022, 2020)</span>
+        <p><strong>Critical factor = dark period (night period), NOT day length!</strong> An SDP flowers when the night &gt; critical length. Interrupting the night period with even brief light exposure prevents flowering in SDP but promotes it in LDP. The photoreceptor detecting these periods is <strong>Phytochrome</strong> (a protein with phytochromobilin chromophore). Pr (red-absorbing, inactive) ↔ Pfr (far-red absorbing, active).</p>
+      </div>
+
+      <div class="tip-box">
+        <span class="lbl">Vernalisation</span>
+        <p><strong>Vernalisation</strong> = Low temperature treatment given to seeds/plants to promote early flowering. Wheat, barley (winter varieties) require cold exposure. The perception of cold is in shoot apex. <em>Hyoscyamus niger</em> (henbane) is a quantitative LDP that also requires vernalisation — this is a classic NEET example. Devernalisation = exposure to high temperature cancels the effect.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which plant growth regulator stimulates the synthesis of α-amylase in germinating barley seeds?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Gibberellins (GA₃)</span>
+          <p>In germinating barley (and other cereals), gibberellins secreted by the embryo stimulate the aleurone layer cells to synthesise and secrete α-amylase enzyme. α-amylase hydrolyses starch in the endosperm → maltose → glucose → energy for germination. This is a classic Paleg (1960) experiment documented in NCERT.</p>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Apical dominance is caused by:</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: High Auxin (IAA) concentration from shoot apex</span>
+          <p>Auxin produced by the apical meristem (shoot tip) diffuses downward. In lateral buds, this high auxin concentration inhibits their growth — apical dominance. Removal of shoot tip (decapitation) → axillary buds grow out (bushier plant). Cytokinins counter apical dominance. This principle is used in gardening (pinching off tips).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PART C: REPRODUCTION IN FLOWERING PLANTS             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="pre-fert">
+  <div class="ch-head ch-head-repro">
+    <div class="ch-ey">Part C · NCERT Class 12 Ch 2</div>
+    <div class="ch-title">Sexual Reproduction in <em>Flowering Plants</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#pre-fert">Pre-fertilisation</a>
+    <a href="#pollination">Pollination</a>
+    <a href="#double-fert">Double Fertilisation</a>
+    <a href="#post-fert">Post-fertilisation</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- OVERVIEW -->
+    <div class="sec" data-m="overview" id="repro-overview">
+      <h2 class="sh">NEET Frequency — Reproduction <span class="tag tg">5–7 Q/paper — very high yield</span></h2>
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Embryo sac structure — 9+ times</div>
+        <div class="score-pill sp-r">🔴 Double fertilisation — 8+ times</div>
+        <div class="score-pill sp-o">🟠 Pollen development — 6+ times</div>
+        <div class="score-pill sp-o">🟠 Pollination types — 5+ times</div>
+        <div class="score-pill sp-b">🔵 Apomixis &amp; polyembryony — 4+ times</div>
+      </div>
+    </div>
+
+    <!-- PRE-FERTILISATION -->
+    <div class="sec" data-m="pre-fert" id="pre-fert-sec">
+      <h2 class="sh">Pre-fertilisation Events — Stamen &amp; Pistil <span class="tag tg">6+ times</span></h2>
+
+      <h3 class="ssh">🔬 Male Gametophyte Development</h3>
+      <div class="pathway-wrap">
+        <div class="pathway-row">
+          <div class="p-node">Stamen<br/>(Anther + Filament)</div>
+          <span class="p-arrow">→</span>
+          <div class="p-node">Microsporangium<br/>(pollen sac × 4)</div>
+          <span class="p-arrow">→</span>
+          <div class="p-node red">Microspore Mother Cell<br/>(MMC, 2n)</div>
+          <span class="p-arrow">→ Meiosis</span>
+          <div class="p-node">Microspore Tetrad<br/>(4 × n)</div>
+          <span class="p-arrow">→ Mitosis</span>
+          <div class="p-node atp">Mature Pollen Grain<br/>(3-celled)</div>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Layer of Anther Wall (outside → inside)</th><th>Function</th></tr></thead>
+          <tbody>
+            <tr><td>1. Epidermis</td><td>Outermost protective layer</td></tr>
+            <tr><td>2. Endothecium</td><td>Fibrous thickenings; helps in anther dehiscence</td></tr>
+            <tr><td>3. Middle layers (2–3)</td><td>Nutritive; crushed during development</td></tr>
+            <tr><td>4. Tapetum (innermost)</td><td>Nourishes developing pollen grains; most metabolically active; provides sporopollenin</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Pollen grain structure:</strong> Wall has two layers — outer <strong>exine</strong> (made of <em>sporopollenin</em> — most resistant biological material, not degraded by enzymes or high temperature — hence pollen preserved in fossils) and inner <strong>intine</strong> (made of cellulose + pectin). Mature pollen has 2 cells — larger vegetative (tube) cell with food reserve and irregular nucleus; smaller generative cell (produces 2 male gametes by mitosis).</p>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET Trap — Sporopollenin</span>
+        <p><strong>Sporopollenin</strong> forms the <em>exine</em> of pollen grain. It is the <strong>most resistant organic material</strong> known — not degraded by strong acids, alkalis, or enzymes. This is why pollen grain fossils are preserved so well. Pollen walls of <em>Tapetum</em> are NOT made of sporopollenin — tapetum contributes to sporopollenin synthesis for the pollen exine.</p>
+      </div>
+
+      <h3 class="ssh">🔬 Female Gametophyte Development (Embryo Sac)</h3>
+      <div class="pathway-wrap">
+        <div class="pathway-row">
+          <div class="p-node">Pistil<br/>(Ovary → Ovule)</div>
+          <span class="p-arrow">→</span>
+          <div class="p-node red">Megaspore Mother Cell<br/>(MMC, 2n)</div>
+          <span class="p-arrow">→ Meiosis</span>
+          <div class="p-node">4 Megaspores<br/>(n) — linear tetrad</div>
+          <span class="p-arrow">→ 3 degenerate</span>
+          <div class="p-node">1 Functional<br/>Megaspore (n)</div>
+          <span class="p-arrow">→ 3 mitotic divisions</span>
+          <div class="p-node atp">8-nucleate Embryo Sac<br/>(Polygonum type)</div>
+        </div>
+      </div>
+
+      <!-- EMBRYO SAC SVG -->
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 360" width="600" height="360" font-family="Architects Daughter, cursive" font-size="11">
+          <text x="300" y="20" text-anchor="middle" fill="#1c1510" font-size="13" font-weight="700">Embryo Sac — Polygonum Type (7 cells, 8 nuclei)</text>
+
+          <!-- Ovule outline (anatropous) -->
+          <ellipse cx="300" cy="195" rx="140" ry="155" fill="rgba(26,122,32,0.05)" stroke="#1a7a20" stroke-width="2"/>
+
+          <!-- Micropyle end (bottom) -->
+          <text x="300" y="355" text-anchor="middle" fill="#6b5a47" font-size="10">← Micropyle (pollen tube entry)</text>
+          <line x1="300" y1="348" x2="300" y2="338" stroke="#6b5a47" stroke-width="1" marker-end="url(#arr6)"/>
+
+          <!-- Chalaza end (top) -->
+          <text x="300" y="48" text-anchor="middle" fill="#6b5a47" font-size="10">Chalaza end ↑</text>
+
+          <!-- Egg Cell -->
+          <ellipse cx="300" cy="310" rx="30" ry="18" fill="rgba(180,48,48,0.25)" stroke="#b83030" stroke-width="2"/>
+          <text x="300" y="314" text-anchor="middle" fill="#b83030" font-size="10" font-weight="700">Egg cell (n)</text>
+          <text x="380" y="310" fill="#b83030" font-size="9">← THE most</text>
+          <text x="380" y="322" fill="#b83030" font-size="9">   important cell!</text>
+
+          <!-- Two Synergids -->
+          <ellipse cx="255" cy="290" rx="22" ry="14" fill="rgba(90,26,138,0.2)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="255" y="294" text-anchor="middle" fill="#5a1a8a" font-size="9">Synergid 1</text>
+
+          <ellipse cx="345" cy="290" rx="22" ry="14" fill="rgba(90,26,138,0.2)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="345" y="294" text-anchor="middle" fill="#5a1a8a" font-size="9">Synergid 2</text>
+
+          <text x="130" y="285" fill="#5a1a8a" font-size="9">Synergids have</text>
+          <text x="130" y="297" fill="#5a1a8a" font-size="9">filiform apparatus</text>
+          <text x="130" y="309" fill="#5a1a8a" font-size="9">(guide pollen tube)</text>
+          <line x1="232" y1="292" x2="185" y2="295" stroke="#5a1a8a" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+          <!-- Egg apparatus label -->
+          <text x="300" y="263" text-anchor="middle" fill="#1c1510" font-size="10" font-weight="700">EGG APPARATUS (3 cells)</text>
+
+          <!-- Central cell with 2 Polar Nuclei -->
+          <ellipse cx="300" cy="195" rx="80" ry="55" fill="rgba(26,74,140,0.12)" stroke="#1a4a8c" stroke-width="2"/>
+          <text x="300" y="180" text-anchor="middle" fill="#1a4a8c" font-size="11" font-weight="700">Central Cell</text>
+          <ellipse cx="280" cy="200" rx="16" ry="12" fill="rgba(26,74,140,0.3)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <text x="280" y="204" text-anchor="middle" fill="#1a4a8c" font-size="9">PN 1</text>
+          <ellipse cx="318" cy="200" rx="16" ry="12" fill="rgba(26,74,140,0.3)" stroke="#1a4a8c" stroke-width="1.5"/>
+          <text x="318" y="204" text-anchor="middle" fill="#1a4a8c" font-size="9">PN 2</text>
+          <text x="300" y="220" text-anchor="middle" fill="#1a4a8c" font-size="9">2 Polar Nuclei (n each)</text>
+          <text x="420" y="185" fill="#1a4a8c" font-size="9">→ fuses with sperm</text>
+          <text x="420" y="197" fill="#1a4a8c" font-size="9">   to form PEN (3n)</text>
+          <text x="420" y="209" fill="#1a4a8c" font-size="9">   → Endosperm</text>
+
+          <!-- Antipodal cells (top/chalaza) -->
+          <ellipse cx="270" cy="100" rx="24" ry="16" fill="rgba(13,122,106,0.2)" stroke="#0d7a6a" stroke-width="1.5"/>
+          <text x="270" y="104" text-anchor="middle" fill="#0d7a6a" font-size="9">Antipodal 1</text>
+          <ellipse cx="300" cy="82" rx="24" ry="16" fill="rgba(13,122,106,0.2)" stroke="#0d7a6a" stroke-width="1.5"/>
+          <text x="300" y="86" text-anchor="middle" fill="#0d7a6a" font-size="9">Antipodal 2</text>
+          <ellipse cx="330" cy="100" rx="24" ry="16" fill="rgba(13,122,106,0.2)" stroke="#0d7a6a" stroke-width="1.5"/>
+          <text x="330" y="104" text-anchor="middle" fill="#0d7a6a" font-size="9">Antipodal 3</text>
+          <text x="150" y="90" fill="#0d7a6a" font-size="9">3 Antipodals —</text>
+          <text x="150" y="102" fill="#0d7a6a" font-size="9">degenerate after fert.</text>
+          <line x1="247" y1="97" x2="202" y2="97" stroke="#0d7a6a" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+          <!-- Summary box -->
+          <rect x="10" y="290" width="130" height="60" rx="4" fill="rgba(26,122,32,0.1)" stroke="#1a7a20" stroke-width="1.5"/>
+          <text x="75" y="308" text-anchor="middle" fill="#1a7a20" font-size="10" font-weight="700">Summary:</text>
+          <text x="75" y="322" text-anchor="middle" fill="#6b5a47" font-size="9">Total cells = 7</text>
+          <text x="75" y="336" text-anchor="middle" fill="#6b5a47" font-size="9">Total nuclei = 8</text>
+          <text x="75" y="350" text-anchor="middle" fill="#6b5a47" font-size="9">(central cell: 2 pol. nuc.)</text>
+
+          <defs>
+            <marker id="arr6" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#6b5a47"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Embryo Sac — Complete Numbers (Must Memorise!)</span>
+        <p><strong>Polygonum type (most common, tested in NEET):</strong></p>
+        <p>• 3 cells at micropylar end = <strong>Egg apparatus</strong>: 1 egg + 2 synergids</p>
+        <p>• 1 large central cell = <strong>secondary nucleus (2 polar nuclei)</strong></p>
+        <p>• 3 cells at chalazal end = <strong>3 Antipodal cells</strong></p>
+        <p>• Total: <strong>7 cells, 8 nuclei</strong> (central cell has 2 nuclei)</p>
+        <p>• <strong>Synergids</strong>: have <em>filiform apparatus</em> (helps guide pollen tube), produce chemotropic substances</p>
+      </div>
+    </div>
+
+    <!-- POLLINATION -->
+    <div class="sec" data-m="pollination" id="pollination">
+      <h2 class="sh">Pollination — Types &amp; Agents <span class="tag tt">5+ times</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Agent</th><th>Adaptations</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td colspan="4" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">ABIOTIC AGENTS</td></tr>
+            <tr><td>Anemophily</td><td>Wind</td><td>Light, non-sticky pollen; feathery stigma; no nectar</td><td class="c-bio">Grass, Wheat, Maize (infl: tassel ♂, cob ♀), Coconut</td></tr>
+            <tr><td>Hydrophily</td><td>Water</td><td>Pollen without sporopollenin; long ribbon-like pollen in some</td><td class="c-bio">Vallisneria (surface), Ceratophyllum (underwater)</td></tr>
+            <tr><td colspan="4" style="background:var(--hl-bio);font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--bio);">BIOTIC AGENTS (ZOOPHILY)</td></tr>
+            <tr><td>Entomophily</td><td>Insects (bees, butterflies)</td><td>Colourful petals, nectar, fragrance, sticky pollen with exine</td><td class="c-bio">Most angiosperms; Bottle brush, Salvia</td></tr>
+            <tr><td>Ornithophily</td><td>Birds</td><td>Bright red/orange flowers; nectar; no landing platform often</td><td class="c-bio">Bignonia, Erythrina, Strelitzia (Bird of Paradise)</td></tr>
+            <tr><td>Chiropterophily</td><td>Bats (night)</td><td>Large white/pale flowers; strong scent at night; abundant pollen/nectar</td><td class="c-bio">Anthocephalus (Kadamba), Kigelia</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <span class="lbl">Special Pollination Examples (NEET Favourites)</span>
+        <p><strong>Vallisneria</strong>: Female flowers reach water surface; male flowers detach, drift on surface, pollinate. <strong>Salvia</strong>: Lever mechanism — bee deposits pollen from previous visit on stigma. <strong>Fig (Ficus)</strong>: Only pollinated by <em>Blastophaga</em> wasp — obligate mutualism. <strong>Yucca</strong>: Pollinated only by <em>Tegeticula</em> moth (Pronuba moth) — obligate mutualism. <strong>Cleistogamy</strong> (Commelina, Viola): Flowers never open; self-pollination assured.</p>
+      </div>
+
+      <h3 class="ssh">Outbreeding Devices</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Dicliny (Unisexuality)</div>
+          <ul>
+            <li>Male &amp; female flowers separate</li>
+            <li>Monoecious: both on same plant</li>
+            <li>Examples: Maize, Coconut</li>
+            <li>Dioecious: on different plants</li>
+            <li>Examples: Papaya, Date palm</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Self-incompatibility</div>
+          <ul>
+            <li>Pollen of same flower/plant rejected</li>
+            <li>Controlled by S-locus genes</li>
+            <li>Most hermaphrodite plants</li>
+            <li>NEET: genetic mechanism</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Dichogamy</div>
+          <ul>
+            <li>Anther &amp; stigma mature at different times</li>
+            <li>Protandry: anther first (marigold)</li>
+            <li>Protogyny: stigma first (fig family)</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Heterostyly</div>
+          <ul>
+            <li>Different relative lengths of style &amp; stamens</li>
+            <li>Pin (long style) &amp; Thrum (short style)</li>
+            <li>Primrose (Primula)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOUBLE FERTILISATION -->
+    <div class="sec" data-m="double-fert" id="double-fert">
+      <h2 class="sh">Double Fertilisation — Unique to Angiosperms <span class="tag tg">8+ times</span></h2>
+
+      <!-- DOUBLE FERTILISATION SVG -->
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 300" width="700" height="300" font-family="Architects Daughter, cursive" font-size="11">
+          <text x="350" y="22" text-anchor="middle" fill="#1c1510" font-size="13" font-weight="700">Double Fertilisation — Unique to Angiosperms</text>
+
+          <!-- Pollen tube entering -->
+          <path d="M60 180 Q120 180 160 200" stroke="#0d7a6a" stroke-width="3" fill="none" marker-end="url(#arr7)"/>
+          <rect x="20" y="100" width="90" height="60" rx="6" fill="rgba(13,122,106,0.15)" stroke="#0d7a6a" stroke-width="2"/>
+          <text x="65" y="126" text-anchor="middle" fill="#0d7a6a" font-weight="700">Pollen Grain</text>
+          <text x="65" y="140" text-anchor="middle" fill="#0d7a6a" font-size="10">2 male gametes</text>
+          <text x="65" y="153" text-anchor="middle" fill="#0d7a6a" font-size="10">+ tube nucleus</text>
+
+          <!-- Tube enters via micropyle -->
+          <text x="110" y="175" text-anchor="middle" fill="#6b5a47" font-size="9">Pollen tube →</text>
+          <text x="110" y="187" text-anchor="middle" fill="#6b5a47" font-size="9">via micropyle</text>
+
+          <!-- Synergid entry -->
+          <ellipse cx="200" cy="215" rx="30" ry="18" fill="rgba(90,26,138,0.2)" stroke="#5a1a8a" stroke-width="1.5"/>
+          <text x="200" y="219" text-anchor="middle" fill="#5a1a8a" font-size="9">Synergid</text>
+          <text x="200" y="244" text-anchor="middle" fill="#6b5a47" font-size="9">Pollen tube = enters &amp; bursts here</text>
+
+          <!-- 2 male gametes released -->
+          <text x="280" y="215" fill="#b83030" font-size="10" font-weight="700">2 Male gametes released</text>
+
+          <!-- First fertilisation: sperm + egg -->
+          <ellipse cx="380" cy="260" rx="40" ry="18" fill="rgba(180,48,48,0.2)" stroke="#b83030" stroke-width="2"/>
+          <text x="380" y="264" text-anchor="middle" fill="#b83030" font-size="10">Egg cell (n)</text>
+
+          <path d="M330 215 Q355 235 345 250" stroke="#b83030" stroke-width="2" fill="none" marker-end="url(#arr8)"/>
+          <text x="300" y="238" fill="#b83030" font-size="9">Sperm 1 (n)</text>
+
+          <ellipse cx="380" cy="140" rx="60" ry="22" fill="rgba(26,74,140,0.2)" stroke="#1a4a8c" stroke-width="2"/>
+          <text x="380" y="135" text-anchor="middle" fill="#1a4a8c" font-size="10">Central Cell</text>
+          <text x="380" y="150" text-anchor="middle" fill="#1a4a8c" font-size="10">2 Polar Nuclei (n + n)</text>
+
+          <path d="M330 215 Q355 185 325 148" stroke="#1a4a8c" stroke-width="2" fill="none" marker-end="url(#arr9)"/>
+          <text x="270" y="182" fill="#1a4a8c" font-size="9">Sperm 2 (n)</text>
+
+          <!-- Products -->
+          <rect x="480" y="235" width="200" height="50" rx="6" fill="rgba(180,48,48,0.15)" stroke="#b83030" stroke-width="2"/>
+          <text x="580" y="255" text-anchor="middle" fill="#b83030" font-size="11" font-weight="700">Syngamy</text>
+          <text x="580" y="270" text-anchor="middle" fill="#b83030" font-size="10">Sperm (n) + Egg (n) = Zygote (2n)</text>
+          <text x="580" y="282" text-anchor="middle" fill="#b83030" font-size="9">→ Embryo</text>
+
+          <rect x="480" y="110" width="200" height="50" rx="6" fill="rgba(26,74,140,0.15)" stroke="#1a4a8c" stroke-width="2"/>
+          <text x="580" y="130" text-anchor="middle" fill="#1a4a8c" font-size="11" font-weight="700">Triple Fusion</text>
+          <text x="580" y="145" text-anchor="middle" fill="#1a4a8c" font-size="10">Sperm (n) + 2 PN (n+n) = PEN (3n)</text>
+          <text x="580" y="157" text-anchor="middle" fill="#1a4a8c" font-size="9">→ Endosperm (triploid)</text>
+
+          <path d="M420 258 Q450 258 480 258" stroke="#b83030" stroke-width="2" fill="none" marker-end="url(#arr8)"/>
+          <path d="M430 142 Q455 135 480 135" stroke="#1a4a8c" stroke-width="2" fill="none" marker-end="url(#arr9)"/>
+
+          <defs>
+            <marker id="arr7" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#0d7a6a"/>
+            </marker>
+            <marker id="arr8" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#b83030"/>
+            </marker>
+            <marker id="arr9" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+              <polygon points="0 0, 7 2.5, 0 5" fill="#1a4a8c"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">🎯 Double Fertilisation — Exact Terms (NEET Must Know)</span>
+        <p><strong>Syngamy:</strong> one sperm (n) + egg cell (n) → Zygote (2n) → develops into Embryo (diploid)</p>
+        <p><strong>Triple fusion:</strong> other sperm (n) + 2 polar nuclei (n + n) → Primary Endosperm Nucleus / PEN (3n) → develops into Endosperm (triploid)</p>
+        <p><strong>Double fertilisation discovered by:</strong> Nawaschin and Guignard (1898)</p>
+        <p><strong>Pollen tube enters through:</strong> micropyle (porogamy), chalaza (chalazogamy), or integument (mesogamy)</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">After double fertilisation, the primary endosperm nucleus is:</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Triploid (3n)</span>
+          <p>PEN = one male gamete (n) + two polar nuclei (n + n) = 3n. It then undergoes free nuclear divisions to form endosperm. Modern textbooks: central cell of embryo sac contains the 2 polar nuclei (not yet secondary nucleus — they fuse during fertilisation). The endosperm ploidy = 3n = triploid. Coconut water = liquid endosperm (free nuclear stage).</p>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which structure guides the pollen tube to enter the embryo sac in flowering plants?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Filiform apparatus (in Synergids)</span>
+          <p>The synergids have a special structure called the <strong>filiform apparatus</strong> at their micropylar end. This apparatus, made of cell wall ingrowths, is believed to help direct the pollen tube into the embryo sac and may secrete chemotropic substances. The synergid disintegrates as pollen tube enters.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST-FERTILISATION -->
+    <div class="sec" data-m="post-fert" id="post-fert">
+      <h2 class="sh">Post-fertilisation Events — Endosperm, Embryo &amp; Fruit <span class="tag tt">5+ times</span></h2>
+
+      <h3 class="ssh">Endosperm Development Types</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Process</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nuclear endosperm</strong></td><td>Free nuclear divisions first; cell wall formation later</td><td class="c-bio">Coconut (coconut water = free nuclear; white coconut meat = cellular)</td></tr>
+            <tr><td><strong>Cellular endosperm</strong></td><td>Each nuclear division followed by cell wall formation</td><td class="c-bio">Petunia</td></tr>
+            <tr><td><strong>Helobial endosperm</strong></td><td>Intermediate — first division gives 2 cells; one cell divides freely, other cellularly</td><td class="c-bio">Asphodelus (monocots generally)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Embryo development (Dicot):</strong> Zygote → proembryo → globular embryo → heart-shaped → torpedo → mature dicot embryo (with 2 cotyledons, radicle, plumule, hypocotyl). <strong>Mono cot embryo (Maize):</strong> Scutellum (= cotyledon) + coleoptile (covers plumule) + coleorhiza (covers radicle). The single cotyledon of monocots = scutellum, which secretes hydrolytic enzymes absorbed from endosperm.</p>
+      </div>
+
+      <h3 class="ssh">Apomixis &amp; Polyembryony</h3>
+      <div class="def-box">
+        <span class="lbl">Apomixis</span>
+        <p><strong>Seed formation without fertilisation.</strong> Occurs when unreduced (2n) cells of nucellus or integuments develop into embryo. Seen in Citrus, Mango, Opuntia. <strong>Apospory:</strong> Nucellar cells develop into embryo sac (without meiosis). <strong>Diplospory:</strong> MMC develops directly into embryo sac (without meiosis). Advantage: True-to-type seeds (same as parent) — important in horticulture and fruit cultivation.</p>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Polyembryony</span>
+        <p><strong>More than one embryo in a seed.</strong> Can occur from: synergids, antipodals, nucellus cells, or more than one egg developing. Best example: <strong>Citrus (lemon/orange)</strong> — polyembryony common due to nucellar embryony. <strong>Orchid: single embryo</strong>. Groundnut: 2 embryos occasionally. Polyembryony is used in horticulture.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Ovule part</th><th>Develops into</th></tr></thead>
+          <tbody>
+            <tr><td>Zygote (2n)</td><td>Embryo</td></tr>
+            <tr><td>Primary Endosperm Nucleus (3n)</td><td>Endosperm</td></tr>
+            <tr><td>Outer Integument</td><td>Testa (outer seed coat)</td></tr>
+            <tr><td>Inner Integument</td><td>Tegmen (inner seed coat)</td></tr>
+            <tr><td>Ovule wall / Nucellus</td><td>Perisperm (in some seeds: e.g., Black pepper, Beet)</td></tr>
+            <tr><td>Ovary wall</td><td>Pericarp (fruit wall)</td></tr>
+            <tr><td>Ovary</td><td>Fruit</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which of the following correctly describes apomixis?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Production of seeds without fertilisation</span>
+          <p>Apomixis = agamospermy = seed production without fertilisation. The embryo arises from somatic cells (nucellus) or unreduced gametes. The offspring are genetically identical to parent (like clones). Seen in Citrus, Mango. Not to be confused with parthenocarpy (fruit without fertilisation, no seed). NEET 2023 had this as a definitional question.</p>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">Perisperm is present in which of the following seeds?</span>
+          <button class="pyq-toggle">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Black pepper and Beet</span>
+          <p><strong>Perisperm</strong> = persistent nucellus tissue in mature seed. In most seeds, nucellus is consumed during development. But in Black pepper (<em>Piper nigrum</em>) and Beet (<em>Beta vulgaris</em>), nucellus persists as perisperm — a nutritive tissue in addition to endosperm.</p>
+        </div>
+      </div>
+
+      <!-- MASTER REVISION TABLE -->
+      <h3 class="ssh">⚡ Rapid Fire — Reproduction Master Facts (NEET Direct)</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Question</th><th>Answer</th></tr></thead>
+          <tbody>
+            <tr><td>Discoverer of double fertilisation</td><td class="c-bio">Nawaschin and Guignard (1898)</td></tr>
+            <tr><td>Most resistant biological material</td><td class="c-bio">Sporopollenin (in pollen exine)</td></tr>
+            <tr><td>Embryo sac cells : nuclei</td><td class="c-bio">7 cells : 8 nuclei</td></tr>
+            <tr><td>Ploidy of endosperm</td><td class="c-bio">3n (triploid)</td></tr>
+            <tr><td>Ploidy of embryo</td><td class="c-bio">2n (diploid)</td></tr>
+            <tr><td>Testa comes from</td><td class="c-bio">Outer integument</td></tr>
+            <tr><td>Tegmen comes from</td><td class="c-bio">Inner integument</td></tr>
+            <tr><td>Pink colour of root nodule</td><td class="c-bio">Leghemoglobin</td></tr>
+            <tr><td>First stable product of C4 photosynthesis</td><td class="c-bio">OAA (Oxaloacetate, 4C)</td></tr>
+            <tr><td>First stable product of C3 photosynthesis</td><td class="c-bio">3-PGA (3-phosphoglycerate, 3C)</td></tr>
+            <tr><td>Enzyme of C4 in mesophyll cells</td><td class="c-bio">PEP carboxylase</td></tr>
+            <tr><td>Coconut water = ?</td><td class="c-bio">Free-nuclear / liquid endosperm</td></tr>
+            <tr><td>White coconut kernel = ?</td><td class="c-bio">Cellular endosperm (solid)</td></tr>
+            <tr><td>Kranz anatomy found in</td><td class="c-bio">C4 plants (bundle sheath + mesophyll)</td></tr>
+            <tr><td>RQ of fat</td><td class="c-bio">&lt; 1 (≈ 0.7)</td></tr>
+            <tr><td>RQ of carbohydrate</td><td class="c-bio">= 1</td></tr>
+            <tr><td>Gaseous plant hormone</td><td class="c-bio">Ethylene (C₂H₄)</td></tr>
+            <tr><td>Stress hormone</td><td class="c-bio">ABA (Abscisic Acid)</td></tr>
+            <tr><td>Critical period in photoperiodism</td><td class="c-bio">Dark period (not light period)</td></tr>
+            <tr><td>Stomatal closure induced by</td><td class="c-bio">ABA (abscisic acid)</td></tr>
+            <tr><td>Cohesion-tension theory proposed by</td><td class="c-bio">Dixon &amp; Jolly (1894)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- end post-fert sec -->
+  </div><!-- end ch-body -->
+</div><!-- end chapter reproduction -->
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:32px 0;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);border-top:1px dashed rgba(160,180,100,0.4);margin-top:24px;">
+  <div>© Aryan · NEET Notes Hub · Biology Botany Complete</div>
+  <div style="margin-top:8px;opacity:0.6;">NCERT Class 11 Ch 3, 5, 6, 11–15 · Class 12 Ch 2 · PYQ 2009–2025</div>
+</div>
+
+</div><!-- end .book -->
+
+<script>
+function toggle(head){
+  var sol=head.nextElementSibling;
+  sol.classList.toggle('open');
+  var btn=head.querySelector('.pyq-toggle');
+  if(btn) btn.textContent=sol.classList.contains('open')?'Hide Answer':'Show Answer';
+}
+</script>
+
+</body>
+</html>

@@ -78,9 +78,7 @@ const MANIFEST = {
         {
           label: "Botany",
           notes: [
-            { num: "—", title: "Plant Physiology", desc: "Photosynthesis · Respiration · Mineral Nutrition · Transport in Plants", live: false },
-            { num: "—", title: "Plant Kingdom & Morphology", desc: "Algae · Bryophyta · Pteridophyta · Gymnosperms · Angiosperms · NCERT examples", live: false },
-            { num: "—", title: "Reproduction in Plants", desc: "Pollination · Fertilisation · Embryo development · Seed and Fruit formation", live: false }
+            { num: "B1", title: "Botany Complete — PYQ Master Cheatsheet", desc: "Plant Kingdom · Morphology · Plant Physiology · Photosynthesis · Respiration · Reproduction · PYQ 2009–2025 · NCERT Fully Mapped", file: "notes/neet-botany-complete.html", type: "pyq", live: true }
           ]
         },
         {
