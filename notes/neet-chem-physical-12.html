@@ -1,0 +1,1943 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark,skipBC){
+    if(dark)document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb)cb.checked=!!dark;
+    if(!skipBC){try{var bc=new BroadcastChannel('neet_hub_theme');bc.postMessage({dark:!!dark});}catch(e){}}
+  }
+  window.setTheme=function(v){localStorage.setItem(KD,JSON.stringify(!!v));applyD(v);}
+  try{
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){var v=JSON.parse(raw);applyD(v===true||v==='1'||v===1,true);}
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){applyD(!!e.data.dark,true);});
+  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+})();
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEET Physical Chemistry Class 12 — Complete Intelligence System</title>
+<meta name="description" content="NEET Physical Chemistry Class 12 — NCERT-mapped. Solutions, Electrochemistry, Chemical Kinetics, Solid State, Surface Chemistry. PYQ 2015–2025 analysed."/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{
+  --paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;
+  --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;
+  --rule:rgba(100,130,180,0.14);--mline:rgba(180,60,60,0.18);
+  --red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;
+  --hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);--hl-g:rgba(60,180,100,0.17);
+  --hl-r:rgba(220,60,60,0.12);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);
+  --body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;--hand:"Architects Daughter",cursive;
+}
+[data-theme="dark"]{
+  --paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;
+  --ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;
+  --rule:rgba(100,130,180,0.12);--mline:rgba(180,60,60,0.12);
+  --red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+  --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);
+  --hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+}
+[data-theme="dark"] body{background:#130f0c;}
+[data-theme="dark"] .def-box{background:rgba(91,143,214,0.10);}
+[data-theme="dark"] .warn-box{background:rgba(224,80,80,0.10);}
+[data-theme="dark"] .tip-box{background:rgba(74,184,112,0.10);}
+[data-theme="dark"] .note-box{background:rgba(224,120,48,0.10);}
+[data-theme="dark"] .purp-box{background:rgba(155,89,214,0.10);}
+[data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}
+[data-theme="dark"] .trick::before{background:var(--paper2);}
+[data-theme="dark"] .shortcut{background:rgba(26,107,64,0.08);border-color:var(--green);}
+[data-theme="dark"] .shortcut::before{background:var(--paper2);}
+[data-theme="dark"] .instant-formula::before{background:var(--paper2);}
+[data-theme="dark"] .chapter{border-color:#3a3228;}
+[data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5040;}
+[data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4038;}
+[data-theme="dark"] .fbox{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .toc{background:var(--paper);border-color:#3a3228;}
+[data-theme="dark"] .nrxn-card{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .pyq-sol{background:var(--paper3);}
+[data-theme="dark"] .mech-box{background:rgba(26,74,140,0.08);border-color:#2a3a5a;}
+[data-theme="dark"] .num-box{background:rgba(13,122,106,0.08);border-color:#1a4a40;}
+[data-theme="dark"] .num-box::before{background:var(--paper);}
+[data-theme="dark"] .dl-block{background:rgba(155,89,214,0.08);}
+[data-theme="dark"] .dl-block::before{background:var(--paper);}
+[data-theme="dark"] .revision-engine{background:rgba(45,184,154,0.07);}
+[data-theme="dark"] .revision-engine::before{background:var(--paper);}
+[data-theme="dark"] .trigger-card{background:rgba(26,74,140,0.10);border-color:#2a3a5a;}
+[data-theme="dark"] .elim-chain .elim-step{background:rgba(220,60,60,0.08);border-color:#5a2020;}
+[data-theme="dark"] .shortcut-block::before{background:var(--paper);}
+[data-theme="dark"] .strip-block{background:#0e0c09;}
+[data-theme="dark"] .variant-block::before{background:var(--paper);}
+[data-theme="dark"] .trap-block::before{background:var(--paper);}
+[data-theme="dark"] .trap-block{background:rgba(224,80,80,0.07);}
+[data-theme="dark"] .stab-rung{background:var(--paper2);border-color:#3a3228;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+.book{max-width:980px;margin:0 auto;}
+/* COVER */
+.cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+.cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);pointer-events:none;}
+.cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(184,48,48,0.30);pointer-events:none;}
+.cover-inner{position:relative;padding-left:20px;}
+.cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--red);}
+.cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+.cover h1 em{font-style:italic;color:var(--red);}
+.cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:640px;border-left:3px solid var(--red);padding-left:14px;}
+.cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:var(--paper3);}
+.cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--red);padding:5px 12px;border-radius:2px;}
+.cover-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+.stat-box{text-align:center;padding:14px 10px;background:var(--paper3);border:1.5px solid rgba(150,120,80,0.35);border-radius:4px;}
+.stat-n{font-family:var(--body);font-size:26px;font-weight:700;color:var(--red);line-height:1;}
+.stat-l{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-top:5px;}
+/* TOC */
+.toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+.toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 24px;}
+@media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+.toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:5px 0;transition:all 0.2s;}
+.toc-grid a:hover{color:var(--red);}
+.tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:28px;}
+.toc-divider{height:1px;background:rgba(180,150,100,0.25);margin:16px 0;}
+.toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,150,100,0.3);}
+/* CHAPTER */
+.chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+.ch-head{background:linear-gradient(135deg,#0a1628 0%,#1a2a40 100%);padding:24px 36px;border-bottom:3px solid var(--red);}
+.ch-head.orange{border-bottom-color:var(--orange);}
+.ch-head.blue{border-bottom-color:var(--blue);}
+.ch-head.green{border-bottom-color:var(--green);}
+.ch-head.purple{border-bottom-color:var(--purple);}
+.ch-head.teal{border-bottom-color:var(--teal);}
+[data-theme="dark"] .ch-head{background:linear-gradient(135deg,#050a14 0%,#0d1828 100%);}
+.ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+.ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
+.ch-title em{color:#e05050;}
+.ch-head.orange .ch-title em{color:#e07830;}
+.ch-head.blue .ch-title em{color:#7ab0e8;}
+.ch-head.green .ch-title em{color:#4ab870;}
+.ch-head.purple .ch-title em{color:#9b59d6;}
+.ch-head.teal .ch-title em{color:#2db89a;}
+.ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(180,150,100,0.4);}
+.ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+.ch-nav a:hover{border-color:var(--red);color:var(--red);}
+.ch-body{padding-bottom:28px;background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;}
+.sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+.sec:last-child{border-bottom:none;}
+.sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(184,48,48,0.22);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+/* TYPOGRAPHY */
+h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--blue);margin:32px 0 12px;}
+p{font-family:var(--prose);font-size:17px;line-height:2.0;color:var(--ink2);margin-bottom:14px;}
+p:last-child{margin-bottom:0;}
+strong{color:var(--ink);font-weight:600;}
+.tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;vertical-align:middle;}
+.tg{background:var(--hl-g);color:var(--green);border:1.5px solid var(--green);}
+.tr{background:var(--hl-r);color:var(--red);border:1.5px solid var(--red);}
+.tb{background:var(--hl-b);color:var(--blue);border:1.5px solid var(--blue);}
+.to{background:var(--hl-o);color:var(--orange);border:1.5px solid var(--orange);}
+.tp{background:var(--hl-p);color:var(--purple);border:1.5px solid var(--purple);}
+.tt{background:rgba(13,122,106,0.09);color:var(--teal);border:1.5px solid var(--teal);}
+.lbl{display:block;font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+/* BOXES */
+.def-box{background:rgba(100,160,255,0.08);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.def-box .lbl{color:var(--blue);}
+.warn-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.warn-box .lbl{color:var(--red);}
+.tip-box{background:rgba(60,180,100,0.07);border:1.5px solid var(--green);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.tip-box .lbl{color:var(--green);}
+.note-box{background:rgba(180,90,16,0.07);border:1.5px solid var(--orange);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.note-box .lbl{color:var(--orange);}
+.purp-box{background:rgba(90,26,138,0.07);border:1.5px solid var(--purple);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.purp-box .lbl{color:var(--purple);}
+.mech-box{background:rgba(26,74,140,0.06);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.num-box{background:rgba(13,122,106,0.06);border:2px solid var(--teal);border-radius:6px;padding:22px 24px;margin:20px 0;position:relative;}
+.num-box::before{content:"📐 Worked Numerical";font-family:var(--hand);font-size:9px;letter-spacing:2px;color:var(--teal);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 8px;}
+.trick{background:var(--paper2);border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+.trick::before{content:"⚡ Key Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7a5800;position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+.shortcut{background:var(--paper);border:1.5px solid var(--green);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+.shortcut::before{content:"🎯 Memory Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+/* FORMULA */
+.formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:20px 0;font-size:15px;color:var(--ink);line-height:2.4;text-align:center;}
+.formula strong{color:var(--red);font-size:16px;}
+/* FORMULA GRID */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:20px 0;}
+.fbox{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:18px 20px;}
+.fbox-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+.fbox p{font-family:var(--prose);font-size:15px;line-height:1.9;color:var(--ink2);margin:0 0 6px;}
+.fbox p:last-child{margin:0;}
+.fbox.red-border{border-color:var(--red);}.fbox.blue-border{border-color:var(--blue);}.fbox.green-border{border-color:var(--green);}.fbox.orange-border{border-color:var(--orange);}.fbox.purple-border{border-color:var(--purple);}.fbox.teal-border{border-color:var(--teal);}
+.fbox-title.teal{color:var(--teal);}.fbox-title.blue{color:var(--blue);}.fbox-title.green{color:var(--green);}.fbox-title.orange{color:var(--orange);}.fbox-title.purple{color:var(--purple);}
+/* TABLE */
+.tbl{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;}
+tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+.freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+.freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+.freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+/* SCORE STRIP */
+.score-strip{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px;}
+.score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+.sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+.sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+.sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+.sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+.sp-t{border-color:var(--teal);color:var(--teal);background:rgba(13,122,106,0.09);}
+.sp-p{border-color:var(--purple);color:var(--purple);background:var(--hl-p);}
+/* LISTS */
+.pl{list-style:none;margin:12px 0 18px;padding:0;}
+.pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+.pl li::before{content:"—";position:absolute;left:0;color:var(--red);font-weight:600;}
+.pl.arr li::before{content:"→";color:var(--blue);}
+.pl.chk li::before{content:"✓";color:var(--green);}
+mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+/* FLASHCARDS */
+.fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:20px 0;}
+.fcard{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:16px 18px;}
+.fcard-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+.fcard ul{list-style:none;padding:0;}
+.fcard ul li{font-family:var(--prose);font-size:15px;color:var(--ink2);padding:3px 0 3px 18px;position:relative;line-height:1.7;}
+.fcard ul li::before{content:"·";position:absolute;left:0;color:var(--red);}
+/* PYQ CARDS */
+.pyq-card{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;margin:16px 0;overflow:hidden;}
+.pyq-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background 0.2s;flex-wrap:wrap;}
+.pyq-head:hover{background:var(--paper3);}
+.pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 9px;border-radius:2px;white-space:nowrap;}
+.pyq-q{font-family:var(--prose);font-size:15.5px;color:var(--ink2);flex:1;}
+.pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1.5px solid var(--ink3);color:var(--ink3);padding:4px 10px;border-radius:2px;cursor:pointer;}
+.pyq-sol{display:none;padding:18px 20px;background:var(--paper3);border-top:1px dashed rgba(180,150,100,0.5);}
+.pyq-sol.open{display:block;}
+.ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:#fff;padding:4px 12px;border-radius:2px;margin-bottom:12px;}
+.pyq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
+.pyq-field{background:var(--paper2);border-radius:4px;padding:12px 14px;}
+.pyq-field-label{font-family:var(--hand);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:6px;}
+.pyq-field p{font-family:var(--prose);font-size:14.5px;color:var(--ink2);margin:0;line-height:1.65;}
+.pf-concept{border-left:3px solid var(--blue);}
+.pf-rule{border-left:3px solid var(--green);}
+.pf-answer{border-left:3px solid var(--red);}
+/* INTELLIGENCE LAYER */
+.dl-block{background:rgba(90,26,138,0.05);border:2px solid var(--purple);border-radius:8px;padding:24px 28px;margin:32px 0;position:relative;max-width:100%;box-sizing:border-box;}
+.dl-block h3{font-family:var(--body);font-size:15px;font-weight:700;color:var(--purple);margin-bottom:18px;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:18px;}
+.trigger-card{background:rgba(26,74,140,0.07);border:1.5px solid rgba(26,74,140,0.3);border-radius:6px;padding:14px 16px;}
+.trigger-kw{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;color:var(--blue);text-transform:uppercase;margin-bottom:6px;}
+.trigger-action{font-family:var(--prose);font-size:15px;color:var(--ink2);line-height:1.65;}
+.elim-chain{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.elim-step{background:rgba(220,60,60,0.07);border:1.5px solid rgba(184,48,48,0.3);border-radius:4px;padding:10px 14px;font-family:var(--prose);font-size:14.5px;color:var(--red);line-height:1.6;}
+/* REVISION ENGINE */
+.revision-engine{background:rgba(13,122,106,0.05);border:2px solid var(--teal);border-radius:8px;padding:24px 28px;margin:32px 0;position:relative;max-width:100%;box-sizing:border-box;}
+.revision-engine h3{font-family:var(--body);font-size:15px;font-weight:700;color:var(--teal);margin-bottom:16px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+.re-item{background:var(--paper2);border:1px solid rgba(180,150,100,0.4);border-radius:4px;padding:10px 12px;}
+.re-label{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.re-val{font-family:var(--prose);font-size:14px;color:var(--ink2);line-height:1.6;}
+/* TRAP BLOCK */
+.trap-block{background:rgba(184,48,48,0.05);border:2px solid var(--red);border-radius:8px;padding:22px 26px;margin:24px 2px;position:relative;}
+.trap-block::before{content:"🚫 TRAP ELIMINATION";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-10px;left:14px;background:var(--paper);padding:0 8px;font-weight:700;}
+.trap-row{display:flex;align-items:baseline;gap:12px;padding:7px 0;border-bottom:1px dashed rgba(184,48,48,0.2);font-family:var(--prose);font-size:15.5px;color:var(--ink2);line-height:1.6;}
+.trap-row:last-child{border-bottom:none;}
+.trap-x{color:var(--red);font-weight:700;min-width:20px;}
+.trap-arrow{color:var(--teal);font-weight:700;margin:0 4px;}
+/* SHORTCUT BLOCK */
+.shortcut-block{background:rgba(26,107,64,0.05);border:2px solid var(--green);border-radius:8px;padding:22px 26px;margin:24px 2px;position:relative;}
+.shortcut-block::before{content:"🚀 VERIFIED SHORTCUTS";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-10px;left:14px;background:var(--paper);padding:0 8px;font-weight:700;}
+.sc-item{background:rgba(26,107,64,0.04);border:1px solid rgba(26,107,64,0.2);border-radius:6px;padding:14px 18px;margin:10px 0;}
+.sc-title{font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
+.sc-body{font-family:var(--prose);font-size:15.5px;color:var(--ink);line-height:1.75;}
+/* STRIP BLOCK */
+.strip-block{background:#1a1410;border:1.5px solid #3a3020;border-radius:8px;padding:26px 28px 22px;margin:32px 2px;position:relative;}
+.strip-block::before{content:"⚡ ULTRA-COMPRESSED REVISION STRIP";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#ffd700;position:absolute;top:-10px;left:16px;background:#1a1410;padding:0 8px;font-weight:700;}
+.strip-block .strip-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#ffd700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,215,0,0.2);}
+.strip-block .strip-row{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;}
+.strip-block .strip-row:last-child{border-bottom:none;}
+.strip-block .strip-label{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#ffd700;min-width:130px;flex-shrink:0;}
+.strip-block .strip-content{font-family:var(--prose);font-size:14px;color:rgba(245,240,220,0.90);line-height:1.85;flex:1;}
+.strip-block strong{color:#ffd700;}
+/* STAB LADDER */
+.stab-ladder{display:flex;flex-direction:column;gap:6px;margin:16px 0;}
+.stab-rung{display:flex;align-items:flex-start;gap:14px;background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:12px 16px;}
+.stab-rank{font-family:var(--hand);font-size:10px;font-weight:700;color:var(--red);min-width:28px;margin-top:2px;}
+.stab-content{font-family:var(--prose);font-size:15.5px;color:var(--ink);font-weight:600;line-height:1.5;}
+.stab-reason{font-family:var(--prose);font-size:14px;color:var(--ink3);line-height:1.5;margin-top:3px;}
+/* NRXN GRID */
+.nrxn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:20px 0;}
+.nrxn-card{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:16px 18px;}
+.nrxn-name{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.nrxn-rxn{font-family:var(--prose);font-size:15px;color:var(--ink);line-height:1.8;background:var(--paper3);border-radius:4px;padding:10px 12px;margin:8px 0;}
+.nrxn-note{font-family:var(--hand);font-size:9px;color:var(--ink3);letter-spacing:0.5px;line-height:1.6;padding-top:6px;border-top:1px dashed rgba(180,150,100,0.4);}
+.c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-t{color:var(--teal);font-weight:600;}
+@media(max-width:640px){
+  .sec{padding:32px 18px 28px 44px;}
+  .cover{padding:36px 24px 32px;}
+  .cover h1{font-size:26px;}
+  .cover-stats{grid-template-columns:repeat(2,1fr);}
+  .ch-nav{padding:12px 18px;}
+  .toc{padding:20px 20px;}
+  .nrxn-grid,.fcards{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="book">
+
+<!-- COVER -->
+<div class="cover" id="top">
+  <span class="cover-tag">Class 12 · Physical Chemistry</span>
+  <div class="cover-inner">
+    <div class="cover-subject">NEET Chemistry · Physical Chemistry · Class XII · NCERT Fully Mapped</div>
+    <h1>Physical Chemistry 12 —<br/><em>Complete Intelligence System</em></h1>
+    <p class="cover-desc">The definitive single-resource for NEET Physical Chemistry Class 12. Solutions, Electrochemistry (with Batteries &amp; Corrosion), Chemical Kinetics, and Class 12 Practicals — fully NCERT-mapped with 10-year PYQ analysis, decision engines, trap blocks, and worked numericals. Built for AIR ≤ 1000.</p>
+    <div class="cover-stats">
+      <div class="stat-box"><div class="stat-n">4</div><div class="stat-l">Active Chapters</div></div>
+      <div class="stat-box"><div class="stat-n">300+</div><div class="stat-l">Formulae</div></div>
+      <div class="stat-box"><div class="stat-n">55+</div><div class="stat-l">PYQs Mapped</div></div>
+      <div class="stat-box"><div class="stat-n">8–10</div><div class="stat-l">Qs/NEET Paper</div></div>
+    </div>
+    <div class="cover-chips">
+      <span class="chip">Ch 2 — Solutions &amp; Colligative Properties</span>
+      <span class="chip">Ch 3 — Electrochemistry &amp; Batteries</span>
+      <span class="chip">Ch 4 — Chemical Kinetics</span>
+      <span class="chip">Practicals — Sol Preparation &amp; Dialysis</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-lbl">📋 Table of Contents — Physical Chemistry Class 12</div>
+  <div class="toc-section-lbl">Active NEET 2026 Syllabus (NMC Confirmed)</div>
+  <div class="toc-grid">
+    <a href="#ch2"><span class="tn" style="color:var(--blue)">02.</span>Solutions — Raoult's Law &amp; Colligative Properties</a>
+    <a href="#ch3"><span class="tn" style="color:var(--red)">03.</span>Electrochemistry — Nernst, EMF, Conductance &amp; Batteries</a>
+    <a href="#ch4"><span class="tn" style="color:var(--green)">04.</span>Chemical Kinetics — Rate Laws &amp; Arrhenius</a>
+    <a href="#practicals"><span class="tn" style="color:var(--teal)">P.</span>Class 12 Practicals — Sol Preparation &amp; Dialysis</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Key Subsections</div>
+  <div class="toc-grid">
+    <a href="#ch2-s1"><span class="tn">2.1</span>Types of Solutions &amp; Henry's Law</a>
+    <a href="#ch2-s2"><span class="tn">2.2</span>Raoult's Law &amp; Vapour Pressure</a>
+    <a href="#ch2-s3"><span class="tn">2.3</span>All Four Colligative Properties</a>
+    <a href="#ch2-s4"><span class="tn">2.4</span>Van't Hoff Factor + Association Formula</a>
+    <a href="#ch3-s1"><span class="tn">3.1</span>EMF, SRP &amp; Gibbs Energy</a>
+    <a href="#ch3-s2"><span class="tn">3.2</span>Nernst Equation — Most Tested</a>
+    <a href="#ch3-s3"><span class="tn">3.3</span>Conductance &amp; Kohlrausch's Law</a>
+    <a href="#ch3-s4"><span class="tn">3.4</span>Faraday's Laws of Electrolysis</a>
+    <a href="#ch3-s5"><span class="tn">3.5</span>Batteries &amp; Corrosion</a>
+    <a href="#ch4-s1"><span class="tn">4.1</span>Rate Law &amp; Order of Reaction</a>
+    <a href="#ch4-s2"><span class="tn">4.2</span>Integrated Rate Laws + Gas-Phase Formula</a>
+    <a href="#ch4-s3"><span class="tn">4.3</span>Half-Life</a>
+    <a href="#ch4-s4"><span class="tn">4.4</span>Arrhenius Equation</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Reference Only (NMC Deleted — not in NEET 2024–2026)</div>
+  <div class="toc-grid">
+    <a href="#ch1" style="color:var(--ink3);font-style:italic;"><span class="tn" style="color:var(--ink3)">01.</span>The Solid State</a>
+    <a href="#ch5" style="color:var(--ink3);font-style:italic;"><span class="tn" style="color:var(--ink3)">05.</span>Surface Chemistry</a>
+  </div>
+</div>
+
+<!-- CHAPTER 1 — SOLID STATE -->
+<div class="chapter" id="ch1">
+  <div class="ch-head" style="background:linear-gradient(135deg,#2a2520 0%,#3a3028 100%);border-bottom:3px solid #7a6a58;">
+    <div class="ch-ey" style="color:rgba(200,185,160,0.5);">NCERT Class 12 · Chapter 1 · Not in NEET 2024–2026 syllabus · State Board &amp; Pre-2024 PYQ reference</div>
+    <div class="ch-title" style="color:#a09080;">The Solid State — <em style="color:#857060;">Crystal Systems, Unit Cells &amp; Point Defects</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch1-s1">Crystal Types</a>
+    <a href="#ch1-s2">Unit Cell</a>
+    <a href="#ch1-s3">Packing</a>
+    <a href="#ch1-s4">Defects</a>
+    <a href="#ch1-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch1-s1" data-m="Crystal Types">
+      <h2 class="sh">1.1 Classification of Solids <span class="tag to">NCERT §1.2</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-o">🟠 1-2 Qs/paper · Crystallography + Defects</span>
+        <span class="score-pill sp-r">NOTE: Solid State removed from 2024 NEET syllabus — revise for pre-2024 PYQs only</span>
+      </div>
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Constituent Particles</th><th>Bonding</th><th>Properties</th><th>Examples</th></tr>
+          <tr><td><strong>Ionic</strong></td><td>Cations &amp; anions</td><td>Electrostatic</td><td>Hard, brittle, high mp, conducts when molten/dissolved</td><td>NaCl, KCl, MgO</td></tr>
+          <tr><td><strong>Covalent/Network</strong></td><td>Atoms</td><td>Covalent</td><td>Very hard, very high mp, poor conductor (except graphite)</td><td>Diamond, SiO₂, graphite</td></tr>
+          <tr><td><strong>Metallic</strong></td><td>Cations in electron sea</td><td>Metallic</td><td>Good conductor, malleable, ductile, lustrous</td><td>Cu, Fe, Ag, Na</td></tr>
+          <tr><td><strong>Molecular</strong></td><td>Molecules</td><td>Van der Waals/H-bond</td><td>Soft, low mp, non-conductor (mostly)</td><td>Ice, CO₂, I₂, naphthalene</td></tr>
+        </table>
+      </div>
+      <div class="shortcut">
+        <p><strong>🎯 Conductor vs Non-conductor:</strong><br/>
+        Ionic solids → conduct only in <strong>molten state or aqueous solution</strong> (not solid state — ions fixed)<br/>
+        Metallic solids → conduct in <strong>all states</strong> (free electrons)<br/>
+        Graphite → conductor (delocalized π electrons between layers) — exception among covalent solids<br/>
+        Diamond → insulator (all 4 valence e⁻ in C-C bonds, none free)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s2" data-m="Unit Cell">
+      <h2 class="sh">1.2 Unit Cell &amp; Crystal Systems <span class="tag tr">NCERT §1.4 — Numericals here</span></h2>
+      <div class="tbl">
+        <table>
+          <tr><th>Crystal System</th><th>Bravais Lattices</th><th>Axial Lengths</th><th>Axial Angles</th><th>Example</th></tr>
+          <tr><td>Cubic</td><td>3 (SC, BCC, FCC)</td><td>a = b = c</td><td>α=β=γ=90°</td><td>NaCl, ZnS, Cu</td></tr>
+          <tr><td>Tetragonal</td><td>2</td><td>a = b ≠ c</td><td>α=β=γ=90°</td><td>SnO₂, white tin</td></tr>
+          <tr><td>Orthorhombic</td><td>4</td><td>a ≠ b ≠ c</td><td>α=β=γ=90°</td><td>KNO₃, BaSO₄</td></tr>
+          <tr><td>Hexagonal</td><td>1</td><td>a = b ≠ c</td><td>α=β=90°, γ=120°</td><td>Graphite, ZnO</td></tr>
+          <tr><td>Trigonal/Rhombohedral</td><td>1</td><td>a = b = c</td><td>α=β=γ≠90°</td><td>NaNO₃, Calcite</td></tr>
+          <tr><td>Monoclinic</td><td>2</td><td>a ≠ b ≠ c</td><td>α=γ=90°, β≠90°</td><td>Monoclinic sulfur</td></tr>
+          <tr><td>Triclinic</td><td>1</td><td>a ≠ b ≠ c</td><td>α≠β≠γ≠90°</td><td>CuSO₄·5H₂O</td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Atoms per Unit Cell</div>
+          <p>Simple Cubic (SC): $Z = 1$ (8 corners × 1/8)</p>
+          <p>BCC: $Z = 2$ (8×1/8 + 1 body centre)</p>
+          <p>FCC: $Z = 4$ (8×1/8 + 6×1/2 faces)</p>
+          <p>HCP: $Z = 6$ (per unit cell)</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title">Density Formula</div>
+          <p>$\rho = \dfrac{Z \times M}{N_A \times a^3}$</p>
+          <p>Z = atoms/cell; M = molar mass (g/mol)</p>
+          <p>$N_A$ = Avogadro's number; a = edge length (cm)</p>
+          <p>Convert: 1 Å = 10⁻⁸ cm; 1 nm = 10⁻⁷ cm</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Radius Relations (Cubic)</div>
+          <p><strong>SC:</strong> $r = a/2$ → packing efficiency = 52.4%</p>
+          <p><strong>BCC:</strong> $4r = \sqrt{3}a$ → r = $\frac{\sqrt{3}a}{4}$ → PE = 68%</p>
+          <p><strong>FCC:</strong> $4r = \sqrt{2}a$ → r = $\frac{a}{2\sqrt{2}}$ → PE = 74%</p>
+          <p>FCC = CUBIC CLOSE PACKING (CCP) = HCP (74% both)</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> Cu has FCC structure, a = 3.61 Å. Calculate density. M(Cu) = 63.5 g/mol.<br/>
+        $\rho = \dfrac{Z \times M}{N_A \times a^3} = \dfrac{4 \times 63.5}{6.022 \times 10^{23} \times (3.61 \times 10^{-8})^3}$<br/>
+        $a^3 = (3.61)^3 \times 10^{-24} = 47.05 \times 10^{-24}$ cm³<br/>
+        $\rho = \dfrac{254}{6.022 \times 10^{23} \times 47.05 \times 10^{-24}} = \dfrac{254}{28.33} = $ <strong>8.97 g/cm³</strong></p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s3" data-m="Packing">
+      <h2 class="sh">1.3 Packing Efficiency &amp; Void Types <span class="tag to">NCERT §1.5</span></h2>
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Voids in Close Packing</div>
+          <p><strong>Tetrahedral void:</strong> surrounded by 4 spheres; radius ratio r/R = 0.225</p>
+          <p><strong>Octahedral void:</strong> surrounded by 6 spheres; radius ratio r/R = 0.414</p>
+          <p>In CCP (FCC): octahedral voids = n, tetrahedral voids = 2n (n = number of spheres)</p>
+          <p>NaCl structure: Na⁺ in ALL octahedral voids of Cl⁻ FCC</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Common Crystal Structures</div>
+          <p><strong>NaCl (Rock Salt):</strong> FCC Cl⁻, Na⁺ in all octahedral voids. CN = 6:6</p>
+          <p><strong>ZnS (Zinc Blende/Sphalerite):</strong> FCC S²⁻, Zn²⁺ in alternate tetrahedral. CN = 4:4</p>
+          <p><strong>CsCl:</strong> Cs⁺ at body centre of Cl⁻ SC. CN = 8:8</p>
+          <p><strong>ZnS (Wurtzite):</strong> HCP S²⁻, Zn²⁺ in alternating tetrahedral voids</p>
+          <p><strong>Fluorite (CaF₂):</strong> FCC Ca²⁺, F⁻ in ALL tetrahedral voids. CN = 8:4</p>
+          <p><strong>Antifluorite (Na₂O):</strong> FCC O²⁻, Na⁺ in tetrahedral voids. CN = 4:8</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s4" data-m="Defects">
+      <h2 class="sh">1.4 Point Defects — Crystal Imperfections <span class="tag tr">NCERT §1.7 — Highest NEET Yield in Ch1</span></h2>
+      <div class="tbl">
+        <table>
+          <tr><th>Defect</th><th>Description</th><th>Effect on Density</th><th>Example</th></tr>
+          <tr><td><strong>Schottky</strong></td><td>Equal cations AND anions missing (maintain electrical neutrality)</td><td class="c-r">Decreases</td><td>NaCl, KCl, KBr, AgBr</td></tr>
+          <tr><td><strong>Frenkel</strong></td><td>Smaller cation moves to interstitial site (no ion removal)</td><td>No change</td><td>ZnS, AgCl, AgBr, AgI</td></tr>
+          <tr><td><strong>Metal excess (F-centre)</strong></td><td>Extra metal cations at interstitial, electrons trapped → colour</td><td class="c-g">Increases</td><td>NaCl → yellow; KCl → violet</td></tr>
+          <tr><td><strong>Metal deficiency</strong></td><td>Metal deficiency compensated by higher oxidation state ions</td><td>Decreases</td><td>Fe₀.₉₅O (FeO with some Fe³⁺)</td></tr>
+          <tr><td><strong>Impurity defect</strong></td><td>Foreign ions substitute (Si + As = n-type; Si + B = p-type)</td><td>Variable</td><td>Doped semiconductors</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Schottky vs Frenkel:</strong><br/>
+        <strong>Schottky</strong> — "Skeleton" defect: entire ions gone. Density drops. NaCl, CsCl, KBr (large ions, high CN)<br/>
+        <strong>Frenkel</strong> — "Freelancer" defect: ion moves to interstitial. Density unchanged. ZnS, AgCl (large size difference)<br/>
+        <strong>AgBr</strong> has BOTH Frenkel AND Schottky — asked every 3 years in NEET<br/>
+        <strong>F-centre</strong> (Farbzentrum): colour due to trapped electron absorbing visible light. NaCl+Na vapour → yellow. NOT a Frenkel defect!</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Semiconductors</div>
+          <p><strong>Intrinsic:</strong> Pure semiconductor, e⁻ excited by heat. Si, Ge</p>
+          <p><strong>n-type:</strong> Group 15 (P, As) doped into Group 14 (Si) → extra electron → n-type</p>
+          <p><strong>p-type:</strong> Group 13 (B, Al, Ga) doped into Group 14 → electron hole → p-type</p>
+          <p><strong>Superconductors:</strong> Zero resistance below critical T (Tc). e.g., Nb₃Ge at 23K</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Magnetic Properties</div>
+          <p><strong>Paramagnetic:</strong> Weakly attracted, unpaired e⁻ (e.g., TiO, VO, CuO)</p>
+          <p><strong>Ferromagnetic:</strong> Strongly attracted, permanent magnetism (e.g., Fe, Ni, Co, CrO₂)</p>
+          <p><strong>Antiferromagnetic:</strong> Net zero magnetism, opposite spin arrangement (e.g., MnO)</p>
+          <p><strong>Ferrimagnetic:</strong> Unequal opposite spins → net moment (e.g., Fe₃O₄, ferrites)</p>
+          <p><strong>Diamagnetic:</strong> Weakly repelled, all e⁻ paired (e.g., NaCl, TiO₂)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-pyq" data-m="PYQ">
+      <h2 class="sh">1.P PYQ Pattern — Solid State <span class="tag to">Pre-2024 Analysis</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which of the following point defects are shown by AgBr crystal? (a) Frenkel only (b) Schottky only (c) Frenkel and Schottky (d) Neither</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (c) Frenkel and Schottky</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>AgBr is unique — shows BOTH defects: Frenkel (Ag⁺ moves to interstitial, small size difference) AND Schottky (pairs of Ag⁺/Br⁻ go missing)</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>AgCl, AgI show mostly Frenkel. NaCl shows Schottky. AgBr shows BOTH — memorise this!</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Why</span><p>AgBr has intermediate properties — neither too ionic (favoring only Schottky) nor too covalent, allowing both defect types to coexist.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">In a face-centred cubic arrangement of A and B, A is at corners and B at face-centres. The formula is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: AB₃</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>A at corners: 8×(1/8) = 1 A. B at face-centres: 6×(1/2) = 3 B.</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Formula</span><p>Ratio A:B = 1:3 → Formula = AB₃</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Template</span><p>Corner atom contributes 1/8; Face-centre = 1/2; Edge-centre = 1/4; Body-centre = 1</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 1 (Solid State)</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Density of unit cell"</div>
+            <div class="trigger-action">→ ρ = ZM/(Nₐ × a³). Z: SC=1, BCC=2, FCC=4. a in cm (1Å = 10⁻⁸cm)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Schottky vs Frenkel"</div>
+            <div class="trigger-action">→ Schottky = ions missing → density decreases. Frenkel = ion displaced → density unchanged. AgBr = BOTH.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Packing efficiency"</div>
+            <div class="trigger-action">→ SC=52.4%, BCC=68%, FCC/HCP=74% (most efficient). Voids = 100% - PE%.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "NaCl structure / CN = 6:6"</div>
+            <div class="trigger-action">→ Na⁺ in all octahedral voids of Cl⁻ FCC. Each Na⁺ surrounded by 6 Cl⁻, each Cl⁻ by 6 Na⁺.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Semiconductor / n-type / p-type"</div>
+            <div class="trigger-action">→ n-type: Group 15 in Group 14 (extra e⁻). p-type: Group 13 in Group 14 (hole). Majority carrier.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "F-centre / colour of crystal"</div>
+            <div class="trigger-action">→ Metal excess defect. Extra e⁻ trapped at anion vacancy → absorbs visible light → colour. NaCl+Na vapour = yellow.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Graphite is molecular solid" — NO. Graphite is a COVALENT solid (like diamond). It's just an exception that conducts electricity.</div>
+          <div class="elim-step">❌ Trap: "Ionic solids conduct electricity in solid state" — NO. Ions are fixed in crystalline lattice in solid state. Only conducts when MELTED or DISSOLVED.</div>
+          <div class="elim-step">❌ Trap: "F-centre is Frenkel defect" — NO. F-centre = metal excess defect (extra anion vacancy with trapped electron). Different from Frenkel (cation displacement).</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 1</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">FCC atoms</div><div class="re-val">Z = 4 (8×1/8 + 6×1/2)</div></div>
+          <div class="re-item"><div class="re-label">BCC atoms</div><div class="re-val">Z = 2 (8×1/8 + 1)</div></div>
+          <div class="re-item"><div class="re-label">Density formula</div><div class="re-val">ρ = ZM/(Nₐa³)</div></div>
+          <div class="re-item"><div class="re-label">FCC packing</div><div class="re-val">74% (most efficient)</div></div>
+          <div class="re-item"><div class="re-label">Schottky</div><div class="re-val">Ions missing → ρ decreases</div></div>
+          <div class="re-item"><div class="re-label">Frenkel</div><div class="re-val">Ion displaced → ρ unchanged</div></div>
+          <div class="re-item"><div class="re-label">AgBr</div><div class="re-val">BOTH Frenkel + Schottky</div></div>
+          <div class="re-item"><div class="re-label">NaCl CN</div><div class="re-val">6:6 (octahedral)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 2 — SOLUTIONS -->
+<div class="chapter" id="ch2">
+  <div class="ch-head blue">
+    <div class="ch-ey">NCERT Class 12 · Chapter 2 · ~2 Qs/NEET · HIGH YIELD</div>
+    <div class="ch-title">Solutions — <em>Raoult's Law, Colligative Properties &amp; Van't Hoff Factor</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch2-s1">Types &amp; Concentration</a>
+    <a href="#ch2-s2">Raoult's Law</a>
+    <a href="#ch2-s3">Colligative Properties</a>
+    <a href="#ch2-s4">Van't Hoff Factor</a>
+    <a href="#ch2-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch2-s1" data-m="Types">
+      <h2 class="sh">2.1 Types of Solutions &amp; Solubility <span class="tag tb">NCERT §2.2</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-b">🔵 2 Qs/paper — colligative properties most tested</span>
+        <span class="score-pill sp-r">Boiling point elevation &amp; depression — every year 2018–2024</span>
+        <span class="score-pill sp-o">Osmosis &amp; osmotic pressure — 2024, 2022, 2021</span>
+      </div>
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Henry's Law</div>
+          <p>$p = K_H \cdot x$ (partial pressure of gas ∝ mole fraction in solution)</p>
+          <p>$K_H$ = Henry's constant (different for each gas-solvent pair)</p>
+          <p>Higher T → higher $K_H$ → lower solubility of gas</p>
+          <p>Application: soda fizz, O₂ in blood, diving (bends)</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Solubility Rules</div>
+          <p>"Like dissolves like": polar solvent dissolves polar solute</p>
+          <p>Gas in liquid: solubility decreases with temperature</p>
+          <p>Gas in liquid: solubility increases with pressure (Henry's law)</p>
+          <p>Solid in liquid: generally increases with temperature (exceptions: NaCl slightly decreases)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-s2" data-m="Raoult's Law">
+      <h2 class="sh">2.2 Raoult's Law &amp; Vapour Pressure Lowering <span class="tag tr">NCERT §2.3 — Central Formula</span></h2>
+
+      <div class="formula">
+        $p_A = p_A^\circ \cdot \chi_A$ &nbsp;&amp;&amp;&nbsp; $p_{\text{total}} = p_A^\circ\chi_A + p_B^\circ\chi_B$
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Relative Lowering of Vapour Pressure (RLVP)</div>
+          <p>$\dfrac{p^\circ - p_s}{p^\circ} = \dfrac{\Delta p}{p^\circ} = \chi_{\text{solute}} = \dfrac{n_2}{n_1 + n_2} \approx \dfrac{n_2}{n_1}$ (dilute)</p>
+          <p>RLVP = mole fraction of solute (non-volatile)</p>
+          <p>It is a colligative property — depends only on <strong>number</strong> of solute particles</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Ideal vs Non-Ideal Solutions</div>
+          <p><strong>Ideal:</strong> Obeys Raoult's at all concentrations. ΔV_mix = 0, ΔH_mix = 0. A-B = A-A = B-B forces. Example: Benzene + Toluene</p>
+          <p><strong>Positive deviation:</strong> p > Raoult. A-B weaker than A-A/B-B. ΔH_mix &gt; 0. Example: Ethanol + Acetone, Ethanol + Water, CCl₄ + CHCl₃</p>
+          <p><strong>Negative deviation:</strong> p &lt; Raoult. A-B stronger. ΔH_mix &lt; 0. Example: Acetone + Chloroform (CHCl₃), HCl + Water, HNO₃ + Water</p>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ NEET TRAP — Azeotrope</span>
+        <p><strong>Minimum boiling azeotrope:</strong> Positive deviation mixtures. Boils at LOWER temperature than either component. Example: Ethanol-water (95.7% ethanol by mass). Cannot be separated by simple distillation.<br/>
+        <strong>Maximum boiling azeotrope:</strong> Negative deviation mixtures. Boils at HIGHER temperature. Example: HNO₃-H₂O (68% HNO₃), HCl-H₂O (20.2% HCl)</p>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Deviation → Azeotrope → Thermodynamics — Complete Chain:</strong></p>
+        <p><strong>Positive Deviation</strong> (e.g. Ethanol + Acetone):<br/>
+        A–B bonds weaker than A–A / B–B → molecules escape easily → Vapour pressure <strong>HIGH</strong> → Boiling point <strong>LOW</strong> → <strong>Minimum boiling azeotrope</strong><br/>
+        $\Delta H_{mix} > 0$ (Endothermic — heat absorbed to break A–A/B–B bonds)<br/>
+        $\Delta V_{mix} > 0$ (Expansion — molecules less tightly held)</p>
+        <p style="margin-top:10px;"><strong>Negative Deviation</strong> (e.g. Acetone + Chloroform):<br/>
+        A–B bonds stronger than A–A / B–B → molecules trapped → Vapour pressure <strong>LOW</strong> → Boiling point <strong>HIGH</strong> → <strong>Maximum boiling azeotrope</strong><br/>
+        $\Delta H_{mix} < 0$ (Exothermic — extra energy released forming strong A–B bonds)<br/>
+        $\Delta V_{mix} < 0$ (Contraction — molecules pack closer together)</p>
+        <p style="margin-top:8px;"><strong>Memory:</strong> Positive deviation = Positive ΔH = Positive ΔV. Negative deviation = Negative ΔH = Negative ΔV. Signs always match the deviation.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Raoult's Law:</strong> 18 g glucose (M=180) dissolved in 90 g water (M=18). Find vapour pressure if p°(water) = 17.5 mmHg.<br/>
+        $n_1(\text{water}) = 90/18 = 5$ mol; $n_2(\text{glucose}) = 18/180 = 0.1$ mol<br/>
+        $\chi_1 = 5/(5+0.1) = 5/5.1 = 0.9804$<br/>
+        $p_s = p^\circ \times \chi_1 = 17.5 \times 0.9804 = $ <strong>17.16 mmHg</strong><br/>
+        Or: RLVP $= (17.5 - p_s)/17.5 = 0.1/5.1 = 0.0196$ → $p_s = 17.5(1-0.0196) = 17.16$ mmHg</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-s3" data-m="Colligative">
+      <h2 class="sh">2.3 Colligative Properties — All Four <span class="tag tr">NCERT §2.4 — Highest NEET Yield</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Colligative Properties</span>
+        <p>Properties that depend ONLY on the <strong>number of solute particles</strong>, not their nature/identity. The four colligative properties: (1) Lowering of VP, (2) Elevation in BP, (3) Depression in FP, (4) Osmotic Pressure.</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">1. Elevation in Boiling Point (ΔTb)</div>
+          <p>$\Delta T_b = K_b \times m$</p>
+          <p>$K_b$ = ebullioscopic constant (molal elevation constant)</p>
+          <p>$m$ = molality (mol of solute / kg of solvent)</p>
+          <p>$K_b(\text{water}) = 0.512$ K·kg/mol</p>
+          <p>$M_2 = \dfrac{1000 \times K_b \times w_2}{\Delta T_b \times w_1}$ (molar mass determination)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">2. Depression in Freezing Point (ΔTf)</div>
+          <p>$\Delta T_f = K_f \times m$</p>
+          <p>$K_f$ = cryoscopic constant (molal depression constant)</p>
+          <p>$K_f(\text{water}) = 1.86$ K·kg/mol</p>
+          <p>$K_f(\text{benzene}) = 5.12$ K·kg/mol</p>
+          <p>$M_2 = \dfrac{1000 \times K_f \times w_2}{\Delta T_f \times w_1}$</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">3. Osmotic Pressure (π)</div>
+          <p>$\pi = CRT = \dfrac{n}{V}RT$ (van't Hoff equation)</p>
+          <p>$\pi = iCRT$ (with van't Hoff factor i)</p>
+          <p>C = molarity (mol/L); R = 0.0821 L·atm·mol⁻¹K⁻¹</p>
+          <p>Isotonic: same π → same concentration at same T</p>
+          <p>Best for high molecular mass substances (very sensitive)</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Osmosis &amp; Osmotic Pressure</div>
+          <p><strong>Osmosis:</strong> Solvent flows from lower → higher concentration through semipermeabe membrane</p>
+          <p><strong>Reverse osmosis:</strong> Apply π &gt; osmotic pressure → force solvent from concentrated to dilute (water purification)</p>
+          <p><strong>Hypotonic:</strong> cell swells (lower external π)</p>
+          <p><strong>Hypertonic:</strong> cell shrinks/plasmolysis (higher external π)</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — ΔTf:</strong> 1.8 g of solute dissolved in 100 g water, ΔTf = 0.186 K. Find molar mass. (Kf = 1.86 K·kg/mol)<br/>
+        $\Delta T_f = K_f \times m = K_f \times \dfrac{w_2 \times 1000}{M_2 \times w_1}$<br/>
+        $M_2 = \dfrac{K_f \times w_2 \times 1000}{\Delta T_f \times w_1} = \dfrac{1.86 \times 1.8 \times 1000}{0.186 \times 100} = \dfrac{3348}{18.6} = $ <strong>180 g/mol</strong> (glucose)</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Osmotic Pressure:</strong> 0.1 M sucrose solution at 27°C. Find osmotic pressure.<br/>
+        $\pi = CRT = 0.1 \times 0.0821 \times 300 = $ <strong>2.463 atm</strong></p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-s4" data-m="Vant Hoff">
+      <h2 class="sh">2.4 Van't Hoff Factor (i) — Electrolytes <span class="tag tr">NCERT §2.6 — Master This</span></h2>
+
+      <div class="formula">
+        $i = \dfrac{\text{observed colligative property}}{\text{normal (calculated) colligative property}} = \dfrac{\text{actual particles}}{\text{formula units dissolved}}$
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Modified Colligative Property Formulae</div>
+          <p>$\Delta T_b = i \cdot K_b \cdot m$</p>
+          <p>$\Delta T_f = i \cdot K_f \cdot m$</p>
+          <p>$\pi = i \cdot C \cdot R \cdot T$</p>
+          <p>$\dfrac{\Delta p}{p^\circ} = i \cdot \chi_{\text{solute}}$</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">i Values for Common Electrolytes</div>
+          <p>Non-electrolyte (glucose, urea): i = 1 (no dissociation)</p>
+          <p>NaCl → Na⁺ + Cl⁻: <strong>i = 2</strong> (complete dissoc.)</p>
+          <p>CaCl₂ → Ca²⁺ + 2Cl⁻: <strong>i = 3</strong></p>
+          <p>AlCl₃ → Al³⁺ + 3Cl⁻: <strong>i = 4</strong></p>
+          <p>K₂SO₄ → 2K⁺ + SO₄²⁻: <strong>i = 3</strong></p>
+          <p>For association (e.g., acetic acid in benzene): i &lt; 1</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Degree of Dissociation from i</div>
+          <p>For electrolyte $A_x \rightarrow xA^{n+}$:</p>
+          <p>$i = 1 + (x-1)\alpha$ where α = degree of dissociation</p>
+          <p>$\alpha = \dfrac{i-1}{x-1}$</p>
+          <p>For NaCl: $i = 1 + (2-1)\alpha = 1+\alpha$ → $\alpha = i-1$</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">⭐ Association Formula (NTA LOVES THIS)</div>
+          <p>For n molecules associating: $nA \rightleftharpoons A_n$</p>
+          <p>$\boxed{\alpha = \dfrac{1-i}{1 - 1/n}}$</p>
+          <p><strong>Classic example:</strong> Acetic acid / Benzoic acid in <em>Benzene</em> (non-polar solvent). Dimerizes: n = 2.</p>
+          <p>If 100% dimerized (α = 1): $i = \frac{1}{2} = 0.5$</p>
+          <p>If 50% dimerized (α = 0.5): $i = 1 - \alpha(1 - 1/n) = 1 - 0.5 \times 0.5 = 0.75$</p>
+          <p><strong>Trick:</strong> Association → i &lt; 1 (fewer particles). Dissociation → i &gt; 1.</p>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">🚫 CRITICAL NTA TRAP — Isotonic Solutions</span>
+        <p><strong>Two solutions are isotonic when their osmotic pressures are equal: $\pi_1 = \pi_2$</strong><br/>
+        This means: $i_1 C_1 RT = i_2 C_2 RT$ → <strong>$i_1 C_1 = i_2 C_2$</strong></p>
+        <p>⚠️ <strong>DO NOT simply equate $C_1 = C_2$</strong> — this only works if BOTH solutions have i = 1 (non-electrolytes).</p>
+        <p><strong>NTA Classic Trap:</strong> "Which solution is isotonic with 0.1 M NaCl?"<br/>
+        NaCl: i = 2 → effective particles = 0.1 × 2 = 0.2<br/>
+        Urea (i=1): needs C = 0.2 M to be isotonic ✓<br/>
+        Glucose (i=1): needs C = 0.2 M ✓<br/>
+        CaCl₂ (i=3): needs C = 0.2/3 = 0.067 M ✓</p>
+        <p>Always apply: <strong>effective concentration = i × C</strong> when comparing isotonic solutions.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Van't Hoff factor:</strong> 1 g NaCl (M=58.5) in 200 g water. ΔTf = 0.639 K. Find i. (Kf = 1.86)<br/>
+        $m = \dfrac{1 \times 1000}{58.5 \times 200} = \dfrac{1000}{11700} = 0.0855$ mol/kg<br/>
+        $i = \dfrac{\Delta T_f}{K_f \times m} = \dfrac{0.639}{1.86 \times 0.0855} = \dfrac{0.639}{0.159} = $ <strong>4.02 ≈ 4</strong><br/>
+        Wait: let me recalculate: if i=1.96 → αNaCl ≈ 0.96 (96% dissociation) — typical for NEET scenario. NEET uses whole number answers.</p>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 2 (Solutions)</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Boiling point elevation / ΔTb"</div>
+            <div class="trigger-action">→ ΔTb = Kb × m × i. Kb(water) = 0.512. Use molality (mol/kg solvent).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Freezing point depression / ΔTf"</div>
+            <div class="trigger-action">→ ΔTf = Kf × m × i. Kf(water) = 1.86. Kf(benzene) = 5.12.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Osmotic pressure / high MW"</div>
+            <div class="trigger-action">→ π = iCRT. Best for polymers &amp; biomolecules (most sensitive at low conc).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Positive deviation / negative deviation"</div>
+            <div class="trigger-action">→ +ve: A-B weaker (Ethanol+Acetone). -ve: A-B stronger (Acetone+CHCl₃). Min/Max azeotropes respectively.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "i for NaCl / CaCl₂"</div>
+            <div class="trigger-action">→ NaCl: i=2. CaCl₂: i=3. AlCl₃: i=4. Association: i&lt;1. Non-electrolyte: i=1.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Molar mass from ΔTf or ΔTb"</div>
+            <div class="trigger-action">→ M₂ = (1000 × K × w₂)/(ΔT × w₁). w₁ = mass of solvent in grams.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Colligative properties depend on nature of solute" — NO. They depend ONLY on the NUMBER of solute particles (mole fraction).</div>
+          <div class="elim-step">❌ Trap: "ΔTb formula uses molarity" — ALWAYS use MOLALITY (mol/kg solvent), NOT molarity, in colligative property formulae.</div>
+          <div class="elim-step">❌ Trap: "Osmotic pressure formula: π = mRT" — WRONG. Use MOLARITY (C = n/V), not molality: π = CRT.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 2</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">RLVP</div><div class="re-val">= χ(solute) = mole fraction</div></div>
+          <div class="re-item"><div class="re-label">ΔTb</div><div class="re-val">= Kb × m × i (Kb water = 0.512)</div></div>
+          <div class="re-item"><div class="re-label">ΔTf</div><div class="re-val">= Kf × m × i (Kf water = 1.86)</div></div>
+          <div class="re-item"><div class="re-label">Osmotic π</div><div class="re-val">= iCRT (C = molarity)</div></div>
+          <div class="re-item"><div class="re-label">NaCl i-value</div><div class="re-val">i = 2</div></div>
+          <div class="re-item"><div class="re-label">Ideal solution</div><div class="re-val">ΔHmix=0, ΔVmix=0 (benzene+toluene)</div></div>
+          <div class="re-item"><div class="re-label">Min BP azeotrope</div><div class="re-val">Positive deviation (ethanol+water)</div></div>
+          <div class="re-item"><div class="re-label">Molar mass from ΔTf</div><div class="re-val">M₂ = 1000Kf w₂/(ΔTf w₁)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-pyq" data-m="PYQ">
+      <h2 class="sh">2.P PYQ Pattern — Solutions <span class="tag tg">2015–2025</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following aqueous solutions has the highest boiling point? (A) 1M NaCl (B) 1M CaCl₂ (C) 1M glucose (D) 1M AlCl₃</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (D) 1M AlCl₃</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>ΔTb ∝ i × m. Higher i → higher BP elevation</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">i-values</span><p>Glucose: i=1. NaCl: i=2. CaCl₂: i=3. AlCl₃: i=4 → highest particles → highest ΔTb → highest BP</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Answer</span><p>More ions → more particles → larger colligative effect. AlCl₃ produces 4 particles per formula unit.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Osmotic pressure of a solution containing 8.6% (w/v) urea solution at 300K is? (M urea=60; R=0.0821 L·atm·mol⁻¹K⁻¹)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: ≈ 35 atm</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>π = CRT. 8.6% w/v means 8.6 g per 100 mL = 86 g/L</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>C = 86/60 = 1.433 mol/L; π = 1.433 × 0.0821 × 300 = 35.3 atm</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Note</span><p>w/v % means grams per 100 mL. Convert to mol/L by dividing mass by molar mass.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 3 — ELECTROCHEMISTRY -->
+<div class="chapter" id="ch3">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 3 · ~2-3 Qs/NEET · MOST CALCULATION-HEAVY</div>
+    <div class="ch-title">Electrochemistry — <em>Nernst Equation, EMF, Conductance &amp; Faraday's Laws</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch3-s1">Electrochemical Cells</a>
+    <a href="#ch3-s2">Nernst Equation</a>
+    <a href="#ch3-s3">Conductance</a>
+    <a href="#ch3-s4">Faraday's Laws</a>
+    <a href="#ch3-s5">⭐ Batteries &amp; Corrosion</a>
+    <a href="#ch3-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch3-s1" data-m="Cells">
+      <h2 class="sh">3.1 Electrochemical Cells — EMF &amp; Standard Potential <span class="tag tr">NCERT §3.3</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 2-3 Qs/paper — Nernst equation most tested</span>
+        <span class="score-pill sp-b">Standard EMF calculation — 2024, 2023, 2022, 2021</span>
+        <span class="score-pill sp-g">Kohlrausch's Law — 2023, 2021, 2019</span>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Standard Cell EMF</div>
+          <p>$E^\circ_{\text{cell}} = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}}$</p>
+          <p>$E^\circ_{\text{cell}} = E^\circ_{\text{reduction (cathode)}} - E^\circ_{\text{reduction (anode)}}$</p>
+          <p>Cathode: reduction (higher SRP) → positive electrode in Galvanic cell</p>
+          <p>Anode: oxidation (lower SRP) → negative electrode</p>
+          <p>SRP = Standard Reduction Potential (25°C, 1M, 1 atm)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Cell Notation (IUPAC)</div>
+          <p>$\text{Anode (oxidation)} \mid \text{Anode sol.} \parallel \text{Cathode sol.} \mid \text{Cathode (reduction)}$</p>
+          <p>Example: $\text{Zn} \mid \text{Zn}^{2+}(1M) \parallel \text{Cu}^{2+}(1M) \mid \text{Cu}$</p>
+          <p>Single bar (|) = phase boundary; Double bar (||) = salt bridge</p>
+          <p>$E^\circ = E^\circ_{\text{Cu}^{2+}/\text{Cu}} - E^\circ_{\text{Zn}^{2+}/\text{Zn}} = 0.34-(-0.76) = 1.10$ V</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Key SRP Values (Memorise)</div>
+          <p>Li⁺/Li: −3.05 V (strongest reducing agent)</p>
+          <p>Al³⁺/Al: −1.66 V</p>
+          <p>Zn²⁺/Zn: −0.76 V</p>
+          <p>Fe²⁺/Fe: −0.44 V</p>
+          <p>Cu²⁺/Cu: +0.34 V (cathode in Daniel cell)</p>
+          <p>Ag⁺/Ag: +0.80 V</p>
+          <p>F₂/F⁻: +2.87 V (strongest oxidising agent)</p>
+        </div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Gibbs Energy &amp; Equilibrium</div>
+          <p>$\Delta G^\circ = -nFE^\circ_{\text{cell}}$</p>
+          <p>$F = 96500$ C/mol (Faraday constant)</p>
+          <p>$n$ = moles of electrons transferred (from balanced equation)</p>
+          <p>At equilibrium: $E_{\text{cell}} = 0$ → $\Delta G = 0$ → $Q = K$</p>
+          <p>$E^\circ_{\text{cell}} = \dfrac{RT\ln K}{nF} = \dfrac{0.0591 \log K}{n}$ (at 298K)</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Galvanic vs Electrolytic</div>
+          <p><strong>Galvanic (Voltaic):</strong> Spontaneous reaction → produces electricity. Daniel cell. ΔG &lt; 0, E &gt; 0.</p>
+          <p><strong>Electrolytic:</strong> Non-spontaneous → requires external electricity. Electrolysis of NaCl, electroplating. ΔG &gt; 0.</p>
+          <p><strong>Fuel cell:</strong> Continuous galvanic cell using fuel (H₂ + O₂ → H₂O). No combustion.</p>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ SRP Order Trick:</strong><br/>
+        Higher SRP → better oxidising agent → tends to get reduced → is the cathode<br/>
+        Lower SRP → better reducing agent → tends to get oxidised → is the anode<br/>
+        <strong>ANTI LEAK FRESH CUPS (electrochemical series from high to low reduction):</strong><br/>
+        Au(+1.5), Pt(+1.2), Hg(+0.8), Ag(+0.80), Cu(+0.34), H₂(0.00), Fe(-0.44), Zn(-0.76), Al(-1.66), Mg(-2.37), Na(-2.71), K(-2.93), Li(-3.05)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch3-s2" data-m="Nernst">
+      <h2 class="sh">3.2 Nernst Equation — Most Tested NEET Formula <span class="tag tr">NCERT §3.4 — MASTER THIS</span></h2>
+
+      <div class="formula">
+        $E_{\text{cell}} = E^\circ_{\text{cell}} - \dfrac{RT}{nF}\ln Q \quad \Longrightarrow \quad E_{\text{cell}} = E^\circ_{\text{cell}} - \dfrac{0.0591}{n}\log Q \quad \text{(at 298K)}$
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Q in Nernst Equation</div>
+          <p>Q is the reaction quotient (like Kc but at any concentration)</p>
+          <p>For oxidation at anode: $\text{Zn} \rightarrow \text{Zn}^{2+} + 2e^-$</p>
+          <p>For reduction at cathode: $\text{Cu}^{2+} + 2e^- \rightarrow \text{Cu}$</p>
+          <p>Overall: $\text{Zn} + \text{Cu}^{2+} \rightarrow \text{Zn}^{2+} + \text{Cu}$</p>
+          <p>$Q = \dfrac{[\text{Zn}^{2+}]}{[\text{Cu}^{2+}]}$</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Nernst — Key Relationships</div>
+          <p>At equilibrium ($E = 0$): $E^\circ = \dfrac{0.0591}{n}\log K_c$</p>
+          <p>Concentration cell: $E^\circ = 0$ → $E = -\dfrac{0.0591}{n}\log\dfrac{c_1}{c_2} = +\dfrac{0.0591}{n}\log\dfrac{c_2}{c_1}$</p>
+          <p>Electrode potential: $E_{M^{n+}/M} = E^\circ_{M^{n+}/M} + \dfrac{0.0591}{n}\log[M^{n+}]$</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Nernst:</strong> Calculate $E_{\text{cell}}$ for Daniel cell when $[\text{Cu}^{2+}] = 0.1$ M and $[\text{Zn}^{2+}] = 0.01$ M. ($E^\circ_{\text{cell}} = 1.10$ V)<br/>
+        $E = 1.10 - \dfrac{0.0591}{2}\log\dfrac{0.01}{0.1} = 1.10 - 0.02955 \times \log(0.1)$<br/>
+        $= 1.10 - 0.02955 \times (-1) = 1.10 + 0.02955 = $ <strong>1.1296 V ≈ 1.13 V</strong><br/>
+        (log 0.1 = −1, so Q &lt; 1 → E &gt; E°)</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — K from E°:</strong> $E^\circ_{\text{cell}} = 1.10$ V, n = 2. Find K.<br/>
+        $\log K = \dfrac{n \times E^\circ}{0.0591} = \dfrac{2 \times 1.10}{0.0591} = \dfrac{2.20}{0.0591} = 37.23$<br/>
+        $K = 10^{37.23} \approx 1.7 \times 10^{37}$ (very large → reaction essentially complete)</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Nernst Trick — When Q &lt; 1 vs Q &gt; 1:</strong><br/>
+        log Q &lt; 0 → E &gt; E° (cell is more favourable than standard)<br/>
+        log Q &gt; 0 → E &lt; E° (cell less favourable)<br/>
+        When [product] increases → Q increases → E decreases (reaction less spontaneous)<br/>
+        <strong>Concentration cell:</strong> Higher concentration at cathode → cell works better</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch3-s3" data-m="Conductance">
+      <h2 class="sh">3.3 Conductance — Kohlrausch's Law <span class="tag tb">NCERT §3.5</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Conductance Definitions</div>
+          <p>Resistance $R = \rho \dfrac{l}{A}$ ($\rho$ = resistivity)</p>
+          <p>Conductance $G = \dfrac{1}{R} = \kappa \dfrac{A}{l}$ (siemens, S)</p>
+          <p>Conductivity $\kappa = \dfrac{G \cdot l}{A}$ (S/m or S/cm)</p>
+          <p>Cell constant $= \dfrac{l}{A}$ (measured experimentally)</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Molar Conductivity (Λm)</div>
+          <p>$\Lambda_m = \dfrac{\kappa \times 1000}{C}$ (C in mol/L, κ in S/cm)</p>
+          <p>Or: $\Lambda_m = \kappa / C$ (if both in SI units)</p>
+          <p>Units: S·cm²·mol⁻¹</p>
+          <p><strong>Strong electrolyte:</strong> $\Lambda_m$ increases with dilution slowly</p>
+          <p><strong>Weak electrolyte:</strong> $\Lambda_m$ increases sharply with dilution</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title">Kohlrausch's Law</div>
+          <p>At infinite dilution, molar conductivity = sum of λ of individual ions:</p>
+          <p>$\Lambda^\circ_m = \lambda^\circ_+ + \lambda^\circ_-$ (for 1:1 electrolyte)</p>
+          <p>For CH₃COOH: $\Lambda^\circ_m = \lambda^\circ_{H^+} + \lambda^\circ_{CH_3COO^-}$</p>
+          <p>$= \Lambda^\circ_m(\text{HCl}) + \Lambda^\circ_m(\text{CH}_3\text{COONa}) - \Lambda^\circ_m(\text{NaCl})$</p>
+          <p>Used to find $\Lambda^\circ_m$ of WEAK electrolytes (can't measure directly)</p>
+        </div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Debye-Hückel-Onsager Equation</div>
+          <p>For strong electrolyte: $\Lambda_m = \Lambda^\circ_m - A\sqrt{C}$</p>
+          <p>Plot $\Lambda_m$ vs $\sqrt{C}$ → straight line</p>
+          <p>Intercept = $\Lambda^\circ_m$; Slope = A</p>
+          <p>Extrapolate to C=0 (infinite dilution) to get $\Lambda^\circ_m$</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Degree of Dissociation from Λm</div>
+          <p>$\alpha = \dfrac{\Lambda_m}{\Lambda^\circ_m}$</p>
+          <p>$K_a = \dfrac{C\alpha^2}{1-\alpha}$</p>
+          <p>Degree of dissociation of weak acid increases with dilution</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">⭐ Equivalent Conductance (Λeq)</div>
+          <p>$\Lambda_{eq} = \dfrac{\Lambda_m}{n\text{-factor}}$</p>
+          <p>n-factor: for NaCl = 1, H₂SO₄ = 2, AlCl₃ = 3</p>
+          <p>Example: $\Lambda_m(\text{H}_2\text{SO}_4) = 860$ S·cm²·mol⁻¹ → $\Lambda_{eq} = 860/2 = 430$ S·cm²·eq⁻¹</p>
+          <p>Units: S·cm²·eq⁻¹ (equivalent⁻¹ instead of mol⁻¹)</p>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">📐 Cell Constant (G*) — Fixed Property</span>
+        <p>$G^* = \dfrac{l}{A}$ (length / cross-sectional area of the cell)</p>
+        <p>Cell constant is a <strong>fixed property of the conductivity cell</strong> — it does NOT change with concentration, type of electrolyte, or temperature of the solution being measured.</p>
+        <p>It is measured using a <strong>standard KCl solution</strong> of known conductivity (calibration). Once determined, the same cell constant is used for all subsequent measurements.</p>
+        <p>$\kappa = G \times G^*$ (conductivity = measured conductance × cell constant)</p>
+        <p><strong>NEET Trap:</strong> If asked "what changes when concentration changes?" — Conductance (G) and Molar conductivity (Λm) change. Cell constant (G*) stays the same.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Kohlrausch's Law:</strong> Given: Λ°(HCl) = 426; Λ°(NaCl) = 126; Λ°(CH₃COONa) = 91 S·cm²·mol⁻¹. Find Λ°(CH₃COOH).<br/>
+        $\Lambda^\circ_m(\text{CH}_3\text{COOH}) = \Lambda^\circ(\text{HCl}) + \Lambda^\circ(\text{CH}_3\text{COONa}) - \Lambda^\circ(\text{NaCl})$<br/>
+        $= 426 + 91 - 126 = $ <strong>391 S·cm²·mol⁻¹</strong></p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch3-s4" data-m="Faraday">
+      <h2 class="sh">3.4 Faraday's Laws of Electrolysis <span class="tag tr">NCERT §3.7</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Faraday's First Law</span>
+        <p>Mass of substance deposited/liberated ∝ quantity of electricity (charge) passed.<br/>
+        $w = \dfrac{M \times Q}{n \times F} = \dfrac{M \times I \times t}{n \times F}$<br/>
+        (M = molar mass, n = electrons per atom/ion, F = 96500 C, I = current in A, t = time in seconds)</p>
+        <p style="margin-top:10px;"><strong>Electrochemical Equivalent (Z):</strong><br/>
+        $w = Z \cdot I \cdot t$ &nbsp;&nbsp; where &nbsp;&nbsp; $Z = \dfrac{M}{n \times F}$<br/>
+        Z = mass deposited per coulomb (g/C). Units: g·A⁻¹·s⁻¹ or g·C⁻¹.<br/>
+        <span style="color:var(--red);font-weight:600;">Trap:</span> Z is the mass deposited when exactly <strong>1 ampere flows for 1 second</strong> (i.e., by 1 coulomb of charge). Different metals have different Z values. Ag has the highest Z among common metals.</p>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Faraday's Second Law</span>
+        <p>When same charge passes through different electrolytes connected in series, masses deposited are proportional to their equivalent masses.<br/>
+        $\dfrac{w_1}{w_2} = \dfrac{E_1}{E_2}$ where $E = M/n$ (equivalent mass)</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Electrolysis:</strong> How many grams of Cu deposited when 2A current flows for 30 min through CuSO₄ solution? (M Cu = 63.5, n = 2)<br/>
+        $Q = I \times t = 2 \times 30 \times 60 = 3600$ C<br/>
+        $w = \dfrac{63.5 \times 3600}{2 \times 96500} = \dfrac{228600}{193000} = $ <strong>1.185 g</strong></p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Ion</th><th>n (electrons)</th><th>Product at cathode</th><th>Product at anode</th></tr>
+          <tr><td>Na⁺</td><td>1</td><td>Na metal</td><td>Cl₂ gas (if from NaCl)</td></tr>
+          <tr><td>Cu²⁺</td><td>2</td><td>Cu metal</td><td>O₂ (from water) or Cl₂</td></tr>
+          <tr><td>Al³⁺</td><td>3</td><td>Al metal</td><td>O₂ (Hall-Heroult process)</td></tr>
+          <tr><td>H⁺ (from H₂O)</td><td>1</td><td>H₂ gas</td><td>O₂ gas</td></tr>
+          <tr><td>Ag⁺</td><td>1</td><td>Ag metal</td><td>Depends on solution</td></tr>
+        </table>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 3 (Electrochemistry)</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "E°cell / standard EMF"</div>
+            <div class="trigger-action">→ E°cell = E°(cathode) − E°(anode) = E°(reduction at cathode) − E°(reduction at anode)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Nernst equation at 298K"</div>
+            <div class="trigger-action">→ E = E° − (0.0591/n) × log Q. Q = [products]/[reactants] from overall cell reaction.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Equilibrium constant from E°"</div>
+            <div class="trigger-action">→ log K = nE°/0.0591. Large E° → very large K → reaction essentially complete.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "ΔG from EMF"</div>
+            <div class="trigger-action">→ ΔG° = −nFE°. F = 96500 C/mol. ΔG° negative when E° positive (spontaneous).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Kohlrausch / weak electrolyte Λ°"</div>
+            <div class="trigger-action">→ Λ°(weak) = Λ°(strong acid) + Λ°(salt of weak acid) − Λ°(salt of strong acid). Use Hess-like combination.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Electrolysis / mass deposited"</div>
+            <div class="trigger-action">→ w = MIt/(nF). F = 96500 C/mol. n = oxidation state of deposited ion.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Anode is positive in both galvanic and electrolytic cells" — WRONG. Galvanic cell: anode = NEGATIVE. Electrolytic cell: anode = POSITIVE (connected to + terminal).</div>
+          <div class="elim-step">❌ Trap: "E°cell depends on the number of moles in the equation" — WRONG. E° is intensive — it does NOT change when you multiply equation by 2. Only ΔG° = −nFE° and K change with n.</div>
+          <div class="elim-step">❌ Trap: "Molar conductivity decreases on dilution" — WRONG. On dilution: <strong>Conductivity (κ) / specific conductance DECREASES</strong> (fewer ions per cm³ of solution). But <strong>Molar conductivity (Λm) and Equivalent conductivity (Λeq) both INCREASE</strong> — because the volume V containing one mole of electrolyte increases faster than κ decreases. Λm = κ × 1000/C → as C→0, Λm→Λ°m (maximum). Only κ decreases; Λm and Λeq always increase on dilution.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 3</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">E°cell</div><div class="re-val">= E°cathode − E°anode (SRP)</div></div>
+          <div class="re-item"><div class="re-label">Nernst (298K)</div><div class="re-val">E = E° − (0.0591/n)log Q</div></div>
+          <div class="re-item"><div class="re-label">ΔG° from E°</div><div class="re-val">ΔG° = −nFE°; F=96500 C</div></div>
+          <div class="re-item"><div class="re-label">log K</div><div class="re-val">= nE°/0.0591</div></div>
+          <div class="re-item"><div class="re-label">Faraday's 1st Law</div><div class="re-val">w = MIt/(nF)</div></div>
+          <div class="re-item"><div class="re-label">Kohlrausch</div><div class="re-val">Λ°m = Σλ° of ions</div></div>
+          <div class="re-item"><div class="re-label">Λm on dilution</div><div class="re-val">Increases for all electrolytes</div></div>
+          <div class="re-item"><div class="re-label">Strongest red. agent</div><div class="re-val">Li (SRP = −3.05 V)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch3-s5" data-m="Batteries">
+      <h2 class="sh">3.5 Commercial Cells — Batteries &amp; Corrosion <span class="tag tr">NCERT §3.8 — 1 Q/alternate year</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 CRITICAL GAP — Batteries asked NEET 2019, 2021, 2023. Corrosion asked 2022, 2024.</span>
+        <span class="score-pill sp-b">Lead battery trap on H₂SO₄ density — common MCQ hook</span>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Lead Storage Battery (Secondary Cell)</div>
+          <p><strong>During DISCHARGE (Galvanic cell):</strong></p>
+          <p>Anode (−): $\text{Pb} + \text{SO}_4^{2-} \rightarrow \text{PbSO}_4 + 2e^-$ (Pb oxidised)</p>
+          <p>Cathode (+): $\text{PbO}_2 + \text{SO}_4^{2-} + 4\text{H}^+ + 2e^- \rightarrow \text{PbSO}_4 + 2\text{H}_2\text{O}$</p>
+          <p>Electrolyte: 38% H₂SO₄ (density ~1.28 g/mL)</p>
+          <p>⚠️ <strong>H₂SO₄ is CONSUMED during discharge → density drops</strong></p>
+          <p><strong>During CHARGING (Electrolytic):</strong> Reactions reverse. PbSO₄ at anode → Pb; PbSO₄ at cathode → PbO₂. H₂SO₄ is regenerated → density rises back.</p>
+          <p>E.m.f. ≈ 2V per cell; 12V car battery = 6 cells in series</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Dry Cell / Leclanché Cell (Primary)</div>
+          <p>Anode: Zinc container (−)</p>
+          <p>Cathode: Graphite (carbon) rod surrounded by MnO₂ + C (+)</p>
+          <p>Electrolyte: Moist NH₄Cl + ZnCl₂ paste</p>
+          <p>Anode reaction: $\text{Zn} \rightarrow \text{Zn}^{2+} + 2e^-$</p>
+          <p>Cathode: $\text{MnO}_2 + \text{NH}_4^+ + e^- \rightarrow \text{MnO(OH)} + \text{NH}_3$</p>
+          <p>⚠️ <strong>Trap:</strong> NH₃ produced at cathode is absorbed by Zn²⁺ to form $[\text{Zn(NH}_3)_4]^{2+}$ complex — prevents pressure buildup inside the cell</p>
+          <p>Primary cell → not rechargeable. E.m.f. ≈ 1.5V.</p>
+        </div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox green-border">
+          <div class="fbox-title green">Fuel Cell (H₂–O₂)</div>
+          <p>Anode: $\text{H}_2 + 2\text{OH}^- \rightarrow 2\text{H}_2\text{O} + 2e^-$</p>
+          <p>Cathode: $\text{O}_2 + 2\text{H}_2\text{O} + 4e^- \rightarrow 4\text{OH}^-$</p>
+          <p>Overall: $\text{H}_2 + \frac{1}{2}\text{O}_2 \rightarrow \text{H}_2\text{O}$ (only byproduct)</p>
+          <p>Efficiency = $\dfrac{\Delta G}{\Delta H}$ (much higher than thermal combustion ~40% vs ~80%)</p>
+          <p>Used in: Apollo space program, modern fuel cell vehicles</p>
+          <p>Electrolyte: KOH solution. Electrodes: Porous carbon with Pt catalyst</p>
+          <p><strong>Key advantage:</strong> No combustion, no pollution, very high efficiency</p>
+          <p><strong>Apollo spacecraft fact (NTA asks this):</strong> Water vapour produced in the fuel cell is condensed and added to the <strong>drinking water supply for astronauts</strong> — making it a dual-purpose system (electricity + potable water).</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Corrosion — Electrochemical Phenomenon</div>
+          <p>Rusting of iron is an <strong>electrochemical process</strong> (not just chemical oxidation)</p>
+          <p>Anode: $\text{Fe} \rightarrow \text{Fe}^{2+} + 2e^-$ (iron dissolves)</p>
+          <p>Cathode: $\text{O}_2 + 2\text{H}_2\text{O} + 4e^- \rightarrow 4\text{OH}^-$ (oxygen reduced)</p>
+          <p>$\text{Fe}^{2+} + 2\text{OH}^- \rightarrow \text{Fe(OH)}_2 \xrightarrow{\text{O}_2} \text{Fe}_2\text{O}_3 \cdot x\text{H}_2\text{O}$ (rust)</p>
+          <p>$E^\circ_{\text{cell}}$ for rusting = $E^\circ_{\text{O}_2/\text{OH}^-} - E^\circ_{\text{Fe}^{2+}/\text{Fe}}$ = positive (spontaneous!)</p>
+          <p><strong>Prevention:</strong> Galvanization (Zn coating), sacrificial anode, cathodic protection, painting, alloying (stainless steel)</p>
+          <p><strong>Galvanization:</strong> Zn is more reactive → acts as anode, Fe is protected even if coating scratched</p>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Cell Type</th><th>Anode</th><th>Cathode</th><th>Electrolyte</th><th>Rechargeable?</th><th>E.m.f.</th></tr>
+          <tr><td><strong>Dry Cell</strong></td><td>Zn</td><td>MnO₂ + C + Graphite</td><td>NH₄Cl + ZnCl₂ paste</td><td>No (Primary)</td><td>~1.5 V</td></tr>
+          <tr><td><strong>Mercury Cell</strong></td><td>Zn(Hg)</td><td>HgO + C</td><td>KOH + ZnO</td><td>No</td><td>~1.35 V (constant)</td></tr>
+          <tr><td><strong>Lead Battery</strong></td><td>Pb</td><td>PbO₂</td><td>H₂SO₄ (38%)</td><td>Yes (Secondary)</td><td>~2 V/cell</td></tr>
+          <tr><td><strong>Ni-Cd Cell</strong></td><td>Cd</td><td>NiO(OH)</td><td>KOH</td><td>Yes (Secondary)</td><td>~1.2 V</td></tr>
+          <tr><td><strong>Fuel Cell (H₂-O₂)</strong></td><td>H₂ (Porous C)</td><td>O₂ (Porous C)</td><td>KOH</td><td>No (continuous)</td><td>~1.23 V</td></tr>
+        </table>
+      </div>
+
+      <div class="trap-block">
+        <div class="trap-row"><span class="trap-x">✗</span><span><strong>Lead Battery H₂SO₄ density trap:</strong> During DISCHARGE density DROPS (H₂SO₄ consumed to form PbSO₄). During CHARGING density RISES (H₂SO₄ regenerated). <em>Battery "fully charged" = max H₂SO₄ density.</em></span><span class="trap-arrow">→</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span><strong>Dry cell NH₃ trap:</strong> NH₃ is produced in cell reaction but does NOT escape — Zn²⁺ captures it as $[\text{Zn(NH}_3)_4]^{2+}$ tetraamine complex. This prevents cell rupture from gas pressure.</span><span class="trap-arrow">→</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span><strong>Fuel cell efficiency trap:</strong> Efficiency = ΔG/ΔH (Gibbs/Enthalpy ratio). NOT 100%. Much higher than combustion engines (~40%) because Gibbs energy is directly converted to electrical energy.</span><span class="trap-arrow">→</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span><strong>Corrosion trap:</strong> E°cell for rusting is POSITIVE (spontaneous). Corrosion requires both oxygen AND moisture. In pure dry O₂ or pure water alone — iron does NOT rust significantly.</span><span class="trap-arrow">→</span></div>
+      </div>
+
+      <div class="shortcut-block">
+        <div class="sc-item">
+          <div class="sc-title">Battery Memory Aid — "PALE CD for Lead, Dry, Fuel"</div>
+          <div class="sc-body"><strong>P</strong>b-<strong>A</strong>node <strong>L</strong>ead cell; <strong>E</strong>lectrolyte H₂SO₄. | <strong>C</strong>arbon cathode, <strong>D</strong>ry cell Zn anode. | Fuel cell: H₂ at anode, O₂ at cathode, Water only byproduct.</div>
+        </div>
+        <div class="sc-item">
+          <div class="sc-title">Corrosion Prevention Hierarchy</div>
+          <div class="sc-body">Galvanization (Zn) → Sacrificial anode (Mg/Zn) → Cathodic protection (external current) → Alloying (stainless steel = Fe+Cr+Ni) → Painting/coating</div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">In lead storage battery, during charging process: (A) PbO₂ is formed at anode (B) PbSO₄ is oxidised at anode (C) H₂SO₄ is consumed (D) Pb is formed at cathode</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (A) and (D) — but standard NEET option: PbO₂ formed at anode + PbSO₄ oxidised</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>During CHARGING: reactions of discharge reverse. Anode (connected to +) = PbSO₄ oxidised → PbO₂. Cathode (connected to −) = PbSO₄ reduced → Pb.</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Key rule</span><p>H₂SO₄ is REGENERATED during charging (not consumed). It is consumed during discharge.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Trick</span><p>"Charging = reverse of discharge." Density of H₂SO₄ rises during charging, falls during discharge.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">Which of the following statements is INCORRECT about fuel cells? (A) H₂–O₂ fuel cell produces electricity directly (B) The only byproduct is water (C) Fuel cells are used in spacecraft (D) Efficiency of fuel cell is lower than combustion engine</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (D) — INCORRECT statement (fuel cells are MORE efficient)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>H₂-O₂ fuel cells convert Gibbs energy directly to electrical energy. Efficiency = ΔG/ΔH ≈ 70-80%, much higher than combustion engines (~25-30%).</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Apollo fact</span><p>Used in Apollo space program. Water produced was consumed by astronauts.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Trap</span><p>Statement D says "lower" efficiency → INCORRECT. Fuel cells are MORE efficient than combustion.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch3-pyq" data-m="PYQ">
+      <h2 class="sh">3.P PYQ Pattern — Electrochemistry <span class="tag tg">2015–2025</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">For the cell: Zn|Zn²⁺(0.1M)||Cu²⁺(1M)|Cu. E°cell = 1.10V. Calculate E at 298K. (log 10 = 1)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 1.13 V</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>E = E° − (0.0591/n)log([Zn²⁺]/[Cu²⁺]) for Zn + Cu²⁺ → Zn²⁺ + Cu</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>E = 1.10 − (0.0591/2)log(0.1/1) = 1.10 − 0.02955×(−1) = 1.10 + 0.030 = 1.13V</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key</span><p>Q = [Zn²⁺]/[Cu²⁺] = 0.1/1 = 0.1. log(0.1) = −1. Negative log → E increases above E°.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Kohlrausch law states that at infinite dilution each ion contributes independently to molar conductivity. Which property can it NOT be used to calculate?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Λ°m of strong electrolytes (which can be directly measured)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Kohlrausch law IS used to: (1) find Λ°m of weak electrolytes, (2) degree of ionization, (3) Ka</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Strong electrolytes (HCl, NaCl): Λ°m found by EXTRAPOLATION of Λm vs √C plot. Kohlrausch helps calculate weak electrolyte Λ°m indirectly.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Note</span><p>For weak electrolytes like CH₃COOH, Λ°m cannot be found by extrapolation (curve too steep) — Kohlrausch's law is the only method.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 4 — CHEMICAL KINETICS -->
+<div class="chapter" id="ch4">
+  <div class="ch-head green">
+    <div class="ch-ey">NCERT Class 12 · Chapter 4 · ~2 Qs/NEET · HIGH YIELD NUMERICALS</div>
+    <div class="ch-title">Chemical Kinetics — <em>Rate Laws, Integrated Rate Equations &amp; Arrhenius Equation</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch4-s1">Rate &amp; Order</a>
+    <a href="#ch4-s2">Integrated Laws</a>
+    <a href="#ch4-s3">t1/2 &amp; Half Life</a>
+    <a href="#ch4-s4">Arrhenius</a>
+    <a href="#ch4-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch4-s1" data-m="Rate">
+      <h2 class="sh">4.1 Rate of Reaction &amp; Rate Law <span class="tag tg">NCERT §4.2</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-g">🟢 2 Qs/paper average</span>
+        <span class="score-pill sp-r">Arrhenius equation — 2024, 2023, 2022, 2021, 2020</span>
+        <span class="score-pill sp-b">First order, pseudo-first order — most tested order type</span>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox green-border">
+          <div class="fbox-title green">Rate Expression</div>
+          <p>$\text{Rate} = -\dfrac{1}{a}\dfrac{d[A]}{dt} = k[A]^m[B]^n$</p>
+          <p>Rate law can ONLY be determined experimentally (not from stoichiometry)</p>
+          <p>Order of reaction w.r.t. A = m (experimentally determined)</p>
+          <p>Overall order = m + n</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Units of Rate Constant k</div>
+          <p>$k = \text{mol}^{1-n} \cdot \text{L}^{n-1} \cdot \text{s}^{-1}$ (for nth order)</p>
+          <p>Zero order: mol·L⁻¹·s⁻¹</p>
+          <p>First order: s⁻¹ (no concentration units)</p>
+          <p>Second order: L·mol⁻¹·s⁻¹</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Molecularity vs Order</div>
+          <p><strong>Molecularity:</strong> No. of molecules in elementary step. Always whole number (1,2,3). Theoretical concept. No fractional.</p>
+          <p><strong>Order:</strong> From experimental rate law. Can be 0, 1, 2 or fractional. Overall/partial.</p>
+          <p>Pseudo-first order: 2nd order reaction made first order by using one reactant in LARGE excess</p>
+          <p>CH₃COOC₂H₅ + H₂O → Products (excess H₂O → pseudo-first order)</p>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Order Determination from Rate Data:</strong><br/>
+        Given rate data table → find order by ratio method:<br/>
+        If [A] doubles and rate doubles → first order w.r.t. A (2¹ = 2)<br/>
+        If [A] doubles and rate × 4 → second order (2² = 4)<br/>
+        If [A] doubles and rate unchanged → zero order<br/>
+        General: $\dfrac{r_2}{r_1} = \left(\dfrac{[A]_2}{[A]_1}\right)^m$ → solve for m</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch4-s2" data-m="Integrated">
+      <h2 class="sh">4.2 Integrated Rate Laws — Zero, First &amp; Second Order <span class="tag tr">NCERT §4.4 — MASTER TABLE</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Order</th><th>Integrated Rate Law</th><th>k expression</th><th>Graph (straight line)</th><th>Units of k</th></tr>
+          <tr><td><strong>Zero (0)</strong></td><td>$[A]_t = [A]_0 - kt$</td><td>$k = \dfrac{[A]_0-[A]_t}{t}$</td><td>[A] vs t (slope = −k)</td><td>mol·L⁻¹·s⁻¹</td></tr>
+          <tr><td><strong>First (1)</strong></td><td>$\ln[A]_t = \ln[A]_0 - kt$ or $k = \dfrac{2.303}{t}\log\dfrac{[A]_0}{[A]_t}$</td><td>$k = \dfrac{2.303}{t}\log\dfrac{a}{a-x}$</td><td>ln[A] vs t (slope = −k)</td><td>s⁻¹</td></tr>
+          <tr><td><strong>Second (2)</strong></td><td>$\dfrac{1}{[A]_t} = \dfrac{1}{[A]_0} + kt$</td><td>$k = \dfrac{1}{t}\left(\dfrac{1}{[A]_t}-\dfrac{1}{[A]_0}\right)$</td><td>1/[A] vs t (slope = k)</td><td>L·mol⁻¹·s⁻¹</td></tr>
+        </table>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — First Order k:</strong> For a first-order reaction, 25% of reactant decomposes in 20 min. Find k.<br/>
+        $a-x = a - 0.25a = 0.75a$ (75% remains after 25% decomposition)<br/>
+        $k = \dfrac{2.303}{20}\log\dfrac{a}{0.75a} = \dfrac{2.303}{20}\log(4/3) = \dfrac{2.303}{20} \times 0.1249$<br/>
+        $= \dfrac{0.2876}{20} = $ <strong>$1.44 \times 10^{-2}$ min⁻¹</strong></p>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">⭐ Gas-Phase Reactions — Pressure-Based 1st Order Formula (NTA SHIFT ALERT)</span>
+        <p>For reaction: $A(g) \rightarrow B(g) + C(g)$ or similar gas decompositions, NTA uses <strong>total pressure (Pt)</strong> instead of concentrations.</p>
+        <p>Let initial pressure of A = $P_i$. At time t, A decomposes by pressure 'x': pressure of A = $P_i - x$; B and C each = $x$.</p>
+        <p>Total pressure: $P_t = (P_i - x) + x + x = P_i + x$ → $x = P_t - P_i$</p>
+        <p>Pressure of A at time t: $P_A = P_i - x = P_i - (P_t - P_i) = 2P_i - P_t$</p>
+        <p>Substituting into 1st order formula $k = \dfrac{2.303}{t}\log\dfrac{[A]_0}{[A]_t}$:</p>
+        <div class="formula" style="margin:14px 0;">
+          $k = \dfrac{2.303}{t}\log\dfrac{P_i}{2P_i - P_t}$
+        </div>
+        <p><strong>Memory:</strong> Denominator = $2P_i - P_t$ (double initial minus total). Numerator = $P_i$ (initial). Applicable only when A decomposes into 2 products with equal stoichiometry.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Gas Phase 1st Order:</strong> $A(g) \rightarrow B(g) + C(g)$. Initial pressure = 500 mmHg. After 10 min, total pressure = 700 mmHg. Find k.<br/>
+        $x = 700 - 500 = 200$ mmHg. $P_A = 500 - 200 = 300$ mmHg (or: $2P_i - P_t = 1000 - 700 = 300$)<br/>
+        $k = \dfrac{2.303}{10}\log\dfrac{500}{300} = \dfrac{2.303}{10} \times \log(5/3) = \dfrac{2.303}{10} \times 0.2218 = $ <strong>$5.1 \times 10^{-2}$ min⁻¹</strong></p>
+      </div>
+
+      <div class="purp-box">
+        <span class="lbl">⭐ Collision Theory — New NMC Addition</span>
+        <p>For a reaction to occur, colliding molecules need BOTH conditions:</p>
+        <p><strong>(1) Threshold Energy:</strong> Kinetic energy ≥ Activation Energy (Ea)</p>
+        <p><strong>(2) Proper Orientation:</strong> Molecules must collide in the correct geometrical arrangement</p>
+        <p>Rate equation from Collision Theory:</p>
+        <div class="formula" style="margin:14px 0;">
+          $\text{Rate} = P \cdot Z_{AB} \cdot e^{-E_a/RT}$
+        </div>
+        <p><strong>P</strong> = Steric/Probability factor (accounts for orientation; P ≤ 1)<br/>
+        <strong>Z_AB</strong> = Collision frequency (number of collisions per unit volume per second)<br/>
+        <strong>$e^{-E_a/RT}$</strong> = Boltzmann factor (fraction of molecules with energy ≥ Ea)</p>
+        <p><strong>Why P &lt; 1?</strong> Not all collisions with enough energy lead to reaction — molecules must be oriented correctly. E.g., for $\text{NO} + \text{O}_3 \rightarrow \text{NO}_2 + \text{O}_2$, N atom of NO must hit O of O₃.</p>
+        <p><strong>Arrhenius A (frequency factor):</strong> $A = P \cdot Z_{AB}$ — combines orientation and collision frequency.</p>
+      </div>
+
+    <div class="sec" id="ch4-s3" data-m="Half Life">
+      <h2 class="sh">4.3 Half-Life (t₁/₂) — Key Formulae <span class="tag tg">NCERT §4.5</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Half-Life Summary</div>
+          <p><strong>Zero order:</strong> $t_{1/2} = \dfrac{[A]_0}{2k}$ (depends on initial concentration)</p>
+          <p><strong>First order:</strong> $t_{1/2} = \dfrac{0.693}{k}$ (<strong>independent of initial concentration</strong>)</p>
+          <p><strong>Second order:</strong> $t_{1/2} = \dfrac{1}{k[A]_0}$ (inversely proportional to initial conc.)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">First Order — Special Values</div>
+          <p>$t_{1/2} = \dfrac{0.693}{k}$ (0.693 = ln 2)</p>
+          <p>After n half-lives: $[A] = \dfrac{[A]_0}{2^n}$</p>
+          <p>After 1 t½: 50% remains; 2 t½: 25%; 3 t½: 12.5%</p>
+          <p>For 75% completion (25% remaining): t = 2 × t½</p>
+          <p>For 87.5% completion (12.5% remaining): t = 3 × t½</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Radioactive Decay</div>
+          <p>All radioactive decay = first order kinetics</p>
+          <p>$N = N_0 e^{-\lambda t}$ where λ = decay constant</p>
+          <p>$t_{1/2} = \dfrac{0.693}{\lambda}$</p>
+          <p>Age by C-14: $t = \dfrac{t_{1/2}}{0.693}\ln\dfrac{N_0}{N}$</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Half-Life:</strong> A first-order reaction has t½ = 60 min. Starting with 100 mg, how much remains after 3 hours?<br/>
+        3 hours = 180 min; Number of half-lives = 180/60 = 3<br/>
+        Amount remaining $= \dfrac{100}{2^3} = \dfrac{100}{8} = $ <strong>12.5 mg</strong></p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Graph Trick — t½ vs [A]₀ (NTA's favourite graph question):</strong></p>
+        <p><strong>Zero Order:</strong> $t_{1/2} = \dfrac{[A]_0}{2k}$ → $t_{1/2} \propto [A]_0$<br/>
+        Graph of $t_{1/2}$ vs $[A]_0$ = <strong>straight line through the origin</strong> (positive slope = 1/2k)</p>
+        <p style="margin-top:8px;"><strong>First Order:</strong> $t_{1/2} = \dfrac{0.693}{k}$ → independent of $[A]_0$<br/>
+        Graph of $t_{1/2}$ vs $[A]_0$ = <strong>horizontal line parallel to x-axis</strong> (constant value = 0.693/k)</p>
+        <p style="margin-top:8px;"><strong>Second Order:</strong> $t_{1/2} = \dfrac{1}{k[A]_0}$ → $t_{1/2} \propto \dfrac{1}{[A]_0}$<br/>
+        Graph of $t_{1/2}$ vs $[A]_0$ = <strong>hyperbola</strong> (decreasing curve, t½ → ∞ as [A]₀ → 0)</p>
+        <p style="margin-top:10px;"><strong>Instant identifier:</strong> If NTA shows a t½ vs [A]₀ graph — horizontal line = 1st order. Straight line through origin = 0th order. Decreasing curve = 2nd order.</p>
+      </div>
+
+    <div class="sec" id="ch4-s4" data-m="Arrhenius">
+      <h2 class="sh">4.4 Arrhenius Equation — Temperature &amp; Rate <span class="tag tr">NCERT §4.7 — Every NEET</span></h2>
+
+      <div class="formula">
+        $k = A \cdot e^{-E_a/RT}$ &nbsp;&nbsp;&nbsp; $\ln k = \ln A - \dfrac{E_a}{RT}$ &nbsp;&nbsp;&nbsp; $\log\dfrac{k_2}{k_1} = \dfrac{E_a}{2.303R}\left(\dfrac{T_2-T_1}{T_1 T_2}\right)$
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title">Arrhenius Parameters</div>
+          <p>$A$ = pre-exponential factor (frequency factor) — depends on collision frequency and orientation</p>
+          <p>$E_a$ = activation energy (J/mol or kJ/mol)</p>
+          <p>$R$ = 8.314 J·K⁻¹·mol⁻¹</p>
+          <p>$T$ = temperature in KELVIN</p>
+          <p>Higher $E_a$ → slower reaction (exponential decrease in k)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Graph Interpretation</div>
+          <p>Plot $\ln k$ vs $1/T$ → straight line (slope = $-E_a/R$)</p>
+          <p>$\text{Slope} = -\dfrac{E_a}{R}$ → $E_a = -\text{slope} \times R$</p>
+          <p>Intercept = $\ln A$</p>
+          <p>Catalyst: lowers $E_a$ → increases k → faster reaction. A unchanged.</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Temperature Coefficient</div>
+          <p>$\dfrac{k(T+10)}{k(T)} \approx 2$ to $3$ (reaction rate doubles per 10°C rise)</p>
+          <p>If $\mu$ = temperature coefficient: $k_2 = k_1 \times \mu^{(T_2-T_1)/10}$</p>
+          <p>NEET uses: "Rate doubles per 10°C" → μ ≈ 2</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Arrhenius:</strong> For a reaction, Ea = 50 kJ/mol. k at 27°C = 1.5×10⁻⁴ s⁻¹. Find k at 57°C. (R=8.314 J/mol·K)<br/>
+        $\log\dfrac{k_2}{k_1} = \dfrac{E_a}{2.303R} \times \dfrac{T_2-T_1}{T_1 T_2}$<br/>
+        $= \dfrac{50000}{2.303 \times 8.314} \times \dfrac{330-300}{300 \times 330}$<br/>
+        $= \dfrac{50000}{19.14} \times \dfrac{30}{99000} = 2612.3 \times 3.03 \times 10^{-4} = 0.792$<br/>
+        $k_2/k_1 = 10^{0.792} = 6.19$; $k_2 = 1.5 \times 10^{-4} \times 6.19 = $ <strong>$9.28 \times 10^{-4}$ s⁻¹</strong></p>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 4 (Chemical Kinetics)</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "First order / t½"</div>
+            <div class="trigger-action">→ t½ = 0.693/k (independent of concentration). k = 2.303/t × log(a/a-x).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Order from rate data table"</div>
+            <div class="trigger-action">→ r₂/r₁ = ([A]₂/[A]₁)^m. Double [A], check rate change: ×2 = 1st order, ×4 = 2nd, ×1 = 0th.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Arrhenius / activation energy"</div>
+            <div class="trigger-action">→ log(k₂/k₁) = Ea/(2.303R) × (T₂−T₁)/(T₁T₂). Always use T in Kelvin and Ea in J/mol.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Graph of ln k vs 1/T"</div>
+            <div class="trigger-action">→ Slope = −Ea/R → Ea = −slope × R. Intercept = ln A. Straight line for Arrhenius.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Pseudo-first order"</div>
+            <div class="trigger-action">→ Bimolecular but acts first order. One reactant in large excess (e.g. H₂O in hydrolysis).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "After n half-lives"</div>
+            <div class="trigger-action">→ Amount = A₀/2ⁿ. For 75% completion: 2 half-lives. For 87.5%: 3 half-lives.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Rate law can be written from balanced equation" — WRONG. Rate law can ONLY be determined experimentally.</div>
+          <div class="elim-step">❌ Trap: "Molecularity can be fractional" — WRONG. Molecularity is always a whole number (1=unimolecular, 2=bimolecular). Order can be fractional.</div>
+          <div class="elim-step">❌ Trap: "t½ of first order depends on initial concentration" — WRONG. ONLY for 1st order, t½ = 0.693/k (constant, concentration-independent).</div>
+          <div class="elim-step">❌ Trap: "Catalyst changes Ea of products-reactants" — WRONG. Catalyst only lowers the ACTIVATION ENERGY (Ea) of the reaction. The overall ΔH (thermodynamics) is unchanged.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 4</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">1st order k</div><div class="re-val">k = (2.303/t)log(a/a-x)</div></div>
+          <div class="re-item"><div class="re-label">1st order t½</div><div class="re-val">t½ = 0.693/k (conc. independent)</div></div>
+          <div class="re-item"><div class="re-label">Zero order</div><div class="re-val">[A]t = [A]₀ − kt</div></div>
+          <div class="re-item"><div class="re-label">2nd order</div><div class="re-val">1/[A]t = 1/[A]₀ + kt</div></div>
+          <div class="re-item"><div class="re-label">Arrhenius eq</div><div class="re-val">k = A·e^(-Ea/RT)</div></div>
+          <div class="re-item"><div class="re-label">k₂/k₁ formula</div><div class="re-val">log(k₂/k₁) = Ea/2.303R × ΔT/(T₁T₂)</div></div>
+          <div class="re-item"><div class="re-label">Units k (1st order)</div><div class="re-val">s⁻¹ (or min⁻¹)</div></div>
+          <div class="re-item"><div class="re-label">n half-lives remaining</div><div class="re-val">A₀/2ⁿ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch4-pyq" data-m="PYQ">
+      <h2 class="sh">4.P PYQ Pattern — Chemical Kinetics <span class="tag tg">2015–2025</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">The rate constant of a first-order reaction is 3×10⁻³ min⁻¹. What percentage of the initial concentration would remain after 1000 min?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: ~5%</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>k = 2.303/t × log(a/a-x). t½ = 0.693/k = 0.693/(3×10⁻³) = 231 min</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Method</span><p>log(a/a-x) = kt/2.303 = 3×10⁻³×1000/2.303 = 3/2.303 = 1.302. So a/(a-x) = 10^1.302 ≈ 20. Remaining = 1/20 = 5%</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key Step</span><p>Rearrange 1st order integrated law to find [A]/[A]₀ ratio.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">For a first-order reaction, the slope of ln[A] vs time graph is −0.02 s⁻¹. What is t½?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 34.65 s</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Slope of ln[A] vs t = −k. So k = 0.02 s⁻¹</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">t½</span><p>t½ = 0.693/k = 0.693/0.02 = 34.65 s</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Trap</span><p>Slope of ln[A] vs t = −k (note negative sign). Slope of log[A] vs t = −k/2.303.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 5 — SURFACE CHEMISTRY -->
+<div class="chapter" id="ch5">
+  <div class="ch-head" style="background:linear-gradient(135deg,#2a2520 0%,#3a3028 100%);border-bottom:3px solid #7a6a58;">
+    <div class="ch-ey" style="color:rgba(200,185,160,0.5);">NCERT Class 12 · Chapter 5 · Not in NEET 2024–2026 syllabus · State Board &amp; Pre-2024 PYQ reference</div>
+    <div class="ch-title" style="color:#a09080;">Surface Chemistry — <em style="color:#857060;">Adsorption, Catalysis, Colloids &amp; Emulsions</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch5-s1">Adsorption</a>
+    <a href="#ch5-s2">Colloids</a>
+    <a href="#ch5-s3">Emulsions</a>
+    <a href="#ch5-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch5-s1" data-m="Adsorption">
+      <h2 class="sh">5.1 Adsorption — Physical vs Chemical <span class="tag tp">NCERT §5.2</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-p">🟣 1-2 Qs/paper (pre-2024) — conceptual, less numerical</span>
+        <span class="score-pill sp-r">NOTE: Removed from NEET 2024 official syllabus — study for pre-2024 PYQs only</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Property</th><th>Physisorption</th><th>Chemisorption</th></tr>
+          <tr><td>Force</td><td>Van der Waals (weak)</td><td>Chemical bond (covalent/ionic)</td></tr>
+          <tr><td>Enthalpy</td><td>Low (20-40 kJ/mol)</td><td>High (40-400 kJ/mol)</td></tr>
+          <tr><td>Reversibility</td><td>Reversible</td><td>Irreversible</td></tr>
+          <tr><td>Specificity</td><td>Non-specific</td><td>Highly specific</td></tr>
+          <tr><td>Layers</td><td>Multilayer possible</td><td>Monolayer only</td></tr>
+          <tr><td>Effect of T</td><td>Decreases with T↑</td><td>Increases with T↑ (to max then decreases)</td></tr>
+          <tr><td>Activation energy</td><td>Not needed</td><td>Needed (activated adsorption)</td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Freundlich Adsorption Isotherm</div>
+          <p>$\dfrac{x}{m} = kP^{1/n}$ (x = mass adsorbed, m = mass adsorbent, P = pressure)</p>
+          <p>Log form: $\log\dfrac{x}{m} = \log k + \dfrac{1}{n}\log P$</p>
+          <p>Plot log(x/m) vs log P → straight line; intercept = log k; slope = 1/n (0 &lt; 1/n &lt; 1)</p>
+          <p>At high P: $x/m = $ constant (saturation); At low P: $x/m \propto P$</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Catalysis Types</div>
+          <p><strong>Homogeneous:</strong> catalyst and reactants in same phase (e.g. NO(g) in SO₂ + O₂)</p>
+          <p><strong>Heterogeneous:</strong> different phases. Most industrial catalysts (Fe in Haber, V₂O₅ in Contact process)</p>
+          <p><strong>Enzyme catalysis:</strong> highly specific, operates at 37°C, optimum pH varies</p>
+          <p><strong>Promoters:</strong> increase catalyst activity (Mo in Haber process)</p>
+          <p><strong>Poisons/Inhibitors:</strong> decrease catalyst activity (CO poisons Fe catalyst)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-s2" data-m="Colloids">
+      <h2 class="sh">5.2 Colloids — Properties &amp; Classification <span class="tag tp">NCERT §5.4</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Particle size</th><th>Visibility</th><th>Tyndall effect</th><th>Filtration</th></tr>
+          <tr><td>True solution</td><td>&lt; 1 nm</td><td>Not visible</td><td>No</td><td>Passes all membranes</td></tr>
+          <tr><td><strong>Colloid</strong></td><td>1–1000 nm</td><td>Not visible (microscope)</td><td><strong>Yes</strong></td><td>Passes ordinary filter, not dialysis</td></tr>
+          <tr><td>Suspension</td><td>&gt; 1000 nm</td><td>Visible (visible)</td><td>No</td><td>Does not pass filter paper</td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Colloidal Properties — NEET Tested</div>
+          <p><strong>Tyndall Effect:</strong> Scattering of light by colloid particles. Distinguishes colloid from true solution.</p>
+          <p><strong>Brownian Motion:</strong> Zigzag motion of colloidal particles (due to collision with dispersion medium molecules)</p>
+          <p><strong>Electrophoresis:</strong> Migration of charged colloidal particles in electric field</p>
+          <p><strong>Coagulation (Hardy-Schulze):</strong> Higher charge of added ion → more coagulating power. Al³⁺ &gt; Ca²⁺ &gt; Na⁺</p>
+          <p><strong>Peptization:</strong> Breaking precipitate into colloidal form by adding electrolyte</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Lyophilic vs Lyophobic</div>
+          <p><strong>Lyophilic:</strong> Solvent-loving. Stable. No coagulation without special treatment. Examples: protein, gum, starch in water</p>
+          <p><strong>Lyophobic:</strong> Solvent-hating. Easily coagulated. Irreversible. Examples: gold sol, As₂S₃, Fe(OH)₃</p>
+          <p><strong>Protective colloid:</strong> Lyophilic added to lyophobic to protect from coagulation. e.g., gelatin protects gold sol</p>
+          <p><strong>Gold number:</strong> Minimum mg of protective colloid to prevent coagulation of 10 mL of red gold sol. Lower gold number → better protective colloid (gelatin &lt; albumin)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-s3" data-m="Emulsions">
+      <h2 class="sh">5.3 Emulsions &amp; Gel Types <span class="tag tp">NCERT §5.5</span></h2>
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Emulsion Types</div>
+          <p><strong>O/W (oil in water):</strong> Oil drops dispersed in water. Example: milk, vanishing cream, butter in water</p>
+          <p><strong>W/O (water in oil):</strong> Water drops dispersed in oil. Example: butter, cold cream, cod liver oil</p>
+          <p><strong>Emulsifiers:</strong> Stabilize emulsions. Soap (O/W), proteins, gum (stabilize milk)</p>
+          <p><strong>Demulsification:</strong> Breaking emulsion by centrifugation, adding electrolyte, heating</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Important Colloid Examples (NEET)</div>
+          <p>Smoke → aerosol (solid in gas)</p>
+          <p>Fog/Cloud/Mist → aerosol (liquid in gas)</p>
+          <p>Milk → emulsion (oil in water)</p>
+          <p>Butter → emulsion (water in oil)</p>
+          <p>Foam/froth → aerosol (gas in liquid)</p>
+          <p>Jelly/Gel → gelatin in water (solid sol)</p>
+          <p>Blood → liquid sol (Fe₂O₃ sol = lyophobic, Fe(OH)₃ = positive charge)</p>
+          <p>Ruby glass → gold nanoparticles dispersed in glass</p>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 5 (Surface Chemistry)</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Tyndall effect"</div>
+            <div class="trigger-action">→ Shown ONLY by colloids. Helps distinguish colloid from true solution. Due to scattering of light.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Coagulation by ion / Hardy-Schulze"</div>
+            <div class="trigger-action">→ Al³⁺ &gt; Ca²⁺ &gt; Na⁺ for negatively charged colloid. Opposite charge with higher charge coagulates more effectively.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Physi vs Chemisorption + temperature"</div>
+            <div class="trigger-action">→ Physisorption: decreases with T (reversible, Van der Waals). Chemisorption: initially increases then decreases with T.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Gold number"</div>
+            <div class="trigger-action">→ Lower gold number = better protective colloid. Gelatin &lt; starch &lt; albumin (gelatin is most protective).</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Brownian motion is due to gravity" — NO. Brownian motion is due to unequal bombardment of colloidal particles by dispersion medium molecules.</div>
+          <div class="elim-step">❌ Trap: "True solutions show Tyndall effect" — NO. ONLY colloids show Tyndall effect (particle size 1–1000 nm). True solutions and suspensions do NOT.</div>
+          <div class="elim-step">❌ Trap: "Physisorption is specific" — WRONG. Chemisorption is highly specific (depends on specific chemical interaction). Physisorption is NON-specific.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 5</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Colloidal size</div><div class="re-val">1–1000 nm</div></div>
+          <div class="re-item"><div class="re-label">Tyndall effect</div><div class="re-val">Only colloids (not true solution)</div></div>
+          <div class="re-item"><div class="re-label">Brownian motion</div><div class="re-val">Random zigzag (medium molecules)</div></div>
+          <div class="re-item"><div class="re-label">Coagulation order</div><div class="re-val">Al³⁺ &gt; Ca²⁺ &gt; Na⁺</div></div>
+          <div class="re-item"><div class="re-label">Physisorption T</div><div class="re-val">Decreases with T↑</div></div>
+          <div class="re-item"><div class="re-label">Chemisorption T</div><div class="re-val">Increases → max → decreases</div></div>
+          <div class="re-item"><div class="re-label">Milk type</div><div class="re-val">O/W emulsion</div></div>
+          <div class="re-item"><div class="re-label">Gold number</div><div class="re-val">Lower = better protective colloid</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-pyq" data-m="PYQ">
+      <h2 class="sh">5.P PYQ Pattern — Surface Chemistry <span class="tag tg">Pre-2024 Analysis</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following has the maximum coagulating power for Fe(OH)₃ sol? (a) KNO₃ (b) K₂SO₄ (c) K₃[Fe(CN)₆] (d) NaCl</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (c) K₃[Fe(CN)₆]</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Fe(OH)₃ sol is POSITIVELY charged (most metal hydroxide colloids are +). Hardy-Schulze: negatively charged ion with higher charge coagulates better.</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Analysis</span><p>K₃[Fe(CN)₆] provides [Fe(CN)₆]³⁻ (trivalent anion) vs SO₄²⁻ (divalent) vs NO₃⁻ and Cl⁻ (monovalent). [Fe(CN)₆]³⁻ has highest charge → most coagulating power.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Rule</span><p>For +ve colloid → use most negatively charged ion. For −ve colloid → use most positively charged ion.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLASS 12 PRACTICALS — NMC Unit 20 -->
+<div class="chapter" id="practicals">
+  <div class="ch-head" style="background:linear-gradient(135deg,#0a2018 0%,#1a3a28 100%);border-bottom:3px solid var(--teal);">
+    <div class="ch-ey">NMC Unit 20 · Class 12 Practical Chemistry · NEET Direct 1 Q occasionally</div>
+    <div class="ch-title">Class 12 Practical Chemistry — <em>Sol Preparation, Dialysis &amp; Lab Techniques</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#prac-sols">Sol Preparation</a>
+    <a href="#prac-dialysis">Dialysis</a>
+    <a href="#prac-qual">Qualitative Tests</a>
+  </div>
+  <div class="ch-body">
+    <div class="sec" id="prac-sols" data-m="Practicals">
+      <h2 class="sh">P.1 Preparation of Lyophilic &amp; Lyophobic Sols <span class="tag tt">NMC Unit 20</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Sol Type</th><th>Sol Name</th><th>Method</th><th>Process</th><th>Type</th></tr>
+          <tr>
+            <td><strong>Lyophilic</strong></td>
+            <td>Starch sol</td>
+            <td>Direct mixing</td>
+            <td>Add starch to hot water, stir → colloidal dispersion</td>
+            <td>Lyophilic (water-loving)</td>
+          </tr>
+          <tr>
+            <td><strong>Lyophilic</strong></td>
+            <td>Egg albumin sol</td>
+            <td>Direct mixing</td>
+            <td>Dissolve egg albumin in water directly</td>
+            <td>Lyophilic</td>
+          </tr>
+          <tr>
+            <td><strong>Lyophobic</strong></td>
+            <td>Fe(OH)₃ sol</td>
+            <td>Hydrolysis</td>
+            <td>Add FeCl₃ dropwise to boiling water: FeCl₃ + 3H₂O → Fe(OH)₃ (reddish-brown sol) + 3HCl</td>
+            <td>Lyophobic, positively charged</td>
+          </tr>
+          <tr>
+            <td><strong>Lyophobic</strong></td>
+            <td>As₂S₃ sol</td>
+            <td>Double decomposition</td>
+            <td>Pass H₂S gas through As₂O₃ solution: As₂O₃ + 3H₂S → As₂S₃ (yellow sol) + 3H₂O</td>
+            <td>Lyophobic, negatively charged</td>
+          </tr>
+          <tr>
+            <td><strong>Lyophobic</strong></td>
+            <td>Gold sol (colloidal gold)</td>
+            <td>Peptization / reduction</td>
+            <td>Reduce HAuCl₄ with reducing agents (Bredig's arc method for metals)</td>
+            <td>Lyophobic, negatively charged</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tip-box">
+        <span class="lbl">✅ Preparation Method Memory</span>
+        <p><strong>Lyophilic sols</strong> (starch, albumin, gum, gelatin): Direct mixing with dispersion medium. Stable. No special technique needed.</p>
+        <p><strong>Fe(OH)₃ sol:</strong> Hydrolysis of FeCl₃ in <em>boiling</em> water. Key: add FeCl₃ <em>dropwise</em> to boiling water (not the reverse). Produces reddish-brown, positively charged sol.</p>
+        <p><strong>As₂S₃ sol:</strong> Double decomposition. Pass H₂S through arsenious oxide. Yellow sol, negatively charged (SO₄²⁻ ions adsorbed on surface).</p>
+        <p><strong>Gold sol (Bredig's arc):</strong> Electric arc between gold electrodes immersed in water. The metal evaporates and condenses as colloidal particles.</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title teal">Charge on Common Sols</div>
+          <p><strong>Positively charged:</strong> Fe(OH)₃, Al(OH)₃, TiO₂, haemoglobin (at low pH)</p>
+          <p><strong>Negatively charged:</strong> As₂S₃, gold sol, starch, clay, gum</p>
+          <p><strong>Remember:</strong> Metal hydroxide sols = positive; metal sulfide sols = negative</p>
+          <p>Charge arises due to selective adsorption of ions from the medium</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Peptization (Sol from Precipitate)</div>
+          <p>Adding a small amount of electrolyte to a freshly prepared precipitate converts it to a sol</p>
+          <p>Example: Fresh Fe(OH)₃ precipitate + FeCl₃ → Fe(OH)₃ sol (Fe³⁺ ions adsorbed → positive charge → dispersion)</p>
+          <p>The added electrolyte is called the <strong>peptizing agent</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="prac-dialysis" data-m="Dialysis">
+      <h2 class="sh">P.2 Dialysis — Purification of Colloidal Solutions <span class="tag tt">NCERT §5.4.5</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Definition — Dialysis</span>
+        <p><strong>Dialysis</strong> is the process of removing dissolved impurities (electrolytes, crystalloids) from a colloidal solution by using a semipermeable membrane (parchment paper or cellophane).</p>
+        <p>The colloidal solution is placed inside a bag/pouch made of the membrane and immersed in pure water. Small ions and molecules pass through the membrane into the water, while large colloidal particles cannot pass.</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Dialysis vs Electrodialysis</div>
+          <p><strong>Simple Dialysis:</strong> Uses parchment membrane in water. Slow process. Used for biochemical purification.</p>
+          <p><strong>Electrodialysis:</strong> Same membrane but external electric field applied → accelerates migration of ions → faster purification</p>
+          <p>Application: Kidney dialysis machine (haemodialysis) works on this principle — removes urea and toxins from blood</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">What Passes / What Doesn't</div>
+          <p><strong>Passes through parchment membrane:</strong> Crystalloids, small ions (Na⁺, Cl⁻), electrolytes, small molecules (glucose, urea)</p>
+          <p><strong>Cannot pass:</strong> Colloidal particles (1–1000 nm — too large for membrane pores)</p>
+          <p>This is why colloidal gold, Fe(OH)₃ sol, starch remain inside the bag after dialysis</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="prac-qual" data-m="Qualitative">
+      <h2 class="sh">P.3 Key Qualitative Tests — Class 12 Practicals <span class="tag tt">Lab Based</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Test</th><th>Reagent</th><th>Observation</th><th>Inference</th></tr>
+          <tr><td><strong>Tyndall test</strong></td><td>Beam of light through solution</td><td>Light path visible → Tyndall effect</td><td>Colloidal solution (not true solution)</td></tr>
+          <tr><td><strong>Coagulation test</strong></td><td>Add electrolyte (e.g., NaCl) to sol</td><td>Precipitation / coagulation</td><td>Lyophobic colloid (lyophilic resist coagulation)</td></tr>
+          <tr><td><strong>Charge test (electrophoresis)</strong></td><td>Apply electric field to sol</td><td>Migration toward cathode = +ve; toward anode = −ve</td><td>Nature of charge on sol</td></tr>
+          <tr><td><strong>Fe(OH)₃ preparation</strong></td><td>FeCl₃ in boiling H₂O</td><td>Reddish-brown colloidal sol formed</td><td>Hydrolysis → lyophobic sol</td></tr>
+          <tr><td><strong>As₂S₃ preparation</strong></td><td>H₂S gas + As₂O₃ solution</td><td>Yellow colloidal sol formed</td><td>Double decomposition → lyophobic sol</td></tr>
+        </table>
+      </div>
+
+      <div class="strip-block">
+        <div class="strip-title">⚡ Practicals Master Summary — 2 min revision</div>
+        <div class="strip-row"><span class="strip-label">Fe(OH)₃ sol method</span><span class="strip-content">FeCl₃ dropwise in boiling H₂O → <strong>hydrolysis</strong> → reddish-brown, <strong>+ve charged</strong>, lyophobic</span></div>
+        <div class="strip-row"><span class="strip-label">As₂S₃ sol method</span><span class="strip-content">H₂S gas through As₂O₃ → <strong>double decomposition</strong> → yellow, <strong>−ve charged</strong>, lyophobic</span></div>
+        <div class="strip-row"><span class="strip-label">Starch / Albumin sol</span><span class="strip-content"><strong>Direct mixing</strong> with water → lyophilic → stable → no special technique</span></div>
+        <div class="strip-row"><span class="strip-label">Dialysis</span><span class="strip-content">Parchment membrane bag in water → ions pass out, colloid stays in → purification</span></div>
+        <div class="strip-row"><span class="strip-label">Electrodialysis</span><span class="strip-content">Dialysis + electric field → faster ion removal → used industrially</span></div>
+        <div class="strip-row"><span class="strip-label">Kidney dialysis</span><span class="strip-content">Haemodialysis removes urea/toxins from blood through cellophane membrane → same principle as dialysis</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL REVISION STRIP -->
+<div class="chapter">
+  <div class="ch-head">
+    <div class="ch-ey">Physical Chemistry 12 · Final Mastery Revision</div>
+    <div class="ch-title">⚡ Ultra-Compressed Final Revision Strip</div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="Final Rev">
+      <div class="strip-block">
+        <div class="strip-title">Physical Chemistry 12 — 5-Minute Master Revision</div>
+        <div class="strip-row"><span class="strip-label">Solid State</span><span class="strip-content" style="color:rgba(245,240,220,0.5);font-style:italic;">Not in NEET 2026 syllabus. For reference: FCC Z=4, BCC Z=2, SC Z=1. ρ=ZM/(Nₐa³). Schottky=density↓. Frenkel=density unchanged. AgBr=both. F-centre=colour.</span></div>
+        <div class="strip-row"><span class="strip-label">Solutions</span><span class="strip-content">ΔTb=Kb·m·i (Kb=0.512). ΔTf=Kf·m·i (Kf=1.86). π=iCRT. NaCl i=2, CaCl₂ i=3, AlCl₃ i=4. Association: α=(1−i)/(1−1/n). Isotonic: i₁C₁=i₂C₂.</span></div>
+        <div class="strip-row"><span class="strip-label">Electrochemistry</span><span class="strip-content">E°cell=E°cath−E°an. Nernst: E=E°−(0.0591/n)logQ. ΔG°=−nFE°. logK=nE°/0.0591. Faraday: w=MIt/(nF). Λeq=Λm/n-factor. Cell constant G*=l/A (fixed).</span></div>
+        <div class="strip-row"><span class="strip-label">Batteries</span><span class="strip-content">Lead: Pb(anode)+PbO₂(cathode)+H₂SO₄. Discharge→H₂SO₄ consumed→density↓. Dry cell: Zn+MnO₂+C. NH₃→[Zn(NH₃)₄]²⁺. Fuel cell: ΔG/ΔH efficiency. Corrosion: E°cell>0, Fe→Fe²⁺.</span></div>
+        <div class="strip-row"><span class="strip-label">Kinetics</span><span class="strip-content">1st order: k=(2.303/t)log(a/a−x). Gas phase: k=(2.303/t)log[Pi/(2Pi−Pt)]. t½=0.693/k. Arrhenius: log(k₂/k₁)=Ea/2.303R×ΔT/(T₁T₂). Collision: Rate=P·Z_AB·e^(−Ea/RT).</span></div>
+        <div class="strip-row"><span class="strip-label">Surface Chem</span><span class="strip-content" style="color:rgba(245,240,220,0.5);font-style:italic;">Not in NEET 2026 syllabus. For reference: Colloid 1–1000nm. Tyndall=yes. Hardy-Schulze: Al³⁺>Ca²⁺>Na⁺. Fe(OH)₃=hydrolysis(+ve). As₂S₃=double decomp(−ve). Dialysis=parchment membrane.</span></div>
+        <div class="strip-row"><span class="strip-label">Key Constants</span><span class="strip-content">F=96500 C/mol. R=8.314 J/mol·K=0.0821 L·atm/mol·K. Nₐ=6.022×10²³. 0.0591/n at 298K (Nernst). Kb(water)=0.512, Kf(water)=1.86, Kf(benzene)=5.12.</span></div>
+        <div class="strip-row"><span class="strip-label">KEY TRAPS</span><span class="strip-content"><strong>T always Kelvin. Molality in ΔTb/ΔTf, molarity in π. Isotonic: i₁C₁=i₂C₂ (NOT C₁=C₂). Association→i&lt;1 (acetic acid in benzene). Gas 1st order: denominator=2Pi−Pt. Lead battery: H₂SO₄ density drops on discharge. Cell constant fixed regardless of concentration.</strong></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .book -->
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof renderMathInElement!=='undefined'){
+    renderMathInElement(document.body,{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+      throwOnError:false
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'neet-mastery-v6';
+const CACHE_NAME = 'neet-mastery-v7';
 const ASSETS = [
   './',
   './index.html',
@@ -6,13 +6,15 @@ const ASSETS = [
   './manifest.json',
   './icon.png',
   './notes/neet-botany-complete.html',
-  './notes/neet-zoology-complete.html'
+  './notes/neet-zoology-complete.html',
+  './notes/neet-chem-physical-11.html',
+  './notes/neet-chem-physical-12.html'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Opened cache v3');
+      console.log('Opened cache v7');
       return cache.addAll(ASSETS);
     })
   );

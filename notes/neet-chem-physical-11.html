@@ -318,10 +318,10 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
     <h1>Physical Chemistry 11 —<br/><em>Complete Intelligence System</em></h1>
     <p class="cover-desc">Every formula, solved numerical pattern, and exam trap for NEET. NCERT-mapped across all 5 high-yield Physical Chemistry chapters. PYQ 2015–2025 analysed. Decision engines, revision strips, and KaTeX-rendered formulae ready for last-night revision.</p>
     <div class="cover-stats">
-      <div class="stat-box"><div class="stat-n">5</div><div class="stat-l">Core Chapters</div></div>
-      <div class="stat-box"><div class="stat-n">200+</div><div class="stat-l">Formulae</div></div>
-      <div class="stat-box"><div class="stat-n">40+</div><div class="stat-l">PYQs Mapped</div></div>
-      <div class="stat-box"><div class="stat-n">15–18</div><div class="stat-l">Qs/NEET Paper</div></div>
+      <div class="stat-box"><div class="stat-n">7</div><div class="stat-l">Core Chapters</div></div>
+      <div class="stat-box"><div class="stat-n">280+</div><div class="stat-l">Formulae</div></div>
+      <div class="stat-box"><div class="stat-n">50+</div><div class="stat-l">PYQs Mapped</div></div>
+      <div class="stat-box"><div class="stat-n">18–20</div><div class="stat-l">Qs/NEET Paper</div></div>
     </div>
     <div class="cover-chips">
       <span class="chip">Ch 1 — Some Basic Concepts &amp; Mole</span>
@@ -329,6 +329,8 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
       <span class="chip">Ch 5 — States of Matter (Gases)</span>
       <span class="chip">Ch 6 — Thermodynamics</span>
       <span class="chip">Ch 7 — Chemical &amp; Ionic Equilibrium</span>
+      <span class="chip">Ch 8 — Redox Reactions (NEW)</span>
+      <span class="chip">Unit 20 — Practical Chemistry NMC (NEW)</span>
     </div>
   </div>
 </div>
@@ -347,6 +349,12 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
     <a href="#ch5"><span class="tn" style="color:var(--orange)">03.</span>States of Matter — Gases &amp; Liquids</a>
     <a href="#ch6"><span class="tn" style="color:var(--red)">04.</span>Thermodynamics</a>
     <a href="#ch7"><span class="tn" style="color:var(--green)">05.</span>Equilibrium — Chemical &amp; Ionic</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Unit III — Redox &amp; Practical (NEW 2025)</div>
+  <div class="toc-grid">
+    <a href="#ch8"><span class="tn" style="color:var(--purple)">06.</span>Redox Reactions &amp; n-Factor Engine</a>
+    <a href="#u20"><span class="tn" style="color:var(--orange)">07.</span>Unit 20 — Practical Chemistry (NMC Syllabus)</a>
   </div>
 </div>
 
@@ -516,6 +524,14 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
         — If ratio ends in .33 → multiply by 3<br/>
         — If ratio ends in .25 → multiply by 4<br/>
         — Whole numbers mean EF = MF (no multiplier needed)</p>
+      </div>
+
+      <div class="fbox orange-border" style="margin-top:24px;">
+        <div class="fbox-title orange">⚛️ Average Atomic Mass — Isotope Formula <span class="tag tr">NTA Favourite</span></div>
+        <p>$$\boxed{M_{\text{avg}} = \frac{\sum (\%\text{ abundance} \times \text{Isotope Mass})}{100}}$$</p>
+        <p><strong>Example:</strong> Chlorine has two isotopes: ³⁵Cl (75%) and ³⁷Cl (25%).<br/>
+        $M_{\text{avg}} = \dfrac{75 \times 35 + 25 \times 37}{100} = \dfrac{2625 + 925}{100} = \dfrac{3550}{100} = $ <strong>35.5 u</strong></p>
+        <p><strong>NTA Trap:</strong> When natural abundances are given as fractions (not %), the formula becomes $M_{\text{avg}} = \sum (\text{fraction} \times \text{mass})$. Always check whether % or decimal fraction is given.</p>
       </div>
 
       <h3 class="ssh">Laws of Chemical Combination</h3>
@@ -829,6 +845,92 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
         NEET asks: "Which of the following is diamagnetic?" — check for 0 unpaired electrons<br/>
         Zn (4s²3d¹⁰), Mg (3s²), Ca (4s²), He (1s²), Ne (2p⁶) — ALL diamagnetic</p>
       </div>
+
+      <!-- NEW: Psi vs r and Psi² vs r graph trigger -->
+      <div class="warn-box" style="margin-top:24px;">
+        <span class="lbl">⚠ NTA Trigger — Ψ and Ψ² vs r Graphs (Quantum Mechanical Model)</span>
+        <p><strong>Ψ (wave function):</strong> Mathematical function; has no direct physical meaning. Can be positive or negative.</p>
+        <p><strong>Ψ² (probability density):</strong> Gives the probability of finding the electron at distance r from nucleus.</p>
+        <div class="fgrid" style="margin-top:10px;">
+          <div class="fbox teal-border">
+            <div class="fbox-title">s-orbitals (1s, 2s, 3s)</div>
+            <p>$\Psi^2$ vs r graph <strong>starts at a maximum (non-zero)</strong> at the nucleus (r = 0). Probability is highest at nucleus for 1s. The graph <em>never touches zero at origin</em> for s-orbitals.</p>
+            <p>Radial nodes appear as dips to zero in the graph (1s = 0 nodes; 2s = 1 node; 3s = 2 nodes).</p>
+          </div>
+          <div class="fbox red-border">
+            <div class="fbox-title red">p, d, f-orbitals</div>
+            <p>$\Psi^2$ vs r graph <strong>always starts at zero</strong> (r = 0) because angular part of wavefunction = 0 at nucleus for l ≥ 1.</p>
+            <p><strong>NTA Trap:</strong> "For 1s, electron probability is zero at nucleus" → <strong>FALSE.</strong> It is maximum at nucleus for 1s.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Spin-Only Magnetic Moment -->
+      <div class="shortcut-block" style="margin-top:28px;">
+        <div class="sc-item">
+          <div class="sc-title">🧲 Spin-Only Magnetic Moment (μ) — Crossover with Class 12 d-Block <span class="tag tr">NEET Guaranteed</span></div>
+          <div class="sc-body">
+            $$\boxed{\mu = \sqrt{n(n+2)} \text{ B.M.}}$$
+            where $n$ = number of <strong>unpaired electrons</strong> (B.M. = Bohr Magneton)<br/><br/>
+            <strong>Quick Reference Table:</strong><br/>
+            <table style="font-size:14px;margin-top:8px;width:100%;">
+              <tr style="background:rgba(13,122,106,0.1);"><th style="padding:5px 8px;">Unpaired e⁻ (n)</th><th>μ (B.M.)</th><th>Example Ion</th></tr>
+              <tr><td style="padding:4px 8px;">0</td><td>0</td><td>Zn²⁺ (d¹⁰), diamagnetic</td></tr>
+              <tr><td style="padding:4px 8px;">1</td><td>≈ 1.73</td><td>Cu²⁺ (d⁹), Ti³⁺ (d¹)</td></tr>
+              <tr><td style="padding:4px 8px;">2</td><td>≈ 2.83</td><td>Ni²⁺ (d⁸), Cu (3d¹⁰4s¹? — uses atomic!)</td></tr>
+              <tr><td style="padding:4px 8px;">3</td><td>≈ 3.87</td><td>Co²⁺ (d⁷), Cr³⁺ (d³)</td></tr>
+              <tr><td style="padding:4px 8px;">4</td><td>≈ 4.90</td><td>Fe²⁺ (d⁶), Mn³⁺ (d⁴)</td></tr>
+              <tr><td style="padding:4px 8px;">5</td><td>≈ 5.92</td><td>Mn²⁺ (d⁵), Fe³⁺ (d⁵)</td></tr>
+            </table>
+          </div>
+          <div class="sc-meta">
+            <span class="sc-use">⚡ Shortcut: The digit before the decimal always equals the number of unpaired electrons! (1.73 → 1 unpaired; 2.83 → 2 unpaired; 3.87 → 3 unpaired)</span>
+            <span class="sc-fail">✗ Don't confuse: Use IONIC config (remove 4s first!) to count unpaired electrons. Fe²⁺ is [Ar]3d⁶ (4 unpaired), NOT [Ar]3d⁶4s² (atomic).</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Nodes Calculation -->
+      <div class="shortcut-block" style="margin-top:28px;">
+        <div class="sc-item">
+          <div class="sc-title">🌊 Node Formulae (NCERT §2.6.3) — NEET 2022, 2024</div>
+          <div class="sc-body">
+            <strong>Radial (Spherical) nodes</strong> $= n - l - 1$<br/>
+            <strong>Angular (Planar) nodes</strong> $= l$<br/>
+            <strong>Total nodes</strong> $= n - 1$<br/><br/>
+            <strong>Quick Reference:</strong><br/>
+            1s: radial=0, angular=0, total=0 &nbsp;|&nbsp; 2s: radial=1, angular=0, total=1<br/>
+            2p: radial=0, angular=1, total=1 &nbsp;|&nbsp; 3s: radial=2, angular=0, total=2<br/>
+            3p: radial=1, angular=1, total=2 &nbsp;|&nbsp; 3d: radial=0, angular=2, total=2<br/>
+            4s: radial=3, angular=0, total=3 &nbsp;|&nbsp; 4p: radial=2, angular=1, total=3
+          </div>
+          <div class="sc-meta">
+            <span class="sc-use">✓ Works for: any hydrogen-like orbital</span>
+            <span class="sc-fail">✗ Don't confuse: angular node = nodal plane (dumbbell has 1 planar node)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW: Photoelectric Effect Graphs -->
+      <div class="fgrid" style="margin-top:24px;">
+        <div class="fbox teal-border">
+          <div class="fbox-title">📈 Photoelectric Effect — Graph Interpretation (NTA Favourite)</div>
+          <p><strong>Graph 1: KE_max vs Frequency</strong><br/>
+          Straight line with slope = $h$ (Planck's constant). X-intercept = threshold frequency $\nu_0$. Increasing frequency → increases KE linearly.</p>
+          <p><strong>Graph 2: Photocurrent vs Intensity</strong><br/>
+          Straight line through origin. <strong>Increasing intensity → increases saturation current</strong> (more photons → more electrons ejected). KE is UNCHANGED.</p>
+          <p><strong>Graph 3: Stopping Potential vs Frequency</strong><br/>
+          Straight line. <strong>Increasing frequency → increases stopping potential.</strong> Intensity has NO effect on stopping potential ($V_{stop}$). Different metals → parallel lines (same slope $h/e$, different intercepts).</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">Photoelectric Trap Summary</div>
+          <p>Intensity ↑ → More electrons (higher current), same KE, same $V_{stop}$</p>
+          <p>Frequency ↑ → Higher KE, higher $V_{stop}$, same current (if intensity same)</p>
+          <p>$eV_{stop} = KE_{max} = h\nu - h\nu_0$</p>
+          <p>Below threshold frequency: NO emission, regardless of intensity</p>
+          <p><strong>NEET Trap:</strong> "Bright light of low frequency will eject electrons" — FALSE if $\nu &lt; \nu_0$</p>
+        </div>
+      </div>
     </div>
 
     <div class="sec" id="ch2-pyq" data-m="PYQ">
@@ -921,7 +1023,7 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
 <!-- ═══════════════════ CHAPTER 5 — STATES OF MATTER ═══════════════════ -->
 <div class="chapter" id="ch5">
   <div class="ch-head orange">
-    <div class="ch-ey">NCERT Class 11 · Chapter 5 · ~2 Qs/NEET</div>
+    <div class="ch-ey">NCERT Class 11 · Chapter 5 · [PHYSICS OVERLAP / NTA LEGACY]</div>
     <div class="ch-title">States of Matter — <em>Ideal Gases, Kinetic Theory &amp; Real Gases</em></div>
   </div>
   <div class="ch-nav">
@@ -1147,6 +1249,51 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
   </div>
   <div class="ch-body">
 
+    <div class="sec" id="ch6-s0" data-m="Properties">
+      <h2 class="sh">6.0 Thermodynamic Properties — Intensive vs Extensive <span class="tag tr">NTA Trap — 2023, 2021</span></h2>
+
+      <div class="revision-engine">
+        <h3>🔁 Intensive vs Extensive Properties (Classic NTA Trap)</h3>
+        <div class="re-grid">
+          <div class="re-item" style="border-left:3px solid var(--red);">
+            <div class="re-label" style="color:var(--red);">Extensive Properties</div>
+            <div class="re-val">Depend on <strong>amount of substance</strong>. Additive.<br/>
+            Mass · Volume · Enthalpy (H) · Entropy (S) · Internal Energy (U) · Gibbs Energy (G) · Heat Capacity (C) · Moles (n)</div>
+          </div>
+          <div class="re-item" style="border-left:3px solid var(--blue);">
+            <div class="re-label" style="color:var(--blue);">Intensive Properties</div>
+            <div class="re-val">Independent of <strong>amount of substance</strong>. Not additive.<br/>
+            Density · Temperature (T) · Pressure (P) · Molar heat capacity ($C_m$) · Standard cell potential ($E^\circ_{cell}$) · pH · Viscosity · Surface tension · Mole fraction · Specific heat</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trap-block">
+        <div class="trap-row"><span class="trap-x">✗</span><span>"Enthalpy is intensive" <span class="trap-arrow">→</span> <strong>FALSE.</strong> H is extensive (doubles if you double the amount). Molar enthalpy ($\Delta H_m$) is intensive.</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span>"$E^\circ_{cell}$ is extensive" <span class="trap-arrow">→</span> <strong>FALSE.</strong> Standard cell potential does NOT depend on amount — it is intensive. ($\Delta G^\circ$ is extensive.)</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span>"pH doubles on doubling volume" <span class="trap-arrow">→</span> <strong>FALSE.</strong> pH is intensive — doesn't change with amount of solution.</span></div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Mayer's Relation &amp; Poisson's Ratio</div>
+          <p>$\boxed{C_p - C_v = R}$ &nbsp; (Mayer's relation, for ideal gas)</p>
+          <p>Poisson's ratio (adiabatic index): $\gamma = \dfrac{C_p}{C_v}$</p>
+          <p><strong>Monatomic gas</strong> (He, Ar, Ne): $C_v = \frac{3}{2}R$, $C_p = \frac{5}{2}R$, $\gamma = 5/3 \approx 1.67$</p>
+          <p><strong>Diatomic gas</strong> (H₂, N₂, O₂): $C_v = \frac{5}{2}R$, $C_p = \frac{7}{2}R$, $\gamma = 7/5 = 1.4$</p>
+          <p><strong>Polyatomic gas</strong> (CO₂, CH₄): $C_v = 3R$, $C_p = 4R$, $\gamma = 4/3 \approx 1.33$</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Process Types &amp; Conditions</div>
+          <p><strong>Isothermal:</strong> T = const → $\Delta U = 0$ (ideal gas), $q = -w$</p>
+          <p><strong>Adiabatic:</strong> $q = 0$ → $\Delta U = w$, $TV^{\gamma-1} = $ const</p>
+          <p><strong>Isobaric:</strong> P = const → $q = \Delta H = nC_p\Delta T$</p>
+          <p><strong>Isochoric:</strong> V = const → $w = 0$, $q = \Delta U = nC_v\Delta T$</p>
+          <p><strong>Cyclic:</strong> $\Delta U = 0$ (returns to initial state)</p>
+        </div>
+      </div>
+    </div>
+
     <div class="sec" id="ch6-s1" data-m="First Law">
       <h2 class="sh">6.1 First Law of Thermodynamics <span class="tag tr">NCERT §6.3 — Always Tested</span></h2>
       <div class="score-strip">
@@ -1328,6 +1475,31 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
         At crossover: $\Delta G = 0 \Rightarrow T = \dfrac{\Delta H}{\Delta S} = \dfrac{-30000}{-100} = 300$ K<br/>
         Below 300K: spontaneous (ΔG &lt; 0). Above 300K: non-spontaneous (ΔG &gt; 0)<br/>
         [Note: Convert ΔH to J for consistent units]</p>
+      </div>
+
+      <!-- NEW: Standard State Zeroes Trap Box -->
+      <div class="trap-block" style="margin-top:24px;">
+        <div style="font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;">⚠ NTA Trap — Standard State Zeroes ($\Delta H_f^\circ = 0$)</div>
+        <p style="font-family:var(--prose);font-size:16px;color:var(--ink2);margin-bottom:10px;">By convention, $\Delta H_f^\circ = 0$ <em>only</em> for the most stable allotrope/form of an element in its standard state. NTA frequently swaps allotropes in MCQ options to test this.</p>
+        <div class="fgrid" style="margin-top:10px;">
+          <div class="fbox green-border">
+            <div class="fbox-title green">✓ $\Delta H_f^\circ = 0$ (Correct Standard States)</div>
+            <p>$\text{C(graphite)}$ = 0 &nbsp;❌ NOT diamond (diamond is metastable)</p>
+            <p>$\text{P}_4\text{(white)}$ = 0 &nbsp;❌ NOT red phosphorus</p>
+            <p>$\text{S}_8\text{(rhombic)}$ = 0 &nbsp;❌ NOT monoclinic sulphur</p>
+            <p>$\text{Br}_2\text{(liquid)}$ = 0 &nbsp;❌ NOT Br₂(g) or Br₂(s)</p>
+            <p>$\text{I}_2\text{(solid)}$ = 0 &nbsp;❌ NOT I₂(g) or I₂(l)</p>
+            <p>$\text{O}_2\text{(g)}$ = 0 &nbsp;❌ NOT O₃ (ozone)</p>
+          </div>
+          <div class="fbox red-border">
+            <div class="fbox-title red">How to Use in Calculations</div>
+            <p>$\Delta H_{\text{rxn}} = \sum \Delta H_f^\circ (\text{products}) - \sum \Delta H_f^\circ (\text{reactants})$</p>
+            <p>Elements in standard state drop out of this calculation (their $\Delta H_f^\circ$ terms = 0).</p>
+            <p><strong>Example:</strong> $\Delta H_f^\circ(\text{CO}_2) = \Delta H_f^\circ(\text{CO}_2) - \Delta H_f^\circ[\text{C(graphite)}] - \Delta H_f^\circ[\text{O}_2\text{(g)}]$<br/>
+            $= \Delta H_f^\circ(\text{CO}_2) - 0 - 0 = -393.5$ kJ/mol</p>
+            <p><strong>NTA Trap Question Type:</strong> "The $\Delta H_f^\circ$ of C(diamond) is:" → Answer: <em>Not zero</em>; it is +1.9 kJ/mol (endothermic from graphite).</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1624,6 +1796,47 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
         <p>Ionic product (IP) vs $K_{sp}$: If IP &gt; $K_{sp}$ → precipitation occurs; IP &lt; $K_{sp}$ → no precipitation; IP = $K_{sp}$ → saturated (just at saturation).</p>
       </div>
 
+      <!-- NEW: Vapour Density Method -->
+      <div class="fgrid" style="margin-top:24px;">
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">🧮 Vapour Density Method — Degree of Dissociation (α)</div>
+          <p>For a gas-phase dissociation: $A \rightleftharpoons n \text{ products}$</p>
+          <p>$$\boxed{\alpha = \frac{D - d}{d(n-1)}}$$</p>
+          <p>Where:<br/>
+          $D$ = Theoretical (initial) vapour density (without dissociation)<br/>
+          $d$ = Observed (experimental) vapour density at equilibrium<br/>
+          $n$ = total moles of products from 1 mole of reactant</p>
+          <p>Note: Vapour density $= M/2$, so $D = M_{\text{initial}}/2$</p>
+          <p><strong>Example — PCl₅ ⇌ PCl₃ + Cl₂:</strong> n=2, $M(\text{PCl}_5)=208$, D=104. If observed d=65, then $\alpha = (104-65)/(65 \times 1) = 39/65 = 0.6$</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">⚗️ Simultaneous Solubility (Common Ion)</div>
+          <p>When two sparingly soluble salts <strong>sharing a common ion</strong> are dissolved in the same solution:</p>
+          <p><strong>Example:</strong> AgCl ($K_{sp1} = 1.6 \times 10^{-10}$) and AgBr ($K_{sp2} = 5.0 \times 10^{-13}$) in same solution.</p>
+          <p>Let solubility of AgCl = $s_1$ and AgBr = $s_2$. Total $[\text{Ag}^+] = s_1 + s_2$.</p>
+          <p>$K_{sp1} = (s_1 + s_2) \cdot s_1$ &nbsp; and &nbsp; $K_{sp2} = (s_1 + s_2) \cdot s_2$</p>
+          <p>Since AgBr has much smaller $K_{sp}$: $s_2 \ll s_1$, so $[\text{Ag}^+] \approx s_1$.<br/>
+          Solve: $s_1 \approx \sqrt{K_{sp1}}$, then $s_2 = K_{sp2}/s_1$</p>
+          <p><strong>Key Rule:</strong> Less soluble salt is precipitated first as $[\text{common ion}]$ rises.</p>
+        </div>
+      </div>
+
+      <!-- NEW: pH Dependence of Solubility -->
+      <div class="tip-box" style="margin-top:20px;">
+        <span class="lbl">💡 pH Dependence of Solubility — NTA Syllabus Addition</span>
+        <p><strong>Rule:</strong> Solubility of salts of <em>weak acids</em> (like $\text{CaCO}_3$, $\text{AgCN}$, $\text{Ba}_3(\text{PO}_4)_2$, $\text{BaF}_2$) <strong>increases in acidic solutions (lower pH)</strong>.</p>
+        <p><strong>Mechanism:</strong> Added H⁺ ions react with the anion of the salt (e.g., CO₃²⁻, CN⁻, PO₄³⁻), consuming it and disturbing the Ksp equilibrium, driving the dissolution forward.</p>
+        <div class="formula" style="margin:10px 0;font-size:14px;">
+          $\text{CaCO}_3\text{(s)} \rightleftharpoons \text{Ca}^{2+}\text{(aq)} + \text{CO}_3^{2-}\text{(aq)}$<br/>
+          $\text{CO}_3^{2-} + 2\text{H}^+ \rightarrow \text{H}_2\text{O} + \text{CO}_2\uparrow$ &nbsp; (CO₃²⁻ consumed → more CaCO₃ dissolves)
+        </div>
+        <p><strong>Contrast:</strong> Salts of strong acids (AgCl, BaSO₄) — solubility is <em>not significantly affected</em> by pH because Cl⁻ and SO₄²⁻ are conjugate bases of strong acids and are not protonated by dilute H⁺.</p>
+        <div class="trap-block" style="margin-top:12px;padding:10px 14px;">
+          <div class="trap-row"><span class="trap-x">✗</span><span>"Adding HCl will not affect BaSO₄ solubility" → <strong>TRUE.</strong> SO₄²⁻ is conjugate base of strong acid H₂SO₄ — not consumed by H⁺.</span></div>
+          <div class="trap-row"><span class="trap-x">✓</span><span>"Adding HCl will increase CaCO₃ solubility" → <strong>TRUE.</strong> CO₃²⁻ (conjugate base of weak acid H₂CO₃) is protonated by H⁺, pulling dissolution forward.</span></div>
+        </div>
+      </div>
+
       <div class="dl-block">
         <h3>⚡ Decision Engine — Chapter 7 Equilibrium</h3>
         <div class="trigger-grid">
@@ -1713,6 +1926,504 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
   </div>
 </div>
 
+<!-- ═══════════════════ CHAPTER 8 — REDOX REACTIONS ═══════════════════ -->
+<div class="chapter" id="ch8">
+  <div class="ch-head purple">
+    <div class="ch-ey">NCERT Class 11 · Chapter 8 · ~2 Qs/NEET · Bridge to Electrochemistry</div>
+    <div class="ch-title">Redox Reactions — <em>Oxidation States, n-Factor Engine &amp; Balancing</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch8-s1">Oxidation States</a>
+    <a href="#ch8-s2">n-Factor Engine</a>
+    <a href="#ch8-s3">Balancing Methods</a>
+    <a href="#ch8-s4">Paradoxical OS</a>
+    <a href="#ch8-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch8-s1" data-m="Oxidation States">
+      <h2 class="sh">8.1 Rules for Oxidation State (OS) <span class="tag tp">NCERT §8.4 — Foundation</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-p">🟣 2 Qs/paper — OS calculation + disproportionation</span>
+        <span class="score-pill sp-r">Paradoxical OS compounds — NEET 2024, 2022, 2019</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Rule</th><th>Value</th><th>Exception</th></tr>
+          <tr><td>Free element</td><td>0</td><td>None</td></tr>
+          <tr><td>Monoatomic ion</td><td>= charge</td><td>None (Na⁺ = +1, Cl⁻ = -1)</td></tr>
+          <tr><td>F in all compounds</td><td>-1</td><td>None (most electronegative)</td></tr>
+          <tr><td>O in compounds</td><td>-2</td><td>Peroxide (O₂²⁻) = -1; OF₂ = +2; O₃ = 0</td></tr>
+          <tr><td>H in compounds</td><td>+1</td><td>Metal hydrides (NaH, CaH₂) = -1</td></tr>
+          <tr><td>Alkali metals (Group 1)</td><td>+1</td><td>None</td></tr>
+          <tr><td>Alkaline earth (Group 2)</td><td>+2</td><td>None</td></tr>
+          <tr><td>Sum of OS</td><td>= charge of species</td><td>Neutral: sum=0; Ion: sum=charge</td></tr>
+        </table>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — OS of Cr in K₂Cr₂O₇:</strong><br/>
+        Let OS of Cr = x. K=+1, O=-2<br/>
+        $2(+1) + 2x + 7(-2) = 0$<br/>
+        $2 + 2x - 14 = 0 \Rightarrow 2x = 12 \Rightarrow$ <strong>x = +6</strong></p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — OS of S in H₂SO₄ vs H₂S₂O₇:</strong><br/>
+        H₂SO₄: $2(+1) + x + 4(-2) = 0 \Rightarrow x = +6$<br/>
+        H₂S₂O₇ (pyrosulphuric acid): $2(+1) + 2x + 7(-2) = 0 \Rightarrow 2x = 12 \Rightarrow x = +6$<br/>
+        H₂S₂O₃ (thiosulphate): $2(+1) + 2x + 3(-2) = 0 \Rightarrow 2x = 4 \Rightarrow x = +2$</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch8-s2" data-m="n-Factor">
+      <h2 class="sh">8.2 The n-Factor Engine <span class="tag tp">High Yield — Titrations &amp; Normality</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">n-Factor Definitions</div>
+          <p><strong>Acid/Base:</strong> n-factor = no. of H⁺ or OH⁻ furnished per molecule</p>
+          <p>H₂SO₄ (strong) = 2; H₃PO₄ (tribasic) = 3; H₃PO₃ (dibasic!) = 2; H₃PO₂ (monobasic) = 1</p>
+          <p><strong>Redox:</strong> n-factor = total change in OS per formula unit<br/>
+          $= |\text{OS}_\text{initial} - \text{OS}_\text{final}| \times \text{no. of atoms changing}$</p>
+          <p><strong>Normality:</strong> $N = M \times n\text{-factor}$; &nbsp; $N_1V_1 = N_2V_2$</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">n-Factor Quick Reference</div>
+          <p>KMnO₄ (acidic): Mn goes +7→+2, n=<strong>5</strong></p>
+          <p>KMnO₄ (neutral): Mn goes +7→+4, n=<strong>3</strong></p>
+          <p>KMnO₄ (basic): Mn goes +7→+6, n=<strong>1</strong></p>
+          <p>K₂Cr₂O₇: Cr goes +6→+3, 2 Cr atoms, n=<strong>6</strong></p>
+          <p>FeSO₄ (reducing): Fe goes +2→+3, n=<strong>1</strong></p>
+          <p>H₂O₂ (oxidising): O goes -1→-2, 2 O atoms, n=<strong>2</strong></p>
+          <p>H₂O₂ (reducing): O goes -1→0, 2 O atoms, n=<strong>2</strong></p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Disproportionation n-Factor</div>
+          <p>In disproportionation, the <strong>same element</strong> undergoes both oxidation and reduction.</p>
+          <p>$n\text{-factor} = \dfrac{\text{(OS change in oxidation)} \times \text{moles oxidised}}{\text{total moles of reactant}}$</p>
+          <p><strong>Example — P₄ → PH₃ + H₂PO₂⁻:</strong><br/>
+          P(0) → P(-3) in PH₃ (reduction, ΔOS=3)<br/>
+          P(0) → P(+1) in H₂PO₂⁻ (oxidation, ΔOS=1)<br/>
+          Balanced: P₄ + 3OH⁻ + 3H₂O → PH₃ + 3H₂PO₂⁻ (1 P reduced, 3 P oxidised)<br/>
+          n-factor of P₄ = (3×1 + 1×3)/1 mole of P₄ = <strong>6/4 per P atom context; use mole ratio method</strong></p>
+          <p><strong>Rule:</strong> For disprop. reactions, n-factor = moles of electrons transferred per mole of reactant (use half-reaction approach).</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Titration:</strong> 25 mL of 0.1M H₂C₂O₄ (oxalic acid) reacts with KMnO₄ in acidic medium. Find volume of 0.02M KMnO₄ required.<br/>
+        H₂C₂O₄: C goes +3→+4 (×2 C atoms per molecule), n=2. Normality of oxalic = 0.1×2 = 0.2N<br/>
+        KMnO₄ (acidic): n=5. Normality of KMnO₄ = 0.02×5 = 0.1N<br/>
+        $N_1V_1 = N_2V_2$ → $0.2 \times 25 = 0.1 \times V_2$ → $V_2 = $ <strong>50 mL</strong></p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch8-s3" data-m="Balancing">
+      <h2 class="sh">8.3 Balancing Redox Reactions <span class="tag tb">NCERT §8.3 — Ion-Electron Method</span></h2>
+
+      <div class="mech-box">
+        <p><strong>Ion-Electron Method (Half-Reaction Method) — Step by Step:</strong></p>
+        <ul class="pl arr">
+          <li><strong>Split</strong> the reaction into oxidation half-reaction and reduction half-reaction</li>
+          <li><strong>Balance atoms</strong> (except O and H) in each half-reaction</li>
+          <li><strong>Balance O</strong> by adding H₂O molecules to the deficient side</li>
+          <li><strong>In ACIDIC medium:</strong> Balance H by adding H⁺ ions | <strong>In BASIC medium:</strong> Balance H by adding H₂O; then add OH⁻ to opposite side</li>
+          <li><strong>Balance charge</strong> by adding electrons (e⁻) to the more positive side</li>
+          <li><strong>Equalise electrons</strong> by multiplying half-reactions by appropriate factors</li>
+          <li><strong>Add</strong> the two half-reactions; cancel common species</li>
+        </ul>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Example — MnO₄⁻ + Fe²⁺ (Acidic)</div>
+          <p>Reduction: MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O</p>
+          <p>Oxidation: Fe²⁺ → Fe³⁺ + e⁻</p>
+          <p>Multiply oxidation by 5: 5Fe²⁺ → 5Fe³⁺ + 5e⁻</p>
+          <p><strong>Net:</strong> MnO₄⁻ + 8H⁺ + 5Fe²⁺ → Mn²⁺ + 4H₂O + 5Fe³⁺</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Key Difference: Acidic vs Basic Medium</div>
+          <p><strong>Acidic:</strong> Add H₂O to balance O, then add H⁺ to balance H</p>
+          <p><strong>Basic:</strong> Add H₂O to balance O, then add OH⁻ to balance H (or: first balance as acidic, then add OH⁻ to both sides to neutralise H⁺)</p>
+          <p>Final check: charge balance must equal electron count on each side.</p>
+          <p><strong>NEET shortcut:</strong> In acidic medium, H⁺ appears on LEFT of reduction half. In basic medium, OH⁻ appears on LEFT of reduction half.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch8-s4" data-m="Paradoxical OS">
+      <h2 class="sh">8.4 Paradoxical Oxidation States — NTA's Favourite Traps <span class="tag tr">NEET 2024, 2022, 2019, 2017</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title red">🦋 CrO₅ — Butterfly Structure</div>
+          <p>Structure: Cr bonded to <strong>4 peroxo oxygens</strong> (−1 each in O−O) and 1 oxide oxygen (−2)</p>
+          <p>Let OS of Cr = x.<br/>
+          $x + 4(-1) + 1(-2) = 0 \Rightarrow x = +6$</p>
+          <p><strong>OS of Cr in CrO₅ = +6</strong> (NOT +10 as naive counting suggests)</p>
+          <p>Key insight: 4 oxygens are in peroxide linkage (O−O, so each O = −1)</p>
+          <p>NEET trap: Students assign all O = −2 and get x = +10, which is impossible for Cr!</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">💧 H₂SO₅ — Caro's Acid</div>
+          <p>Structure: HO−O−S(=O)₂−OH (one peroxo O−O linkage)</p>
+          <p>Peroxo O (in O−O): each O = −1 (×2 peroxo oxygens)<br/>
+          Regular O (double bonded to S): O = −2 (×2 oxygens)<br/>
+          $2(+1) + x + 2(-1) + 2(-2) = 0$<br/>
+          $2 + x - 2 - 4 = 0 \Rightarrow$ <strong>x = +6</strong></p>
+          <p>Similarly H₂S₂O₈ (Marshall's acid): OS of S = +6</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">⚗️ C₃O₂ — Carbon Suboxide</div>
+          <p>Structure: O=C=C=C=O (linear)</p>
+          <p>Terminal C atoms: each bonded to one O (−2) and one central C<br/>
+          Central C: bonded to two terminal C atoms<br/>
+          Sum rule: $3x + 2(-2) = 0 \Rightarrow 3x = 4 \Rightarrow$ <strong>x = +4/3</strong></p>
+          <p>Fractional OS is valid! Common in symmetric molecules.</p>
+          <p>Other fractional OS examples: Fe₃O₄ (FeO·Fe₂O₃) → Fe OS = +8/3</p>
+        </div>
+      </div>
+
+      <div class="fgrid" style="margin-top:16px;">
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">📊 More Paradoxical OS — Quick Reference</div>
+          <p>$\text{Na}_2\text{O}_2$ (sodium peroxide): O = <strong>−1</strong></p>
+          <p>$\text{KO}_2$ (potassium superoxide): O = <strong>−½</strong></p>
+          <p>$\text{OF}_2$: O = <strong>+2</strong> (F is more electronegative, so O is positive!)</p>
+          <p>$\text{H}_2\text{O}_2$: O = <strong>−1</strong></p>
+          <p>$\text{Cl}_2\text{O}_7$: Cl = <strong>+7</strong></p>
+          <p>$\text{ClO}_2$: Cl = <strong>+4</strong></p>
+          <p>$\text{Fe}_3\text{O}_4$: Fe = <strong>+8/3</strong> (mixed oxide)</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Electrochemical Series — Key Points for Redox</div>
+          <p>Higher SRP (reduction potential) = better oxidising agent</p>
+          <p>Lower SRP = better reducing agent</p>
+          <p>$E^\circ_{\text{cell}} = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}}$</p>
+          <p>$\Delta G^\circ = -nFE^\circ_\text{cell}$ (n = moles of e⁻ transferred)</p>
+          <p><strong>Spontaneous:</strong> $E^\circ_\text{cell} > 0$ → $\Delta G^\circ < 0$ → $K > 1$</p>
+          <p>Disproportionation spontaneous if: $E^\circ_\text{right} > E^\circ_\text{left}$ (Latimer diagram)</p>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 8 Redox</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Oxidation state of Cr in CrO₅"</div>
+            <div class="trigger-action">→ +6. Four oxygens are peroxo (O−O, each −1), one is oxide (−2). Don't assign all O = −2!</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "n-factor of KMnO₄"</div>
+            <div class="trigger-action">→ Acidic = 5 (+7→+2); Neutral = 3 (+7→+4); Basic = 1 (+7→+6)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Disproportionation"</div>
+            <div class="trigger-action">→ Same element oxidised AND reduced. Use half-reaction method for n-factor. Cl₂→Cl⁻+ClO⁻ (basic), P₄→PH₃+H₂PO₂⁻</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Balancing in basic medium"</div>
+            <div class="trigger-action">→ Add H₂O to balance O first, then add OH⁻ to balance H. OR balance as acidic then add equal OH⁻ to both sides.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "OS of Fe in Fe₃O₄"</div>
+            <div class="trigger-action">→ +8/3 (fractional, mixed oxide = FeO + Fe₂O₃). Fractional OS is valid!</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "OS in OF₂"</div>
+            <div class="trigger-action">→ O = +2 (F is most electronegative, F = −1 always; so O must be positive)</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "O is always −2" — FALSE. O = −1 in peroxides (H₂O₂, Na₂O₂), −½ in KO₂, +2 in OF₂.</div>
+          <div class="elim-step">❌ Trap: "H is always +1" — FALSE. H = −1 in metal hydrides (NaH, LiAlH₄, CaH₂).</div>
+          <div class="elim-step">❌ Trap: "n-factor of KMnO₄ = 5 always" — NO. Depends on medium: acidic=5, neutral=3, basic=1.</div>
+          <div class="elim-step">❌ Trap: "Fractional OS is not possible" — FALSE. Fe₃O₄ (Fe=+8/3), C₃O₂ (C=+4/3), S₄O₆²⁻ (S=+2.5) all have fractional OS.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 8</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">OS of Cr in CrO₅</div><div class="re-val">+6 (4 peroxo O = −1 each)</div></div>
+          <div class="re-item"><div class="re-label">OS of S in H₂SO₅</div><div class="re-val">+6 (Caro's acid, one O−O link)</div></div>
+          <div class="re-item"><div class="re-label">OS of C in C₃O₂</div><div class="re-val">+4/3 (fractional, linear)</div></div>
+          <div class="re-item"><div class="re-label">KMnO₄ n-factor (acid)</div><div class="re-val">5 (+7 → +2)</div></div>
+          <div class="re-item"><div class="re-label">K₂Cr₂O₇ n-factor</div><div class="re-val">6 (+6→+3, ×2 Cr atoms)</div></div>
+          <div class="re-item"><div class="re-label">H in NaH</div><div class="re-val">−1 (metal hydride)</div></div>
+          <div class="re-item"><div class="re-label">O in Na₂O₂</div><div class="re-val">−1 (peroxide)</div></div>
+          <div class="re-item"><div class="re-label">O in OF₂</div><div class="re-val">+2 (F always −1)</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec" id="ch8-pyq" data-m="PYQ">
+      <h2 class="sh">8.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">The oxidation state of chromium in CrO₅ is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: +6</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Structure</span><p>CrO₅ has a butterfly structure with 4 peroxo oxygens (O−O bonds, each O = −1) and 1 oxide oxygen (O = −2).</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>$x + 4(-1) + 1(-2) = 0 \Rightarrow x + (-6) = 0 \Rightarrow x = +6$</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Trap</span><p>If naively all O = −2: $x + 5(-2) = 0 \Rightarrow x = +10$. Impossible! This is the classic NTA trap.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">How many moles of electrons are required to reduce 1 mol of KMnO₄ to MnSO₄ in acidic medium?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 5 moles of electrons</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Half-reaction</span><p>MnO₄⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H₂O (acidic medium)</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">OS change</span><p>Mn: +7 → +2, change = 5. n-factor of KMnO₄ in acidic medium = 5.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Note</span><p>In neutral: 3e⁻ (→ MnO₂). In basic: 1e⁻ (→ MnO₄²⁻). Always state the medium!</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ UNIT 20 — PRACTICAL CHEMISTRY (NMC) ═══════════════════ -->
+<div class="chapter" id="u20">
+  <div class="ch-head" style="border-bottom-color:var(--orange);">
+    <div class="ch-ey">NMC Syllabus · Unit 20 · GUARANTEED 2–3 Qs/NEET · NEW ADDITION</div>
+    <div class="ch-title">Practical Chemistry &amp; Experimental Skills — <em>Thermometry, Kinetics &amp; Volumetric Analysis</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#u20-s1">Thermodynamics Practicals</a>
+    <a href="#u20-s2">Kinetics Practicals</a>
+    <a href="#u20-s3">Volumetric Analysis</a>
+    <a href="#u20-s4">Indicators</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="u20-s1" data-m="Thermo Practical">
+      <h2 class="sh">20.1 Thermodynamics Practicals <span class="tag to">NMC Guaranteed — 1 Q/NEET</span></h2>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ Standard Enthalpy of Neutralisation</span>
+        <p>Enthalpy of neutralisation of a <strong>strong acid + strong base</strong>:<br/>
+        $$\Delta H_{\text{neut}} = -57.1 \text{ kJ/mol}$$
+        This is constant for any strong acid–strong base pair because the net ionic reaction is always:
+        $\text{H}^+ (\text{aq}) + \text{OH}^- (\text{aq}) \rightarrow \text{H}_2\text{O}(\text{l})$</p>
+      </div>
+
+      <div class="trap-block">
+        <div class="trap-row">
+          <span class="trap-x">⚠</span>
+          <span><strong>Weak acid or weak base involved:</strong> The value is <em>less negative</em> than −57.1 kJ/mol because energy is <strong>consumed in ionizing the weak electrolyte</strong> first (endothermic ionization step), leaving less energy to be released overall.</span>
+        </div>
+        <div class="trap-row">
+          <span class="trap-x">📐</span>
+          <span>$\Delta H_{\text{neut}}(\text{weak}) = -57.1 + \Delta H_{\text{ionisation}}$ (algebraic sum, where $\Delta H_{\text{ion}} > 0$)</span>
+        </div>
+        <div class="trap-row">
+          <span class="trap-x">Example</span>
+          <span>CH₃COOH + NaOH: $\Delta H$ ≈ −55.2 kJ/mol (less negative; 1.9 kJ/mol consumed ionizing acetic acid)</span>
+        </div>
+        <div class="trap-row">
+          <span class="trap-x">HF + NaOH</span>
+          <span>$\Delta H$ ≈ −68 kJ/mol — MORE exothermic! Exception: HF has extra strong H-bond breaking BUT also high $\Delta H_{\text{hydration}}$ — NEET may ask this edge case.</span>
+        </div>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Calorimetry Practical — Key Formula</div>
+          <p>$q = mc\Delta T$ &nbsp; (m = mass in g, c = specific heat, ΔT = temp change)</p>
+          <p>For dilute aqueous solutions: $c \approx 4.18$ J g⁻¹ K⁻¹</p>
+          <p>$\Delta H_{\text{neut}} = \dfrac{-q}{\text{moles of water formed}}$</p>
+          <p>Negative sign: exothermic reaction raises temperature of calorimeter</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Enthalpy of Solution Experiment</div>
+          <p>Dissolve known mass in measured volume of water; measure ΔT</p>
+          <p>$\Delta H_{\text{soln}} = \Delta H_{\text{lattice}} + \Delta H_{\text{hydration}}$</p>
+          <p>Endothermic dissolution (NH₄Cl, KNO₃): temperature drops → cooling effect</p>
+          <p>Exothermic dissolution (NaOH, H₂SO₄ in water): temperature rises → heating</p>
+        </div>
+      </div>
+
+      <!-- PRACTICAL-EXT: CuSO4 Hydration -->
+      <div class="note-box" style="margin-top:20px;">
+        <span class="lbl">📐 Practical-Ext — Enthalpy of Solution of CuSO₄ (NMC Syllabus Specific)</span>
+        <p>This experiment is explicitly named in the NMC syllabus. NTA uses the visual colour-change logic to frame calculation questions.</p>
+        <div class="fgrid" style="margin-top:10px;">
+          <div class="fbox teal-border">
+            <div class="fbox-title">The CuSO₄ Hydration Logic</div>
+            <p>Anhydrous $\text{CuSO}_4$ (white) + 5H₂O → $\text{CuSO}_4 \cdot 5\text{H}_2\text{O}$ (blue)</p>
+            <p>$\Delta H_{\text{hydration}}$ is <strong>highly exothermic</strong> (strong ion-dipole bonds formed)</p>
+            <p>$\Delta H_{\text{soln}}(\text{CuSO}_4 \cdot 5\text{H}_2\text{O}) = \Delta H_{\text{lattice}} + \Delta H_{\text{hydration}}$</p>
+            <p>Since hydration is very large and negative, net dissolution of the <em>hydrated salt</em> in water is endothermic (lattice energy must be supplied again), while anhydrous dissolution is exothermic.</p>
+          </div>
+          <div class="fbox red-border">
+            <div class="fbox-title red">NTA Trap Logic</div>
+            <p><strong>Anhydrous CuSO₄ + water:</strong> Exothermic (energy released forming hydrate)</p>
+            <p><strong>Hydrated CuSO₄·5H₂O + water:</strong> Endothermic (lattice energy must be overcome, without the energy credit of hydration)</p>
+            <p><strong>Visual indicator:</strong> White powder → blue solution = exothermic dissolution of anhydrous form</p>
+            <p><strong>Equation:</strong> $\Delta H_{\text{soln, anhydrous}} = \Delta H_{\text{lattice}} + \Delta H_{\text{hyd}} < 0$</p>
+          </div>
+        </div>
+      </div>
+
+    <div class="sec" id="u20-s2" data-m="Kinetics Practical">
+      <h2 class="sh">20.2 Kinetics Practicals — Iodine Clock Reaction <span class="tag tb">NMC Specific</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Iodine Clock Reaction — The Classic Kinetics Experiment</span>
+        <p>Reaction studied: $\text{H}_2\text{O}_2 + 2\text{I}^- + 2\text{H}^+ \rightarrow \text{I}_2 + 2\text{H}_2\text{O}$ (slow, rate-determining step)</p>
+        <p>Then: $\text{I}_2 + 2\text{S}_2\text{O}_3^{2-} \rightarrow 2\text{I}^- + \text{S}_4\text{O}_6^{2-}$ (fast, consumes I₂ before colour appears)</p>
+        <p>When thiosulphate is exhausted → I₂ accumulates → sudden <strong>dark blue/black colour</strong> with starch</p>
+        <p><strong>Clock time</strong> = time for thiosulphate to be consumed = measure of reaction rate</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Variables in Iodine Clock Experiment</div>
+          <p><strong>Effect of concentration:</strong> More I⁻ or H₂O₂ → shorter clock time → faster rate</p>
+          <p><strong>Effect of temperature:</strong> Higher T → shorter clock time (rate ∝ e^{-Ea/RT})</p>
+          <p><strong>Effect of catalyst:</strong> Adding Fe³⁺ or MoO₄²⁻ → shorter clock time</p>
+          <p>Rate law determined by varying one concentration while keeping others constant: $r = k[\text{H}_2\text{O}_2]^m[\text{I}^-]^n$</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Order Determination from Practical Data</div>
+          <p>If doubling [I⁻] halves clock time → rate doubles → first order in [I⁻]</p>
+          <p>$\text{rate} \propto \dfrac{1}{\text{clock time}}$</p>
+          <p>Plot: $\log(\text{rate})$ vs $\log[\text{I}^-]$ → slope = order w.r.t. I⁻</p>
+          <p>At room temperature, the overall reaction is found to be first order in both H₂O₂ and I⁻ (second order overall)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="u20-s3" data-m="Volumetric">
+      <h2 class="sh">20.3 Volumetric Analysis — Primary vs Secondary Standards <span class="tag tg">High Yield — 2 Qs/NEET</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Primary Standard</span>
+        <p>A substance that can be <strong>directly weighed</strong> and dissolved to make a standard solution of exact known concentration. Requirements: High purity, stable, high molar mass (reduces weighing error), non-hygroscopic, readily available.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Substance</th><th>Formula</th><th>Used For</th><th>Notes</th></tr>
+          <tr><td class="c-g"><strong>Primary Standard</strong></td><td>Oxalic acid</td><td>H₂C₂O₄·2H₂O</td><td>Standardising KMnO₄, NaOH</td><td>n-factor = 2 (diprotic)</td></tr>
+          <tr><td class="c-g"><strong>Primary Standard</strong></td><td>Mohr's salt</td><td>FeSO₄·(NH₄)₂SO₄·6H₂O</td><td>Standardising KMnO₄, K₂Cr₂O₇</td><td>n-factor = 1 (Fe²⁺→Fe³⁺)</td></tr>
+          <tr><td class="c-g"><strong>Primary Standard</strong></td><td>Sodium carbonate</td><td>Na₂CO₃</td><td>Standardising HCl, H₂SO₄</td><td>n-factor = 2</td></tr>
+          <tr><td class="c-g"><strong>Primary Standard</strong></td><td>K₂Cr₂O₇</td><td>K₂Cr₂O₇</td><td>Standardising Fe²⁺ solutions</td><td>n-factor = 6; highly stable</td></tr>
+          <tr><td class="c-r"><strong>Secondary Standard</strong></td><td>KMnO₄</td><td>KMnO₄</td><td>Titrations (after standardising)</td><td>Decomposes in light; not primary</td></tr>
+          <tr><td class="c-r"><strong>Secondary Standard</strong></td><td>NaOH</td><td>NaOH</td><td>Acid-base titrations</td><td>Hygroscopic, absorbs CO₂</td></tr>
+          <tr><td class="c-r"><strong>Secondary Standard</strong></td><td>HCl (conc.)</td><td>HCl</td><td>Acid-base (must be standardised)</td><td>Volatile, fuming</td></tr>
+        </table>
+      </div>
+
+      <div class="trap-block" style="margin-top:20px;">
+        <div class="trap-row"><span class="trap-x">✗</span><span>"KMnO₄ is a primary standard" → <strong>FALSE.</strong> It decomposes in light and cannot be weighed precisely. It must be standardised against oxalic acid or Mohr's salt.</span></div>
+        <div class="trap-row"><span class="trap-x">✗</span><span>"NaOH is a primary standard" → <strong>FALSE.</strong> It is hygroscopic and absorbs CO₂ from air. Must be standardised against oxalic acid.</span></div>
+        <div class="trap-row"><span class="trap-x">✓</span><span>"K₂Cr₂O₇ is a primary standard" → <strong>TRUE.</strong> Unlike KMnO₄, it is stable, non-hygroscopic, and can be directly weighed.</span></div>
+      </div>
+
+      <!-- PRACTICAL-EXT: KMnO4 Self-Indicator + Specific Titrations -->
+      <div class="shortcut-block" style="margin-top:24px;">
+        <div class="sc-item">
+          <div class="sc-title">🔴 Practical-Ext — KMnO₄ Self-Indicator Logic <span class="tag tr">NTA Confirmed Trap</span></div>
+          <div class="sc-body">
+            <p><strong>KMnO₄ acts as its own indicator — no external indicator is required.</strong></p>
+            <p>The endpoint is always: <strong>colourless → pale/light pink</strong> (one drop excess KMnO₄ remains unreduced)</p>
+            <div class="fgrid" style="margin-top:10px;">
+              <div class="fbox teal-border">
+                <div class="fbox-title">Oxalic Acid vs KMnO₄ (Acidic medium)</div>
+                <p>$2\text{KMnO}_4 + 5\text{H}_2\text{C}_2\text{O}_4 + 3\text{H}_2\text{SO}_4 \rightarrow \text{K}_2\text{SO}_4 + 2\text{MnSO}_4 + 10\text{CO}_2 + 8\text{H}_2\text{O}$</p>
+                <p>Medium: Dilute H₂SO₄ (NOT HCl — Cl⁻ gets oxidised by KMnO₄!)</p>
+                <p>Initially slow; becomes autocatalytic (Mn²⁺ formed catalyses the reaction)</p>
+                <p>n-factor: KMnO₄ = 5; Oxalic acid = 2</p>
+              </div>
+              <div class="fbox orange-border">
+                <div class="fbox-title orange">Mohr's Salt vs KMnO₄ (Acidic medium)</div>
+                <p>$2\text{KMnO}_4 + 10\text{FeSO}_4 + 8\text{H}_2\text{SO}_4 \rightarrow \text{K}_2\text{SO}_4 + 2\text{MnSO}_4 + 5\text{Fe}_2(\text{SO}_4)_3 + 8\text{H}_2\text{O}$</p>
+                <p>Fe²⁺ → Fe³⁺ (oxidation); Mn⁷⁺ → Mn²⁺ (reduction)</p>
+                <p>n-factor: KMnO₄ = 5; Mohr's salt = 1 (only Fe²⁺ oxidised)</p>
+                <p>Self-indicator: solution goes from purple to colourless (Mn²⁺); endpoint = light pink</p>
+              </div>
+            </div>
+            <div class="trap-block" style="margin-top:12px;padding:10px 14px;">
+              <div class="trap-row"><span class="trap-x">✗</span><span>"In KMnO₄ titration, phenolphthalein is used as indicator" → <strong>FALSE.</strong> KMnO₄ is a self-indicator. Adding phenolphthalein masks the endpoint.</span></div>
+              <div class="trap-row"><span class="trap-x">✗</span><span>"KMnO₄ titrations can be done in HCl medium" → <strong>FALSE.</strong> HCl gets oxidised by KMnO₄, consuming extra KMnO₄ and giving wrong results. Always use H₂SO₄.</span></div>
+              <div class="trap-row"><span class="trap-x">✓</span><span>"KMnO₄ titration in acidic medium: n-factor = 5 (Mn⁷⁺ → Mn²⁺, change = 5)" → <strong>TRUE.</strong></span></div>
+            </div>
+          </div>
+          <div class="sc-meta">
+            <span class="sc-use">✓ Self-indicator means: no external indicator needed; KMnO₄ itself shows the endpoint by colour change</span>
+            <span class="sc-fail">✗ Trap: Burette holding KMnO₄ should be rinsed with KMnO₄ (NOT water) to avoid dilution errors</span>
+          </div>
+        </div>
+      </div>
+
+    <div class="sec" id="u20-s4" data-m="Indicators">
+      <h2 class="sh">20.4 Acid-Base Indicators — pH Ranges &amp; Colour Changes <span class="tag tr">NEET Confirmed</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Indicator</th><th>pH Range</th><th>Acid Colour</th><th>Base Colour</th><th>Use For</th></tr>
+          <tr><td><strong>Phenolphthalein (PP)</strong></td><td>8.3 – 10.0</td><td>Colourless</td><td>Pink/Red</td><td>Strong acid + Strong base; Strong acid + Weak base — NOT suitable (endpoint too vague)</td></tr>
+          <tr><td><strong>Methyl Orange (MO)</strong></td><td>3.1 – 4.4</td><td>Red</td><td>Yellow</td><td>Strong acid + Strong base; Weak acid + Strong base — NOT suitable</td></tr>
+          <tr><td><strong>Methyl Red</strong></td><td>4.4 – 6.2</td><td>Red</td><td>Yellow</td><td>Weak base titrations</td></tr>
+          <tr><td><strong>Litmus</strong></td><td>5.0 – 8.0</td><td>Red</td><td>Blue</td><td>Rough indicator only</td></tr>
+          <tr><td><strong>Bromothymol blue</strong></td><td>6.0 – 7.6</td><td>Yellow</td><td>Blue</td><td>Near-neutral titrations</td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid" style="margin-top:20px;">
+        <div class="fbox green-border">
+          <div class="fbox-title green">Correct Indicator Selection</div>
+          <p><strong>Strong acid + Strong base:</strong> Either PP or MO works. Endpoint at pH 7.</p>
+          <p><strong>Weak acid + Strong base</strong> (e.g., CH₃COOH + NaOH): Use <strong>Phenolphthalein</strong> (endpoint ~pH 9). MO unsuitable (changes too early).</p>
+          <p><strong>Strong acid + Weak base</strong> (e.g., HCl + NH₄OH): Use <strong>Methyl Orange</strong> (endpoint ~pH 4–5). PP unsuitable (no sharp endpoint).</p>
+          <p><strong>Weak acid + Weak base:</strong> NO suitable indicator! Use a pH meter.</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Titration Curves — Key Points</div>
+          <p><strong>Strong–Strong:</strong> Steep curve around pH 7. Wide indicator choice.</p>
+          <p><strong>Weak acid–Strong base:</strong> Buffer region (gentle slope). Equivalence point &gt; pH 7 (hydrolysis of salt). Use PP.</p>
+          <p><strong>Strong acid–Weak base:</strong> Equivalence point &lt; pH 7. Use MO.</p>
+          <p><strong>Half-equivalence point:</strong> pH = pKₐ (for weak acid). This is maximum buffer capacity point.</p>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Unit 20 Practical Chemistry</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Strong-Strong neutralisation</div><div class="re-val">$\Delta H = -57.1$ kJ/mol</div></div>
+          <div class="re-item"><div class="re-label">Weak acid + strong base</div><div class="re-val">$\Delta H > -57.1$ kJ/mol (less exothermic)</div></div>
+          <div class="re-item"><div class="re-label">Primary standard</div><div class="re-val">Oxalic acid, Mohr's salt, Na₂CO₃, K₂Cr₂O₇</div></div>
+          <div class="re-item"><div class="re-label">Secondary standard</div><div class="re-val">KMnO₄, NaOH, HCl</div></div>
+          <div class="re-item"><div class="re-label">PP (phenolphthalein)</div><div class="re-val">pH 8.3–10; colourless → pink; weak acid + strong base</div></div>
+          <div class="re-item"><div class="re-label">Methyl Orange</div><div class="re-val">pH 3.1–4.4; red → yellow; strong acid + weak base</div></div>
+          <div class="re-item"><div class="re-label">Iodine clock</div><div class="re-val">H₂O₂ + I⁻; rate ∝ 1/clock time; blue-black with starch</div></div>
+          <div class="re-item"><div class="re-label">Iodine clock order</div><div class="re-val">First order in H₂O₂ and I⁻ (second order overall)</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- FINAL STRIP - ULTRA COMPRESSED PHYSICAL CHEM 11 -->
 <div class="chapter" style="background:var(--paper);">
   <div class="ch-head">
@@ -1722,15 +2433,26 @@ mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
   <div class="ch-body">
     <div class="sec" data-m="Final Rev">
       <div class="strip-block">
-        <div class="strip-title">Physical Chemistry 11 — 5-Minute Master Revision</div>
-        <div class="strip-row"><span class="strip-label">Mole</span><span class="strip-content"><strong>n = m/M = N/Nₐ = V(STP)/22.4</strong>. Nₐ = 6.022×10²³. STP = 0°C, 1atm.</span></div>
+        <div class="strip-title">Physical Chemistry 11 — 5-Minute Master Revision (Updated)</div>
+        <div class="strip-row"><span class="strip-label">Mole</span><span class="strip-content"><strong>n = m/M = N/Nₐ = V(STP)/22.4</strong>. Nₐ = 6.022×10²³. STP = 0°C, 1atm. Avg Mass = Σ(%×isotope mass)/100.</span></div>
         <div class="strip-row"><span class="strip-label">Concentration</span><span class="strip-content">Molarity (T-dep) = mol/L. Molality (T-indep) = mol/kg solvent. Mole fraction (T-indep). <strong>M = 10×d×w%/Mr</strong></span></div>
         <div class="strip-row"><span class="strip-label">Bohr Energy</span><span class="strip-content"><strong>En = -13.6Z²/n²</strong> eV. Rn = 0.529n²/Z Å. Lyman(UV,n₁=1), Balmer(visible,n₁=2), Paschen(IR,n₁=3).</span></div>
+        <div class="strip-row"><span class="strip-label">Nodes / Ψ²</span><span class="strip-content">Radial nodes = n−l−1. Angular = l. Total = n−1. Ψ² for s: non-zero at nucleus. Ψ² for p,d: always zero at nucleus.</span></div>
+        <div class="strip-row"><span class="strip-label">Mag. Moment</span><span class="strip-content"><strong>μ = √(n(n+2)) B.M.</strong>. n=unpaired e⁻. n=1→1.73; n=2→2.83; n=3→3.87; n=4→4.90; n=5→5.92. Digit before decimal = n.</span></div>
         <div class="strip-row"><span class="strip-label">Quantum Nos</span><span class="strip-content">n=shell, l=0→s,1→p,2→d,3→f, ml=-l to +l, ms=±½. <strong>Cr=[Ar]3d⁵4s¹; Cu=[Ar]3d¹⁰4s¹</strong> (exceptions).</span></div>
-        <div class="strip-row"><span class="strip-label">Gas Laws</span><span class="strip-content"><strong>PV=nRT</strong> (R=0.0821 L·atm). Kp=Kc(RT)^Δng. Graham: r∝1/√M. Speed order: u*&lt;ū&lt;urms. KE/mol=3/2RT.</span></div>
+        <div class="strip-row"><span class="strip-label">Gas Laws</span><span class="strip-content"><strong>PV=nRT</strong> (R=0.0821 L·atm). Kp=Kc(RT)^Δng. Graham: r∝1/√M. Speed order: u*&lt;ū&lt;urms. KE/mol=3/2RT. [Ch5: PHYSICS OVERLAP]</span></div>
+        <div class="strip-row"><span class="strip-label">Thermo Props</span><span class="strip-content"><strong>Extensive:</strong> mass, H, S, U, G, V, n. <strong>Intensive:</strong> T, P, density, pH, E°cell, molar quantities. Cp−Cv=R (Mayer's).</span></div>
+        <div class="strip-row"><span class="strip-label">Std State Zeroes</span><span class="strip-content">ΔHf°=0: C(graphite)✓ NOT diamond. P₄(white)✓ NOT red. S₈(rhombic)✓ NOT monoclinic. Br₂(l)✓ I₂(s)✓ O₂(g)✓.</span></div>
         <div class="strip-row"><span class="strip-label">Thermodynamics</span><span class="strip-content">ΔU=q+w. ΔH=ΔU+ΔngRT. <strong>ΔG=ΔH−TΔS</strong>. ΔG&lt;0=spontaneous. ΔG=0 at equil. ΔG°=−RT ln K. T(ΔG=0)=ΔH/ΔS.</span></div>
         <div class="strip-row"><span class="strip-label">Equilibrium</span><span class="strip-content">K only changes with T. Q&lt;K→forward. Le Chat: only T changes K value. Catalyst does NOT shift equilibrium.</span></div>
-        <div class="strip-row"><span class="strip-label">pH/Ksp</span><span class="strip-content">Weak acid: [H⁺]=√(Ka×C). Buffer pH=pKa+log([salt]/[acid]). AB Ksp=s². AB₂ Ksp=4s³. IP&gt;Ksp→precipitate.</span></div>
+        <div class="strip-row"><span class="strip-label">pH/Ksp</span><span class="strip-content">Weak acid: [H⁺]=√(Ka×C). Buffer pH=pKa+log([salt]/[acid]). AB Ksp=s². AB₂ Ksp=4s³. IP&gt;Ksp→precipitate. Weak acid salts: solubility↑ in acid.</span></div>
+        <div class="strip-row"><span class="strip-label">Vapour Density</span><span class="strip-content">α = (D−d) / [d(n−1)]. D=theoretical VD, d=observed VD, n=moles of products per mole reactant.</span></div>
+        <div class="strip-row"><span class="strip-label">Redox OS</span><span class="strip-content">CrO₅=+6 (peroxo O=−1). H₂SO₅=+6. C₃O₂ C=+4/3. OF₂ O=+2. Fe₃O₄ Fe=+8/3. Metal hydrides H=−1.</span></div>
+        <div class="strip-row"><span class="strip-label">n-Factor</span><span class="strip-content">KMnO₄: acid=5, neutral=3, basic=1. K₂Cr₂O₇=6. H₂C₂O₄=2. Mohr's salt=1. H₂O₂=2 (both ox/red).</span></div>
+        <div class="strip-row"><span class="strip-label">Practical</span><span class="strip-content">Strong+Strong ΔH=-57.1 kJ/mol. Weak electrolyte: less negative. PP(pH 8.3-10): weak acid+strong base. MO(pH 3.1-4.4): strong acid+weak base.</span></div>
+        <div class="strip-row"><span class="strip-label">KMnO₄ Titrations</span><span class="strip-content"><strong>KMnO₄ = self-indicator. No external indicator needed.</strong> Endpoint: colourless → light pink. Use H₂SO₄ (NOT HCl). Oxalic acid n=2; Mohr's salt n=1.</span></div>
+        <div class="strip-row"><span class="strip-label">Standards</span><span class="strip-content"><strong>Primary:</strong> oxalic acid, Mohr's salt, Na₂CO₃, K₂Cr₂O₇. <strong>Secondary (must standardise):</strong> KMnO₄, NaOH, HCl.</span></div>
+        <div class="strip-row"><span class="strip-label">CuSO₄ Practical</span><span class="strip-content">Anhydrous CuSO₄(white)+H₂O→CuSO₄·5H₂O(blue): exothermic. Hydrated salt dissolving: endothermic. Iodine clock: H₂O₂+I⁻, 1st order each, 2nd overall.</span></div>
       </div>
     </div>
   </div>

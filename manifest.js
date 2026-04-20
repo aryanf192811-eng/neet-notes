@@ -35,11 +35,11 @@ const MANIFEST = {
       icon: "ðŸ§ª",
       iconStyle: "ti-ch",
       themeColor: "at (teal)",
-      label: "Inorganic · Physical · Organic · 4 Live",
+      label: "Inorganic · Physical · Organic · 5 Live",
       title: "Chemistry",
       titleEm: "Three Branches",
       titleColor: "t-ch",
-      sub: "Inorganic + Organic 11 & 12 live · Physical Chemistry 11 Intelligence System live · Complete NCERT coverage.",
+      sub: "Inorganic + Organic 11 & 12 live · Physical Chemistry 11 & 12 Intelligence System live · Complete NCERT coverage.",
       branches: [
         {
           label: "Inorganic Chemistry Â· 1 Live",
@@ -48,10 +48,10 @@ const MANIFEST = {
           ]
         },
         {
-          label: "Physical Chemistry · 1 Live",
+          label: "Physical Chemistry · 2 Live",
           notes: [
             { num: "C4", title: "Physical Chemistry 11 — Complete Intelligence System", desc: "Mole Concept · Atomic Structure · States of Matter · Thermodynamics · Chemical & Ionic Equilibrium · pH · Buffers · Ksp · PYQ 2015–2025 · Decision Engine", file: "notes/neet-chem-physical-11.html", type: "pyq", live: true },
-            { num: "—", title: "Physical Chemistry 12 — Intelligence System", desc: "Solutions · Electrochemistry · Chemical Kinetics · Surface Chemistry · PYQ mapped", file: "", live: false }
+            { num: "C5", title: "Physical Chemistry 12 — Complete Intelligence System", desc: "Solutions · Electrochemistry · Chemical Kinetics · Practicals · PYQ mapped", file: "notes/neet-chem-physical-12.html", type: "pyq", live: true }
           ]
         },
         {
