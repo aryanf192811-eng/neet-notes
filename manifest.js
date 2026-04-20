@@ -69,11 +69,11 @@ const MANIFEST = {
       icon: "🧬",
       iconStyle: "ti-bi",
       themeColor: "ag (green)",
-      label: "Botany · Zoology · Genetics · Ecology",
+      label: "Botany · Zoology · Genetics · Ecology · All Live",
       title: "Biology",
-      titleEm: "Botany & Zoology",
+      titleEm: "Complete Biology",
       titleColor: "t-bi",
-      sub: "Human physiology, plant biology, genetics, evolution and ecology — all incoming.",
+      sub: "All 4 biology modules live — Botany, Zoology, Genetics, Ecology. Decision Engine in every file.",
       branches: [
         {
           label: "Botany",
@@ -91,7 +91,7 @@ const MANIFEST = {
           label: "Genetics & Ecology",
           notes: [
             { num: "B3", title: "Genetics, Molecular Biology & Evolution — PYQ Master Cheatsheet", desc: "Mendel's Laws · Chromosomal Theory · DNA Structure · Replication · Transcription · Translation · Mutations · Evolution · Biotechnology · PYQ 2009–2025", file: "notes/neet-genetics-complete.html", type: "pyq", live: true },
-            { num: "—", title: "Ecology & Environment", desc: "Ecosystems · Food chains · Biodiversity · Conservation · Ecological Succession", live: false }
+            { num: "B4", title: "Ecology & Environment — PYQ Master Cheatsheet", desc: "Ecosystems · Food Chains · Energy Flow · Biodiversity · Conservation · Ecological Succession · Environmental Issues · PYQ 2009–2025", file: "notes/neet-ecology-complete.html", type: "pyq", live: true }
           ]
         }
       ]

@@ -1,0 +1,1170 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<script id="theme-sync-core">
+(function(){var KD='neet_dark';function applyD(dark,skipBC){if(dark)document.documentElement.setAttribute('data-theme','dark');else document.documentElement.removeAttribute('data-theme');if(!skipBC){try{var bc=new BroadcastChannel('neet_hub_theme');bc.postMessage({dark:!!dark});}catch(e){}}}window.setTheme=function(v){localStorage.setItem(KD,JSON.stringify(!!v));applyD(v);}try{var stored=localStorage.getItem(KD);if(stored!==null)applyD(JSON.parse(stored),true);else applyD(window.matchMedia('(prefers-color-scheme:dark)').matches,true);}catch(e){applyD(false,true);}try{var bc=new BroadcastChannel('neet_hub_theme');bc.onmessage=function(e){applyD(e.data.dark,true);};}catch(e){}})();
+</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ecology &amp; Environment — NEET Mastery Cheatsheet</title>
+<meta name="description" content="Complete NEET Ecology: Ecosystems, Food chains, Biodiversity, Conservation, Succession, Environmental Issues — PYQ 2009–2025, Decision Engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a0d00;--paper:#fdf6ee;--paper2:#f0faf5;--red:#8c1a1a;--green:#1a6b40;--blue:#1a4a8c;--gold:#8c6b00;--purple:#5b1a8c;--orange:#8c4a00;--teal:#0d6b5a;--border:#b8d8c8;--shadow:rgba(0,0,0,.08);--accent:#0d6b5a;--tag-r:rgba(140,26,26,.12);--tag-g:rgba(26,107,64,.12);--tag-b:rgba(26,74,140,.12);--tag-p:rgba(91,26,140,.12);--tag-o:rgba(140,74,0,.12);}
+[data-theme="dark"]{--ink:#e0f5ec;--paper:#09120e;--paper2:#0d1a14;--border:#1e3a2a;--shadow:rgba(0,0,0,.5);}
+*{box-sizing:border-box;margin:0;padding:0;}html{font-size:16px;scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'Crimson Pro',Georgia,serif;line-height:1.7;min-height:100vh;-webkit-user-select:none;user-select:none;}
+.top-bar{position:sticky;top:0;z-index:100;background:var(--paper2);border-bottom:2px solid var(--accent);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.top-bar a{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:var(--accent);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid var(--accent);transition:all .2s;}
+.top-bar a:hover{background:var(--accent);color:#fff;}
+.hub-link{margin-left:auto;color:var(--green) !important;border-color:var(--green) !important;}
+.theme-toggle{font-family:'Outfit',sans-serif;font-size:.72rem;background:none;border:1px solid var(--border);border-radius:20px;color:var(--ink);padding:3px 12px;cursor:pointer;}
+.hero{background:linear-gradient(135deg,#020f08 0%,#04280f 50%,#081a10 100%);color:#e8ffe8;padding:54px 28px 44px;text-align:center;border-bottom:3px solid var(--accent);}
+.hero .unit-tag{display:inline-block;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#80ffb0;border:1px solid #1a7a44;border-radius:20px;padding:3px 14px;margin-bottom:16px;}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:700;color:#e8ffe8;margin-bottom:8px;}
+.hero h1 em{color:#4affb0;font-style:normal;}
+.hero .sub{font-size:1rem;color:#a0d8b8;max-width:680px;margin:0 auto 20px;}
+.stat-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.stat-pill{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 14px;color:#c0ffda;}
+.book{max-width:960px;margin:0 auto;padding:0 16px 60px;}
+.chapter{background:var(--paper2);border:1px solid var(--border);border-radius:12px;margin:28px 0;overflow:hidden;box-shadow:0 2px 12px var(--shadow);}
+.ch-head{padding:22px 28px 18px;border-bottom:3px solid var(--accent);background:linear-gradient(135deg,rgba(13,107,90,.07),transparent);}
+.ch-ey{font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+.ch-title{font-family:'Outfit',sans-serif;font-size:1.25rem;font-weight:700;color:var(--ink);}
+.ch-title em{color:var(--accent);font-style:normal;}
+.ch-body{padding:22px 26px;}
+.sec{margin-bottom:30px;}
+.sh{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin:24px 0 12px;padding:9px 14px;border-left:4px solid var(--accent);background:rgba(13,107,90,.05);border-radius:0 6px 6px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.ssh{font-family:'Outfit',sans-serif;font-size:.92rem;font-weight:600;color:var(--accent);margin:18px 0 8px;border-bottom:1px dashed var(--border);padding-bottom:4px;}
+.tag{font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:12px;padding:2px 9px;white-space:nowrap;}
+.tg{background:var(--tag-g);color:var(--green);}.tc{background:var(--tag-b);color:var(--blue);}.tp{background:var(--tag-p);color:var(--purple);}.tt{background:var(--tag-r);color:var(--red);}.tq{background:var(--tag-o);color:var(--orange);}
+.def-box,.note-box,.ncert-box{border-radius:8px;padding:14px 18px;margin:14px 0;}
+.def-box{background:rgba(26,74,140,.06);border-left:4px solid var(--blue);}
+.note-box{background:rgba(26,107,64,.06);border-left:4px solid var(--green);}
+.ncert-box{background:rgba(140,107,0,.06);border-left:4px solid var(--gold);}
+.elim-box{background:rgba(140,26,26,.06);border:1.5px solid rgba(140,26,26,.3);border-radius:8px;padding:12px 16px;margin:12px 0;}
+.trick{background:rgba(13,107,90,.06);border:1.5px solid rgba(13,107,90,.25);border-radius:8px;padding:12px 16px;margin:12px 0;}
+.lbl{display:block;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+mark{background:rgba(13,107,90,.2);border-radius:2px;padding:0 2px;}
+.pl{padding-left:20px;margin:6px 0;}.pl li{margin:4px 0;line-height:1.6;}
+.tbl{overflow-x:auto;margin:14px 0;border-radius:8px;}
+table{width:100%;border-collapse:collapse;font-size:.87rem;}
+th{background:rgba(13,107,90,.12);color:var(--ink);font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:9px 12px;text-align:left;}
+td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:last-child td{border-bottom:none;}tr:hover td{background:rgba(13,107,90,.03);}
+.fcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:14px 0;}
+.fcard{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.fcard-title{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;color:var(--accent);margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:4px;}
+.fcard ul{padding-left:16px;font-size:.86rem;}.fcard li{margin:3px 0;}
+.cg-card{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:12px 0;}
+.cg-title{font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;border-bottom:1px dashed var(--border);padding-bottom:6px;}
+.score-strip{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0;}
+.score-pill{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid var(--border);}
+.sp-r{background:rgba(140,26,26,.08);color:var(--red);}.sp-b{background:rgba(26,74,140,.08);color:var(--blue);}.sp-g{background:rgba(26,107,64,.08);color:var(--green);}.sp-p{background:rgba(91,26,140,.08);color:var(--purple);}
+.pyq-card{border:1.5px solid var(--border);border-radius:10px;margin:16px 0;overflow:hidden;}
+.pyq-head{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;flex-wrap:wrap;background:rgba(13,107,90,.04);}
+.pyq-year{font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;background:var(--accent);color:#fff;border-radius:10px;padding:2px 9px;white-space:nowrap;}
+.pyq-q{font-size:.87rem;flex:1;color:var(--ink);}
+.pyq-toggle{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;background:none;border:1px solid var(--accent);border-radius:14px;color:var(--accent);padding:3px 12px;cursor:pointer;}
+.pyq-sol{display:none;padding:12px 16px;border-top:1px solid var(--border);font-size:.88rem;background:var(--paper);}
+.pyq-sol.open{display:block;}
+.ans-badge{display:inline-block;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:rgba(26,107,64,.12);color:var(--green);border-radius:14px;padding:2px 12px;margin-bottom:8px;}
+.dl-block{border:2px solid var(--accent);border-radius:10px;padding:14px 18px;margin:14px 0;background:rgba(13,107,90,.04);}
+.dl-head{font-family:'Outfit',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;border-bottom:1px dashed rgba(13,107,90,.3);padding-bottom:6px;}
+.dl-ans{color:var(--green);font-weight:600;margin-top:6px;}
+.elim-chain{padding:8px 12px;background:rgba(140,26,26,.04);border-radius:6px;margin:6px 0;}
+.elim-chain .wr{color:#8c1a1a;display:block;margin:2px 0;}
+.elim-chain .cr{color:#1a6b40;display:block;margin:2px 0;font-weight:600;}
+.cause-chain{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:5px 0;font-size:.87rem;padding:7px 11px;background:rgba(13,107,90,.04);border-radius:6px;}
+.cc-arr{color:var(--accent);font-weight:700;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:12px 0;}
+.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:.83rem;}
+.trigger-pill .tw{color:var(--accent);font-weight:700;}.trigger-pill .ta{color:var(--green);}
+.trap-list{list-style:none;padding:0;margin:6px 0;}
+.trap-list li{padding:5px 0;border-bottom:1px dotted var(--border);font-size:.87rem;}
+.trap-list li::before{content:"⚠ ";}
+.revision-engine{border:2px solid var(--accent);border-radius:14px;padding:22px 26px;margin:26px 0;background:rgba(13,107,90,.04);}
+.re-section{margin:18px 0;}
+.re-sh{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:7px;}
+.re-item{border:1px solid rgba(13,107,90,.2);border-radius:6px;padding:7px 11px;font-size:.81rem;background:var(--paper);}
+.re-item strong{color:var(--accent);}
+.snum{display:inline-block;background:var(--accent);color:#fff;border-radius:50%;width:19px;height:19px;text-align:center;line-height:19px;font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;margin-right:5px;}
+.page-footer{text-align:center;padding:26px;font-size:.8rem;color:var(--border);border-top:1px solid var(--border);}
+[data-theme="dark"] .chapter,[data-theme="dark"] .fcard,[data-theme="dark"] .cg-card,[data-theme="dark"] .pyq-sol{background:var(--paper2);}
+[data-theme="dark"] th{background:rgba(13,107,90,.22);}
+@media(max-width:600px){.ch-body,.ch-head{padding:14px 12px;}.fcards{grid-template-columns:1fr;}.hero{padding:34px 14px 26px;}}
+</style>
+</head>
+<body oncontextmenu="return false">
+
+<div class="top-bar">
+  <a href="#ch-organism">Organism &amp; Env</a>
+  <a href="#ch-population">Populations</a>
+  <a href="#ch-community">Community</a>
+  <a href="#ch-ecosystem">Ecosystem</a>
+  <a href="#ch-biodiversity">Biodiversity</a>
+  <a href="#ch-envissues">Env Issues</a>
+  <a href="#dl-ecology">Decision Engine</a>
+  <a href="../index.html" class="hub-link">← Hub</a>
+  <button class="theme-toggle" onclick="setTheme(document.documentElement.getAttribute('data-theme')==='dark'?false:true)">◐ Theme</button>
+</div>
+
+<div class="hero">
+  <div class="unit-tag">NEET Biology · Ecology &amp; Environment · Class XII</div>
+  <h1>Ecology &amp; Environment — <em>The Decision Engine</em></h1>
+  <p class="sub">The definitive NEET ecology resource: Organism-Environment · Population Ecology · Ecosystems · Biodiversity · Conservation · Environmental Issues — 500+ facts, PYQ 2009–2025 fully dissected.</p>
+  <div class="stat-row">
+    <div class="stat-pill">📖 NCERT Class XII Ch. 13–16</div>
+    <div class="stat-pill">🌿 6 Complete Chapters</div>
+    <div class="stat-pill">⚡ 40+ PYQs 2009–2025</div>
+    <div class="stat-pill">🎯 Decision Layer Included</div>
+    <div class="stat-pill">🔑 Trigger System Included</div>
+  </div>
+</div>
+
+<div class="book">
+
+<!-- ══════ CH 1: ORGANISM & ENVIRONMENT ══════ -->
+<div class="chapter" id="ch-organism">
+  <div class="ch-head">
+    <div class="ch-ey">Chapter 1 · NCERT Class XII Ch. 13</div>
+    <div class="ch-title">Organism &amp; Its Environment — <em>Abiotic Factors, Adaptations &amp; Responses</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Abiotic factors — 1 Q</div>
+        <div class="score-pill sp-g">🟢 Adaptations (thermoregulation, osmoregulation) — 1–2 Qs</div>
+        <div class="score-pill sp-b">🔵 Population interactions — 2–3 Qs</div>
+        <div class="score-pill sp-p">🟣 Ecological terms — 1 Q</div>
+      </div>
+
+      <h2 class="sh">Levels of Ecological Organisation <span class="tag tg">NCERT Exact</span></h2>
+      <ul class="pl">
+        <li><strong>Organism → Population → Community → Ecosystem → Biome → Biosphere</strong></li>
+        <li><strong>Ecology</strong> (Ernst Haeckel, 1869): study of interactions between organisms and their environment</li>
+        <li><strong>Habitat:</strong> place where organism lives (physical locale)</li>
+        <li><strong>Niche:</strong> functional role of organism in ecosystem — what it DOES, not where it lives</li>
+        <li><strong>Competitive exclusion (Gause's law):</strong> two species with identical niches CANNOT coexist stably. One outcompetes and eliminates the other.</li>
+      </ul>
+
+      <h2 class="sh">Major Abiotic Factors <span class="tag tc">Foundation</span></h2>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Temperature</div>
+          <ul>
+            <li>Most important abiotic factor</li>
+            <li>Affects enzyme activity, metabolism</li>
+            <li>Mean annual temp: tropics 25–30°C; poles below 0°C</li>
+            <li>Eurythermal: wide temp range — most mammals</li>
+            <li>Stenothermal: narrow range — many fish, coral</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Water</div>
+          <ul>
+            <li>Availability determines biome type</li>
+            <li>Euryhaline: wide salinity tolerance (salmon)</li>
+            <li>Stenohaline: narrow range (goldfish)</li>
+            <li>Quality, pH, dissolved O₂ also critical</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Light</div>
+          <ul>
+            <li>Photoperiod controls flowering, breeding</li>
+            <li>Deep ocean: no light (aphotic zone)</li>
+            <li>UV — harmful; filtered by ozone</li>
+            <li>Phytoplankton: only surface water</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Soil</div>
+          <ul>
+            <li>pH, texture, mineral composition</li>
+            <li>Pedalfers: humid regions; leached</li>
+            <li>Pedocals: arid; rich in CaCO₃</li>
+            <li>Determines plant community type</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="sh">Responses to Abiotic Factors — 5 Strategies <span class="tag tp">Must Know</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Response</th><th>Mechanism</th><th>Who</th><th>Key Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Regulate</strong></td><td>Maintain constant internal environment (homeostasis) regardless of external conditions</td><td>Birds &amp; mammals (endotherms)</td><td>Humans maintain 37°C; desert mammals retain water</td></tr>
+            <tr><td><strong>Conform</strong></td><td>Internal conditions match external environment (no energy spent)</td><td>Most invertebrates, fish, amphibia, reptiles (ectotherms)</td><td>Frog body temp = pond temp</td></tr>
+            <tr><td><strong>Migrate</strong></td><td>Move to more hospitable environment when unfavourable</td><td>Many birds, some mammals, fish</td><td>Arctic tern: 70,000 km/yr; Siberian cranes to India</td></tr>
+            <tr><td><strong>Suspend</strong> (Dormancy)</td><td>Temporarily suspend metabolic activities</td><td>Bears, snails, fish, insects</td><td>Hibernation (winter); Aestivation (summer)</td></tr>
+            <tr><td><strong>Diapause</strong></td><td>Suspend development at specific life stage under adverse conditions</td><td>Insects, zooplankton</td><td>Daphnia diapause in winter; insects in unfav. seasons</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh">Adaptations — Temperature &amp; Water <span class="tag tt">2 Qs/yr</span></h2>
+      <div class="cg-card">
+        <div class="cg-title">Allen's Rule &amp; Bergmann's Rule</div>
+        <ul class="pl">
+          <li><strong>Bergmann's Rule:</strong> Warm-blooded animals in colder climates tend to be LARGER (greater volume:surface ratio = less heat loss). E.g., polar bears &gt; tropical bears.</li>
+          <li><strong>Allen's Rule:</strong> Animals in cold climates have SHORTER appendages (ears, limbs, tail) to reduce heat loss. E.g., Arctic fox = small ears; desert fox = large ears.</li>
+        </ul>
+      </div>
+      <div class="cg-card">
+        <div class="cg-title">Thermoregulation Mechanisms</div>
+        <ul class="pl">
+          <li><strong>Ectotherms</strong> (poikilotherms): body temp varies with environment — reptiles, fish, amphibia. Use behavioural strategies (basking).</li>
+          <li><strong>Endotherms</strong> (homeotherms): generate own heat — birds and mammals. Use metabolic heat + insulation (fur, feathers, fat).</li>
+          <li><strong>Hibernation</strong> (winter dormancy): bears, ground squirrels. Metabolic rate drops dramatically. Body temp may fall.</li>
+          <li><strong>Aestivation</strong> (summer dormancy): lungfish in summer. Protects from heat and drying.</li>
+          <li><strong>Torpor:</strong> Short-term metabolic depression. Hummingbirds at night.</li>
+        </ul>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Organisms which can tolerate a wide range of salinities are called: (A) Stenohaline (B) Euryhaline (C) Osmotic conformers (D) Halophytes</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Euryhaline</span>
+          <p>Euryhaline = wide salinity range tolerance (eury = broad). Examples: salmon, tilapia. Stenohaline = narrow range (steno = narrow) — goldfish, tuna. Halophytes = salt-tolerant PLANTS (not animals). Osmotic conformers adjust their internal osmotic concentration to match external.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CH 2: POPULATIONS ══════ -->
+<div class="chapter" id="ch-population">
+  <div class="ch-head" style="border-bottom-color:#1a4a8c;">
+    <div class="ch-ey">Chapter 2 · NCERT Class XII Ch. 13</div>
+    <div class="ch-title">Population Ecology — <em>Growth Models, Attributes &amp; Interactions</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a4a8c;">Population Attributes <span class="tag tc">NCERT Essential</span></h2>
+      <ul class="pl">
+        <li><strong>Population:</strong> Group of individuals of SAME species in same area at same time; capable of interbreeding</li>
+        <li><strong>Birth rate (Natality):</strong> New individuals added per capita per unit time</li>
+        <li><strong>Death rate (Mortality):</strong> Individuals lost per capita per unit time</li>
+        <li><strong>Sex ratio:</strong> Ratio of males to females in population</li>
+        <li><strong>Age pyramid (Age structure):</strong> Proportion of individuals in different age groups — pre-reproductive, reproductive, post-reproductive</li>
+        <li>Expanding pyramid = young individuals dominate → rapid growth. Stable = even distribution. Declining = old individuals dominate.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#1a4a8c;">Population Growth Models <span class="tag tt">Every NEET</span></h2>
+      <div class="def-box">
+        <span class="lbl">Exponential (Geometric) Growth — "J-shaped curve"</span>
+        <p>Occurs when resources are unlimited. Population grows at constant rate r (intrinsic rate of natural increase).</p>
+        <p><mark>dN/dt = rN</mark> where N = population size, r = birth rate (b) − death rate (d)</p>
+        <p><mark>Nt = N₀e^(rt)</mark> — exponential growth formula</p>
+        <p>J-shaped curve. No carrying capacity. Bacterial growth in ideal conditions. Never truly sustained in nature.</p>
+      </div>
+      <div class="def-box">
+        <span class="lbl">Logistic Growth — "S-shaped (Sigmoid) curve"</span>
+        <p>More realistic. Growth slows as population approaches <strong>carrying capacity (K)</strong> — maximum population an environment can sustainably support.</p>
+        <p><mark>dN/dt = rN[(K−N)/K]</mark></p>
+        <p>When N is small → (K−N)/K ≈ 1 → grows nearly exponentially. When N → K → (K−N)/K → 0 → growth stops.</p>
+        <p>S-shaped (sigmoidal) curve. <strong>Inflection point</strong> at N = K/2 (maximum growth rate).</p>
+        <p><strong>Verhulst-Pearl</strong> logistic growth equation. Realistic growth model in nature.</p>
+      </div>
+
+      <div class="elim-box">
+        <strong>NEET Trap:</strong> "J-curve = logistic" → WRONG. J-curve = EXPONENTIAL (unlimited resources). S-curve = LOGISTIC (with K). Examiner swaps these — be alert.
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In logistic population growth, the maximum growth rate occurs when population size is: (A) Equal to K (B) Equal to K/2 (C) Less than K/4 (D) Equal to zero</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) K/2</span>
+          <p>In logistic growth dN/dt = rN(K−N)/K. Taking d/dN of this = 0 to find maximum → N = K/2. At this point, the sigmoid curve has its steepest slope (inflection point). This is the maximum sustainable yield concept — fishing/harvesting at K/2 gives maximum yield while maintaining population.</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a4a8c;">Population Interactions — Complete NEET Table <span class="tag tp">3–4 Qs/yr</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Interaction</th><th>Species A</th><th>Species B</th><th>Definition</th><th>Key Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mutualism</strong></td><td>+</td><td>+</td><td>Both benefit</td><td>Lichen (alga+fungus); Mycorrhiza (fungus+roots); Clownfish+sea anemone; Rhizobium+legume; fig+wasp</td></tr>
+            <tr><td><strong>Commensalism</strong></td><td>+</td><td>0</td><td>One benefits, other unaffected</td><td>Orchid on mango tree (epiphyte); Barnacles on whale; Cattle egret &amp; grazing cattle; Remora fish &amp; shark</td></tr>
+            <tr><td><strong>Parasitism</strong></td><td>+</td><td>−</td><td>Parasite benefits, host harmed</td><td>Plasmodium &amp; human; Cuscuta &amp; host plant (ectoparasite); head lice; tapeworm</td></tr>
+            <tr><td><strong>Predation</strong></td><td>+</td><td>−</td><td>Predator kills &amp; eats prey</td><td>Lion &amp; deer; spider &amp; flies; Pitcher plant eats insects (plant as predator)</td></tr>
+            <tr><td><strong>Competition</strong></td><td>−</td><td>−</td><td>Both harmed (fight for resource)</td><td>Flamingo &amp; fish competing for food; Abingdon tortoise vs goats (Galapagos)</td></tr>
+            <tr><td><strong>Amensalism</strong></td><td>0</td><td>−</td><td>One unaffected, other harmed</td><td>Penicillium secretes penicillin → kills bacteria; Black walnut allelopathy</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trick">
+        <strong>Sign trick:</strong> Mutualism(+,+) | Commensalism(+,0) | Amensalism(0,−) | Parasitism(+,−) | Predation(+,−) | Competition(−,−). Parasitism vs Predation both = (+,−) but differ: predator KILLS prey immediately; parasite lives WITH host (does not kill quickly).
+      </div>
+
+      <h3 class="ssh">Predation — Ecological Role &amp; Adaptations</h3>
+      <ul class="pl">
+        <li>Predators <strong>keep prey populations in check</strong> → prevent overgrazing → maintain plant diversity</li>
+        <li><strong>Prey defences:</strong> Cryptic colouration (camouflage); Mimicry; Aposematism (warning colouration — poison dart frog, monarch butterfly); Thorns; Chemicals (milkweed cardiac glycosides)</li>
+        <li><strong>Batesian mimicry:</strong> Harmless species mimics harmful/toxic species (monarch vs viceroy butterfly)</li>
+        <li><strong>Müllerian mimicry:</strong> Two or more harmful species resemble each other (mutual benefit — all gain protection)</li>
+      </ul>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Mycorrhiza is an example of: (A) Commensalism (B) Parasitism (C) Mutualism (D) Competition</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) Mutualism</span>
+          <p>Mycorrhiza = symbiotic association between fungus and plant roots. BOTH benefit (+,+) = mutualism. Fungus benefits: gets photosynthate (sugar) from plant. Plant benefits: hugely expanded absorptive surface for water and minerals (especially phosphorus). Nearly 90% of plant species have mycorrhizal associations. NOT commensalism (that's +,0).</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a4a8c;">Coevolution — Arms Races <span class="tag tg">Conceptual</span></h2>
+      <ul class="pl">
+        <li><strong>Coevolution:</strong> Reciprocal evolutionary changes in interacting species</li>
+        <li>Classic: fig tree and fig wasp — obligate mutualism. Fig wasp pollinates fig; fig provides nursery for wasp larvae. ONLY fig wasps pollinate figs.</li>
+        <li>Orchids + pollinators: Mediterranean orchid (<em>Ophrys</em>) mimics female bee body → male bee attempts to mate → picks up pollen. Pseudocopulation.</li>
+        <li>Prey-predator coevolution: faster cheetah → faster gazelle → faster cheetah (Red Queen hypothesis)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CH 3: COMMUNITY ECOLOGY ══════ -->
+<div class="chapter" id="ch-community">
+  <div class="ch-head" style="border-bottom-color:#8c6b00;">
+    <div class="ch-ey">Chapter 3 · NCERT Class XII Ch. 13–14</div>
+    <div class="ch-title">Community Ecology — <em>Succession, Zonation &amp; Ecological Characteristics</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#8c6b00;">Ecological Succession <span class="tag tt">2–3 Qs/yr</span></h2>
+      <div class="def-box">
+        <span class="lbl">Succession — Definition</span>
+        <p>The sequential, directional, non-seasonal change in community composition over time in an area, ultimately leading to a stable <strong>climax community</strong>. Driven by species modifying the environment.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Primary Succession</th><th>Secondary Succession</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Starting point</strong></td><td>Bare, uninhabited area with no/little soil — no previous community</td><td>Area with pre-existing soil where community was disturbed/destroyed</td></tr>
+            <tr><td><strong>Pioneer species</strong></td><td><em>Lichens</em> (on bare rocks); phytoplankton in aquatic</td><td>Grasses, weeds — hardy r-strategists</td></tr>
+            <tr><td><strong>Time required</strong></td><td>Very slow — thousands of years</td><td>Faster — decades to centuries (soil already present)</td></tr>
+            <tr><td><strong>Examples</strong></td><td>Bare rock → lichen → moss → grass → shrub → forest. Newly cooled lava; glacial moraine</td><td>Abandoned farmland; burnt forest; flooded area drained</td></tr>
+            <tr><td><strong>Climax community</strong></td><td>Same as secondary — final stable state determined by climate</td><td>Same climax as primary for that region</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Hydrarch vs Xerarch Succession</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Hydrarch (Hydrosere)</div>
+          <ul>
+            <li>Begins in water (pond/lake)</li>
+            <li>Gradually fills up with sediment</li>
+            <li>Phytoplankton → rooted hydrophytes (Vallisneria) → reed swamp → shrub → climax forest</li>
+            <li>Direction: hydric → mesic (towards mesophytic)</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Xerarch (Xerosere)</div>
+          <ul>
+            <li>Begins on bare rock (dry area)</li>
+            <li>Soil gradually builds up</li>
+            <li>Lichen → moss → grass → shrub → climax forest</li>
+            <li>Direction: xeric → mesic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">Key Rule — Succession Direction</span>
+        <p>Both <strong>hydrarch</strong> (wet start) and <strong>xerarch</strong> (dry start) succession move towards a <strong>mesic (moderate moisture) climax community</strong>. The end point (climax) is determined by the region's climate, NOT the starting conditions.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">The pioneer community in bare rock ecological succession is: (A) Mosses (B) Lichens (C) Grasses (D) Ferns</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Lichens</span>
+          <p>On bare rock, lichens are the pioneer species. Lichens secrete acids that weather the rock, creating cracks and accumulating debris → first thin soil. Then mosses can establish. On bare rock, mosses cannot establish first (need some substrate). In hydrarch succession, phytoplankton are pioneers. In secondary succession, grasses may be first.</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#8c6b00;">Species Interactions in Communities <span class="tag tc">Conceptual</span></h2>
+      <h3 class="ssh">Keystone Species</h3>
+      <ul class="pl">
+        <li>Species that has <strong>disproportionately large effect</strong> on ecosystem relative to its abundance</li>
+        <li>Removal causes dramatic restructuring of community (trophic cascade)</li>
+        <li><strong>Sea otter</strong> → eats sea urchins → prevents urchins from destroying kelp forest. Remove otter → urchin explosion → kelp destruction → collapse of ecosystem</li>
+        <li><strong>Fig trees</strong> in forests: fruit all year → keystone food source for hundreds of fruit-eating species</li>
+        <li><strong>Wolf reintroduction</strong>, Yellowstone: wolves → reduce elk overgrazing → return of willows → return of beavers → engineered streams → more biodiversity (trophic cascade)</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c6b00;">r and K Strategies <span class="tag tp">Comparison</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>r-strategists</th><th>K-strategists</th></tr></thead>
+          <tbody>
+            <tr><td>Environment</td><td>Unpredictable, unstable</td><td>Stable, predictable</td></tr>
+            <tr><td>Population size</td><td>Far below K; variable</td><td>Near carrying capacity K</td></tr>
+            <tr><td>Body size</td><td>Small</td><td>Large</td></tr>
+            <tr><td>Offspring</td><td>Many, small, little parental care</td><td>Few, large, extensive parental care</td></tr>
+            <tr><td>Life span</td><td>Short</td><td>Long</td></tr>
+            <tr><td>Death rate</td><td>High (density-independent)</td><td>Low (density-dependent)</td></tr>
+            <tr><td>Examples</td><td>Insects, mice, dandelions, bacteria</td><td>Whales, elephants, humans, eagles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CH 4: ECOSYSTEM ══════ -->
+<div class="chapter" id="ch-ecosystem">
+  <div class="ch-head" style="border-bottom-color:#1a6b40;">
+    <div class="ch-ey">Chapter 4 · NCERT Class XII Ch. 14</div>
+    <div class="ch-title">Ecosystem — <em>Structure, Function, Energy Flow &amp; Nutrient Cycling</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Food chains/webs — 2 Qs</div>
+        <div class="score-pill sp-g">🟢 Productivity/Energy flow — 1–2 Qs</div>
+        <div class="score-pill sp-b">🔵 Nutrient cycles — 1–2 Qs</div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Ecosystem Structure &amp; Components <span class="tag tg">NCERT Core</span></h2>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Abiotic Components</div>
+          <ul>
+            <li>Inorganic substances (C, N, CO₂, H₂O)</li>
+            <li>Organic compounds (proteins, lipids — link biotic &amp; abiotic)</li>
+            <li>Climatic regime (temperature, light, humidity)</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Biotic — Producers</div>
+          <ul>
+            <li>Autotrophs (plants, phytoplankton, cyanobacteria)</li>
+            <li>Fix inorganic C → organic via photosynthesis</li>
+            <li>Base of all food chains</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Biotic — Consumers</div>
+          <ul>
+            <li>Herbivores = primary consumers (P₁)</li>
+            <li>Carnivores = secondary (P₂), tertiary (P₃)</li>
+            <li>Omnivores = multiple levels</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Biotic — Decomposers</div>
+          <ul>
+            <li>Fungi, bacteria (saprotrophs)</li>
+            <li>Break dead organic matter → inorganic</li>
+            <li>Release nutrients back → soil</li>
+            <li>Also called detritivores (for fragmentation)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Productivity — All 4 Types <span class="tag tt">NEET Distinction</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Term</th><th>Definition</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gross Primary Productivity (GPP)</strong></td><td>Total rate of photosynthesis including what plant uses for respiration</td><td>GPP = NPP + Respiration</td></tr>
+            <tr><td><strong>Net Primary Productivity (NPP)</strong></td><td>Organic matter available to consumers after plant's own respiration</td><td>NPP = GPP − Respiration (R)</td></tr>
+            <tr><td><strong>Net Secondary Productivity</strong></td><td>Rate of energy storage at consumer level</td><td>Assimilation − Respiration at that trophic level</td></tr>
+            <tr><td><strong>Standing Crop</strong></td><td>Mass of living organisms (biomass) present at a given time</td><td>Measured as fresh/dry weight or energy per unit area</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <span class="lbl">Productivity Values — NCERT Exact (memorise)</span>
+        <ul class="pl">
+          <li>Tropical rainforest: NPP ≈ 2,000 g dry wt/m²/yr — HIGHEST terrestrial</li>
+          <li>Estuaries: NPP ≈ 1,500 g dry wt/m²/yr — HIGHEST aquatic (often stated as most productive aquatic)</li>
+          <li>Open ocean: NPP ≈ 125 g dry wt/m²/yr — LOWEST (but huge area)</li>
+          <li>Desert: NPP ≈ 3 g dry wt/m²/yr — LOWEST terrestrial</li>
+         <li>Total global NPP ≈ 170 × 10⁹ tonnes/yr (Land: 115, Ocean: 55)</li>
+        </ul>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Energy Flow — 10% Law <span class="tag tt">Every NEET</span></h2>
+      <div class="def-box">
+        <span class="lbl">Lindeman's 10% Law (1942)</span>
+        <p>Only <strong>10% of energy</strong> is transferred from one trophic level to the next. The remaining 90% is lost as heat (respiration) + excretion + not consumed. Therefore food chains are short (4–5 trophic levels max — energy runs out).</p>
+        <p><strong>Example:</strong> If producers have 1,000,000 J → Herbivores receive 100,000 J → Primary carnivores receive 10,000 J → Secondary carnivores receive 1,000 J</p>
+      </div>
+
+      <div class="elim-box">
+        <strong>NEET Calculation Trap:</strong> If primary producers = 10,000 cal and top carnivore is at 4th trophic level → energy available = 10,000 × (10/100)³ = 10,000 × 0.001 = 10 cal. COUNT TRANSFERS, not trophic levels. Between T₁ and T₄ = 3 transfers = (0.1)³ multiplier.
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Ecological Pyramids <span class="tag tc">Comparison</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Pyramid</th><th>Normal Shape</th><th>Inverted?</th><th>Inverted Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Pyramid of Number</strong></td><td>Upright (base wide)</td><td>YES — can be inverted</td><td>Single tree (producer) supports many insects supports fewer birds — base narrow. Also: parasitic food chain</td></tr>
+            <tr><td><strong>Pyramid of Biomass</strong></td><td>Upright (terrestrial)</td><td>YES — aquatic</td><td>Aquatic: phytoplankton biomass &lt; zooplankton biomass (phytoplankton reproduce fast but small standing crop)</td></tr>
+            <tr><td><strong>Pyramid of Energy</strong></td><td>ALWAYS upright</td><td><strong>NEVER inverted</strong></td><td>Energy always decreases up the chain — thermodynamics. Most important for NEET.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which pyramid can never be inverted? (A) Pyramid of number (B) Pyramid of biomass (C) Pyramid of energy (D) Both A and B</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) Pyramid of energy</span>
+          <p>Pyramid of energy is ALWAYS upright because energy is lost (as heat) at each trophic level due to the 2nd Law of Thermodynamics. You cannot have more energy at a higher trophic level than at the level below. Pyramid of numbers CAN be inverted (tree-insect-bird). Pyramid of biomass CAN be inverted (aquatic system).</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Food Chains — Grazing vs Detritus <span class="tag tc">NCERT</span></h2>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Grazing Food Chain (GFC)</div>
+          <ul>
+            <li>Starts with green plants (living)</li>
+            <li>Plant → Herbivore → Carnivore</li>
+            <li>Grass → Deer → Lion</li>
+            <li>Phytoplankton → Zooplankton → Fish</li>
+            <li>In terrestrial: only 10% energy flows this way</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Detritus Food Chain (DFC)</div>
+          <ul>
+            <li>Starts with dead organic matter (detritus)</li>
+            <li>Detritus → Decomposers → Detritivores</li>
+            <li>In terrestrial: 90% energy flows this way</li>
+            <li>In aquatic: GFC dominates</li>
+            <li>Detritivores: earthworm, millipedes, woodlice</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Biogeochemical Cycles — Nutrient Cycling <span class="tag tt">2 Qs/yr</span></h2>
+
+      <h3 class="ssh">Carbon Cycle — Key Points</h3>
+      <ul class="pl">
+        <li>Carbon reservoir: Atmosphere (CO₂), Oceans (dissolved CO₂), Biomass (organic C), Fossil fuels (coal, oil, gas), Limestone (CaCO₃)</li>
+        <li>Entry into biotic: Photosynthesis (CO₂ → organic matter)</li>
+        <li>Return to atmosphere: Respiration, decomposition, combustion, volcanic eruption</li>
+        <li>Human impact: Burning fossil fuels adds ~7 billion tonnes C/yr → rising atmospheric CO₂ → global warming</li>
+        <li>Ocean = largest carbon sink (dissolved CO₂ + marine organisms → CaCO₃ in shells)</li>
+      </ul>
+      <div class="cause-chain">
+        <span>CO₂ in atmosphere</span><span class="cc-arr">→ Photosynthesis →</span>
+        <span>Organic carbon in plants</span><span class="cc-arr">→ Eaten →</span>
+        <span>Organic C in consumers</span><span class="cc-arr">→ Respiration/Decomposition →</span>
+        <span>CO₂ back to atmosphere</span>
+      </div>
+
+      <h3 class="ssh">Phosphorus Cycle — Sedimentary (No Gaseous Phase)</h3>
+      <ul class="pl">
+        <li>Phosphorus has <strong>no gaseous phase</strong> — does NOT cycle through atmosphere (unlike C, N)</li>
+        <li>Reservoir: Rocks (phosphate minerals), Soil, Water bodies</li>
+        <li>Weathering of rocks → phosphate ions → absorbed by plants → animals → decomposers → soil</li>
+        <li>Phosphorus is often the <strong>limiting nutrient</strong> in freshwater lakes (eutrophication trigger)</li>
+        <li>NEET trap: Phosphorus cycle = sedimentary cycle (gaseous cycles = C, N, S, H₂O)</li>
+      </ul>
+
+      <h3 class="ssh">Nitrogen Cycle — Complete</h3>
+      <ul class="pl">
+        <li>N₂ = 78% of atmosphere but most organisms cannot use it directly (triple bond too strong)</li>
+        <li><strong>Nitrogen Fixation:</strong> N₂ → NH₃/NH₄⁺ — by Rhizobium (in root nodules), Azotobacter (free-living), Cyanobacteria (Anabaena), lightning</li>
+        <li><strong>Nitrification:</strong> NH₄⁺ → NO₂⁻ → NO₃⁻ — by Nitrosomonas (NH₄⁺→NO₂⁻) then Nitrobacter (NO₂⁻→NO₃⁻)</li>
+        <li><strong>Assimilation:</strong> Plants absorb NO₃⁻ → organic N (amino acids, nucleotides)</li>
+        <li><strong>Ammonification:</strong> Dead organic N → NH₄⁺ — by decomposer bacteria and fungi</li>
+        <li><strong>Denitrification:</strong> NO₃⁻ → N₂ — by Thiobacillus denitrificans (converts nitrates back to N₂ — removes N from ecosystem)</li>
+      </ul>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following bacteria converts ammonia into nitrite? (A) Nitrobacter (B) Nitrosomonas (C) Thiobacillus (D) Azotobacter</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Nitrosomonas</span>
+          <p>Nitrification has two steps: (1) Nitrosomonas: NH₄⁺ → NO₂⁻. (2) Nitrobacter: NO₂⁻ → NO₃⁻. Together they convert ammonia → nitrate making N available to plants. Thiobacillus = denitrification (NO₃⁻ → N₂). Azotobacter = free-living nitrogen fixation (N₂ → NH₃).</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#1a6b40;">Decomposition — Steps &amp; Factors <span class="tag tc">Marks Guaranteed</span></h2>
+      <div class="def-box">
+        <span class="lbl">Steps of Decomposition (FCLHS)</span>
+        <p><strong>F</strong>ragmentation → <strong>C</strong>atabolism (leaching) → <strong>H</strong>umification → <strong>M</strong>ineralisation</p>
+        <ul class="pl">
+          <li><strong>Fragmentation:</strong> Detritivores (earthworm, millipede) break large pieces → smaller</li>
+          <li><strong>Leaching:</strong> Water-soluble nutrients leach into soil (absorbed by decomposers)</li>
+          <li><strong>Catabolism:</strong> Bacteria/fungi enzymatically degrade detritus → simpler inorganic substances</li>
+          <li><strong>Humification:</strong> Formation of humus (dark, amorphous, organic substance). Humus is resistant to decomposition — long-term C storage.</li>
+          <li><strong>Mineralisation:</strong> Humus further broken down → release of inorganic nutrients (N, P, K) → available to plants again</li>
+        </ul>
+      </div>
+      <div class="elim-box">
+        <strong>Rate of Decomposition — Factors:</strong> WARM + MOIST + ADEQUATE O₂ = fast decomposition. Cold, waterlogged (anaerobic) conditions → slow → peat formation. High C:N ratio (e.g. woody material) → slow. Low C:N ratio (fresh leaves) → fast.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CH 5: BIODIVERSITY ══════ -->
+<div class="chapter" id="ch-biodiversity">
+  <div class="ch-head" style="border-bottom-color:#5b1a8c;">
+    <div class="ch-ey">Chapter 5 · NCERT Class XII Ch. 15</div>
+    <div class="ch-title">Biodiversity &amp; Conservation — <em>Hotspots, Threats &amp; Strategies</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <div class="score-strip">
+        <div class="score-pill sp-p">🟣 Biodiversity types &amp; levels — 1 Q</div>
+        <div class="score-pill sp-r">🔴 Biodiversity hotspots — 1 Q</div>
+        <div class="score-pill sp-g">🟢 Conservation strategies — 1–2 Qs</div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Levels of Biodiversity <span class="tag tp">Definition First</span></h2>
+      <ul class="pl">
+        <li><strong>Genetic Diversity:</strong> Variation in genes within a species. E.g., India has 50,000 varieties of rice; 1,000+ mango varieties. Enables adaptation, evolution. Reduced by inbreeding.</li>
+        <li><strong>Species Diversity:</strong> Variety of species in an area. Measured by species richness (number of species) and species evenness (relative abundance).</li>
+        <li><strong>Ecological (Community) Diversity:</strong> Variety of ecosystems, habitats, and ecological processes in a region. E.g., India has deserts, rainforests, mangroves, coral reefs, wetlands.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Global Biodiversity — NEET Numbers <span class="tag tt">Memorise</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Group</th><th>Named Species</th><th>Estimated Total</th></tr></thead>
+          <tbody>
+            <tr><td>Plants</td><td>~3,00,000</td><td>3,00,000+</td></tr>
+            <tr><td>Insects</td><td>~9,70,000</td><td>10-100 million</td></tr>
+            <tr><td>All animals</td><td>~1.5 million</td><td>—</td></tr>
+            <tr><td><strong>Total described species</strong></td><td><strong>~1.5 million</strong></td><td><strong>5–50 million (estimated)</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="pl">
+        <li>70% of all species on Earth = invertebrates (insects = species-richest group)</li>
+        <li>Tropics harbour more species than temperate zones (species richness increases toward equator)</li>
+        <li>Species-Area relationship: Log S = log C + z log A → <strong>S = CA^z</strong> where S = species, A = area, C &amp; z = constants</li>
+        <li>Value of z: Continents = 0.1–0.15; Islands = 0.25–0.35 (NCERT exact values)</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Biodiversity Hotspots <span class="tag tt">Exam Critical</span></h2>
+      <div class="def-box">
+        <span class="lbl">Hotspot Criteria (Myers, 1988)</span>
+        <p>An area is a hotspot if: (1) ≥1500 species of vascular plants are endemic AND (2) has lost ≥70% of its original habitat. Currently <strong>34 biodiversity hotspots</strong> worldwide (originally 25 by Myers; later revised).</p>
+      </div>
+      <div class="cg-card">
+        <div class="cg-title">India's 4 Biodiversity Hotspots</div>
+        <ul class="pl">
+          <li><strong>1. Himalayas</strong> — includes entire Hindu Kush-Himalayan region. Rich in medicinal plants, snow leopard, red panda.</li>
+          <li><strong>2. Western Ghats &amp; Sri Lanka</strong> — India's most biodiverse region. Rich in endemic amphibians (60% endemic), reptiles, flowering plants. Lion-tailed macaque, purple frog, Nilgiri tahr.</li>
+          <li><strong>3. Indo-Burma</strong> — NE India (includes Assam, Arunachal). Freshwater biodiversity hotspot. Hoolock gibbon.</li>
+          <li><strong>4. Sundaland</strong> — Andaman and Nicobar Islands (Indian part). Rich marine and island biodiversity.</li>
+        </ul>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Causes of Biodiversity Loss — "HIPPO" <span class="tag tt">IUCN Framework</span></h2>
+      <ul class="pl">
+        <li><strong>H</strong>abitat loss &amp; fragmentation — #1 cause globally. Deforestation, urbanisation, agriculture. Fragmentation creates isolated habitat islands ("island effect").</li>
+        <li><strong>I</strong>nvasive alien species — introduced species outcompete natives. E.g., Nile perch → extinction of 200+ cichlid fish in Lake Victoria. Water hyacinth (<em>Eichhornia crassipes</em>) = "terror of Bengal" — clogs waterways, depletes oxygen.</li>
+        <li><strong>P</strong>ollution — land, water, air. Pesticide bioaccumulation (DDT → raptor eggshell thinning → population crash).</li>
+        <li><strong>P</strong>opulation growth (human) — increasing demand for land, food, water.</li>
+        <li><strong>O</strong>verexploitation — hunting, fishing beyond sustainable limits. E.g., dodo extinction (1681); passenger pigeon (1914).</li>
+        <li>Also: Co-extinctions — when one species disappears, dependent species also vanish (obligate mutualists, specialized parasites)</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Conservation Strategies — In Situ vs Ex Situ <span class="tag tp">3 Qs/yr</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Strategy</th><th>Definition</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td><strong>In Situ Conservation</strong></td><td>Conservation in natural habitat. Best approach — preserves whole ecosystem.</td><td>
+              <strong>Biosphere Reserves</strong> (18 in India; 12 in UNESCO MAB — Man &amp; Biosphere). Core zone (no human activity) + Buffer zone + Transition zone.<br>
+              <strong>National Parks</strong> (104 in India) — strictly protected; no habitation.<br>
+              <strong>Wildlife Sanctuaries</strong> (543 in India) — some human activities permitted.<br>
+              Sacred groves (community conservation)</td></tr>
+            <tr><td><strong>Ex Situ Conservation</strong></td><td>Conservation outside natural habitat. Backup for highly endangered species.</td><td>
+              <strong>Zoological parks</strong> (zoos); <strong>Botanical gardens</strong>; <strong>Wildlife safari parks</strong>.<br>
+              <strong>Gene banks</strong> — seed banks (National Bureau of Plant Genetic Resources, New Delhi); cryopreservation.<br>
+              <strong>Tissue culture</strong> — plant propagation in vitro.<br>
+              Captive breeding programs (gharial, Indian bustard)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <span class="lbl">India's Protected Areas (NCERT Exact Numbers)</span>
+        <ul class="pl">
+          <li>National Parks: 104</li>
+          <li>Wildlife Sanctuaries: 543</li>
+          <li>Biosphere Reserves: 18 (12 in UNESCO MAB programme)</li>
+          <li>Sacred groves: 13,000+ in India (community conservation)</li>
+          <li>World's first wildlife sanctuary: Abby Hills Wildlife Sanctuary (1900)</li>
+          <li>India's first national park: <strong>Jim Corbett National Park</strong> (1936, Uttarakhand; originally Hailey National Park)</li>
+        </ul>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which of the following is an example of ex situ conservation? (A) Wildlife sanctuary (B) Biosphere reserve (C) Cryopreservation of gametes (D) National park</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) Cryopreservation of gametes</span>
+          <p>Ex situ = "outside habitat." Cryopreservation of gametes (freezing sperm, eggs, embryos at liquid nitrogen temperature −196°C) = ex situ conservation in gene bank. Wildlife sanctuaries, biosphere reserves, national parks = IN SITU conservation (conservation in natural habitat). Botanical gardens and zoos are also ex situ.</p>
+        </div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#5b1a8c;">Why Conserve Biodiversity? — 3 Categories of Value <span class="tag tc">Essay Ready</span></h2>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Narrowly Economic (Use Value)</div>
+          <ul>
+            <li>Directly: food, fibre, fuel, medicines (40% pharma from plants)</li>
+            <li>Rauvolfia: reserpine for hypertension</li>
+            <li>Taxol from Taxus: anti-cancer</li>
+            <li>Indirectly: pollination, pest control, soil formation, water purification</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Broadly Economic (Option Value)</div>
+          <ul>
+            <li>Future potential uses not yet discovered</li>
+            <li>Genetic resources for future crop breeding</li>
+            <li>Bioprospecting</li>
+            <li>Currently unknown pharmaceutical potential</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Ethical / Existence Value</div>
+          <ul>
+            <li>Every species has intrinsic value</li>
+            <li>Right to exist regardless of use</li>
+            <li>"Rivet popper hypothesis" (Paul Ehrlich)</li>
+            <li>Losing species = losing rivets from airplane</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CH 6: ENVIRONMENTAL ISSUES ══════ -->
+<div class="chapter" id="ch-envissues">
+  <div class="ch-head" style="border-bottom-color:#8c1a1a;">
+    <div class="ch-ey">Chapter 6 · NCERT Class XII Ch. 16</div>
+    <div class="ch-title">Environmental Issues — <em>Pollution, Ozone, Global Warming &amp; Solid Waste</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Air/Water pollution — 1–2 Qs</div>
+        <div class="score-pill sp-g">🟢 Ozone depletion — 1 Q</div>
+        <div class="score-pill sp-b">🔵 Greenhouse effect/Global warming — 1 Q</div>
+        <div class="score-pill sp-p">🟣 Bioaccumulation/Biomagnification — 1 Q</div>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Air Pollution — Sources &amp; Effects <span class="tag tt">NCERT Must</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Pollutant</th><th>Sources</th><th>Effects</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Particulate Matter (PM₂.₅, PM₁₀)</strong></td><td>Vehicles, factories, construction, crop burning</td><td>Respiratory diseases, reduced visibility (smog), cardiovascular disease</td></tr>
+            <tr><td><strong>Sulphur Dioxide (SO₂)</strong></td><td>Burning coal/oil, smelters</td><td>Acid rain (H₂SO₄), damage to lungs, kills trees</td></tr>
+            <tr><td><strong>Nitrogen Oxides (NOₓ)</strong></td><td>Vehicle engines, power plants</td><td>Smog formation, acid rain (HNO₃), respiratory irritation</td></tr>
+            <tr><td><strong>Carbon Monoxide (CO)</strong></td><td>Incomplete combustion, vehicles</td><td>CO binds Hb (200× greater affinity than O₂) → reduces O₂ transport → headache, death at high levels</td></tr>
+            <tr><td><strong>CO₂, CH₄, N₂O, CFCs</strong></td><td>Fossil fuels, agriculture, refrigerants</td><td>Greenhouse effect → global warming → climate change</td></tr>
+            <tr><td><strong>Hydrocarbons</strong></td><td>Vehicles, industry</td><td>Photochemical smog precursors; some carcinogenic</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Photochemical Smog</h3>
+      <div class="cause-chain">
+        <span>NOₓ + Hydrocarbons + Sunlight</span><span class="cc-arr">→</span>
+        <span>Ozone (O₃, tropospheric)</span><span class="cc-arr">+</span>
+        <span>PAN (Peroxyacetyl Nitrate)</span><span class="cc-arr">+</span>
+        <span>Aldehydes</span><span class="cc-arr">→</span>
+        <span>Photochemical Smog</span>
+      </div>
+      <ul class="pl">
+        <li><strong>PAN</strong> (Peroxyacetyl Nitrate) — the key chemical in photochemical smog. Restricts plant growth, eye irritant.</li>
+        <li>Tropospheric ozone (ground-level) = pollutant (harms plants, lungs). Stratospheric ozone = beneficial (UV shield).</li>
+        <li>Classic smog (London type) = fog + smoke + SO₂ (cold, humid). No sunlight needed.</li>
+        <li>Photochemical smog (LA type) = requires sunlight. Hot, dry conditions. Brown colour.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Ozone Depletion — Montreal Protocol <span class="tag tt">2 Qs/yr</span></h2>
+      <div class="def-box">
+        <span class="lbl">Ozone Layer and CFCs</span>
+        <p>Stratospheric ozone (15–35 km altitude) absorbs UV-B and UV-C radiation. Thinning allows UV-B to reach Earth's surface → skin cancer, cataracts, reduced immunity, damage to phytoplankton (aquatic food web disruption).</p>
+        <p><strong>CFCs</strong> (Chlorofluorocarbons / Freons) — main culprit. Used in refrigerators, AC, aerosols, foam packaging. CFCs are stable → reach stratosphere intact → UV breaks them → release Cl• radicals.</p>
+      </div>
+      <div class="cause-chain">
+        <span>CFC released</span><span class="cc-arr">→ UV radiation →</span>
+        <span>Cl• radical released</span><span class="cc-arr">→</span>
+        <span>Cl• + O₃ → ClO + O₂</span><span class="cc-arr">→</span>
+        <span>ClO + O → Cl• + O₂ (Cl recycled!)</span><span class="cc-arr">→</span>
+        <span>One Cl• destroys ~1,00,000 O₃ molecules</span>
+      </div>
+      <ul class="pl">
+        <li><strong>Ozone hole</strong> — largest over Antarctica (extreme cold + polar stratospheric clouds enhance CFC destruction)</li>
+        <li><strong>Montreal Protocol (1987)</strong> — international treaty to phase out ozone-depleting substances. Milestone of global environmental cooperation. Ozone layer slowly recovering.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Global Warming — Greenhouse Effect <span class="tag tt">Climate Crisis</span></h2>
+      <ul class="pl">
+        <li><strong>Greenhouse effect:</strong> Natural → Earth traps some of Sun's heat via greenhouse gases (GHGs) → essential for life (without it: Earth temp = −15°C)</li>
+        <li><strong>Enhanced greenhouse effect</strong> = problem. Burning fossil fuels → rising CO₂ → more heat trapped → rising temperatures</li>
+        <li><strong>GHG rank by warming potential (GWP):</strong> SF₆ &gt;&gt; N₂O &gt; CH₄ &gt; CO₂ (GWP per molecule). But CO₂ = most important by total volume.</li>
+        <li><strong>Pre-industrial CO₂</strong> ≈ 280 ppm; current ≈ 420+ ppm (highest in 3 million years)</li>
+        <li><strong>Effects of global warming:</strong> Glacial melting → sea level rise; shifting seasons; coral bleaching; spread of tropical diseases; changed precipitation patterns; extinction of species.</li>
+        <li><strong>Carbon sequestration:</strong> Forests, oceans absorb CO₂. Afforestation crucial.</li>
+        <li><strong>IPCC</strong> (Intergovernmental Panel on Climate Change) — monitors global warming</li>
+        <li><strong>Kyoto Protocol (1997):</strong> Nations committed to reducing GHG emissions. Industrialized nations to reduce emissions by 5.2% below 1990 levels.</li>
+        <li><strong>Paris Agreement (2015):</strong> Limit global temperature rise to well below 2°C above pre-industrial levels; pursue 1.5°C target.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Water Pollution — Eutrophication &amp; BOD <span class="tag tc">NCERT</span></h2>
+      <div class="def-box">
+        <span class="lbl">Eutrophication</span>
+        <p>Over-enrichment of water body with nutrients (mainly N and P from fertilizers, sewage, detergents) → explosive algae growth (algal bloom) → algae die → decomposition consumes O₂ → <strong>hypoxia/anoxia</strong> → death of fish and other aerobic organisms. Dead zones.</p>
+        <p>Cultural eutrophication = human-accelerated eutrophication (naturally slow process in oligotrophic → eutrophic lakes over thousands of years).</p>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">BOD — Biological Oxygen Demand</span>
+        <p>Amount of dissolved O₂ needed by biological organisms to decompose organic matter in water at a given temperature over 5 days (BOD₅). <strong>HIGH BOD = highly polluted water.</strong> Clean water BOD &lt;5 mg/L. Sewage BOD = 200–400 mg/L.</p>
+      </div>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Biomagnification (Bioaccumulation) <span class="tag tt">DDT Classic</span></h2>
+      <div class="def-box">
+        <span class="lbl">Biomagnification Definition</span>
+        <p>Increase in concentration of a pollutant at each successive trophic level. Non-biodegradable pollutants (DDT, methylmercury, PCBs, lead) accumulate in fatty tissues and concentrate as they move up the food chain.</p>
+      </div>
+      <div class="cause-chain">
+        <span>Water: 0.003 ppb DDT</span><span class="cc-arr">→ Phytoplankton:</span>
+        <span>0.04 ppm</span><span class="cc-arr">→ Small fish:</span>
+        <span>0.5 ppm</span><span class="cc-arr">→ Large fish:</span>
+        <span>2 ppm</span><span class="cc-arr">→ Fish-eating birds:</span>
+        <span>25 ppm → eggshell thinning</span>
+      </div>
+      <ul class="pl">
+        <li><strong>DDT in birds of prey (osprey, pelican, peregrine falcon):</strong> causes thin eggshells → eggs crack → reproductive failure → population crash</li>
+        <li><strong>Minamata disease</strong> (Japan): methylmercury in industrial effluents → fish → humans → severe neurological damage, birth defects</li>
+        <li>Biomagnification ≠ bioaccumulation. Bioaccumulation = buildup in an organism. Biomagnification = increase across trophic levels.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Solid Waste Management <span class="tag tg">NCERT Section</span></h2>
+      <ul class="pl">
+        <li><strong>Municipal Solid Waste (MSW):</strong> Household + commercial + institutional waste. India generates ~62 MT/yr.</li>
+        <li><strong>Landfill:</strong> Controlled burial. Problem: leachate contamination of groundwater; methane generation.</li>
+        <li><strong>Incineration:</strong> Burning waste. Problem: releases dioxins, furans, heavy metals.</li>
+        <li><strong>Bioremediation:</strong> Using microorganisms to clean up polluted soil/water. E.g., Pseudomonas degrades hydrocarbons.</li>
+        <li><strong>E-waste:</strong> Discarded electronics (contains lead, cadmium, mercury, flame retardants). Major growing problem. Needs formal recycling chains.</li>
+        <li><strong>Integrated Solid Waste Management:</strong> Reduce → Reuse → Recycle (3R principle)</li>
+        <li>Case study: <strong>Shenzen, China</strong> (recycling city); <strong>Bamako Convention</strong> — ban import of hazardous waste into Africa.</li>
+      </ul>
+
+      <h2 class="sh" style="border-left-color:#8c1a1a;">Radioactive Waste &amp; Noise Pollution <span class="tag tg">Brief NCERT</span></h2>
+      <ul class="pl">
+        <li>Nuclear waste must be stored in <strong>thick concrete vaults</strong> — buried underground or under ocean floor</li>
+        <li>Nuclear fallout → radioactive isotopes (Sr-90, Cs-137) enter food chains</li>
+        <li>Noise &gt;150 dB → permanent ear damage. Firecrackers, jet aircraft, industrial machinery.</li>
+        <li>Green crackers: emit fewer pollutants than conventional crackers</li>
+      </ul>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following statements about BOD is correct? (A) BOD of clean water is high (B) BOD of polluted water is low (C) BOD measures the amount of oxygen consumed by bacteria (D) BOD is used to measure air quality</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) BOD measures amount of oxygen consumed by bacteria</span>
+          <p>BOD (Biological Oxygen Demand) = O₂ required by microorganisms to decompose organic matter in water. HIGH BOD = HIGH organic pollution (much O₂ needed). Clean water = LOW BOD (&lt;5 mg/L). Used for WATER quality, not air. Polluted water = HIGH BOD (not low).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ DECISION ENGINE ══════ -->
+<div class="chapter" id="dl-ecology">
+  <div class="ch-head" style="border-bottom-color:#0d6b5a;background:linear-gradient(135deg,rgba(13,107,90,.12),rgba(26,74,140,.06));">
+    <div class="ch-ey">Decision Engine · Ecology &amp; Environment · NEET Rapid Fire</div>
+    <div class="ch-title">🎯 Decision Layer — <em>Triggers · Elimination · Cause Chains · Revision Engine</em></div>
+  </div>
+  <div class="ch-body">
+
+    <h2 class="sh">⚡ Trigger Keyword System — See Keyword → Answer Instantly</h2>
+    <div class="trigger-grid">
+      <div class="trigger-pill"><span class="tw">J-shaped curve →</span><br><span class="ta">Exponential growth (unlimited resources)</span></div>
+      <div class="trigger-pill"><span class="tw">S-shaped / Sigmoid →</span><br><span class="ta">Logistic growth (with carrying capacity K)</span></div>
+      <div class="trigger-pill"><span class="tw">K/2 →</span><br><span class="ta">Maximum growth rate in logistic model (inflection point)</span></div>
+      <div class="trigger-pill"><span class="tw">10% Law →</span><br><span class="ta">Lindeman (1942) — energy transferred per trophic level</span></div>
+      <div class="trigger-pill"><span class="tw">Never inverted pyramid →</span><br><span class="ta">Energy pyramid (always upright — 2nd Law of Thermodynamics)</span></div>
+      <div class="trigger-pill"><span class="tw">Lichen on bare rock →</span><br><span class="ta">Pioneer species in primary succession (xerarch)</span></div>
+      <div class="trigger-pill"><span class="tw">Phytoplankton (aquatic pioneer) →</span><br><span class="ta">Pioneer in hydrarch succession</span></div>
+      <div class="trigger-pill"><span class="tw">CFCs / Freons →</span><br><span class="ta">Ozone depletion; Montreal Protocol 1987</span></div>
+      <div class="trigger-pill"><span class="tw">PAN (Peroxyacetyl Nitrate) →</span><br><span class="ta">Component of photochemical smog</span></div>
+      <div class="trigger-pill"><span class="tw">BOD →</span><br><span class="ta">Biological Oxygen Demand; HIGH BOD = HIGH pollution</span></div>
+      <div class="trigger-pill"><span class="tw">Eutrophication →</span><br><span class="ta">Excess N &amp; P → algal bloom → O₂ depletion → fish death</span></div>
+      <div class="trigger-pill"><span class="tw">Minamata disease →</span><br><span class="ta">Methylmercury poisoning (Japan); fish → humans</span></div>
+      <div class="trigger-pill"><span class="tw">DDT in fish-eating birds →</span><br><span class="ta">Biomagnification → thin eggshells → population crash</span></div>
+      <div class="trigger-pill"><span class="tw">Euryhaline →</span><br><span class="ta">Wide salinity tolerance (salmon, tilapia)</span></div>
+      <div class="trigger-pill"><span class="tw">Stenothermal →</span><br><span class="ta">Narrow temperature tolerance</span></div>
+      <div class="trigger-pill"><span class="tw">Mycorrhiza →</span><br><span class="ta">Mutualism (+,+) between fungus &amp; plant roots</span></div>
+      <div class="trigger-pill"><span class="tw">Cattle egret + grazing cattle →</span><br><span class="ta">Commensalism (+,0) — egret benefits, cattle unaffected</span></div>
+      <div class="trigger-pill"><span class="tw">Cuscuta →</span><br><span class="ta">Parasitism (+,−); ectoparasite on host plant</span></div>
+      <div class="trigger-pill"><span class="tw">Nile perch + Lake Victoria →</span><br><span class="ta">Invasive species → extinction of 200+ cichlid fish</span></div>
+      <div class="trigger-pill"><span class="tw">Water hyacinth →</span><br><span class="ta">"Terror of Bengal" — invasive aquatic weed</span></div>
+      <div class="trigger-pill"><span class="tw">Hotspot criteria →</span><br><span class="ta">≥1500 endemic vascular plant species + ≥70% habitat lost</span></div>
+      <div class="trigger-pill"><span class="tw">India hotspots →</span><br><span class="ta">Himalayas, Western Ghats &amp; Sri Lanka, Indo-Burma, Sundaland</span></div>
+      <div class="trigger-pill"><span class="tw">In situ conservation →</span><br><span class="ta">National Parks, Wildlife Sanctuaries, Biosphere Reserves, Sacred Groves</span></div>
+      <div class="trigger-pill"><span class="tw">Ex situ conservation →</span><br><span class="ta">Zoos, Botanical gardens, Seed banks, Cryopreservation in gene banks</span></div>
+      <div class="trigger-pill"><span class="tw">Nitrosomonas →</span><br><span class="ta">NH₄⁺ → NO₂⁻ (first step of nitrification)</span></div>
+      <div class="trigger-pill"><span class="tw">Nitrobacter →</span><br><span class="ta">NO₂⁻ → NO₃⁻ (second step of nitrification)</span></div>
+      <div class="trigger-pill"><span class="tw">Thiobacillus →</span><br><span class="ta">Denitrification: NO₃⁻ → N₂</span></div>
+      <div class="trigger-pill"><span class="tw">Phosphorus cycle →</span><br><span class="ta">Sedimentary cycle — NO gaseous phase</span></div>
+    </div>
+
+    <h2 class="sh">🧠 "If NEET Asks…" Decision Blocks</h2>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: Which pyramid can never be inverted?</div>
+      <p><strong>→ Answer: Pyramid of Energy</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ Pyramid of Number — CAN be inverted (tree → insects → birds)</span>
+        <span class="wr">❌ Pyramid of Biomass — CAN be inverted (aquatic: phytoplankton &lt; zooplankton)</span>
+        <span class="cr">✅ Pyramid of Energy — ALWAYS upright (energy always decreases; 2nd Law of Thermodynamics)</span>
+      </div>
+    </div>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: About J-curve vs S-curve</div>
+      <p><strong>→ J-curve = Exponential (unlimited resources, dN/dt = rN); S-curve = Logistic (with K, Verhulst-Pearl)</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ "J-curve shows logistic growth" — TRAP. J = Exponential, S = Logistic</span>
+        <span class="wr">❌ "Maximum growth rate at N=K in logistic" — TRAP. Maximum at N=K/2</span>
+        <span class="cr">✅ Logistic growth: dN/dt = rN[(K−N)/K]; inflection point at K/2; S-shaped</span>
+      </div>
+    </div>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: Type of interaction (+, 0) — one benefits, one unaffected</div>
+      <p><strong>→ Answer: Commensalism. Classic examples: orchid on tree (epiphyte), cattle egret + cattle, barnacle on whale</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ Mutualism = both benefit (+,+). Mycorrhiza, lichen, Rhizobium-legume</span>
+        <span class="wr">❌ Amensalism = one unaffected, other HARMED (0,−). Penicillium → bacteria</span>
+        <span class="cr">✅ Commensalism = (+,0). Epiphyte on mango: epiphyte gets support, mango unaffected</span>
+      </div>
+    </div>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: Which bacteria is involved in nitrification first step?</div>
+      <p><strong>→ Nitrosomonas (NH₄⁺ → NO₂⁻). Second step: Nitrobacter (NO₂⁻ → NO₃⁻)</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ Azotobacter = nitrogen FIXATION (N₂ → NH₃), not nitrification</span>
+        <span class="wr">❌ Thiobacillus = DENITRIFICATION (NO₃⁻ → N₂)</span>
+        <span class="cr">✅ Nitrosomonas → Nitrobacter = nitrification chain (remember: Nitrosomonas comes first alphabetically AND functionally)</span>
+      </div>
+    </div>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: Primary succession vs Secondary — which is faster?</div>
+      <p><strong>→ Secondary succession is FASTER (soil already present)</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ Primary succession starts on bare substrate with no soil → very slow (1000s of years)</span>
+        <span class="cr">✅ Secondary succession — disturbed area with pre-existing soil → decades to centuries</span>
+        <span class="cr">✅ Pioneer in primary xerarch = LICHEN; Pioneer in secondary = grasses/weeds</span>
+      </div>
+    </div>
+
+    <div class="dl-block">
+      <div class="dl-head">If NEET asks: About ozone depletion — gas responsible, treaty, effect</div>
+      <p><strong>Gas → CFCs. Treaty → Montreal Protocol (1987). Effect → UV-B reaching Earth → skin cancer, cataracts, phytoplankton damage</strong></p>
+      <div class="elim-chain">
+        <span class="wr">❌ Kyoto Protocol = greenhouse gas reduction (NOT ozone)</span>
+        <span class="wr">❌ CO₂ does NOT deplete ozone — it causes greenhouse effect</span>
+        <span class="cr">✅ CFCs release Cl• radical → each destroys ~1,00,000 O₃ molecules → ozone hole (Antarctica)</span>
+      </div>
+    </div>
+
+    <h2 class="sh">🔗 Cause-Effect Chains — Key Ecology</h2>
+
+    <div class="cg-card">
+      <div class="cg-title">Eutrophication Chain</div>
+      <div class="cause-chain"><span>Excess N &amp; P (fertilizers/sewage)</span><span class="cc-arr">→</span><span>Algal bloom (blue-green algae)</span><span class="cc-arr">→</span><span>Algae die &amp; decompose</span><span class="cc-arr">→</span><span>Bacteria use O₂</span><span class="cc-arr">→</span><span>Hypoxia/anoxia</span><span class="cc-arr">→</span><span>Fish kill → dead zone</span></div>
+    </div>
+
+    <div class="cg-card">
+      <div class="cg-title">DDT Biomagnification Chain</div>
+      <div class="cause-chain"><span>DDT sprayed (agricultural/mosquito control)</span><span class="cc-arr">→</span><span>Enters water → phytoplankton (0.04 ppm)</span><span class="cc-arr">→</span><span>Small fish (0.5 ppm)</span><span class="cc-arr">→</span><span>Large fish (2 ppm)</span><span class="cc-arr">→</span><span>Fish-eating birds (25 ppm)</span><span class="cc-arr">→</span><span>Thin eggshells → eggs crack → population crash</span></div>
+    </div>
+
+    <div class="cg-card">
+      <div class="cg-title">CFC → Ozone Depletion Chain</div>
+      <div class="cause-chain"><span>CFC released from AC/refrigerators</span><span class="cc-arr">→ Reaches stratosphere →</span><span>UV breaks CFC → releases Cl•</span><span class="cc-arr">→</span><span>Cl• + O₃ → ClO + O₂</span><span class="cc-arr">→</span><span>ClO + O → Cl• + O₂ (Cl• recycled!)</span><span class="cc-arr">→</span><span>Ozone hole → UV-B excess → skin cancer</span></div>
+    </div>
+
+    <div class="cg-card">
+      <div class="cg-title">Logistic Growth Trigger</div>
+      <div class="cause-chain"><span>Small N</span><span class="cc-arr">→ (K−N)/K ≈ 1 →</span><span>Exponential-like growth</span><span class="cc-arr">→ N increases →</span><span>(K−N)/K decreases</span><span class="cc-arr">→ Growth rate slows →</span><span>N = K/2 (max rate)</span><span class="cc-arr">→</span><span>N → K (growth → 0)</span></div>
+    </div>
+
+    <div class="cg-card">
+      <div class="cg-title">Hydrarch Succession Chain (Pond → Forest)</div>
+      <div class="cause-chain"><span>Open water</span><span class="cc-arr">→</span><span>Phytoplankton</span><span class="cc-arr">→</span><span>Rooted aquatics (Vallisneria)</span><span class="cc-arr">→</span><span>Reed swamp</span><span class="cc-arr">→</span><span>Marsh meadow</span><span class="cc-arr">→</span><span>Shrubs</span><span class="cc-arr">→</span><span>Climax forest</span></div>
+    </div>
+
+    <!-- ══════ REVISION ENGINE ══════ -->
+    <div class="revision-engine">
+      <h2 class="sh" style="border-left-color:#0d6b5a;margin-top:0;">🚀 Revision Engine — Last-Minute NEET Ecology</h2>
+
+      <div class="re-section">
+        <div class="re-sh">⚡ 25 Ultra-Fast Triggers</div>
+        <div class="re-grid">
+          <div class="re-item"><span class="snum">1</span><strong>J-curve</strong> = Exponential growth</div>
+          <div class="re-item"><span class="snum">2</span><strong>S-curve</strong> = Logistic; max rate at K/2</div>
+          <div class="re-item"><span class="snum">3</span><strong>10% Law</strong> = Lindeman (1942)</div>
+          <div class="re-item"><span class="snum">4</span><strong>Energy pyramid</strong> = Never inverted</div>
+          <div class="re-item"><span class="snum">5</span><strong>Lichen</strong> = Pioneer in xerarch succession</div>
+          <div class="re-item"><span class="snum">6</span><strong>Phytoplankton</strong> = Pioneer in hydrarch</div>
+          <div class="re-item"><span class="snum">7</span><strong>CFCs</strong> = Ozone depletion; Montreal Protocol 1987</div>
+          <div class="re-item"><span class="snum">8</span><strong>BOD high</strong> = Polluted water</div>
+          <div class="re-item"><span class="snum">9</span><strong>PAN</strong> = Photochemical smog key component</div>
+          <div class="re-item"><span class="snum">10</span><strong>DDT</strong> = Biomagnification; thin bird eggshells</div>
+          <div class="re-item"><span class="snum">11</span><strong>Nitrosomonas</strong> = NH₄⁺→NO₂⁻; Nitrobacter = NO₂⁻→NO₃⁻</div>
+          <div class="re-item"><span class="snum">12</span><strong>P cycle</strong> = Sedimentary; no gaseous phase</div>
+          <div class="re-item"><span class="snum">13</span><strong>Mycorrhiza</strong> = Mutualism</div>
+          <div class="re-item"><span class="snum">14</span><strong>Cattle egret</strong> = Commensalism</div>
+          <div class="re-item"><span class="snum">15</span><strong>Cuscuta</strong> = Parasitism</div>
+          <div class="re-item"><span class="snum">16</span><strong>India's 4 hotspots</strong> = Himalayas, W.Ghats, Indo-Burma, Sundaland</div>
+          <div class="re-item"><span class="snum">17</span><strong>Jim Corbett</strong> = India's first national park (1936)</div>
+          <div class="re-item"><span class="snum">18</span><strong>Biosphere reserves</strong> = 18 in India; 12 in UNESCO MAB</div>
+          <div class="re-item"><span class="snum">19</span><strong>Cryopreservation</strong> = Ex situ conservation (gene bank)</div>
+          <div class="re-item"><span class="snum">20</span><strong>Hotspot criteria</strong> = ≥1500 endemic plants + ≥70% habitat lost</div>
+          <div class="re-item"><span class="snum">21</span><strong>Bergmann's rule</strong> = Larger body in colder climates</div>
+          <div class="re-item"><span class="snum">22</span><strong>Nile perch</strong> = Invasive; 200+ cichlid extinctions</div>
+          <div class="re-item"><span class="snum">23</span><strong>Minamata</strong> = Methylmercury poisoning (Japan)</div>
+          <div class="re-item"><span class="snum">24</span><strong>Tropical rainforest NPP</strong> = Highest terrestrial (~2000 g/m²/yr)</div>
+          <div class="re-item"><span class="snum">25</span><strong>Open ocean NPP</strong> = Lowest (~125 g/m²/yr)</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">⚰ 20 Common NEET Traps</div>
+        <ul class="trap-list">
+          <li><strong>J-curve ≠ Logistic. J = Exponential.</strong></li>
+          <li><strong>Maximum growth rate in logistic = K/2 (NOT K)</strong></li>
+          <li><strong>Pyramid of energy = NEVER inverted. Biomass CAN be in aquatic.</strong></li>
+          <li><strong>Eutrophication trigger = N &amp; P (NOT CO₂ or temperature)</strong></li>
+          <li><strong>High BOD = high pollution (NOT clean water)</strong></li>
+          <li><strong>CFCs deplete ozone; CO₂ causes greenhouse → don't confuse</strong></li>
+          <li><strong>Montreal Protocol = OZONE; Kyoto Protocol = GREENHOUSE gases</strong></li>
+          <li><strong>Nitrosomonas (first) vs Nitrobacter (second) in nitrification</strong></li>
+          <li><strong>Azotobacter = N fixation; NOT nitrification</strong></li>
+          <li><strong>Phosphorus cycle = sedimentary (no gas phase)</strong></li>
+          <li><strong>Commensalism (+,0) ≠ Mutualism (+,+). Know both signs.</strong></li>
+          <li><strong>Amensalism (0,−) = Penicillium kills bacteria but fungus unaffected</strong></li>
+          <li><strong>Birds use ZW-ZZ (female = ZW; male = ZZ) — NOT XX-XY</strong></li>
+          <li><strong>Secondary succession = FASTER (soil present). Primary = slow.</strong></li>
+          <li><strong>Pioneer in bare rock = LICHEN (not moss, not grass)</strong></li>
+          <li><strong>Both hydrarch and xerarch lead to MESIC climax</strong></li>
+          <li><strong>National Parks = 104; Wildlife Sanctuaries = 543 in India</strong></li>
+          <li><strong>Jim Corbett = first national park (1936) — NOT Ranthambore</strong></li>
+          <li><strong>Biomagnification ≠ bioaccumulation (bioaccumulation = in one organism)</strong></li>
+          <li><strong>Kyoto Protocol 1997 ≠ Paris Agreement 2015 — different targets</strong></li>
+        </ul>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">📊 15 PYQ Pattern Recognition</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Pattern 1:</strong> Give modifier (euryhaline/stenohaline) → match to organism</div>
+          <div class="re-item"><strong>Pattern 2:</strong> Describe interaction → identify +,− signs → name it</div>
+          <div class="re-item"><strong>Pattern 3:</strong> Energy calculation: T₁ has X cal → T₄ has X × (0.1)³?</div>
+          <div class="re-item"><strong>Pattern 4:</strong> Pyramid type + ecosystem → inverted or upright?</div>
+          <div class="re-item"><strong>Pattern 5:</strong> Succession type → identify pioneer species</div>
+          <div class="re-item"><strong>Pattern 6:</strong> Bacteria + function → nitrogen cycle step</div>
+          <div class="re-item"><strong>Pattern 7:</strong> Pollution example → BOD/eutrophication/biomagnification type?</div>
+          <div class="re-item"><strong>Pattern 8:</strong> Treaty + year → which treaty (Montreal vs Kyoto vs Paris)?</div>
+          <div class="re-item"><strong>Pattern 9:</strong> GDP/NPP/GPP question — NPP = GPP − Respiration</div>
+          <div class="re-item"><strong>Pattern 10:</strong> In situ vs ex situ → classify the given strategy</div>
+          <div class="re-item"><strong>Pattern 11:</strong> Species richness vs diversity — explain species-area relationship z values</div>
+          <div class="re-item"><strong>Pattern 12:</strong> Greenhouse gas ranking by GWP (SF₆ &gt; N₂O &gt; CH₄ &gt; CO₂)</div>
+          <div class="re-item"><strong>Pattern 13:</strong> Invasive species example → Nile perch / water hyacinth / Lantana camara</div>
+          <div class="re-item"><strong>Pattern 14:</strong> Identify ecosystem with highest/lowest productivity</div>
+          <div class="re-item"><strong>Pattern 15:</strong> Describe biosphere reserve zones (core/buffer/transition)</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">✂ 10 Elimination Shortcuts</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Shortcut 1:</strong> If "energy" in option → pyramid of energy → NEVER inverted → eliminate inverted</div>
+          <div class="re-item"><strong>Shortcut 2:</strong> If "J-curve" → must say exponential. If says logistic → eliminate</div>
+          <div class="re-item"><strong>Shortcut 3:</strong> If option says "both benefit" → mutualism. Eliminate parasitism (+,−) and amensalism (0,−)</div>
+          <div class="re-item"><strong>Shortcut 4:</strong> If "BOD high" → polluted water. NEVER "clean water" + "high BOD" together</div>
+          <div class="re-item"><strong>Shortcut 5:</strong> If it's a nutrient cycle question mentioning "gaseous phase" → eliminate phosphorus</div>
+          <div class="re-item"><strong>Shortcut 6:</strong> If ozone → Montreal Protocol 1987. If GHGs → Kyoto 1997 or Paris 2015</div>
+          <div class="re-item"><strong>Shortcut 7:</strong> Pioneer on bare rock → LICHEN (not moss, not algae alone, not grass)</div>
+          <div class="re-item"><strong>Shortcut 8:</strong> If "ex situ" → must be OFF-SITE. Eliminate national park, sanctuary, biosphere reserve</div>
+          <div class="re-item"><strong>Shortcut 9:</strong> Nitrification = NH₄⁺ → NO₃⁻. If option says this is denitrification → eliminate it</div>
+          <div class="re-item"><strong>Shortcut 10:</strong> If question mentions "bird" + "sex determination" → ZW-ZZ (not XX-XY). Eliminate XX options</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /book -->
+
+<div class="page-footer">
+  NEET Biology · Ecology &amp; Environment · Decision Engine · PYQ 2009–2025<br>
+  <a href="../index.html" style="color:var(--accent);">← Back to NEET Mastery Hub</a>
+</div>
+
+<script>
+document.querySelectorAll('.pyq-toggle').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var sol=this.closest('.pyq-card').querySelector('.pyq-sol');
+    if(sol)sol.classList.toggle('open');
+  });
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.pyq-sol.open').forEach(function(el){el.classList.remove('open');});});
+</script>
+</body>
+</html>
