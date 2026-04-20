@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark, skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try {
+        var bc=new BroadcastChannel('neet_hub_theme');
+        bc.postMessage({dark:!!dark});
+      } catch(e){}
+    }
+  }
+  window.setTheme=function(v){
+    localStorage.setItem(KD, JSON.stringify(!!v));
+    applyD(v);
+  }
+  try {
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){
+      var v=JSON.parse(raw);
+      applyD(v===true || v==='1' || v===1, true);
+    }
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){ applyD(!!e.data.dark, true); });
+  } catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+  var ss=document.createElement('style');ss.textContent='body{-webkit-user-select:none!important;user-select:none!important;}textarea,input{-webkit-user-select:text!important;user-select:text!important;}';document.head.appendChild(ss);
+})();
+</script>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEET Biology — Zoology Complete PYQ Master Cheatsheet (Deep Analysis)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;
+      --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;
+      --rule:rgba(100,130,180,0.14);--mline:rgba(180,80,80,0.22);
+      --red:#b83030;--blue:#1a4a8c;--green:#1a6b40;
+      --orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;
+      --bio:#1a7a20; --zoo:#b83030; --zoo2:#e05050; --zoo-bg:rgba(184,48,48,0.12);
+      --bonus-bg:rgba(107,26,138,0.06); --bonus-b:#5a1a8a;
+      --hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);
+      --hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);
+      --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);
+      --body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;
+      --hand:"Architects Daughter",cursive;
+    }
+    [data-theme="dark"]{
+      --paper:#1a1212;--paper2:#221a1a;--paper3:#2a2020;
+      --ink:#f0ece0;--ink2:#d4cfc4;--ink3:#9a8e80;
+      --rule:rgba(160,100,100,0.12);--mline:rgba(180,80,80,0.18);
+      --red:#ff6b6b;--blue:#5b8fd6;--green:#4ab870;
+      --orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+      --zoo:#ff6b6b;--zoo2:#ff8a8a;
+      --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);
+      --hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);
+    }
+    [data-theme="dark"] body{background:#120e0e;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#1c1414 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#1c1616 0%,transparent 55%);}
+    [data-theme="dark"] .zoo-box{background:rgba(255,107,107,0.08);}
+    [data-theme="dark"] .bonus-box{background:rgba(155,89,214,0.1);border-color:var(--purple);}
+
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{background:#c5a6a6;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#c0a0a0 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#c8a8a8 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 120px;}
+    .book{max-width:940px;margin:0 auto;}
+    .cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #906060,9px 10px 0 #704040,12px 14px 28px rgba(0,0,0,0.28);}
+    .cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(160,80,80,0.08) 31px,rgba(160,80,80,0.08) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+    .cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(160,80,80,0.3);pointer-events:none;}
+    .cover-inner{position:relative;padding-left:20px;}
+    .cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+    .cover h1 em{font-style:italic;color:var(--zoo);}
+    .cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:620px;border-left:3px solid var(--zoo);padding-left:14px;}
+    .cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--zoo);padding:5px 12px;border-radius:2px;}
+    .toc{background:var(--paper);border:1.5px solid #b08080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a6e6e;}
+    .toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--zoo);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,100,100,0.3);}
+    .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+    .toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;transition:all 0.2s;}
+    .chapter{background:var(--paper);border:1.5px solid #b08888;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a6e6e,7px 8px 0 #805050;}
+    .ch-head{background:linear-gradient(135deg,#3a1a1a 0%,#240e0e 100%);padding:24px 36px;border-bottom:3px solid var(--zoo);}
+    .ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
+    .ch-title em{font-style:italic;color:var(--zoo2);}
+    .ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px solid rgba(160,100,100,0.3);}
+    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;}
+    .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+    .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,110,110,0.4);position:relative;}
+    .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(160,80,80,0.25);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+    p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
+    .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
+    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .zoo-box{background:rgba(184,48,48,0.07);border-left:4px solid var(--zoo);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
+    .zoo-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--zoo);margin-bottom:4px;display:block;}
+    .bonus-box{background:rgba(120,40,180,0.07);border:1.5px solid var(--purple);border-radius:6px;padding:18px 22px;margin:24px 0;position:relative;}
+    .bonus-box::before{content:"✨ Bonus Concept";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .ncert-box{background:rgba(26,122,32,0.06);border:1.5px solid var(--green);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .ncert-box::before{content:"📗 NCERT Direct";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .pyq-card{background:var(--paper);border:1.5px solid #d4c0c0;border-radius:6px;margin:20px 0;overflow:hidden;}
+    .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);cursor:pointer;}
+    .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;background:var(--zoo);color:#fff;padding:3px 10px;border-radius:2px;}
+    .pyq-sol{padding:18px 22px;background:var(--paper3);display:none;border-top:1px dashed var(--zoo);}
+    .pyq-sol.open{display:block;}
+    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+    .svg-wrap{text-align:center;margin:26px 0;overflow-x:auto;}
+    .tbl{overflow-x:auto;margin:20px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(180,100,100,0.25);color:var(--ink2);}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid #1a4a8c;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;color:#1a4a8c;position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .back-dash{font-family:var(--hand);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:4px 8px;border:1px solid var(--ink3);border-radius:4px;}
+    .theme-switch{position:relative;width:44px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;margin-left:12px;}
+    .theme-switch input{opacity:0;width:0;height:0;position:absolute;}
+    .theme-track{position:absolute;inset:0;background:rgba(0,0,0,0.06);border:1.5px solid rgba(0,0,0,0.1);border-radius:24px;cursor:pointer;}
+    .theme-track::before{content:'☀';position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--zoo);}
+    [data-theme="dark"] .theme-track::before{content:'☾';transform:translateX(20px);background:#1a1212;color:var(--red);}
+    .cg-card{background:var(--paper);border:1.5px solid #d4c0c0;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--zoo);margin-bottom:10px;border-bottom:1px solid rgba(184,48,48,0.2);padding-bottom:5px;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;padding:5px 0 5px 26px;position:relative;list-style:none;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--zoo);font-weight:600;}
+  </style>
+</head>
+<body>
+<div class="book">
+<div class="top-bar" style="display:flex;justify-content:space-between;padding:12px 0 20px;">
+  <a href="../index.html" class="back-dash">← Back to Hub</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span class="tag tp" style="font-size:8px;">Deep Analysis Mode</span>
+    <label class="theme-switch">
+      <input type="checkbox" id="themeCb" onchange="setTheme(this.checked)">
+      <span class="theme-track"></span>
+    </label>
+  </div>
+</div>
+
+<div class="cover">
+  <span class="cover-tag">Zoology Deep-Dive</span>
+  <div class="cover-inner">
+    <div class="cover-subject" style="font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">NEET Biology · Zoology · Complete System</div>
+    <h1>Zoology — <em>The Complete<br/>Intelligence Layer</em></h1>
+    <p class="cover-desc">Animal Kingdom · Structural Organisation · Human Physiology · Reproduction. Integrated with 2009–2025 PYQ analysis and bonus legacy content for deep conceptual mastery.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
+      <span class="tag tg">NCERT 11 &amp; 12 Fully Mapped</span>
+      <span class="tag tc">Bonus Content Included</span>
+      <span class="tag tt">Deep Analysis &amp; Decision Triggers</span>
+    </div>
+  </div>
+</div>
+
+<div class="toc">
+  <div class="toc-section-lbl">Unit 1 — Animal Kingdom &amp; Structural Org</div>
+  <div class="toc-grid">
+    <a href="#animal-kingdom">1. Phyla Master Classification</a>
+    <a href="#non-chordates">2. Non-Chordates (Porifera to Hemichordata)</a>
+    <a href="#chordates">3. Chordata (Cyclostomes to Mammals)</a>
+    <a href="#animal-morph">4. [BONUS] Frog &amp; Cockroach</a>
+  </div>
+  <div style="height:1px;background:rgba(180,100,100,0.2);margin:14px 0;"></div>
+  <div class="toc-section-lbl">Unit 2 — Human Physiology Master System</div>
+  <div class="toc-grid">
+    <a href="#digestion">5. [BONUS] Digestion &amp; Absorption</a>
+    <a href="#breathing">6. Breathing &amp; Gas Exchange</a>
+    <a href="#circulation">7. Body Fluids &amp; Cardiac Engine</a>
+    <a href="#excretion">8. Excretory System &amp; RAAS</a>
+    <a href="#locomotion">9. Locomotion &amp; Sliding Filament</a>
+    <a href="#neural">10. Neural Control &amp; Nerve Impulse</a>
+    <a href="#chemical">11. Chemical Coordination &amp; Hormones</a>
+  </div>
+  <div style="height:1px;background:rgba(180,100,100,0.2);margin:14px 0;"></div>
+  <div class="toc-section-lbl">Unit 3 — Reproduction &amp; Health</div>
+  <div class="toc-grid">
+    <a href="#human-repro">12. Human Reproduction System</a>
+    <a href="#menstrual">13. Menstrual Cycle Analysis</a>
+    <a href="#repro-health">14. Reproductive Health &amp; ART</a>
+  </div>
+</div>
+
+<script>
+function toggle(el){el.nextElementSibling.classList.toggle('open');}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- UNIT 1: ANIMAL KINGDOM & MORPHOLOGY                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="animal-kingdom">
+  <div class="ch-head">
+    <div class="ch-ey">Unit 1 · NCERT Class 11 Ch 4 &amp; 7</div>
+    <div class="ch-title">Animal Kingdom &amp; <em>Classification</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#animal-kingdom">Overview</a>
+    <a href="#non-chordates">Non-Chordates</a>
+    <a href="#chordates">Chordates</a>
+    <a href="#animal-morph">Morphology</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- FREQUENCY MAP -->
+    <div class="sec" data-m="overview">
+      <h2 class="sh">NEET Frequency — Animal Kingdom <span class="tag tg">~4 Q/paper</span></h2>
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Phylum Examples (NCERT) — 12+ times</div>
+        <div class="score-pill sp-r">🔴 Basis of Classification — 8+ times</div>
+        <div class="score-pill sp-r">🔴 Chordata Classes Comparison — 7+ times</div>
+        <div class="score-pill sp-o">🟠 Water Vascular vs Canal System — 5+ times</div>
+        <div class="score-pill sp-o">🟠 Reptile/Amphibian Heart traps — 4+ times</div>
+      </div>
+
+      <div class="trigger-box">
+        <p><strong>Decision Triggers:</strong> If "Choanocytes" → <strong>Porifera</strong>. If "Cnidoblasts/Metagenesis" → <strong>Cnidaria</strong>. If "Comb plates" → <strong>Ctenophora</strong>. If "Flame cells" → <strong>Platyhelminthes</strong>. If "Water vascular system" → <strong>Echinodermata</strong>.</p>
+      </div>
+    </div>
+
+    <!-- PHYLUM MASTER GRID -->
+    <div class="sec" id="non-chordates">
+      <h2 class="sh">Phylum Master Grid — Non-Chordates</h2>
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr><th>Phylum</th><th>Symmetry</th><th>Coelom</th><th>Unique Feature</th><th>Key Examples (Common Name)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Porifera</strong></td><td>Asymmetrical</td><td>Acoelomate</td><td>Canal system, Choanocytes</td><td><em>Sycon</em> (Scypha), <em>Spongilla</em> (Freshwater), <em>Euspongia</em> (Bath)</td></tr>
+            <tr><td><strong>Cnidaria</strong></td><td>Radial</td><td>Acoelomate</td><td>Cnidoblasts, Polyp/Medusa, Metagenesis</td><td><em>Physalia</em> (Portuguese man-of-war), <em>Adamsia</em> (Sea anemone), <em>Meandrina</em> (Brain coral)</td></tr>
+            <tr><td><strong>Ctenophora</strong></td><td>Radial</td><td>Acoelomate</td><td>8 Comb plates, Bioluminescence</td><td><em>Pleurobrachia</em>, <em>Ctenoplana</em></td></tr>
+            <tr><td><strong>Platyhelminthes</strong></td><td>Bilateral</td><td>Acoelomate</td><td>Flame cells (osmoregulation), Flat body</td><td><em>Taenia</em> (Tapeworm), <em>Fasciola</em> (Liver fluke)</td></tr>
+            <tr><td><strong>Aschelminthes</strong></td><td>Bilateral</td><td><strong>Pseudocoelomate</strong></td><td>Muscular pharynx, Sexual dimorphism</td><td><em>Ascaris</em> (Roundworm), <em>Wuchereria</em> (Filaria worm), <em>Ancylostoma</em> (Hookworm)</td></tr>
+            <tr><td><strong>Annelida</strong></td><td>Bilateral</td><td>Coelomate</td><td>Metamerism, Nephridia, Parapodia (Nereis)</td><td><em>Nereis</em> (Aquatic), <em>Pheretima</em> (Earthworm), <em>Hirudinaria</em> (Blood sucking leech)</td></tr>
+            <tr><td><strong>Arthropoda</strong></td><td>Bilateral</td><td>Coelomate</td><td>Chitinous exoskeleton, Jointed appendages</td><td><em>Apis</em> (Honey bee), <em>Bombyx</em> (Silkworm), <em>Laccifer</em> (Lac insect)</td></tr>
+            <tr><td><strong>Mollusca</strong></td><td>Bilateral</td><td>Coelomate</td><td>Mantle, Radula (rasping organ)</td><td><em>Pila</em> (Apple snail), <em>Pinctada</em> (Pearl oyster), <em>Sepia</em> (Cuttlefish), <em>Octopus</em> (Devil fish)</td></tr>
+            <tr><td><strong>Echinodermata</strong></td><td>Radial (adult)</td><td>Coelomate</td><td><strong>Water vascular system</strong>, Calcareous ossicles</td><td><em>Asterias</em> (Star fish), <em>Echinus</em> (Sea urchin), <em>Antedon</em> (Sea lily)</td></tr>
+            <tr><td><strong>Hemichordata</strong></td><td>Bilateral</td><td>Coelomate</td><td>Proboscis gland (excretion), Stomochord</td><td><em>Balanoglossus</em>, <em>Saccoglossus</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="zoo-box">
+        <span class="lbl">🎯 Deep Analysis: The "Closed" Circulation Trap</span>
+        <p>Most Molluscs have an open circulatory system, <strong>EXCEPT Cephalopods</strong> (Octopus, Squid) which have a closed system. Annelids generally have a closed system. Arthropods always have an open system. This distinction is a 5-star NEET target.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Radial symmetry is NOT found in adults of which phylum?</span>
+          <button class="tag tg">Show Answer</button>
+        </div>
+        <div class="pyq-sol">
+          <p><strong>Answer: Hemichordata</strong>. Adults of Cnidaria, Ctenophora, and Echinodermata exhibit radial symmetry. Hemichordates are strictly bilateral throughout their life cycle.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHORDATA MASTER -->
+    <div class="sec" id="chordates">
+      <h2 class="sh">Chordata Deep Dive — Classes Comparison</h2>
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr><th>Class</th><th>Heart</th><th>Respiration</th><th>Special Feature</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Cyclostomata</strong></td><td>2-ch</td><td>6-15 pairs gills</td><td>Sucking/circular mouth, no jaws</td><td><em>Petromyzon</em> (Lamprey), <em>Myxine</em> (Hagfish)</td></tr>
+            <tr><td><strong>Chondrichthyes</strong></td><td>2-ch</td><td>Gills without operculum</td><td>Cartilaginous, Placoid scales, Air bladder absent</td><td><em>Scoliodon</em> (Dog fish), <em>Pristis</em> (Saw fish), <em>Trygon</em> (Sting ray)</td></tr>
+            <tr><td><strong>Osteichthyes</strong></td><td>2-ch</td><td>Gills with operculum</td><td>Bony, Cycloid scales, <strong>Air bladder present</strong></td><td><em>Exocoetus</em> (Flying fish), <em>Hippocampus</em> (Sea horse), <em>Labeo</em> (Rohu)</td></tr>
+            <tr><td><strong>Amphibia</strong></td><td>3-ch</td><td>Skin, lungs, gills</td><td>Dual life, Tympanum represents ear</td><td><em>Bufo</em> (Toad), <em>Rana</em> (Frog), <em>Hyla</em> (Tree frog), <em>Salamandra</em></td></tr>
+            <tr><td><strong>Reptilia</strong></td><td>3-ch*</td><td>Lungs</td><td>Creeping mode, Scutes, *Crocodile=4ch</td><td><em>Chelone</em> (Turtle), <em>Testudo</em> (Tortoise), <em>Naja</em> (Cobra), <em>Vipera</em></td></tr>
+            <tr><td><strong>Aves</strong></td><td>4-ch</td><td>Lungs with air sacs</td><td>Pneumatic bones (hollow), Feathers</td><td><em>Corvus</em> (Crow), <em>Columba</em> (Pigeon), <em>Struthio</em> (Ostrich)</td></tr>
+            <tr><td><strong>Mammalia</strong></td><td>4-ch</td><td>Lungs</td><td><strong>Mammary glands</strong>, Hair, Pinna</td><td><em>Ornithorhynchus</em> (Platypus - Oviparous!), <em>Macropus</em> (Kangaroo)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>NCERT Direct:</strong> Homoiothermous (warm-blooded) animals = Aves and Mammalia. Poikilothermous (cold-blooded) = Fishes, Amphibians, Reptiles. <em>Ornithorhynchus</em> is the only egg-laying mammal mentioned in NCERT.</p>
+      </div>
+    </div>
+
+    <!-- BONUS: MORPHOLOGY -->
+    <div class="sec" id="animal-morph">
+      <h2 class="sh">Animal Morphology — Frog &amp; Cockroach <span class="tag tp">Bonus Content</span></h2>
+      <div class="bonus-box">
+        <p><strong>Frog (Rana tigrina) Deep Analysis:</strong></p>
+        <ul class="pl">
+          <li><strong>Skin:</strong> Highly vascular, moist (Cutaneous respiration). Mucus glands present.</li>
+          <li><strong>Heart:</strong> 3 chambers (2 atria + 1 ventricle). Sinus venosus and Conus arteriosus present.</li>
+          <li><strong>Excretion:</strong> Ureotelic. Kidneys are mesonephric.</li>
+          <li><strong>Reproduction:</strong> External fertilisation in water. Larva = Tadpole (Ammonotelic).</li>
+          <li><strong>Special:</strong> Males have vocal sacs and copulatory pads on the first digit of forelimbs.</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>Cockroach (Periplaneta americana) Highlights:</strong></p>
+        <ul class="pl">
+          <li><strong>Exoskeleton:</strong> Chitinous sclerites (Dorsal-Tergites, Ventral-Sternites).</li>
+          <li><strong>Vision:</strong> Mosaic vision (4000 ommatidia) — High sensitivity but low resolution.</li>
+          <li><strong>Circulation:</strong> 13-chambered tubular heart. Open system.</li>
+          <li><strong>Respiration:</strong> Tracheal system. 10 pairs of spiracles.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- UNIT 2: HUMAN PHYSIOLOGY MASTER SYSTEM                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="digestion">
+  <div class="ch-head">
+    <div class="ch-ey">Unit 2 · NCERT Class 11 Ch 16–22</div>
+    <div class="ch-title">Human Physiology — <em>The Decision Engine</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#digestion">Digestion</a>
+    <a href="#breathing">Breathing</a>
+    <a href="#circulation">Circulation</a>
+    <a href="#excretion">Excretion</a>
+    <a href="#locomotion">Locomotion</a>
+    <a href="#neural">Neural</a>
+    <a href="#chemical">Chemical</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- DIGESTION BONUS -->
+    <div class="sec" data-m="digestion">
+      <h2 class="sh">[BONUS] Digestion &amp; Absorption <span class="tag tp">Legacy NCERT</span></h2>
+      <div class="bonus-box">
+        <span class="lbl">🎯 Enzyme Master Map</span>
+        <ul class="pl">
+          <li><strong>Saliva:</strong> Salivary Amylase (Ptyalin) — Starch to Maltose (pH 6.8).</li>
+          <li><strong>Stomach:</strong> Pepsin (Proteins → Peptones), Rennin (Infants, Milk protein).</li>
+          <li><strong>Pancreas:</strong> Trypsinogen, Chymotrypsinogen, Procarboxypeptidases, Amylases, Lipases, Nucleases.</li>
+          <li><strong>Intestine:</strong> Dipeptidases, Maltase, Lactase, Sucrase, Nucleosidases.</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>Absorption Logic:</strong> Glucose/AA = Active or Facilitated. Fructose = Facilitated. Fats/Glycerol = Micelles → Chylomicrons → Lacteals (Lymph).</p>
+      </div>
+    </div>
+
+    <!-- BREATHING -->
+    <div class="sec" id="breathing">
+      <h2 class="sh">Breathing &amp; Gas Exchange <span class="tag tg">High Yield</span></h2>
+      <div class="cg-card">
+        <div class="cg-title">The Volume Trap (Average Values)</div>
+        <p style="font-size:15px;line-height:1.6;">TV (500mL) · IRV (2500-3000) · ERV (1000-1100) · RV (1100-1200) · <strong>VC (TV+IRV+ERV)</strong> · TLC (VC+RV)</p>
+      </div>
+
+      <div class="zoo-box">
+        <span class="lbl">🎯 O2-Dissociation Curve Analysis</span>
+        <p>A <strong>Right Shift</strong> happens when Oxygen affinity decreases (more unloading). Triggers: ↑ pCO2, ↑ [H+]/↓ pH, ↑ Temperature, ↑ 2,3-BPG.</p>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Transport of CO2:</strong> 70% as Bicarbonate ions, 20-25% as Carbamino-hemoglobin, 7% as dissolved state in Plasma.</p>
+      </div>
+    </div>
+
+    <!-- CIRCULATION -->
+    <div class="sec" id="circulation">
+      <h2 class="sh">Body Fluids &amp; Circulation <span class="tag tr">Max Detail</span></h2>
+      
+      <div class="svg-wrap">
+        <svg width="400" height="150" viewBox="0 0 400 150" style="background:#fff;border-radius:4px;border:1px solid #ccc;">
+          <polyline points="0,110 40,110 50,90 60,110 100,110 105,130 115,30 125,130 130,110 170,110 185,125 210,110 250,110" fill="none" stroke="var(--zoo)" stroke-width="2.5"/>
+          <text x="45" y="85" font-family="var(--hand)" font-size="10" fill="var(--zoo)">P</text>
+          <text x="110" y="25" font-family="var(--hand)" font-size="10" fill="var(--zoo)">QRS</text>
+          <text x="195" y="105" font-family="var(--hand)" font-size="10" fill="var(--zoo)">T</text>
+          <text x="260" y="130" font-family="var(--hand)" font-size="10" fill="#666">ECG: The Heart's Electrical Signature</text>
+        </svg>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr><th>ECG Component</th><th>Biological Event</th><th>PYQ Trap</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>P-Wave</strong></td><td>Atrial Depolarization</td><td>Starts Atrial Systole</td></tr>
+            <tr><td><strong>QRS Complex</strong></td><td>Ventricular Depolarization</td><td>Masks Atrial Repolarization!</td></tr>
+            <tr><td><strong>T-Wave</strong></td><td>Ventricular Repolarization</td><td>End of Systole</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trigger-box">
+        <p><strong>Blood Clotting:</strong> Prothrombin —(Thrombokinase)—> Thrombin. Fibrinogen —(Thrombin)—> Fibrin. <strong>Ca++</strong> ions are mandatory for clotting.</p>
+      </div>
+    </div>
+
+    <!-- EXCRETION -->
+    <div class="sec" id="excretion">
+      <h2 class="sh">Excretory Products &amp; Elimination</h2>
+      <div class="cg-card">
+        <div class="cg-title">The Nephron Engine</div>
+        <ul class="pl">
+          <li><strong>PCT:</strong> 70-80% electrolytes &amp; water reabsorbed. Main site of pH balance.</li>
+          <li><strong>Loop of Henle:</strong> Descending = permeable to Water (concentrates filtrate). Ascending = permeable to Electrolytes (dilutes filtrate).</li>
+          <li><strong>DCT:</strong> Conditional reabsorption of Na+ &amp; Water under <strong>ADH/Aldosterone</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="zoo-box">
+        <span class="lbl">🎯 RAAS Mechanism (The Blood Pressure Rescue)</span>
+        <p>↓ BP → JGA cells release <strong>Renin</strong> → Angiotensinogen to Angiotensin I → II. Angiotensin II is a powerful vasoconstrictor and triggers Aldosterone (Na+ reabsorption).</p>
+      </div>
+    </div>
+
+    <!-- LOCOMOTION -->
+    <div class="sec" id="locomotion">
+      <h2 class="sh">Locomotion &amp; Movement</h2>
+      <div class="ncert-box">
+        <p><strong>Sliding Filament Theory:</strong> During contraction, H-zone narrows/disappears, I-band shortens, <strong>A-band remains constant</strong>. Ca++ binds to Troponin to expose active sites on Actin.</p>
+      </div>
+      <div class="cg-card">
+        <div class="cg-title">Joint Master List (NEET Must-Know)</div>
+        <p style="font-size:15px;line-height:1.7;">
+          <strong>Ball &amp; Socket:</strong> Shoulder/Hip · <strong>Hinge:</strong> Knee/Elbow · <strong>Pivot:</strong> Atlas/Axis · <strong>Gliding:</strong> Carpals · <strong>Saddle:</strong> Carpal &amp; Metacarpal of Thumb
+        </p>
+      </div>
+    </div>
+
+    <!-- NEURAL -->
+    <div class="sec" id="neural">
+      <h2 class="sh">Neural Control &amp; Coordination</h2>
+      <div class="trigger-box">
+        <p><strong>Impulse Conduction:</strong> Resting state = -70mV (K+ permeable, Na+ tight). Depolarization = Na+ influx (channels open). Repolarization = K+ efflux.</p>
+      </div>
+      <div class="zoo-box">
+        <span class="lbl">🎯 Parasympathetic vs Sympathetic</span>
+        <p>Sympathetic (Fight/Flight) = ↑ Heart rate, Dilate pupil, Inhibits digestion. Parasympathetic (Rest/Digest) = ↓ Heart rate, Constrict pupil, Stimulates digestion.</p>
+      </div>
+    </div>
+
+    <!-- CHEMICAL -->
+    <div class="sec" id="chemical">
+      <h2 class="sh">Chemical Coordination &amp; Hormones</h2>
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr><th>Gland</th><th>Hormone</th><th>Effect/Disorder</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Thyroid</td><td>T3, T4</td><td>Goitre (Hypo), Exophthalmic Goitre (Hyper)</td></tr>
+            <tr><td>Adrenal Cortex</td><td>Cortisol/Aldo</td><td>Addison's (Hypo)</td></tr>
+            <tr><td>Pancreas</td><td>Insulin/Glucagon</td><td>Diabetes Mellitus (Insulin deficiency)</td></tr>
+            <tr><td>Pars Distalis</td><td>GH</td><td>Gigantism (Hyper), Dwarfism (Hypo), Acromegaly (Adult hyper)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bonus-box">
+        <span class="lbl">Hormone Action Mechanism</span>
+        <p><strong>Peptides/Protein Hormones:</strong> Bind to membrane receptor → Generate cAMP/IP3 (second messengers). No entry into cell.</p>
+        <p><strong>Steroid/Iodothyronines:</strong> Cross membrane → Form Hormone-Receptor complex in Nucleus → Direct Gene Regulation.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- UNIT 3: REPRODUCTION & HEALTH                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="human-repro">
+  <div class="ch-head">
+    <div class="ch-ey">Unit 3 · NCERT Class 12 Ch 3–4</div>
+    <div class="ch-title">Reproduction &amp; <em>Health</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#human-repro">Anatomy</a>
+    <a href="#menstrual">Menstrual Cycle</a>
+    <a href="#repro-health">Health &amp; ART</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- ANATOMY & GAMETOGENESIS -->
+    <div class="sec" data-m="anatomy">
+      <h2 class="sh">Anatomy &amp; Gametogenesis <span class="tag tr">Critical Unit</span></h2>
+      <div class="trigger-box">
+        <p><strong>Male:</strong> Testis (Scrotum, 2-2.5°C lower) → Seminiferous Tubules (Sperm production) → Rete Testis → Vasa efferentia → Epididymis → Vas deferens.</p>
+        <p><strong>Female:</strong> Ovary → Fallopian Tube (Infundibulum, Ampulla, Isthmus) → Uterus → Cervix.</p>
+      </div>
+
+      <div class="cg-card">
+        <div class="cg-title">Spermatogenesis vs Oogenesis</div>
+        <ul class="pl">
+          <li><strong>Spermatogenesis:</strong> Starts at puberty. Continuous. 1 spermatogonium → 4 sperms.</li>
+          <li><strong>Oogenesis:</strong> Starts at <strong>embryonic stage</strong>. Discontinuous (stops at Prophase I until puberty, then Metaphase II until fertilisation). 1 oogonium → 1 ovum + polar bodies.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MENSTRUAL CYCLE SVG -->
+    <div class="sec" id="menstrual">
+      <h2 class="sh">The Menstrual Cycle Engine <span class="tag tp">SVG Analysis</span></h2>
+      <div class="svg-wrap">
+        <svg width="450" height="200" viewBox="0 0 450 200" style="background:#fff;border-radius:4px;border:1px solid #ddd;">
+          <!-- Day markers -->
+          <text x="10" y="190" font-family="var(--hand)" font-size="9" fill="#999">Day 1</text>
+          <text x="210" y="190" font-family="var(--hand)" font-size="9" fill="var(--red)">Day 14 (Ovulation)</text>
+          <text x="410" y="190" font-family="var(--hand)" font-size="9" fill="#999">Day 28</text>
+          
+          <!-- LH Surge -->
+          <path d="M 10 160 Q 180 155 210 20 Q 240 155 440 160" fill="none" stroke="var(--zoo)" stroke-width="2.5" />
+          <text x="215" y="40" font-family="var(--hand)" font-size="10" fill="var(--zoo)">LH Surge</text>
+          
+          <!-- Progesterone -->
+          <path d="M 10 170 Q 200 170 300 80 Q 380 80 440 170" fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4" />
+          <text x="310" y="100" font-family="var(--hand)" font-size="10" fill="var(--blue)">Progesterone (Luteal)</text>
+          
+          <text x="20" y="30" font-family="var(--hand)" font-size="11" fill="#333">Hormonal Synchronization Chart</text>
+        </svg>
+      </div>
+
+      <div class="zoo-box">
+        <span class="lbl">🎯 Day-by-Day Logic</span>
+        <p><strong>Proliferative Phase (Day 5-13):</strong> Estrogen ↑. Regeneration of Endometrium. <strong>Ovulation (Day 14):</strong> Peak of LH, FSH, and Estrogen. <strong>Luteal Phase (Day 15-28):</strong> Progesterone ↑ (secreted by Corpus Luteum).</p>
+      </div>
+    </div>
+
+    <!-- REPRODUCTIVE HEALTH -->
+    <div class="sec" id="repro-health">
+      <h2 class="sh">Reproductive Health &amp; ART</h2>
+      <div class="tbl">
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Mechanism/Example</th><th>NEET Favorite</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Natural</strong></td><td>Periodic Abstinence, Lactational Amenorrhea</td><td>No side effects, high failure rate</td></tr>
+            <tr><td><strong>IUD (Intra Uterine)</strong></td><td>Non-Med: Lippes Loop, Cu: CuT, Cu7, Multiload 375</td><td>Cu ions suppress sperm motility</td></tr>
+            <tr><td><strong>Hormonal IUD</strong></td><td>Progestasert, LNG-20</td><td>Uterus unsuitable for implantation</td></tr>
+            <tr><td><strong>Surgical</strong></td><td>Vasectomy (Male), Tubectomy (Female)</td><td>Terminal/Permanent</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>ART (Assisted Reproductive Technology):</strong></p>
+        <ul class="pl">
+          <li><strong>IVF / ZIFT:</strong> Zygote/Embryo (up to 8 blastomeres) transferred to <strong>Fallopian Tube</strong>.</li>
+          <li><strong>IUT:</strong> Embryo (>8 blastomeres) transferred to <strong>Uterus</strong>.</li>
+          <li><strong>GIFT:</strong> Gamete (Ovum) transferred to Fallopian Tube.</li>
+          <li><strong>ICSI:</strong> Sperm directly injected into ovum.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Logic for theme already defined in base
+</script>
+</body>
+</html>

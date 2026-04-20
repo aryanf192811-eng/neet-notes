@@ -84,8 +84,7 @@ const MANIFEST = {
         {
           label: "Zoology",
           notes: [
-            { num: "—", title: "Human Physiology", desc: "Digestion · Circulation · Respiration · Excretion · Neural Control · Endocrine", live: false },
-            { num: "—", title: "Animal Kingdom", desc: "Classification · Phyla · Chordates vs Non-chordates · Key NEET examples", live: false }
+            { num: "B2", title: "Zoology Complete — PYQ Master Cheatsheet", desc: "Animal Kingdom · Human Physiology · Reproduction · Deep Analysis · Bonus Content", file: "notes/neet-zoology-complete.html", type: "pyq", live: true }
           ]
         },
         {
