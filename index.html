@@ -264,8 +264,7 @@ html[data-theme="dark"] .mbox{box-shadow:0 28px 70px rgba(0,0,0,0.65),inset 0 1p
   document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
   document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
   window.addEventListener('beforeprint',function(e){e.preventDefault();document.body.style.display='none';setTimeout(function(){document.body.style.display='';},100);});
-  var _d=false;
-  setInterval(function(){var wd=window.outerWidth-window.innerWidth,hd=window.outerHeight-window.innerHeight;if(wd>160||hd>160){if(!_d){_d=true;document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:monospace;font-size:18px;color:#f0ece0;background:#0a0908;flex-direction:column;gap:16px;"><span style="font-size:48px">🔒</span><strong>Access Restricted</strong><span style="font-size:14px;opacity:.5">Developer tools are not permitted.</span></div>';}}else{_d=false;}},800);
+
   var ss=document.createElement('style');ss.textContent='body{-webkit-user-select:none!important;user-select:none!important;}textarea,input{-webkit-user-select:text!important;user-select:text!important;}';document.head.appendChild(ss);
 })();
 </script>
