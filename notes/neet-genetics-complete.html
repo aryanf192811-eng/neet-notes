@@ -1703,5 +1703,397 @@ document.addEventListener('keydown',function(e){
   if(e.ctrlKey && (e.key==='s'||e.key==='u'||e.key==='a'||e.key==='c'))e.preventDefault();
 });
 </script>
+<!-- ═══════════════════════════════════════════════════════════════
+     GENETICS DECISION LAYER UPGRADE — HIGH-SPEED MCQ SOLVING ENGINE
+════════════════════════════════════════════════════════════════ -->
+<style>
+.dl-block{border:2px solid #5b1a8c;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(91,26,140,.04);}
+.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;border-bottom:1px dashed rgba(91,26,140,.3);padding-bottom:6px;}
+.dl-if{color:#8c4a00;font-weight:600;}
+.dl-ans{color:#1a6b40;font-weight:700;margin-top:8px;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
+.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
+.trigger-pill .tw{color:#5b1a8c;font-weight:700;}
+.trigger-pill .ta{color:#1a6b40;}
+.trap-list{list-style:none;padding:0;margin:8px 0;}
+.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
+.trap-list li::before{content:"⚠️ ";}
+.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid #5b1a8c;border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
+.elim-chain .wr{color:#8c1a1a;display:block;margin:3px 0;}
+.elim-chain .cr{color:#1a6b40;display:block;margin:3px 0;font-weight:600;}
+.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(91,26,140,.04);border-radius:6px;}
+.cc-arr{color:#5b1a8c;font-weight:700;font-size:1rem;}
+.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.ncert-ex .nq{color:#8c6b00;font-weight:600;}
+.revision-engine{background:linear-gradient(135deg,rgba(91,26,140,.06),rgba(26,74,140,.04));border:2px solid #5b1a8c;border-radius:14px;padding:24px 28px;margin:28px 0;}
+.re-section{margin:20px 0;}
+.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
+.re-item{border:1px solid rgba(91,26,140,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
+.re-item strong{color:#5b1a8c;}
+.shortcut-num{display:inline-block;background:#5b1a8c;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;}
+</style>
+
+<div class="chapter" id="dl-genetics-decision">
+  <div class="ch-head" style="background:linear-gradient(135deg,rgba(91,26,140,.12),transparent);border-bottom-color:#5b1a8c;">
+    <div class="ch-ey">INTELLIGENCE LAYER · GENETICS DECISION ENGINE</div>
+    <div class="ch-title" style="color:#5b1a8c;">⚡ MCQ Decision System — Trigger → Eliminate → Answer</div>
+  </div>
+  <div class="ch-body">
+
+    <!-- TRIGGER KEYWORD SYSTEM -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🔑 GENETICS TRIGGER KEYWORD SYSTEM</h2>
+      <div class="trigger-grid">
+        <div class="trigger-pill"><span class="tw">Barr body</span> → <span class="ta">Inactive X; number = (X chromosomes − 1)</span></div>
+        <div class="trigger-pill"><span class="tw">Semiconservative</span> → <span class="ta">Meselson-Stahl ¹⁵N/¹⁴N experiment (E. coli)</span></div>
+        <div class="trigger-pill"><span class="tw">Transforming principle = DNA</span> → <span class="ta">Avery, MacLeod, McCarty (1944)</span></div>
+        <div class="trigger-pill"><span class="tw">³²P inside bacteria</span> → <span class="ta">Hershey-Chase: DNA injected, not protein</span></div>
+        <div class="trigger-pill"><span class="tw">Photo 51</span> → <span class="ta">Rosalind Franklin's X-ray; used by Watson-Crick</span></div>
+        <div class="trigger-pill"><span class="tw">A=T, G=C</span> → <span class="ta">Chargaff's rules (1950)</span></div>
+        <div class="trigger-pill"><span class="tw">A-T = 2 H-bonds</span> → <span class="ta">Weaker pair; G-C = 3 H-bonds (stronger)</span></div>
+        <div class="trigger-pill"><span class="tw">AUG</span> → <span class="ta">Start codon; Met (fMet in prokaryotes)</span></div>
+        <div class="trigger-pill"><span class="tw">UAA / UAG / UGA</span> → <span class="ta">Stop codons; NO amino acid</span></div>
+        <div class="trigger-pill"><span class="tw">UUU = Phe</span> → <span class="ta">First codon cracked; Nirenberg poly-U experiment</span></div>
+        <div class="trigger-pill"><span class="tw">UGG = Trp</span> → <span class="ta">Only codon for Trp; NOT degenerate</span></div>
+        <div class="trigger-pill"><span class="tw">Peptidyl transferase</span> → <span class="ta">23S rRNA; ribozyme; forms peptide bond</span></div>
+        <div class="trigger-pill"><span class="tw">Sigma (σ) factor</span> → <span class="ta">Prokaryote RNA pol; recognises promoter</span></div>
+        <div class="trigger-pill"><span class="tw">Pribnow box</span> → <span class="ta">−10 sequence in prokaryote promoter (TATAAT)</span></div>
+        <div class="trigger-pill"><span class="tw">Allolactose</span> → <span class="ta">True inducer of lac operon; binds repressor</span></div>
+        <div class="trigger-pill"><span class="tw">Repressible operon</span> → <span class="ta">Trp operon; product (Trp) turns OFF genes</span></div>
+        <div class="trigger-pill"><span class="tw">Inducible operon</span> → <span class="ta">Lac operon; substrate (lactose) turns ON genes</span></div>
+        <div class="trigger-pill"><span class="tw">GAG→GTG</span> → <span class="ta">Sickle-cell; Glu→Val; missense point mutation</span></div>
+        <div class="trigger-pill"><span class="tw">EcoRI</span> → <span class="ta">E. coli; sticky ends (AATT); 6-base recognition</span></div>
+        <div class="trigger-pill"><span class="tw">Blunt ends</span> → <span class="ta">SmaI, HaeIII; harder to ligate</span></div>
+        <div class="trigger-pill"><span class="tw">Ti plasmid</span> → <span class="ta">Agrobacterium; BEST plant transformation vector</span></div>
+        <div class="trigger-pill"><span class="tw">Taq polymerase</span> → <span class="ta">Thermus aquaticus; thermostable; used in PCR</span></div>
+        <div class="trigger-pill"><span class="tw">Cry genes</span> → <span class="ta">Bacillus thuringiensis; insecticidal Bt toxin</span></div>
+        <div class="trigger-pill"><span class="tw">q² = aa frequency</span> → <span class="ta">Hardy-Weinberg; q = √(q²); then p = 1−q</span></div>
+        <div class="trigger-pill"><span class="tw">Dolly (1996)</span> → <span class="ta">SCNT; Ian Wilmut; Roslin Institute; mammary cell</span></div>
+        <div class="trigger-pill"><span class="tw">ADA deficiency → SCID</span> → <span class="ta">First gene therapy 1990; Ashanti DeSilva</span></div>
+        <div class="trigger-pill"><span class="tw">Jumping genes</span> → <span class="ta">Transposons; Barbara McClintock; Nobel 1983</span></div>
+        <div class="trigger-pill"><span class="tw">Out of Africa</span> → <span class="ta">H. sapiens sapiens origin; modern humans</span></div>
+      </div>
+    </div>
+
+    <!-- MENDEL DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🫛 MENDEL'S LAWS — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Law of Segregation applies to which type of cross?"</div>
+        <div class="dl-ans">Law of Segregation = monohybrid (ONE trait). Law of Independent Assortment = dihybrid (TWO or more traits on different chromosomes).</div>
+        <div class="elim-chain">
+          <span class="wr">❌ "Independent assortment applies to linked genes" → WRONG. Linked genes violate independent assortment.</span>
+          <span class="cr">✅ Independent assortment: only non-linked (different chromosomes) genes. Morgan's exception = linkage.</span>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Phenotypic ratio in incomplete dominance F₂?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ 3:1 → That's COMPLETE dominance</span>
+          <span class="cr">✅ 1:2:1 — same as genotypic ratio. Red : Pink : White (Antirrhinum / Mirabilis)</span>
+        </div>
+        <div class="dl-ans">Key distinction: In incomplete dominance, phenotypic ratio = genotypic ratio (1:2:1). In complete dominance, phenotypic ≠ genotypic (3:1 vs 1:2:1).</div>
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — Lethal alleles:</strong> "Yellow coat in mice" cross: Aʸ Aʸ = lethal. So Aʸ A × Aʸ A → 1 AʸAʸ (dead) : 2 AʸA (yellow) : 1 AA (agouti). LIVE ratio = 2:1 (yellow:agouti). NOT 3:1.<br>
+        <strong>Trap:</strong> Students apply standard 3:1 — WRONG because one class is lethal. Always check if a genotype class is non-viable.
+      </div>
+
+      <div class="cause-chain">Dihybrid F₂ (9:3:3:1)<span class="cc-arr">→</span>Modification by epistasis<span class="cc-arr">→</span>Complementary: 9:7 | Dominant epistasis: 12:3:1 | Recessive epistasis: 9:3:4 | Duplicate dominant: 15:1</div>
+
+      <div class="ncert-ex">
+        <span class="nq">NCERT: "Genes present on same chromosome are linked and do not assort independently"</span><br>
+        → Q: Exception to Mendel's law? → Linked genes (Law of Independent Assortment violated)<br>
+        → Q: Who studied linkage? → T.H. Morgan with Drosophila<br>
+        → Q: What breaks linkage? → Crossing over (recombination during meiosis I)
+      </div>
+    </div>
+
+    <!-- MOLECULAR GENETICS DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🧬 MOLECULAR GENETICS — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Which enzyme removes RNA primer?"</div>
+        <div class="dl-ans">DNA Polymerase I — has 5'→3' exonuclease activity. Removes primer, fills gap with DNA. Then DNA Ligase seals the nick.</div>
+        <div class="elim-chain">
+          <span class="wr">❌ DNA Pol III — main synthesizing enzyme; no 5'→3' exonuclease</span>
+          <span class="wr">❌ DNA Ligase — joins fragments; does NOT remove primers</span>
+          <span class="wr">❌ Helicase — unwinds DNA; no primer removal</span>
+          <span class="cr">✅ DNA Pol I → removes primer → fills gap | DNA Ligase → seals nick</span>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Peptide bond formation is catalysed by?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Aminoacyl-tRNA synthetase — charges tRNA; NOT in ribosome</span>
+          <span class="wr">❌ EF-Tu — elongation factor; escorts aminoacyl-tRNA to A site</span>
+          <span class="wr">❌ Release factors — terminate translation</span>
+          <span class="cr">✅ Peptidyl transferase activity of 23S rRNA (prokaryote) = RIBOZYME. RNA is the catalyst.</span>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">DNA strand synthesis direction — hardest elimination:</div>
+        <div class="elim-chain">
+          <span class="wr">❌ 3'→5' synthesis — IMPOSSIBLE for polymerase</span>
+          <span class="cr">✅ ALL synthesis = 5'→3' (adds to free 3'-OH)</span>
+          <span class="cr">✅ Template read = 3'→5' (antiparallel)</span>
+          <span class="cr">✅ Lagging strand = synthesized in Okazaki fragments (each fragment 5'→3') moving away from fork</span>
+        </div>
+        <div class="dl-ans">Connected concept (within Genetics file): Okazaki fragments → DNA Pol I removes primers → Ligase joins = same enzyme cascade as above.</div>
+      </div>
+
+      <div class="cause-chain">No primer, no synthesis<span class="cc-arr">→</span>Primase makes RNA primer (~10 nt)<span class="cc-arr">→</span>DNA Pol III extends (5'→3')<span class="cc-arr">→</span>DNA Pol I removes primer + fills<span class="cc-arr">→</span>Ligase joins nick<span class="cc-arr">→</span>Complete new strand</div>
+
+      <div class="dl-block">
+        <div class="dl-head">Genetic code property elimination — most tested:</div>
+        <div class="elim-chain">
+          <span class="wr">❌ "Ambiguous = one codon → multiple amino acids" — DOES NOT EXIST in standard code</span>
+          <span class="wr">❌ "Non-degenerate" — WRONG. Code IS degenerate (2+ codons per AA)</span>
+          <span class="cr">✅ Unambiguous = each codon → ONLY ONE AA (but one AA can have multiple codons)</span>
+          <span class="cr">✅ Degenerate = multiple codons → same AA. Exception: Met (AUG) and Trp (UGG) — each has only ONE codon</span>
+        </div>
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — Chargaff numerical:</strong> "If A=30% in dsDNA, what is G%?"<br>
+        Step 1: A=T → T=30%. Step 2: A+T=60%. Step 3: G+C=40%. Step 4: G=C → G=20%.<br>
+        <strong>Formula shortcut:</strong> G% = (100 − 2×A%) ÷ 2<br>
+        <strong>Trap:</strong> Students say G=30% (confusing G=C with A=T pattern). Always compute G+C FIRST.
+      </div>
+
+      <div class="ncert-ex">
+        <span class="nq">NCERT: "In eukaryotes, RNA polymerase does not directly initiate transcription"</span><br>
+        → Q: What helps RNA Pol II bind promoter? → Transcription factors (TF IID binds TATA box first)<br>
+        → Q: Which RNA Pol makes mRNA? → RNA Pol II (in eukaryotes)<br>
+        → Connected concept (within Genetics): RNA Pol I → rRNA (nucleolus); RNA Pol III → tRNA
+      </div>
+    </div>
+
+    <!-- LAC OPERON DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🔬 OPERON MODEL — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "In presence of lactose, what happens to lac repressor?"</div>
+        <div class="dl-ans">Lactose → converted to allolactose (true inducer). Allolactose binds lac repressor → conformational change → repressor CANNOT bind operator → RNA pol transcribes lacZYA → β-galactosidase produced.</div>
+        <div class="elim-chain">
+          <span class="wr">❌ "Lactose binds repressor directly" — FALSE. Allolactose (not lactose itself) is the inducer</span>
+          <span class="wr">❌ "Lactose destroys repressor" — FALSE. Repressor is inactivated, not destroyed</span>
+          <span class="cr">✅ Lactose → allolactose → binds repressor → operator FREE → transcription ON</span>
+        </div>
+      </div>
+
+      <div class="cause-chain">Glucose LOW<span class="cc-arr">→</span>cAMP HIGH<span class="cc-arr">→</span>cAMP + CAP complex<span class="cc-arr">→</span>Binds promoter upstream<span class="cc-arr">→</span>Enhances RNA pol binding<span class="cc-arr">→</span>Transcription ↑↑ (catabolite activation)</div>
+      <div class="cause-chain">Glucose HIGH<span class="cc-arr">→</span>cAMP LOW<span class="cc-arr">→</span>No CAP-cAMP<span class="cc-arr">→</span>RNA pol barely binds<span class="cc-arr">→</span>Transcription LOW even if lactose present (glucose preferred)</div>
+
+      <div class="dl-block">
+        <div class="dl-head">Trp operon vs Lac operon — direct elimination:</div>
+        <div class="elim-chain">
+          <span class="wr">❌ "Trp operon is inducible" — WRONG. Trp = repressible</span>
+          <span class="wr">❌ "Lac operon = catabolic = repressible" — WRONG. Lac = inducible</span>
+          <span class="cr">✅ Lac = inducible (substrate turns ON; anabolic/catabolic: catabolic). Trp = repressible (product turns OFF; biosynthetic)</span>
+          <span class="cr">✅ Trp = co-repressor system: inactive aporepressor + Trp → active repressor → blocks operator</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVOLUTION DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🦕 EVOLUTION — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">Hardy-Weinberg numerical — standard NEET method:</div>
+        <div class="dl-ans">ALWAYS start from q² (recessive homozygote frequency — easiest to identify phenotypically). Then q = √q². Then p = 1−q. Then 2pq = heterozygote frequency. Check: p² + 2pq + q² = 1.</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Common trap: confuse phenotypic frequency with genotypic frequency. aa = q² (genotype). "Affected individuals" (recessive disease) = q² only.</span>
+          <span class="cr">✅ Carriers (heterozygous) = 2pq. Always calculate from q² → q → p → 2pq.</span>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Industrial melanism is an example of which type of selection?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Stabilising selection — favours intermediate; melanism = extremes shift</span>
+          <span class="wr">❌ Disruptive selection — favours BOTH extremes; melanism = ONE direction</span>
+          <span class="cr">✅ Directional selection — one extreme favoured (dark moths) over time due to changed environment</span>
+        </div>
+        <div class="dl-ans">Key: Selection acts on PRE-EXISTING variation — dark moths existed before pollution. Environment selects, does NOT create mutations.</div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">Hominid brain size ranking — exam-ready order:</div>
+        <div class="dl-ans">Australopithecus (450 cc) → Homo habilis (800 cc) → Homo erectus (1000 cc) → Homo sapiens (1350 cc). Neanderthals had ~1400 cc (slightly larger than modern human; NCERT states 1400 so pick Neanderthal if option present).</div>
+        <div class="elim-chain">
+          <span class="wr">❌ "H. habilis used fire" — WRONG. H. erectus used fire</span>
+          <span class="wr">❌ "Australopithecus made tools" — WRONG. Used stone weapons, did NOT make them</span>
+          <span class="cr">✅ H. habilis = FIRST to make/use tools (Oldowan flint)</span>
+        </div>
+      </div>
+
+      <div class="cause-chain">Miller-Urey (1953): H₂+CH₄+NH₃+H₂O+electric sparks<span class="cc-arr">→</span>Amino acids + sugars synthesized<span class="cc-arr">→</span>Proves abiogenesis possible<span class="cc-arr">→</span>Disproves "life only from life" for ORIGIN (not ongoing)</div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — Homologous vs Analogous:</strong><br>
+        Homologous = SAME structure / DIFFERENT function → divergent evolution → common ancestor. Example: forelimbs (whale fin, bat wing, horse leg, human arm).<br>
+        Analogous = DIFFERENT structure / SAME function → convergent evolution → NO common ancestor. Example: insect wing vs bird wing; dolphin flipper vs shark fin.<br>
+        <strong>Trap:</strong> "Sweet potato and potato are analogous organs" → ROOT (modified) vs STEM (modified) → same function (storage) but diff origin → Analogous.</div>
+    </div>
+
+    <!-- BIOTECHNOLOGY DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#5b1a8c;">🔧 BIOTECHNOLOGY — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">Restriction enzyme naming — if NEET asks about BamHI source:</div>
+        <div class="dl-ans">BamHI = Bacillus amyloliquefaciens, strain H, 1st enzyme. EcoRI = E. coli, strain R, 1st enzyme. HindIII = Haemophilus influenzae, type d, 3rd enzyme.</div>
+        <div class="dl-ans">Naming rule: [Genus 1 letter] + [species 2 letters] + [strain] + [Roman numeral]</div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">PCR temperature cycle elimination:</div>
+        <div class="elim-chain">
+          <span class="cr">✅ 94–96°C = Denaturation (strand separation)</span>
+          <span class="cr">✅ 50–65°C = Annealing (primers bind)</span>
+          <span class="cr">✅ 72°C = Extension (Taq polymerase synthesizes)</span>
+          <span class="wr">❌ "DNA pol used in PCR = E. coli Pol III" — WRONG. Taq from Thermus aquaticus (hot spring bacteria)</span>
+        </div>
+      </div>
+
+      <div class="cause-chain">Bt toxin mechanism:<span class="cc-arr">→</span>Cry protein = crystalline pro-toxin in B. thuringiensis<span class="cc-arr">→</span>Insect eats Bt plant<span class="cc-arr">→</span>Alkaline insect midgut activates pro-toxin<span class="cc-arr">→</span>Active toxin binds epithelial receptors<span class="cc-arr">→</span>Pore formation<span class="cc-arr">→</span>Cell lysis<span class="cc-arr">→</span>Insect dies</div>
+
+      <div class="ncert-ex">
+        <span class="nq">NCERT: "Gel electrophoresis separates DNA fragments by size"</span><br>
+        → Q: Direction of DNA migration? → Toward ANODE (positive) because DNA is negatively charged<br>
+        → Q: Smaller fragments move? → FURTHER (faster through gel pores)<br>
+        → Q: DNA visualized by? → Ethidium bromide → UV light → orange fluorescence<br>
+        → Connected concept (within Genetics): PCR amplifies before gel; restriction enzyme cuts before gel
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — GMO identification:</strong> "Flavr Savr tomato" = delayed ripening; antisense technology (complementary RNA silences polygalacturonase gene).<br>
+        "Bt cotton (BollGuard)" = Cry1Ac + Cry2Ab genes from B. thuringiensis → bollworm resistance.<br>
+        "Golden rice" = β-carotene (Psy + CrtI genes); provitamin A; yellow colour.<br>
+        <strong>Trap:</strong> "Golden rice produces Vitamin A directly" — WRONG. Produces β-carotene (provitamin A), converted to Vitamin A in body.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ GENETICS REVISION ENGINE ═══ -->
+<div class="chapter" id="genetics-revision-engine">
+  <div class="ch-head" style="background:linear-gradient(135deg,#08020f,#12051a);border-bottom-color:#9d55e0;">
+    <div class="ch-ey">GENETICS REVISION ENGINE · LAST 48 HOURS</div>
+    <div class="ch-title" style="color:#9d55e0;">🚀 25 Triggers · 20 Traps · 15 PYQ Patterns · 10 Elimination Shortcuts</div>
+  </div>
+  <div class="ch-body">
+    <div class="revision-engine">
+
+      <div class="re-section">
+        <div class="re-sh">A. 25 ULTRA-FAST GENETICS RECALL TRIGGERS</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Barr body</strong> → Inactive X; n = X−1</div>
+          <div class="re-item"><strong>Semiconservative</strong> → Meselson-Stahl; ¹⁵N/¹⁴N</div>
+          <div class="re-item"><strong>A=T (2H), G=C (3H)</strong> → Chargaff</div>
+          <div class="re-item"><strong>DNA Pol I</strong> → removes primer; fills gap</div>
+          <div class="re-item"><strong>DNA Pol III</strong> → main synthesis; 5'→3' only</div>
+          <div class="re-item"><strong>Primase</strong> → RNA primer; DNA pol cannot start de novo</div>
+          <div class="re-item"><strong>23S rRNA</strong> → peptidyl transferase; ribozyme</div>
+          <div class="re-item"><strong>AUG</strong> → start; Met</div>
+          <div class="re-item"><strong>UAA/UAG/UGA</strong> → stop; no AA</div>
+          <div class="re-item"><strong>UGG</strong> → Trp; single codon; not degenerate</div>
+          <div class="re-item"><strong>Allolactose</strong> → true lac inducer; not lactose</div>
+          <div class="re-item"><strong>Trp = repressible</strong> → product turns OFF</div>
+          <div class="re-item"><strong>Lac = inducible</strong> → substrate turns ON</div>
+          <div class="re-item"><strong>GAG→GTG</strong> → sickle cell; Glu→Val</div>
+          <div class="re-item"><strong>Thymine dimer</strong> → UV radiation; same strand</div>
+          <div class="re-item"><strong>EcoRI</strong> → 5'GAATTC; sticky; AATT overhang</div>
+          <div class="re-item"><strong>SmaI/HaeIII</strong> → blunt ends</div>
+          <div class="re-item"><strong>Ti plasmid</strong> → Agrobacterium; plant vector</div>
+          <div class="re-item"><strong>q² → q → p → 2pq</strong> → H-W calculation order</div>
+          <div class="re-item"><strong>Directional selection</strong> → Industrial melanism</div>
+          <div class="re-item"><strong>Homologous</strong> → same structure; divergent evolution</div>
+          <div class="re-item"><strong>Analogous</strong> → same function; convergent evolution</div>
+          <div class="re-item"><strong>H. habilis</strong> → first tool maker</div>
+          <div class="re-item"><strong>ADA deficiency</strong> → first gene therapy; 1990</div>
+          <div class="re-item"><strong>Dolly 1996</strong> → SCNT; Ian Wilmut</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">B. 20 MOST COMMON GENETICS TRAPS</div>
+        <ul class="trap-list">
+          <li>"Lactose directly binds lac repressor" → WRONG. Allolactose does</li>
+          <li>"Lac operon = repressible" → WRONG. Lac = inducible (like lac-tose = induced)</li>
+          <li>"DNA synthesis 3'→5'" → IMPOSSIBLE. Always 5'→3'</li>
+          <li>"DNA Pol III removes primers" → WRONG. Pol I removes primers</li>
+          <li>"Peptide bond by aminoacyl-tRNA synthetase" → WRONG. 23S rRNA (ribozyme)</li>
+          <li>"UGG = Stop codon" → WRONG. UGG = Trp. UAA/UAG/UGA = stop</li>
+          <li>"Genetic code is ambiguous" → WRONG. Code is UNAMBIGUOUS (one codon = one AA)</li>
+          <li>"Met and Trp have multiple codons" → WRONG. Each has only ONE codon</li>
+          <li>"Semiconservative proved by Watson-Crick" → WRONG. Meselson and Stahl (1958)</li>
+          <li>"Rosalind Franklin = Nobel laureate for DNA" → NOT true. She didn't receive Nobel (died 1958; Nobel not posthumous)</li>
+          <li>"Chargaff = double helix model" → WRONG. Chargaff = base ratios. Watson-Crick = double helix</li>
+          <li>"Golden rice = contains Vitamin A" → WRONG. Contains β-carotene (provitamin A)</li>
+          <li>"Bt toxin = harmful to mammals" → WRONG. Pro-toxin activated only in alkaline insect gut; ineffective in acidic mammalian stomach</li>
+          <li>"Australia Robins H-W = equilibrium always" → Only in IDEAL populations. Deviations signal evolution</li>
+          <li>"Australopithecus made tools" → WRONG. USED stones; H. habilis MADE tools</li>
+          <li>"H. erectus = first to walk erect" → MISLEADING. Australopithecus was also bipedal</li>
+          <li>"Frameshift of 3 bases = always severe" → WRONG. Adding/removing multiples of 3 does NOT shift frame</li>
+          <li>"Silent mutation changes protein" → WRONG. Silent = same AA due to degeneracy</li>
+          <li>"Sickle cell = autosomal dominant" → WRONG. Autosomal RECESSIVE</li>
+          <li>"Vasa recta creates medullary gradient" → WRONG. Loop of Henle creates; Vasa recta maintains</li>
+        </ul>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">C. 15 GENETICS PYQ PATTERNS</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Pattern 1:</strong> Chargaff numerical → given A%, calculate G% (most common calculation)</div>
+          <div class="re-item"><strong>Pattern 2:</strong> DNA replication enzyme function → which enzyme does what step</div>
+          <div class="re-item"><strong>Pattern 3:</strong> Genetic code property identification → unambiguous vs degenerate confusion</div>
+          <div class="re-item"><strong>Pattern 4:</strong> Codon identification → start, stop, single-codon amino acids</div>
+          <div class="re-item"><strong>Pattern 5:</strong> Transcription unit components → promoter, operator, structural gene identification</div>
+          <div class="re-item"><strong>Pattern 6:</strong> Lac operon state → given conditions (glucose/lactose present/absent) → gene ON or OFF?</div>
+          <div class="re-item"><strong>Pattern 7:</strong> Ribosome distinction → 70S vs 80S + specific inhibitor type</div>
+          <div class="re-item"><strong>Pattern 8:</strong> Mutation type from scenario → silent/missense/nonsense/frameshift</div>
+          <div class="re-item"><strong>Pattern 9:</strong> Hardy-Weinberg numerical → recessive frequency → carrier frequency</div>
+          <div class="re-item"><strong>Pattern 10:</strong> Natural selection type identification from graph/scenario</div>
+          <div class="re-item"><strong>Pattern 11:</strong> Hominid identification → brain size / tool use / fire / burial</div>
+          <div class="re-item"><strong>Pattern 12:</strong> Restriction enzyme → identify organism source from name</div>
+          <div class="re-item"><strong>Pattern 13:</strong> PCR step temperature → which step at which temp</div>
+          <div class="re-item"><strong>Pattern 14:</strong> GMO product identification → Bt cotton, Golden rice, Humulin scenarios</div>
+          <div class="re-item"><strong>Pattern 15:</strong> Gene therapy scenario → which disease, which vector, ex vivo vs in vivo</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">D. 10 GENETICS ELIMINATION SHORTCUTS</div>
+        <div class="re-grid">
+          <div class="re-item"><span class="shortcut-num">1</span>"Removes RNA primer" → Only DNA Pol I (not Pol III, not Ligase)</div>
+          <div class="re-item"><span class="shortcut-num">2</span>"Peptide bond formation" → 23S rRNA ribozyme (eliminate all enzyme/protein options)</div>
+          <div class="re-item"><span class="shortcut-num">3</span>"Only ATP in cyclic photophosphorylation" → no NADPH, no O₂</div>
+          <div class="re-item"><span class="shortcut-num">4</span>See "Trp operon + Trp present" → genes OFF (repressible = product off)</div>
+          <div class="re-item"><span class="shortcut-num">5</span>See "Lac operon + glucose high" → genes LOW even with lactose (catabolite repression)</div>
+          <div class="re-item"><span class="shortcut-num">6</span>"Blunt end enzyme" → SmaI or HaeIII; eliminate EcoRI/BamHI (sticky)</div>
+          <div class="re-item"><span class="shortcut-num">7</span>"Single codon amino acid" → Met (AUG) or Trp (UGG) only</div>
+          <div class="re-item"><span class="shortcut-num">8</span>H-W calculation: always start from q² (recessive phenotype) → q → p → 2pq</div>
+          <div class="re-item"><span class="shortcut-num">9</span>"First made stone tools" → H. habilis (not Australopithecus who only USED stones)</div>
+          <div class="re-item"><span class="shortcut-num">10</span>"Alkaline gut activates Bt toxin" → insects; safe for mammals (acidic pH = inactive)</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

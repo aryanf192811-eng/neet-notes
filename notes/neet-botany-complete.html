@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 
@@ -2284,6 +2284,365 @@ function toggle(head){
   if(btn) btn.textContent=sol.classList.contains('open')?'Hide Answer':'Show Answer';
 }
 </script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     BOTANY DECISION LAYER UPGRADE — HIGH-SPEED MCQ SOLVING ENGINE
+     Injected after main content. All sections are self-contained.
+════════════════════════════════════════════════════════════════ -->
+<style>
+/* ─── DECISION LAYER STYLES ─── */
+.dl-block{border:2px solid #1a6b40;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(26,107,64,.04);}
+.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;border-bottom:1px dashed rgba(26,107,64,.3);padding-bottom:6px;}
+.dl-if{color:#8c4a00;font-weight:600;}
+.dl-elim{color:#8c1a1a;font-weight:600;}
+.dl-ans{color:#1a6b40;font-weight:700;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
+.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
+.trigger-pill .tw{color:var(--accent);font-weight:700;}
+.trigger-pill .ta{color:var(--green);}
+.trap-list{list-style:none;padding:0;margin:8px 0;}
+.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
+.trap-list li::before{content:"⚠️ ";font-size:.8rem;}
+.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid var(--purple);border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
+.elim-chain .wr{color:#8c1a1a;}
+.elim-chain .cr{color:#1a6b40;}
+.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(26,74,140,.04);border-radius:6px;}
+.cc-arr{color:var(--accent);font-weight:700;font-size:1rem;}
+.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.ncert-ex .nq{color:#8c6b00;font-weight:600;}
+.revision-engine{background:linear-gradient(135deg,rgba(26,107,64,.06),rgba(26,74,140,.04));border:2px solid #1a6b40;border-radius:14px;padding:24px 28px;margin:28px 0;}
+.re-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#1a6b40;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid rgba(26,107,64,.2);}
+.re-section{margin:20px 0;}
+.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
+.re-item{border:1px solid rgba(26,107,64,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
+.re-item strong{color:#1a6b40;}
+.shortcut-num{display:inline-block;background:#1a6b40;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;flex-shrink:0;}
+</style>
+
+<!-- ═══ BOTANY DECISION LAYER — CHAPTER-BY-CHAPTER ═══ -->
+<div class="chapter" id="dl-botany-decision">
+  <div class="ch-head" style="background:linear-gradient(135deg,rgba(26,107,64,.12),transparent);border-bottom-color:#1a6b40;">
+    <div class="ch-ey">INTELLIGENCE LAYER · BOTANY DECISION ENGINE</div>
+    <div class="ch-title" style="color:#1a6b40;">⚡ MCQ Decision System — Trigger → Eliminate → Answer</div>
+  </div>
+  <div class="ch-body">
+
+    <!-- SECTION 1: TRIGGER KEYWORD SYSTEM -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">🔑 TRIGGER KEYWORD SYSTEM — Keyword → Concept → Answer</h2>
+      <div class="trigger-grid">
+        <div class="trigger-pill"><span class="tw">Plasmolysis</span> → <span class="ta">Hypertonic outside → loss of turgor → cell shrinks from wall</span></div>
+        <div class="trigger-pill"><span class="tw">Deplasmolysis</span> → <span class="ta">Hypotonic → cell regains water → turgor restored</span></div>
+        <div class="trigger-pill"><span class="tw">Turgor pressure = 0</span> → <span class="ta">Flaccid (but NOT plasmolysed)</span></div>
+        <div class="trigger-pill"><span class="tw">ψ = 0</span> → <span class="ta">Pure water (standard reference)</span></div>
+        <div class="trigger-pill"><span class="tw">DPD = OP − TP</span> → <span class="ta">Suction pressure; drives water into cell</span></div>
+        <div class="trigger-pill"><span class="tw">Casparian strip</span> → <span class="ta">Suberin; apoplast blocked → symplast forced</span></div>
+        <div class="trigger-pill"><span class="tw">Cyclic photophosphorylation</span> → <span class="ta">PS I only → only ATP, NO NADPH, NO O₂</span></div>
+        <div class="trigger-pill"><span class="tw">Non-cyclic photophosphorylation</span> → <span class="ta">PS I + PS II → ATP + NADPH + O₂</span></div>
+        <div class="trigger-pill"><span class="tw">Z-scheme</span> → <span class="ta">Non-cyclic path; called Z due to shape of electron path</span></div>
+        <div class="trigger-pill"><span class="tw">Photorespiration</span> → <span class="ta">O₂ binds RuBisCO → wasteful → no ATP → C3 only</span></div>
+        <div class="trigger-pill"><span class="tw">Bundle sheath cells</span> → <span class="ta">C4 plants; CO₂ pumped here → no photorespiration</span></div>
+        <div class="trigger-pill"><span class="tw">Kranz anatomy</span> → <span class="ta">C4 plants; wreath-like bundle sheath</span></div>
+        <div class="trigger-pill"><span class="tw">CAM plants</span> → <span class="ta">CO₂ fixed at night; stomata close during day</span></div>
+        <div class="trigger-pill"><span class="tw">Q10 = 2</span> → <span class="ta">Respiration rate doubles per 10°C rise</span></div>
+        <div class="trigger-pill"><span class="tw">Substrate-level phosphorylation</span> → <span class="ta">Glycolysis + Krebs; ATP made by direct transfer, no ETC</span></div>
+        <div class="trigger-pill"><span class="tw">Auxin polar transport</span> → <span class="ta">Basipetal (shoot); acropetal (root)</span></div>
+        <div class="trigger-pill"><span class="tw">Ethylene</span> → <span class="ta">Only gaseous hormone; fruit ripening + senescence</span></div>
+        <div class="trigger-pill"><span class="tw">Abscisic acid</span> → <span class="ta">Stress hormone; dormancy; stomata CLOSE</span></div>
+        <div class="trigger-pill"><span class="tw">Vernalisation</span> → <span class="ta">Cold exposure → flowering in biennial plants</span></div>
+        <div class="trigger-pill"><span class="tw">Phytochrome Pfr</span> → <span class="ta">Active form; promotes flowering in LD plants</span></div>
+        <div class="trigger-pill"><span class="tw">Critical night length</span> → <span class="ta">DARK period matters, not light period</span></div>
+        <div class="trigger-pill"><span class="tw">Meiocyte</span> → <span class="ta">Cell that undergoes meiosis</span></div>
+        <div class="trigger-pill"><span class="tw">Microsporogenesis</span> → <span class="ta">Pollen formation inside anther</span></div>
+        <div class="trigger-pill"><span class="tw">Megasporogenesis</span> → <span class="ta">Embryo sac formation in ovule</span></div>
+        <div class="trigger-pill"><span class="tw">Triple fusion</span> → <span class="ta">2 polar nuclei + 1 sperm → 3n endosperm</span></div>
+        <div class="trigger-pill"><span class="tw">Double fertilisation</span> → <span class="ta">Unique to angiosperms; syngamy + triple fusion</span></div>
+        <div class="trigger-pill"><span class="tw">Anatropous ovule</span> → <span class="ta">Most common in angiosperms; inverted 180°</span></div>
+        <div class="trigger-pill"><span class="tw">Tapetum</span> → <span class="ta">Innermost pollen sac layer; nourishes pollen</span></div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: DECISION LAYERS — PHOTOSYNTHESIS -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">📸 PHOTOSYNTHESIS — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Which produces ONLY ATP in photosynthesis?"</div>
+        <div class="dl-if">→ The word ONLY = cyclic photophosphorylation</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Non-cyclic: produces ATP + NADPH + O₂ (not only ATP)</span><br>
+          <span class="wr">❌ Calvin cycle: consumes ATP (doesn't produce it)</span><br>
+          <span class="cr">✅ Cyclic: PS I → ferredoxin → cytochrome b6f → PC → PS I → ATP only</span>
+        </div>
+        <div class="dl-ans">Final rule: Cyclic = ATP only, Non-cyclic = ATP + NADPH + O₂</div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Source of O₂ in photosynthesis?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ CO₂ — disproved by van Niel's experiment</span><br>
+          <span class="cr">✅ WATER — photolysis of water in PS II: 2H₂O → 4H⁺ + 4e⁻ + O₂</span>
+        </div>
+        <div class="dl-ans">Proof: ¹⁸O experiment by Ruben and Kamen — heavy O₂ from H₂¹⁸O not C¹⁸O₂</div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "First stable product of C3 pathway?"</div>
+        <div class="dl-if">Key word: FIRST + STABLE</div>
+        <div class="elim-chain">
+          <span class="wr">❌ OAA — first product of C4, NOT C3</span><br>
+          <span class="wr">❌ RuBP — substrate not product</span><br>
+          <span class="cr">✅ 3-phosphoglycerate (3-PGA / PGA) — 3 carbons, stable</span>
+        </div>
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern:</strong> "Which plant has Kranz anatomy?" → always C4 (maize, sugarcane, sorghum). Never C3 (wheat, rice, sunflower).<br>
+        <strong>Trap:</strong> Students say sugarcane = C3 (it's subtropical) — WRONG. Sugarcane is the classic C4 example.<br>
+        <strong>What's tested:</strong> C4 anatomy identification, NOT the Hatch-Slack biochemistry.
+      </div>
+
+      <h3 class="ssh">Cause Chains — Photosynthesis</h3>
+      <div class="cause-chain">Stomata close at night<span class="cc-arr">→</span>CO₂ cannot enter <span class="cc-arr">→</span>C3/C4 plants stop fixation <span class="cc-arr">→</span>CAM plants: Fix CO₂ as malate at night, release and fix in day (stomata closed)</div>
+      <div class="cause-chain">High O₂:CO₂ ratio (altitude)<span class="cc-arr">→</span>RuBisCO binds O₂ instead of CO₂<span class="cc-arr">→</span>Photorespiration<span class="cc-arr">→</span>2-phosphoglycolate produced<span class="cc-arr">→</span>Wasteful; no ATP</div>
+      <div class="cause-chain">C4 plants: PEP carboxylase (mesophyll) fixesatmospheric CO₂<span class="cc-arr">→</span>OAA → malate → decarboxylated in bundle sheath<span class="cc-arr">→</span>High CO₂ concentration at RuBisCO site<span class="cc-arr">→</span>No photorespiration</div>
+
+      <div class="ncert-ex">
+        <span class="nq">NCERT line → Examiner extracts:</span><br>
+        "The process of ATP synthesis during photophosphorylation is performed by ATP-synthase enzyme" → Q: Where is ATP synthase located? → Ans: Inner mitochondrial membrane (respiration) AND thylakoid membrane (photosynthesis — lumen side).<br>
+        "Chemiosmosis requires a membrane, proton pump, proton gradient, ATPase" → Q: What drives ATP synthesis? → proton gradient across thylakoid membrane.
+      </div>
+    </div>
+
+    <!-- SECTION 3: DECISION LAYERS — RESPIRATION -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">🔥 RESPIRATION — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Net ATP from glycolysis?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ 4 ATP — this is GROSS, not NET</span><br>
+          <span class="wr">❌ 8 ATP — confused with NADH contribution</span><br>
+          <span class="cr">✅ NET = 2 ATP (4 produced − 2 invested)</span>
+        </div>
+        <div class="dl-ans">Glycolysis also produces 2 NADH + 2 Pyruvate. Occurs in CYTOPLASM (no mitochondria needed).</div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Where does Krebs cycle occur?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Inner mitochondrial membrane — that's ETC/oxidative phosphorylation</span><br>
+          <span class="wr">❌ Cytoplasm — that's glycolysis</span><br>
+          <span class="cr">✅ Mitochondrial MATRIX</span>
+        </div>
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern:</strong> "How many CO₂ are released per acetyl CoA in Krebs cycle?" → 2 CO₂ per turn × 2 turns per glucose = 4 CO₂ from Krebs.<br>
+        <strong>TOTAL CO₂ per glucose:</strong> 2 (pyruvate decarboxylation) + 4 (Krebs) = 6 CO₂. Matches 6CO₂ in balanced equation.<br>
+        <strong>Trap:</strong> Students forgot the 2 CO₂ from pyruvate → acetyl CoA step.
+      </div>
+
+      <div class="cause-chain">Glucose<span class="cc-arr">→</span>Glycolysis (cytoplasm): 2 Pyruvate + 2 ATP + 2 NADH<span class="cc-arr">→</span>Pyruvate decarboxylation (matrix): 2 Acetyl-CoA + 2 CO₂ + 2 NADH<span class="cc-arr">→</span>Krebs × 2: 6 NADH + 2 FADH₂ + 2 ATP + 4 CO₂<span class="cc-arr">→</span>ETC: ~32–34 ATP (chemiosmosis)</div>
+
+      <div class="ncert-ex">
+        <span class="nq">NCERT: "Incomplete oxidation of glucose to ethanol and CO₂ by yeast = fermentation"</span><br>
+        → Q: What is the net ATP gain in anaerobic respiration? → 2 ATP only<br>
+        → Q: Fermentation occurs where? → Cytoplasm (no mitochondria involved)<br>
+        → Q: What enzyme converts pyruvate to ethanol? → Pyruvate decarboxylase → acetaldehyde; Alcohol dehydrogenase → ethanol
+      </div>
+    </div>
+
+    <!-- SECTION 4: DECISION LAYERS — PLANT HORMONES -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">🌱 PLANT HORMONES — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "Which hormone CLOSES stomata?"</div>
+        <div class="dl-ans">→ ABA (Abscisic Acid). ABA = stress hormone = drought response. Triggers K⁺ efflux from guard cells → water leaves → guard cells flaccid → stomata close.</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Auxin — promotes growth, no direct stomatal effect</span><br>
+          <span class="wr">❌ Cytokinin — delays senescence; promotes opening (indirect)</span><br>
+          <span class="cr">✅ ABA = stomata CLOSE</span>
+        </div>
+      </div>
+
+      <div class="trigger-grid">
+        <div class="trigger-pill"><span class="tw">Auxin (IAA)</span> → <span class="ta">Apical dominance; cell elongation; phototropism</span></div>
+        <div class="trigger-pill"><span class="tw">Gibberellin (GA)</span> → <span class="ta">Bolting; breaks dormancy; seed germination; internode elongation</span></div>
+        <div class="trigger-pill"><span class="tw">Cytokinin</span> → <span class="ta">Cell division; delays senescence; breaks apical dominance (with high ratio to auxin)</span></div>
+        <div class="trigger-pill"><span class="tw">ABA</span> → <span class="ta">CLOSES stomata; dormancy; stress response; antagonizes GA</span></div>
+        <div class="trigger-pill"><span class="tw">Ethylene</span> → <span class="ta">Fruit ripening; senescence; abscission; triple response in peas</span></div>
+      </div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — Most tested hormone question:</strong> "Which hormone is responsible for apical dominance?"<br>
+        Concept tested: High auxin at apex SUPPRESSES lateral bud growth (apical dominance). Remove apex → lateral buds grow → bushier plant.<br>
+        Pattern: Auxin ↑ at apex = lateral bud growth ↓. Cytokinin ↑ = lateral bud growth ↑.<br>
+        <strong>Trick:</strong> Cut apical bud → apply auxin paste → apical dominance maintained. Proves auxin IS the cause.
+      </div>
+
+      <div class="cause-chain">Light hits one side of shoot<span class="cc-arr">→</span>Asymmetric auxin distribution (more auxin on shaded side)<span class="cc-arr">→</span>More elongation on shaded side<span class="cc-arr">→</span>Shoot bends TOWARD light</div>
+      <div class="cause-chain">ABA released during drought<span class="cc-arr">→</span>Binds guard cell receptors<span class="cc-arr">→</span>K⁺ channels open<span class="cc-arr">→</span>K⁺ exits guard cells<span class="cc-arr">→</span>Osmotic pressure ↓<span class="cc-arr">→</span>Water exits<span class="cc-arr">→</span>Guard cells flaccid<span class="cc-arr">→</span>Stomata CLOSE</div>
+    </div>
+
+    <!-- SECTION 5: PLANT KINGDOM TABLE INTERPRETATION -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">🌿 PLANT KINGDOM TABLE INTERPRETATION LAYER</h2>
+      <div class="dl-block">
+        <div class="dl-head">What examiner extracts from Algae/Bryophyte/Pteridophyte/Gymnosperm/Angiosperm comparison table:</div>
+        <ul class="pl">
+          <li><strong>Comparison trap:</strong> "Which has dominant sporophyte?" → From Pteridophytes onwards (NOT Bryophytes where gametophyte dominates)</li>
+          <li><strong>Identification:</strong> "Naked seeds" → Gymnosperm (Gymno = naked). "</li>
+          <li><strong>Ranking:</strong> Complexity of vascular tissue: Algae (absent) → Bryophytes (absent) → Pteridophytes (present, no seeds) → Gymnosperms (seeds, no fruits) → Angiosperms (flowers, fruits, enclosed seeds)</li>
+          <li><strong>Cross-link within Botany:</strong> Connected concept: Double fertilisation (Angiosperm Reproduction section)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 6: REPRODUCTION DECISION LAYER -->
+    <div class="sec">
+      <h2 class="sh" style="border-left-color:#1a6b40;">🌸 PLANT REPRODUCTION — Decision Layer</h2>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "What is the ploidy of endosperm?"</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Haploid (n) — wrong</span><br>
+          <span class="wr">❌ Diploid (2n) — that's the embryo</span><br>
+          <span class="cr">✅ Triploid (3n) — formed by triple fusion: 2 polar nuclei (n+n) + 1 sperm (n) = 3n</span>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <div class="dl-head">If NEET asks: "The cell that undergoes meiosis to give pollen grains?"</div>
+        <div class="dl-ans">Microspore Mother Cell (MMC) = pollen mother cell (PMC). It's diploid (2n). After meiosis → 4 haploid microspores (pollen grains). Location: Inside pollen sac (microsporangium) of anther.</div>
+        <div class="elim-chain">
+          <span class="wr">❌ Tapetum — nourishes, does NOT undergo meiosis itself</span><br>
+          <span class="cr">✅ Microspore Mother Cell (2n) → meiosis → 4 haploid microspores</span>
+        </div>
+      </div>
+
+      <div class="cause-chain">MMC (2n)<span class="cc-arr">Meiosis</span>4 microspores (n)<span class="cc-arr">Mitosis (pollen maturation)</span>Pollen grain: 2-celled (vegetative + generative) or 3-celled (vegetative + 2 male gametes)</div>
+      <div class="cause-chain">Double fertilisation:<span class="cc-arr"></span>Sperm 1 + egg → zygote (2n) → embryo<span class="cc-arr">+</span>Sperm 2 + 2 polar nuclei → PEN (3n) → endosperm</div>
+
+      <div class="pyq-pat">
+        <strong>PYQ Pattern — Apomixis vs Parthenogenesis:</strong><br>
+        Apomixis = seeds produced WITHOUT fertilisation. Parthenocarpy = fruits without fertilisation (no seeds). Parthenogenesis = development of unfertilised egg into organism (animals).<br>
+        <strong>Trap:</strong> Seedless grapes — produced by parthenocarpy (exogenous GA application). NOT apomixis (apomixis still produces seeds).
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ BOTANY REVISION ENGINE ═══ -->
+<div class="chapter" id="botany-revision-engine">
+  <div class="ch-head" style="background:linear-gradient(135deg,#0a1a0a,#0a150d);border-bottom-color:#4ab870;">
+    <div class="ch-ey">BOTANY REVISION ENGINE · LAST 48 HOURS</div>
+    <div class="ch-title" style="color:#4ab870;">🚀 25 Triggers · 20 Traps · 15 PYQ Patterns · 10 Elimination Shortcuts</div>
+  </div>
+  <div class="ch-body">
+    <div class="revision-engine">
+
+      <div class="re-section">
+        <div class="re-sh">A. 25 ULTRA-FAST RECALL TRIGGERS</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Cyclic photo</strong> → ATP only; PS I only; no O₂; no NADPH</div>
+          <div class="re-item"><strong>3-PGA</strong> → First stable C3 product; 3 carbons</div>
+          <div class="re-item"><strong>OAA</strong> → First product C4 (mesophyll); 4 carbons</div>
+          <div class="re-item"><strong>RQ = 1</strong> → Carbohydrate substrate</div>
+          <div class="re-item"><strong>RQ &gt; 1</strong> → Organic acids (citric, malic)</div>
+          <div class="re-item"><strong>RQ &lt; 1</strong> → Fats/proteins being respired</div>
+          <div class="re-item"><strong>Vernalisation</strong> → Cold → flowering biennial</div>
+          <div class="re-item"><strong>Pfr active</strong> → promotes LD plant flowering</div>
+          <div class="re-item"><strong>Critical night</strong> → DARK period determines flowering</div>
+          <div class="re-item"><strong>Bolting</strong> → Gibberellin; elongation before flowering</div>
+          <div class="re-item"><strong>Tapetum</strong> → Nourishes pollen; innermost pollen sac</div>
+          <div class="re-item"><strong>Endosperm</strong> → 3n; triple fusion</div>
+          <div class="re-item"><strong>Synergids</strong> → Help pollen tube entry; flanking egg</div>
+          <div class="re-item"><strong>Antipodals</strong> → 3 cells; opposite micropyle end; no role</div>
+          <div class="re-item"><strong>Anatropous</strong> → Most common ovule; inverted 180°</div>
+          <div class="re-item"><strong>Pollen → P-cell</strong> → Vegetative + generative nuclei</div>
+          <div class="re-item"><strong>Apomixis</strong> → Seeds w/o fertilisation; clonal</div>
+          <div class="re-item"><strong>Polyembryony</strong> → Multiple embryos in seed (citrus)</div>
+          <div class="re-item"><strong>Casparian strip</strong> → Endodermis; blocks apoplast</div>
+          <div class="re-item"><strong>ψ = ψs + ψp</strong> → Water potential = solute + pressure</div>
+          <div class="re-item"><strong>Ascent of sap</strong> → Transpirational pull (cohesion-tension)</div>
+          <div class="re-item"><strong>Source → phloem → Sink</strong> → Mass flow (Munch)</div>
+          <div class="re-item"><strong>ABA</strong> → Stomata CLOSE; stress hormone</div>
+          <div class="re-item"><strong>Ethylene</strong> → Only gas; fruit ripening</div>
+          <div class="re-item"><strong>Kranz anatomy</strong> → C4 only</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">B. 20 MOST COMMON BOTANY TRAPS</div>
+        <ul class="trap-list">
+          <li>"Cyclic produces O₂" → FALSE. No O₂, no NADPH; PS I only</li>
+          <li>"First product of C3 = RuBP" → WRONG. RuBP is substrate. PGA is first product</li>
+          <li>"C4 first product = PGA" → NO. OAA is first C4 product (in mesophyll)</li>
+          <li>"Sugarcane = C3" → NO. Sugarcane is C4 (most tested C4 plant)</li>
+          <li>"Stomata open at night" → FALSE for C3/C4. TRUE for CAM plants</li>
+          <li>"Glycolysis in mitochondria" → IN CYTOPLASM; no mitochondria needed</li>
+          <li>"Krebs cycle on inner membrane" → NO. Krebs = matrix; ETC = inner membrane</li>
+          <li>"CO₂ comes from CO₂ in photosynthesis" → NO. O₂ comes from H₂O</li>
+          <li>"ABA opens stomata" → OPPOSITE. ABA CLOSES stomata</li>
+          <li>"Endosperm = 2n" → WRONG. Endosperm = 3n (triploid)</li>
+          <li>"Fruit = pericarp + seed" → YES but examiners test seed vs fruit frequently</li>
+          <li>"Tapetum undergoes meiosis" → NO. MMC (PMC) does</li>
+          <li>"Pollination = fertilisation" → NO. Pollination = pollen transfer; fertilisation = gamete fusion</li>
+          <li>"Apomixis = parthenogenesis in plants" → SIMILAR but apomixis = broader term</li>
+          <li>"Bryophytes have dominant sporophyte" → WRONG. Gametophyte dominates in bryophytes</li>
+          <li>"Photoperiodism controlled by light duration" → DARK period is what actually matters</li>
+          <li>"Auxin applied to cut stem = promotes new apex" → promotes root, not shoot</li>
+          <li>"All seeds are anatropous" → Most angiosperms are, but not universal</li>
+          <li>"ψ of pure water = negative" → WRONG. ψ of pure water = 0</li>
+          <li>"Both fertilisations in angiosperms = double fertilisation" → Correct definition; syngamy + triple fusion</li>
+        </ul>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">C. 15 BOTANY PYQ PATTERNS</div>
+        <div class="re-grid">
+          <div class="re-item"><strong>Pattern 1:</strong> Cyclic vs Non-cyclic → always test what each produces separately</div>
+          <div class="re-item"><strong>Pattern 2:</strong> C3 vs C4 vs CAM → test Kranz anatomy, first product, photorespiration</div>
+          <div class="re-item"><strong>Pattern 3:</strong> ATP count per glucose → Glycolysis alone vs total aerobic</div>
+          <div class="re-item"><strong>Pattern 4:</strong> Hormone identification by effect → senescence/ripening/dormancy</div>
+          <div class="re-item"><strong>Pattern 5:</strong> Floral organ mutation → which whorl affected → ABCE model</div>
+          <div class="re-item"><strong>Pattern 6:</strong> Ploidy of different seed parts → embryo 2n, endosperm 3n, seed coat 2n</div>
+          <div class="re-item"><strong>Pattern 7:</strong> Photoperiodism → classify SD/LD/Day-neutral plants</div>
+          <div class="re-item"><strong>Pattern 8:</strong> Pollination type → insects vs wind → structural adaptations</div>
+          <div class="re-item"><strong>Pattern 9:</strong> Water transport mechanism → passive (transpiration pull) vs active (root pressure)</div>
+          <div class="re-item"><strong>Pattern 10:</strong> Source-sink relationship in phloem → bidirectional transport</div>
+          <div class="re-item"><strong>Pattern 11:</strong> Nitrogen fixation → organisms capable (Rhizobium + legumes)</div>
+          <div class="re-item"><strong>Pattern 12:</strong> Apomixis identification → no pollination needed → clonal offspring</div>
+          <div class="re-item"><strong>Pattern 13:</strong> Special seeds/fruits → parthenocarpy, polyembryony examples</div>
+          <div class="re-item"><strong>Pattern 14:</strong> Plant kingdom evolution — vascular tissue → seed → flower sequence</div>
+          <div class="re-item"><strong>Pattern 15:</strong> RQ value → identify substrate being respired</div>
+        </div>
+      </div>
+
+      <div class="re-section">
+        <div class="re-sh">D. 10 BOTANY ELIMINATION SHORTCUTS</div>
+        <div class="re-grid">
+          <div class="re-item"><span class="shortcut-num">1</span>See "ONLY ATP" → eliminate all non-cyclic options → Cyclic photophosphorylation</div>
+          <div class="re-item"><span class="shortcut-num">2</span>See "first stable product C3" → eliminate RuBP (substrate) → pick 3-PGA</div>
+          <div class="re-item"><span class="shortcut-num">3</span>See "stomata CLOSE" → eliminate all except ABA</div>
+          <div class="re-item"><span class="shortcut-num">4</span>See "organic acids substrate" → pick RQ &gt; 1</div>
+          <div class="re-item"><span class="shortcut-num">5</span>See "dominant gametophyte" → pick Bryophytes only</div>
+          <div class="re-item"><span class="shortcut-num">6</span>See "endosperm ploidy" → always 3n (never 2n or n)</div>
+          <div class="re-item"><span class="shortcut-num">7</span>See "gaseous hormone" → only Ethylene qualifies</div>
+          <div class="re-item"><span class="shortcut-num">8</span>See "naked seeds" → Gymnosperm (definition)</div>
+          <div class="re-item"><span class="shortcut-num">9</span>See "double fertilisation" → Angiosperms ONLY</div>
+          <div class="re-item"><span class="shortcut-num">10</span>See "Kranz anatomy" → C4 plants ONLY; eliminate C3, CAM</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
