@@ -1,10 +1,11 @@
-const CACHE_NAME = 'neet-mastery-v4';
+const CACHE_NAME = 'neet-mastery-v5';
 const ASSETS = [
   './',
   './index.html',
   './manifest.js',
   './manifest.json',
-  './icon.png'
+  './icon.png',
+  './notes/neet-botany-complete.html'
 ];
 
 self.addEventListener('install', event => {
