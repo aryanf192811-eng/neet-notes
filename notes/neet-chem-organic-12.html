@@ -1,0 +1,2292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  var _bc;
+  function applyD(dark,skipBC){
+    if(dark) document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb) cb.checked=!!dark;
+    if(!skipBC){
+      try{ var bc=new BroadcastChannel('neet_hub_theme'); bc.postMessage({dark:!!dark}); bc.close(); }catch(e){}
+    }
+  }
+  window.setTheme=function(v){ localStorage.setItem(KD,JSON.stringify(!!v)); applyD(v); }
+  try{
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){ applyD(raw==='true'||raw==='1'||raw===true,true); }
+    else{ if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches) applyD(true,true); }
+    _bc=new BroadcastChannel('neet_hub_theme');
+    _bc.addEventListener('message',function(e){ applyD(!!e.data.dark,true); });
+  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+  document.addEventListener('dragstart',function(e){e.preventDefault();return false;},true);
+})();
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEET Chemistry — Organic Chemistry Class 12 Master Cheatsheet</title>
+<meta name="description" content="Complete NEET Organic Chemistry Class 12 cheatsheet: Haloalkanes, Alcohols, Aldehydes, Amines, Biomolecules. PYQ patterns 2009–2025, NCERT fully mapped, SVG reactions, named reactions, decision engine."/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{
+  --paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;
+  --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;
+  --rule:rgba(100,130,180,0.14);--mline:rgba(210,100,80,0.28);
+  --red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;
+  --purple:#5a1a8a;--teal:#0d7a6a;--gold:#9f7a00;
+  --hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);
+  --hl-g:rgba(60,180,100,0.17);--hl-r:rgba(220,60,60,0.12);
+  --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);
+  --body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;
+  --hand:"Architects Daughter",cursive;
+}
+[data-theme="dark"]{
+  --paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;
+  --ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;
+  --rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);
+  --red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;
+  --purple:#9b59d6;--teal:#2db89a;--gold:#d0a830;
+  --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);
+  --hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);
+  --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;
+    --ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;
+    --rule:rgba(100,130,180,0.12);--mline:rgba(210,100,80,0.18);
+    --red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;
+    --purple:#9b59d6;--teal:#2db89a;--gold:#d0a830;
+    --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);
+    --hl-g:rgba(60,180,100,0.14);--hl-r:rgba(220,60,60,0.14);
+    --hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+[data-theme="dark"] body{background:#130f0c;}
+.book{max-width:1040px;margin:0 auto;}
+/* COVER */
+.cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+.cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);background-size:100% 32px;background-position:0 48px;pointer-events:none;}
+.cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(210,100,80,0.32);pointer-events:none;}
+.cover-inner{position:relative;padding-left:20px;}
+.cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--teal);}
+.cover h1{font-size:40px;font-weight:700;line-height:1.12;color:var(--ink);}
+.cover h1 em{font-style:italic;color:var(--teal);}
+.cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:680px;border-left:3px solid var(--teal);padding-left:14px;}
+.cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:rgba(255,255,255,0.54);}
+.cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--teal);padding:5px 12px;border-radius:2px;}
+/* TOC */
+.toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+.toc-lbl,.toc-section-lbl,.fcard-title,.ch-ey,.cover-tag,.lbl,.tag,.ans-badge,.pyq-year,.pyq-toggle,.dark-btn,.score-pill,.ch-nav a,.tn,.source-cap,.mini-cap{font-family:var(--hand);}
+.toc-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;}
+.toc-section-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,150,100,0.3);}
+.toc-divider{height:1px;background:rgba(180,150,100,0.25);margin:14px 0;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 24px;}
+.toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:4px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+.toc-grid a:hover{color:var(--teal);border-color:var(--ink3);}
+.tn{font-size:11px;color:var(--ink3);min-width:24px;}
+/* CHAPTER */
+.chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+.ch-head{background:linear-gradient(135deg,#1c1510 0%,#2a2018 100%);padding:24px 36px;border-bottom:3px solid var(--teal);}
+[data-theme="dark"] .ch-head{background:linear-gradient(135deg,#0a0908 0%,#1a1612 100%);}
+.ch-ey{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+.ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
+.ch-title em{font-style:italic;color:var(--teal);}
+.ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(180,150,100,0.4);}
+.ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+.ch-nav a:hover{border-color:var(--teal);color:var(--teal);}
+.ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
+.sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+.sec:last-child{border-bottom:none;}
+.sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(200,100,80,0.26);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+h2.sh{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+h3.ssh{font-size:16px;font-weight:600;font-style:italic;color:var(--teal);margin:32px 0 12px;}
+h4.sssh{font-size:14px;font-weight:600;color:var(--green);margin:14px 0 6px;}
+p{font-family:var(--prose);font-size:17px;line-height:1.95;color:var(--ink2);margin-bottom:14px;}
+strong{color:var(--ink);font-weight:600;}
+.tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
+.tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+.tc{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+.tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+.tq{color:var(--teal);border-color:var(--teal);background:rgba(13,122,106,0.09);}
+.tt{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+/* BOXES */
+.def-box,.warn-box,.note-box,.trick,.eg,.ecl,.instant-formula,.mech-box,.micro-box,.flow-box,.approach,.elim-box,.source-box,.formula,.shortcut{border-radius:6px;padding:18px 22px;margin:22px 0;position:relative;}
+.def-box{background:rgba(100,160,255,0.09);border-left:4px solid var(--blue);}
+.warn-box{background:rgba(220,60,60,0.07);border-left:4px solid var(--red);}
+.note-box{background:rgba(220,130,30,0.09);border-left:4px solid var(--orange);}
+.trick{background:#fffcf0;border:1.5px solid #c49a00;}
+.eg{background:var(--paper2);border:1.5px solid #c4b490;}
+.ecl{background:linear-gradient(135deg,rgba(13,122,106,0.07) 0%,rgba(100,160,255,0.06) 100%);border:1.5px solid var(--teal);border-radius:8px;padding:20px 24px;}
+.instant-formula{background:#fffcf0;border:2px solid #c49a00;border-radius:8px;padding:22px 26px;}
+.mech-box{background:rgba(13,90,80,0.07);border:1.5px solid var(--teal);border-radius:8px;padding:22px 26px;}
+.micro-box{background:rgba(90,26,138,0.07);border:1.5px solid var(--purple);border-radius:8px;padding:20px 24px;}
+.flow-box{background:var(--paper2);border:1.5px solid #c4b490;border-radius:10px;padding:24px 28px;overflow-x:auto;}
+.flow-box svg{min-width:340px;}
+.approach{background:rgba(100,160,255,0.07);border:1.5px solid var(--blue);}
+.elim-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);}
+.source-box{background:linear-gradient(135deg,rgba(26,107,64,0.08) 0%,rgba(13,122,106,0.08) 100%);border:1.5px solid var(--green);}
+.formula{background:var(--paper3);border:2px solid var(--ink);font-family:"Courier New",monospace;font-size:15px;color:var(--ink);line-height:2;text-align:center;}
+.shortcut{background:#f8fff4;border:1.5px solid var(--green);}
+/* DARK MODE BOX OVERRIDES */
+[data-theme="dark"] .trick{background:rgba(160,120,0,0.15);border-color:#8a6a00;}
+[data-theme="dark"] .instant-formula{background:rgba(160,120,0,0.15);border-color:#8a6a00;}
+[data-theme="dark"] .shortcut{background:rgba(26,107,64,0.18);border-color:var(--green);}
+[data-theme="dark"] .trick::before{background:rgba(30,25,10,0.9);color:var(--gold);}
+[data-theme="dark"] .instant-formula::before{background:rgba(30,25,10,0.9);color:var(--gold);}
+[data-theme="dark"] .shortcut::before{background:rgba(10,25,15,0.9);color:var(--green);}
+.lbl{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.def-box .lbl,.approach .lbl{color:var(--blue);}
+.warn-box .lbl,.elim-box .lbl{color:var(--red);}
+.note-box .lbl{color:var(--orange);}
+.source-box .lbl,.shortcut .lbl{color:var(--green);}
+.trick::before,.instant-formula::before,.mech-box::before,.micro-box::before,.ecl::before,.eg::before,.elim-box::before,.source-box::before,.formula::before,.shortcut::before{position:absolute;top:-9px;left:14px;padding:0 6px;font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+.trick::before{content:"Topper Trick";color:var(--gold);background:#fffbea;}
+.instant-formula::before{content:"Instant Formula";color:var(--gold);background:#fffcf0;}
+.mech-box::before{content:"Mechanism";color:var(--teal);background:var(--paper);}
+.micro-box::before{content:"Micro Topic";color:var(--purple);background:var(--paper);}
+.ecl::before{content:"Exam Conversion Layer";color:var(--teal);background:var(--paper);padding:0 8px;}
+.eg::before{content:"Example";color:var(--ink3);background:var(--paper2);}
+.elim-box::before{content:"Trap Cluster";color:var(--red);background:var(--paper);}
+.source-box::before{content:"Source Backbone";color:var(--green);background:var(--paper);}
+.formula::before{content:"Must Recall";color:var(--ink3);background:var(--paper3);}
+.shortcut::before{content:"Memory Aid";color:var(--green);background:#f8fff4;}
+/* TABLE */
+.tbl{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;vertical-align:top;}
+tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+/* LIST */
+.pl{list-style:none;margin:12px 0 18px;padding:0;}
+.pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+.pl li::before{content:"-";position:absolute;left:0;color:var(--teal);font-weight:700;}
+.pl.chk li::before{content:"✓";color:var(--green);}
+.pl.arr li::before{content:"→";color:var(--blue);}
+.pl.num{counter-reset:li;}
+.pl.num li::before{counter-increment:li;content:counter(li)".";color:var(--orange);}
+/* SCORE STRIP */
+.score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
+.score-pill{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+.sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+.sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+.sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+.sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+.sp-t{border-color:var(--teal);color:var(--teal);background:rgba(13,122,106,0.09);}
+/* PYQ CARDS */
+.pyq-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;margin:20px 0;overflow:hidden;}
+.pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);border-bottom:1px solid rgba(180,150,100,0.4);cursor:pointer;gap:12px;}
+.pyq-year{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--teal);padding:3px 10px;border-radius:2px;flex-shrink:0;}
+.pyq-q{font-family:var(--prose);font-size:16px;color:var(--ink);line-height:1.7;flex:1;}
+.pyq-toggle{font-size:9px;letter-spacing:1px;color:var(--teal);flex-shrink:0;padding:4px 10px;border:1.5px solid var(--teal);border-radius:2px;background:none;cursor:pointer;}
+.pyq-sol{background:var(--paper3);padding:18px 22px;border-top:2px dashed rgba(180,150,100,0.5);display:none;}
+.pyq-sol.open{display:block;}
+.ans-badge{display:inline-block;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px;background:var(--green);color:var(--paper);margin-bottom:10px;}
+.pyq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;margin-bottom:10px;}
+.pyq-field{padding:10px 14px;border-radius:4px;margin-bottom:10px;}
+.pyq-field-label{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;display:block;}
+.pf-concept{background:rgba(100,160,255,0.09);border-left:3px solid var(--blue);}
+.pf-concept .pyq-field-label{color:var(--blue);}
+.pf-rule{background:rgba(220,130,30,0.09);border-left:3px solid var(--orange);}
+.pf-rule .pyq-field-label{color:var(--orange);}
+.pf-application{background:rgba(60,180,100,0.09);border-left:3px solid var(--green);}
+.pf-application .pyq-field-label{color:var(--green);}
+.pf-answer{background:rgba(13,122,106,0.12);border-left:3px solid var(--teal);grid-column:1/-1;}
+.pf-answer .pyq-field-label{color:var(--teal);}
+.pyq-field p{font-family:var(--prose);font-size:15.5px;color:var(--ink2);margin:0;line-height:1.78;}
+/* STRUCT */
+.struct-wrap{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;margin:28px 0;padding:4px 0;}
+.struct-item{text-align:center;flex:1 1 200px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.struct-item svg{transition:transform 0.2s,box-shadow 0.2s;display:block;}
+.struct-item svg:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+.struct-label{font-family:var(--hand);font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-top:6px;}
+/* FLOW */
+.flow-step{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.flow-num{font-family:var(--hand);font-size:16px;color:var(--teal);min-width:28px;font-weight:700;}
+.flow-text{font-family:var(--prose);font-size:15.5px;color:var(--ink2);line-height:1.7;}
+.flow-arrow{text-align:center;color:var(--ink3);font-size:18px;margin:2px 0;}
+/* ECL */
+.ecl-row{display:flex;flex-direction:column;gap:10px;}
+.ecl-item{font-family:var(--prose);font-size:15.5px;color:var(--ink2);line-height:1.75;padding:8px 12px;border-radius:4px;border-left:3px solid;}
+.ecl-asks{border-left-color:var(--blue);background:rgba(100,160,255,0.07);}
+.ecl-trap{border-left-color:var(--red);background:rgba(220,60,60,0.07);}
+.ecl-fast{border-left-color:var(--green);background:rgba(60,180,100,0.07);}
+.ecl-label{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;display:inline-block;margin-right:6px;font-weight:700;}
+.ecl-label.ask{color:var(--blue);}
+.ecl-label.trap{color:var(--red);}
+.ecl-label.fast{color:var(--green);}
+/* IF-ROW */
+.if-row{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;}
+.if-cell{background:var(--paper2);border-radius:4px;padding:10px 14px;font-family:var(--prose);font-size:15px;color:var(--ink2);line-height:1.7;}
+/* STAB LADDER */
+.stab-ladder{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+.stab-rung{display:flex;align-items:center;gap:14px;padding:10px 16px;border-left:4px solid;margin-bottom:2px;border-radius:0 6px 6px 0;}
+.stab-rung.s1{border-color:var(--red);background:rgba(220,60,60,0.07);}
+.stab-rung.s2{border-color:var(--orange);background:rgba(220,130,30,0.07);}
+.stab-rung.s3{border-color:var(--blue);background:rgba(100,160,255,0.07);}
+.stab-rung.s4{border-color:var(--green);background:rgba(60,180,100,0.07);}
+.stab-rank{font-family:var(--hand);font-size:20px;color:var(--ink3);min-width:28px;}
+.stab-content{font-family:var(--prose);font-size:15.5px;color:var(--ink);line-height:1.65;}
+.stab-reason{font-family:var(--prose);font-size:14px;color:var(--ink3);margin-top:2px;}
+/* FCARDS */
+.fcards,.zeff-grid,.conf-grid,.recall-grid{display:grid;gap:14px;margin:20px 0;}
+.fcards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.recall-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+.fcard,.recall-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:8px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;}
+.fcard-title,.recall-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+.fcard ul,.recall-card ul{list-style:none;padding:0;}
+.fcard li,.recall-card li{font-family:var(--prose);font-size:15px;line-height:1.75;color:var(--ink2);padding:2px 0 2px 18px;position:relative;}
+.fcard li::before,.recall-card li::before{content:"·";position:absolute;left:4px;color:var(--teal);}
+/* DARK TOGGLE */
+.dark-btn{position:fixed;top:18px;right:22px;z-index:9999;background:var(--paper);border:1.5px solid var(--ink3);border-radius:24px;padding:6px 14px;font-size:10px;letter-spacing:1.5px;cursor:pointer;display:flex;align-items:center;gap:8px;color:var(--ink3);box-shadow:2px 3px 8px rgba(0,0,0,0.12);}
+.dark-btn input[type=checkbox]{width:28px;height:16px;appearance:none;background:var(--ink3);border-radius:8px;position:relative;cursor:pointer;transition:background 0.2s;}
+.dark-btn input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;background:var(--paper);border-radius:50%;transition:left 0.2s;}
+.dark-btn input[type=checkbox]:checked{background:var(--teal);}
+.dark-btn input[type=checkbox]:checked::after{left:14px;}
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);border:1.5px solid var(--ink3);border-radius:2px;padding:5px 14px;text-decoration:none;margin-bottom:20px;transition:all 0.18s;}
+.back-btn:hover{color:var(--teal);border-color:var(--teal);}
+/* RXN ARROW SVG */
+.rxn-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0;padding:14px 18px;background:var(--paper2);border-radius:8px;border:1px solid rgba(180,150,100,0.3);overflow-x:auto;}
+.rxn-mol{font-family:"Courier New",monospace;font-size:14px;color:var(--ink);white-space:nowrap;}
+.rxn-arrow{color:var(--teal);font-size:20px;line-height:1;}
+.rxn-cond{font-family:var(--hand);font-size:9.5px;color:var(--ink3);letter-spacing:1px;white-space:nowrap;}
+/* NAMED RXN GRID */
+.nrxn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:20px 0;}
+.nrxn-card{background:var(--paper);border:1.5px solid #c4b490;border-radius:8px;padding:18px 20px;}
+.nrxn-name{font-family:var(--hand);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.nrxn-rxn{font-family:"Courier New",monospace;font-size:13.5px;color:var(--ink);line-height:1.9;background:var(--paper3);padding:10px 12px;border-radius:4px;margin-bottom:8px;overflow-x:auto;white-space:pre-wrap;}
+.nrxn-note{font-family:var(--prose);font-size:14.5px;color:var(--ink3);}
+/* DECISION LAYER */
+.dl-block{width:100%;box-sizing:border-box;max-width:100%;overflow:hidden;background:linear-gradient(135deg,rgba(13,122,106,0.06) 0%,rgba(26,74,140,0.06) 100%);border:2px solid var(--teal);border-radius:10px;padding:28px 32px;margin:32px 0;}
+.dl-block h3{font-family:var(--hand);font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(13,122,106,0.3);}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:18px;}
+.trigger-card{background:var(--paper);border-radius:6px;padding:14px 16px;border-left:3px solid var(--teal);}
+.trigger-kw{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.trigger-action{font-family:var(--prose);font-size:15px;color:var(--ink2);line-height:1.6;}
+.elim-chain{display:flex;flex-direction:column;gap:6px;margin:10px 0;}
+.elim-step{font-family:var(--prose);font-size:15px;color:var(--ink2);padding:7px 12px;border-radius:4px;border-left:3px solid var(--red);background:rgba(220,60,60,0.06);}
+.cause-chain{display:flex;flex-direction:column;gap:4px;margin:10px 0;}
+.cause-step{font-family:var(--prose);font-size:15px;color:var(--ink2);padding:7px 12px;border-radius:4px;border-left:3px solid var(--blue);background:rgba(100,160,255,0.07);}
+.revision-engine{width:100%;box-sizing:border-box;max-width:100%;background:var(--paper2);border:1.5px solid #c4b490;border-radius:8px;padding:22px 28px;margin:24px 0;}
+.revision-engine h3{font-family:var(--hand);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+.re-item{background:var(--paper);border-radius:4px;padding:10px 14px;border-bottom:2px solid var(--teal);}
+.re-label{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;}
+.re-val{font-family:var(--prose);font-size:15px;color:var(--ink);line-height:1.55;}
+/* RESPONSIVE */
+@media(max-width:700px){
+  .cover{padding:32px 24px 28px;}
+  .cover::after{left:28px;}
+  .cover-inner{padding-left:10px;}
+  .cover h1{font-size:28px;}
+  .toc{padding:20px 18px;}
+  .toc-grid{grid-template-columns:1fr;}
+  .sec{padding:28px 18px 24px 40px;}
+  .ch-head{padding:18px 20px;}
+  .ch-nav{padding:10px 18px;}
+  .pyq-grid{grid-template-columns:1fr;}
+  .if-row{grid-template-columns:1fr;}
+  .nrxn-grid{grid-template-columns:1fr;}
+  .trigger-grid{grid-template-columns:1fr;}
+  .re-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<label class="dark-btn" title="Toggle dark/light mode">
+  <input type="checkbox" id="themeCb" onchange="setTheme(this.checked)"/> ☀ / ☾
+</label>
+
+<div class="book">
+<a href="../index.html" class="back-btn">← Back to Hub</a>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <span class="cover-tag">Organic 12 · Complete</span>
+  <div class="cover-inner">
+    <div class="cover-subject">NEET Chemistry · Organic Chemistry · Class 12</div>
+    <h1>Organic Chemistry 12 —<br><em>The Complete NEET Intelligence System</em></h1>
+    <div class="cover-desc">
+      Haloalkanes · Alcohols, Phenols &amp; Ethers · Aldehydes, Ketones &amp; Carboxylic Acids · Amines · Biomolecules.
+      Five chapters decoded. ~25–30 Qs/paper. Every named reaction, every mechanism, every PYQ pattern from 2009–2025. NCERT fully mapped.
+    </div>
+    <div class="cover-chips">
+      <span class="chip">Ch 10 – Haloalkanes &amp; Haloarenes</span>
+      <span class="chip">Ch 11 – Alcohols, Phenols &amp; Ethers</span>
+      <span class="chip">Ch 12 – Aldehydes, Ketones &amp; Carboxylic Acids</span>
+      <span class="chip">Ch 13 – Amines</span>
+      <span class="chip">Ch 14 – Biomolecules</span>
+      <span class="chip">NEET 2009–2025 PYQs</span>
+      <span class="chip">NCERT Fully Mapped</span>
+      <span class="chip">Decision Engine</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TOC ═══════════ -->
+<div class="toc">
+  <div class="toc-lbl">Contents — All Five Chapters</div>
+  <div class="toc-section-lbl">Chapter 10 — Haloalkanes &amp; Haloarenes</div>
+  <div class="toc-grid">
+    <a href="#ch10-s1"><span class="tn">10.1</span> Classification &amp; Nomenclature</a>
+    <a href="#ch10-s2"><span class="tn">10.2</span> Preparation Methods</a>
+    <a href="#ch10-s3"><span class="tn">10.3</span> Physical Properties</a>
+    <a href="#ch10-s4"><span class="tn">10.4</span> SN1 vs SN2 Mechanisms</a>
+    <a href="#ch10-s5"><span class="tn">10.5</span> Elimination Reactions</a>
+    <a href="#ch10-s6"><span class="tn">10.6</span> Haloarenes &amp; Named Reactions</a>
+    <a href="#ch10-pyq"><span class="tn">10.P</span> PYQ Analysis 2009–2025</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Chapter 11 — Alcohols, Phenols &amp; Ethers</div>
+  <div class="toc-grid">
+    <a href="#ch11-s1"><span class="tn">11.1</span> Classification &amp; Nomenclature</a>
+    <a href="#ch11-s2"><span class="tn">11.2</span> Preparation of Alcohols</a>
+    <a href="#ch11-s3"><span class="tn">11.3</span> Reactions of Alcohols</a>
+    <a href="#ch11-s4"><span class="tn">11.4</span> Phenols — Acidity &amp; Reactions</a>
+    <a href="#ch11-s5"><span class="tn">11.5</span> Ethers — Williamson Synthesis</a>
+    <a href="#ch11-pyq"><span class="tn">11.P</span> PYQ Analysis 2009–2025</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Chapter 12 — Aldehydes, Ketones &amp; Carboxylic Acids</div>
+  <div class="toc-grid">
+    <a href="#ch12-s1"><span class="tn">12.1</span> Carbonyl Group &amp; Nomenclature</a>
+    <a href="#ch12-s2"><span class="tn">12.2</span> Preparation of Aldehydes &amp; Ketones</a>
+    <a href="#ch12-s3"><span class="tn">12.3</span> Named Reactions — Full Set</a>
+    <a href="#ch12-s4"><span class="tn">12.4</span> Nucleophilic Addition Mechanism</a>
+    <a href="#ch12-s5"><span class="tn">12.5</span> Carboxylic Acids &amp; Derivatives</a>
+    <a href="#ch12-pyq"><span class="tn">12.P</span> PYQ Analysis 2009–2025</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Chapter 13 — Amines</div>
+  <div class="toc-grid">
+    <a href="#ch13-s1"><span class="tn">13.1</span> Structure, Classification &amp; IUPAC</a>
+    <a href="#ch13-s2"><span class="tn">13.2</span> Basicity — Order &amp; Factors</a>
+    <a href="#ch13-s3"><span class="tn">13.3</span> Preparation &amp; Reactions</a>
+    <a href="#ch13-s4"><span class="tn">13.4</span> Diazonium Salts (Sandmeyer)</a>
+    <a href="#ch13-pyq"><span class="tn">13.P</span> PYQ Analysis 2009–2025</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Chapter 14 — Biomolecules</div>
+  <div class="toc-grid">
+    <a href="#ch14-s1"><span class="tn">14.1</span> Carbohydrates — Structure &amp; Types</a>
+    <a href="#ch14-s2"><span class="tn">14.2</span> Amino Acids &amp; Proteins</a>
+    <a href="#ch14-s3"><span class="tn">14.3</span> Enzymes, Vitamins &amp; Hormones</a>
+    <a href="#ch14-s4"><span class="tn">14.4</span> Nucleic Acids — DNA &amp; RNA</a>
+    <a href="#ch14-pyq"><span class="tn">14.P</span> PYQ Analysis 2009–2025</a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 10 — HALOALKANES & HALOARENES
+════════════════════════════════════════════════ -->
+<div class="chapter" id="ch10">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 10 · ~4–5 Qs/NEET</div>
+    <div class="ch-title">Haloalkanes &amp; Haloarenes — <em>Substitution &amp; Elimination Mastery</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch10-s1">Classification</a>
+    <a href="#ch10-s2">Preparation</a>
+    <a href="#ch10-s3">Physical Properties</a>
+    <a href="#ch10-s4">SN1 vs SN2</a>
+    <a href="#ch10-s5">Elimination</a>
+    <a href="#ch10-s6">Haloarenes</a>
+    <a href="#ch10-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 10.1 Classification -->
+    <div class="sec" id="ch10-s1" data-m="Classification">
+      <h2 class="sh">10.1 Classification &amp; Nomenclature <span class="tag tg">NCERT §10.1</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 High Yield</span>
+        <span class="score-pill sp-o">~2 Qs/paper from Classification</span>
+        <span class="score-pill sp-t">IUPAC &amp; Common names tested</span>
+      </div>
+
+      <p>Haloalkanes = halogen atom attached to <strong>sp³ carbon</strong> of an alkyl chain. Haloarenes = halogen attached directly to <strong>aromatic ring carbon (sp²)</strong>.</p>
+
+      <h3 class="ssh">Classification by Degree</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Structure</th><th>Example</th><th>IUPAC Name</th></tr>
+          <tr><td>Primary (1°)</td><td>RCH₂X — C attached to 1 carbon</td><td>CH₃CH₂Cl</td><td>Chloroethane</td></tr>
+          <tr><td>Secondary (2°)</td><td>R₂CHX — C attached to 2 carbons</td><td>(CH₃)₂CHBr</td><td>2-Bromopropane</td></tr>
+          <tr><td>Tertiary (3°)</td><td>R₃CX — C attached to 3 carbons</td><td>(CH₃)₃CCl</td><td>2-Chloro-2-methylpropane</td></tr>
+        </table>
+      </div>
+
+      <h3 class="ssh">IUPAC Naming Rules</h3>
+      <ul class="pl">
+        <li>Longest chain with halogen → parent chain (numbered from end giving halogen lowest locant)</li>
+        <li>Halogen prefix: fluoro-, chloro-, bromo-, iodo- (alphabetical order for multiple halogens)</li>
+        <li>Dihalides on same carbon → geminal (gem-); on adjacent carbons → vicinal (vic-)</li>
+        <li>Aryl halides: Chlorobenzene (not benzene chloride)</li>
+      </ul>
+
+      <div class="trick">
+        <p><strong>⚡ Trick — Degree determination:</strong> Count carbons attached to the carbon bearing halogen. 1C = primary, 2C = secondary, 3C = tertiary. Do NOT count the halogen itself!</p>
+      </div>
+
+      <h3 class="ssh">Polyhalogen Compounds (NCERT §10.6)</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Compound</th><th>Formula</th><th>Use</th><th>NEET Trap</th></tr>
+          <tr><td>Chloroform</td><td>CHCl₃</td><td>Anaesthetic (old), solvent</td><td>Forms phosgene (COCl₂) in air — stored in dark</td></tr>
+          <tr><td>Carbon tetrachloride</td><td>CCl₄</td><td>Fire extinguisher, dry cleaning</td><td>NOT used as anaesthetic — toxic</td></tr>
+          <tr><td>DDT</td><td>C₁₄H₉Cl₅</td><td>Insecticide (banned)</td><td>Non-biodegradable → biomagnification</td></tr>
+          <tr><td>Freons (CFCs)</td><td>CCl₂F₂</td><td>Refrigerants</td><td>Cause ozone layer depletion</td></tr>
+          <tr><td>Iodoform</td><td>CHI₃</td><td>Antiseptic</td><td>Yellow solid, antiseptic due to slow release of I₂</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Memory Aid — Polyhalides:</strong> <strong>C</strong>hloroform = <strong>C</strong>HCl₃ | <strong>D</strong>DT → <strong>D</strong>on't biodegrade | <strong>F</strong>reons → <strong>F</strong>ix ozone problem | <strong>I</strong>odoform = <strong>I</strong>antiseptic</p>
+      </div>
+    </div>
+
+    <!-- 10.2 Preparation -->
+    <div class="sec" id="ch10-s2" data-m="Preparation">
+      <h2 class="sh">10.2 Preparation Methods <span class="tag tc">NCERT §10.2</span></h2>
+
+      <h3 class="ssh">A. From Alcohols (Most Important)</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Lucas Test / HX Method</div>
+          <div class="nrxn-rxn">ROH + HX → RX + H₂O
+(ZnCl₂ catalyst for HCl)
+Reactivity: HI > HBr > HCl
+Rate: 3° > 2° > 1°</div>
+          <div class="nrxn-note">3° alcohols react immediately with Lucas reagent (HCl + ZnCl₂), 2° after 5 min, 1° no reaction at RT</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">SOCl₂ Method (Best for 1°)</div>
+          <div class="nrxn-rxn">ROH + SOCl₂ → RCl + SO₂↑ + HCl↑
+(pyridine — removes HCl acid)</div>
+          <div class="nrxn-note">Best method — gaseous byproducts escape, product pure. Retention of configuration.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">PX₃ / PX₅ Method</div>
+          <div class="nrxn-rxn">3ROH + PBr₃ → 3RBr + H₃PO₃
+ROH + PCl₅ → RCl + POCl₃ + HCl</div>
+          <div class="nrxn-note">PBr₃ preferred for bromides; PCl₅ gives chlorides</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">B. Halogen Exchange (Finkelstein &amp; Swarts)</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Finkelstein Reaction</div>
+          <div class="nrxn-rxn">R-Cl + NaI →(acetone) R-I + NaCl↓
+(NaCl insoluble in acetone — drives equilibrium)</div>
+          <div class="nrxn-note">Converts alkyl chlorides/bromides → iodides. NaCl precipitates in acetone → equilibrium shifts right.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Swarts Reaction</div>
+          <div class="nrxn-rxn">R-Cl + AgF → R-F + AgCl↓
+(or SbF₃ catalyst)</div>
+          <div class="nrxn-note">Converts alkyl chlorides → fluorides. AgF or SbF₃/SbF₅ catalyst. Fluorides cannot be made directly from alkenes.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Sandmeyer Reaction (Aryl Halides)</div>
+          <div class="nrxn-rxn">ArN₂⁺Cl⁻ + CuCl → ArCl + N₂
+ArN₂⁺Cl⁻ + CuBr → ArBr + N₂
+ArN₂⁺Cl⁻ + CuCN → ArCN + N₂</div>
+          <div class="nrxn-note">Cu catalyst essential. For ArI: ArN₂⁺ + KI → ArI (no Cu needed — Balz-Schiemann for F)</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">C. From Alkenes — Addition of HX &amp; X₂</h3>
+      <div class="rxn-strip">
+        <span class="rxn-mol">CH₂=CH₂</span>
+        <span class="rxn-arrow">+HBr→</span>
+        <span class="rxn-mol">CH₃CH₂Br</span>
+        <span class="rxn-cond">(Markovnikov)</span>
+        <span class="rxn-arrow">  |  </span>
+        <span class="rxn-mol">CH₂=CH₂</span>
+        <span class="rxn-arrow">+Br₂→</span>
+        <span class="rxn-mol">BrCH₂CH₂Br</span>
+        <span class="rxn-cond">(1,2-dibromide)</span>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET Trap</span>
+        <p><strong>Markovnikov's Rule:</strong> When HX adds to an alkene, H goes to the carbon that already has <em>more</em> H atoms (or the less substituted carbon). Anti-Markovnikov (peroxide effect) occurs only with HBr in presence of peroxides (free radical mechanism). Does NOT work with HCl or HI.</p>
+      </div>
+    </div>
+
+    <!-- 10.3 Physical Properties -->
+    <div class="sec" id="ch10-s3" data-m="Physical">
+      <h2 class="sh">10.3 Physical Properties <span class="tag tt">NCERT §10.3</span></h2>
+
+      <h3 class="ssh">Bond Properties — C–X Bond Trends</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Halide</th><th>C–X Bond Length</th><th>C–X Bond Energy</th><th>Reactivity (SN)</th></tr>
+          <tr><td>C–F</td><td>Shortest (1.39 Å)</td><td>Highest (485 kJ/mol)</td><td>Lowest — least reactive</td></tr>
+          <tr><td>C–Cl</td><td></td><td></td><td>Moderate</td></tr>
+          <tr><td>C–Br</td><td></td><td></td><td>High</td></tr>
+          <tr><td>C–I</td><td>Longest (2.14 Å)</td><td>Lowest (213 kJ/mol)</td><td>Highest — most reactive</td></tr>
+        </table>
+      </div>
+
+      <h3 class="ssh">Boiling Point Trends</h3>
+      <ul class="pl">
+        <li>BP: RI > RBr > RCl > RF (molecular mass &amp; London dispersion forces)</li>
+        <li>Within same halide: BP increases with chain length; branching decreases BP</li>
+        <li>Haloalkanes have <em>higher BP</em> than parent alkanes (for same mass) — polar molecules, stronger van der Waals</li>
+        <li>CHCl₃ BP = 61°C; CCl₄ BP = 77°C (symmetric — no dipole but heavier)</li>
+      </ul>
+
+      <h3 class="ssh">Density &amp; Solubility</h3>
+      <ul class="pl">
+        <li>Density: RX > parent alkane because halogen atoms are heavier than H</li>
+        <li>CHCl₃, CH₂Cl₂, CCl₄ — all denser than water (sink)</li>
+        <li>Solubility in water: Poor (non-polar C–C backbone); dissolve in organic solvents</li>
+        <li>Haloalkanes are polar due to C–X electronegativity difference</li>
+      </ul>
+
+      <div class="trick">
+        <p><strong>⚡ NEET Trick — Boiling Point:</strong> For same halogen, more carbons = higher BP. For same carbon count: C–I > C–Br > C–Cl > C–F. Branching always LOWERS boiling point (less surface area).</p>
+      </div>
+    </div>
+
+    <!-- 10.4 SN1 vs SN2 -->
+    <div class="sec" id="ch10-s4" data-m="SN Reactions">
+      <h2 class="sh">10.4 SN1 vs SN2 Mechanisms <span class="tag tg">HIGHEST YIELD — 2+ Qs/NEET</span></h2>
+
+      <h3 class="ssh">SN2 Mechanism (Bimolecular)</h3>
+      <div class="mech-box">
+        <p><strong>Key Features:</strong> One-step concerted mechanism. Nucleophile attacks from back side (180° to leaving group). <strong>INVERSION of configuration</strong> (Walden inversion).</p>
+        <!-- SN2 SVG Diagram -->
+        <svg width="520" height="90" viewBox="0 0 520 90" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:12px auto;">
+          <text x="10" y="50" font-family="Courier New" font-size="13" fill="currentColor">Nu:⁻</text>
+          <line x1="60" y1="48" x2="110" y2="48" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"/>
+          <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="currentColor"/></marker></defs>
+          <rect x="115" y="32" width="140" height="32" rx="4" fill="none" stroke="#0d7a6a" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="185" y="52" font-family="Courier New" font-size="11" fill="#0d7a6a" text-anchor="middle">[Nu···C···LG]⁻</text>
+          <text x="185" y="68" font-family="Architects Daughter,cursive" font-size="9" fill="#0d7a6a" text-anchor="middle">Transition State</text>
+          <line x1="260" y1="48" x2="310" y2="48" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="340" y="44" font-family="Courier New" font-size="13" fill="currentColor">Nu–C</text>
+          <text x="340" y="60" font-family="Courier New" font-size="13" fill="currentColor">+ LG⁻</text>
+          <text x="185" y="20" font-family="Architects Daughter,cursive" font-size="10" fill="#b83030" text-anchor="middle">Inversion of Config</text>
+        </svg>
+        <p><strong>Rate = k[substrate][nucleophile]</strong> → second order kinetics</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Factor</th><th>Favours SN2</th><th>Favours SN1</th></tr>
+          <tr><td>Substrate</td><td>Primary (1°) — least steric hindrance</td><td>Tertiary (3°) — most stable carbocation</td></tr>
+          <tr><td>Nucleophile</td><td>Strong, concentrated (OH⁻, CN⁻, I⁻)</td><td>Weak (H₂O, ROH)</td></tr>
+          <tr><td>Solvent</td><td>Polar aprotic (acetone, DMSO, DMF)</td><td>Polar protic (H₂O, EtOH) — stabilises carbocation</td></tr>
+          <tr><td>Kinetics</td><td>2nd order: rate = k[RX][Nu]</td><td>1st order: rate = k[RX]</td></tr>
+          <tr><td>Stereochemistry</td><td>Inversion (Walden inversion)</td><td>Racemisation (carbocation — planar)</td></tr>
+          <tr><td>Mechanism</td><td>Concerted (single step)</td><td>Two-step (carbocation intermediate)</td></tr>
+        </table>
+      </div>
+
+      <div class="stab-ladder">
+        <div class="stab-rung s1">
+          <div class="stab-rank">3°</div>
+          <div><div class="stab-content">Tertiary haloalkanes → SN1 always</div><div class="stab-reason">Stable 3° carbocation intermediate, steric hindrance blocks backside attack</div></div>
+        </div>
+        <div class="stab-rung s2">
+          <div class="stab-rank">2°</div>
+          <div><div class="stab-content">Secondary → SN1 or SN2 (depends on conditions)</div><div class="stab-reason">Solvent and nucleophile determine pathway</div></div>
+        </div>
+        <div class="stab-rung s3">
+          <div class="stab-rank">1°</div>
+          <div><div class="stab-content">Primary → SN2 always</div><div class="stab-reason">Unstable 1° carbocation, no steric blockage for backside attack</div></div>
+        </div>
+        <div class="stab-rung s4">
+          <div class="stab-rank">CH₃</div>
+          <div><div class="stab-content">Methyl halide → SN2 fastest</div><div class="stab-reason">Zero steric hindrance — most reactive towards backside attack</div></div>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ NEET Master Trick — SN1 vs SN2:</strong><br>
+        <strong>S</strong>N<strong>2</strong> → <strong>2</strong>° or less, polar a<strong>p</strong>rotic solvents, strong nuc<strong>l</strong>eophile, back<strong>s</strong>ide attack, inversion<br>
+        <strong>S</strong>N<strong>1</strong> → <strong>3</strong>° substrate, polar protic solvents, forms car<strong>b</strong>ocation, racemisation</p>
+      </div>
+
+      <h3 class="ssh">Important SN Reactions with Nucleophiles</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Nucleophile</th><th>Product</th><th>Reaction Type</th></tr>
+          <tr><td>OH⁻ (KOH/H₂O)</td><td>R–OH (Alcohol)</td><td>Nucleophilic substitution</td></tr>
+          <tr><td>CN⁻ (KCN)</td><td>R–CN (Nitrile) → extends chain by 1C</td><td>SN2 — very important!</td></tr>
+          <tr><td>NO₂⁻ (AgNO₂)</td><td>R–NO₂ (Nitroalkane) if O attacks; or R–ONO (nitrite ester) if N attacks</td><td>Ambident nucleophile</td></tr>
+          <tr><td>NH₃</td><td>R–NH₂ (Amine)</td><td>Gabriel synthesis gives pure amine</td></tr>
+          <tr><td>RO⁻ (NaOR)</td><td>R–O–R' (Ether) — Williamson synthesis</td><td>SN2 only</td></tr>
+          <tr><td>I⁻ (NaI/acetone)</td><td>R–I (Finkelstein)</td><td>SN2</td></tr>
+        </table>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">NCERT Key Point</span>
+        <p><strong>Ambident Nucleophile (AgNO₂ vs KNO₂):</strong> When reacting with AgNO₂, product is nitroalkane (O-attack, oxygen is soft end). When reacting with KNO₂, product is alkyl nitrite (N-attack). NEET has asked this distinction 3 times (2012, 2016, 2019).</p>
+      </div>
+    </div>
+
+    <!-- 10.5 Elimination -->
+    <div class="sec" id="ch10-s5" data-m="Elimination">
+      <h2 class="sh">10.5 Elimination Reactions (E1 &amp; E2) <span class="tag tp">NCERT §10.4.4</span></h2>
+
+      <h3 class="ssh">Dehydrohalogenation — Formation of Alkenes</h3>
+      <div class="rxn-strip">
+        <span class="rxn-mol">CH₃CH₂CH₂Br</span>
+        <span class="rxn-arrow">+KOH/alcohol→</span>
+        <span class="rxn-mol">CH₃CH=CH₂</span>
+        <span class="rxn-cond">(propene + KBr + H₂O)</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th></th><th>E1 (Unimolecular)</th><th>E2 (Bimolecular)</th></tr>
+          <tr><td>Steps</td><td>2 steps — carbocation first</td><td>1 step — concerted</td></tr>
+          <tr><td>Substrate</td><td>Tertiary (3°)</td><td>Any order (prefer 2° &amp; 3°)</td></tr>
+          <tr><td>Base</td><td>Weak base</td><td>Strong base (KOH/alcoholic)</td></tr>
+          <tr><td>Stereochemistry</td><td>No specific requirement</td><td>Anti-periplanar H and LG</td></tr>
+          <tr><td>Rate</td><td>rate = k[RX]</td><td>rate = k[RX][Base]</td></tr>
+        </table>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Zaitsev's Rule (Saytzeff's Rule)</span>
+        <p>In elimination reactions, the preferred product is the <strong>more substituted alkene</strong> (more stable, more thermodynamically stable due to hyperconjugation). Example: 2-Bromobutane gives but-2-ene (major) over but-1-ene (minor).</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Trick — Substitution vs Elimination competition:</strong><br>
+        ○ Aqueous KOH + heat → Substitution (SN)<br>
+        ○ Alcoholic KOH + heat → Elimination (E)<br>
+        ○ Strong base + bulky → Hofmann elimination (less substituted alkene = anti-Zaitsev)<br>
+        ○ Ag₂O (moist) → SN | Dry HI on alcohol → dehydration (E)</p>
+      </div>
+    </div>
+
+    <!-- 10.6 Haloarenes -->
+    <div class="sec" id="ch10-s6" data-m="Haloarenes">
+      <h2 class="sh">10.6 Haloarenes — Properties &amp; Named Reactions <span class="tag tq">NCERT §10.5</span></h2>
+
+      <h3 class="ssh">Why Haloarenes are Less Reactive in Nucleophilic Substitution</h3>
+
+      <!-- SVG benzene ring with Cl resonance -->
+      <div class="flow-box">
+        <svg width="480" height="120" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:0 auto;">
+          <!-- Benzene ring 1 -->
+          <polygon points="60,30 90,14 120,30 120,66 90,82 60,66" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="90" cy="48" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="120" y1="48" x2="148" y2="48" stroke="currentColor" stroke-width="1.5"/>
+          <text x="148" y="52" font-family="Courier New" font-size="13" fill="currentColor">Cl</text>
+          <text x="90" y="100" font-family="Architects Daughter,cursive" font-size="10" fill="#0d7a6a" text-anchor="middle">C–Cl partial double bond</text>
+          <!-- Arrow -->
+          <text x="185" y="52" font-size="18" fill="#0d7a6a">↔</text>
+          <!-- Benzene ring 2 (resonance) -->
+          <polygon points="220,30 250,14 280,30 280,66 250,82 220,66" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="250" cy="48" r="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="280" y1="48" x2="308" y2="48" stroke="currentColor" stroke-width="1.5"/>
+          <text x="308" y="43" font-family="Courier New" font-size="13" fill="#e05050">Cl⁺</text>
+          <text x="222" y="30" font-family="Courier New" font-size="10" fill="#e05050">δ⁻</text>
+          <text x="250" y="100" font-family="Architects Daughter,cursive" font-size="10" fill="#e05050" text-anchor="middle">Lone pair → ring (conjugation)</text>
+          <text x="360" y="52" font-family="Architects Daughter,cursive" font-size="10" fill="#6b5a47">C–Cl stronger due to</text>
+          <text x="360" y="66" font-family="Architects Daughter,cursive" font-size="10" fill="#6b5a47">partial double bond character</text>
+        </svg>
+      </div>
+
+      <ul class="pl">
+        <li><strong>Resonance effect:</strong> Lone pair of Cl donates into the ring → C–Cl bond has partial double bond character → bond strengthened → harder to break in SN</li>
+        <li><strong>sp² carbon:</strong> Less reactive than sp³ towards nucleophiles — no backside to attack</li>
+        <li><strong>Negative charge buildup:</strong> Ring is electron-rich — repels nucleophile approach</li>
+      </ul>
+
+      <h3 class="ssh">Electrophilic Aromatic Substitution (EAS) of Haloarenes</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Reaction</th><th>Conditions</th><th>Position</th><th>Reason</th></tr>
+          <tr><td>Halogenation</td><td>X₂ / FeCl₃</td><td>ortho + para</td><td>Halogen is o,p-director (lone pair donation) &amp; deactivating (inductive)</td></tr>
+          <tr><td>Nitration</td><td>HNO₃ / H₂SO₄</td><td>ortho + para</td><td>Same — halogen directs o,p despite deactivation</td></tr>
+          <tr><td>Sulfonation</td><td>H₂SO₄ (fuming)</td><td>ortho + para</td><td>Same</td></tr>
+          <tr><td>Friedel-Crafts</td><td>RCl / AlCl₃</td><td>ortho + para</td><td>Same</td></tr>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET Critical Distinction</span>
+        <p><strong>Halogens are DEACTIVATING o,p-directors:</strong> They decrease ring electron density (inductive withdrawal) BUT direct to o/p positions (resonance donation). NEET often asks: "Which position?" → Always ortho/para for halobenzenes.</p>
+      </div>
+
+      <h3 class="ssh">Key Reactions of Haloarenes</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Dow's Process (Industrial ArOH)</div>
+          <div class="nrxn-rxn">C₆H₅Cl + NaOH →(300°C, 300 atm)→ C₆H₅ONa
+C₆H₅ONa + HCl → C₆H₅OH (phenol)</div>
+          <div class="nrxn-note">Requires forcing conditions — Cl attached to sp² C, very reluctant to leave</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Fittig Reaction</div>
+          <div class="nrxn-rxn">2C₆H₅X + Na →(ether)→ C₆H₅–C₆H₅ + 2NaX
+(Biphenyl)</div>
+          <div class="nrxn-note">Aryl halide + Na → biphenyl. NOT Wurtz (that's alkyl halide).</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Wurtz-Fittig Reaction</div>
+          <div class="nrxn-rxn">C₆H₅X + RX + 2Na →(ether)→ C₆H₅–R + 2NaX</div>
+          <div class="nrxn-note">One aryl + one alkyl halide + Na → alkylarene. Mix of Wurtz and Fittig.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10.PYQ -->
+    <div class="sec" id="ch10-pyq" data-m="PYQ">
+      <h2 class="sh">10.P PYQ Pattern Analysis <span class="tag tg">2009–2025</span></h2>
+
+      <div class="ecl">
+        <div class="ecl-row">
+          <div class="ecl-item ecl-asks"><span class="ecl-label ask">ASK:</span> SN1/SN2 product — which gives racemic mixture vs inversion?</div>
+          <div class="ecl-item ecl-asks"><span class="ecl-label ask">ASK:</span> Finkelstein vs Swarts — which reagent, which product?</div>
+          <div class="ecl-item ecl-asks"><span class="ecl-label ask">ASK:</span> Reaction of haloalkane with KCN vs AgCN — which gives nitrile vs isocyanide?</div>
+          <div class="ecl-item ecl-trap"><span class="ecl-label trap">TRAP:</span> KCN gives nitrile (C-attack, carbon nucleophile); AgCN gives isocyanide (isonitrile, N-attack via Ag⁺ displacing carbonate)</div>
+          <div class="ecl-item ecl-trap"><span class="ecl-label trap">TRAP:</span> SOCl₂ → retention of config (front-side attack via ion pair); SN2 → inversion</div>
+          <div class="ecl-item ecl-fast"><span class="ecl-label fast">FAST:</span> Polar aprotic solvent + strong nuc = SN2 every time</div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Which of the following reactions will give the product with inversion of configuration?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: SN2 reaction</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>SN2 mechanism involves backside nucleophilic attack</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>One-step concerted → Walden inversion of configuration at chiral carbon</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key Point</span><p>SN1 → racemisation (planar carbocation attacked from both sides). SN2 → 100% inversion. SOCl₂ → retention (front-side attack through ion pair).</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">The reaction of R-Br with KCN gives — (a) R-NC (b) R-CN (c) R-NO₂ (d) R-ONO</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (b) R-CN (Nitrile)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>CN⁻ is ambident — can attack via C (softer) or N (harder)</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>KCN: predominantly C-attack → nitrile (R-CN). AgCN: Ag⁺ blocks C end → N-attack → isocyanide (R-NC)</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Memory</span><p>K<strong>C</strong>N → <strong>C</strong>omplete C-attack → nitrile. A<strong>g</strong>CN → N-attack (Ag blocks C) → isocyanide (bad smell)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2019</span>
+          <span class="pyq-q">Which reagent converts alkyl chloride to alkyl iodide? (Finkelstein reaction solvent is —)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: NaI / Acetone</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Finkelstein reaction — halide exchange using NaI in acetone</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Why Acetone?</span><p>NaCl is insoluble in acetone → precipitates → drives equilibrium to right (Le Chatelier)</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Swarts contrast</span><p>Swarts: R-Cl + AgF → R-F (uses AgF or SbF₃, gives fluoride)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Engine Ch10 -->
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 10</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Backside attack"</div>
+            <div class="trigger-action">→ SN2, primary substrate, polar aprotic solvent, inversion of configuration</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Carbocation intermediate"</div>
+            <div class="trigger-action">→ SN1, tertiary substrate, polar protic solvent, racemisation possible</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Finkelstein / Swarts"</div>
+            <div class="trigger-action">→ Finkelstein: RX + NaI/acetone → RI | Swarts: RX + AgF → RF</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Sandmeyer reaction"</div>
+            <div class="trigger-action">→ ArN₂⁺ + CuX → ArX + N₂ (Cu catalyst essential for Cl &amp; Br, not for I)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Alcoholic KOH"</div>
+            <div class="trigger-action">→ Elimination → alkene (Zaitsev product = more substituted)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Aqueous KOH"</div>
+            <div class="trigger-action">→ Substitution → alcohol (SN reaction)</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "SN2 gives racemisation" — FALSE. SN1 gives racemisation. SN2 gives INVERSION.</div>
+          <div class="elim-step">❌ Trap: "KCN gives isocyanide" — FALSE. KCN = nitrile (R-CN). AgCN = isocyanide (R-NC).</div>
+          <div class="elim-step">❌ Trap: "Chloroform used as anaesthetic" — OLD answer. Currently CHCl₃ is not used medically due to toxicity.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 10</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">SN2 substrate order</div><div class="re-val">CH₃X > 1° > 2° > 3°</div></div>
+          <div class="re-item"><div class="re-label">SN1 substrate order</div><div class="re-val">3° >> 2° > 1° (CH₃X almost nil)</div></div>
+          <div class="re-item"><div class="re-label">SN2 stereochem</div><div class="re-val">Inversion (Walden)</div></div>
+          <div class="re-item"><div class="re-label">SN1 stereochem</div><div class="re-val">Racemisation (partial)</div></div>
+          <div class="re-item"><div class="re-label">Finkelstein</div><div class="re-val">NaI / acetone → R-I</div></div>
+          <div class="re-item"><div class="re-label">Swarts</div><div class="re-val">AgF or SbF₃ → R-F</div></div>
+          <div class="re-item"><div class="re-label">Sandmeyer</div><div class="re-val">ArN₂⁺ + CuX → ArX</div></div>
+          <div class="re-item"><div class="re-label">Haloarene EAS</div><div class="re-val">ortho + para (o,p-director)</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- ch-body -->
+</div><!-- chapter 10 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 11 — ALCOHOLS, PHENOLS & ETHERS
+════════════════════════════════════════════════ -->
+<div class="chapter" id="ch11">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 11 · ~3–4 Qs/NEET</div>
+    <div class="ch-title">Alcohols, Phenols &amp; Ethers — <em>OH Group Mastery</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch11-s1">Classification</a>
+    <a href="#ch11-s2">Preparation</a>
+    <a href="#ch11-s3">Reactions of Alcohols</a>
+    <a href="#ch11-s4">Phenols</a>
+    <a href="#ch11-s5">Ethers</a>
+    <a href="#ch11-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 11.1 Classification -->
+    <div class="sec" id="ch11-s1" data-m="Classification">
+      <h2 class="sh">11.1 Classification &amp; Nomenclature <span class="tag tq">NCERT §11.1</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 High Yield — Acidity order of phenols</span>
+        <span class="score-pill sp-o">Alcohols oxidation tested every year</span>
+        <span class="score-pill sp-t">Williamson synthesis — 3+ Qs since 2015</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Structure</th><th>Example</th><th>Common Name</th></tr>
+          <tr><td>Monohydric (1°)</td><td>RCH₂OH</td><td>C₂H₅OH</td><td>Ethyl alcohol / Ethanol</td></tr>
+          <tr><td>Monohydric (2°)</td><td>R₂CHOH</td><td>(CH₃)₂CHOH</td><td>Isopropyl alcohol</td></tr>
+          <tr><td>Monohydric (3°)</td><td>R₃COH</td><td>(CH₃)₃COH</td><td>tert-Butyl alcohol</td></tr>
+          <tr><td>Dihydric</td><td>(HO)₂</td><td>HOCH₂CH₂OH</td><td>Ethylene glycol (EG)</td></tr>
+          <tr><td>Trihydric</td><td>(HO)₃</td><td>HOCH₂CH(OH)CH₂OH</td><td>Glycerol</td></tr>
+          <tr><td>Phenol</td><td>Ar–OH</td><td>C₆H₅OH</td><td>Phenol (carbolic acid)</td></tr>
+          <tr><td>Ether</td><td>R–O–R'</td><td>C₂H₅OC₂H₅</td><td>Diethyl ether</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 11.2 Preparation -->
+    <div class="sec" id="ch11-s2" data-m="Preparation">
+      <h2 class="sh">11.2 Preparation of Alcohols &amp; Phenols <span class="tag tc">NCERT §11.2</span></h2>
+
+      <h3 class="ssh">Preparation of Alcohols</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">From Alkenes (Markovnikov)</div>
+          <div class="nrxn-rxn">CH₂=CH₂ + H₂O →(H⁺)→ CH₃CH₂OH
+(Markovnikov addition)
+Anti-Markovnikov: BH₃/THF then H₂O₂/NaOH
+→ gives primary alcohol</div>
+          <div class="nrxn-note">Acid-catalysed hydration gives Markovnikov; hydroboration-oxidation gives anti-Markovnikov</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Grignard Reagent Method</div>
+          <div class="nrxn-rxn">HCHO + RMgX → 1° alcohol (on H₃O⁺ workup)
+CH₃CHO + RMgX → 2° alcohol
+Ketone + RMgX → 3° alcohol
+CO₂ + RMgX → Carboxylic acid</div>
+          <div class="nrxn-note">Most versatile method. Grignard = R-MgX prepared from RX + Mg in dry ether. Extremely reactive — no water/acid/alcohol allowed.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Reduction of Carbonyl Compounds</div>
+          <div class="nrxn-rxn">RCHO + H₂ →(Ni/Pd)→ RCH₂OH (1°)
+RCOR' + H₂ →(Ni)→ R₂CHOH (2°)
+LiAlH₄ / NaBH₄ also work
+(NaBH₄ safer — works in protic solvents)</div>
+          <div class="nrxn-note">LiAlH₄ reduces esters to 1° alcohol. NaBH₄ does NOT reduce esters (selective).</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">Preparation of Phenol (NCERT §11.2.2)</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">From Benzene Sulphonic Acid (Dow's Process)</div>
+          <div class="nrxn-rxn">C₆H₅SO₃H + NaOH →(fusion)→ C₆H₅ONa
+C₆H₅ONa + HCl → C₆H₅OH + NaCl</div>
+          <div class="nrxn-note">Industrial method — sulfonate first, then alkaline fusion</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">From Diazonium Salt (Lab Method)</div>
+          <div class="nrxn-rxn">C₆H₅N₂⁺Cl⁻ + H₂O →(boil)→ C₆H₅OH + N₂</div>
+          <div class="nrxn-note">Diazonium hydrolysis — easy lab preparation</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Cumene Process (Industrial)</div>
+          <div class="nrxn-rxn">C₆H₆ + CH₃CH=CH₂ →(H₃PO₄)→ C₆H₅CH(CH₃)₂
+            (Cumene)
+Cumene + O₂ → Cumene hydroperoxide
+→ H₂SO₄ → Phenol + Acetone</div>
+          <div class="nrxn-note">Most important industrial route. Gives both phenol AND acetone simultaneously.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11.3 Reactions of Alcohols -->
+    <div class="sec" id="ch11-s3" data-m="Alcohol Rxns">
+      <h2 class="sh">11.3 Reactions of Alcohols <span class="tag tg">NCERT §11.3.3</span></h2>
+
+      <h3 class="ssh">Oxidation Reactions (KEY for NEET)</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Alcohol Type</th><th>Mild Oxidation (PCC, CrO₃)</th><th>Strong Oxidation (KMnO₄/K₂Cr₂O₇)</th></tr>
+          <tr><td>Primary (1°)</td><td>→ Aldehyde (RCHO)</td><td>→ Carboxylic acid (RCOOH)</td></tr>
+          <tr><td>Secondary (2°)</td><td>→ Ketone (RCOR')</td><td>→ Ketone (stops — no H on carbonyl C)</td></tr>
+          <tr><td>Tertiary (3°)</td><td>No reaction</td><td>No reaction (no α-H to oxidize)</td></tr>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Trick — Oxidation ladder:</strong><br>
+        1° Alcohol → [O] → Aldehyde → [O] → Carboxylic Acid<br>
+        2° Alcohol → [O] → Ketone (stops here)<br>
+        3° Alcohol → [O] → No reaction (no H on C with OH)<br>
+        <strong>PCC (Pyridinium chlorochromate)</strong> stops at aldehyde from 1° alcohol (mild oxidant). Use PCC when you need RCHO from RCH₂OH without going to RCOOH.</p>
+      </div>
+
+      <h3 class="ssh">Dehydration of Alcohols</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Intermolecular Dehydration (Ether formation)</div>
+          <div class="nrxn-rxn">2C₂H₅OH →(H₂SO₄, 140°C)→ C₂H₅OC₂H₅ + H₂O
+(diethyl ether)</div>
+          <div class="nrxn-note">Lower temperature (140°C) → ether. Higher temperature needed for alkene.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Intramolecular Dehydration (Alkene formation)</div>
+          <div class="nrxn-rxn">C₂H₅OH →(H₂SO₄, 170°C)→ CH₂=CH₂ + H₂O
+(ethylene — Zaitsev product = more sub. alkene)</div>
+          <div class="nrxn-note">Higher temp → alkene. Zaitsev's rule applies: more substituted alkene is major product.</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">Esterification (Fischer Esterification)</h3>
+      <div class="rxn-strip">
+        <span class="rxn-mol">RCOOH + R'OH</span>
+        <span class="rxn-arrow">⇌</span>
+        <span class="rxn-mol">RCOOR' + H₂O</span>
+        <span class="rxn-cond">(H⁺ cat., reversible, excess alcohol shifts right)</span>
+      </div>
+
+      <h3 class="ssh">Lucas Test (Distinguishing 1°, 2°, 3° Alcohols)</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Alcohol</th><th>Lucas Reagent (HCl + ZnCl₂)</th><th>Observation</th></tr>
+          <tr><td>Tertiary (3°)</td><td>Reacts immediately</td><td>Turbidity/cloudiness instantly (RCl insoluble)</td></tr>
+          <tr><td>Secondary (2°)</td><td>Reacts in 5 minutes</td><td>Turbidity after ~5 min on warming</td></tr>
+          <tr><td>Primary (1°)</td><td>No reaction at RT</td><td>No turbidity (clear solution remains)</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Memory Aid — Lucas Test:</strong> Think of reaction speed = carbocation stability. 3° carbocation forms fastest → reacts instantly. 1° carbocation too unstable → no reaction at room temp. "3 seconds, 5 minutes, never" for 3°, 2°, 1° respectively.</p>
+      </div>
+    </div>
+
+    <!-- 11.4 Phenols -->
+    <div class="sec" id="ch11-s4" data-m="Phenols">
+      <h2 class="sh">11.4 Phenols — Acidity, EAS &amp; Named Reactions <span class="tag tg">HIGHEST YIELD</span></h2>
+
+      <h3 class="ssh">Acidity of Phenol vs Alcohols</h3>
+      <div class="def-box">
+        <span class="lbl">Phenol Acidity</span>
+        <p>Phenol (pKa ≈ 10) is <strong>more acidic than alcohols</strong> (pKa ≈ 16–18) but <strong>less acidic than carboxylic acids</strong> (pKa ≈ 5). Reason: phenoxide ion (C₆H₅O⁻) is stabilised by resonance with the aromatic ring — the negative charge delocalises over the ring. Alkoxide ion (RO⁻) has no resonance stabilisation.</p>
+      </div>
+
+      <h3 class="ssh">Effect of Substituents on Phenol Acidity</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Substituent</th><th>Effect on Acidity</th><th>Reason</th><th>Example</th></tr>
+          <tr><td>Electron-withdrawing (–NO₂, –CN, –CHO)</td><td>INCREASES acidity</td><td>Stabilises PhO⁻ further by withdrawing electron density from O</td><td>p-Nitrophenol more acidic than phenol</td></tr>
+          <tr><td>Electron-donating (–CH₃, –OCH₃, –NH₂)</td><td>DECREASES acidity</td><td>Destabilises PhO⁻ by increasing electron density on O</td><td>p-Cresol (p-methylphenol) less acidic than phenol</td></tr>
+          <tr><td>ortho position effect</td><td>Usually increases acidity</td><td>Steric + intramolecular H-bond can assist</td><td>o-nitrophenol less acidic than p-nitrophenol (intramol H-bond)</td></tr>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ NEET Trick — o-nitrophenol vs p-nitrophenol acidity:</strong><br>
+        p-nitrophenol is MORE acidic than o-nitrophenol! Why? o-nitrophenol forms intramolecular H-bond (chelation) between –OH and –NO₂, making it LESS ionisable. p-nitrophenol has no intramolecular H-bond → more free ionisation → higher acidity. Also: o-nitrophenol has lower boiling point and is more volatile (steam distillable) because no intermolecular H-bond.</p>
+      </div>
+
+      <h3 class="ssh">Named Reactions of Phenol</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Kolbe's Reaction (Kolbe-Schmitt)</div>
+          <div class="nrxn-rxn">C₆H₅ONa + CO₂ →(125°C, 4–7 atm)→ HOC₆H₄COONa
+→ H⁺ → Salicylic acid (2-hydroxybenzoic acid)</div>
+          <div class="nrxn-note">Phenol + CO₂ in basic conditions at high pressure → salicylic acid (aspirin precursor). Carboxylation at ortho position.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Reimer-Tiemann Reaction</div>
+          <div class="nrxn-rxn">C₆H₅OH + CHCl₃ →(NaOH)→ 2-hydroxybenzaldehyde
+(Salicylaldehyde) — mainly ortho</div>
+          <div class="nrxn-note">Gives aldehyde group at ortho position via dichlorocarbene intermediate. Product = salicylaldehyde.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Liebermann's Reaction (Identification)</div>
+          <div class="nrxn-rxn">Phenol + KNO₂ + H₂SO₄ → nitroso compound
+→ turns red/blue on treatment with NaOH</div>
+          <div class="nrxn-note">Used to identify phenols — red in acid, blue in alkali</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">FeCl₃ Test (Identification)</div>
+          <div class="nrxn-rxn">Phenol + FeCl₃(aq) → violet/purple complex
+(complex of phenol with Fe³⁺)</div>
+          <div class="nrxn-note">Characteristic violet colour with FeCl₃ — distinguishes phenol from alcohol (no colour with alcohol)</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">Electrophilic Substitution of Phenol (–OH is o,p-director, strongly activating)</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Reaction</th><th>Conditions</th><th>Product</th></tr>
+          <tr><td>Nitration</td><td>Dilute HNO₃ (no H₂SO₄ needed)</td><td>o-nitrophenol + p-nitrophenol</td></tr>
+          <tr><td>Nitration (concentrated)</td><td>Conc. HNO₃/H₂SO₄</td><td>Picric acid (2,4,6-trinitrophenol)</td></tr>
+          <tr><td>Halogenation</td><td>Br₂/water (no catalyst needed!)</td><td>2,4,6-tribromophenol (white ppt)</td></tr>
+          <tr><td>Sulfonation</td><td>H₂SO₄ (conc.)</td><td>o- &amp; p-phenolsulfonic acid</td></tr>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET Distinction</span>
+        <p><strong>Bromination of phenol vs benzene:</strong> Phenol + Br₂(aq) → 2,4,6-tribromophenol (white ppt) — NO catalyst needed, room temperature, very fast. Benzene + Br₂ requires FeBr₃ catalyst and gives mono-bromobenzene. Phenol is so reactive it brominates all three available positions spontaneously.</p>
+      </div>
+    </div>
+
+    <!-- 11.5 Ethers -->
+    <div class="sec" id="ch11-s5" data-m="Ethers">
+      <h2 class="sh">11.5 Ethers — Williamson Synthesis &amp; Reactions <span class="tag tp">NCERT §11.4</span></h2>
+
+      <h3 class="ssh">Williamson Ether Synthesis</h3>
+      <div class="mech-box">
+        <p><strong>Williamson Synthesis:</strong> Alkoxide ion (RO⁻) + primary alkyl halide → ether via SN2</p>
+        <div class="rxn-strip">
+          <span class="rxn-mol">RONa + R'X</span>
+          <span class="rxn-arrow">→</span>
+          <span class="rxn-mol">ROR' + NaX</span>
+          <span class="rxn-cond">(R' must be primary — SN2 required)</span>
+        </div>
+        <ul class="pl">
+          <li>R'X must be a PRIMARY alkyl halide (SN2 mechanism — backside attack by alkoxide)</li>
+          <li>Tertiary R'X → gives elimination (alkene) instead of ether — bulky alkoxide = strong base</li>
+          <li>To make methyl phenyl ether (anisole): C₆H₅ONa + CH₃I → C₆H₅OCH₃</li>
+        </ul>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Trick — Williamson:</strong> "Alkoxide attacks PRIMARY halide via SN2."<br>
+        If asked to make t-butyl methyl ether from t-BuOH + CH₃Br: Use CH₃O⁻Na⁺ + t-BuCl? NO — t-BuCl would eliminate. Use: t-BuONa + CH₃Cl ✓ (CH₃Cl is primary → SN2 works).</p>
+      </div>
+
+      <h3 class="ssh">Cleavage of Ethers with HI (HBr)</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Ether Type</th><th>With HI (excess)</th><th>Products</th></tr>
+          <tr><td>Dialkyl ether (R-O-R)</td><td>2 equiv. HI</td><td>2 RI (alkyl iodides)</td></tr>
+          <tr><td>Methyl aryl ether (ArOCH₃)</td><td>HI</td><td>ArOH (phenol) + CH₃I (Phenol cannot be cleaved by HI further)</td></tr>
+          <tr><td>Mixed ether (CH₃-O-t-Bu)</td><td>HI → SN1</td><td>t-BuI + CH₃OH (cleavage at more substituted C)</td></tr>
+        </table>
+      </div>
+
+      <h3 class="ssh">Physical Properties of Ethers</h3>
+      <ul class="pl">
+        <li>Much lower BP than corresponding alcohols — no H-bonding between ether molecules</li>
+        <li>Diethyl ether BP = 34.6°C; n-butanol (same mol. mass) BP = 118°C — H-bonding in alcohol</li>
+        <li>Slightly soluble in water (accept H-bonds FROM water but cannot donate)</li>
+        <li>Act as Lewis bases (lone pair on O) → form oxonium salts with strong acids</li>
+      </ul>
+    </div>
+
+    <!-- 11.PYQ -->
+    <div class="sec" id="ch11-pyq" data-m="PYQ">
+      <h2 class="sh">11.P PYQ Pattern Analysis <span class="tag tg">2009–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following is more acidic — phenol or cyclohexanol?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Phenol is more acidic</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Phenoxide ion stabilised by resonance with aromatic ring</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Phenol pKa ≈ 10. Cyclohexanol (aliphatic alcohol) pKa ≈ 16. Lower pKa = stronger acid.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Memory</span><p>Phenol > Water (pKa 15.7) > Alcohol. Carboxylic acid > Phenol > H₂CO₃ > Alcohol.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Identify the product when phenol reacts with Br₂ in water (no catalyst)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 2,4,6-tribromophenol (white precipitate)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>–OH is strongly activating o,p-director; phenol reacts without catalyst in aqueous Br₂</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>All three o/p positions get brominated in one step due to extreme activation. White precipitate confirms 2,4,6-tribromophenol.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Contrast</span><p>Aniline + Br₂/water also gives 2,4,6-tribromoaniline (white ppt) — –NH₂ is also strongly activating</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2020</span>
+          <span class="pyq-q">Williamson synthesis of diethyl ether uses which reagent combination?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: C₂H₅ONa + C₂H₅Br</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Williamson synthesis: alkoxide (NaOR) + primary alkyl halide → ether</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>The alkyl halide must be PRIMARY (SN2). Alkoxide = strong nucleophile attacks primary C from back.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Common Error</span><p>Using tertiary alkyl halide → elimination (alkene) not ether. Williamson = SN2 always!</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Engine Ch11 -->
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 11</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Kolbe's Reaction"</div>
+            <div class="trigger-action">→ Phenol + CO₂ + NaOH → Salicylic acid (ortho carboxylation)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Reimer-Tiemann"</div>
+            <div class="trigger-action">→ Phenol + CHCl₃ + NaOH → Salicylaldehyde (ortho CHO)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Lucas test / ZnCl₂ + HCl"</div>
+            <div class="trigger-action">→ Instant = 3°, 5 min = 2°, no reaction = 1°</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Williamson synthesis"</div>
+            <div class="trigger-action">→ NaOR + R'X (primary only) → SN2 → ether R-O-R'</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "PCC oxidation"</div>
+            <div class="trigger-action">→ 1° alcohol → aldehyde (stops here — mild oxidant)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "FeCl₃ test"</div>
+            <div class="trigger-action">→ Violet/purple = phenol present | No colour = alcohol</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "o-nitrophenol is more acidic than p-nitrophenol" — FALSE. p-Nitrophenol is more acidic (no intramolecular H-bond in p-isomer).</div>
+          <div class="elim-step">❌ Trap: "Williamson works with tertiary halides" — FALSE. Tertiary halides undergo elimination with alkoxides.</div>
+          <div class="elim-step">❌ Trap: "Phenol dissolves in NaHCO₃" — FALSE. Phenol is weaker acid than H₂CO₃ — does NOT react with NaHCO₃. Only carboxylic acids dissolve in NaHCO₃.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 11</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Acidity order</div><div class="re-val">RCOOH > Phenol > H₂O > ROH</div></div>
+          <div class="re-item"><div class="re-label">PCC product</div><div class="re-val">1° alc → aldehyde (NOT acid)</div></div>
+          <div class="re-item"><div class="re-label">K₂Cr₂O₇ on 1°</div><div class="re-val">Aldehyde → Carboxylic acid</div></div>
+          <div class="re-item"><div class="re-label">Kolbe's</div><div class="re-val">Phenol + CO₂ → Salicylic acid</div></div>
+          <div class="re-item"><div class="re-label">Reimer-Tiemann</div><div class="re-val">Phenol + CHCl₃ → Salicylaldehyde</div></div>
+          <div class="re-item"><div class="re-label">Cumene process</div><div class="re-val">Phenol + Acetone both formed</div></div>
+          <div class="re-item"><div class="re-label">Br₂/H₂O + phenol</div><div class="re-val">2,4,6-tribromophenol (white ppt)</div></div>
+          <div class="re-item"><div class="re-label">Williamson rule</div><div class="re-val">Primary alkyl halide only (SN2)</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- ch-body -->
+</div><!-- chapter 11 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 12 — ALDEHYDES, KETONES & CARBOXYLIC ACIDS
+════════════════════════════════════════════════ -->
+<div class="chapter" id="ch12">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 12 · ~5–6 Qs/NEET — MOST IMPORTANT CHAPTER</div>
+    <div class="ch-title">Aldehydes, Ketones &amp; Carboxylic Acids — <em>Carbonyl Chemistry Command</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch12-s1">Nomenclature</a>
+    <a href="#ch12-s2">Preparation</a>
+    <a href="#ch12-s3">Named Reactions</a>
+    <a href="#ch12-s4">Mechanism</a>
+    <a href="#ch12-s5">Carboxylic Acids</a>
+    <a href="#ch12-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 12.1 Nomenclature -->
+    <div class="sec" id="ch12-s1" data-m="Nomenclature">
+      <h2 class="sh">12.1 Carbonyl Group &amp; Nomenclature <span class="tag tg">NCERT §12.1</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 CRITICAL — 5–6 Qs/NEET paper</span>
+        <span class="score-pill sp-o">Named reactions tested every year</span>
+        <span class="score-pill sp-t">Aldol condensation, Cannizzaro, Clemmensen key</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Class</th><th>Functional Group</th><th>IUPAC suffix</th><th>Example</th></tr>
+          <tr><td>Aldehyde</td><td>–CHO (formyl group)</td><td>-al</td><td>Ethanal (CH₃CHO = acetaldehyde)</td></tr>
+          <tr><td>Ketone</td><td>C=O (carbonyl; R both sides)</td><td>-one</td><td>Propan-2-one (CH₃COCH₃ = acetone)</td></tr>
+          <tr><td>Carboxylic acid</td><td>–COOH (carboxyl group)</td><td>-oic acid</td><td>Ethanoic acid (CH₃COOH = acetic acid)</td></tr>
+        </table>
+      </div>
+
+      <p><strong>Reactivity:</strong> Aldehydes are MORE reactive than ketones towards nucleophilic addition due to: (1) Less steric hindrance (one H vs two R), (2) More electrophilic carbonyl C (R groups donate electrons, reducing +ve character).</p>
+    </div>
+
+    <!-- 12.2 Preparation -->
+    <div class="sec" id="ch12-s2" data-m="Preparation">
+      <h2 class="sh">12.2 Preparation of Aldehydes &amp; Ketones <span class="tag tc">NCERT §12.2</span></h2>
+
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Rosenmund Reduction (Aldehyde from acyl chloride)</div>
+          <div class="nrxn-rxn">RCOCl + H₂ →(Pd-BaSO₄ poisoned)→ RCHO
+(Pd on BaSO₄ / quinoline reduces Pd activity)</div>
+          <div class="nrxn-note">Selective reduction of acyl chloride → aldehyde. Catalyst "poisoned" to stop at aldehyde stage.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Stephen Reduction (Aldehyde from nitrile)</div>
+          <div class="nrxn-rxn">RCN →(SnCl₂/HCl, then H₃O⁺)→ RCHO
+(via imine intermediate RCH=NH)</div>
+          <div class="nrxn-note">Nitrile → aldehyde (not acid). Lab method.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Etard Reaction (Aldehyde from toluene)</div>
+          <div class="nrxn-rxn">C₆H₅CH₃ + CrO₂Cl₂ → C₆H₅CHO
+(chromyl chloride oxidation → benzaldehyde)</div>
+          <div class="nrxn-note">Etard: Toluene → Benzaldehyde via CrO₂Cl₂</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Gattermann-Koch Reaction</div>
+          <div class="nrxn-rxn">C₆H₆ + CO + HCl →(AlCl₃/CuCl)→ C₆H₅CHO
+(benzaldehyde from benzene)</div>
+          <div class="nrxn-note">Benzene + CO/HCl + AlCl₃ → formylation → benzaldehyde. NOT possible with phenol or phenol ethers.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Friedel-Crafts Acylation (Ketone)</div>
+          <div class="nrxn-rxn">C₆H₆ + RCOCl →(AlCl₃)→ C₆H₅COR (aryl ketone)</div>
+          <div class="nrxn-note">ArH + acyl chloride + AlCl₃ → aryl ketone. More reliable than Friedel-Crafts alkylation (no rearrangement).</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Ozonolysis of Alkenes</div>
+          <div class="nrxn-rxn">R₁CH=CHR₂ →(O₃, then Zn/H₂O)→ R₁CHO + R₂CHO
+(reductive — gives aldehydes)
+→(O₃, then H₂O₂)→ Carboxylic acids
+(oxidative workup)</div>
+          <div class="nrxn-note">Reductive workup (Zn/H₂O or DMS) = aldehydes/ketones. Oxidative workup (H₂O₂) = carboxylic acids.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12.3 Named Reactions -->
+    <div class="sec" id="ch12-s3" data-m="Named Reactions">
+      <h2 class="sh">12.3 Named Reactions — Complete Set <span class="tag tg">NEET 2009–2025: 12+ Qs</span></h2>
+
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Aldol Condensation</div>
+          <div class="nrxn-rxn">2CH₃CHO →(dil. NaOH, 20°C)→ CH₃CH(OH)CH₂CHO
+(3-hydroxybutanal = aldol)
+→(heat) → CH₃CH=CHCHO + H₂O
+(but-2-enal = crotonaldehyde)</div>
+          <div class="nrxn-note">Aldehyde/ketone with α-H + base → β-hydroxy carbonyl (aldol) → dehydration → α,β-unsaturated carbonyl. Requires at least ONE α-H.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Cannizzaro Reaction</div>
+          <div class="nrxn-rxn">2HCHO →(conc. NaOH)→ CH₃OH + HCOONa
+(formaldehyde → methanol + sodium formate)
+2C₆H₅CHO →(conc. KOH)→ C₆H₅CH₂OH + C₆H₅COOK</div>
+          <div class="nrxn-note">DISPROPORTIONATION — one RCHO oxidised to RCOOH/salt, another reduced to RCH₂OH. ONLY aldehydes with NO α-H (HCHO, PhCHO, (CH₃)₃CCHO, furfural)</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Clemmensen Reduction</div>
+          <div class="nrxn-rxn">C=O →(Zn-Hg / conc. HCl)→ CH₂
+(reduces carbonyl → methylene)
+e.g. C₆H₅COCH₃ → C₆H₅CH₂CH₃</div>
+          <div class="nrxn-note">Works in ACIDIC medium (Zn-Hg/HCl). NOT usable for acid-sensitive molecules.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Wolff-Kishner Reduction</div>
+          <div class="nrxn-rxn">C=O →(NH₂NH₂, KOH/ethylene glycol, heat)→ CH₂
+(via hydrazone intermediate)</div>
+          <div class="nrxn-note">Works in BASIC medium (hydrazine + KOH). Complementary to Clemmensen. Use when acid-sensitive group present.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Tollens' Test (Silver Mirror Test)</div>
+          <div class="nrxn-rxn">RCHO + Ag(NH₃)₂⁺OH⁻ → RCOO⁻ + Ag↓ (mirror)
+(Ag⁺ reduced to Ag metal — silver mirror)</div>
+          <div class="nrxn-note">Only ALDEHYDES (and formic acid, glucose) give silver mirror. Ketones do NOT. Tollens = Ag mirror test.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Fehling's Test</div>
+          <div class="nrxn-rxn">RCHO + Cu²⁺(Fehling's) → RCOO⁻ + Cu₂O↓
+(red precipitate of cuprous oxide)</div>
+          <div class="nrxn-note">Aliphatic aldehydes give RED precipitate. Aromatic aldehydes (benzaldehyde) do NOT give Fehling's test. Ketones negative.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Iodoform Test (Iodoform Reaction)</div>
+          <div class="nrxn-rxn">CH₃COR + I₂ + NaOH → CHI₃↓ + RCOONa
+(yellow ppt of iodoform = CHI₃)
+Also: CH₃CHO → CHI₃ + HCOONa
+And: CH₃CH₂OH →[O]→ CH₃CHO → CHI₃</div>
+          <div class="nrxn-note">Positive: CH₃CHO, CH₃COR (methyl ketones), CH₃CH(OH)R, CH₃CH₂OH (ethanol), acetaldehyde, 2° methyl carbinols. Negative: HCHO, diethyl ketone, benzaldehyde.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Perkin Condensation</div>
+          <div class="nrxn-rxn">C₆H₅CHO + (CH₃CO)₂O →(CH₃COONa)→
+C₆H₅CH=CHCOOH (cinnamic acid)</div>
+          <div class="nrxn-note">Aromatic aldehyde + acetic anhydride + sodium acetate → α,β-unsaturated acid</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Benzoin Condensation</div>
+          <div class="nrxn-rxn">2C₆H₅CHO →(KCN or thiamine)→ C₆H₅CH(OH)COC₆H₅
+(benzoin — α-hydroxy ketone)</div>
+          <div class="nrxn-note">Two aromatic aldehydes → benzoin. Cyanide (CN⁻) as catalyst — acyl anion equivalent.</div>
+        </div>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Memory Aid — Tollens' vs Fehling's vs Iodoform:</strong><br>
+        <strong>T</strong>ollens = <strong>A</strong>ll aldehydes + formic acid + glucose give Ag mirror<br>
+        <strong>F</strong>ehling = <strong>A</strong>liphatic aldehydes only (NOT benzaldehyde) → red Cu₂O ppt<br>
+        <strong>I</strong>odoform = Methyl ketones + CH₃CHO + ethanol + secondary methyl carbinols → CHI₃ (yellow)<br>
+        "TAF-FI: Tollens All, Fehling aliphatic, Iodoform methyl"</p>
+      </div>
+    </div>
+
+    <!-- 12.4 Mechanism -->
+    <div class="sec" id="ch12-s4" data-m="Mechanism">
+      <h2 class="sh">12.4 Nucleophilic Addition Mechanism <span class="tag tp">NCERT §12.3.3</span></h2>
+
+      <div class="mech-box">
+        <p><strong>General Nucleophilic Addition to C=O:</strong></p>
+        <svg width="480" height="140" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;display:block;margin:10px auto;">
+          <!-- Step 1 -->
+          <text x="10" y="55" font-family="Courier New" font-size="13" fill="currentColor">Nu:⁻</text>
+          <line x1="55" y1="53" x2="95" y2="53" stroke="currentColor" stroke-width="1.5" marker-end="url(#a2)"/>
+          <defs><marker id="a2" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="currentColor"/></marker></defs>
+          <!-- Carbonyl -->
+          <text x="100" y="42" font-family="Courier New" font-size="13" fill="currentColor">R</text>
+          <line x1="113" y1="36" x2="130" y2="48" stroke="currentColor" stroke-width="1.5"/>
+          <text x="131" y="57" font-family="Courier New" font-size="16" fill="#0d7a6a" font-weight="bold">C=O</text>
+          <line x1="146" y1="62" x2="163" y2="50" stroke="currentColor" stroke-width="1.5"/>
+          <text x="165" y="45" font-family="Courier New" font-size="13" fill="currentColor">R'</text>
+          <!-- Arrow nucleophile -->
+          <text x="210" y="57" font-family="Courier New" font-size="18" fill="#0d7a6a">→</text>
+          <!-- Tetrahedral intermediate -->
+          <text x="240" y="38" font-family="Courier New" font-size="11" fill="#e05050">O⁻</text>
+          <text x="240" y="55" font-family="Courier New" font-size="13" fill="currentColor">|</text>
+          <text x="230" y="68" font-family="Courier New" font-size="13" fill="currentColor">Nu–C–R</text>
+          <text x="265" y="80" font-family="Courier New" font-size="13" fill="currentColor">| </text>
+          <text x="270" y="93" font-family="Courier New" font-size="13" fill="currentColor">R'</text>
+          <!-- Arrow to product -->
+          <text x="330" y="68" font-family="Courier New" font-size="18" fill="#0d7a6a">→</text>
+          <!-- Product -->
+          <text x="368" y="55" font-family="Courier New" font-size="13" fill="currentColor">Nu–C(OH)(R)(R')</text>
+          <text x="200" y="120" font-family="Architects Daughter,cursive" font-size="10" fill="#6b5a47" text-anchor="middle">Sp³ tetrahedral product (+H⁺ workup)</text>
+        </svg>
+        <ul class="pl">
+          <li>Nucleophile attacks the <strong>electrophilic carbonyl carbon</strong> (partial positive charge due to C=O polarisation)</li>
+          <li>Carbonyl → tetrahedral intermediate (alkoxide) → protonation → product</li>
+          <li>Aldehydes more reactive than ketones: steric + electronic (R groups push e⁻ toward C, reducing δ+)</li>
+        </ul>
+      </div>
+
+      <h3 class="ssh">Addition Reactions Summary</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Reagent</th><th>Product</th><th>Notes</th></tr>
+          <tr><td>HCN</td><td>Cyanohydrin: RCH(OH)CN</td><td>Increases chain length by 1C; used in synthesis</td></tr>
+          <tr><td>NaHSO₃</td><td>Bisulfite addition compound</td><td>Aldehydes + methyl ketones only (steric — not large ketones)</td></tr>
+          <tr><td>NH₂OH (Hydroxylamine)</td><td>Oxime: RCH=NOH</td><td>Neutral N-nucleophile → condensation</td></tr>
+          <tr><td>N₂H₄ (Hydrazine)</td><td>Hydrazone: RCH=NNH₂</td><td>→ Further react with KOH → Wolff-Kishner</td></tr>
+          <tr><td>PhNHNH₂ (Phenylhydrazine)</td><td>Phenylhydrazone</td><td>Used to identify aldehyde/ketones (crystalline)</td></tr>
+          <tr><td>NH₂–NH–CO–NH₂ (Semicarbazide)</td><td>Semicarbazone</td><td>Sharp melting point → used for characterisation</td></tr>
+          <tr><td>RMgX (Grignard)</td><td>Alcohol (1°, 2°, or 3° depending on carbonyl)</td><td>HCHO→1°; RCHO→2°; RCOR'→3°</td></tr>
+          <tr><td>LiAlH₄</td><td>Alcohol</td><td>Strong reducing agent — aldehyde→1° alc; ketone→2° alc; RCOOH→RCH₂OH</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 12.5 Carboxylic Acids -->
+    <div class="sec" id="ch12-s5" data-m="Carboxylic Acids">
+      <h2 class="sh">12.5 Carboxylic Acids &amp; Derivatives <span class="tag tq">NCERT §12.5–12.8</span></h2>
+
+      <h3 class="ssh">Acidity of Carboxylic Acids</h3>
+      <div class="def-box">
+        <span class="lbl">Acidity Factors</span>
+        <p>Carboxylate ion (RCOO⁻) is stabilised by <strong>resonance</strong> — negative charge delocalised over both O atoms. This extra stabilisation makes carboxylic acids much stronger than phenol or alcohol. pKa RCOOH ≈ 4–5.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Substituent Effect on RCOOH Acidity</th><th>Effect</th><th>Reason</th><th>Example</th></tr>
+          <tr><td>EWG (–Cl, –NO₂, –CN, –F)</td><td>Increases acidity</td><td>Withdraws e⁻ → stabilises RCOO⁻ better</td><td>ClCH₂COOH > CH₃COOH</td></tr>
+          <tr><td>EDG (–CH₃, –OH, –NH₂)</td><td>Decreases acidity</td><td>Pushes e⁻ → destabilises RCOO⁻</td><td>CH₃COOH < HCOOH (formic acid)</td></tr>
+          <tr><td>More Cl closer to COOH</td><td>Higher acidity</td><td>Inductive effect — greater withdrawal</td><td>CCl₃COOH >> CHCl₂COOH >> CH₂ClCOOH</td></tr>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Acidity Order Trick:</strong><br>
+        CCl₃COOH > CHCl₂COOH > CH₂ClCOOH > CH₃COOH > HCOOH<br>
+        Wait — HCOOH (formic acid) IS more acidic than CH₃COOH (acetic acid). HCOOH has no electron-donating group, while CH₃ is e⁻ donating. pKa: HCOOH = 3.74, CH₃COOH = 4.74.</p>
+      </div>
+
+      <h3 class="ssh">Reactions of Carboxylic Acids</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Hell-Volhard-Zelinsky (HVZ) Reaction</div>
+          <div class="nrxn-rxn">RCOOH + X₂ →(P, red)→ RCH(X)COOH
+(α-halogenation of carboxylic acids)
+CH₃COOH + Cl₂ →(P)→ ClCH₂COOH (chloroacetic acid)</div>
+          <div class="nrxn-note">Halogenation at α-carbon of carboxylic acids using Cl₂/Br₂ with red phosphorus. P converts RCOOH → RCOCl (acyl chloride) first, then α-halogenation occurs.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Decarboxylation</div>
+          <div class="nrxn-rxn">RCOONa + NaOH →(CaO, heat)→ RH + Na₂CO₃
+(soda-lime decarboxylation)
+e.g. CH₃COONa + NaOH →(CaO)→ CH₄ + Na₂CO₃</div>
+          <div class="nrxn-note">Sodium carboxylate + NaOH + CaO (soda lime) → reduced alkane with one less C. Used to synthesise lower alkanes.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Acid Chloride Formation</div>
+          <div class="nrxn-rxn">RCOOH + SOCl₂ → RCOCl + SO₂ + HCl
+(thionyl chloride — best method)
+Also: PCl₅, PCl₃</div>
+          <div class="nrxn-note">SOCl₂ preferred as byproducts are gases → pure product. RCOCl is very reactive acylating agent.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Fischer Esterification</div>
+          <div class="nrxn-rxn">RCOOH + R'OH ⇌ RCOOR' + H₂O
+(H⁺ catalyst, reversible)
+Equilibrium shifted right by excess alcohol
+or removal of water</div>
+          <div class="nrxn-note">Mechanism: acyl-oxygen cleavage (NOT alkyl-oxygen). Confirmed by ¹⁸O labelling experiments.</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">Derivatives of Carboxylic Acids (Reactivity)</h3>
+      <div class="stab-ladder">
+        <div class="stab-rung s1"><div class="stab-rank">1</div><div><div class="stab-content">Acyl fluorides (RCOFl) — MOST reactive</div><div class="stab-reason">F is poor leaving group donor → most electrophilic C</div></div></div>
+        <div class="stab-rung s2"><div class="stab-rank">2</div><div><div class="stab-content">Acyl chlorides (RCOCl)</div><div class="stab-reason">Strong electrophile — used for acylation reactions</div></div></div>
+        <div class="stab-rung s3"><div class="stab-rank">3</div><div><div class="stab-content">Acid anhydrides (RCOOCOR)</div><div class="stab-reason">Moderate — used in Perkin, aspirin synthesis</div></div></div>
+        <div class="stab-rung s4"><div class="stab-rank">4</div><div><div class="stab-content">Esters (RCOOR') then Amides (RCONH₂) — LEAST reactive</div><div class="stab-reason">–NH₂ donates lone pair to C=O → very stable amide bond</div></div></div>
+      </div>
+    </div>
+
+    <!-- 12.PYQ -->
+    <div class="sec" id="ch12-pyq" data-m="PYQ">
+      <h2 class="sh">12.P PYQ Pattern Analysis <span class="tag tg">2009–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2025</span>
+          <span class="pyq-q">Which compound gives positive iodoform test? (a) Diethyl ketone (b) Acetaldehyde (c) Benzaldehyde (d) Formaldehyde</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (b) Acetaldehyde (CH₃CHO)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Iodoform test positive for: CH₃CHO, methyl ketones (CH₃COR), secondary carbinols CH₃CH(OH)R, ethanol</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Requires CH₃C=O or CH₃CH(OH) group. Diethyl ketone (no CH₃ on carbonyl) = negative. HCHO = negative. PhCHO = negative.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Memory</span><p>CHI₃ = yellow ppt with characteristic smell. Yellow + iodine smell = iodoform positive.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Cannizzaro reaction is NOT given by which aldehyde? (a) HCHO (b) CH₃CHO (c) PhCHO (d) OHCCHO (glyoxal)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (b) CH₃CHO (acetaldehyde)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Cannizzaro = disproportionation. Requires NO α-hydrogen</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>CH₃CHO has α-H on CH₃ group → prefers aldol condensation, NOT Cannizzaro. HCHO, PhCHO, (CH₃)₃CCHO → no α-H → Cannizzaro.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key List</span><p>Cannizzaro: HCHO, C₆H₅CHO, (CH₃)₃CCHO, furfural. Aldol: CH₃CHO, anything with α-H.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">Clemmensen reduction converts C=O to CH₂ using which reagent?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Zn-Hg amalgam + conc. HCl</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Clemmensen = acidic reduction. Wolff-Kishner = basic reduction. Both reduce C=O to CH₂.</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Clemmensen (Zn-Hg/HCl) used in acid-stable molecules. Wolff-Kishner (N₂H₄/KOH) used in base-stable molecules.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">NEET Usage</span><p>Friedel-Crafts acylation then Clemmensen = method to add alkyl chain without carbocation rearrangement.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Engine Ch12 -->
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 12</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Silver mirror / Tollens'"</div>
+            <div class="trigger-action">→ Aldehyde present (+ formic acid, glucose). Ketones negative.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Red ppt / Fehling's"</div>
+            <div class="trigger-action">→ Aliphatic aldehyde (NOT benzaldehyde). Cu₂O formed.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Yellow ppt / iodoform"</div>
+            <div class="trigger-action">→ Methyl ketone or CH₃CHO or ethanol or 2° methyl carbinol</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Rosenmund"</div>
+            <div class="trigger-action">→ RCOCl + H₂/Pd-BaSO₄ → RCHO (aldehyde)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Aldol — no α-H"</div>
+            <div class="trigger-action">→ Cannizzaro reaction instead! Check for α-H first.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "HVZ reaction"</div>
+            <div class="trigger-action">→ X₂/P red on RCOOH → α-halo acid (RCHXCOOHs)</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Benzaldehyde gives Fehling's test" — FALSE. Only aliphatic aldehydes. PhCHO fails Fehling's but passes Tollens'.</div>
+          <div class="elim-step">❌ Trap: "HCHO gives iodoform test" — FALSE. Formaldehyde has NO α-H (no CH₃ group). Negative iodoform.</div>
+          <div class="elim-step">❌ Trap: "Clemmensen uses basic conditions" — FALSE. Zn-Hg/HCl = ACIDIC. Wolff-Kishner = BASIC.</div>
+          <div class="elim-step">❌ Trap: "Formic acid does not reduce Tollens'" — FALSE. HCOOH (formic acid) IS a reducing acid and gives silver mirror with Tollens'.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 12</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Rosenmund</div><div class="re-val">RCOCl + H₂/Pd-BaSO₄ → RCHO</div></div>
+          <div class="re-item"><div class="re-label">Cannizzaro requires</div><div class="re-val">No α-H: HCHO, PhCHO, t-BuCHO</div></div>
+          <div class="re-item"><div class="re-label">Clemmensen</div><div class="re-val">Zn-Hg/HCl → CH₂ (acidic)</div></div>
+          <div class="re-item"><div class="re-label">Wolff-Kishner</div><div class="re-val">N₂H₄/KOH → CH₂ (basic)</div></div>
+          <div class="re-item"><div class="re-label">Iodoform +ve</div><div class="re-val">CH₃COR, CH₃CHO, C₂H₅OH</div></div>
+          <div class="re-item"><div class="re-label">Fehling's +ve</div><div class="re-val">Aliphatic RCHO only (not PhCHO)</div></div>
+          <div class="re-item"><div class="re-label">HVZ reaction</div><div class="re-val">X₂/P red → α-halocarboxylic acid</div></div>
+          <div class="re-item"><div class="re-label">Acidity RCOOH</div><div class="re-val">EWG increases; EDG decreases</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- ch-body -->
+</div><!-- chapter 12 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 13 — AMINES
+════════════════════════════════════════════════ -->
+<div class="chapter" id="ch13">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 13 · ~3–4 Qs/NEET</div>
+    <div class="ch-title">Amines — <em>Basicity, Gabriel Synthesis &amp; Diazonium Command</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch13-s1">Structure &amp; Classification</a>
+    <a href="#ch13-s2">Basicity</a>
+    <a href="#ch13-s3">Preparation &amp; Reactions</a>
+    <a href="#ch13-s4">Diazonium Salts</a>
+    <a href="#ch13-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 13.1 Structure -->
+    <div class="sec" id="ch13-s1" data-m="Structure">
+      <h2 class="sh">13.1 Structure, Classification &amp; IUPAC <span class="tag tq">NCERT §13.1</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 Basicity order — asked every single year</span>
+        <span class="score-pill sp-o">Diazonium salt reactions high yield</span>
+        <span class="score-pill sp-t">Gabriel synthesis for primary amines</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Structure</th><th>N Substitution</th><th>Example</th></tr>
+          <tr><td>Primary (1°)</td><td>RNH₂</td><td>One N–C bond</td><td>Methylamine (CH₃NH₂)</td></tr>
+          <tr><td>Secondary (2°)</td><td>R₂NH</td><td>Two N–C bonds</td><td>Dimethylamine (CH₃)₂NH</td></tr>
+          <tr><td>Tertiary (3°)</td><td>R₃N</td><td>Three N–C bonds</td><td>Trimethylamine (CH₃)₃N</td></tr>
+          <tr><td>Quaternary ammonium</td><td>R₄N⁺X⁻</td><td>Four N–C bonds (charged)</td><td>Tetramethylammonium iodide</td></tr>
+          <tr><td>Arylamines</td><td>ArNH₂</td><td>N attached to Ar</td><td>Aniline (C₆H₅NH₂)</td></tr>
+        </table>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">IUPAC Note</span>
+        <p>In IUPAC: amine classified by number of C directly bonded to N (unlike alcohol — classified by C bearing OH). Diphenylamine = secondary even though each Ph is "big".</p>
+      </div>
+    </div>
+
+    <!-- 13.2 Basicity -->
+    <div class="sec" id="ch13-s2" data-m="Basicity">
+      <h2 class="sh">13.2 Basicity — Order &amp; Factors <span class="tag tg">HIGHEST YIELD SECTION</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">What makes an amine basic?</span>
+        <p>Amines are basic because the lone pair on N can accept a proton (H⁺). Basicity = ease of lone pair donation. The more available the lone pair, the stronger the base.</p>
+      </div>
+
+      <h3 class="ssh">Basicity Order — Alkyl Amines (Aqueous Solution)</h3>
+      <div class="stab-ladder">
+        <div class="stab-rung s1"><div class="stab-rank">1st</div><div><div class="stab-content">Secondary alkylamines R₂NH (most basic in water)</div><div class="stab-reason">Two R groups (electron-donating) + good solvation of R₂NH₂⁺ — balance of inductive effect + solvation</div></div></div>
+        <div class="stab-rung s2"><div class="stab-rank">2nd</div><div><div class="stab-content">Primary alkylamines RNH₂</div><div class="stab-reason">One R group donating, good solvation</div></div></div>
+        <div class="stab-rung s3"><div class="stab-rank">3rd</div><div><div class="stab-content">Tertiary alkylamines R₃N</div><div class="stab-reason">Three R groups → high inductive donation BUT poor solvation of R₃NH⁺ (sterically hindered) — net: less basic than 2°</div></div></div>
+        <div class="stab-rung s4"><div class="stab-rank">4th</div><div><div class="stab-content">Aniline C₆H₅NH₂ (least basic of all)</div><div class="stab-reason">Lone pair conjugated with benzene ring → delocalised → NOT available for protonation</div></div></div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ NEET Master Rule — Basicity:</strong><br>
+        <strong>In gas phase:</strong> 3° > 2° > 1° > NH₃ (pure inductive effect)<br>
+        <strong>In aqueous solution:</strong> 2° > 1° > 3° > NH₃ (inductive + solvation balance)<br>
+        <strong>Anilines vs alkylamines:</strong> Alkylamines >> Aniline (resonance withdraws lone pair in aniline)<br>
+        <strong>Aniline vs substituted anilines:</strong><br>
+        — EWG at para (−NO₂) → decreases basicity<br>
+        — EDG at para (−CH₃) → increases basicity<br>
+        Order: p-toluidine > aniline > p-nitroaniline (2,4-dinitroanline least basic)</p>
+      </div>
+
+      <h3 class="ssh">Comparison of Basicity — Key Values</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Amine</th><th>pKb (approx)</th><th>Relative Basicity</th></tr>
+          <tr><td>Dimethylamine (CH₃)₂NH</td><td>3.27</td><td>Strongest alkylamine in water</td></tr>
+          <tr><td>Methylamine CH₃NH₂</td><td>3.38</td><td>Strong</td></tr>
+          <tr><td>Trimethylamine (CH₃)₃N</td><td>4.22</td><td>Weaker than 2° in water</td></tr>
+          <tr><td>Ammonia NH₃</td><td>4.74</td><td>Reference</td></tr>
+          <tr><td>Aniline C₆H₅NH₂</td><td>9.40</td><td>Very weak base</td></tr>
+          <tr><td>p-Nitroaniline</td><td>13.0</td><td>Almost non-basic</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 13.3 Preparation -->
+    <div class="sec" id="ch13-s3" data-m="Preparation">
+      <h2 class="sh">13.3 Preparation &amp; Chemical Reactions <span class="tag tc">NCERT §13.2–13.3</span></h2>
+
+      <h3 class="ssh">Preparation of Amines</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Gabriel Phthalimide Synthesis (1° amines ONLY)</div>
+          <div class="nrxn-rxn">Phthalimide + KOH → K-phthalimide
+K-phthalimide + RX → N-alkylphthalimide
+N-alkylphthalimide + H₂NNH₂ → RNH₂ + phthalhydrazide</div>
+          <div class="nrxn-note">Gives ONLY pure primary amines (no 2° or 3°). Aryl halides do NOT work (SN2 required — sp² C).</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Hofmann Bromamide Degradation</div>
+          <div class="nrxn-rxn">RCONH₂ + Br₂ + 4NaOH → RNH₂ + Na₂CO₃ + 2NaBr + 2H₂O
+(ONE carbon LESS than starting amide!)</div>
+          <div class="nrxn-note">Converts primary amide → primary amine with loss of one carbon. Key: product has LESS carbon than starting material.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Reduction of Nitro Compounds</div>
+          <div class="nrxn-rxn">ArNO₂ + 6[H] →(Fe/HCl or Sn/HCl)→ ArNH₂
+(aniline from nitrobenzene)</div>
+          <div class="nrxn-note">Industrial route to aniline. Fe/HCl or Sn/HCl. H₂/Ni also works. LiAlH₄ works for RNO₂ → RNH₂.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Reductive Amination</div>
+          <div class="nrxn-rxn">RCHO + NH₃ → RCH=NH (imine)
+RCH=NH + H₂ →(Ni)→ RCH₂NH₂</div>
+          <div class="nrxn-note">Carbonyl + NH₃ → imine → reduction → amine. Used to make primary amines from aldehydes.</div>
+        </div>
+      </div>
+
+      <h3 class="ssh">Key Reactions of Amines</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Acylation (with acid chloride / anhydride)</div>
+          <div class="nrxn-rxn">RNH₂ + RCOCl → RNHCOR + HCl (amide)
+RNH₂ + (RCO)₂O → RNHCOR + RCOOH</div>
+          <div class="nrxn-note">Product = amide. Used to protect amine group in synthesis. Pyridine added to neutralize HCl.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Carbylamine Reaction (Isocyanide Test)</div>
+          <div class="nrxn-rxn">RNH₂ + CHCl₃ + 3KOH →(heat)→ R-NC + 3KCl + 3H₂O
+(carbylamines — isocyanides — horrible smell)</div>
+          <div class="nrxn-note">ONLY primary amines (RNH₂ or ArNH₂) give this reaction — smell of isocyanide is distinct. Test for 1° amine.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Electrophilic Substitution of Aniline</div>
+          <div class="nrxn-rxn">C₆H₅NH₂ + Br₂(aq) → 2,4,6-tribromoaniline (white ppt)
+C₆H₅NH₂ + (CH₃CO)₂O → C₆H₅NHCOCH₃ (acetanilide)
+(acetylation protects ring; mono-bromination possible)</div>
+          <div class="nrxn-note">–NH₂ is strongly activating o,p-director. Bromination in water gives tribromo. Acetylation first allows mono-bromination.</div>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Carbylamine Trick:</strong> Only PRIMARY amines give carbylamine (isocyanide) test. NEVER secondary or tertiary. Formula: Primary amine + CHCl₃ + KOH → awful smell (isocyanide). This is a qualitative test ONLY for 1° amines.</p>
+      </div>
+    </div>
+
+    <!-- 13.4 Diazonium Salts -->
+    <div class="sec" id="ch13-s4" data-m="Diazonium">
+      <h2 class="sh">13.4 Diazonium Salts — Sandmeyer &amp; Coupling <span class="tag tg">NEET Favourite</span></h2>
+
+      <h3 class="ssh">Formation of Diazonium Salts</h3>
+      <div class="rxn-strip">
+        <span class="rxn-mol">ArNH₂ + NaNO₂ + HCl</span>
+        <span class="rxn-arrow">→(0–5°C)→</span>
+        <span class="rxn-mol">ArN₂⁺Cl⁻ + NaCl + 2H₂O</span>
+        <span class="rxn-cond">(Diazotisation — MUST keep cold!)</span>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">Critical Condition</span>
+        <p><strong>Temperature MUST be 0–5°C</strong> during diazotisation. Above 5°C, diazonium salt decomposes to phenol. Keep ice bath. NaNO₂ + HCl → HNO₂ (nitrous acid) in situ — actual diazotising agent.</p>
+      </div>
+
+      <h3 class="ssh">Reactions of Diazonium Salts</h3>
+      <div class="nrxn-grid">
+        <div class="nrxn-card">
+          <div class="nrxn-name">Sandmeyer Reactions (with Cu catalyst)</div>
+          <div class="nrxn-rxn">ArN₂⁺Cl⁻ + CuCl →(HCl)→ ArCl + N₂ (Cl)
+ArN₂⁺Cl⁻ + CuBr →(HBr)→ ArBr + N₂ (Br)
+ArN₂⁺Cl⁻ + CuCN →(KCN)→ ArCN + N₂ (CN)
+ArN₂⁺Cl⁻ + KI → ArI + N₂ (NO Cu needed!)
+ArN₂⁺BF₄⁻ →(heat)→ ArF + N₂ + BF₃ (Balz-Schiemann)</div>
+          <div class="nrxn-note">Key: Cu needed for Cl and Br. NOT for iodo (just KI). Balz-Schiemann for fluoride (ArF from ArN₂BF₄).</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Replacement by OH, H, NO₂</div>
+          <div class="nrxn-rxn">ArN₂⁺ + H₂O →(boil)→ ArOH + N₂
+ArN₂⁺ + H₃PO₂ + H₂O → ArH + N₂ (reductive deamination)
+ArN₂⁺ + NaNO₂/Cu → ArNO₂ + N₂</div>
+          <div class="nrxn-note">Hydrolysis → phenol. Hypophosphorous acid (H₃PO₂) → replaces N₂ with H (deamination). Important route to phenol from aniline.</div>
+        </div>
+        <div class="nrxn-card">
+          <div class="nrxn-name">Azo Coupling (Coupling Reaction)</div>
+          <div class="nrxn-rxn">ArN₂⁺ + C₆H₅OH →(alkaline)→ Ar–N=N–C₆H₄–OH
+(azo dye — orange/red colour)
+ArN₂⁺ + C₆H₅NH₂ →(acidic)→ Ar–N=N–C₆H₄–NH₂
+(para-aminoazobenzene — yellow)</div>
+          <div class="nrxn-note">Coupling occurs at PARA position (or ortho if para blocked). Phenol coupling in alkaline medium. Aniline coupling in slightly acidic. Products are azo dyes — coloured.</div>
+        </div>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Sandmeyer Memory Aid:</strong><br>
+        <strong>C</strong>uCl → Ar<strong>C</strong>l | Cu<strong>B</strong>r → Ar<strong>B</strong>r | Cu<strong>CN</strong> → Ar<strong>CN</strong><br>
+        <strong>KI</strong> → Ar<strong>I</strong> (no Cu!) | BF₄⁻ salt + heat → Ar<strong>F</strong> (Balz-Schiemann)<br>
+        "Cu for Cl, Br, CN — but NOT for I or F"</p>
+      </div>
+
+    </div>
+
+    <!-- 13.PYQ -->
+    <div class="sec" id="ch13-pyq" data-m="PYQ">
+      <h2 class="sh">13.P PYQ Pattern Analysis <span class="tag tg">2009–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following is the MOST basic? (a) Aniline (b) p-Nitroaniline (c) Acetamide (d) p-Methylaniline</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (d) p-Methylaniline (p-Toluidine)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Basicity of aryl amines: EDG at para increases basicity; EWG decreases</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Order</span><p>p-Toluidine > Aniline > p-Nitroaniline. Acetamide is NOT basic (lone pair on N donated to C=O — amide resonance).</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key</span><p>Amide alone pair is delocalised into C=O → NOT available for protonation. Acetamide near-neutral.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Gabriel phthalimide synthesis is used to prepare which type of amine?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Primary aliphatic amines ONLY</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Gabriel uses SN2 attack by phthalimide anion on alkyl halide</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Limitation</span><p>Aryl halides cannot be used (sp² C, no SN2). So only ALIPHATIC primary amines are obtained.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Contrast</span><p>Hofmann bromamide degradation also gives 1° amine but with one fewer carbon than starting amide.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Engine Ch13 -->
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 13</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Most basic amine in water"</div>
+            <div class="trigger-action">→ Secondary alkylamine (R₂NH) > Primary > Tertiary >> Aniline</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Carbylamine / isocyanide test"</div>
+            <div class="trigger-action">→ Only PRIMARY amines — CHCl₃ + KOH + RNH₂ → horrible smell</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Gabriel synthesis"</div>
+            <div class="trigger-action">→ Phthalimide + RX → primary aliphatic amine ONLY (not aryl)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Hofmann bromamide"</div>
+            <div class="trigger-action">→ RCONH₂ + Br₂/NaOH → RNH₂ (one C less!)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Sandmeyer"</div>
+            <div class="trigger-action">→ ArN₂⁺ + CuX → ArX. Cu for Cl, Br, CN. KI for I. BF₄ heat for F.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Azo coupling"</div>
+            <div class="trigger-action">→ ArN₂⁺ + phenol (alkaline) or aniline (acidic) → azo dye (coloured)</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Tertiary amine is most basic" — In WATER: 2° > 1° > 3°. In GAS PHASE: 3° > 2° > 1°. Specify medium!</div>
+          <div class="elim-step">❌ Trap: "Gabriel synthesis gives secondary amine" — FALSE. Gabriel gives PURE PRIMARY amines only.</div>
+          <div class="elim-step">❌ Trap: "Cu needed for Sandmeyer with iodide" — FALSE. ArI: just KI, no Cu. Cu needed only for Cl, Br, CN.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 13</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Basicity (aqueous)</div><div class="re-val">2°RNH > 1°RNH₂ > 3°R₃N > Aniline</div></div>
+          <div class="re-item"><div class="re-label">Gabriel</div><div class="re-val">Pure 1° aliphatic amine</div></div>
+          <div class="re-item"><div class="re-label">Hofmann degradation</div><div class="re-val">Amide → amine (–1 carbon)</div></div>
+          <div class="re-item"><div class="re-label">Carbylamine</div><div class="re-val">Only 1° amine + CHCl₃/KOH</div></div>
+          <div class="re-item"><div class="re-label">Diazotisation temp</div><div class="re-val">0–5°C (keep cold!)</div></div>
+          <div class="re-item"><div class="re-label">Sandmeyer: iodide</div><div class="re-val">KI only (no Cu needed)</div></div>
+          <div class="re-item"><div class="re-label">Balz-Schiemann</div><div class="re-val">ArN₂BF₄ heat → ArF</div></div>
+          <div class="re-item"><div class="re-label">Azo coupling</div><div class="re-val">Para position; alkaline for phenol</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- ch-body -->
+</div><!-- chapter 13 -->
+
+<!-- ═══════════════════════════════════════════════
+     CHAPTER 14 — BIOMOLECULES
+════════════════════════════════════════════════ -->
+<div class="chapter" id="ch14">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 12 · Chapter 14 · ~4–5 Qs/NEET</div>
+    <div class="ch-title">Biomolecules — <em>Carbohydrates, Proteins, Nucleic Acids &amp; Vitamins</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch14-s1">Carbohydrates</a>
+    <a href="#ch14-s2">Amino Acids &amp; Proteins</a>
+    <a href="#ch14-s3">Enzymes &amp; Vitamins</a>
+    <a href="#ch14-s4">Nucleic Acids</a>
+    <a href="#ch14-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 14.1 Carbohydrates -->
+    <div class="sec" id="ch14-s1" data-m="Carbohydrates">
+      <h2 class="sh">14.1 Carbohydrates — Structure, Types &amp; Tests <span class="tag tg">NCERT §14.1 — 3+ Qs/paper</span></h2>
+
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 Reducing/non-reducing sugars — every year</span>
+        <span class="score-pill sp-o">Mutarotation &amp; anomers tested</span>
+        <span class="score-pill sp-t">Glucose structure &amp; reactions key</span>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Definition</span>
+        <p>Carbohydrates = polyhydroxy aldehydes/ketones or compounds that hydrolyse to give them. General formula: Cₙ(H₂O)ₙ (though not always true — e.g., deoxyribose = C₅H₁₀O₄, NOT C₅(H₂O)₅).</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Class</th><th>Definition</th><th>Example</th><th>Hydrolysis</th></tr>
+          <tr><td>Monosaccharides</td><td>Cannot be hydrolysed further</td><td>Glucose (aldohexose), Fructose (ketohexose), Ribose (aldopentose)</td><td>N/A</td></tr>
+          <tr><td>Disaccharides</td><td>Hydrolyse to 2 monosaccharides</td><td>Sucrose, Maltose, Lactose</td><td>2 sugars</td></tr>
+          <tr><td>Polysaccharides</td><td>Hydrolyse to many monosaccharides</td><td>Starch, Cellulose, Glycogen</td><td>Many glucose units</td></tr>
+        </table>
+      </div>
+
+      <h3 class="ssh">Glucose — Key Facts (NCERT §14.1.1)</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Molecular Formula</div>
+          <ul><li>C₆H₁₂O₆ (D-Glucose)</li><li>M.W. = 180 g/mol</li><li>Aldohexose — CHO at C₁</li><li>Open chain ⇌ cyclic (pyranose) form</li></ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Evidence for Open Chain</div>
+          <ul><li>Reacts with Tollens' (CHO present)</li><li>Reacts with 5 equiv. acetic anhydride (5 OH groups)</li><li>Reacts with HCN (CN⁻ adds to CHO)</li><li>Forms oxime with NH₂OH</li></ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Cyclic Form (Haworth)</div>
+          <ul><li>α-D-Glucose: –OH on C₁ axial (trans to C₆CH₂OH)</li><li>β-D-Glucose: –OH on C₁ equatorial (cis to C₆CH₂OH)</li><li>C₁ = anomeric carbon</li><li>Mutarotation: α ⇌ β (equilibrium)</li></ul>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ α vs β Glucose Trick:</strong><br>
+        <strong>α</strong>-D-Glucose: –OH at C₁ on RIGHT (same side as ring O would be DOWN, OH is DOWN in Fischer) → in Haworth, OH at C₁ is BELOW ring<br>
+        <strong>β</strong>-D-Glucose: –OH at C₁ is ABOVE ring in Haworth<br>
+        Memory: "<strong>α</strong> = <strong>a</strong>bove is <strong>a</strong>bsent (below), <strong>β</strong> = <strong>b</strong>elow is <strong>b</strong>anished (above)"<br>
+        OR: α-anomer → OH below → same side as C6-CH₂OH = NO, OPPOSITE → above for β.</p>
+      </div>
+
+      <h3 class="ssh">Reducing vs Non-Reducing Sugars</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Sugar</th><th>Type</th><th>Tollens' / Fehling's</th><th>Reason</th></tr>
+          <tr><td>Glucose</td><td>Reducing</td><td>✓ Positive</td><td>Free aldehyde/hemiacetal in equilibrium</td></tr>
+          <tr><td>Fructose</td><td>Reducing</td><td>✓ Positive</td><td>Isomerises to aldehyde in alkaline; has hemiketal</td></tr>
+          <tr><td>Maltose</td><td>Reducing</td><td>✓ Positive</td><td>Free anomeric C (C₁ of one glucose unit free)</td></tr>
+          <tr><td>Lactose</td><td>Reducing</td><td>✓ Positive</td><td>Free anomeric C on galactose unit</td></tr>
+          <tr><td>Sucrose</td><td>NON-reducing</td><td>✗ Negative</td><td>Glycosidic bond between BOTH anomeric carbons (C₁ of glucose + C₂ of fructose) — NO free CHO</td></tr>
+          <tr><td>Cellulose</td><td>NON-reducing</td><td>✗ Negative (usually)</td><td>β-1,4-glycosidic; no free reducing end in large chains</td></tr>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET Critical</span>
+        <p><strong>Sucrose is the ONLY common disaccharide that is NON-reducing.</strong> Reason: In sucrose, the anomeric carbons of BOTH glucose AND fructose are involved in glycosidic bond (C₁ of α-D-glucose + C₂ of β-D-fructose) — so neither can open up to free aldehyde/ketone form. This is tested almost every year.</p>
+      </div>
+
+      <h3 class="ssh">Polysaccharides — Key Comparison</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Polysaccharide</th><th>Monomer</th><th>Linkage</th><th>Function</th><th>Note</th></tr>
+          <tr><td>Starch (amylose)</td><td>α-D-Glucose</td><td>α-1,4-glycosidic</td><td>Storage in plants</td><td>Gives blue-black with I₂ (iodine test)</td></tr>
+          <tr><td>Amylopectin</td><td>α-D-Glucose</td><td>α-1,4- (main) + α-1,6- (branch)</td><td>Storage (branched)</td><td>Part of starch</td></tr>
+          <tr><td>Glycogen</td><td>α-D-Glucose</td><td>α-1,4- + α-1,6-</td><td>Animal storage (liver + muscle)</td><td>Highly branched; "animal starch"</td></tr>
+          <tr><td>Cellulose</td><td>β-D-Glucose</td><td>β-1,4-glycosidic</td><td>Structural in plant cell walls</td><td>Humans cannot digest (no β-glucosidase)</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Memory Aid — Starch vs Cellulose:</strong><br>
+        Both = glucose polymer, but:<br>
+        <strong>St</strong>arch → α-glucose → α-1,4 links → coiled helix → digestible (α-amylase)<br>
+        <strong>C</strong>ellulose → β-glucose → β-1,4 links → straight chains (H-bonds crosslink) → NOT digestible by humans<br>
+        "α = Aamicable (digestible), β = Blocked (not digestible)"</p>
+      </div>
+    </div>
+
+    <!-- 14.2 Amino Acids & Proteins -->
+    <div class="sec" id="ch14-s2" data-m="Amino Acids">
+      <h2 class="sh">14.2 Amino Acids &amp; Proteins <span class="tag tc">NCERT §14.2</span></h2>
+
+      <h3 class="ssh">Amino Acids — Structure</h3>
+      <div class="mech-box">
+        <p>General structure: <strong>H₂N–CHR–COOH</strong> (α-amino acid). Both –NH₂ and –COOH on the SAME carbon (α-carbon).</p>
+        <ul class="pl">
+          <li><strong>Zwitterion:</strong> At physiological pH (~7), amino acid exists as ⁺H₃N–CHR–COO⁻ (zwitterion — internal salt)</li>
+          <li><strong>Isoelectric point (pI):</strong> pH at which amino acid carries zero net charge (exists as zwitterion). At pI, amino acid does NOT migrate in electric field.</li>
+          <li><strong>Essential amino acids:</strong> Cannot be synthesised by body — must come from diet. Examples: Leucine, Isoleucine, Valine, Lysine, Threonine, Methionine, Tryptophan, Phenylalanine (LIVKTMTF — approx.)</li>
+        </ul>
+      </div>
+
+      <h3 class="ssh">Protein Structure Levels</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Level</th><th>Description</th><th>Forces Involved</th></tr>
+          <tr><td>Primary</td><td>Sequence of amino acids; peptide bonds</td><td>Covalent peptide bonds (–CO–NH–)</td></tr>
+          <tr><td>Secondary</td><td>Regular repeating structure — α-helix or β-pleated sheet</td><td>Hydrogen bonds between NH and C=O of backbone</td></tr>
+          <tr><td>Tertiary</td><td>3D folding of polypeptide chain</td><td>H-bonds, disulfide bridges (–S–S–), ionic, hydrophobic interactions</td></tr>
+          <tr><td>Quaternary</td><td>Association of two or more polypeptide chains</td><td>Same as tertiary (non-covalent + disulfide)</td></tr>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Denaturation Trick:</strong> Protein denaturation = disruption of 2°, 3°, or 4° structure (NOT primary — peptide bonds remain intact). Denaturing agents: heat, strong acids/bases, urea, organic solvents. Denatured protein loses biological activity but amino acid sequence unchanged.</p>
+      </div>
+
+      <h3 class="ssh">Classification of Proteins</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>Structure</th><th>Examples</th></tr>
+          <tr><td>Fibrous proteins</td><td>Long, thread-like; insoluble in water</td><td>Keratin (hair, nails), Collagen (tendons), Myosin (muscle), Silk fibroin</td></tr>
+          <tr><td>Globular proteins</td><td>Spherical/compact; soluble</td><td>Haemoglobin, Insulin, Albumin, Enzymes</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 14.3 Enzymes & Vitamins -->
+    <div class="sec" id="ch14-s3" data-m="Enzymes">
+      <h2 class="sh">14.3 Enzymes, Vitamins &amp; Hormones <span class="tag tt">NCERT §14.3–14.4</span></h2>
+
+      <h3 class="ssh">Enzymes</h3>
+      <ul class="pl">
+        <li>Mostly proteins (except ribozymes which are RNA). Act as <strong>biocatalysts</strong>.</li>
+        <li><strong>Lock and Key model:</strong> Enzyme has specific active site that fits substrate precisely (rigid model)</li>
+        <li><strong>Induced Fit model:</strong> Active site changes shape to accommodate substrate (more accurate/modern)</li>
+        <li><strong>Coenzyme:</strong> Non-protein organic part (often vitamins — NAD⁺, FAD, CoA)</li>
+        <li><strong>Cofactor:</strong> Non-protein part — may be metal ion (Zn²⁺, Mg²⁺, Fe²⁺) or organic coenzyme</li>
+        <li><strong>Apoenzyme:</strong> Protein part only. <strong>Holoenzyme</strong> = apoenzyme + cofactor</li>
+        <li>Enzymes are specific, efficient, work at optimum pH &amp; temperature</li>
+      </ul>
+
+      <h3 class="ssh">Vitamins — Fat-Soluble vs Water-Soluble</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Vitamin</th><th>Type</th><th>Deficiency Disease</th><th>Chemical Name</th></tr>
+          <tr><td>A</td><td>Fat-soluble</td><td>Night blindness, Xerophthalmia</td><td>Retinol</td></tr>
+          <tr><td>B₁</td><td>Water-soluble</td><td>Beri-beri</td><td>Thiamine</td></tr>
+          <tr><td>B₂</td><td>Water-soluble</td><td>Ariboflavinosis (cracked lips)</td><td>Riboflavin</td></tr>
+          <tr><td>B₃ (Niacin)</td><td>Water-soluble</td><td>Pellagra</td><td>Nicotinamide</td></tr>
+          <tr><td>B₆</td><td>Water-soluble</td><td>Anaemia</td><td>Pyridoxine</td></tr>
+          <tr><td>B₁₂</td><td>Water-soluble</td><td>Pernicious anaemia</td><td>Cyanocobalamin</td></tr>
+          <tr><td>C</td><td>Water-soluble</td><td>Scurvy</td><td>Ascorbic acid</td></tr>
+          <tr><td>D</td><td>Fat-soluble</td><td>Rickets (children), Osteomalacia (adults)</td><td>Calciferol</td></tr>
+          <tr><td>E</td><td>Fat-soluble</td><td>Reproductive failure, muscular weakness</td><td>Tocopherol</td></tr>
+          <tr><td>K</td><td>Fat-soluble</td><td>Excessive bleeding (impaired clotting)</td><td>Phylloquinone</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Fat-Soluble Vitamins — Memory Aid: "ADEK"</strong><br>
+        A, D, E, K = Fat-soluble (stored in liver/fatty tissue — excess can cause toxicity)<br>
+        All others (B-complex + C) = Water-soluble — excreted in urine, daily intake required<br>
+        "Any Day Everyone Knows ADEK is fat-soluble"</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Vitamin D Trick:</strong> Vitamin D is BOTH a vitamin (dietary) AND a hormone (synthesised in skin on UV exposure). Called the "sunshine vitamin". Deficiency = Rickets. Vitamin D₂ (ergocalciferol) from plants; D₃ (cholecalciferol) from animal/skin synthesis.</p>
+      </div>
+    </div>
+
+    <!-- 14.4 Nucleic Acids -->
+    <div class="sec" id="ch14-s4" data-m="Nucleic Acids">
+      <h2 class="sh">14.4 Nucleic Acids — DNA &amp; RNA <span class="tag tg">NCERT §14.5 — 2–3 Qs/NEET</span></h2>
+
+      <h3 class="ssh">Nucleotide Components</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Component</th><th>DNA</th><th>RNA</th></tr>
+          <tr><td>Sugar</td><td>2-Deoxyribose (C₅H₁₀O₄)</td><td>Ribose (C₅H₁₀O₅)</td></tr>
+          <tr><td>Purines</td><td>Adenine (A), Guanine (G)</td><td>Adenine (A), Guanine (G)</td></tr>
+          <tr><td>Pyrimidines</td><td>Cytosine (C), Thymine (T)</td><td>Cytosine (C), Uracil (U)</td></tr>
+          <tr><td>Base pairing</td><td>A=T (2 H-bonds); G≡C (3 H-bonds)</td><td>A=U (2 H-bonds); G≡C (3 H-bonds)</td></tr>
+          <tr><td>Strands</td><td>Double helix (Watson-Crick)</td><td>Single stranded</td></tr>
+          <tr><td>Location</td><td>Nucleus (also mitochondria)</td><td>Nucleus + cytoplasm</td></tr>
+          <tr><td>Function</td><td>Stores genetic information</td><td>Protein synthesis (mRNA, tRNA, rRNA)</td></tr>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ NEET Purine vs Pyrimidine Trick:</strong><br>
+        <strong>PUR</strong>ines = <strong>PUR</strong>e <strong>A</strong>s of <strong>G</strong>old → Adenine, Guanine (double ring)<br>
+        <strong>PYR</strong>imidines = <strong>C</strong>ut it <strong>T</strong>imely (+<strong>U</strong>racil in RNA) → Cytosine, Thymine, Uracil (single ring)<br>
+        Base pairs: <strong>A-T</strong> = 2 H-bonds | <strong>G-C</strong> = 3 H-bonds → G-C pairs are STRONGER (more H-bonds → higher Tm)</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Term</th><th>Definition</th></tr>
+          <tr><td>Nucleoside</td><td>Base + Sugar (no phosphate)</td></tr>
+          <tr><td>Nucleotide</td><td>Base + Sugar + Phosphate group</td></tr>
+          <tr><td>Phosphodiester bond</td><td>Connects 3'-OH of one nucleotide to 5'-phosphate of next</td></tr>
+          <tr><td>Chargaff's rule</td><td>[A] = [T] and [G] = [C] in double-stranded DNA</td></tr>
+        </table>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">Chargaff's Rule — NEET</span>
+        <p>In DNA: %A = %T; %G = %C. If given % of one base, you can calculate all others. Example: If A = 30%, then T = 30%, and G = C = 20%. NEET has tested this calculation 4 times (2012, 2015, 2018, 2022).</p>
+      </div>
+    </div>
+
+    <!-- 14.PYQ -->
+    <div class="sec" id="ch14-pyq" data-m="PYQ">
+      <h2 class="sh">14.P PYQ Pattern Analysis <span class="tag tg">2009–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">Which of the following is a non-reducing sugar? (a) Glucose (b) Fructose (c) Sucrose (d) Maltose</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (c) Sucrose</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Non-reducing: both anomeric C atoms locked in glycosidic bond</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Sucrose: C₁(glucose)–O–C₂(fructose) glycosidic bond — no free CHO or hemiacetal possible</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key</span><p>All common sugars are reducing EXCEPT sucrose. Cellulose = technically reducing but very slow.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">In DNA, if cytosine content is 30%, what is the adenine content?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 20%</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Chargaff's rule: %A = %T; %G = %C; Total = 100%</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>C = 30% → G = 30% (Chargaff: G=C). Total G+C = 60%. Therefore A+T = 40%. A = T = 20%.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Answer</span><p>Adenine = 20%</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Fat-soluble vitamins are — (a) A,D,E,K (b) A,B,C,D (c) B₁,B₂,B₆,C (d) All</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (a) A, D, E, K</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Fat-soluble = stored in body fat and liver; water-soluble = excreted daily</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>ADEK = fat-soluble. All B vitamins + C = water-soluble.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Deficiency</span><p>A=Night blindness; D=Rickets; E=Reproductive failure; K=Bleeding disorder</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decision Engine Ch14 -->
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 14</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Non-reducing sugar"</div>
+            <div class="trigger-action">→ Sucrose ONLY among common sugars (both anomeric C used in bond)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Chargaff / DNA base %"</div>
+            <div class="trigger-action">→ A=T, G=C. Total A+T+G+C = 100%. Calculate the missing %.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Fat-soluble vitamin"</div>
+            <div class="trigger-action">→ ADEK. All others (B + C) are water-soluble.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Rickets / Scurvy / Beri-beri"</div>
+            <div class="trigger-action">→ Rickets=D; Scurvy=C; Beri-beri=B₁; Pellagra=B₃; Pernicious anaemia=B₁₂</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Purine / Pyrimidine"</div>
+            <div class="trigger-action">→ Purines: A+G (double ring). Pyrimidines: C+T (DNA), C+U (RNA).</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Animal starch / Glycogen"</div>
+            <div class="trigger-action">→ Glycogen = α-D-glucose + α-1,4 + α-1,6 (branched). Stored in liver+muscle.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Fructose is non-reducing — it's a ketone" — FALSE. Fructose IS reducing (tautomerises to aldose in alkaline; also has hemiketal).</div>
+          <div class="elim-step">❌ Trap: "DNA has uracil" — FALSE. DNA has Thymine. RNA has Uracil (no methyl group on pyrimidine).</div>
+          <div class="elim-step">❌ Trap: "Cellulose has α-1,4 linkage" — FALSE. Cellulose = β-1,4. Starch = α-1,4. Key difference in digestibility.</div>
+          <div class="elim-step">❌ Trap: "Denaturation breaks peptide bonds" — FALSE. Only 2°, 3°, 4° structure affected. Primary structure (peptide bonds) intact after denaturation.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 14</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Non-reducing sugar</div><div class="re-val">Sucrose only (common)</div></div>
+          <div class="re-item"><div class="re-label">Starch linkage</div><div class="re-val">α-1,4 (+ α-1,6 in amylopectin)</div></div>
+          <div class="re-item"><div class="re-label">Cellulose linkage</div><div class="re-val">β-1,4 (indigestible)</div></div>
+          <div class="re-item"><div class="re-label">Glycogen</div><div class="re-val">α-1,4 + α-1,6 (animal storage)</div></div>
+          <div class="re-item"><div class="re-label">DNA sugar</div><div class="re-val">2-Deoxyribose</div></div>
+          <div class="re-item"><div class="re-label">RNA sugar</div><div class="re-val">Ribose</div></div>
+          <div class="re-item"><div class="re-label">Chargaff</div><div class="re-val">A=T, G≡C; G≡C stronger (3 H-bonds)</div></div>
+          <div class="re-item"><div class="re-label">Fat-soluble</div><div class="re-val">A, D, E, K</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- ch-body -->
+</div><!-- chapter 14 -->
+
+</div><!-- .book -->
+
+<script>
+// Theme sync restore
+(function(){
+  var cb = document.getElementById('themeCb');
+  var dark = document.documentElement.hasAttribute('data-theme');
+  if(cb) cb.checked = dark;
+})();
+</script>
+</body>
+</html>
