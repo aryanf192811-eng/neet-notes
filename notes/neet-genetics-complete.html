@@ -1,0 +1,1707 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark,skipBC){
+    if(dark)document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb)cb.checked=!!dark;
+    if(!skipBC){try{var bc=new BroadcastChannel('neet_hub_theme');bc.postMessage({dark:!!dark});}catch(e){}}
+  }
+  window.setTheme=function(v){localStorage.setItem(KD,JSON.stringify(!!v));applyD(v);}
+  try{
+    var stored=localStorage.getItem(KD);
+    if(stored!==null)applyD(JSON.parse(stored),true);
+    else applyD(window.matchMedia('(prefers-color-scheme:dark)').matches,true);
+  }catch(e){applyD(false,true);}
+  try{
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.onmessage=function(e){applyD(e.data.dark,true);}
+  }catch(e){}
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Genetics &amp; Molecular Biology — NEET Mastery Cheatsheet</title>
+<meta name="description" content="The definitive NEET genetics and molecular biology cheatsheet: Mendel's laws, chromosomal theory, DNA replication, transcription, translation, mutations, evolution, biotechnology — PYQ 2009–2025, NCERT line-by-line analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;600;700&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+/* ─── ROOT + TOKENS ─── */
+:root{
+  --ink:#1a0d00;--paper:#fdf6ee;--paper2:#f5ede0;
+  --red:#8c1a1a;--green:#1a6b40;--blue:#1a4a8c;--gold:#8c6b00;
+  --purple:#5b1a8c;--orange:#8c4a00;--teal:#0d6b5a;
+  --border:#d4c4a8;--shadow:rgba(0,0,0,.08);
+  --accent:#7c1a8c;
+  --tag-r:rgba(140,26,26,.12);--tag-g:rgba(26,107,64,.12);
+  --tag-b:rgba(26,74,140,.12);--tag-p:rgba(91,26,140,.12);
+  --tag-o:rgba(140,74,0,.12);
+}
+[data-theme="dark"]{
+  --ink:#f0e6d6;--paper:#12100e;--paper2:#1a1714;
+  --border:#3a3028;--shadow:rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Crimson Pro',Georgia,serif;
+  line-height:1.7;min-height:100vh;
+}
+
+/* ─── SECURITY ─── */
+body{-webkit-user-select:none;-moz-user-select:none;user-select:none;}
+
+/* ─── STICKY NAV ─── */
+.top-bar{
+  position:sticky;top:0;z-index:100;
+  background:var(--paper2);border-bottom:2px solid var(--accent);
+  padding:10px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.top-bar a{
+  font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:600;
+  color:var(--accent);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;border:1px solid var(--accent);
+  transition:all .2s;
+}
+.top-bar a:hover{background:var(--accent);color:#fff;}
+.top-bar .hub-link{
+  margin-left:auto;font-size:.72rem;color:var(--green);border-color:var(--green);
+}
+.theme-toggle{
+  font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;
+  background:none;border:1px solid var(--border);border-radius:20px;
+  color:var(--ink);padding:3px 12px;cursor:pointer;
+}
+
+/* ─── HERO BANNER ─── */
+.hero{
+  background:linear-gradient(135deg,#0d0515 0%,#1a0530 40%,#0a1520 100%);
+  color:#f5e6ff;padding:54px 28px 44px;text-align:center;
+  border-bottom:3px solid var(--accent);
+}
+.hero .unit-tag{
+  display:inline-block;font-family:'Outfit',sans-serif;font-size:.7rem;
+  font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:#d4a0ff;border:1px solid #7c3aac;border-radius:20px;
+  padding:3px 14px;margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);
+  font-weight:700;color:#f5e6ff;margin-bottom:8px;
+}
+.hero h1 em{color:#d4a0ff;font-style:normal;}
+.hero .sub{font-size:1rem;color:#c0a8e0;max-width:680px;margin:0 auto 20px;}
+.stat-row{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.stat-pill{
+  font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  border-radius:20px;padding:4px 14px;color:#e0d0f5;
+}
+
+/* ─── BOOK WRAPPER ─── */
+.book{max-width:960px;margin:0 auto;padding:0 16px 60px;}
+
+/* ─── CHAPTER CARDS ─── */
+.chapter{
+  background:var(--paper2);border:1px solid var(--border);
+  border-radius:12px;margin:28px 0;overflow:hidden;
+  box-shadow:0 2px 12px var(--shadow);
+}
+.ch-head{
+  padding:22px 28px 18px;
+  border-bottom:3px solid var(--accent);
+  background:linear-gradient(135deg,rgba(124,26,140,.05),transparent);
+}
+.ch-ey{
+  font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:4px;
+}
+.ch-title{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;color:var(--ink);}
+.ch-title em{color:var(--accent);font-style:normal;}
+.ch-nav{
+  display:flex;gap:8px;flex-wrap:wrap;padding:10px 28px;
+  background:rgba(124,26,140,.04);border-bottom:1px solid var(--border);
+}
+.ch-nav a{
+  font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:600;
+  color:var(--accent);text-decoration:none;padding:2px 10px;
+  border:1px solid var(--accent);border-radius:14px;
+  transition:all .18s;
+}
+.ch-nav a:hover{background:var(--accent);color:#fff;}
+.ch-body{padding:24px 28px;}
+
+/* ─── SECTION HEADER ─── */
+.sec{margin-bottom:32px;}
+.sh{
+  font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;
+  color:var(--ink);margin:28px 0 14px;padding:10px 16px;
+  border-left:4px solid var(--accent);
+  background:rgba(124,26,140,.05);border-radius:0 6px 6px 0;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.ssh{
+  font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;
+  color:var(--accent);margin:20px 0 10px;
+  border-bottom:1px dashed var(--border);padding-bottom:4px;
+}
+
+/* ─── TAGS ─── */
+.tag{
+  font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;border-radius:12px;
+  padding:2px 9px;white-space:nowrap;
+}
+.tg{background:var(--tag-g);color:var(--green);}
+.tc{background:var(--tag-b);color:var(--blue);}
+.tp{background:var(--tag-p);color:var(--purple);}
+.tt{background:var(--tag-r);color:var(--red);}
+.tq{background:var(--tag-o);color:var(--orange);}
+
+/* ─── CONTENT BOXES ─── */
+.def-box,.note-box,.ncert-box{
+  border-radius:8px;padding:16px 20px;margin:16px 0;
+  position:relative;
+}
+.def-box{background:rgba(26,74,140,.06);border-left:4px solid var(--blue);}
+.note-box{background:rgba(26,107,64,.06);border-left:4px solid var(--green);}
+.ncert-box{background:rgba(140,107,0,.06);border-left:4px solid var(--gold);}
+.elim-box{
+  background:rgba(140,26,26,.06);border:1.5px solid rgba(140,26,26,.3);
+  border-radius:8px;padding:14px 18px;margin:14px 0;
+}
+.trick{
+  background:rgba(91,26,140,.06);border:1.5px solid rgba(91,26,140,.25);
+  border-radius:8px;padding:14px 18px;margin:14px 0;
+}
+.lbl{
+  display:block;font-family:'Outfit',sans-serif;font-size:.65rem;
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;
+}
+mark{background:rgba(124,26,140,.18);border-radius:2px;padding:0 2px;}
+
+/* ─── LISTS ─── */
+.pl{padding-left:22px;margin:8px 0;}
+.pl li,.pl.num li{margin:5px 0;line-height:1.65;}
+.pl.num{list-style-type:decimal;}
+
+/* ─── TABLES ─── */
+.tbl{overflow-x:auto;margin:16px 0;border-radius:8px;}
+table{width:100%;border-collapse:collapse;font-size:.88rem;}
+th{
+  background:rgba(124,26,140,.12);color:var(--ink);
+  font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:9px 12px;text-align:left;
+}
+td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(124,26,140,.03);}
+
+/* ─── FLEX CARDS ─── */
+.fcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0;}
+.fcard{
+  background:var(--paper);border:1px solid var(--border);border-radius:8px;
+  padding:14px 16px;
+}
+.fcard-title{
+  font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;
+  color:var(--accent);margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:4px;
+}
+.fcard ul{padding-left:16px;font-size:.87rem;}
+.fcard li{margin:3px 0;}
+
+/* ─── CG CONCEPT CARD ─── */
+.cg-card{
+  background:var(--paper);border:1px solid var(--border);
+  border-radius:8px;padding:16px 20px;margin:14px 0;
+}
+.cg-title{
+  font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;border-bottom:1px dashed var(--border);padding-bottom:6px;
+}
+
+/* ─── SCORE STRIP ─── */
+.score-strip{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;}
+.score-pill{
+  font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;
+  padding:4px 12px;border-radius:20px;border:1px solid var(--border);
+}
+.sp-r{background:rgba(140,26,26,.08);color:var(--red);}
+.sp-b{background:rgba(26,74,140,.08);color:var(--blue);}
+.sp-g{background:rgba(26,107,64,.08);color:var(--green);}
+.sp-p{background:rgba(91,26,140,.08);color:var(--purple);}
+
+/* ─── PYQ CARDS ─── */
+.pyq-card{
+  border:1.5px solid var(--border);border-radius:10px;margin:18px 0;
+  overflow:hidden;transition:box-shadow .2s;
+}
+.pyq-card:hover{box-shadow:0 4px 16px var(--shadow);}
+.pyq-head{
+  display:flex;align-items:center;gap:10px;padding:12px 16px;
+  cursor:pointer;flex-wrap:wrap;
+  background:rgba(124,26,140,.04);
+}
+.pyq-year{
+  font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;
+  background:var(--accent);color:#fff;border-radius:10px;
+  padding:2px 9px;white-space:nowrap;
+}
+.pyq-q{font-size:.88rem;flex:1;color:var(--ink);}
+.pyq-toggle{
+  font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:600;
+  background:none;border:1px solid var(--accent);border-radius:14px;
+  color:var(--accent);padding:3px 12px;cursor:pointer;white-space:nowrap;
+}
+.pyq-sol{
+  display:none;padding:14px 18px;border-top:1px solid var(--border);
+  font-size:.9rem;background:var(--paper);
+}
+.pyq-sol.open{display:block;}
+.ans-badge{
+  display:inline-block;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;
+  background:rgba(26,107,64,.1);color:var(--green);border-radius:14px;
+  padding:2px 12px;margin-bottom:8px;
+}
+.shortcut{
+  margin-top:10px;background:rgba(91,26,140,.06);
+  border-radius:6px;padding:10px 14px;font-size:.86rem;
+}
+
+/* ─── SVG / DIAGRAM AREA ─── */
+.svg-wrap{
+  overflow-x:auto;margin:20px 0;padding:14px;
+  background:var(--paper);border:1px solid var(--border);border-radius:10px;
+  text-align:center;
+}
+
+/* ─── PUNNETT SQUARE ─── */
+.punnett{border-collapse:collapse;margin:12px auto;}
+.punnett td,.punnett th{
+  width:60px;height:42px;text-align:center;vertical-align:middle;
+  border:1.5px solid var(--border);font-size:.88rem;
+}
+.punnett th{
+  background:rgba(124,26,140,.1);font-family:'Outfit',sans-serif;
+  font-size:.78rem;font-weight:700;
+}
+.punnett .dom{color:var(--purple);font-weight:700;}
+.punnett .rec{color:var(--red);}
+
+/* ─── TIMELINE ─── */
+.timeline{margin:16px 0;padding-left:0;list-style:none;}
+.timeline li{
+  display:flex;gap:14px;margin:0;padding:10px 0;
+  border-left:2px solid var(--accent);padding-left:16px;position:relative;
+}
+.timeline li::before{
+  content:'';position:absolute;left:-6px;top:14px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+.tl-year{
+  font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;
+  color:var(--accent);white-space:nowrap;min-width:60px;padding-top:2px;
+}
+
+/* ─── SCROLL LINKS ─── */
+a.anc{color:var(--accent);text-decoration:none;}
+a.anc:hover{text-decoration:underline;}
+
+/* ─── FOOTER ─── */
+.page-footer{
+  text-align:center;padding:28px;font-size:.8rem;color:var(--border);
+  border-top:1px solid var(--border);
+}
+
+/* ─── DARK MODE ─── */
+[data-theme="dark"] .chapter{background:#1a1714;}
+[data-theme="dark"] .fcard,[data-theme="dark"] .cg-card,[data-theme="dark"] .pyq-sol{background:#12100e;}
+[data-theme="dark"] th{background:rgba(124,26,140,.22);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .ch-body{padding:16px 14px;}
+  .ch-head{padding:16px 14px 12px;}
+  .fcards{grid-template-columns:1fr;}
+  .hero{padding:36px 16px 28px;}
+}
+</style>
+</head>
+<body oncontextmenu="return false">
+<div class="top-bar">
+  <a href="#ch-mendel">Mendel's Laws</a>
+  <a href="#ch-chr-theory">Chromosomal Theory</a>
+  <a href="#ch-mol-basis">Molecular Basis</a>
+  <a href="#ch-expression">Gene Expression</a>
+  <a href="#ch-mutation">Mutations</a>
+  <a href="#ch-evolution">Evolution &amp; Origin</a>
+  <a href="#ch-biotech">Biotechnology</a>
+  <a href="../index.html" class="hub-link">← Hub</a>
+  <button class="theme-toggle" onclick="setTheme(document.documentElement.getAttribute('data-theme')==='dark'?false:true)">◐ Theme</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="unit-tag">NEET Biology · Genetics &amp; Molecular Biology · Class XII</div>
+  <h1>Genetics &amp; Molecular Biology — <em>The Master Engine</em></h1>
+  <p class="sub">The definitive NEET resource: Mendel's Laws · Chromosomal Theory · DNA Structure · Replication · Transcription · Translation · Mutations · Evolution · Biotechnology — 700+ facts, PYQ 2009–2025 fully dissected.</p>
+  <div class="stat-row">
+    <div class="stat-pill">📖 NCERT Ch. 5, 6, 7, 8, 9 (Class XII)</div>
+    <div class="stat-pill">🔬 14 Complete Chapters</div>
+    <div class="stat-pill">⚡ 50+ PYQs 2009–2025</div>
+    <div class="stat-pill">🧬 Molecular Pathways</div>
+    <div class="stat-pill">🧪 Biotechnology Applications</div>
+  </div>
+</div>
+
+<div class="book">
+
+<!-- ══════════════ CHAPTER 1: MENDEL'S LAWS ══════════════ -->
+<div class="chapter" id="ch-mendel">
+  <div class="ch-head">
+    <div class="ch-ey">Chapter 1 · NCERT Class XII Ch. 5</div>
+    <div class="ch-title">Principles of Inheritance &amp; Variation — <em>Mendel's Laws Deep Dive</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch-mendel">Mendel</a>
+    <a href="#ch-chr-theory">Chromosomal Theory</a>
+    <a href="#ch-sexdeter">Sex Determination</a>
+    <a href="#ch-mol-basis">DNA</a>
+    <a href="#ch-expression">Gene Expression</a>
+    <a href="#ch-mutation">Mutations</a>
+    <a href="#ch-evolution">Evolution</a>
+    <a href="#ch-biotech">Biotech</a>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="mendel">
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 Monohybrid/Dihybrid crosses — 1–2 Qs</div>
+        <div class="score-pill sp-p">🟣 Incomplete dominance / Codominance — 1 Q</div>
+        <div class="score-pill sp-b">🔵 ABO blood groups / Epistasis — 1 Q</div>
+        <div class="score-pill sp-g">🟢 Pedigree analysis — 1 Q</div>
+      </div>
+
+      <h2 class="sh">Gregor Johann Mendel — Biographical Timeline <span class="tag tp">Foundation</span></h2>
+      <ul class="timeline">
+        <li><span class="tl-year">1822</span>Born in Heinzendorf, Austria (now Czech Republic)</li>
+        <li><span class="tl-year">1843</span>Entered Augustinian monastery at Brünn (Brno). Became a monk.</li>
+        <li><span class="tl-year">1851–53</span>Studied natural science at University of Vienna under Franz Unger (learned experimental design)</li>
+        <li><span class="tl-year">1856–63</span>Conducted hybridisation experiments on <em>Pisum sativum</em> (garden pea) in the monastery garden</li>
+        <li><span class="tl-year">1865</span>Presented findings at Brünn Natural History Society (Feb 8 and March 8)</li>
+        <li><span class="tl-year">1866</span>Published in "Versuche über Pflanzenhybriden" (Experiments on Plant Hybrids)</li>
+        <li><span class="tl-year">1900</span>Rediscovered by de Vries (Netherlands), Correns (Germany), Tschermak (Austria) independently</li>
+        <li><span class="tl-year">1909</span>Wilhelm Johannsen coined terms: <strong>Gene, Genotype, Phenotype</strong></li>
+      </ul>
+
+      <h2 class="sh">Why <em>Pisum sativum</em>? — Mendel's Reasons <span class="tag tg">NCERT Verbatim</span></h2>
+      <ul class="pl">
+        <li><strong>Available in many varieties</strong> with distinct, contrasting characters</li>
+        <li><strong>Short life-cycle</strong> — completes in one season; can study multiple generations quickly</li>
+        <li><strong>Bisexual flowers</strong> — normally self-pollinating (can control crosses)</li>
+        <li><strong>Easy to grow</strong> in large numbers</li>
+        <li><strong>Cheap and easy to maintain</strong></li>
+        <li>He studied <strong>7 pairs of contrasting characters</strong> — each controlled by a gene on a DIFFERENT chromosome (a lucky coincidence that made ratios clean)</li>
+      </ul>
+
+      <h2 class="sh">The 7 Contrasting Characters of Pea <span class="tag tt">NEET Every Year</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>#</th><th>Character</th><th>Dominant</th><th>Recessive</th><th>Gene Symbol</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Seed shape</td><td>Round (smooth)</td><td>Wrinkled</td><td>R/r</td></tr>
+            <tr><td>2</td><td>Seed colour (cotyledon)</td><td>Yellow</td><td>Green</td><td>Y/y</td></tr>
+            <tr><td>3</td><td>Pod shape</td><td>Inflated (full)</td><td>Constricted</td><td>—</td></tr>
+            <tr><td>4</td><td>Pod colour (unripe)</td><td>Green</td><td>Yellow</td><td>—</td></tr>
+            <tr><td>5</td><td>Flower colour</td><td>Violet (purple)</td><td>White</td><td>—</td></tr>
+            <tr><td>6</td><td>Flower position</td><td>Axial</td><td>Terminal</td><td>—</td></tr>
+            <tr><td>7</td><td>Plant height</td><td>Tall</td><td>Dwarf</td><td>T/t</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="elim-box">
+        <p><strong>NEET Trap:</strong> Pod colour = Green dominant over Yellow (NOT the same as seed colour where Yellow is dominant over Green). These are OPPOSITE! Students confuse pod and seed colour.</p>
+      </div>
+
+      <h2 class="sh">Mendel's First Law — Law of Dominance &amp; Uniformity <span class="tag tc">Core</span></h2>
+      <div class="def-box">
+        <span class="lbl">Law of Dominance (First Law)</span>
+        <p>When two homozygous parents differing in one character are crossed, <strong>all F₁ hybrids are uniform</strong> and resemble one parent (the dominant parent). The character that appears in F₁ = dominant; the hidden one = recessive.</p>
+        <p><strong>Monohybrid cross:</strong> TT × tt → F₁: all Tt (Tall = dominant). F₁ × F₁: Tt × Tt → F₂: 1TT : 2Tt : 1tt = <strong>3 Tall : 1 Dwarf</strong> (3:1 phenotypic ratio)</p>
+      </div>
+
+      <h3 class="ssh">Punnett Square — Monohybrid Cross F₂</h3>
+      <div class="svg-wrap">
+        <table class="punnett">
+          <tr>
+            <th></th><th>T</th><th>t</th>
+          </tr>
+          <tr>
+            <th>T</th>
+            <td class="dom">TT</td>
+            <td class="dom">Tt</td>
+          </tr>
+          <tr>
+            <th>t</th>
+            <td class="dom">Tt</td>
+            <td class="rec">tt</td>
+          </tr>
+        </table>
+        <p style="font-size:.82rem;margin-top:8px;color:var(--accent);">Genotypic ratio: 1TT : 2Tt : 1tt | Phenotypic ratio: <strong>3 Tall : 1 Dwarf</strong></p>
+      </div>
+
+      <h2 class="sh">Mendel's Second Law — Law of Segregation (Second Law) <span class="tag tc">Mechanism</span></h2>
+      <div class="def-box">
+        <span class="lbl">Law of Segregation (Purity of Gametes)</span>
+        <p>During gamete formation, the two alleles of a gene <strong>segregate (separate)</strong> from each other so that a gamete receives only one allele of each gene. The alleles remain pure — they do NOT blend (blending theory disproved).</p>
+        <p><strong>Molecular basis:</strong> During Meiosis I, homologous chromosomes segregate into different gametes → each gamete gets only one allele.</p>
+      </div>
+
+      <h2 class="sh">Mendel's Third Law — Law of Independent Assortment <span class="tag tc">Dihybrid</span></h2>
+      <div class="def-box">
+        <span class="lbl">Law of Independent Assortment</span>
+        <p>When two pairs of contrasting characters are considered simultaneously, the genes for different characters assort <strong>independently</strong> of each other during gamete formation.</p>
+        <p><strong>Dihybrid cross:</strong> RRYY × rryy → F₁: all RrYy. F₁ × F₁: RrYy × RrYy → <strong>9:3:3:1 ratio</strong> (9 Round Yellow : 3 Round Green : 3 Wrinkled Yellow : 1 Wrinkled Green)</p>
+      </div>
+
+      <h3 class="ssh">Punnett Square — Dihybrid Cross F₂ gametes (RrYy)</h3>
+      <div class="svg-wrap">
+        <table class="punnett" style="width:auto;">
+          <tr>
+            <th></th><th>RY</th><th>Ry</th><th>rY</th><th>ry</th>
+          </tr>
+          <tr>
+            <th>RY</th>
+            <td class="dom">RRYY</td><td class="dom">RRYy</td><td class="dom">RrYY</td><td class="dom">RrYy</td>
+          </tr>
+          <tr>
+            <th>Ry</th>
+            <td class="dom">RRYy</td><td class="dom">RRyy</td><td class="dom">RrYy</td><td class="dom">Rryy</td>
+          </tr>
+          <tr>
+            <th>rY</th>
+            <td class="dom">RrYY</td><td class="dom">RrYy</td><td class="rec">rrYY</td><td class="rec">rrYy</td>
+          </tr>
+          <tr>
+            <th>ry</th>
+            <td class="dom">RrYy</td><td class="dom">Rryy</td><td class="rec">rrYy</td><td class="rec">rryy</td>
+          </tr>
+        </table>
+        <p style="font-size:.82rem;margin-top:8px;color:var(--accent);">F₂ phenotypic ratio: <strong>9 Round Yellow : 3 Round Green : 3 Wrinkled Yellow : 1 Wrinkled Green</strong></p>
+      </div>
+
+      <h2 class="sh">Deviations from Mendelian Ratios — Critical NEET Topics <span class="tag tt">5–6 Qs/yr</span></h2>
+
+      <h3 class="ssh">A. Incomplete Dominance (Blending)</h3>
+      <div class="cg-card">
+        <div class="cg-title">Incomplete Dominance — Snapdragon (Antirrhinum) Example</div>
+        <ul class="pl">
+          <li>When neither allele is fully dominant → intermediate phenotype in F₁</li>
+          <li>Cross: Red (RR) × White (rr) → F₁: <strong>Pink (Rr)</strong> — neither parent phenotype</li>
+          <li>F₁ × F₁: Rr × Rr → F₂: <strong>1 Red : 2 Pink : 1 White</strong></li>
+          <li>Genotypic ratio = Phenotypic ratio = <strong>1:2:1</strong></li>
+          <li>Examples: Antirrhinum (flower colour), Andalusian fowl (feather colour: black × white → blue-black), 4 o'clock plant (<em>Mirabilis jalapa</em>)</li>
+        </ul>
+      </div>
+
+      <h3 class="ssh">B. Codominance — Both Alleles Expressed</h3>
+      <div class="cg-card">
+        <div class="cg-title">Codominance — ABO Blood Group System</div>
+        <ul class="pl">
+          <li>Both alleles are equally expressed simultaneously in heterozygote (no blending, no dominance)</li>
+          <li>Example: <strong>ABO blood groups</strong>. Gene = <em>I</em> gene. 3 alleles: Iᴬ, Iᴮ, i</li>
+          <li>Iᴬ and Iᴮ are both DOMINANT over i but are CODOMINANT to each other</li>
+          <li>Genotype IᴬIᴮ → Blood group AB (both A and B antigens expressed simultaneously = codominance)</li>
+          <li>Multiple allelism: 3 alleles control blood group, but a diploid individual has only 2 at a time</li>
+        </ul>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Genotype</th><th>Blood Group</th><th>RBC Antigen</th><th>Plasma Antibody</th></tr></thead>
+          <tbody>
+            <tr><td>IᴬIᴬ or Iᴬi</td><td>A</td><td>A</td><td>Anti-B</td></tr>
+            <tr><td>IᴮIᴮ or Iᴮi</td><td>B</td><td>B</td><td>Anti-A</td></tr>
+            <tr><td>IᴬIᴮ</td><td>AB</td><td>A + B</td><td>None</td></tr>
+            <tr><td>ii</td><td>O</td><td>None</td><td>Anti-A + Anti-B</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">If a person with blood group A marries a person with blood group B, what blood groups are possible in their offspring? (Given both parents are heterozygous)</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: A, B, AB, O — all four possible</span>
+          <p>Father: Iᴬi × Mother: Iᴮi → Gametes: Iᴬ, i and Iᴮ, i → Offspring: IᴬIᴮ (AB), Iᴬi (A), iIᴮ (B), ii (O). All four blood groups are possible when both parents are heterozygous.</p>
+          <div class="shortcut"><p>If question specifies homozygous A (IᴬIᴬ) × heterozygous B (Iᴮi) → offspring: IᴬIᴮ (AB) and Iᴬi (A) only.</p></div>
+        </div>
+      </div>
+
+      <h3 class="ssh">C. Pleiotropy — One Gene → Many Phenotypic Effects</h3>
+      <ul class="pl">
+        <li>A single gene influences multiple, apparently unrelated phenotypic characters</li>
+        <li><strong>Examples:</strong></li>
+        <li><em>Phenylketonuria (PKU):</em> Mutation in gene for phenylalanine hydroxylase → affects pigmentation (albinism), intellectual disability, brain damage (multiple effects from one gene)</li>
+        <li><em>Starch synthesis in pea seeds:</em> Round (R) allele → branched starch → more water absorbed → smooth seed. Wrinkled (r) allele → unbranched starch → less water → wrinkled appearance. One gene affects both starch type AND seed shape.</li>
+      </ul>
+
+      <h3 class="ssh">D. Multiple Allelism</h3>
+      <ul class="pl">
+        <li>More than 2 allelic forms of a gene exist in a population at the same gene locus</li>
+        <li>Any individual has only 2 alleles at most (diploid)</li>
+        <li><strong>Example:</strong> ABO blood group — 3 alleles (Iᴬ, Iᴮ, i). Coat colour in rabbits — 4 alleles (C, cᶜʰ, cʰ, c). Eye colour in <em>Drosophila</em>.</li>
+      </ul>
+
+      <h3 class="ssh">E. Polygenic Inheritance</h3>
+      <div class="cg-card">
+        <div class="cg-title">Polygenic Traits — Many Genes, One Character</div>
+        <ul class="pl">
+          <li>A trait is controlled by <strong>two or more genes</strong> (additive effect)</li>
+          <li>Shows continuous variation → bell curve distribution in population</li>
+          <li><strong>Examples:</strong> Human skin colour (multiple genes for melanin amount), Human height, Eye colour, IQ, Wheat kernel colour (Ronald Fisher's classic example)</li>
+          <li>Skin colour in humans: At least 3 genes (A, B, C) each contributing additive pigmentation. AABBCC = darkest; aabbcc = lightest (albino)</li>
+        </ul>
+      </div>
+
+      <h2 class="sh">Epistasis — Gene Interaction Ratios <span class="tag tt">NEET Trap Zone</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Phenotypic Ratio</th><th>Example</th><th>Epistasis by</th></tr></thead>
+          <tbody>
+            <tr><td>Normal (no interaction)</td><td>9:3:3:1</td><td>Basic dihybrid</td><td>—</td></tr>
+            <tr><td>Dominant Epistasis</td><td>12:3:1</td><td>Summer squash fruit colour</td><td>Dominant allele of 1 gene masks other gene</td></tr>
+            <tr><td>Dominant Epistasis (reversed)</td><td>13:3</td><td>—</td><td>—</td></tr>
+            <tr><td>Recessive Epistasis</td><td>9:3:4</td><td>Labrador dog coat colour</td><td>Homozygous recessive masks other gene</td></tr>
+            <tr><td>Recessive Epistasis (reversed)</td><td>9:7</td><td>Sweet pea flower colour</td><td>Both genes must have ≥1 dominant allele</td></tr>
+            <tr><td>Dominant + Recessive</td><td>13:3</td><td>—</td><td>—</td></tr>
+            <tr><td>Duplicate dominant</td><td>15:1</td><td>Shepherd's purse capsule</td><td>Either dominant allele alone suffices</td></tr>
+            <tr><td>Complementary</td><td>9:7</td><td>Sweet pea (Bateson &amp; Punnett)</td><td>Both genes needed for colour</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">In sweet pea, the 9:7 ratio is an example of: (A) Recessive epistasis (B) Dominant epistasis (C) Complementary gene interaction (D) Duplicate genes</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) Complementary gene interaction</span>
+          <p>In sweet pea (Bateson &amp; Punnett): Flower colour requires BOTH dominant alleles (C_P_). If either gene is homozygous recessive → white flowers. So only C_P_ (9/16) → coloured; rest (3 Cpp + 3 ccP + 1 ccpp) → white. Ratio: 9 purple : 7 white. This is complementary interaction where both gene products are needed.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Linked Genes &amp; Recombination — Bateson's Discovery <span class="tag tc">Linkage Map</span></h2>
+      <div class="cg-card">
+        <div class="cg-title">Linkage — Discovery by Bateson &amp; Punnett</div>
+        <ul class="pl">
+          <li>Morgan (working on <em>Drosophila</em>) showed that genes on the same chromosome tend to be inherited together = <strong>linked genes</strong></li>
+          <li><strong>Coupling (cis):</strong> Two dominant alleles on same chromosome</li>
+          <li><strong>Repulsion (trans):</strong> One dominant + one recessive on same chromosome</li>
+          <li><strong>Crossing over</strong> (during Prophase I of meiosis) creates new combinations = <strong>recombinants</strong></li>
+          <li><strong>Recombination frequency</strong> = (Number of recombinant offspring / Total offspring) × 100%</li>
+          <li>1% recombination = 1 <strong>Morgan (centimorgan, cM)</strong> — unit of genetic distance</li>
+          <li>Maximum recombination = 50% (genes are effectively unlinked — behave as if on different chromosomes)</li>
+        </ul>
+      </div>
+
+      <h2 class="sh">Pedigree Analysis — NEET Pattern Recognition <span class="tag tp">2 Qs/yr</span></h2>
+      <div class="cg-card">
+        <div class="cg-title">Pedigree Symbols &amp; Decision Rules</div>
+        <ul class="pl">
+          <li>□ = Unaffected male. ■ = Affected male. ○ = Unaffected female. ● = Affected female.</li>
+          <li>― = Mating line. | = Sibship line. ◇ = Sex unspecified.</li>
+        </ul>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type of Inheritance</th><th>Key Diagnostic Features in Pedigree</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Autosomal Dominant</strong></td><td>Affects EVERY generation (no skipping). Both sexes equally affected. Every affected child has at least one affected parent.</td></tr>
+            <tr><td><strong>Autosomal Recessive</strong></td><td>Can skip generations. Both sexes equally. Two unaffected parents can have affected child (carriers). Appears in consanguineous marriages.</td></tr>
+            <tr><td><strong>X-linked Dominant</strong></td><td>Affected father → all daughters affected but no sons. Affected mother → may pass to sons or daughters. Cannot pass from father to son.</td></tr>
+            <tr><td><strong>X-linked Recessive</strong></td><td>More males affected. Carrier female → 50% sons affected. Affected male × normal female → carrier daughters, normal sons (usually). Father NEVER passes X-linked to son (father gives Y to son).</td></tr>
+            <tr><td><strong>Y-linked (Holandric)</strong></td><td>Only males affected. Passes from FATHER to ALL SONS (through Y chromosome). Example: Hairy pinna (ear) in humans.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In a pedigree, two unaffected parents produce an affected child. What can be concluded? (A) Autosomal dominant (B) Autosomal recessive (C) X-linked dominant (D) Y-linked</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Autosomal recessive</span>
+          <p>Two normal (unaffected) parents producing an affected child is the hallmark of <strong>autosomal recessive</strong> inheritance. Both parents are carriers (Aa × Aa → 1/4 affected aa). In autosomal dominant, at least one parent would be affected. X-linked recessive can also fit if child is male — need to check sex of affected child for distinction.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Important Genetic Disorders — NCERT Table <span class="tag tt">2–3 Qs/yr</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Disorder</th><th>Inheritance</th><th>Gene/Chromosome</th><th>Key Features</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Haemophilia A</strong></td><td>X-linked recessive</td><td>Factor VIII gene (X)</td><td>Prolonged bleeding; royal disease; "bleeder's disease"</td></tr>
+            <tr><td><strong>Haemophilia B</strong> (Christmas disease)</td><td>X-linked recessive</td><td>Factor IX gene (X)</td><td>Clinically similar to A</td></tr>
+            <tr><td><strong>Colourblindness</strong> (Red-green)</td><td>X-linked recessive</td><td>OPN1LW/OPN1MW (X)</td><td>Cannot distinguish red from green. More common in males.</td></tr>
+            <tr><td><strong>Sickle-cell anaemia</strong></td><td>Autosomal recessive</td><td>HBB gene (chr. 11)</td><td>Point mutation; Glu→Val at 6th position of β-globin. HbS. Sickle-shaped RBCs. Carrier = sickle-cell trait (some protection against malaria)</td></tr>
+            <tr><td><strong>Phenylketonuria (PKU)</strong></td><td>Autosomal recessive</td><td>PAH gene (chr. 12)</td><td>Phenylalanine hydroxylase absent → phenylalanine accumulates → brain damage. Mental retardation. Light skin (less melanin). Musty odour.</td></tr>
+            <tr><td><strong>Thalassaemia</strong></td><td>Autosomal recessive</td><td>HBA/HBB genes</td><td>Reduced/absent α or β globin → haemolytic anaemia. Requires transfusions. Common in Mediterranean.</td></tr>
+            <tr><td><strong>Colour blindness</strong></td><td>X-linked recessive</td><td>X chromosome</td><td>Frequency: 8% males, 0.64% females</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Chromosomal Disorders — Aneuploidies</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Condition</th><th>Karyotype</th><th>Chromosomes</th><th>Key Features</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Down Syndrome</strong> (Trisomy 21)</td><td>47,XX or XY (+21)</td><td>3 copies of Chr. 21</td><td>Short stature, broad palm, cognitive disability, flat face, epicanthic folds, single palmar crease; ↑risk with maternal age</td></tr>
+            <tr><td><strong>Klinefelter's Syndrome</strong></td><td>47,XXY</td><td>Extra X in male</td><td>Male; feminized features; small testes; breast development (gynaecomastia); infertile; Barr body present</td></tr>
+            <tr><td><strong>Turner's Syndrome</strong></td><td>45,XO</td><td>One X missing in female</td><td>Female; short stature; webbed neck; shield chest; primary amenorrhoea (no menstruation); infertile; NO Barr body</td></tr>
+            <tr><td><strong>Edward's Syndrome</strong> (Trisomy 18)</td><td>47 (+18)</td><td>3 copies of Chr. 18</td><td>Severe mental retardation; heart defects; short survival</td></tr>
+            <tr><td><strong>Patau Syndrome</strong> (Trisomy 13)</td><td>47 (+13)</td><td>3 copies of Chr. 13</td><td>Cleft lip/palate; heart defects; severe developmental issues</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">A female with 45 chromosomes (45, XO) will show: (A) Klinefelter's syndrome (B) Turner's syndrome (C) Down's syndrome (D) Edward's syndrome</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Turner's Syndrome</span>
+          <p>45, XO = Turner's syndrome. Karyotype: 45 chromosomes, only one X (O = absent sex chromosome). Features: female phenotype, infertile, short stature, webbed neck, shield-shaped chest, NO menstruation, NO Barr body. Klinefelter = 47, XXY. Down = 47 (trisomy 21).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /mendel -->
+
+<!-- ══════════════ CHAPTER 2: CHROMOSOMAL THEORY ══════════════ -->
+<div class="chapter" id="ch-chr-theory">
+  <div class="ch-head" style="border-bottom-color:#1a4a8c;">
+    <div class="ch-ey">Chapter 2 · NCERT Class XII Ch. 5</div>
+    <div class="ch-title">Chromosomal Theory of Inheritance — <em>Morgan, Linkage &amp; Sex Determination</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="chromosomal">
+      <h2 class="sh">Chromosomal Theory — Historical Development <span class="tag tc">NCERT Exact</span></h2>
+
+      <ul class="timeline">
+        <li><span class="tl-year">1902</span><strong>Walter Sutton &amp; Theodore Boveri</strong> independently proposed that chromosomes are the physical carriers of genes. Behaviour of chromosomes during meiosis parallels Mendel's factors.</li>
+        <li><span class="tl-year">1910</span><strong>Thomas Hunt Morgan</strong> — worked on <em>Drosophila melanogaster</em>; demonstrated sex-linkage. Showed genes are on specific chromosomes.</li>
+        <li><span class="tl-year">1911</span><strong>Morgan</strong> — linkage groups; showed that some genes do NOT assort independently (violating Mendel's 3rd law).</li>
+        <li><span class="tl-year">1926</span><strong>Morgan</strong> won Nobel Prize in Physiology or Medicine for chromosome theory of heredity.</li>
+        <li><span class="tl-year">1913</span><strong>Alfred Sturtevant</strong> (Morgan's student) — created first chromosome map (linkage map) using recombination frequencies.</li>
+      </ul>
+
+      <h3 class="ssh">Why Drosophila melanogaster?</h3>
+      <ul class="pl">
+        <li>Small size; easy to breed in lab</li>
+        <li><strong>Short generation time</strong> (~2 weeks at 25°C)</li>
+        <li>Produces <strong>large number of offspring</strong></li>
+        <li>Only <strong>4 pairs of chromosomes</strong> (3 autosomes + 1 sex chromosome pair)</li>
+        <li>Clear visible sex difference: males have distinctly shaped sex comb on forelegs</li>
+        <li>Many easily identifiable <strong>morphological mutants</strong></li>
+        <li>Male <em>Drosophila</em> <strong>does NOT show crossing over</strong> (no recombination in male flies) — simplifies analysis</li>
+      </ul>
+
+      <h2 class="sh" id="ch-sexdeter">Sex Determination — Multiple Systems <span class="tag tt">2–3 Qs/yr</span></h2>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>System</th><th>Female</th><th>Male</th><th>Examples</th><th>Who determines sex?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>XX-XY</strong></td><td>XX (homogametic)</td><td>XY (heterogametic)</td><td>Humans, Drosophila, most mammals, most insects</td><td>MALE (Y determines maleness via SRY gene)</td></tr>
+            <tr><td><strong>XX-XO</strong></td><td>XX</td><td>XO (no Y)</td><td>Some insects (Grasshopper, <em>Protenor</em>)</td><td>MALE (whether X or no X in gamete)</td></tr>
+            <tr><td><strong>ZW-ZZ</strong></td><td>ZW (heterogametic)</td><td>ZZ (homogametic)</td><td>Birds, butterflies, snakes, fish</td><td>FEMALE (ZW = female; ZZ = male)</td></tr>
+            <tr><td><strong>ZO-ZZ</strong></td><td>ZO</td><td>ZZ</td><td>Some moths</td><td>FEMALE</td></tr>
+            <tr><td><strong>Haplodiploidy</strong></td><td>Diploid (2n)</td><td>Haploid (n)</td><td>Ants, bees, wasps (Hymenoptera)</td><td>By fertilization. Fertilized egg → female (2n). Unfertilized egg → male (n).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">Sex Determination in Humans — SRY Gene</span>
+        <p>In humans, the <strong>Y chromosome determines maleness</strong>. The SRY gene (Sex-determining Region of Y chromosome) on the short arm of Y chromosome encodes Testis-Determining Factor (TDF). TDF → testes development → testosterone → male phenotype. XX individuals without SRY → female (default phenotype = female). XY individuals with SRY mutation → female phenotype (Swyer syndrome).</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">In birds, the sex of the individual is determined by: (A) XX-XY system (B) ZW-ZZ system (C) XX-XO system (D) Environmental determination</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) ZW-ZZ system</span>
+          <p>Birds use the <strong>ZW-ZZ system</strong> where the female is the heterogametic sex (ZW) — opposite of humans! Male birds = ZZ (homogametic). This is tested to ensure students don't apply the human XX-XY system to all organisms. Also applicable to snakes, butterflies.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Barr Body — Sex Chromatin <span class="tag tc">Karyotype Tip</span></h2>
+      <ul class="pl">
+        <li>Discovered by Murray Barr (1949)</li>
+        <li>= <strong>Inactive X chromosome</strong> in mammalian somatic cells (condensed, dark-staining)</li>
+        <li>Number of Barr bodies = (Number of X chromosomes) − 1</li>
+        <li>Normal female (XX) → 1 Barr body; Normal male (XY) → 0 Barr bodies</li>
+        <li>Klinefelter (XXY) → 1 Barr body. Turner (XO) → 0 Barr bodies. XXX → 2 Barr bodies.</li>
+        <li><strong>Mary Lyon's hypothesis (Lyonization):</strong> One X chromosome is inactivated randomly in every somatic cell at early embryo stage. The inactivated X forms the Barr body. In each cell, inactivation is permanent and clonal — this is why calico cats exist (patchy coat colour).</li>
+      </ul>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">How many Barr bodies are present in a cell of a normal human female?</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 1 Barr body</span>
+          <p>Normal female = 46,XX. Number of Barr bodies = number of X chromosomes − 1 = 2 − 1 = <strong>1</strong>. The Barr body is the inactivated X chromosome (Lyon's hypothesis). Normal male = 46,XY → 0 Barr bodies. Klinefelter (XXY) → 1 Barr body. Turner (XO) → 0.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /chromosomal theory -->
+
+
+
+<!-- ══════════════ CHAPTER 3: MOLECULAR BASIS OF INHERITANCE ══════════════ -->
+<div class="chapter" id="ch-mol-basis">
+  <div class="ch-head" style="border-bottom-color:#1a6b40;">
+    <div class="ch-ey">Chapter 3 · NCERT Class XII Ch. 6</div>
+    <div class="ch-title">Molecular Basis of Inheritance — <em>DNA: Structure, Replication &amp; The Genetic Code</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="mol-basis">
+
+      <div class="score-strip">
+        <div class="score-pill sp-r">🔴 DNA structure (Chargaff, Watson-Crick) — 1–2 Qs</div>
+        <div class="score-pill sp-b">🔵 DNA replication (enzymes, steps) — 1–2 Qs</div>
+        <div class="score-pill sp-p">🟣 Genetic code properties — 1 Q</div>
+        <div class="score-pill sp-g">🟢 Transcription/Translation — 1–2 Qs</div>
+      </div>
+
+      <h2 class="sh">The Genetic Material Experiment — Historical Quest <span class="tag tp">Must Know</span></h2>
+
+      <ul class="timeline">
+        <li><span class="tl-year">1928</span><strong>Frederick Griffith</strong> — Transformation experiment with <em>Streptococcus pneumoniae</em>. S-strain (smooth, virulent) and R-strain (rough, avirulent). Heat-killed S + live R → some live R transformed to S and killed mice → "transforming principle" exists.</li>
+        <li><span class="tl-year">1944</span><strong>Avery, MacLeod &amp; McCarty</strong> — identified transforming principle as <strong>DNA</strong> (not protein). Used DNase, RNase, Protease — only DNase destroyed transforming ability.</li>
+        <li><span class="tl-year">1952</span><strong>Hershey &amp; Chase</strong> — Confirmed DNA is genetic material. Used bacteriophage T2 with radioactive labels: ³⁵S (protein coat) or ³²P (DNA). After infection: ³²P found inside bacteria (DNA injected), ³⁵S stayed outside (protein coat stayed). DNA = genetic material.</li>
+        <li><span class="tl-year">1953</span><strong>James Watson &amp; Francis Crick</strong> — double helix model of DNA. Used X-ray data from <strong>Rosalind Franklin</strong> (Photo 51) and Erwin Chargaff's rules.</li>
+        <li><span class="tl-year">1957</span><strong>Arthur Kornberg</strong> — isolated DNA polymerase I from <em>E. coli</em>. Nobel Prize 1959.</li>
+        <li><span class="tl-year">1958</span><strong>Meselson &amp; Stahl</strong> — proved semi-conservative replication using ¹⁵N/¹⁴N density gradient centrifugation in <em>E. coli</em>.</li>
+        <li><span class="tl-year">1961</span><strong>Jacob &amp; Monod</strong> — proposed operon model. Nobel Prize 1965.</li>
+        <li><span class="tl-year">1961–66</span><strong>Nirenberg, Khorana, Holley</strong> — cracked the genetic code. Nobel Prize 1968.</li>
+      </ul>
+
+      <h2 class="sh">Chargaff's Rules — Base Pairing Rules <span class="tag tt">NEET Every Year</span></h2>
+      <div class="def-box">
+        <span class="lbl">Chargaff's Rules (1950)</span>
+        <p>From chemical analysis of DNA from many organisms:</p>
+        <p>1. <strong>A = T</strong> (Adenine always equals Thymine) in double-stranded DNA</p>
+        <p>2. <strong>G = C</strong> (Guanine always equals Cytosine) in double-stranded DNA</p>
+        <p>3. Therefore: <strong>(A + G) = (T + C)</strong> — purines = pyrimidines</p>
+        <p>4. Base ratios are species-specific but constant for a given organism regardless of tissue</p>
+        <p><strong>Purine bases:</strong> Adenine (A) + Guanine (G) — 2 rings</p>
+        <p><strong>Pyrimidine bases:</strong> Thymine (T) + Cytosine (C) + Uracil (U, in RNA) — 1 ring</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>If given %A, find others:</strong> If A = 25%, then T = 25% (A=T). G + C = 100 − 50 = 50%. So G = C = 25%. <br/>
+        <strong>If given A+T/G+C ratio:</strong> AT% + GC% = 100%. GC% = 100 − AT%.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In a DNA double helix, if adenine content is 20%, what is the percentage of guanine?</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 30%</span>
+          <p>A = 20% → T = 20% (Chargaff's rule). So A + T = 40%. Remaining G + C = 60%. Since G = C → G = <strong>30%</strong>. C = 30% also. Quick formula: G% = (100 − 2A%) / 2 = (100 − 40) / 2 = 30%.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Watson-Crick Double Helix Model — NCERT Complete <span class="tag tc">Foundation</span></h2>
+      <ul class="pl">
+        <li><strong>Two polynucleotide chains</strong> wound around a common axis → right-handed double helix</li>
+        <li>Sugar-phosphate backbone on the <strong>outside</strong>; nitrogenous bases on the inside</li>
+        <li>Two strands are <strong>antiparallel</strong> — one runs 5'→3', the other 3'→5'</li>
+        <li>Bases held by <strong>hydrogen bonds:</strong> A-T = <mark>2 H-bonds</mark>; G-C = <mark>3 H-bonds</mark></li>
+        <li>Stacking interactions between adjacent base pairs (hydrophobic) stabilize the helix additionally</li>
+        <li><strong>Diameter:</strong> 2 nm (20 Å). <strong>Pitch</strong> (one complete turn): 3.4 nm. <strong>Base pairs per turn:</strong> 10. <strong>Distance between adjacent bp:</strong> 0.34 nm (3.4 Å).</li>
+        <li><strong>Nucleosome:</strong> DNA wrapped around histone octamer (2 each of H2A, H2B, H3, H4). ~200 bp of DNA per nucleosome. H1 holds DNA at entry/exit (linker). "Beads on a string" = chromatin (level of packing 1). Further packing → solenoid → 30nm fibre.</li>
+        <li><strong>Total DNA in human cell:</strong> ~6.6 × 10⁹ bp = 6.6 pg. Total length if stretched = ~2.2 metres per cell.</li>
+      </ul>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 420 220" width="100%" style="max-width:420px;background:var(--paper);border-radius:8px;">
+          <text x="10" y="20" font-family="'Outfit',sans-serif" font-size="12" fill="var(--accent)" font-weight="700">DNA Double Helix — Key Numbers</text>
+          <!-- Left strand backbone -->
+          <path d="M80,30 Q60,60 80,90 Q100,120 80,150 Q60,180 80,210" stroke="#1a4a8c" stroke-width="4" fill="none"/>
+          <!-- Right strand backbone -->
+          <path d="M180,30 Q200,60 180,90 Q160,120 180,150 Q200,180 180,210" stroke="#8c1a1a" stroke-width="4" fill="none"/>
+          <!-- H-bonds -->
+          <line x1="80" y1="60" x2="180" y2="60" stroke="#4ab870" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="80" y1="90" x2="180" y2="90" stroke="#4ab870" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="80" y1="120" x2="180" y2="120" stroke="#4ab870" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="80" y1="150" x2="180" y2="150" stroke="#4ab870" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="80" y1="180" x2="180" y2="180" stroke="#4ab870" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <!-- Labels -->
+          <text x="90" y="58" font-size="9" fill="#1a4a8c">A</text>
+          <text x="165" y="58" font-size="9" fill="#8c1a1a">T (2H)</text>
+          <text x="90" y="88" font-size="9" fill="#1a4a8c">G</text>
+          <text x="165" y="88" font-size="9" fill="#8c1a1a">C (3H)</text>
+          <text x="90" y="118" font-size="9" fill="#1a4a8c">T</text>
+          <text x="165" y="118" font-size="9" fill="#8c1a1a">A</text>
+          <!-- Measurements -->
+          <text x="220" y="50" font-size="10" fill="var(--ink)">Diameter: 2 nm</text>
+          <text x="220" y="68" font-size="10" fill="var(--ink)">Pitch: 3.4 nm</text>
+          <text x="220" y="86" font-size="10" fill="var(--ink)">10 bp / turn</text>
+          <text x="220" y="104" font-size="10" fill="var(--ink)">0.34 nm / bp</text>
+          <text x="220" y="122" font-size="10" fill="var(--ink)">A-T: 2 H-bonds</text>
+          <text x="220" y="140" font-size="10" fill="var(--ink)">G-C: 3 H-bonds</text>
+          <text x="220" y="158" font-size="10" fill="#1a4a8c">5'→3' (blue)</text>
+          <text x="220" y="176" font-size="10" fill="#8c1a1a">3'→5' (red)</text>
+          <text x="220" y="194" font-size="10" fill="var(--ink)">Anti-parallel</text>
+        </svg>
+      </div>
+
+      <h2 class="sh">DNA Replication — Semi-conservative Model <span class="tag tt">3–4 Qs/yr</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Semi-conservative Replication (Meselson-Stahl, 1958)</span>
+        <p>Each new DNA molecule retains one original (parental) strand and has one newly synthesized strand. Proved using ¹⁵N (heavy nitrogen) in <em>E. coli</em>. After one generation in ¹⁴N medium → hybrid density (¹⁵N-¹⁴N). After two generations → half hybrid + half light (both ¹⁴N).</p>
+      </div>
+
+      <h3 class="ssh">Key Enzymes of DNA Replication (in order)</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Enzyme/Factor</th><th>Function</th><th>Key NEET Fact</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Helicase</strong></td><td>Unwinds and separates the two DNA strands at replication fork</td><td>Uses ATP energy; creates replication fork</td></tr>
+            <tr><td><strong>Topoisomerase (Gyrase)</strong></td><td>Relieves torsional stress ahead of helicase by cutting and rejoining</td><td>Prevents super-coiling</td></tr>
+            <tr><td><strong>Single-strand binding proteins (SSBPs)</strong></td><td>Keeps separated strands stable and accessible</td><td>Prevent reannealing</td></tr>
+            <tr><td><strong>Primase (makes RNA primer)</strong></td><td>Synthesizes a short RNA primer (~10 nt) complementary to template</td><td>DNA polymerase CANNOT start de novo — needs a 3'-OH</td></tr>
+            <tr><td><strong>DNA Polymerase III (main)</strong></td><td>Synthesises new DNA 5'→3' only; adds nucleotides to 3'-OH of primer</td><td>Error rate ~1 in 10⁹; has proofreading (3'→5' exonuclease)</td></tr>
+            <tr><td><strong>DNA Polymerase I</strong></td><td>Removes RNA primers; fills gaps with DNA</td><td>Has 5'→3' exonuclease for primer removal</td></tr>
+            <tr><td><strong>DNA Ligase</strong></td><td>Joins Okazaki fragments and seals nicks in DNA backbone</td><td>"Molecular glue"; requires ATP in eukaryotes, NAD⁺ in prokaryotes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cg-card">
+        <div class="cg-title">Leading vs Lagging Strand</div>
+        <ul class="pl">
+          <li><strong>Leading strand:</strong> Synthesized continuously (template is 3'→5'). DNA pol III moves toward fork. One RNA primer suffices.</li>
+          <li><strong>Lagging strand:</strong> Synthesized discontinuously in short fragments = <strong>Okazaki fragments</strong> (~150–200 nt in eukaryotes; ~1000–2000 in prokaryotes). Template is 5'→3' — synthesis moves AWAY from fork. Multiple RNA primers needed. Okazaki fragments joined by Ligase.</li>
+          <li><strong>Replication is bidirectional</strong> from origins of replication. <em>E. coli</em> has ONE origin (oriC). Eukaryotes have MULTIPLE origins.</li>
+        </ul>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">DNA synthesis is always in which direction? (A) 3'→5' (B) 5'→3' (C) Both directions (D) Either direction depending on strand</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) 5'→3' only</span>
+          <p>DNA polymerase can ONLY add nucleotides to the 3'-OH end of a growing chain → synthesis is always 5'→3'. The template is read 3'→5'. This is why the lagging strand requires multiple Okazaki fragments — it must be synthesized discontinuously in short 5'→3' segments moving away from the fork.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">The Genetic Code — Complete NCERT Analysis <span class="tag tc">Must Master</span></h2>
+
+      <div class="cg-card">
+        <div class="cg-title">Properties of the Genetic Code</div>
+        <ul class="pl">
+          <li><strong>Triplet code (Codon):</strong> Each amino acid is coded by a sequence of <strong>3 nucleotide bases</strong> (codon) in mRNA. 4³ = 64 possible codons.</li>
+          <li><strong>Unambiguous:</strong> Each codon specifies ONLY ONE amino acid (but not vice versa — one AA can have multiple codons)</li>
+          <li><strong>Degenerate (Redundant):</strong> More than one codon can code for the same amino acid. 64 codons for only 20 amino acids → degeneracy. Usually the 3rd base varies (wobble position).</li>
+          <li><strong>Non-overlapping:</strong> Codons are read sequentially, each base is part of only one codon (no overlap)</li>
+          <li><strong>Commaless (no punctuation):</strong> No bases between codons act as punctuation</li>
+          <li><strong>Universal:</strong> Same codons specify same amino acids in (nearly) ALL organisms from bacteria to humans. Exceptions: mitochondria, some protists.</li>
+          <li><strong>Start codon:</strong> <mark>AUG</mark> — codes for Methionine (Met) AND signals start of translation. Every protein begins with Met (removed later in many cases).</li>
+          <li><strong>Stop codons (3):</strong> <mark>UAA, UAG, UGA</mark> — do NOT code for any amino acid. Terminate translation. (Mnemonic: <strong>U Are Amber, U Are Gone, U Go Away</strong>)</li>
+          <li><strong>Near-universal codon:</strong> The genetic code is shared across all life — evidence for common ancestry.</li>
+        </ul>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Codon</th><th>Amino Acid</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AUG</strong></td><td>Methionine (fMet in prokaryotes)</td><td>START codon. Only codon for Met.</td></tr>
+            <tr><td><strong>UAA</strong></td><td>STOP (Ochre)</td><td>Most common stop; no amino acid</td></tr>
+            <tr><td><strong>UAG</strong></td><td>STOP (Amber)</td><td>—</td></tr>
+            <tr><td><strong>UGA</strong></td><td>STOP (Opal/Umber)</td><td>Also encodes Selenocysteine in some contexts</td></tr>
+            <tr><td>UUU, UUC</td><td>Phenylalanine (Phe)</td><td>First codon cracked by Nirenberg (poly-U experiment)</td></tr>
+            <tr><td>UGG</td><td>Tryptophan (Trp)</td><td>ONLY codon for Trp. Not degenerate.</td></tr>
+            <tr><td>AUG + Leu + Arg</td><td>—</td><td>Met, Trp = only amino acids with single codons</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which property of the genetic code ensures that a codon specifies only one amino acid?</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Unambiguous (Specific)</span>
+          <p>The genetic code is <strong>unambiguous</strong> — each codon specifies only ONE amino acid. It is also <strong>degenerate</strong> — one amino acid can have multiple codons. These two properties are different: ambiguous would mean one codon → multiple amino acids (which does NOT happen). Degeneracy means one amino acid ← multiple codons (which DOES happen).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /mol-basis -->
+
+<!-- ══════════════ CHAPTER 4: TRANSCRIPTION & TRANSLATION ══════════════ -->
+<div class="chapter" id="ch-expression">
+  <div class="ch-head" style="border-bottom-color:#8c6b00;">
+    <div class="ch-ey">Chapter 4 · NCERT Class XII Ch. 6</div>
+    <div class="ch-title">Gene Expression — <em>Transcription, Translation &amp; Regulation</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="expression">
+      <h2 class="sh">Central Dogma of Molecular Biology <span class="tag tg">Foundation</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Central Dogma (Francis Crick, 1958)</span>
+        <p><strong>DNA → RNA → Protein</strong></p>
+        <p><strong>Transcription:</strong> DNA → mRNA (using DNA as template)</p>
+        <p><strong>Translation:</strong> mRNA → Protein (using ribosomes)</p>
+        <p><strong>Reverse Transcription:</strong> RNA → DNA (by Reverse Transcriptase — in retroviruses like HIV). Discovered by Temin &amp; Baltimore (1970). Nobel Prize 1975.</p>
+        <p><strong>Exceptions to dogma:</strong> Some RNA viruses replicate RNA→RNA (RNA-dependent RNA polymerase / RdRp). HIV: RNA→DNA→RNA→Protein.</p>
+      </div>
+
+      <h2 class="sh">Transcription — DNA to RNA <span class="tag tc">Deep Analysis</span></h2>
+
+      <h3 class="ssh">Prokaryotic Transcription (E. coli)</h3>
+      <div class="cg-card">
+        <div class="cg-title">RNA Polymerase &amp; Transcription Machinery</div>
+        <ul class="pl">
+          <li><strong>RNA Polymerase</strong> (single enzyme in prokaryotes) = core enzyme + <strong>σ (sigma) factor</strong>. Sigma factor recognizes promoter. Core enzyme = α₂ββ'ω.</li>
+          <li>No primer needed — RNA polymerase can start de novo (unlike DNA polymerase)</li>
+          <li><strong>Template strand</strong> (antisense, 3'→5') is read by RNA pol → mRNA synthesized 5'→3'</li>
+          <li><strong>Coding strand</strong> (sense, non-template, 5'→3') has same sequence as mRNA (except T→U)</li>
+          <li><strong>Promoter:</strong> Region of DNA where RNA pol binds to initiate transcription. Prokaryote promoters: -10 (TATAAT = Pribnow box) and -35 sequences upstream of transcription start (+1).</li>
+          <li><strong>Termination:</strong> Rho-independent (hairpin loop formed in mRNA → releases RNA pol) or Rho-dependent (Rho protein unwinds RNA-DNA hybrid).</li>
+          <li>In prokaryotes: No separate compartment → <strong>coupled transcription-translation</strong> (ribosomes attach to mRNA before it is even complete)</li>
+        </ul>
+      </div>
+
+      <h3 class="ssh">Eukaryotic Transcription — 3 RNA Polymerases</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>RNA Polymerase</th><th>Location</th><th>Transcribes</th></tr></thead>
+          <tbody>
+            <tr><td><strong>RNA Polymerase I</strong></td><td>Nucleolus</td><td>45S pre-rRNA → 28S, 18S, 5.8S rRNA</td></tr>
+            <tr><td><strong>RNA Polymerase II</strong></td><td>Nucleoplasm</td><td>Pre-mRNA (hnRNA) → mRNA. Also snRNA.</td></tr>
+            <tr><td><strong>RNA Polymerase III</strong></td><td>Nucleoplasm</td><td>tRNA, 5S rRNA, snRNA</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Post-transcriptional Processing (mRNA Maturation in Eukaryotes)</h3>
+      <ul class="pl">
+        <li><strong>5' Capping:</strong> 7-methylguanosine cap added at 5' end. Protects mRNA from degradation + aids ribosome recognition.</li>
+        <li><strong>3' Polyadenylation (Poly-A tail):</strong> ~200 adenine nucleotides added at 3' end by poly-A polymerase. Increases mRNA stability; aids export from nucleus.</li>
+        <li><strong>Splicing (RNA splicing):</strong> Introns (non-coding sequences) removed; exons (coding) joined. Done by <strong>spliceosome</strong> (small nuclear ribonucleoproteins, snRNPs).</li>
+        <li>Result: <strong>Mature mRNA</strong> (5'cap + 5'UTR + coding sequence + 3'UTR + polyA tail) exported to cytoplasm.</li>
+        <li><strong>Alternative splicing:</strong> Same pre-mRNA can give different mature mRNAs (different exon combinations) → different proteins from same gene → protein diversity</li>
+      </ul>
+
+      <h2 class="sh">Translation — Protein Synthesis <span class="tag tt">3–4 Qs/yr</span></h2>
+
+      <h3 class="ssh">tRNA — Adapter Molecule</h3>
+      <ul class="pl">
+        <li>tRNA = <strong>adapter molecule</strong> that reads genetic code and brings specific amino acids</li>
+        <li><strong>Cloverleaf structure</strong> (secondary) → L-shaped (3D, tertiary)</li>
+        <li><strong>Anticodon loop:</strong> Contains 3 bases complementary to mRNA codon (antiparallel, anticodons read 3'→5' to pair with 5'→3' codon)</li>
+        <li><strong>3' CCA end:</strong> Amino acid attachment site. ALL tRNAs end in ...CCA-3'</li>
+        <li><strong>Aminoacyl-tRNA synthetase:</strong> Enzyme that charges tRNA with specific amino acid (uses ATP). Each AA has its own specific synthetase. <cite>"Second genetic code"</cite> — these enzymes must correctly recognize both the AA and its tRNA.</li>
+        <li><strong>Wobble hypothesis (Crick):</strong> The 3rd position of anticodon can form non-standard base pairs with 1st position of codon (5' end) → one tRNA can recognize multiple codons (explains degeneracy at molecular level)</li>
+      </ul>
+
+      <h3 class="ssh">Ribosomes — The Protein Factory</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>Prokaryote (70S)</th><th>Eukaryote (80S)</th></tr></thead>
+          <tbody>
+            <tr><td>Large subunit</td><td>50S (5S, 23S rRNA + 34 proteins)</td><td>60S (5S, 5.8S, 28S rRNA + ~50 proteins)</td></tr>
+            <tr><td>Small subunit</td><td>30S (16S rRNA + 21 proteins)</td><td>40S (18S rRNA + ~33 proteins)</td></tr>
+            <tr><td>Inhibited by</td><td>Chloramphenicol, Streptomycin, Erythromycin</td><td>Cycloheximide, Diphtheria toxin</td></tr>
+            <tr><td>Sites</td><td>A site (aminoacyl), P site (peptidyl), E site (exit)</td><td>Same A, P, E sites</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="elim-box">
+        <p><strong>Key Trap:</strong> Mitochondria and chloroplasts have 70S ribosomes (like prokaryotes) — evidence for endosymbiotic theory. Ribosomes in eukaryotic cytoplasm = 80S. Chloramphenicol inhibits 70S (prokaryotes + mitochondria) but NOT cytoplasmic 80S.</p>
+      </div>
+
+      <h3 class="ssh">Translation Steps — Initiation, Elongation, Termination</h3>
+      <div class="cg-card">
+        <div class="cg-title">Translation — Step by Step (Prokaryote)</div>
+        <ul class="pl num">
+          <li><strong>Initiation:</strong> Small (30S) subunit binds mRNA at Shine-Dalgarno sequence (near 5' end). fMet-tRNAfMet (initiator tRNA) binds AUG in P site. Large (50S) subunit joins → 70S initiation complex forms. Requires Initiation Factors (IF1, IF2, IF3). GTP energy.</li>
+          <li><strong>Elongation:</strong> (a) <em>Aminoacyl-tRNA binding</em> — charged tRNA enters A site (EF-Tu·GTP assists). (b) <em>Peptide bond formation</em> — Peptidyl transferase (part of 23S rRNA = ribozyme!) connects peptide chain from P site AA to A site AA. (c) <em>Translocation</em> — ribosome moves 3 nt (one codon) toward 3' end of mRNA; old peptidyl-tRNA moves from A → P; uncharged tRNA exits from E site. EF-G (translocase) + GTP. Repeated for each codon.</li>
+          <li><strong>Termination:</strong> Stop codon (UAA/UAG/UGA) enters A site. No tRNA recognizes stop codons. <strong>Release factors (RF1, RF2, RF3)</strong> bind → hydrolyze peptide from tRNA → polypeptide released → ribosome dissociates into subunits.</li>
+        </ul>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Peptide bond formation during translation is catalysed by: (A) Aminoacyl-tRNA synthetase (B) Peptidyl transferase activity of 23S rRNA (C) EF-Tu (D) Release factors</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Peptidyl transferase of 23S rRNA</span>
+          <p>The peptide bond is formed by the <strong>peptidyl transferase activity</strong> inherent in the 23S rRNA of the large (50S) ribosomal subunit — it is a <strong>ribozyme</strong>. This is a crucial fact: the catalyst is RNA, not protein. This proved that the ribosome is essentially an RNA enzyme. Aminoacyl-tRNA synthetase charges tRNA (not in ribosome).</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Gene Regulation — Operon Model (Jacob &amp; Monod, 1961) <span class="tag tc">NCERT Classic</span></h2>
+
+      <div class="cg-card">
+        <div class="cg-title">Lac Operon — Negative Regulation (Inducible System)</div>
+        <ul class="pl">
+          <li><strong>Genes:</strong> lacZ (β-galactosidase — cleaves lactose → glucose + galactose), lacY (permease — imports lactose), lacA (transacetylase)</li>
+          <li><strong>Components:</strong> Promoter (where RNA pol binds), Operator (where repressor binds), Structural genes (Z,Y,A), Regulator gene (lacI — produces lac repressor)</li>
+          <li><strong>Without lactose (repressed):</strong> Lac repressor (made by lacI) binds to Operator → blocks RNA pol → NO transcription of lacZYA → no β-galactosidase</li>
+          <li><strong>With lactose (induced):</strong> Lactose (converted to allolactose) = inducer. Allolactose binds lac repressor → allosteric change → repressor CANNOT bind operator → RNA pol transcribes lacZYA → β-galactosidase made → lactose digested</li>
+          <li><strong>CAP (catabolite activator protein) + cAMP:</strong> When glucose is LOW → cAMP HIGH → cAMP-CAP complex binds Promoter → activates transcription (CRP site). Glucose HIGH → cAMP LOW → no CAP activation → lower transcription. This is positive regulation by catabolite repression.</li>
+        </ul>
+      </div>
+
+      <div class="note-box">
+        <span class="lbl">Trp Operon — Repressible System (Anabolic)</span>
+        <p>Tryptophan biosynthesis. When Trp is HIGH → Trp acts as <strong>co-repressor</strong> → binds inactive aporepressor → active repressor → binds operator → blocks genes → no more Trp synthesis. When Trp is LOW → no repressor formed → genes ON → Trp synthesized.</p>
+        <p>Key difference: Lac = inducible (substrate turns genes ON). Trp = repressible (product turns genes OFF).</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">In lac operon, in the presence of lactose: (A) Repressor binds to operator (B) Allolactose binds repressor, preventing it from binding operator (C) RNA polymerase cannot bind to promoter (D) lacZ gene is not expressed</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B)</span>
+          <p>Lactose → converted to <strong>allolactose</strong> (true inducer). Allolactose binds the lac repressor → conformational change → repressor CANNOT bind operator → RNA polymerase proceeds → lacZYA transcribed → β-galactosidase produced → lactose digested. This is negative inducible regulation.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /expression -->
+
+<!-- ══════════════ CHAPTER 5: MUTATIONS ══════════════ -->
+<div class="chapter" id="ch-mutation">
+  <div class="ch-head" style="border-bottom-color:#8c1a1a;">
+    <div class="ch-ey">Chapter 5 · NCERT Class XII Ch. 5 &amp; 7</div>
+    <div class="ch-title">Mutations &amp; DNA Repair — <em>Changes in the Code</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="mutation">
+      <h2 class="sh">Types of Mutations — Complete Classification <span class="tag tt">2 Qs/yr</span></h2>
+
+      <h3 class="ssh">Point Mutations (Base Changes)</h3>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Change</th><th>Effect on Protein</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Silent (Synonymous)</strong></td><td>Base change but SAME amino acid (due to degeneracy)</td><td>No change in protein</td><td>CGA → CGG (both = Arg)</td></tr>
+            <tr><td><strong>Missense (Non-synonymous)</strong></td><td>Base change → DIFFERENT amino acid</td><td>Altered protein (may be functional or non-functional)</td><td>GAG→GTG: Glu→Val (Sickle-cell anaemia)</td></tr>
+            <tr><td><strong>Nonsense</strong></td><td>Base change → STOP codon</td><td>Truncated (shortened) protein</td><td>CAA→TAA: Gln → STOP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Frameshift Mutations</h3>
+      <ul class="pl">
+        <li><strong>Insertion:</strong> Extra base(s) added → reading frame shifts → all downstream amino acids altered → usually produces non-functional protein (severe effect)</li>
+        <li><strong>Deletion:</strong> Base(s) removed → reading frame shifts similarly</li>
+        <li>Insertions/deletions of 3 bases (or multiples of 3) do NOT shift frame — just add/remove amino acids</li>
+      </ul>
+
+      <div class="ncert-box">
+        <span class="lbl">Sickle-Cell Anaemia — Classic Point Mutation</span>
+        <p><strong>Mutation:</strong> Single nucleotide change in HBB gene (chromosome 11). GAG → GTG in codon 6 of β-globin chain.</p>
+        <p><strong>Result:</strong> Glutamic acid (hydrophilic, charged) → Valine (hydrophobic). HbA → HbS.</p>
+        <p><strong>Effect:</strong> In low O₂ conditions, HbS polymerizes into fibers → RBCs become sickle-shaped → block capillaries → pain crises, anaemia, organ damage.</p>
+        <p><strong>Inheritance:</strong> Autosomal recessive. Homozygous (HbSHbS) = severely affected. Heterozygous sickle-cell trait (HbAHbS) = carrier; protected against falciparum malaria (balanced polymorphism).</p>
+      </div>
+
+      <h3 class="ssh">Mutagens — Agents that Cause Mutations</h3>
+      <div class="fcards">
+        <div class="fcard">
+          <div class="fcard-title">Physical Mutagens</div>
+          <ul>
+            <li>UV radiation → thymine dimers (C=C bonds between adjacent T's on same strand)</li>
+            <li>Ionizing radiation (X-rays, γ-rays) → double strand breaks</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Chemical Mutagens</div>
+          <ul>
+            <li>Alkylating agents (e.g., mustard gas) → modify bases</li>
+            <li>Base analogues (5-bromouracil replaces T) → mispairing</li>
+            <li>Acridine dyes → insertions (intercalation)</li>
+            <li>Nitrous acid → deaminates cytosine → uracil</li>
+          </ul>
+        </div>
+        <div class="fcard">
+          <div class="fcard-title">Transposons</div>
+          <ul>
+            <li>"Jumping genes" (Barbara McClintock, 1950)</li>
+            <li>Mobile DNA elements that insert into new locations</li>
+            <li>Can disrupt gene function</li>
+            <li>Nobel Prize 1983</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Sickle-cell anaemia is caused by: (A) Deletion of one codon (B) Substitution of a single base in HBB gene (C) Trisomy of chromosome 11 (D) Frameshift mutation in HBB gene</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Substitution of a single base</span>
+          <p>Sickle-cell anaemia is caused by a <strong>missense point mutation</strong> — a single nucleotide substitution (GAG → GTG) at codon 6 of the β-globin gene (HBB). Glutamic acid → Valine. This is the classical example of a missense mutation causing a serious disease. It is autosomal recessive.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /mutation -->
+
+
+
+<!-- ══════════════ CHAPTER 6: EVOLUTION ══════════════ -->
+<div class="chapter" id="ch-evolution">
+  <div class="ch-head" style="border-bottom-color:#5b1a8c;">
+    <div class="ch-ey">Chapter 6 · NCERT Class XII Ch. 7</div>
+    <div class="ch-title">Evolution — <em>Origin of Life, Theories, Evidence &amp; Human Evolution</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="evolution">
+
+      <div class="score-strip">
+        <div class="score-pill sp-p">🟣 Theories of evolution — 1–2 Qs</div>
+        <div class="score-pill sp-g">🟢 Hardy-Weinberg equilibrium — 1 Q</div>
+        <div class="score-pill sp-r">🔴 Evidence of evolution — 1 Q</div>
+        <div class="score-pill sp-b">🔵 Human evolution — 1 Q</div>
+      </div>
+
+      <h2 class="sh">Origin of Life — Timeline &amp; Experiments <span class="tag tc">NCERT Foundation</span></h2>
+
+      <ul class="timeline">
+        <li><span class="tl-year">~4.6 Ga</span>Earth formed (from solar nebula)</li>
+        <li><span class="tl-year">~4 Ga</span>First primitive oceans; reducing atmosphere (NH₃, CH₄, H₂, H₂O vapour — NO free O₂). Early life could not have survived O₂.</li>
+        <li><span class="tl-year">~3.8 Ga</span>First traces of life (microfossils — anaerobic prokaryotes)</li>
+        <li><span class="tl-year">~2.7 Ga</span>Cyanobacteria (blue-green algae) evolve → begin oxygenic photosynthesis → O₂ accumulates in atmosphere</li>
+        <li><span class="tl-year">~2 Ga</span>First eukaryotes (endosymbiosis of mitochondria)</li>
+        <li><span class="tl-year">~1.5 Ga</span>First multicellular organisms</li>
+        <li><span class="tl-year">~500 Ma</span>Cambrian explosion — rapid diversification of animal body plans</li>
+        <li><span class="tl-year">1924</span>Oparin (Russia) — proposed life originated from simple organic molecules; coacervates (protein-lipid clusters)</li>
+        <li><span class="tl-year">1929</span>Haldane (UK) — similar idea; coined "primordial soup" concept</li>
+        <li><span class="tl-year">1953</span><strong>Stanley Miller &amp; Harold Urey</strong> — simulated early earth conditions (H₂, CH₄, NH₃, H₂O, electric sparks). Produced amino acids, sugars, and other organic molecules. <strong>Proved abiogenesis possible.</strong></li>
+        <li><span class="tl-year">1965</span>Sidney Fox — heated amino acids → proteinoid microspheres (proto-cells)</li>
+      </ul>
+
+      <h2 class="sh">Theories of Evolution — Complete Analysis <span class="tag tp">Most Tested</span></h2>
+
+      <div class="cg-card">
+        <div class="cg-title">Lamarckism — Theory of Acquired Characters (1809)</div>
+        <ul class="pl">
+          <li>Jean Baptiste de Lamarck — "Philosophie Zoologique" (1809)</li>
+          <li><strong>Use and Disuse:</strong> Organs used extensively develop and enlarge; unused organs atrophy and disappear</li>
+          <li><strong>Inheritance of Acquired Characters:</strong> Characters acquired during lifetime are passed to offspring</li>
+          <li>Classic example: Giraffe stretched its neck → longer neck → passed to offspring</li>
+          <li><strong>Refuted by:</strong> Weismann cut tails of mice for 22 generations → offspring still had tails. Genetic information only in germline, not somatic cells.</li>
+        </ul>
+      </div>
+
+      <div class="cg-card">
+        <div class="cg-title">Darwinism — Natural Selection (1859, "Origin of Species")</div>
+        <ul class="pl">
+          <li>Charles Darwin + Alfred Russel Wallace (proposed simultaneously!)</li>
+          <li><strong>Key observations:</strong> Overproduction of offspring; Limited resources → Struggle for existence; Variations among individuals; Survival of the fittest; Favourable variations inherited → accumulate → new species</li>
+          <li><strong>Fitness:</strong> Reproductive fitness — ability to survive AND reproduce in given environment</li>
+          <li><strong>Natural Selection:</strong> Environment selects individuals with beneficial variations → differential reproduction</li>
+          <li><strong>Darwin's finches:</strong> 14 species on Galápagos Islands — different beak sizes/shapes based on food source → adaptive radiation</li>
+          <li><strong>Weakness:</strong> Darwin could NOT explain the source of variations or mechanism of heredity (pre-Mendel)</li>
+        </ul>
+      </div>
+
+      <div class="cg-card">
+        <div class="cg-title">Neo-Darwinism (Modern Synthetic Theory)</div>
+        <ul class="pl">
+          <li>Synthesis of Darwin's natural selection + Mendelian genetics + population genetics</li>
+          <li>Main architects: Fisher, Haldane, Sewall Wright, Dobzhansky, Mayr, Simpson</li>
+          <li><strong>Mechanisms of Evolution:</strong></li>
+          <li>1. <strong>Mutation</strong> — ultimate source of new alleles</li>
+          <li>2. <strong>Recombination</strong> — creates new allele combinations during meiosis</li>
+          <li>3. <strong>Natural selection</strong> — differential reproduction based on fitness</li>
+          <li>4. <strong>Genetic drift</strong> — random changes in allele frequency in small populations</li>
+          <li>5. <strong>Gene flow (Migration)</strong> — movement of alleles between populations</li>
+          <li><strong>Evolution = change in allele frequencies in a population over time</strong></li>
+        </ul>
+      </div>
+
+      <h2 class="sh">Hardy-Weinberg Equilibrium — Population Genetics <span class="tag tt">Numerical Qs</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Hardy-Weinberg Theorem (1908)</span>
+        <p>In an ideal, large random-mating population, <strong>allele frequencies remain constant</strong> from generation to generation IF:</p>
+        <p>1. No mutation · 2. No selection · 3. No migration · 4. No genetic drift · 5. Random mating</p>
+        <p><strong>Equations:</strong> If <em>p</em> = frequency of dominant allele (A), <em>q</em> = frequency of recessive allele (a):</p>
+        <p>Then: <mark>p + q = 1</mark> (allele frequencies)</p>
+        <p>And: <mark>p² + 2pq + q² = 1</mark> (genotype frequencies: p² = AA, 2pq = Aa, q² = aa)</p>
+        <p><strong>Deviations from H-W</strong> = evolution is occurring. Causes: mutation, selection, drift, migration, non-random mating.</p>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">In a population, if frequency of recessive genotype (aa) is 0.09, what is the frequency of heterozygous (Aa) individuals?</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 0.42</span>
+          <p>q² = 0.09 → q = 0.3. Since p + q = 1 → p = 0.7. Frequency of Aa = 2pq = 2 × 0.7 × 0.3 = <strong>0.42</strong>. Frequency of AA = p² = 0.49. Check: 0.49 + 0.42 + 0.09 = 1.00 ✓</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Types of Natural Selection <span class="tag tc">Conceptual</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type</th><th>Direction</th><th>Effect on Population</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Directional</strong></td><td>Favours one extreme phenotype</td><td>Mean shifts in one direction</td><td>Industrial melanism (Biston betularia); antibiotic resistance</td></tr>
+            <tr><td><strong>Stabilising</strong></td><td>Favours intermediate phenotype; disfavours extremes</td><td>Reduces variation; narrows distribution</td><td>Human birth weight (very low or very high = higher mortality)</td></tr>
+            <tr><td><strong>Disruptive</strong></td><td>Favours both extremes; disfavours intermediate</td><td>Bimodal distribution; can lead to speciation</td><td>Beak size in Galápagos finches; coat colour in polymorphic species</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Industrial Melanism — Biston betularia — Classic NEET Example</h3>
+      <div class="note-box">
+        <span class="lbl">Peppered Moth — Industrial Melanism</span>
+        <p>Before industrial revolution: Lichen-covered (white) tree trunks → white moths (Biston betularia typica) = camouflaged, survived. Rare melanic (dark) moths eaten by birds.</p>
+        <p>After industrial revolution: Soot-covered tree bark → dark moths = camouflaged, SURVIVED. White moths became visible → eaten → decreased.</p>
+        <p>Conclusion: <strong>Natural selection acts on existing variation</strong> (pre-existing dark moths); it does NOT CREATE the variation. Environment selects — it does not direct mutation.</p>
+        <p>Studied by <strong>H.B.D. Kettlewell</strong> (1950s). Classic proof of directional natural selection.</p>
+      </div>
+
+      <h2 class="sh">Evidences of Evolution <span class="tag tg">Multiple Qs</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Evidence</th><th>Type</th><th>Key Examples/Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Homologous structures</strong></td><td>Morphological</td><td>Forelimbs of whale, bat, horse, human — SAME bones (humerus, radius, ulna, carpals), DIFFERENT functions → Divergent evolution → common ancestor. Evidence for common ancestry.</td></tr>
+            <tr><td><strong>Analogous structures</strong></td><td>Morphological</td><td>Wing of insect vs wing of bird — DIFFERENT structure, SAME function (flight) → Convergent evolution → different ancestors. (NOT evidence of common ancestor)</td></tr>
+            <tr><td><strong>Vestigial organs</strong></td><td>Morphological</td><td>Human: coccyx, wisdom teeth, nictitating membrane (plica semilunaris), body hair, muscles of ear. Remnants of functional organs in ancestors.</td></tr>
+            <tr><td><strong>Fossils</strong></td><td>Palaeontological</td><td>Archaeopteryx (features of reptile + bird — transitional). Tiktaalik (fish → tetrapod). Fossils dated by radiocarbon (¹⁴C) — up to 50,000 yrs. Potassium-Argon for older.</td></tr>
+            <tr><td><strong>Comparative embryology</strong></td><td>Developmental</td><td>Embryos of fish, salamander, bird, human look strikingly similar in early stages (pharyngeal pouches, somites, etc.) → suggests common ancestor</td></tr>
+            <tr><td><strong>Biochemical evidence</strong></td><td>Molecular</td><td>Cytochrome c sequence similarities across species. DNA/protein sequence comparisons. More similar sequence = closer evolutionary relationship.</td></tr>
+            <tr><td><strong>Biogeography</strong></td><td>Geographical</td><td>Unique island fauna (Galápagos, Madagascar, Australia) — isolated populations → differ from mainland but related. Wallace Line separating Oriental and Australasian fauna.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh">Species Concepts &amp; Speciation <span class="tag tc">Key Definitions</span></h2>
+      <ul class="pl">
+        <li><strong>Biological species concept (Mayr):</strong> A group of interbreeding natural populations that are reproductively isolated from others</li>
+        <li><strong>Allopatric speciation:</strong> Geographic isolation → populations separated by a barrier → independent evolution → reproductive isolation → new species. Example: Darwin's finches on different Galápagos islands.</li>
+        <li><strong>Sympatric speciation:</strong> New species from within the same geographical area — via reproductive isolation (different mating times, preferences, polyploidy in plants). Common in plants via polyploidy.</li>
+        <li><strong>Reproductive isolating mechanisms:</strong>
+          <ul class="pl">
+            <li><em>Pre-zygotic:</em> Habitat isolation, temporal (seasonal) isolation, behavioural (sexual preference), mechanical (different flower structures), gametic incompatibility</li>
+            <li><em>Post-zygotic:</em> Hybrid inviability, hybrid sterility (mule = horse × donkey), hybrid breakdown</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 class="sh">Human Evolution — Hominid Timeline <span class="tag tt">NEET Favourite</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Species</th><th>Mya</th><th>Region</th><th>Brain (cc)</th><th>Key Features</th></tr></thead>
+          <tbody>
+            <tr><td><em>Dryopithecus</em></td><td>25–10 Mya</td><td>Africa, Europe, Asia</td><td>~400</td><td>Ape-like; probably lived on trees; walked semi-erect; thin tooth enamel</td></tr>
+            <tr><td><em>Ramapithecus</em></td><td>14–7 Mya</td><td>Africa, Asia</td><td>—</td><td>More man-like; thick enamel on teeth; possibly omnivore</td></tr>
+            <tr><td><em>Australopithecus</em></td><td>4–2 Mya</td><td>E. Africa</td><td>450–500</td><td>Walked erect (bipedal); used STONE weapons (not made them); Lucy = famous specimen; small brain</td></tr>
+            <tr><td><em>Homo habilis</em> (Handy Man)</td><td>2–1.5 Mya</td><td>Africa</td><td>650–800</td><td>First member of genus <em>Homo</em>; made and used flint stone tools (Oldowan); no meat eating (or very little)</td></tr>
+            <tr><td><em>Homo erectus</em></td><td>1.5 Mya–200 Ka</td><td>Africa, Asia, Europe</td><td>900–1100</td><td>Erect posture; ate meat; used fire; stone tools (Acheulean); more sophisticated tools; probably had language</td></tr>
+            <tr><td><em>Homo heidelbergensis</em></td><td>600–300 Ka</td><td>Africa, Europe</td><td>1100–1400</td><td>Transitional between <em>erectus</em> and modern. Ancestor of both Neanderthals and modern humans.</td></tr>
+            <tr><td><em>Homo neanderthalensis</em></td><td>300–28 Ka</td><td>Europe, W. Asia</td><td>~1400</td><td>Brain size = modern human; buried their dead (culture!); used tools; coexisted with <em>H. sapiens</em>; interbred with <em>H. sapiens</em>; went extinct 28 Ka</td></tr>
+            <tr><td><em>Homo sapiens sapiens</em></td><td>~300 Ka–present</td><td>Africa → worldwide</td><td>~1350</td><td>Fully modern; cave art (Cro-Magnon, ~30 Ka); <strong>Out of Africa theory</strong>; agriculture ~10 Ka; large brain; language; culture; only surviving Homo species</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following hominids shows the LARGEST brain capacity? (A) Australopithecus (B) Homo habilis (C) Homo sapiens (D) Homo neanderthalensis</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (D) Homo neanderthalensis (tied with C in some references)</span>
+          <p>Neanderthals had a brain capacity of ~1450 cc — actually slightly LARGER than modern <em>Homo sapiens</em> (~1350 cc). However, NEET NCERT-based answer is usually <em>H. sapiens sapiens</em> (~1350 cc) as the answer since NCERT lists Neanderthal brain as ~1400 cc. Brain evolution: <em>Australopithecus</em> (450) → <em>habilis</em> (650–800) → <em>erectus</em> (900) → <em>sapiens</em> (1350).</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /evolution -->
+
+<!-- ══════════════ CHAPTER 7: BIOTECHNOLOGY ══════════════ -->
+<div class="chapter" id="ch-biotech">
+  <div class="ch-head" style="border-bottom-color:#0d6b5a;">
+    <div class="ch-ey">Chapter 7 · NCERT Class XII Ch. 11 &amp; 12</div>
+    <div class="ch-title">Biotechnology — <em>Principles, Tools, Applications &amp; rDNA Technology</em></div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="biotech">
+
+      <div class="score-strip">
+        <div class="score-pill sp-g">🟢 Restriction enzymes &amp; vectors — 1–2 Qs</div>
+        <div class="score-pill sp-b">🔵 PCR, rDNA tools — 1 Q</div>
+        <div class="score-pill sp-p">🟣 GMOs, Gene therapy, SCID — 1 Q</div>
+        <div class="score-pill sp-r">🔴 Bioethics &amp; patents — 1 Q</div>
+      </div>
+
+      <h2 class="sh">Restriction Enzymes — Molecular Scissors <span class="tag tt">Every NEET</span></h2>
+      <div class="def-box">
+        <span class="lbl">Restriction Endonucleases</span>
+        <p>Enzymes that cut DNA at specific recognition sequences (palindromic sequences). Named: first letter of genus + first 2 letters of species + strain number (if needed) + Roman numeral (order of discovery). Example: <strong>EcoRI</strong> = from <em>Escherichia coli</em> strain R, 1st restriction enzyme discovered.</p>
+        <p><strong>Palindromic sequence:</strong> Reads the same on both strands 5'→3'. Example: EcoRI cuts at 5'...G↓AATTC...3' / 3'...CTTAA↑G...5' → produces sticky ends (5' overhangs: 5'AATT).</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Enzyme</th><th>Source Organism</th><th>Recognition &amp; Cut Site</th><th>End Type</th></tr></thead>
+          <tbody>
+            <tr><td><strong>EcoRI</strong></td><td><em>E. coli</em></td><td>5' G↓AATTC 3'</td><td>Sticky (5' overhang: AATT)</td></tr>
+            <tr><td><strong>BamHI</strong></td><td><em>Bacillus amyloliquefaciens</em></td><td>5' G↓GATCC 3'</td><td>Sticky (5' overhang: GATC)</td></tr>
+            <tr><td><strong>HindIII</strong></td><td><em>Haemophilus influenzae</em></td><td>5' A↓AGCTT 3'</td><td>Sticky (5' overhang: AGCT)</td></tr>
+            <tr><td><strong>SmaI</strong></td><td><em>Serratia marcescens</em></td><td>5' CCC↓GGG 3'</td><td>Blunt ends</td></tr>
+            <tr><td><strong>HaeIII</strong></td><td><em>Haemophilus aegyptius</em></td><td>5' GG↓CC 3'</td><td>Blunt ends</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trick">
+        <p><strong>Sticky ends:</strong> Have single-stranded overhangs → can base-pair with complementary sticky ends → easy to join by DNA ligase. Preferred in recombinant DNA work.<br/>
+        <strong>Blunt ends:</strong> No overhangs — less efficient ligation; T4 DNA ligase usually used.</p>
+      </div>
+
+      <h2 class="sh">Cloning Vectors — Vehicles for DNA <span class="tag tc">Core</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Vector</th><th>Max Insert</th><th>Features</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Plasmid</strong> (pBR322, pUC19)</td><td>~15 kb</td><td>ori, MCS (Multiple Cloning Site), antibiotic resistance genes, lacZ (blue-white selection). Most common for small genes.</td></tr>
+            <tr><td><strong>Bacteriophage λ</strong></td><td>~25 kb</td><td>Infects <em>E. coli</em>; non-essential central region replaced by foreign DNA. High efficiency.</td></tr>
+            <tr><td><strong>Cosmids</strong></td><td>~45 kb</td><td>Plasmid with cos (cohesive) sites from phage λ. Packaged like phage but replicated like plasmid.</td></tr>
+            <tr><td><strong>BAC (Bacterial Artificial Chr.)</strong></td><td>~300 kb</td><td>Based on F-plasmid. Used in genome sequencing projects.</td></tr>
+            <tr><td><strong>YAC (Yeast Artificial Chr.)</strong></td><td>~1000 kb (1 Mb)</td><td>Contains yeast centromere, telomeres, ori, selectable marker. For large inserts. Used in Human Genome Project.</td></tr>
+            <tr><td><strong>Ti plasmid</strong> (from <em>Agrobacterium</em>)</td><td>—</td><td>Tumour-inducing plasmid. Used to transform plant cells. T-DNA integrates stably into plant genome. Best plant vector.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ssh">Requirements for a Cloning Vector (NCERT)</h3>
+      <ul class="pl">
+        <li>1. <strong>Origin of Replication (ori):</strong> Ensures autonomous replication</li>
+        <li>2. <strong>Selectable marker:</strong> Gene for antibiotic resistance (e.g., ampicillin, tetracycline) → allows selection of transformants</li>
+        <li>3. <strong>Cloning site (MCS):</strong> Unique restriction sites for inserting foreign DNA</li>
+        <li>4. Low copy vs high copy plasmids for different applications</li>
+      </ul>
+
+      <h2 class="sh">Key Biotechnology Techniques <span class="tag tt">NEET Essential</span></h2>
+
+      <h3 class="ssh">PCR — Polymerase Chain Reaction (Kary Mullis, 1983)</h3>
+      <div class="cg-card">
+        <div class="cg-title">PCR — Steps</div>
+        <ul class="pl num">
+          <li><strong>Denaturation (94–96°C):</strong> Double-stranded DNA heats → strands separate</li>
+          <li><strong>Annealing (50–65°C):</strong> Short DNA primers (20–25 bp) complementary to target flanking sequences bind specifically</li>
+          <li><strong>Extension (72°C):</strong> <em>Taq</em> DNA polymerase (from <em>Thermus aquaticus</em>, thermostable) extends from primers → new DNA synthesized</li>
+          <li>Cycle repeated 30–40 times → ~10⁹ copies of target DNA</li>
+        </ul>
+        <p style="margin-top:8px;font-size:.86rem;"><strong>Key:</strong> Taq polymerase is thermostable → not denatured at 94°C. Nobel Prize to <strong>Kary Mullis</strong> in 1993 for PCR development.</p>
+      </div>
+
+      <h3 class="ssh">Gel Electrophoresis</h3>
+      <ul class="pl">
+        <li>Separates DNA fragments by size through agarose gel under electric field</li>
+        <li>DNA = negatively charged → moves toward anode (+) (positive pole)</li>
+        <li>Smaller fragments move faster (further) through gel; Larger fragments move slower (less far)</li>
+        <li>DNA stained with <strong>Ethidium bromide</strong> (EtBr) → fluoresces orange under UV light</li>
+        <li>Bands compared to <strong>DNA ladder (marker)</strong> with known sizes to determine fragment sizes</li>
+        <li>Southern blotting: DNA fragments separated by gel → transferred to nitrocellulose membrane → hybridized with labeled probe</li>
+      </ul>
+
+      <h3 class="ssh">Recombinant DNA Technology — Overall Process</h3>
+      <ul class="pl num">
+        <li>Identify and isolate <strong>gene of interest</strong></li>
+        <li>Cut gene + vector with <strong>same restriction enzyme</strong> → compatible sticky ends</li>
+        <li>Ligate gene into vector using <strong>DNA ligase</strong> → recombinant DNA formed</li>
+        <li><strong>Transform</strong> into host (usually <em>E. coli</em>) — by heat shock, electroporation</li>
+        <li><strong>Select transformants</strong> (antibiotic selection, blue-white screening)</li>
+        <li>Grow transformants → produce protein product</li>
+      </ul>
+
+      <h2 class="sh">Important Biotechnology Applications <span class="tag tg">High-yield</span></h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Application</th><th>Technology</th><th>Key Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Insulin production</strong></td><td>rDNA in <em>E. coli</em></td><td>Eli Lilly (1982): first commercial GMO product. Human insulin gene in <em>E. coli</em>. A-chain and B-chain produced separately → combined with disulfide bonds. Humulin. Replaced animal insulins.</td></tr>
+            <tr><td><strong>Bt toxin (Cry proteins)</strong></td><td>Transgenic plants</td><td><em>Bacillus thuringiensis</em> produces Cry proteins (insecticidal). <em>cry</em> genes inserted into crop plants (Bt cotton = BollGuard). Cry1Ac + Cry2Ab → kills Lepidoptera (bollworm). Pro-toxin activated in alkaline insect gut → pore formation → insect dies.</td></tr>
+            <tr><td><strong>Golden Rice</strong></td><td>Transgenic crop</td><td>Rice engineered with β-carotene pathway genes (Psy from daffodil/maize + CrtI from bacteria). Produces β-carotene (provitamin A) in endosperm. Addresses Vitamin A deficiency.</td></tr>
+            <tr><td><strong>SCID Gene Therapy</strong></td><td>Ex vivo gene therapy</td><td>Severe Combined Immunodeficiency (ADA deficiency). ADA gene introduced into patient's T-lymphocytes using retroviral vector. First successful gene therapy (1990, Ashanti DeSilva).</td></tr>
+            <tr><td><strong>Human Genome Project (HGP)</strong></td><td>Large-scale sequencing</td><td>1990–2003. 13 years. $2.7 billion. Sequenced all ~3.2 billion bp of human genome. Used BAC, YAC libraries + capillary electrophoresis. Found ~25,000 genes. Reference sequence = haploid (one chromosome set).</td></tr>
+            <tr><td><strong>RNAi (RNA interference)</strong></td><td>Gene silencing</td><td>Double-stranded siRNA triggers degradation of complementary mRNA → gene silenced. Developed by Fire and Mello (Nobel 2006). Used in medicine, agriculture. Example: Nematode resistance in tobacco using dsRNA.</td></tr>
+            <tr><td><strong>CRISPR-Cas9</strong></td><td>Gene editing</td><td>Jen Doudna &amp; Emmanuelle Charpentier (Nobel 2020). Guide RNA + Cas9 nuclease → precise cuts at any genomic location. Can knock out, correct, or insert genes. Revolutionary tool.</td></tr>
+            <tr><td><strong>Dolly the Sheep</strong></td><td>Reproductive cloning</td><td>1996, Ian Wilmut (Roslin Institute). First cloned mammal from adult somatic cell. Mammary gland cell nucleus → enucleated oocyte → surrogate → Dolly. Proved somatic cell nuclear transfer (SCNT) is possible. Dolly had premature aging.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">The Bt toxin genes in transgenic plants are derived from: (A) Bacillus subtilis (B) Bacillus thuringiensis (C) Tobacco mosaic virus (D) Agrobacterium tumefaciens</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (B) Bacillus thuringiensis</span>
+          <p><em>Bacillus thuringiensis</em> produces Cry proteins (crystalline insecticidal proteins) encoded by <em>cry</em> genes. These are transferred to crop plants (Bt cotton, Bt brinjal) to confer insect resistance. The pro-toxin is inactive in the bacterial cell but is activated in the alkaline pH of insect midgut → lyses epithelial cells → kills the insect. Ineffective against mammals (acidic stomach).</p>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">The first successful gene therapy was performed for which disease? (A) AIDS (B) Thalassaemia (C) SCID (ADA deficiency) (D) Haemophilia</span>
+          <button class="pyq-toggle">Solve →</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: (C) SCID — ADA deficiency</span>
+          <p>The first gene therapy (1990) treated <strong>Adenosine Deaminase (ADA) deficiency</strong> — a form of SCID (Severe Combined Immunodeficiency). Patient: Ashanti DeSilva (4-year-old girl). ADA gene was introduced into her T-lymphocytes using a retroviral vector. Without ADA → toxic deoxyadenosine accumulates → kills lymphocytes → no immune function.</p>
+        </div>
+      </div>
+
+      <h2 class="sh">Bioethics, Biosafety &amp; Biopatents <span class="tag tq">Emerging NEET Topic</span></h2>
+      <ul class="pl">
+        <li><strong>Biopatent:</strong> Intellectual property protection on biological entities (genes, organisms, processes). Controversial — e.g., Myriad Genetics patent on BRCA1/2 genes.</li>
+        <li><strong>Biopiracy:</strong> Exploitation of biological resources and traditional knowledge from poorer nations without compensation or benefit-sharing. Examples: Neem patent (EPO revoked by Greenpeace), Turmeric patent (USPTO revoked). Indian Protection of Plant Varieties and Farmers' Rights Act (2001) to counter this.</li>
+        <li><strong>Biosafety:</strong> Containment/prevention of unintended release of GMOs. GEAC (Genetic Engineering Approval Committee) = Indian body that approves GMO research and use.</li>
+        <li><strong>Convention on Biological Diversity (CBD):</strong> International treaty for biodiversity conservation and equitable sharing of benefits from bioresources.</li>
+      </ul>
+
+    </div>
+  </div>
+</div><!-- /biotech -->
+
+<!-- ══════════════ MASTER REVISION GRIDS — GENETICS ══════════════ -->
+<div class="chapter" id="ch-genetics-grids">
+  <div class="ch-head" style="background:linear-gradient(135deg,#0d0515,#150d30);border-bottom-color:#d4a0ff;">
+    <div class="ch-ey">APPENDIX</div>
+    <div class="ch-title">🏆 Genetics &amp; Molecular Biology — Sacred NEET Master Grids</div>
+  </div>
+  <div class="ch-body">
+    <div class="sec">
+
+      <h2 class="sh">Grid 1 — Monohybrid &amp; Dihybrid Ratio Quick Reference</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Cross Type</th><th>F₂ Genotypic Ratio</th><th>F₂ Phenotypic Ratio</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Monohybrid (Aa × Aa)</td><td>1:2:1 (AA:Aa:aa)</td><td>3:1</td><td>Tall × Tall pea</td></tr>
+            <tr><td>Test cross (Aa × aa)</td><td>1:1 (Aa:aa)</td><td>1:1</td><td>Identify genotype of dominant</td></tr>
+            <tr><td>Dihybrid (AaBb × AaBb)</td><td>1:2:1:2:4:2:1:2:1</td><td>9:3:3:1</td><td>RrYy × RrYy pea</td></tr>
+            <tr><td>Incomplete dominance (Rr × Rr)</td><td>1:2:1</td><td>1:2:1</td><td>Antirrhinum flower colour</td></tr>
+            <tr><td>Codominance (IᴬIᴮ × ii)</td><td>1:1 (IᴬiB : Iᴮi)</td><td>1:1 (AB : B in this specific cross)</td><td>ABO blood groups</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 2 — All Epistasis Ratios (Dihybrid Modifications)</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Type of Interaction</th><th>Phenotypic Ratio (F₂)</th><th>Mechanism</th><th>Classic Example</th></tr></thead>
+          <tbody>
+            <tr><td>No interaction (standard)</td><td>9:3:3:1</td><td>Independent genes, both needed</td><td>Basic dihybrid</td></tr>
+            <tr><td>Complementary genes</td><td>9:7</td><td>Both dominant alleles needed for phenotype; either recessive → same phenotype</td><td>Sweet pea (Bateson &amp; Punnett 1906)</td></tr>
+            <tr><td>Dominant epistasis</td><td>12:3:1</td><td>Dominant at one locus masks expression of other locus</td><td>Summer squash fruit colour</td></tr>
+            <tr><td>Recessive epistasis</td><td>9:3:4</td><td>Homozygous recessive at one locus masks other locus</td><td>Labrador/mouse coat colour (Agouti gene)</td></tr>
+            <tr><td>Duplicate dominant</td><td>15:1</td><td>Either dominant allele at either locus produces same phenotype; need both recessive to differ</td><td>Shepherd's purse capsule shape</td></tr>
+            <tr><td>Duplicate recessive</td><td>9:7</td><td>Homozygous recessive at EITHER locus masks (same as complementary)</td><td>—</td></tr>
+            <tr><td>Dominant + recessive</td><td>13:3</td><td>Dominant of one + recessive of other both dominant over same phenotype</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 3 — Nobel Prizes Relevant to Genetics (NEET Trivia)</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Year</th><th>Prize</th><th>Discoverer(s)</th><th>Discovery</th></tr></thead>
+          <tbody>
+            <tr><td>1933</td><td>Physiology</td><td>T.H. Morgan</td><td>Chromosome theory of heredity (<em>Drosophila</em>)</td></tr>
+            <tr><td>1958</td><td>Chemistry</td><td>F. Sanger</td><td>First protein sequence (insulin) — first Nobel</td></tr>
+            <tr><td>1959</td><td>Physiology</td><td>A. Kornberg + S. Ochoa</td><td>DNA polymerase discovery</td></tr>
+            <tr><td>1962</td><td>Physiology</td><td>Watson, Crick, Wilkins</td><td>DNA double helix structure</td></tr>
+            <tr><td>1965</td><td>Physiology</td><td>Jacob, Monod, Lwoff</td><td>Operon model; gene regulation</td></tr>
+            <tr><td>1968</td><td>Physiology</td><td>Nirenberg, Khorana, Holley</td><td>Genetic code cracked</td></tr>
+            <tr><td>1975</td><td>Physiology</td><td>Baltimore, Temin, Dulbecco</td><td>Reverse transcriptase</td></tr>
+            <tr><td>1978</td><td>Physiology</td><td>Arber, Smith, Nathans</td><td>Restriction endonucleases</td></tr>
+            <tr><td>1980</td><td>Chemistry</td><td>F. Sanger (2nd), Berg, Gilbert</td><td>DNA sequencing methods</td></tr>
+            <tr><td>1983</td><td>Physiology</td><td>Barbara McClintock</td><td>Transposons (jumping genes)</td></tr>
+            <tr><td>1993</td><td>Chemistry</td><td>Kary Mullis, M. Smith</td><td>PCR, site-directed mutagenesis</td></tr>
+            <tr><td>2006</td><td>Physiology</td><td>Fire, Mello</td><td>RNAi (RNA interference)</td></tr>
+            <tr><td>2020</td><td>Chemistry</td><td>Doudna, Charpentier</td><td>CRISPR-Cas9 gene editing</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 4 — Scientist Mnemonics (First Discoverer Fast-Fire)</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Scientist</th><th>Contribution</th><th>Year</th></tr></thead>
+          <tbody>
+            <tr><td>Gregor Mendel</td><td>Laws of Heredity; Father of Genetics</td><td>1866</td></tr>
+            <tr><td>Friedrich Meischer</td><td>Discovered DNA (called "nuclein")</td><td>1869</td></tr>
+            <tr><td>Walter Flemming</td><td>Discovered chromatin; described mitosis</td><td>1879</td></tr>
+            <tr><td>Walter Sutton + Boveri</td><td>Chromosomes carry genes (Chromosomal theory)</td><td>1902</td></tr>
+            <tr><td>Thomas Hunt Morgan</td><td>Sex linkage, linkage groups, Drosophila work</td><td>1910</td></tr>
+            <tr><td>Alfred Sturtevant</td><td>First linkage (genetic) map</td><td>1913</td></tr>
+            <tr><td>Griffith</td><td>Transformation principle</td><td>1928</td></tr>
+            <tr><td>Avery, MacLeod, McCarty</td><td>DNA = genetic material (transforming principle)</td><td>1944</td></tr>
+            <tr><td>Erwin Chargaff</td><td>Chargaff's rules (A=T, G=C)</td><td>1950</td></tr>
+            <tr><td>Rosalind Franklin</td><td>X-ray crystallography of DNA (Photo 51)</td><td>1952</td></tr>
+            <tr><td>Hershey &amp; Chase</td><td>Confirmed DNA as genetic material (T2 phage)</td><td>1952</td></tr>
+            <tr><td>Watson &amp; Crick</td><td>Double helix model of DNA</td><td>1953</td></tr>
+            <tr><td>Meselson &amp; Stahl</td><td>Semi-conservative replication (¹⁵N experiment)</td><td>1958</td></tr>
+            <tr><td>Jacob &amp; Monod</td><td>Operon model (lac &amp; trp operons)</td><td>1961</td></tr>
+            <tr><td>Nirenberg</td><td>Cracked first codon (UUU = Phe) using poly-U</td><td>1961</td></tr>
+            <tr><td>Temin &amp; Baltimore</td><td>Reverse transcriptase</td><td>1970</td></tr>
+            <tr><td>Boyer &amp; Cohen</td><td>First recombinant DNA molecule in bacteria</td><td>1972</td></tr>
+            <tr><td>Barbara McClintock</td><td>Transposons</td><td>Nobel 1983</td></tr>
+            <tr><td>Ian Wilmut</td><td>Dolly (first cloned mammal by SCNT)</td><td>1996</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 5 — DNA vs RNA vs Protein — Quick Compare</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Feature</th><th>DNA</th><th>RNA</th><th>Protein</th></tr></thead>
+          <tbody>
+            <tr><td>Monomer</td><td>Deoxyribonucleotide</td><td>Ribonucleotide</td><td>Amino acid (20 types)</td></tr>
+            <tr><td>Sugar</td><td>Deoxyribose (no -OH at 2')</td><td>Ribose (has -OH at 2')</td><td>—</td></tr>
+            <tr><td>Bases</td><td>A, T, G, C</td><td>A, U, G, C (U replaces T)</td><td>—</td></tr>
+            <tr><td>Structure</td><td>Double-stranded helix (usually)</td><td>Single-stranded (usually)</td><td>1°,2°,3°,4° structures</td></tr>
+            <tr><td>Location</td><td>Nucleus, mitochondria, chloroplast</td><td>Nucleus + cytoplasm</td><td>Cytoplasm, all compartments</td></tr>
+            <tr><td>Function</td><td>Genetic information storage</td><td>Protein synthesis (mRNA, tRNA, rRNA)</td><td>Structural, enzymatic, regulatory</td></tr>
+            <tr><td>Stability</td><td>Very stable (double helix + deoxy)</td><td>Less stable (2'-OH)</td><td>Variable</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 6 — Types of RNA &amp; Their Functions</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>RNA Type</th><th>% of Total RNA</th><th>Function</th><th>Transcribed by</th></tr></thead>
+          <tbody>
+            <tr><td><strong>rRNA (ribosomal)</strong></td><td>~80%</td><td>Structural + catalytic component of ribosomes. 23S rRNA = peptidyl transferase ribozyme.</td><td>RNA Pol I (eukaryotes)</td></tr>
+            <tr><td><strong>tRNA (transfer)</strong></td><td>~15%</td><td>Adapter; anticodon reads mRNA codon; carries amino acids to ribosome. Charged by aminoacyl-tRNA synthetase.</td><td>RNA Pol III</td></tr>
+            <tr><td><strong>mRNA (messenger)</strong></td><td>~5%</td><td>Carries genetic code from DNA to ribosome. Triplet codons. 5'cap + poly-A tail (eukaryotes).</td><td>RNA Pol II</td></tr>
+            <tr><td><strong>snRNA (small nuclear)</strong></td><td>—</td><td>Component of spliceosome; involved in pre-mRNA splicing</td><td>RNA Pol II &amp; III</td></tr>
+            <tr><td><strong>siRNA (small interfering)</strong></td><td>—</td><td>RNAi — gene silencing; guides RISC to degrade complementary mRNA</td><td>Dicer cleaves dsRNA → siRNA</td></tr>
+            <tr><td><strong>miRNA (microRNA)</strong></td><td>—</td><td>Post-transcriptional gene regulation; ~22 nt, partially complementary → mRNA degradation or translation inhibition</td><td>RNA Pol II → processed by Drosha + Dicer</td></tr>
+            <tr><td><strong>hnRNA (heterogeneous nuclear)</strong></td><td>—</td><td>Pre-mRNA; contains introns + exons before processing</td><td>RNA Pol II</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="sh" style="margin-top:40px;">Grid 7 — Common Genetic Disorders at a Glance</h2>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Disorder</th><th>Type</th><th>Chromosome/Gene</th><th>Key Fact</th></tr></thead>
+          <tbody>
+            <tr><td>Haemophilia A</td><td>X-linked recessive</td><td>F8 gene, X chr.</td><td>Factor VIII defect; queen Victoria was carrier</td></tr>
+            <tr><td>Haemophilia B</td><td>X-linked recessive</td><td>F9 gene, X chr.</td><td>Factor IX defect; Christmas disease</td></tr>
+            <tr><td>Colour blindness</td><td>X-linked recessive</td><td>OPN1 genes, X chr.</td><td>~8% males affected; Dalton had it (Daltonism)</td></tr>
+            <tr><td>Sickle-cell anaemia</td><td>Autosomal recessive</td><td>HBB, chr. 11</td><td>Glu→Val; missense mutation; balanced polymorphism</td></tr>
+            <tr><td>Phenylketonuria</td><td>Autosomal recessive</td><td>PAH, chr. 12</td><td>Phe accumulates; intellectual disability; treatable by diet</td></tr>
+            <tr><td>Thalassaemia</td><td>Autosomal recessive</td><td>HBA/HBB genes</td><td>Reduced/absent globin chains; haemolytic anaemia</td></tr>
+            <tr><td>Down syndrome</td><td>Trisomy 21</td><td>Chromosome 21 (extra)</td><td>Most common; risk ↑ maternal age; IQ 40–70</td></tr>
+            <tr><td>Turner syndrome</td><td>Monosomy X (45,XO)</td><td>X chromosome absent</td><td>Female; infertile; no Barr body; webbed neck</td></tr>
+            <tr><td>Klinefelter syndrome</td><td>47,XXY</td><td>Extra X in male</td><td>Male; gynaecomastia; infertile; 1 Barr body</td></tr>
+            <tr><td>Huntington's disease</td><td>Autosomal dominant</td><td>HTT, chr. 4 (CAG repeat)</td><td>Progressive neurodegeneration; onset 30–50 yrs; no cure</td></tr>
+            <tr><td>Cystic fibrosis</td><td>Autosomal recessive</td><td>CFTR, chr. 7</td><td>Most common fatal genetic disease in Caucasians; thick mucus in lungs/GI/pancreas</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /genetics grids -->
+
+<div class="page-footer">
+  <p>Genetics &amp; Molecular Biology Master Cheatsheet · NEET Mastery Hub · All facts NCERT Class XII mapped · PYQ 2009–2025</p>
+</div>
+
+</div><!-- /book -->
+
+<script>
+// PYQ toggles
+document.querySelectorAll('.pyq-toggle').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var sol = btn.closest('.pyq-head').nextElementSibling;
+    sol.classList.toggle('open');
+  });
+});
+// Disable right-click and selection
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey && (e.key==='s'||e.key==='u'||e.key==='a'||e.key==='c'))e.preventDefault();
+});
+</script>
+</body>
+</html>

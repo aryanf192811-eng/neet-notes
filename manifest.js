@@ -90,7 +90,7 @@ const MANIFEST = {
         {
           label: "Genetics & Ecology",
           notes: [
-            { num: "—", title: "Genetics, Molecular Biology & Evolution", desc: "Mendel's Laws · DNA Replication · Transcription · Translation · Biotechnology", live: false },
+            { num: "B3", title: "Genetics, Molecular Biology & Evolution — PYQ Master Cheatsheet", desc: "Mendel's Laws · Chromosomal Theory · DNA Structure · Replication · Transcription · Translation · Mutations · Evolution · Biotechnology · PYQ 2009–2025", file: "notes/neet-genetics-complete.html", type: "pyq", live: true },
             { num: "—", title: "Ecology & Environment", desc: "Ecosystems · Food chains · Biodiversity · Conservation · Ecological Succession", live: false }
           ]
         }
