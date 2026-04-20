@@ -293,6 +293,39 @@
     .p-node.red{border-color:var(--red);color:var(--red);}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0;}
     @media(max-width:600px){.two-col{grid-template-columns:1fr;}}
+    /* ─── DECISION LAYER STYLES ─── */
+    .dl-block{border:2px solid #1a6b40;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(26,107,64,.04);}
+    .dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;border-bottom:1px dashed rgba(26,107,64,.3);padding-bottom:6px;}
+    .dl-if{color:#8c4a00;font-weight:600;}
+    .dl-elim{color:#8c1a1a;font-weight:600;}
+    .dl-ans{color:#1a6b40;font-weight:700;}
+    .trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
+    .trigger-pill{background:var(--paper);border:1px solid rgba(160,180,100,0.4);border-radius:8px;padding:10px 14px;font-size:.84rem;}
+    .trigger-pill .tw{color:var(--bio);font-weight:700;}
+    .trigger-pill .ta{color:var(--green);}
+    .trap-list{list-style:none;padding:0;margin:8px 0;}
+    .trap-list li{padding:6px 0;border-bottom:1px dotted rgba(160,180,100,0.4);font-size:.88rem;}
+    .trap-list li::before{content:"\26A0\FE0F ";font-size:.8rem;}
+    .pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid var(--purple);border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+    .elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
+    .elim-chain .wr{color:#8c1a1a;}
+    .elim-chain .cr{color:#1a6b40;}
+    .cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(26,74,140,.04);border-radius:6px;}
+    .cc-arr{color:var(--bio);font-weight:700;font-size:1rem;}
+    .ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+    .ncert-ex .nq{color:#8c6b00;font-weight:600;}
+    .revision-engine{background:linear-gradient(135deg,rgba(26,107,64,.06),rgba(26,74,140,.04));border:2px solid #1a6b40;border-radius:14px;padding:24px 28px;margin:28px 0;}
+    .re-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#1a6b40;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid rgba(26,107,64,.2);}
+    .re-section{margin:20px 0;}
+    .re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;}
+    .re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
+    .re-item{border:1px solid rgba(26,107,64,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
+    .re-item strong{color:#1a6b40;}
+    .shortcut-num{display:inline-block;background:#1a6b40;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;flex-shrink:0;}
+    [data-theme="dark"] .dl-block{background:rgba(74,184,80,0.06);border-color:var(--bio);}
+    [data-theme="dark"] .trigger-pill{background:var(--paper2);border-color:rgba(74,184,80,0.2);}
+    [data-theme="dark"] .revision-engine{background:linear-gradient(135deg,rgba(74,184,80,.06),rgba(91,143,214,.04));border-color:var(--bio);}
+    [data-theme="dark"] .re-item{background:var(--paper2);border-color:rgba(74,184,80,.2);}
   </style>
 </head>
 <body>
@@ -465,6 +498,16 @@
       <div class="purp-box">
         <span class="lbl">🎯 NEET Master Principle — Life Cycles</span>
         <p><strong>Gametophyte dominant → Algae &amp; Bryophytes.</strong> Sporophyte dominant → Pteridophytes, Gymnosperms, Angiosperms. In Algae, both phases can be free-living (isomorphic) or one can dominate (heteromorphic). In Bryophytes, sporophyte is partially/fully dependent on gametophyte. In Pteridophytes, gametophyte (prothallus) is free-living but very small. Both phases are free-living in Pteridophytes — this is the NEET trap!</p>
+      </div>
+      <div class="elim-box">
+        <span class="lbl">⚡ 5-Second Decision Engine — Plant Kingdom</span>
+        <p>See <strong>"dominant generation"</strong> → If <em>gametophyte</em>: pick Algae/Bryophyta. If <em>sporophyte</em>: pick Pteridophyta/Gymno/Angio.<br>
+        See <strong>"needs water for fertilisation"</strong> → eliminate Gymnosperms &amp; Angiosperms → ONLY Algae/Bryophyta/Pteridophyta.<br>
+        See <strong>"naked seeds"</strong> → Gymnosperm ONLY. See <strong>"double fertilisation"</strong> → Angiosperm ONLY.<br>
+        See <strong>"vascular tissue absent"</strong> → eliminate Pteridophyta, Gymno, Angio → only Algae or Bryophyta remain.</p>
+      </div>
+      <div class="ncert-box">
+        <p><strong>⚠ NCERT Trap — Chlamydomonas:</strong> Shows <em>haplontic</em> life cycle (dominant = gametophyte phase; zygote is only diploid stage — it undergoes meiosis immediately). <strong>Trap:</strong> Examiner may show "Chlamydomonas = diploid dominant" — FALSE. | <strong>Fucus:</strong> Diplontic cycle — dominant sporophyte, gametes are only haploid. | <strong>Ectocarpus:</strong> Haplo-diplontic — both free-living. NEET asks "which algae has isomorphic alternation of generations?" → Ectocarpus.</p>
       </div>
 
       <div class="warn-box">
@@ -2286,40 +2329,8 @@ function toggle(head){
 </script>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     BOTANY DECISION LAYER UPGRADE — HIGH-SPEED MCQ SOLVING ENGINE
-     Injected after main content. All sections are self-contained.
+     BOTANY DECISION LAYER
 ════════════════════════════════════════════════════════════════ -->
-<style>
-/* ─── DECISION LAYER STYLES ─── */
-.dl-block{border:2px solid #1a6b40;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(26,107,64,.04);}
-.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;border-bottom:1px dashed rgba(26,107,64,.3);padding-bottom:6px;}
-.dl-if{color:#8c4a00;font-weight:600;}
-.dl-elim{color:#8c1a1a;font-weight:600;}
-.dl-ans{color:#1a6b40;font-weight:700;}
-.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
-.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
-.trigger-pill .tw{color:var(--accent);font-weight:700;}
-.trigger-pill .ta{color:var(--green);}
-.trap-list{list-style:none;padding:0;margin:8px 0;}
-.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
-.trap-list li::before{content:"⚠️ ";font-size:.8rem;}
-.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid var(--purple);border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
-.elim-chain .wr{color:#8c1a1a;}
-.elim-chain .cr{color:#1a6b40;}
-.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(26,74,140,.04);border-radius:6px;}
-.cc-arr{color:var(--accent);font-weight:700;font-size:1rem;}
-.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.ncert-ex .nq{color:#8c6b00;font-weight:600;}
-.revision-engine{background:linear-gradient(135deg,rgba(26,107,64,.06),rgba(26,74,140,.04));border:2px solid #1a6b40;border-radius:14px;padding:24px 28px;margin:28px 0;}
-.re-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#1a6b40;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid rgba(26,107,64,.2);}
-.re-section{margin:20px 0;}
-.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1a6b40;margin-bottom:10px;}
-.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
-.re-item{border:1px solid rgba(26,107,64,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
-.re-item strong{color:#1a6b40;}
-.shortcut-num{display:inline-block;background:#1a6b40;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;flex-shrink:0;}
-</style>
 
 <!-- ═══ BOTANY DECISION LAYER — CHAPTER-BY-CHAPTER ═══ -->
 <div class="chapter" id="dl-botany-decision">

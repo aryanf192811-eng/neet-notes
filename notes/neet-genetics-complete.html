@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <script id="theme-sync-core">
@@ -335,6 +335,37 @@ a.anc:hover{text-decoration:underline;}
   .fcards{grid-template-columns:1fr;}
   .hero{padding:36px 16px 28px;}
 }
+/* ─── DECISION LAYER STYLES ─── */
+.dl-block{border:2px solid #5b1a8c;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(91,26,140,.04);}
+.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;border-bottom:1px dashed rgba(91,26,140,.3);padding-bottom:6px;}
+.dl-if{color:#8c4a00;font-weight:600;}
+.dl-ans{color:#1a6b40;font-weight:700;margin-top:8px;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
+.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
+.trigger-pill .tw{color:#5b1a8c;font-weight:700;}
+.trigger-pill .ta{color:#1a6b40;}
+.trap-list{list-style:none;padding:0;margin:8px 0;}
+.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
+.trap-list li::before{content:"\26A0\FE0F ";}
+.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid #5b1a8c;border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
+.elim-chain .wr{color:#8c1a1a;display:block;margin:3px 0;}
+.elim-chain .cr{color:#1a6b40;display:block;margin:3px 0;font-weight:600;}
+.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(91,26,140,.04);border-radius:6px;}
+.cc-arr{color:#5b1a8c;font-weight:700;font-size:1rem;}
+.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.ncert-ex .nq{color:#8c6b00;font-weight:600;}
+.revision-engine{background:linear-gradient(135deg,rgba(91,26,140,.06),rgba(26,74,140,.04));border:2px solid #5b1a8c;border-radius:14px;padding:24px 28px;margin:28px 0;}
+.re-section{margin:20px 0;}
+.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
+.re-item{border:1px solid rgba(91,26,140,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
+.re-item strong{color:#5b1a8c;}
+.shortcut-num{display:inline-block;background:#5b1a8c;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;}
+[data-theme="dark"] .dl-block{background:rgba(160,80,220,0.06);border-color:var(--purple);}
+[data-theme="dark"] .trigger-pill{background:var(--paper2);}
+[data-theme="dark"] .revision-engine{background:linear-gradient(135deg,rgba(160,80,220,.06),rgba(91,143,214,.04));border-color:var(--purple);}
+[data-theme="dark"] .re-item{background:var(--paper2);}
 </style>
 </head>
 <body oncontextmenu="return false">
@@ -431,6 +462,15 @@ a.anc:hover{text-decoration:underline;}
       </div>
       <div class="elim-box">
         <p><strong>NEET Trap:</strong> Pod colour = Green dominant over Yellow (NOT the same as seed colour where Yellow is dominant over Green). These are OPPOSITE! Students confuse pod and seed colour.</p>
+      </div>
+      <div class="trick">
+        <span class="lbl">⚡ Mendel's 7 Characters — 5-Second Recall System</span>
+        <p><strong>Mnemonic:</strong> <em>"Silly Young Pigs Generally Flow Through, Dammit"</em><br>
+        <strong>S</strong>eed shape (Round>Wrinkled) · <strong>Y</strong>ellow seed (Y>Green) · <strong>P</strong>od shape (Inflated>Constricted) · <strong>G</strong>reen pod (G>Yellow) · <strong>F</strong>lower colour (Violet>White) · <strong>T</strong>erminal/Axial (Axial>Terminal) · <strong>D</strong>warf/Tall (Tall>Dwarf)<br>
+        <strong>Key distinction:</strong> SEED = Yellow dominant; POD = Green dominant. This is the #1 most confused Mendel fact in NEET.</p>
+      </div>
+      <div class="ncert-box">
+        <p><strong>⚠ NCERT Direct:</strong> Mendel selected 7 characters because they showed COMPLETE dominance (no blending). Each gene was on a DIFFERENT chromosome — enabling independent assortment. In modern genetics, this was lucky coincidence. <strong>NEET asks "why Pisum sativum?" → Answer:</strong> (1) Short generation time, (2) Large number of offspring, (3) Easy to grow &amp; control pollination, (4) Distinct, contrasting characters.</p>
       </div>
 
       <h2 class="sh">Mendel's First Law — Law of Dominance &amp; Uniformity <span class="tag tc">Core</span></h2>
@@ -1703,37 +1743,7 @@ document.addEventListener('keydown',function(e){
   if(e.ctrlKey && (e.key==='s'||e.key==='u'||e.key==='a'||e.key==='c'))e.preventDefault();
 });
 </script>
-<!-- ═══════════════════════════════════════════════════════════════
-     GENETICS DECISION LAYER UPGRADE — HIGH-SPEED MCQ SOLVING ENGINE
-════════════════════════════════════════════════════════════════ -->
-<style>
-.dl-block{border:2px solid #5b1a8c;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(91,26,140,.04);}
-.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;border-bottom:1px dashed rgba(91,26,140,.3);padding-bottom:6px;}
-.dl-if{color:#8c4a00;font-weight:600;}
-.dl-ans{color:#1a6b40;font-weight:700;margin-top:8px;}
-.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
-.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
-.trigger-pill .tw{color:#5b1a8c;font-weight:700;}
-.trigger-pill .ta{color:#1a6b40;}
-.trap-list{list-style:none;padding:0;margin:8px 0;}
-.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
-.trap-list li::before{content:"⚠️ ";}
-.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid #5b1a8c;border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
-.elim-chain .wr{color:#8c1a1a;display:block;margin:3px 0;}
-.elim-chain .cr{color:#1a6b40;display:block;margin:3px 0;font-weight:600;}
-.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(91,26,140,.04);border-radius:6px;}
-.cc-arr{color:#5b1a8c;font-weight:700;font-size:1rem;}
-.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.ncert-ex .nq{color:#8c6b00;font-weight:600;}
-.revision-engine{background:linear-gradient(135deg,rgba(91,26,140,.06),rgba(26,74,140,.04));border:2px solid #5b1a8c;border-radius:14px;padding:24px 28px;margin:28px 0;}
-.re-section{margin:20px 0;}
-.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5b1a8c;margin-bottom:10px;}
-.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
-.re-item{border:1px solid rgba(91,26,140,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
-.re-item strong{color:#5b1a8c;}
-.shortcut-num{display:inline-block;background:#5b1a8c;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;}
-</style>
+
 
 <div class="chapter" id="dl-genetics-decision">
   <div class="ch-head" style="background:linear-gradient(135deg,rgba(91,26,140,.12),transparent);border-bottom-color:#5b1a8c;">

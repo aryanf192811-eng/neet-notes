@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <script id="theme-sync-core">
@@ -249,6 +249,39 @@ code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper
 [data-theme="dark"] .theme-track{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);}
 [data-theme="dark"] .theme-track::before{content:'☾';transform:translateX(20px);background:#1a1212;color:#ffaa55;}
 @media(max-width:640px){.sec{padding:32px 20px 28px 44px;}.cover{padding:36px 28px 32px;}.cover h1{font-size:26px;}.toc{padding:20px 22px;}}
+/* ─── DECISION LAYER STYLES ─── */
+.dl-block{border:2px solid #8c1a1a;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(140,26,26,.04);}
+.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8c1a1a;margin-bottom:10px;border-bottom:1px dashed rgba(140,26,26,.3);padding-bottom:6px;}
+.dl-if{color:#8c4a00;font-weight:600;}
+.dl-elim{color:#8c1a1a;font-weight:600;}
+.dl-ans{color:#1a6b40;font-weight:700;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
+.trigger-pill{background:var(--paper);border:1px solid rgba(180,100,100,0.3);border-radius:8px;padding:10px 14px;font-size:.84rem;}
+.trigger-pill .tw{color:#8c1a1a;font-weight:700;}
+.trigger-pill .ta{color:#1a6b40;}
+.trap-list{list-style:none;padding:0;margin:8px 0;}
+.trap-list li{padding:6px 0;border-bottom:1px dotted rgba(180,100,100,0.3);font-size:.88rem;}
+.trap-list li::before{content:"\26A0\FE0F ";}
+.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid var(--purple);border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
+.elim-chain .wr{color:#8c1a1a;}
+.elim-chain .cr{color:#1a6b40;}
+.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(140,26,26,.04);border-radius:6px;}
+.cc-arr{color:#8c1a1a;font-weight:700;font-size:1rem;}
+.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
+.ncert-ex .nq{color:#8c6b00;font-weight:600;}
+.revision-engine{background:linear-gradient(135deg,rgba(140,26,26,.06),rgba(26,74,140,.04));border:2px solid #8c1a1a;border-radius:14px;padding:24px 28px;margin:28px 0;}
+.re-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#8c1a1a;}
+.re-section{margin:20px 0;}
+.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8c1a1a;margin-bottom:10px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
+.re-item{border:1px solid rgba(140,26,26,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
+.re-item strong{color:#8c1a1a;}
+.shortcut-num{display:inline-block;background:#8c1a1a;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;}
+[data-theme="dark"] .dl-block{background:rgba(255,100,100,0.06);border-color:var(--red);}
+[data-theme="dark"] .trigger-pill{background:var(--paper2);border-color:rgba(200,80,80,0.2);}
+[data-theme="dark"] .revision-engine{background:linear-gradient(135deg,rgba(255,100,100,.06),rgba(91,143,214,.04));border-color:var(--red);}
+[data-theme="dark"] .re-item{background:var(--paper2);border-color:rgba(200,80,80,.2);}
 </style>
 <script>function toggle(el){el.nextElementSibling.classList.toggle('open');}</script>
 </head>
@@ -439,6 +472,16 @@ code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper
 
       <div class="elim-box">
         <p><strong>Most Missed Trap:</strong> Porifera = Acoelomate AND Asymmetrical AND Diploblastic AND Cellular level. Students often mark diploblastic for Porifera as "correct" when the question asks about organization — Porifera is CELLULAR level, not tissue level.</p>
+      </div>
+      <div class="trick">
+        <span class="lbl">⚡ 5-Second Animal Kingdom Decision Engine</span>
+        <p>See <strong>"flame cells"</strong> → Platyhelminthes (excretion/osmoregulation). See <strong>"nephridia"</strong> → Annelida. See <strong>"malpighian tubules"</strong> → Arthropods (insects). See <strong>"green glands"</strong> → Crustaceans.<br>
+        See <strong>"water vascular system"</strong> → ONLY Echinodermata. See <strong>"book lungs"</strong> → Spiders (Arachnida). See <strong>"book gills"</strong> → Horseshoe crab (Xiphosura).<br>
+        See <strong>"pseudocoelom"</strong> → Aschelminthes ONLY. See <strong>"acoelomate + triploblastic"</strong> → Platyhelminthes ONLY.<br>
+        See <strong>"radial symmetry + adult"</strong> → Echinodermata. See <strong>"bilateral + larva"</strong> → also Echinodermata (NEET trap!).</p>
+      </div>
+      <div class="ncert-box">
+        <p><strong>⚠ NCERT Trap — Porifera Organization:</strong> Porifera = <em>cellular level</em> (cells arranged as aggregates — NO true tissues). Do NOT confuse with "tissue grade" (Coelenterata). The cells in Porifera show some division of labour but NOT organized into true tissues. <strong>Key cell types:</strong> Pinacocytes (outer), Choanocytes (collar cells — line spongocoel, create water current via flagella), Amoebocytes (digestion), Porocytes (pores).</p>
       </div>
 
       <h3 class="ssh">🎯 Segmentation (Metamerism)</h3>
@@ -2065,39 +2108,7 @@ code{font-family:"Courier New",monospace;font-size:13.5px;background:var(--paper
 
 
 </div><!-- /book -->
-<!-- ═══════════════════════════════════════════════════════════════
-     ZOOLOGY DECISION LAYER UPGRADE — HIGH-SPEED MCQ SOLVING ENGINE
-════════════════════════════════════════════════════════════════ -->
-<style>
-.dl-block{border:2px solid #8c1a1a;border-radius:10px;padding:16px 20px;margin:16px 0;background:rgba(140,26,26,.04);}
-.dl-head{font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8c1a1a;margin-bottom:10px;border-bottom:1px dashed rgba(140,26,26,.3);padding-bottom:6px;}
-.dl-if{color:#8c4a00;font-weight:600;}
-.dl-elim{color:#8c1a1a;font-weight:600;}
-.dl-ans{color:#1a6b40;font-weight:700;}
-.trigger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:14px 0;}
-.trigger-pill{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:.84rem;}
-.trigger-pill .tw{color:#8c1a1a;font-weight:700;}
-.trigger-pill .ta{color:#1a6b40;}
-.trap-list{list-style:none;padding:0;margin:8px 0;}
-.trap-list li{padding:6px 0;border-bottom:1px dotted var(--border);font-size:.88rem;}
-.trap-list li::before{content:"⚠️ ";}
-.pyq-pat{background:rgba(91,26,140,.05);border-left:3px solid #5b1a8c;border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.elim-chain{padding:10px 14px;background:rgba(140,26,26,.04);border-radius:8px;margin:8px 0;}
-.elim-chain .wr{color:#8c1a1a;}
-.elim-chain .cr{color:#1a6b40;}
-.cause-chain{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0;font-size:.88rem;padding:8px 12px;background:rgba(140,26,26,.04);border-radius:6px;}
-.cc-arr{color:#8c1a1a;font-weight:700;font-size:1rem;}
-.ncert-ex{background:rgba(140,107,0,.06);border:1px solid rgba(140,107,0,.25);border-radius:6px;padding:10px 14px;margin:8px 0;font-size:.87rem;}
-.ncert-ex .nq{color:#8c6b00;font-weight:600;}
-.revision-engine{background:linear-gradient(135deg,rgba(140,26,26,.06),rgba(26,74,140,.04));border:2px solid #8c1a1a;border-radius:14px;padding:24px 28px;margin:28px 0;}
-.re-title{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:700;color:#8c1a1a;}
-.re-section{margin:20px 0;}
-.re-sh{font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8c1a1a;margin-bottom:10px;}
-.re-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;}
-.re-item{border:1px solid rgba(140,26,26,.2);border-radius:6px;padding:8px 12px;font-size:.82rem;background:var(--paper);}
-.re-item strong{color:#8c1a1a;}
-.shortcut-num{display:inline-block;background:#8c1a1a;color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:700;margin-right:6px;}
-</style>
+
 
 <div class="chapter" id="dl-zoology-decision">
   <div class="ch-head" style="background:linear-gradient(135deg,rgba(140,26,26,.12),transparent);border-bottom-color:#8c1a1a;">
