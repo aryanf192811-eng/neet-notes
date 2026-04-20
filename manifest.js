@@ -1,4 +1,4 @@
-﻿const MANIFEST = {
+const MANIFEST = {
   subjects: [
     {
       id: "physics",
@@ -35,11 +35,11 @@
       icon: "ðŸ§ª",
       iconStyle: "ti-ch",
       themeColor: "at (teal)",
-      label: "Inorganic Â· Physical Â· Organic Â· Live",
+      label: "Inorganic · Physical · Organic · 4 Live",
       title: "Chemistry",
       titleEm: "Three Branches",
       titleColor: "t-ch",
-      sub: "Inorganic PYQ cheatsheet live Â· Physical & Organic notes incoming.",
+      sub: "Inorganic + Organic 11 & 12 live · Physical Chemistry 11 Intelligence System live · Complete NCERT coverage.",
       branches: [
         {
           label: "Inorganic Chemistry Â· 1 Live",
@@ -48,11 +48,10 @@
           ]
         },
         {
-          label: "Physical Chemistry Â· Incoming",
+          label: "Physical Chemistry · 1 Live",
           notes: [
-            { num: "â€”", title: "Thermodynamics & Chemical Equilibrium", desc: "Laws of thermo Â· Î”G Â· Kp Kc Â· Le Chatelier's Principle Â· Hess's Law", file: "", live: false },
-            { num: "â€”", title: "Electrochemistry & Chemical Kinetics", desc: "Nernst Equation Â· EMF Â· Rate Laws Â· Arrhenius Equation Â· Half-life", file: "", live: false },
-            { num: "â€”", title: "Solutions & Colligative Properties", desc: "Raoult's Law Â· Boiling elevation Â· Freezing depression Â· Osmosis Â· Van't Hoff", file: "", live: false }
+            { num: "C4", title: "Physical Chemistry 11 — Complete Intelligence System", desc: "Mole Concept · Atomic Structure · States of Matter · Thermodynamics · Chemical & Ionic Equilibrium · pH · Buffers · Ksp · PYQ 2015–2025 · Decision Engine", file: "notes/neet-chem-physical-11.html", type: "pyq", live: true },
+            { num: "—", title: "Physical Chemistry 12 — Intelligence System", desc: "Solutions · Electrochemistry · Chemical Kinetics · Surface Chemistry · PYQ mapped", file: "", live: false }
           ]
         },
         {

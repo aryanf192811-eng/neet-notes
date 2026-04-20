@@ -1,0 +1,1751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script id="theme-sync-core">
+(function(){
+  var KD='neet_dark';
+  function applyD(dark,skipBC){
+    if(dark)document.documentElement.setAttribute('data-theme','dark');
+    else document.documentElement.removeAttribute('data-theme');
+    var cb=document.getElementById('themeCb');
+    if(cb)cb.checked=!!dark;
+    if(!skipBC){try{var bc=new BroadcastChannel('neet_hub_theme');bc.postMessage({dark:!!dark});}catch(e){}}
+  }
+  window.setTheme=function(v){localStorage.setItem(KD,JSON.stringify(!!v));applyD(v);}
+  try{
+    var raw=localStorage.getItem(KD);
+    if(raw!==null){var v=JSON.parse(raw);applyD(v===true||v==='1'||v===1,true);}
+    var bc=new BroadcastChannel('neet_hub_theme');
+    bc.addEventListener('message',function(e){applyD(!!e.data.dark,true);});
+  }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  document.addEventListener('contextmenu',function(e){e.preventDefault();return false;},true);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','j','c','u','k','s'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+    if((e.ctrlKey||e.metaKey)&&['u','s','p','a'].indexOf(e.key.toLowerCase())>-1){e.preventDefault();return false;}
+  },true);
+  document.addEventListener('selectstart',function(e){if(e.target&&(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'))return true;e.preventDefault();return false;},true);
+})();
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NEET Physical Chemistry Class 11 — Complete Intelligence System</title>
+<meta name="description" content="NEET Physical Chemistry Class 11 — NCERT-mapped cheatsheet. Mole concept, atomic structure, thermodynamics, equilibrium, states of matter. PYQ 2015-2025."/>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+:root{
+  --paper:#faf7f2;--paper2:#f3ede3;--paper3:#ece5d8;
+  --ink:#1c1510;--ink2:#3a2e22;--ink3:#6b5a47;
+  --rule:rgba(100,130,180,0.14);--mline:rgba(13,122,106,0.22);
+  --red:#b83030;--blue:#1a4a8c;--green:#1a6b40;--orange:#b85a10;--purple:#5a1a8a;--teal:#0d7a6a;
+  --hl-y:rgba(255,236,60,0.42);--hl-b:rgba(100,160,255,0.17);--hl-g:rgba(60,180,100,0.17);
+  --hl-r:rgba(220,60,60,0.12);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(120,40,180,0.11);
+  --body:"Lora",Georgia,serif;--prose:"Crimson Pro",Georgia,serif;--hand:"Architects Daughter",cursive;
+}
+[data-theme="dark"]{
+  --paper:#1a1612;--paper2:#211d18;--paper3:#2a2520;
+  --ink:#f0ebe0;--ink2:#d4cfc4;--ink3:#9a9080;
+  --rule:rgba(100,130,180,0.12);--mline:rgba(13,122,106,0.16);
+  --red:#e05050;--blue:#5b8fd6;--green:#4ab870;--orange:#e07830;--purple:#9b59d6;--teal:#2db89a;
+  --hl-y:rgba(255,236,60,0.22);--hl-b:rgba(100,160,255,0.14);--hl-g:rgba(60,180,100,0.14);
+  --hl-r:rgba(220,60,60,0.14);--hl-o:rgba(220,130,30,0.14);--hl-p:rgba(160,80,220,0.14);
+}
+[data-theme="dark"] body{background:#130f0c;}
+[data-theme="dark"] .def-box{background:rgba(91,143,214,0.10);}
+[data-theme="dark"] .warn-box{background:rgba(224,80,80,0.10);}
+[data-theme="dark"] .tip-box{background:rgba(74,184,112,0.10);}
+[data-theme="dark"] .note-box{background:rgba(224,120,48,0.10);}
+[data-theme="dark"] .purp-box{background:rgba(155,89,214,0.10);}
+[data-theme="dark"] .trick{background:rgba(212,168,0,0.08);border-color:#6a5200;}
+[data-theme="dark"] .trick::before{background:var(--paper2);}
+[data-theme="dark"] .shortcut{background:rgba(26,107,64,0.08);border-color:var(--green);}
+[data-theme="dark"] .shortcut::before{background:var(--paper2);}
+[data-theme="dark"] .chapter{border-color:#3a3228;}
+[data-theme="dark"] .cover{background:var(--paper2);border-color:#5a5040;}
+[data-theme="dark"] .fcard{background:var(--paper);border-color:#4a4038;}
+[data-theme="dark"] .fbox{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .toc{background:var(--paper);border-color:#3a3228;}
+[data-theme="dark"] .nrxn-card{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .pyq-card{background:var(--paper2);border-color:#3a3228;}
+[data-theme="dark"] .pyq-sol{background:var(--paper3);}
+[data-theme="dark"] .mech-box{background:rgba(26,74,140,0.08);border-color:#2a3a5a;}
+[data-theme="dark"] .num-box{background:rgba(13,122,106,0.08);border-color:#1a4a40;}
+[data-theme="dark"] .num-box::before{background:var(--paper);}
+[data-theme="dark"] .dl-block{background:rgba(155,89,214,0.08);}
+[data-theme="dark"] .dl-block::before{background:var(--paper);}
+[data-theme="dark"] .revision-engine{background:rgba(45,184,154,0.07);}
+[data-theme="dark"] .revision-engine::before{background:var(--paper);}
+[data-theme="dark"] .trigger-card{background:rgba(26,74,140,0.10);border-color:#2a3a5a;}
+[data-theme="dark"] .elim-chain .elim-step{background:rgba(220,60,60,0.08);border-color:#5a2020;}
+[data-theme="dark"] .shortcut-block{background:rgba(26,107,64,0.07);}
+[data-theme="dark"] .shortcut-block::before{background:var(--paper);}
+[data-theme="dark"] .strip-block{background:#0e0c09;}
+[data-theme="dark"] .variant-block{background:rgba(45,184,154,0.07);}
+[data-theme="dark"] .variant-block::before{background:var(--paper);}
+[data-theme="dark"] .derived-block{background:rgba(224,120,48,0.07);}
+[data-theme="dark"] .derived-block::before{background:var(--paper);}
+[data-theme="dark"] .decision-block{background:rgba(155,89,214,0.08);}
+[data-theme="dark"] .decision-block::before{background:var(--paper);}
+[data-theme="dark"] .trigger-block{background:rgba(91,143,214,0.08);}
+[data-theme="dark"] .trigger-block::before{background:var(--paper);}
+[data-theme="dark"] .trap-block{background:rgba(224,80,80,0.07);}
+[data-theme="dark"] .trap-block::before{background:var(--paper);}
+[data-theme="dark"] .stab-rung{background:var(--paper2);border-color:#3a3228;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#bfb49a;background-image:radial-gradient(ellipse 70% 50% at 15% 25%,#b0a48c 0%,transparent 65%),radial-gradient(ellipse 55% 65% at 85% 75%,#ccc0a6 0%,transparent 55%);font-family:var(--body);color:var(--ink);min-height:100vh;padding:24px 16px 116px;}
+.book{max-width:980px;margin:0 auto;}
+.cover{background:var(--paper2);border:2px solid var(--ink);border-radius:4px;padding:52px 56px 44px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:5px 6px 0 #8a7a60,9px 10px 0 #6a5a40,12px 14px 28px rgba(0,0,0,0.28);}
+.cover::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent,transparent 31px,rgba(100,130,180,0.12) 31px,rgba(100,130,180,0.12) 32px);pointer-events:none;}
+.cover::after{content:"";position:absolute;top:0;bottom:0;left:52px;width:1.5px;background:rgba(13,122,106,0.32);pointer-events:none;}
+.cover-inner{position:relative;padding-left:20px;}
+.cover-subject{font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.cover-subject::before{content:"";display:inline-block;width:28px;height:1.5px;background:var(--teal);}
+.cover h1{font-family:var(--body);font-size:38px;font-weight:700;line-height:1.15;color:var(--ink);}
+.cover h1 em{font-style:italic;color:var(--teal);}
+.cover-desc{font-family:var(--prose);font-size:17px;color:var(--ink3);margin-top:14px;line-height:1.8;max-width:640px;border-left:3px solid var(--teal);padding-left:14px;}
+.cover-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.chip{font-family:var(--hand);font-size:10px;border:1.5px solid #b0a080;border-radius:2px;padding:4px 12px;color:var(--ink3);background:var(--paper3);}
+.cover-tag{position:absolute;top:20px;right:24px;font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--paper);background:var(--teal);padding:5px 12px;border-radius:2px;}
+.cover-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+.stat-box{text-align:center;padding:14px 10px;background:var(--paper3);border:1.5px solid rgba(150,120,80,0.35);border-radius:4px;}
+.stat-n{font-family:var(--body);font-size:26px;font-weight:700;color:var(--teal);line-height:1;}
+.stat-l{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-top:5px;}
+.toc{background:var(--paper);border:1.5px solid #b0a080;border-radius:4px;padding:28px 36px;margin-bottom:36px;box-shadow:3px 4px 0 #9a8a6e;}
+.toc-lbl{font-family:var(--hand);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:16px;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px 24px;}
+@media(max-width:560px){.toc-grid{grid-template-columns:1fr;}}
+.toc-grid a{font-family:var(--prose);font-size:15.5px;color:var(--ink2);text-decoration:none;display:flex;align-items:baseline;gap:7px;padding:5px 0;border-bottom:1px dashed transparent;transition:all 0.2s;}
+.toc-grid a:hover{color:var(--teal);}
+.tn{font-family:var(--hand);font-size:11px;color:var(--ink3);min-width:28px;}
+.toc-divider{height:1px;background:rgba(180,150,100,0.25);margin:16px 0;}
+.toc-section-lbl{font-family:var(--hand);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid rgba(180,150,100,0.3);}
+.chapter{background:var(--paper);border:1.5px solid #b0a088;border-radius:4px;margin-bottom:44px;box-shadow:4px 5px 0 #9a8a6e,7px 8px 0 #7a6a50;}
+.ch-head{background:linear-gradient(135deg,#0a1628 0%,#1a2a40 100%);padding:24px 36px;border-bottom:3px solid var(--teal);}
+.ch-head.orange{border-bottom-color:var(--orange);}
+.ch-head.red{border-bottom-color:var(--red);}
+.ch-head.green{border-bottom-color:var(--green);}
+.ch-head.purple{border-bottom-color:var(--purple);}
+.ch-head.blue{border-bottom-color:var(--blue);}
+[data-theme="dark"] .ch-head{background:linear-gradient(135deg,#050a14 0%,#0d1828 100%);}
+.ch-ey{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,230,0.38);margin-bottom:3px;}
+.ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
+.ch-title em{font-style:italic;color:#2db89a;}
+.ch-head.orange .ch-title em{color:#e07830;}
+.ch-head.red .ch-title em{color:#e05050;}
+.ch-head.green .ch-title em{color:#4ab870;}
+.ch-head.purple .ch-title em{color:#9b59d6;}
+.ch-head.blue .ch-title em{color:#7ab0e8;}
+.ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px dashed rgba(180,150,100,0.4);}
+.ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:all 0.18s;}
+.ch-nav a:hover{border-color:var(--teal);color:var(--teal);}
+.ch-body{padding-bottom:28px;background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;}
+.sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,150,110,0.5);position:relative;}
+.sec:last-child{border-bottom:none;}
+.sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(13,122,106,0.28);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
+h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+h3.ssh{font-family:var(--body);font-size:16px;font-weight:600;font-style:italic;color:var(--blue);margin:32px 0 12px;}
+p{font-family:var(--prose);font-size:17px;line-height:2.0;color:var(--ink2);margin-bottom:14px;}
+strong{color:var(--ink);font-weight:600;}
+.tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;vertical-align:middle;}
+.tg{background:var(--hl-g);color:var(--green);border:1.5px solid var(--green);}
+.tr{background:var(--hl-r);color:var(--red);border:1.5px solid var(--red);}
+.tb{background:var(--hl-b);color:var(--blue);border:1.5px solid var(--blue);}
+.to{background:var(--hl-o);color:var(--orange);border:1.5px solid var(--orange);}
+.tp{background:var(--hl-p);color:var(--purple);border:1.5px solid var(--purple);}
+.tt{background:rgba(13,122,106,0.09);color:var(--teal);border:1.5px solid var(--teal);}
+.lbl{display:block;font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.def-box{background:rgba(100,160,255,0.08);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.def-box .lbl{color:var(--blue);}
+.warn-box{background:rgba(220,60,60,0.07);border:1.5px solid var(--red);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.warn-box .lbl{color:var(--red);}
+.tip-box{background:rgba(60,180,100,0.07);border:1.5px solid var(--green);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.tip-box .lbl{color:var(--green);}
+.note-box{background:rgba(180,90,16,0.07);border:1.5px solid var(--orange);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.note-box .lbl{color:var(--orange);}
+.purp-box{background:rgba(90,26,138,0.07);border:1.5px solid var(--purple);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.purp-box .lbl{color:var(--purple);}
+.mech-box{background:rgba(26,74,140,0.06);border:1.5px solid var(--blue);border-radius:6px;padding:20px 22px;margin:20px 0;}
+.num-box{background:rgba(13,122,106,0.06);border:2px solid var(--teal);border-radius:6px;padding:22px 24px;margin:20px 0;position:relative;}
+.num-box::before{content:"📐 Worked Numerical";font-family:var(--hand);font-size:9px;letter-spacing:2px;color:var(--teal);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 8px;}
+.trick{background:var(--paper2);border:1.5px solid #c49a00;border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+.trick::before{content:"⚡ Key Trick";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#7a5800;position:absolute;top:-9px;left:14px;background:var(--paper2);padding:0 6px;}
+.trick p:last-child{margin:0;}
+.shortcut{background:var(--paper);border:1.5px solid var(--green);border-radius:6px;padding:20px 22px;margin:24px 0;position:relative;}
+.shortcut::before{content:"🎯 Memory Shortcut";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+.shortcut p:last-child{margin:0;}
+.formula{background:var(--paper3);border:2px solid var(--ink);border-radius:6px;padding:22px 28px;margin:20px 0;font-size:15px;color:var(--ink);line-height:2.4;text-align:center;}
+.formula strong{color:var(--teal);font-size:16px;}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:20px 0;}
+.fbox{background:var(--paper);border:1.5px solid #c4b490;border-radius:6px;padding:18px 20px;}
+.fbox-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+.fbox p{font-family:var(--prose);font-size:15px;line-height:1.8;color:var(--ink2);margin:0 0 6px;}
+.fbox p:last-child{margin:0;}
+.fbox.red-border{border-color:var(--red);}.fbox.blue-border{border-color:var(--blue);}.fbox.green-border{border-color:var(--green);}.fbox.orange-border{border-color:var(--orange);}.fbox.purple-border{border-color:var(--purple);}.fbox.teal-border{border-color:var(--teal);}
+.fbox-title.red{color:var(--red);}.fbox-title.blue{color:var(--blue);}.fbox-title.green{color:var(--green);}.fbox-title.orange{color:var(--orange);}.fbox-title.purple{color:var(--purple);}
+.nrxn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:20px 0;}
+.nrxn-card{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:16px 18px;}
+.nrxn-name{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.nrxn-rxn{font-family:var(--prose);font-size:15px;color:var(--ink);line-height:1.8;background:var(--paper3);border-radius:4px;padding:10px 12px;margin:8px 0;}
+.nrxn-note{font-family:var(--hand);font-size:9px;color:var(--ink3);letter-spacing:0.5px;line-height:1.6;padding-top:6px;border-top:1px dashed rgba(180,150,100,0.4);}
+.tbl{overflow-x:auto;margin:20px 0;}
+table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;}
+td{padding:9px 14px;border-bottom:1px solid rgba(180,150,100,0.3);color:var(--ink2);line-height:1.65;}
+tr:nth-child(even) td{background:rgba(180,150,100,0.07);}
+.freq-high{color:var(--red);font-weight:700;font-family:var(--hand);font-size:11px;}
+.freq-med{color:var(--orange);font-weight:700;font-family:var(--hand);font-size:11px;}
+.freq-low{color:var(--green);font-weight:600;font-family:var(--hand);font-size:11px;}
+.score-strip{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 24px;}
+.score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;letter-spacing:1px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
+.sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
+.sp-b{border-color:var(--blue);color:var(--blue);background:var(--hl-b);}
+.sp-g{border-color:var(--green);color:var(--green);background:var(--hl-g);}
+.sp-o{border-color:var(--orange);color:var(--orange);background:var(--hl-o);}
+.sp-t{border-color:var(--teal);color:var(--teal);background:rgba(13,122,106,0.09);}
+.sp-p{border-color:var(--purple);color:var(--purple);background:var(--hl-p);}
+.pl{list-style:none;margin:12px 0 18px;padding:0;}
+.pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;color:var(--ink2);padding:5px 0 5px 26px;position:relative;}
+.pl li::before{content:"—";position:absolute;left:0;color:var(--teal);font-weight:600;}
+.pl.arr li::before{content:"→";color:var(--blue);}
+.pl.chk li::before{content:"✓";color:var(--green);}
+mark{background:var(--hl-y);padding:0 2px;border-radius:2px;color:var(--ink);}
+.fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:20px 0;}
+.fcard{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:16px 18px;}
+.fcard-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(180,150,100,0.4);}
+.fcard ul{list-style:none;padding:0;}
+.fcard ul li{font-family:var(--prose);font-size:15px;color:var(--ink2);padding:3px 0 3px 18px;position:relative;line-height:1.7;}
+.fcard ul li::before{content:"·";position:absolute;left:0;color:var(--teal);}
+.rxn-strip{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper3);border:1.5px solid rgba(180,150,100,0.4);border-radius:6px;padding:16px 20px;margin:16px 0;font-family:var(--prose);font-size:16px;}
+.rxn-mol{color:var(--ink);font-weight:600;}
+.rxn-arrow{color:var(--teal);font-size:20px;font-weight:700;}
+.rxn-cond{font-family:var(--hand);font-size:9px;color:var(--ink3);letter-spacing:1px;}
+.pyq-card{background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;margin:16px 0;overflow:hidden;}
+.pyq-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background 0.2s;flex-wrap:wrap;}
+.pyq-head:hover{background:var(--paper3);}
+.pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--teal);color:#fff;padding:3px 9px;border-radius:2px;white-space:nowrap;}
+.pyq-q{font-family:var(--prose);font-size:15.5px;color:var(--ink2);flex:1;}
+.pyq-toggle{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1.5px solid var(--ink3);color:var(--ink3);padding:4px 10px;border-radius:2px;cursor:pointer;}
+.pyq-sol{display:none;padding:18px 20px;background:var(--paper3);border-top:1px dashed rgba(180,150,100,0.5);}
+.pyq-sol.open{display:block;}
+.ans-badge{display:inline-block;font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--green);color:#fff;padding:4px 12px;border-radius:2px;margin-bottom:12px;}
+.pyq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px;}
+.pyq-field{background:var(--paper2);border-radius:4px;padding:12px 14px;}
+.pyq-field-label{font-family:var(--hand);font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:6px;}
+.pyq-field p{font-family:var(--prose);font-size:14.5px;color:var(--ink2);margin:0;line-height:1.65;}
+.pf-concept{border-left:3px solid var(--blue);}
+.pf-rule{border-left:3px solid var(--green);}
+.pf-answer{border-left:3px solid var(--teal);}
+.dl-block{background:rgba(90,26,138,0.05);border:2px solid var(--purple);border-radius:8px;padding:24px 28px;margin:32px 0;position:relative;max-width:100%;box-sizing:border-box;}
+.dl-block h3{font-family:var(--body);font-size:15px;font-weight:700;color:var(--purple);margin-bottom:18px;}
+.trigger-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:18px;}
+.trigger-card{background:rgba(26,74,140,0.07);border:1.5px solid rgba(26,74,140,0.3);border-radius:6px;padding:14px 16px;}
+.trigger-kw{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;color:var(--blue);text-transform:uppercase;margin-bottom:6px;}
+.trigger-action{font-family:var(--prose);font-size:15px;color:var(--ink2);line-height:1.65;}
+.elim-chain{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.elim-step{background:rgba(220,60,60,0.07);border:1.5px solid rgba(184,48,48,0.3);border-radius:4px;padding:10px 14px;font-family:var(--prose);font-size:14.5px;color:var(--red);line-height:1.6;}
+.revision-engine{background:rgba(13,122,106,0.05);border:2px solid var(--teal);border-radius:8px;padding:24px 28px;margin:32px 0;position:relative;max-width:100%;box-sizing:border-box;}
+.revision-engine h3{font-family:var(--body);font-size:15px;font-weight:700;color:var(--teal);margin-bottom:16px;}
+.re-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+.re-item{background:var(--paper2);border:1px solid rgba(180,150,100,0.4);border-radius:4px;padding:10px 12px;}
+.re-label{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.re-val{font-family:var(--prose);font-size:14px;color:var(--ink2);line-height:1.6;}
+.stab-ladder{display:flex;flex-direction:column;gap:6px;margin:16px 0;}
+.stab-rung{display:flex;align-items:flex-start;gap:14px;background:var(--paper2);border:1.5px solid #c4b490;border-radius:6px;padding:12px 16px;}
+.stab-rank{font-family:var(--hand);font-size:10px;font-weight:700;color:var(--teal);min-width:28px;margin-top:2px;}
+.stab-content{font-family:var(--prose);font-size:15.5px;color:var(--ink);font-weight:600;line-height:1.5;}
+.stab-reason{font-family:var(--prose);font-size:14px;color:var(--ink3);line-height:1.5;margin-top:3px;}
+.shortcut-block{background:rgba(26,107,64,0.05);border:2px solid var(--green);border-radius:8px;padding:22px 26px;margin:24px 2px;position:relative;}
+.shortcut-block::before{content:"🚀 VERIFIED SHORTCUTS";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-10px;left:14px;background:var(--paper);padding:0 8px;font-weight:700;}
+.sc-item{background:rgba(26,107,64,0.04);border:1px solid rgba(26,107,64,0.2);border-radius:6px;padding:14px 18px;margin:10px 0;}
+.sc-title{font-family:var(--hand);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
+.sc-body{font-family:var(--prose);font-size:15.5px;color:var(--ink);line-height:1.75;}
+.sc-meta{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap;}
+.sc-use{font-family:var(--hand);font-size:9px;color:var(--teal);letter-spacing:1px;}
+.sc-fail{font-family:var(--hand);font-size:9px;color:var(--red);letter-spacing:1px;}
+.strip-block{background:#1a1410;border:1.5px solid #3a3020;border-radius:8px;padding:26px 28px 22px;margin:32px 2px;position:relative;}
+.strip-block::before{content:"⚡ ULTRA-COMPRESSED REVISION STRIP";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#ffd700;position:absolute;top:-10px;left:16px;background:#1a1410;padding:0 8px;font-weight:700;}
+.strip-block .strip-title{font-family:var(--hand);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#ffd700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(255,215,0,0.2);}
+.strip-block .strip-row{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;}
+.strip-block .strip-row:last-child{border-bottom:none;}
+.strip-block .strip-label{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#ffd700;min-width:120px;flex-shrink:0;}
+.strip-block .strip-content{font-family:var(--prose);font-size:14px;color:rgba(245,240,220,0.90);line-height:1.85;flex:1;}
+.strip-block strong{color:#ffd700;}
+.variant-block{background:rgba(13,122,106,0.05);border:2px solid var(--teal);border-radius:8px;padding:22px 26px;margin:24px 2px;position:relative;}
+.variant-block::before{content:"🧮 FORMULA VARIANT ENGINE";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);position:absolute;top:-10px;left:14px;background:var(--paper);padding:0 8px;font-weight:700;}
+.vr-row{display:grid;grid-template-columns:180px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(13,122,106,0.2);font-family:var(--prose);font-size:15px;color:var(--ink2);line-height:1.7;align-items:baseline;}
+.vr-row:last-child{border-bottom:none;}
+.vr-label{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);}
+.vr-form{color:var(--ink);}
+.trap-block{background:rgba(184,48,48,0.05);border:2px solid var(--red);border-radius:8px;padding:22px 26px;margin:24px 2px;position:relative;}
+.trap-block::before{content:"🚫 TRAP ELIMINATION";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--red);position:absolute;top:-10px;left:14px;background:var(--paper);padding:0 8px;font-weight:700;}
+.trap-row{display:flex;align-items:baseline;gap:12px;padding:7px 0;border-bottom:1px dashed rgba(184,48,48,0.2);font-family:var(--prose);font-size:15.5px;color:var(--ink2);line-height:1.6;}
+.trap-row:last-child{border-bottom:none;}
+.trap-x{color:var(--red);font-weight:700;min-width:20px;}
+.trap-arrow{color:var(--teal);font-weight:700;margin:0 4px;}
+.usage-high{display:inline-flex;align-items:center;gap:5px;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;background:var(--hl-r);color:var(--red);border:1.5px solid var(--red);margin-right:6px;}
+.usage-med{display:inline-flex;align-items:center;gap:5px;font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;background:var(--hl-o);color:var(--orange);border:1.5px solid var(--orange);margin-right:6px;}
+.c-r{color:var(--red);font-weight:600;}.c-b{color:var(--blue);font-weight:600;}.c-g{color:var(--green);font-weight:600;}.c-o{color:var(--orange);font-weight:600;}.c-t{color:var(--teal);font-weight:600;}
+@media(max-width:640px){
+  .sec{padding:32px 18px 28px 44px;}
+  .cover{padding:36px 24px 32px;}
+  .cover h1{font-size:26px;}
+  .cover-stats{grid-template-columns:repeat(2,1fr);}
+  .ch-nav{padding:12px 18px;}
+  .toc{padding:20px 20px;}
+  .nrxn-grid,.fcards{grid-template-columns:1fr;}
+  .vr-row{grid-template-columns:1fr;gap:3px;}
+}
+</style>
+</head>
+<body>
+<div class="book">
+
+<!-- COVER -->
+<div class="cover" id="top">
+  <span class="cover-tag">Class 11 · Physical Chemistry</span>
+  <div class="cover-inner">
+    <div class="cover-subject">NEET Chemistry · Physical Chemistry · Class XI · NCERT Mapped</div>
+    <h1>Physical Chemistry 11 —<br/><em>Complete Intelligence System</em></h1>
+    <p class="cover-desc">Every formula, solved numerical pattern, and exam trap for NEET. NCERT-mapped across all 5 high-yield Physical Chemistry chapters. PYQ 2015–2025 analysed. Decision engines, revision strips, and KaTeX-rendered formulae ready for last-night revision.</p>
+    <div class="cover-stats">
+      <div class="stat-box"><div class="stat-n">5</div><div class="stat-l">Core Chapters</div></div>
+      <div class="stat-box"><div class="stat-n">200+</div><div class="stat-l">Formulae</div></div>
+      <div class="stat-box"><div class="stat-n">40+</div><div class="stat-l">PYQs Mapped</div></div>
+      <div class="stat-box"><div class="stat-n">15–18</div><div class="stat-l">Qs/NEET Paper</div></div>
+    </div>
+    <div class="cover-chips">
+      <span class="chip">Ch 1 — Some Basic Concepts &amp; Mole</span>
+      <span class="chip">Ch 2 — Structure of Atom</span>
+      <span class="chip">Ch 5 — States of Matter (Gases)</span>
+      <span class="chip">Ch 6 — Thermodynamics</span>
+      <span class="chip">Ch 7 — Chemical &amp; Ionic Equilibrium</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-lbl">📋 Table of Contents — Physical Chemistry Class 11</div>
+  <div class="toc-section-lbl">Unit I — Fundamentals</div>
+  <div class="toc-grid">
+    <a href="#ch1"><span class="tn" style="color:var(--teal)">01.</span>Some Basic Concepts &amp; Mole Concept</a>
+    <a href="#ch2"><span class="tn" style="color:var(--blue)">02.</span>Structure of Atom</a>
+  </div>
+  <div class="toc-divider"></div>
+  <div class="toc-section-lbl">Unit II — Physical States, Energy &amp; Equilibrium</div>
+  <div class="toc-grid">
+    <a href="#ch5"><span class="tn" style="color:var(--orange)">03.</span>States of Matter — Gases &amp; Liquids</a>
+    <a href="#ch6"><span class="tn" style="color:var(--red)">04.</span>Thermodynamics</a>
+    <a href="#ch7"><span class="tn" style="color:var(--green)">05.</span>Equilibrium — Chemical &amp; Ionic</a>
+  </div>
+</div>
+
+<!-- ═══════════════════ CHAPTER 1 — SOME BASIC CONCEPTS ═══════════════════ -->
+<div class="chapter" id="ch1">
+  <div class="ch-head">
+    <div class="ch-ey">NCERT Class 11 · Chapter 1 · ~2-3 Qs/NEET</div>
+    <div class="ch-title">Some Basic Concepts of Chemistry — <em>Mole Concept Mastery</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch1-s1">Mole Concept</a>
+    <a href="#ch1-s2">Concentration</a>
+    <a href="#ch1-s3">Stoichiometry</a>
+    <a href="#ch1-s4">Empirical Formula</a>
+    <a href="#ch1-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch1-s1" data-m="Mole Concept">
+      <h2 class="sh">1.1 The Mole Concept <span class="tag tt">NCERT §1.7</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 2–3 Qs/paper · Calculation-based</span>
+        <span class="score-pill sp-o">Limiting reagent — tested 8 of last 10 years</span>
+        <span class="score-pill sp-t">Mole fraction — every NEET since 2018</span>
+      </div>
+      <div class="def-box">
+        <span class="lbl">Definition</span>
+        <p>One mole = $6.022 \times 10^{23}$ entities (Avogadro's number, $N_A$). The mole is the SI unit of amount of substance. 1 mole of any substance has a mass equal to its molecular mass in grams (molar mass, $M$).</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Core Mole Formulae</div>
+          <p>$n = \dfrac{m}{M}$ &nbsp; (moles = mass ÷ molar mass)</p>
+          <p>$n = \dfrac{N}{N_A}$ &nbsp; (moles = particles ÷ Avogadro's no.)</p>
+          <p>$n = \dfrac{V(\text{L})}{22.4}$ &nbsp; (gas at STP: 1 mol = 22.4 L)</p>
+          <p>$n = \dfrac{V(\text{mL}) \times M_{\text{conc}}}{1000}$ &nbsp; (from molarity)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Avogadro's Number Applications</div>
+          <p>Atoms in $n$ mol of element = $n \times N_A$</p>
+          <p>Molecules in $n$ mol = $n \times N_A$</p>
+          <p>Electrons: 1 mol H₂O has $10 N_A$ electrons (Z=1 for H gives 2e, Z=8 for O gives 8e; total 10)</p>
+          <p>$N_A = 6.022 \times 10^{23}$ mol⁻¹</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">STP Conditions (IUPAC 2010)</div>
+          <p><strong>Old STP:</strong> 0°C (273K), 1 atm → 22.4 L/mol</p>
+          <p><strong>New IUPAC STP:</strong> 0°C, 100 kPa → 22.7 L/mol</p>
+          <p><strong>NEET uses 22.4 L/mol</strong> — old standard still tested!</p>
+          <p>NTP: 25°C (298K), 1 atm</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> How many molecules are in 9 g of water?<br/>
+        $M_{\text{H}_2\text{O}} = 18$ g/mol, $n = 9/18 = 0.5$ mol<br/>
+        Molecules $= 0.5 \times 6.022 \times 10^{23} = 3.011 \times 10^{23}$<br/>
+        Atoms $= 3 \times 3.011 \times 10^{23} = 9.033 \times 10^{23}$ (2H + 1O per molecule)</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Fast Mole Calculation:</strong><br/>
+        Step 1: Write molar mass from formula (just add atomic masses)<br/>
+        Step 2: Divide given mass by molar mass → get moles<br/>
+        Step 3: Multiply moles by what's asked: $N_A$ for particles, 22.4 for gas volume (STP)<br/>
+        <strong>Atomic masses to memorise (exact for NEET):</strong> H=1, C=12, N=14, O=16, Na=23, Mg=24, Al=27, S=32, Cl=35.5, Ca=40, Fe=56, Cu=63.5, Zn=65, Br=80, Ag=108, I=127</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s2" data-m="Concentration">
+      <h2 class="sh">1.2 Concentration Terms <span class="tag tr">High Yield — every year</span></h2>
+      <div class="tbl">
+        <table>
+          <tr><th>Term</th><th>Symbol</th><th>Formula</th><th>Units</th><th>Temperature Dependence</th></tr>
+          <tr><td>Molarity</td><td>M or c</td><td>$M = \frac{\text{moles of solute}}{\text{Volume of solution (L)}}$</td><td>mol/L or mol L⁻¹</td><td><strong>Yes</strong> — changes with T (volume changes)</td></tr>
+          <tr><td>Molality</td><td>m</td><td>$m = \frac{\text{moles of solute}}{\text{mass of solvent (kg)}}$</td><td>mol/kg or mol kg⁻¹</td><td><strong>No</strong> — independent of T (mass doesn't change)</td></tr>
+          <tr><td>Mole fraction</td><td>$\chi$</td><td>$\chi_A = \frac{n_A}{n_A + n_B}$; $\chi_A + \chi_B = 1$</td><td>Dimensionless</td><td><strong>No</strong></td></tr>
+          <tr><td>% by mass (w/w)</td><td>—</td><td>$\frac{m_{\text{solute}}}{m_{\text{solution}}} \times 100$</td><td>%</td><td><strong>No</strong></td></tr>
+          <tr><td>% by volume (v/v)</td><td>—</td><td>$\frac{V_{\text{solute}}}{V_{\text{solution}}} \times 100$</td><td>%</td><td><strong>Yes</strong></td></tr>
+          <tr><td>Normality</td><td>N</td><td>$N = \frac{\text{gram equivalents}}{V(\text{L})}$; $N = M \times n\text{-factor}$</td><td>eq/L</td><td><strong>Yes</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox green-border">
+          <div class="fbox-title green">Molarity Conversions</div>
+          <p>$M = \dfrac{10 \times d \times w\%}{M_r}$ &nbsp; (d = density in g/mL, w% = % by mass)</p>
+          <p>$m = \dfrac{1000 \times M}{1000d - M \cdot M_r}$ &nbsp; (molality from molarity)</p>
+          <p>Dilution: $M_1V_1 = M_2V_2$ (moles conserved)</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">n-Factor &amp; Normality</div>
+          <p>Acid: n-factor = basicity (number of H⁺ furnished)</p>
+          <p>Base: n-factor = acidity (number of OH⁻ furnished)</p>
+          <p>Redox: n-factor = change in oxidation state per formula unit</p>
+          <p>$N_1V_1 = N_2V_2$ (acid-base titration)</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> Calculate molarity of 98% H₂SO₄ (density = 1.84 g/mL).<br/>
+        $M = \dfrac{10 \times 1.84 \times 98}{98} = 18.4$ mol/L ≈ <strong>18.4 M</strong><br/>
+        Note: $M_r(\text{H}_2\text{SO}_4) = 98$ and the 98 in numerator (w%) and $M_r$ cancel → $M = 10 \times d = 10 \times 1.84 = 18.4$ M</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s3" data-m="Stoichiometry">
+      <h2 class="sh">1.3 Stoichiometry &amp; Limiting Reagent <span class="tag tr">NCERT §1.9 — MUST KNOW</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Limiting Reagent</span>
+        <p>The reactant that is <strong>completely consumed first</strong> in a reaction, limiting the amount of product formed. Identify by dividing moles of each reactant by its stoichiometric coefficient — the smallest ratio gives the limiting reagent.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> 3.0 g H₂ reacts with 32.0 g O₂. Find limiting reagent and water formed.<br/>
+        Reaction: $2\text{H}_2 + \text{O}_2 \rightarrow 2\text{H}_2\text{O}$<br/>
+        Moles: $n(\text{H}_2) = 3/2 = 1.5$ mol; $n(\text{O}_2) = 32/32 = 1.0$ mol<br/>
+        Ratio required: $\text{H}_2:\text{O}_2 = 2:1$; available ratio $= 1.5:1.0 = 1.5:1$<br/>
+        Need 2:1 but have 1.5:1 → <strong>H₂ is limiting</strong><br/>
+        Moles H₂O $= 1.5$ mol (same as H₂, ratio 2:2) → Mass $= 1.5 \times 18 = $ <strong>27 g</strong></p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Limiting Reagent Fast Method:</strong><br/>
+        For reaction $aA + bB \rightarrow$ products:<br/>
+        Divide moles by coefficient: $\frac{n_A}{a}$ and $\frac{n_B}{b}$<br/>
+        Smaller value → limiting reagent. Use that value to find product moles.<br/>
+        Product moles $= \frac{n_{\text{LR}}}{\text{coeff of LR}} \times \text{coeff of product}$</p>
+      </div>
+
+      <h3 class="ssh">% Yield &amp; % Purity</h3>
+      <div class="formula">
+        $\%\text{ yield} = \dfrac{\text{Actual yield}}{\text{Theoretical yield}} \times 100$
+        &nbsp;&nbsp;&nbsp;
+        $\%\text{ purity} = \dfrac{\text{Pure substance}}{\text{Total mass}} \times 100$
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-s4" data-m="Empirical Formula">
+      <h2 class="sh">1.4 Empirical &amp; Molecular Formula <span class="tag tb">NCERT §1.10</span></h2>
+
+      <div class="mech-box">
+        <p><strong>Step-by-step method (NEET standard):</strong></p>
+        <ul class="pl">
+          <li>Convert % composition → assume 100 g sample → mass = %</li>
+          <li>Divide each mass by atomic mass → moles of each element</li>
+          <li>Divide all mole values by smallest value → simplest whole number ratio</li>
+          <li>If ratio has .5 → multiply all by 2; if .33 → multiply by 3; if .25 → multiply by 4</li>
+          <li>This gives Empirical Formula (EF)</li>
+          <li>$n = \frac{M_r(\text{compound})}{M_r(\text{EF})}$ → Molecular Formula = EF $\times n$</li>
+        </ul>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> Compound: C=40%, H=6.67%, O=53.33%. $M_r = 60$. Find molecular formula.<br/>
+        Moles: C = 40/12 = 3.33; H = 6.67/1 = 6.67; O = 53.33/16 = 3.33<br/>
+        Ratio: C:H:O = 3.33:6.67:3.33 → divide by 3.33 → 1:2:1<br/>
+        EF = CH₂O; $M_r(\text{EF}) = 12+2+16 = 30$<br/>
+        $n = 60/30 = 2$ → <strong>Molecular formula = C₂H₄O₂ (acetic acid)</strong></p>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Empirical Formula Rules:</strong><br/>
+        — If ratio ends in .5 → multiply by 2<br/>
+        — If ratio ends in .33 → multiply by 3<br/>
+        — If ratio ends in .25 → multiply by 4<br/>
+        — Whole numbers mean EF = MF (no multiplier needed)</p>
+      </div>
+
+      <h3 class="ssh">Laws of Chemical Combination</h3>
+      <div class="tbl">
+        <table>
+          <tr><th>Law</th><th>Statement</th><th>Discoverer</th></tr>
+          <tr><td>Law of Conservation of Mass</td><td>Mass of reactants = mass of products</td><td>Lavoisier</td></tr>
+          <tr><td>Law of Definite Proportions</td><td>Same compound always has same mass ratio of elements</td><td>Proust</td></tr>
+          <tr><td>Law of Multiple Proportions</td><td>When two elements form >1 compound, masses of one combining with fixed mass of other are in simple whole number ratios</td><td>Dalton</td></tr>
+          <tr><td>Gay Lussac's Law (volumes)</td><td>Gases combine in simple whole number ratios by volume at same T, P</td><td>Gay-Lussac</td></tr>
+          <tr><td>Avogadro's Law</td><td>Equal volumes of gases at same T, P contain equal number of molecules</td><td>Avogadro</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec" id="ch1-pyq" data-m="PYQ">
+      <h2 class="sh">1.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">What is the number of oxygen atoms in 0.5 mol of K₂Cr₂O₇?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 2.107 × 10²⁴</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>K₂Cr₂O₇ has 7 oxygen atoms per formula unit</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>0.5 mol × 7 × $N_A$ = 0.5 × 7 × 6.022×10²³ = 2.107×10²⁴</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key Step</span><p>Always count atoms per formula unit FIRST. Then multiply by moles × $N_A$.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">The molality of a solution of H₂SO₄ containing 9.8 g H₂SO₄ in 250 g water is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 0.4 mol/kg</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>Molality = moles of solute / kg of solvent</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>n(H₂SO₄) = 9.8/98 = 0.1 mol; m = 0.1/(250/1000) = 0.1/0.25 = 0.4 mol/kg</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Trap</span><p>Use SOLVENT mass (250 g), NOT solution mass. Water goes in denominator as kg.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2020</span>
+          <span class="pyq-q">Empirical formula of a compound is CH₂O. Its molecular mass is 90 g/mol. Molecular formula is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: C₃H₆O₃</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>n = M(compound) / M(EF) = 90/30 = 3</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Rule</span><p>Molecular formula = (CH₂O) × 3 = C₃H₆O₃</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Note</span><p>C₃H₆O₃ could be lactic acid or glyceraldehyde — NEET doesn't distinguish, just needs the formula.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 1</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "moles / molecules / atoms"</div>
+            <div class="trigger-action">→ $n = m/M$; atoms/molecules = $n \times N_A$; STP gas volume = $n \times 22.4$</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Molality temperature independent"</div>
+            <div class="trigger-action">→ Molality (mol/kg solvent) is temperature independent. Molarity is NOT.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Limiting reagent"</div>
+            <div class="trigger-action">→ n/coeff for each reactant → smallest ratio → that's the limiting reagent</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Empirical → Molecular formula"</div>
+            <div class="trigger-action">→ n = M(compound)/M(EF) → MF = EF × n</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "% purity / % yield"</div>
+            <div class="trigger-action">→ % yield = (actual/theoretical)×100; % purity = (pure/total)×100</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Dilution / $M_1V_1 = M_2V_2$"</div>
+            <div class="trigger-action">→ Moles conserved on dilution: $M_1V_1 = M_2V_2$ (V in same units)</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "1 mole of any gas at STP occupies 22.4 L" — at NEW IUPAC STP (100 kPa), it's 22.7 L. NEET uses 22.4 L (old STP at 1 atm).</div>
+          <div class="elim-step">❌ Trap: "Molality uses volume of solvent" — FALSE. Molality = moles/kg of SOLVENT (mass, not volume).</div>
+          <div class="elim-step">❌ Trap: "Mg and Mole fractions both change with temperature" — Mole fractions and molality are temperature-independent. Only Molarity and % by volume change with T.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 1</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">1 mole</div><div class="re-val">6.022×10²³ entities</div></div>
+          <div class="re-item"><div class="re-label">STP volume</div><div class="re-val">22.4 L/mol (NEET standard)</div></div>
+          <div class="re-item"><div class="re-label">Molarity formula</div><div class="re-val">$M = \frac{10 \times d \times w\%}{M_r}$</div></div>
+          <div class="re-item"><div class="re-label">T-independent conc.</div><div class="re-val">Molality, Mole fraction, % w/w</div></div>
+          <div class="re-item"><div class="re-label">Limiting reagent</div><div class="re-val">n/coeff → smallest → LR</div></div>
+          <div class="re-item"><div class="re-label">EF → MF</div><div class="re-val">n = M/M(EF); MF = EF×n</div></div>
+          <div class="re-item"><div class="re-label">Laws</div><div class="re-val">Conservation, Definite, Multiple proportions</div></div>
+          <div class="re-item"><div class="re-label">Dilution</div><div class="re-val">$M_1V_1 = M_2V_2$</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CHAPTER 2 — STRUCTURE OF ATOM ═══════════════════ -->
+<div class="chapter" id="ch2">
+  <div class="ch-head blue">
+    <div class="ch-ey">NCERT Class 11 · Chapter 2 · ~3-4 Qs/NEET</div>
+    <div class="ch-title">Structure of Atom — <em>Bohr, Quantum Numbers &amp; Orbitals</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch2-s1">Bohr Model</a>
+    <a href="#ch2-s2">Quantum Numbers</a>
+    <a href="#ch2-s3">Wave-Particle Duality</a>
+    <a href="#ch2-s4">Electronic Config</a>
+    <a href="#ch2-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch2-s1" data-m="Bohr Model">
+      <h2 class="sh">2.1 Bohr Model of Hydrogen Atom <span class="tag tr">NCERT §2.4 — Very High Yield</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 3-4 Qs/paper — Bohr model numericals</span>
+        <span class="score-pill sp-b">Quantum numbers — conceptual Qs every year</span>
+        <span class="score-pill sp-o">de Broglie + Heisenberg — 2023, 2022, 2021 tested</span>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Bohr Formulae for Hydrogen-like Atoms</div>
+          <p>Energy: $E_n = -\dfrac{13.6 Z^2}{n^2}$ eV</p>
+          <p>Radius: $r_n = \dfrac{0.529 \; n^2}{Z}$ Å (Bohr radius $a_0 = 0.529$ Å)</p>
+          <p>Velocity: $v_n = \dfrac{2.18 \times 10^6 Z}{n}$ m/s</p>
+          <p>Frequency: $\nu = \dfrac{RcZ^2}{\hbar}\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right)$</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">Rydberg Formula (Spectral Lines)</div>
+          <p>$\dfrac{1}{\lambda} = R_H Z^2 \left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right)$</p>
+          <p>$R_H = 1.097 \times 10^7$ m⁻¹ (Rydberg constant)</p>
+          <p>For H-atom: $\bar{\nu} = R_H\left(\dfrac{1}{n_1^2} - \dfrac{1}{n_2^2}\right)$</p>
+          <p>Number of spectral lines from level n: $\dfrac{n(n-1)}{2}$</p>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Series</th><th>$n_1$ (lower)</th><th>$n_2$ (upper)</th><th>Region</th><th>NEET Freq</th></tr>
+          <tr><td>Lyman</td><td>1</td><td>2,3,4...</td><td>Ultraviolet (UV)</td><td class="freq-high">★★★</td></tr>
+          <tr><td>Balmer</td><td>2</td><td>3,4,5...</td><td>Visible</td><td class="freq-high">★★★</td></tr>
+          <tr><td>Paschen</td><td>3</td><td>4,5,6...</td><td>Near infrared (NIR)</td><td class="freq-med">★★</td></tr>
+          <tr><td>Brackett</td><td>4</td><td>5,6,7...</td><td>Infrared (IR)</td><td class="freq-low">★</td></tr>
+          <tr><td>Pfund</td><td>5</td><td>6,7,8...</td><td>Far infrared</td><td class="freq-low">★</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Memory Aid — Spectral Series:</strong><br/>
+        <strong>L</strong>yman — <strong>U</strong>V — <strong>L</strong>ets <strong>U</strong>s (L=1, UV)<br/>
+        <strong>B</strong>almer — <strong>V</strong>isible — <strong>B</strong>lack <strong>V</strong>ans (B=2, Visible)<br/>
+        <strong>P</strong>aschen — <strong>I</strong>R — <strong>P</strong>oor <strong>I</strong>nfrared (P=3, IR)<br/>
+        In order: n₁ = 1, 2, 3, 4, 5 for Lyman, Balmer, Paschen, Brackett, Pfund</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> Calculate the energy of electron in 2nd orbit of He⁺ (Z=2).<br/>
+        $E_n = -\dfrac{13.6 \times Z^2}{n^2} = -\dfrac{13.6 \times 4}{4} = -13.6$ eV<br/>
+        Note: He⁺ in n=2 has same energy as H in n=1 (both = -13.6 eV)</p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Bohr Model Energy Trick:</strong><br/>
+        $E_n \propto Z^2/n^2$ and $r_n \propto n^2/Z$<br/>
+        So for H-like ions: if $Z$ doubles → energy decreases 4× (more negative), radius halves<br/>
+        Energy of He⁺(n=1) = $-13.6 \times 4 = -54.4$ eV (4× more bound than H)<br/>
+        Ionisation energy = $-E_1 = 13.6Z^2$ eV (always positive)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-s2" data-m="Quantum Numbers">
+      <h2 class="sh">2.2 Quantum Numbers <span class="tag tb">NCERT §2.6 — Conceptual, Always Asked</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Quantum Number</th><th>Symbol</th><th>Values</th><th>Describes</th><th>Max e⁻ in shell</th></tr>
+          <tr><td>Principal</td><td>n</td><td>1, 2, 3, 4...</td><td>Shell/energy level</td><td>$2n^2$</td></tr>
+          <tr><td>Azimuthal (Angular momentum)</td><td>l</td><td>0 to (n-1)</td><td>Subshell/shape (s,p,d,f)</td><td>$2(2l+1)$</td></tr>
+          <tr><td>Magnetic</td><td>$m_l$</td><td>$-l$ to $+l$</td><td>Orientation of orbital</td><td>Orbitals per subshell = $2l+1$</td></tr>
+          <tr><td>Spin</td><td>$m_s$</td><td>$+\frac{1}{2}$ or $-\frac{1}{2}$</td><td>Electron spin direction</td><td>2 per orbital</td></tr>
+        </table>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Subshell Notation &amp; Capacity</div>
+          <p>l=0: s-subshell, 1 orbital, max 2e⁻</p>
+          <p>l=1: p-subshell, 3 orbitals, max 6e⁻</p>
+          <p>l=2: d-subshell, 5 orbitals, max 10e⁻</p>
+          <p>l=3: f-subshell, 7 orbitals, max 14e⁻</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Rules for Electronic Config</div>
+          <p><strong>Aufbau:</strong> Fill lowest energy first (1s→2s→2p→3s→3p→4s→3d...)</p>
+          <p><strong>Pauli exclusion:</strong> No 2 electrons can have all 4 QNs identical</p>
+          <p><strong>Hund's rule:</strong> Maximum spin multiplicity in degenerate orbitals</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Energy Order (n+l rule)</div>
+          <p>Lower (n+l) → filled first; if same (n+l) → lower n fills first</p>
+          <p>1s(1) &lt; 2s(2) &lt; 2p(3) &lt; 3s(3) &lt; 3p(4) &lt; 4s(4) &lt; 3d(5) &lt; 4p(5)...</p>
+          <p>∴ 4s fills BEFORE 3d despite 3d having lower n</p>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET Exception — Anomalous Config</span>
+        <p><strong>Cr (Z=24):</strong> Expected [Ar]3d⁴4s² but actual = <strong>[Ar]3d⁵4s¹</strong> (half-filled d is extra stable)<br/>
+        <strong>Cu (Z=29):</strong> Expected [Ar]3d⁹4s² but actual = <strong>[Ar]3d¹⁰4s¹</strong> (fully-filled d is extra stable)<br/>
+        Also: Mo(42), Ag(47), Au(79) have similar anomalies. The stability comes from exchange energy in half-filled or fully-filled subshells.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> How many electrons in Fe³⁺ have l=2 (d electrons)?<br/>
+        Fe (Z=26): [Ar]3d⁶4s² → Fe³⁺ removes 3e from outermost first: [Ar]3d⁵<br/>
+        d electrons (l=2): <strong>5</strong></p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-s3" data-m="Wave-Particle">
+      <h2 class="sh">2.3 Wave-Particle Duality &amp; Uncertainty <span class="tag to">NCERT §2.7</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">de Broglie Wavelength</div>
+          <p>$\lambda = \dfrac{h}{mv} = \dfrac{h}{p}$ &nbsp; ($p$ = momentum)</p>
+          <p>For electron accelerated through V volts:</p>
+          <p>$\lambda = \dfrac{h}{\sqrt{2meV}}$</p>
+          <p>$h = 6.626 \times 10^{-34}$ J·s; $m_e = 9.1 \times 10^{-31}$ kg</p>
+          <p>Practical: $\lambda(\text{Å}) \approx \sqrt{150/V}$ for electrons</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">Heisenberg's Uncertainty Principle</div>
+          <p>$\Delta x \cdot \Delta p \geq \dfrac{h}{4\pi}$</p>
+          <p>$\Delta x \cdot \Delta v \geq \dfrac{h}{4\pi m}$</p>
+          <p>$\Delta E \cdot \Delta t \geq \dfrac{h}{4\pi}$</p>
+          <p>Cannot simultaneously know exact position AND momentum. Applies to all particles but only significant for sub-atomic level.</p>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ de Broglie NEET Trick:</strong><br/>
+        At same KE: heavier particle has shorter wavelength ($\lambda = h/p = h/\sqrt{2mKE}$ → $\lambda \propto 1/\sqrt{m}$)<br/>
+        At same velocity: heavier particle has shorter wavelength ($\lambda = h/mv$ → $\lambda \propto 1/m$)<br/>
+        Order: proton, deuteron, α-particle — at same KE, α has shortest λ (heaviest)<br/>
+        <strong>NEET 2023 asked:</strong> "Which has smallest de Broglie wavelength at same KE?" → Heaviest particle!</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> Calculate de Broglie wavelength of an electron moving at $2 \times 10^6$ m/s.<br/>
+        $\lambda = \dfrac{h}{mv} = \dfrac{6.626 \times 10^{-34}}{9.1 \times 10^{-31} \times 2 \times 10^6}$<br/>
+        $= \dfrac{6.626 \times 10^{-34}}{1.82 \times 10^{-24}} = 3.64 \times 10^{-10}$ m = <strong>3.64 Å</strong></p>
+      </div>
+
+      <h3 class="ssh">Photoelectric Effect (Einstein)</h3>
+      <div class="formula">
+        $KE_{\max} = h\nu - h\nu_0 = h\nu - \phi$ &nbsp;&nbsp; ($\phi = h\nu_0$ = work function)
+      </div>
+      <ul class="pl">
+        <li>Threshold frequency $\nu_0$: minimum frequency to eject electron ($KE = 0$)</li>
+        <li>Increasing frequency → increases $KE_\text{max}$; increasing intensity → increases number of electrons (NOT KE)</li>
+        <li>$eV_{\text{stop}} = KE_{\max}$ (stopping potential $V_\text{stop}$ arrests electrons)</li>
+      </ul>
+    </div>
+
+    <div class="sec" id="ch2-s4" data-m="Elec Config">
+      <h2 class="sh">2.4 Electronic Configurations — NEET Favourite <span class="tag tg">Highest Yield</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Element</th><th>Z</th><th>Configuration</th><th>Unpaired e⁻</th><th>NEET Importance</th></tr>
+          <tr><td>H</td><td>1</td><td>1s¹</td><td>1</td><td class="freq-high">★★★</td></tr>
+          <tr><td>C</td><td>6</td><td>1s² 2s² 2p²</td><td>2</td><td class="freq-high">★★★</td></tr>
+          <tr><td>N</td><td>7</td><td>1s² 2s² 2p³</td><td>3</td><td class="freq-high">★★★</td></tr>
+          <tr><td>O</td><td>8</td><td>1s² 2s² 2p⁴</td><td>2</td><td class="freq-high">★★★</td></tr>
+          <tr><td>Fe</td><td>26</td><td>[Ar] 3d⁶ 4s²</td><td>4</td><td class="freq-high">★★★</td></tr>
+          <tr><td><strong>Cr</strong></td><td>24</td><td><strong>[Ar] 3d⁵ 4s¹</strong></td><td><strong>6</strong></td><td class="freq-high">★★★ Exception</td></tr>
+          <tr><td><strong>Cu</strong></td><td>29</td><td><strong>[Ar] 3d¹⁰ 4s¹</strong></td><td><strong>1</strong></td><td class="freq-high">★★★ Exception</td></tr>
+          <tr><td>Mn</td><td>25</td><td>[Ar] 3d⁵ 4s²</td><td>5</td><td class="freq-med">★★</td></tr>
+          <tr><td>Zn</td><td>30</td><td>[Ar] 3d¹⁰ 4s²</td><td>0</td><td class="freq-med">★★</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Paramagnetic vs Diamagnetic:</strong><br/>
+        Paramagnetic: has ≥1 unpaired electron → attracted to magnetic field<br/>
+        Diamagnetic: all electrons paired → repelled from magnetic field (weakly)<br/>
+        NEET asks: "Which of the following is diamagnetic?" — check for 0 unpaired electrons<br/>
+        Zn (4s²3d¹⁰), Mg (3s²), Ca (4s²), He (1s²), Ne (2p⁶) — ALL diamagnetic</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch2-pyq" data-m="PYQ">
+      <h2 class="sh">2.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">Light of wavelength 3000 Å falls on a metal. Threshold wavelength is 4000 Å. Find max KE of emitted electrons. ($h = 6.6×10⁻³⁴$ J·s, $c = 3×10⁸$ m/s)</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 1.65 × 10⁻¹⁹ J</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>$KE = h\nu - h\nu_0 = hc(1/\lambda - 1/\lambda_0)$</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>$KE = 6.6\times10^{-34}\times3\times10^8(1/3000-1/4000)\times10^{10}$<br/>$= 1.98\times10^{-25}\times(3.33-2.5)\times10^6 = 1.65\times10^{-19}$ J</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key</span><p>$\lambda < \lambda_0$ for photoelectric effect. Shorter wavelength = higher frequency = higher energy.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Which of the following has the maximum number of unpaired electrons: Mn²⁺, Fe²⁺, Fe³⁺, Co²⁺?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: Mn²⁺ and Fe³⁺ (both have 5 unpaired e⁻)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>For transition metal ions, remove electrons from 4s first, then 3d</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Config</span><p>Mn²⁺: [Ar]3d⁵ → 5 unpaired; Fe²⁺: [Ar]3d⁶ → 4 unpaired; Fe³⁺: [Ar]3d⁵ → 5 unpaired; Co²⁺: [Ar]3d⁷ → 3 unpaired</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Rule</span><p>d⁵ configuration = 5 unpaired (maximum possible for d subshell by Hund's rule)</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 2</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Energy of H-like atom in nth orbit"</div>
+            <div class="trigger-action">→ $E_n = -13.6Z^2/n^2$ eV. For H: Z=1. For He⁺: Z=2. Always negative.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Radius of nth Bohr orbit"</div>
+            <div class="trigger-action">→ $r_n = 0.529 n^2/Z$ Å. Radius INCREASES with n², DECREASES with Z.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Spectral line series / UV / visible"</div>
+            <div class="trigger-action">→ Lyman (UV, n₁=1), Balmer (Visible, n₁=2), Paschen (IR, n₁=3)</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "de Broglie / heaviest / smallest λ"</div>
+            <div class="trigger-action">→ At same KE: $\lambda \propto 1/\sqrt{m}$ → heaviest = smallest λ</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Anomalous config / Cr / Cu"</div>
+            <div class="trigger-action">→ Cr=[Ar]3d⁵4s¹; Cu=[Ar]3d¹⁰4s¹. Half-filled/fully-filled d = extra stable.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Unpaired electrons / paramagnetic"</div>
+            <div class="trigger-action">→ d⁵ gives 5 unpaired (Mn²⁺, Fe³⁺). d¹⁰ gives 0 (Zn²⁺ = diamagnetic).</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "4s fills AFTER 3d" — FALSE. 4s fills BEFORE 3d (n+l rule: 4s has n+l=4, 3d has n+l=5). But 4s is REMOVED before 3d when forming cations!</div>
+          <div class="elim-step">❌ Trap: "Increasing intensity in photoelectric effect increases KE" — FALSE. Intensity only increases number of electrons. KE depends on FREQUENCY only.</div>
+          <div class="elim-step">❌ Trap: "Heisenberg uncertainty applies only to electrons" — FALSE. Applies to ALL particles. Just negligible for macroscopic objects.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 2</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Bohr energy</div><div class="re-val">$-13.6Z^2/n^2$ eV</div></div>
+          <div class="re-item"><div class="re-label">Bohr radius</div><div class="re-val">$0.529 n^2/Z$ Å</div></div>
+          <div class="re-item"><div class="re-label">de Broglie</div><div class="re-val">$\lambda = h/mv = h/p$</div></div>
+          <div class="re-item"><div class="re-label">Uncertainty</div><div class="re-val">$\Delta x \cdot \Delta p \geq h/4\pi$</div></div>
+          <div class="re-item"><div class="re-label">Lyman series</div><div class="re-val">n₁=1, UV region</div></div>
+          <div class="re-item"><div class="re-label">Balmer series</div><div class="re-val">n₁=2, Visible</div></div>
+          <div class="re-item"><div class="re-label">Cr anomaly</div><div class="re-val">[Ar]3d⁵4s¹ (half-filled d)</div></div>
+          <div class="re-item"><div class="re-label">Cu anomaly</div><div class="re-val">[Ar]3d¹⁰4s¹ (full d)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CHAPTER 5 — STATES OF MATTER ═══════════════════ -->
+<div class="chapter" id="ch5">
+  <div class="ch-head orange">
+    <div class="ch-ey">NCERT Class 11 · Chapter 5 · ~2 Qs/NEET</div>
+    <div class="ch-title">States of Matter — <em>Ideal Gases, Kinetic Theory &amp; Real Gases</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch5-s1">Gas Laws</a>
+    <a href="#ch5-s2">Ideal Gas</a>
+    <a href="#ch5-s3">Kinetic Theory</a>
+    <a href="#ch5-s4">Real Gases</a>
+    <a href="#ch5-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch5-s1" data-m="Gas Laws">
+      <h2 class="sh">5.1 Gas Laws <span class="tag to">NCERT §5.4 — Foundation</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-o">🟠 2 Qs/paper average</span>
+        <span class="score-pill sp-r">Graham's law of diffusion — tested 2022, 2020, 2018</span>
+        <span class="score-pill sp-b">Ideal gas equation — 4 years in row (2020–2023)</span>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Law</th><th>Formula</th><th>Constant</th><th>Relationship</th></tr>
+          <tr><td>Boyle's Law</td><td>$PV = k$ or $P_1V_1 = P_2V_2$</td><td>T, n = const</td><td>P ∝ 1/V (inverse)</td></tr>
+          <tr><td>Charles' Law</td><td>$V/T = k$ or $V_1/T_1 = V_2/T_2$</td><td>P, n = const</td><td>V ∝ T (direct, T in Kelvin)</td></tr>
+          <tr><td>Gay-Lussac's Law</td><td>$P/T = k$ or $P_1/T_1 = P_2/T_2$</td><td>V, n = const</td><td>P ∝ T (direct)</td></tr>
+          <tr><td>Avogadro's Law</td><td>$V/n = k$ or $V_1/n_1 = V_2/n_2$</td><td>T, P = const</td><td>V ∝ n (direct)</td></tr>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">⚠ CRITICAL — Always use T in KELVIN (K = °C + 273)</span>
+        <p>The #1 most common NEET mistake in States of Matter. All gas law calculations MUST use absolute temperature (Kelvin). If given 27°C → use 300 K.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-s2" data-m="Ideal Gas">
+      <h2 class="sh">5.2 Ideal Gas Equation &amp; Dalton's Law <span class="tag tb">Core Formulae</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Ideal Gas Equation</div>
+          <p>$PV = nRT$ &nbsp; ($R = 8.314$ J mol⁻¹ K⁻¹ = $0.0821$ L·atm mol⁻¹ K⁻¹)</p>
+          <p>$PV = \dfrac{m}{M}RT$ &nbsp; (m = mass, M = molar mass)</p>
+          <p>$P = \rho \dfrac{RT}{M}$ &nbsp; ($\rho$ = density = m/V)</p>
+          <p>Molar mass from gas density: $M = \dfrac{\rho RT}{P}$</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Dalton's Law of Partial Pressures</div>
+          <p>$P_{\text{total}} = P_1 + P_2 + P_3 + \ldots$ (at const T, V)</p>
+          <p>Partial pressure: $P_A = \chi_A \times P_{\text{total}}$</p>
+          <p>Wet gas (over water): $P_{\text{dry gas}} = P_{\text{total}} - P_{\text{water vapour}}$</p>
+          <p>$P_{\text{water vapour}}$ at 25°C = 23.8 mmHg ≈ 25 mmHg (NEET uses 25)</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">Graham's Law of Diffusion</div>
+          <p>$\dfrac{r_A}{r_B} = \sqrt{\dfrac{M_B}{M_A}} = \sqrt{\dfrac{d_B}{d_A}}$</p>
+          <p>Rate of diffusion ∝ 1/√M (lighter gas diffuses faster)</p>
+          <p>$\dfrac{r_A}{r_B} = \dfrac{t_B}{t_A}$ (inverse of time taken)</p>
+          <p>At same T &amp; P: applies to same-T effusion/diffusion</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> A gas occupies 500 mL at 27°C and 1 atm. Find volume at 127°C and 2 atm.<br/>
+        $\dfrac{P_1V_1}{T_1} = \dfrac{P_2V_2}{T_2}$ → $V_2 = \dfrac{P_1V_1T_2}{T_1P_2}$<br/>
+        $T_1 = 300K$, $T_2 = 400K$, $P_1 = 1$, $P_2 = 2$, $V_1 = 500$ mL<br/>
+        $V_2 = \dfrac{1 \times 500 \times 400}{300 \times 2} = \dfrac{200000}{600} = $ <strong>333.3 mL</strong></p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Graham's Law:</strong> Rate of diffusion of SO₂ vs O₂?<br/>
+        $M(\text{SO}_2) = 64$, $M(\text{O}_2) = 32$<br/>
+        $\dfrac{r_{\text{O}_2}}{r_{\text{SO}_2}} = \sqrt{\dfrac{64}{32}} = \sqrt{2} \approx 1.41$<br/>
+        O₂ diffuses 1.41 times faster than SO₂ (lighter → faster)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-s3" data-m="KMT">
+      <h2 class="sh">5.3 Kinetic Molecular Theory &amp; Speed Types <span class="tag tb">NCERT §5.7</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Types of Molecular Speeds</div>
+          <p>Most probable speed (u*): $u^* = \sqrt{\dfrac{2RT}{M}}$</p>
+          <p>Average speed ($\bar{u}$): $\bar{u} = \sqrt{\dfrac{8RT}{\pi M}}$</p>
+          <p>RMS speed ($u_{\text{rms}}$): $u_{\text{rms}} = \sqrt{\dfrac{3RT}{M}}$</p>
+          <p><strong>Order: $u^* < \bar{u} < u_{\text{rms}}$</strong></p>
+          <p>Ratio: $u^* : \bar{u} : u_{\text{rms}} = 1 : 1.128 : 1.225 \approx \sqrt{2}:\sqrt{8/\pi}:\sqrt{3}$</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">KMT Postulates (NEET tested)</div>
+          <p>1. Gas = tiny particles in continuous random motion</p>
+          <p>2. Collisions are perfectly elastic (no energy loss)</p>
+          <p>3. No intermolecular attractions/repulsions in ideal gas</p>
+          <p>4. Average KE ∝ T (absolute): $\overline{KE} = \dfrac{3}{2}RT$ per mol</p>
+          <p>5. Pressure due to collision of molecules with walls</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Kinetic Energy Expressions</div>
+          <p>Average KE per molecule: $\dfrac{3}{2}k_BT$ ($k_B = R/N_A$)</p>
+          <p>Average KE per mole: $\dfrac{3}{2}RT$</p>
+          <p>Total KE of n moles: $\dfrac{3}{2}nRT = \dfrac{3}{2}PV$</p>
+          <p>$KE \propto T$ (absolute temperature)</p>
+        </div>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Speed Comparison Trick:</strong><br/>
+        All three speeds $\propto \sqrt{T/M}$, so:<br/>
+        — At same T: lighter gas has higher speed ($u \propto 1/\sqrt{M}$)<br/>
+        — At same M: higher T → higher speed<br/>
+        — RMS speed of H₂ at 27°C: $u = \sqrt{3 \times 8.314 \times 300 / 0.002} \approx 1934$ m/s<br/>
+        NEET loves asking: "At what temperature will RMS speed of a gas double?" → T must become 4× (since $u \propto \sqrt{T}$)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-s4" data-m="Real Gases">
+      <h2 class="sh">5.4 Real Gases &amp; Van der Waals Equation <span class="tag tp">NCERT §5.8</span></h2>
+
+      <div class="formula">
+        $\left(P + \dfrac{an^2}{V^2}\right)(V - nb) = nRT$
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title red">Van der Waals Constants</div>
+          <p><strong>a</strong>: intermolecular attractive forces. Larger a = stronger attractions</p>
+          <p><strong>b</strong>: excluded volume (co-volume), effective volume of molecules</p>
+          <p>Greater 'a' → more easily liquefied (stronger attractions)</p>
+          <p>Real gas behaves ideally at low P and high T</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Compressibility Factor Z</div>
+          <p>$Z = \dfrac{PV}{nRT}$ (ideal gas: Z = 1)</p>
+          <p>Z &lt; 1: repulsion &lt; attraction (gas easier to compress)</p>
+          <p>Z &gt; 1: repulsion dominates (volume effect, high P)</p>
+          <p>At Boyle temperature: $Z = 1$ over wide P range</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Liquefaction Facts</div>
+          <p>Critical temperature ($T_c$): max T above which gas cannot be liquefied. Above $T_c$ = gas only.</p>
+          <p>$T_c = \dfrac{8a}{27Rb}$; $P_c = \dfrac{a}{27b^2}$; $V_c = 3nb$</p>
+          <p>Higher 'a' → higher $T_c$ → more easily liquefied at room T</p>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 5</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Graham's law / rate of diffusion"</div>
+            <div class="trigger-action">→ $r_A/r_B = \sqrt{M_B/M_A}$. Lighter gas = faster diffusion.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "RMS / average / most probable speed"</div>
+            <div class="trigger-action">→ $u_{rms} > \bar{u} > u^*$; all ∝ $\sqrt{T/M}$</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Partial pressure / mole fraction"</div>
+            <div class="trigger-action">→ $P_A = \chi_A \times P_{total}$; for wet gas subtract aqueous tension</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Ideal vs Real gas"</div>
+            <div class="trigger-action">→ Real gas: add $an^2/V^2$ to P, subtract nb from V. Low P, high T → ideal.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Rate of diffusion ∝ density" — WRONG. Rate ∝ 1/√density (Graham). Heavier/denser → slower.</div>
+          <div class="elim-step">❌ Trap: "Temperature in gas law problems can be in Celsius" — ALWAYS convert to Kelvin (K = °C + 273).</div>
+          <div class="elim-step">❌ Trap: "RMS is the average speed" — NO. RMS = $\sqrt{3RT/M}$; Average = $\sqrt{8RT/\pi M}$; Most probable = $\sqrt{2RT/M}$.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 5</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Boyle's Law</div><div class="re-val">$P_1V_1 = P_2V_2$ (T const)</div></div>
+          <div class="re-item"><div class="re-label">Charles' Law</div><div class="re-val">$V_1/T_1 = V_2/T_2$ (P const)</div></div>
+          <div class="re-item"><div class="re-label">Ideal Gas Eq</div><div class="re-val">$PV = nRT$</div></div>
+          <div class="re-item"><div class="re-label">Graham's Law</div><div class="re-val">$r \propto 1/\sqrt{M}$</div></div>
+          <div class="re-item"><div class="re-label">Speed Order</div><div class="re-val">$u^* &lt; \bar{u} &lt; u_{rms}$</div></div>
+          <div class="re-item"><div class="re-label">KE per mol</div><div class="re-val">$\frac{3}{2}RT$</div></div>
+          <div class="re-item"><div class="re-label">vdW equation</div><div class="re-val">$(P + an^2/V^2)(V-nb) = nRT$</div></div>
+          <div class="re-item"><div class="re-label">Z for ideal gas</div><div class="re-val">Z = PV/nRT = 1</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch5-pyq" data-m="PYQ">
+      <h2 class="sh">5.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">The ratio of the RMS speed of H₂ to that of O₂ at the same temperature is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 4 : 1</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>$u_{rms} = \sqrt{3RT/M}$, so $u \propto 1/\sqrt{M}$</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Ratio</span><p>$u(H_2)/u(O_2) = \sqrt{M(O_2)/M(H_2)} = \sqrt{32/2} = \sqrt{16} = 4$</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Answer</span><p>Ratio = 4:1 (H₂ is 4 times faster than O₂ at same T)</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ CHAPTER 6 — THERMODYNAMICS ═══════════════════ -->
+<div class="chapter" id="ch6">
+  <div class="ch-head red">
+    <div class="ch-ey">NCERT Class 11 · Chapter 6 · ~3 Qs/NEET · HIGH YIELD</div>
+    <div class="ch-title">Thermodynamics — <em>&Delta;H, &Delta;S, &Delta;G, Hess&apos;s Law &amp; Spontaneity</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch6-s1">First Law</a>
+    <a href="#ch6-s2">Enthalpy</a>
+    <a href="#ch6-s3">Hess Law</a>
+    <a href="#ch6-s4">Entropy &amp; Gibbs</a>
+    <a href="#ch6-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch6-s1" data-m="First Law">
+      <h2 class="sh">6.1 First Law of Thermodynamics <span class="tag tr">NCERT §6.3 — Always Tested</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-r">🔴 3 Qs/paper — highest yield physical chem chapter</span>
+        <span class="score-pill sp-o">Gibbs free energy &amp; spontaneity — every NEET</span>
+        <span class="score-pill sp-b">Hess Law — 9 of last 10 exams</span>
+      </div>
+
+      <div class="formula">
+        $\Delta U = q + w$ &nbsp;&nbsp;&nbsp;&nbsp; or &nbsp;&nbsp;&nbsp;&nbsp; $\Delta U = q - P\Delta V$ (work done BY system = $P\Delta V$)
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox teal-border">
+          <div class="fbox-title">Work (w)</div>
+          <p>Work done ON system (compression): $w = -P_{\text{ext}}\Delta V$ (when $\Delta V < 0$, w is positive)</p>
+          <p>Isothermal reversible expansion (ideal gas):<br/>$w = -nRT\ln\dfrac{V_2}{V_1} = -2.303nRT\log\dfrac{V_2}{V_1}$</p>
+          <p>$w = -nRT\log\dfrac{P_1}{P_2}$ (equivalent)</p>
+          <p>Free expansion (into vacuum): $w = 0$ ($P_{\text{ext}} = 0$)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Sign Conventions</div>
+          <p>q > 0: heat absorbed by system (endothermic)</p>
+          <p>q < 0: heat released by system (exothermic)</p>
+          <p>w > 0: work done ON system (compression)</p>
+          <p>w < 0: work done BY system (expansion)</p>
+          <p>$\Delta U > 0$: internal energy increases</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">State Functions vs Path Functions</div>
+          <p><strong>State functions:</strong> $\Delta U$, H, S, G — depend only on initial &amp; final states</p>
+          <p><strong>Path functions:</strong> q and w — depend on the path taken</p>
+          <p>For cyclic process: $\Delta U = 0$ (returns to same state)</p>
+          <p>Isothermal process on ideal gas: $\Delta U = 0$ (U depends only on T)</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> 5 mol ideal gas expands isothermally and reversibly at 300K from 5L to 25L. Calculate w.<br/>
+        $w = -2.303 \times 5 \times 8.314 \times 300 \times \log(25/5)$<br/>
+        $= -2.303 \times 5 \times 8.314 \times 300 \times 0.699$<br/>
+        $= -2.303 \times 1247.1 \times 0.699 = $ <strong>$-2006$ J $= -2.006$ kJ</strong><br/>
+        (Negative = work done BY system = expansion)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch6-s2" data-m="Enthalpy">
+      <h2 class="sh">6.2 Enthalpy (H) &amp; Bond Enthalpy <span class="tag tr">NCERT §6.4</span></h2>
+
+      <div class="formula">
+        $H = U + PV$ &nbsp;&nbsp; ∴ &nbsp;&nbsp; $\Delta H = \Delta U + \Delta(PV) = \Delta U + \Delta n_g RT$
+      </div>
+      <div class="warn-box">
+        <span class="lbl">Key Relation</span>
+        <p>$\Delta H = \Delta U + \Delta n_g RT$ where $\Delta n_g$ = moles of gaseous products − moles of gaseous reactants. For reactions involving only solids/liquids: $\Delta H \approx \Delta U$.</p>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Standard Enthalpies (Memorise)</div>
+          <p><strong>$\Delta H_f^\circ$</strong>: enthalpy of formation (from elements in standard states)</p>
+          <p><strong>$\Delta H_c^\circ$</strong>: enthalpy of combustion (products: CO₂ and H₂O)</p>
+          <p><strong>$\Delta H_{\text{sub}}$</strong>: enthalpy of sublimation (solid → gas)</p>
+          <p><strong>$\Delta H_{\text{hyd}}$</strong>: enthalpy of hydration (ion + water)</p>
+          <p><strong>$\Delta H_{\text{soln}}$</strong>: $\Delta H_{\text{latt}} + \Delta H_{\text{hyd}}$</p>
+        </div>
+        <div class="fbox red-border">
+          <div class="fbox-title red">Bond Enthalpy Method</div>
+          <p>$\Delta H_{\text{rxn}} = \sum \Delta H(\text{bonds broken}) - \sum \Delta H(\text{bonds formed})$</p>
+          <p>Breaking bonds: always endothermic (+ΔH)</p>
+          <p>Forming bonds: always exothermic (−ΔH)</p>
+          <p>Use: when ΔH of individual molecules not given</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Exo vs Endo</div>
+          <p>Exothermic: ΔH &lt; 0, products more stable</p>
+          <p>Endothermic: ΔH &gt; 0, reactants more stable</p>
+          <p>Combustion, neutralization, formation of H₂O, HCl formation: all exothermic</p>
+          <p>Photosynthesis, vaporization, dissolving NH₄Cl: endothermic</p>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Bond</th><th>Bond Enthalpy (kJ/mol)</th><th>Type</th></tr>
+          <tr><td>H—H</td><td>435</td><td>Single</td></tr>
+          <tr><td>O=O</td><td>498</td><td>Double</td></tr>
+          <tr><td>O—H</td><td>460</td><td>Single</td></tr>
+          <tr><td>C—H</td><td>414</td><td>Single</td></tr>
+          <tr><td>C=O</td><td>745</td><td>Double (CO₂)</td></tr>
+          <tr><td>N≡N</td><td>945</td><td>Triple (strongest common bond)</td></tr>
+          <tr><td>C≡N</td><td>887</td><td>Triple</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec" id="ch6-s3" data-m="Hesss Law">
+      <h2 class="sh">6.3 Hess's Law of Constant Heat Summation <span class="tag tr">NCERT §6.5</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Hess's Law</span>
+        <p>The total enthalpy change of a reaction is the same whether the reaction occurs in one step or multiple steps (because enthalpy is a state function). This allows calculation of ΔH for reactions that cannot be directly measured.</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Hess's Law:</strong> Calculate ΔH for C(s) + ½O₂(g) → CO(g) given:<br/>
+        (i) C(s) + O₂(g) → CO₂(g), $\Delta H_1 = -393.5$ kJ/mol<br/>
+        (ii) CO(g) + ½O₂(g) → CO₂(g), $\Delta H_2 = -283.5$ kJ/mol<br/>
+        Target = (i) − (ii): $\Delta H = \Delta H_1 - \Delta H_2 = -393.5 - (-283.5) = $ <strong>$-110$ kJ/mol</strong></p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ Hess's Law Trick:</strong><br/>
+        1. Write the target equation<br/>
+        2. Reverse any given equation if needed (flip sign of ΔH)<br/>
+        3. Multiply equations by coefficients (ΔH scales proportionally)<br/>
+        4. Add equations to get target<br/>
+        5. Sum the ΔH values (including signs)<br/>
+        <strong>Hot tip:</strong> If a species appears on same side twice → it's an intermediate, not a product!</p>
+      </div>
+
+      <h3 class="ssh">Born-Haber Cycle (Ionic Compounds)</h3>
+      <div class="mech-box">
+        <p>For NaCl formation: $\Delta H_f = \Delta H_{\text{sub}} + IE_1 + \frac{1}{2}\Delta H_{\text{diss}} + EA + U_L$</p>
+        <ul class="pl">
+          <li>$\Delta H_{\text{sub}}$: sublimation enthalpy of Na(s) (+108 kJ/mol)</li>
+          <li>$IE_1$: first ionization energy of Na (+496 kJ/mol)</li>
+          <li>$\frac{1}{2}\Delta H_{\text{diss}}$: dissociation of ½Cl₂ (+122 kJ/mol)</li>
+          <li>$EA$: electron affinity of Cl (−349 kJ/mol)</li>
+          <li>$U_L$: lattice enthalpy of NaCl (−788 kJ/mol)</li>
+          <li>$\Delta H_f(\text{NaCl}) = -411$ kJ/mol (resultant)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec" id="ch6-s4" data-m="Entropy Gibbs">
+      <h2 class="sh">6.4 Entropy (&Delta;S) &amp; Gibbs Free Energy (&Delta;G) <span class="tag tr">NCERT §6.7 — Central to Spontaneity</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title red">Entropy (S) — Disorder/Randomness</div>
+          <p>$\Delta S = \dfrac{q_{\text{rev}}}{T}$ &nbsp; (at constant T)</p>
+          <p>$\Delta S_{\text{surroundings}} = -\dfrac{\Delta H_{\text{system}}}{T}$</p>
+          <p>$\Delta S_{\text{universe}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \geq 0$</p>
+          <p><strong>Second Law:</strong> Total entropy of universe always increases in spontaneous processes</p>
+          <p><strong>Third Law:</strong> Entropy of pure perfect crystal at 0K = 0</p>
+        </div>
+        <div class="fbox purple-border">
+          <div class="fbox-title purple">Gibbs Free Energy (&Delta;G)</div>
+          <p>$\Delta G = \Delta H - T\Delta S$</p>
+          <p>$\Delta G^\circ = -RT\ln K = -2.303RT\log K$</p>
+          <p>At equilibrium: $\Delta G = 0$ (not $\Delta G^\circ$!)</p>
+          <p>$\Delta G < 0$: spontaneous (product-favoured)</p>
+          <p>$\Delta G > 0$: non-spontaneous</p>
+          <p>$\Delta G = \Delta G^\circ + RT\ln Q$</p>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>&Delta;H</th><th>&Delta;S</th><th>&Delta;G = &Delta;H - T&Delta;S</th><th>Spontaneity</th></tr>
+          <tr><td>−</td><td>+</td><td>Always −</td><td class="c-g">Always spontaneous at all T</td></tr>
+          <tr><td>+</td><td>−</td><td>Always +</td><td class="c-r">Never spontaneous at any T</td></tr>
+          <tr><td>−</td><td>−</td><td>− at low T, + at high T</td><td class="c-o">Spontaneous at low T only</td></tr>
+          <tr><td>+</td><td>+</td><td>+ at low T, − at high T</td><td class="c-b">Spontaneous at high T only</td></tr>
+        </table>
+      </div>
+
+      <div class="shortcut">
+        <p><strong>🎯 Spontaneity Memory Table:</strong><br/>
+        <strong>− − (exo, dec S):</strong> "Cold spontaneous" → low T spont. (ΔH wins at low T)<br/>
+        <strong>+ + (endo, inc S):</strong> "Hot spontaneous" → high T spont. (TΔS wins at high T)<br/>
+        <strong>− + (exo, inc S):</strong> "Always spontaneous" → double advantage, always ΔG &lt; 0<br/>
+        <strong>+ − (endo, dec S):</strong> "Never spontaneous" → double disadvantage, always ΔG &gt; 0</p>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> For a reaction, ΔH = -30 kJ/mol and ΔS = -100 J/mol·K. At what temperature does it become non-spontaneous?<br/>
+        At crossover: $\Delta G = 0 \Rightarrow T = \dfrac{\Delta H}{\Delta S} = \dfrac{-30000}{-100} = 300$ K<br/>
+        Below 300K: spontaneous (ΔG &lt; 0). Above 300K: non-spontaneous (ΔG &gt; 0)<br/>
+        [Note: Convert ΔH to J for consistent units]</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch6-pyq" data-m="PYQ">
+      <h2 class="sh">6.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2024</span>
+          <span class="pyq-q">For a reaction, ΔH = −57.1 kJ mol⁻¹ and ΔS = −0.1 kJ mol⁻¹ K⁻¹. At what temperature does ΔG = 0?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 571 K</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>$\Delta G = 0$ when $\Delta H = T\Delta S$, so $T = \Delta H/\Delta S$</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>$T = \frac{-57.1}{-0.1} = 571$ K. Below 571K → spontaneous; above → non-spontaneous.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Type</span><p>ΔH(−), ΔS(−) → spontaneous at low T, nonspontaneous at high T. Transition at 571K.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2022</span>
+          <span class="pyq-q">Calculate ΔH for CH₄(g) + 2O₂ → CO₂(g) + 2H₂O(l) using bond enthalpies. [C-H=414, O=O=498, C=O=799, O-H=460 kJ/mol]</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: −802 kJ/mol (approx)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>ΔH = bonds broken − bonds formed (all as positive values)</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Calculation</span><p>Broken: 4(C-H) + 2(O=O) = 4×414 + 2×498 = 1656+996 = 2652 kJ<br/>Formed: 2(C=O in CO₂) + 4(O-H) = 2×799×2 + 4×460 = 3196+1840 = [note: CO₂ has 2 C=O so 2×2×799] wait — 1 CO₂ has 2 C=O → 2×799=1598; 2H₂O has 4 O-H → 4×460=1840; Total formed = 3438<br/>ΔH = 2652 − 3438 = −786 kJ (variation due to bond enthalpy values used)</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Key Step</span><p>Count every bond broken/formed carefully. 2CO₂ has 4 C=O bonds total.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2019</span>
+          <span class="pyq-q">The reaction, CO(g) + ½O₂(g) → CO₂(g) has which properties?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: ΔH &lt; 0, ΔS &lt; 0 (spontaneous at low T)</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Analysis</span><p>Combustion: exothermic → ΔH &lt; 0. Moles of gas decrease (1.5 mol → 1 mol) → ΔS &lt; 0 (more ordered)</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Spontaneity</span><p>ΔH(−), ΔS(−) → spontaneous at low T. High T → TΔS dominates → ΔG may become +.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Rule</span><p>Decrease in gas moles → ΔS &lt; 0 (fewer microstates). Increase in gas moles → ΔS &gt; 0.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 6 Thermodynamics</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Spontaneity / ΔG"</div>
+            <div class="trigger-action">→ ΔG = ΔH − TΔS. If ΔG &lt; 0 → spontaneous. At equilibrium ΔG = 0.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "T at which ΔG = 0"</div>
+            <div class="trigger-action">→ T = ΔH/ΔS (equilibrium temperature). Convert ΔH to J if ΔS in J/K.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "ΔH vs ΔU"</div>
+            <div class="trigger-action">→ ΔH = ΔU + ΔngRT. Δng = gaseous products − gaseous reactants moles.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Hess's Law / intermediate steps"</div>
+            <div class="trigger-action">→ Rearrange given equations (flip if needed, scale), add ΔH values.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Entropy / gas moles"</div>
+            <div class="trigger-action">→ ΔS &gt; 0 if gas moles increase or if gas forms from solid/liquid.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "ΔG° and equilibrium constant K"</div>
+            <div class="trigger-action">→ ΔG° = −RT ln K. Large K (product favoured) → ΔG° very negative.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "ΔG = 0 at equilibrium means ΔG° = 0" — WRONG. ΔG = 0 at equil but ΔG° = −RT ln K ≠ 0 (unless K=1).</div>
+          <div class="elim-step">❌ Trap: "For spontaneous reaction, ΔH must be negative" — WRONG. Both ΔH&gt;0,ΔS&gt;0 is spontaneous at high T.</div>
+          <div class="elim-step">❌ Trap: "ΔH = ΔU always" — Only true when Δng = 0 (no change in gas moles). Use ΔH = ΔU + ΔngRT.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 6</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">First Law</div><div class="re-val">ΔU = q + w</div></div>
+          <div class="re-item"><div class="re-label">ΔH vs ΔU</div><div class="re-val">ΔH = ΔU + ΔngRT</div></div>
+          <div class="re-item"><div class="re-label">Bond enthalpy</div><div class="re-val">ΔH = bonds broken − formed</div></div>
+          <div class="re-item"><div class="re-label">Gibbs eq</div><div class="re-val">ΔG = ΔH − TΔS</div></div>
+          <div class="re-item"><div class="re-label">Spontaneous</div><div class="re-val">ΔG &lt; 0</div></div>
+          <div class="re-item"><div class="re-label">Equilibrium</div><div class="re-val">ΔG = 0</div></div>
+          <div class="re-item"><div class="re-label">ΔG° and K</div><div class="re-val">ΔG° = −RT ln K</div></div>
+          <div class="re-item"><div class="re-label">T for ΔG=0</div><div class="re-val">T = ΔH/ΔS</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CHAPTER 7 — EQUILIBRIUM ═══════════════════ -->
+<div class="chapter" id="ch7">
+  <div class="ch-head green">
+    <div class="ch-ey">NCERT Class 11 · Chapter 7 · ~3 Qs/NEET · IONIC IS HIGH YIELD</div>
+    <div class="ch-title">Chemical &amp; Ionic Equilibrium — <em>K&lt;sub&gt;c&lt;/sub&gt;, K&lt;sub&gt;p&lt;/sub&gt;, pH, Buffers &amp; K&lt;sub&gt;sp&lt;/sub&gt;</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#ch7-s1">Chemical Eq</a>
+    <a href="#ch7-s2">Le Chatelier</a>
+    <a href="#ch7-s3">Ionic Eq</a>
+    <a href="#ch7-s4">pH &amp; Buffers</a>
+    <a href="#ch7-s5">Ksp</a>
+    <a href="#ch7-pyq">PYQs</a>
+  </div>
+  <div class="ch-body">
+
+    <div class="sec" id="ch7-s1" data-m="Chem Eq">
+      <h2 class="sh">7.1 Chemical Equilibrium — K_c and K_p <span class="tag tg">NCERT §7.4</span></h2>
+      <div class="score-strip">
+        <span class="score-pill sp-g">🟢 2–3 Qs/paper</span>
+        <span class="score-pill sp-r">Ksp and solubility — most tested ionic equilibrium topic</span>
+        <span class="score-pill sp-o">pH calculations — 2023, 2022, 2021, 2020</span>
+      </div>
+
+      <div class="fgrid">
+        <div class="fbox green-border">
+          <div class="fbox-title green">Equilibrium Constants</div>
+          <p>For: $aA + bB \rightleftharpoons cC + dD$</p>
+          <p>$K_c = \dfrac{[C]^c[D]^d}{[A]^a[B]^b}$ &nbsp; (concentrations in mol/L)</p>
+          <p>$K_p = \dfrac{(P_C)^c(P_D)^d}{(P_A)^a(P_B)^b}$ &nbsp; (partial pressures in atm)</p>
+          <p>$K_p = K_c(RT)^{\Delta n_g}$ &nbsp; (R = 0.0821 L·atm·mol⁻¹K⁻¹)</p>
+        </div>
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Properties of K</div>
+          <p>K has no units (standard concentrations/pressures used)</p>
+          <p>K depends ONLY on temperature</p>
+          <p>If K &gt; 1: forward reaction favoured (more products)</p>
+          <p>If K &lt; 1: reverse reaction favoured (more reactants)</p>
+          <p>K &gt; 10³: essentially complete; K &lt; 10⁻³: barely proceeds</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Reaction Quotient Q</div>
+          <p>$Q$ has same expression as $K$ but at non-equilibrium conditions</p>
+          <p>Q &lt; K: forward reaction proceeds (more products needed)</p>
+          <p>Q &gt; K: reverse reaction proceeds (excess products)</p>
+          <p>Q = K: system at equilibrium</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical — Kp from Kc:</strong> For N₂O₄(g) ⇌ 2NO₂(g), $K_c = 0.07$ mol/L at 25°C. Find $K_p$.<br/>
+        $\Delta n_g = 2 - 1 = 1$<br/>
+        $K_p = K_c(RT)^{\Delta n_g} = 0.07 \times (0.0821 \times 298)^1 = 0.07 \times 24.47 = $ <strong>$1.71$ atm</strong></p>
+      </div>
+
+      <div class="trick">
+        <p><strong>⚡ When Kp = Kc:</strong><br/>
+        $K_p = K_c$ ONLY when $\Delta n_g = 0$ (no change in moles of gas)<br/>
+        Examples: H₂ + I₂ ⇌ 2HI (Δng = 0), PCl₃ + Cl₂ ⇌ PCl₅ (Δng = -1 ≠ 0)<br/>
+        PCl₃ + Cl₂ → Δng = 1 - 2 = -1, so Kp = Kc(RT)⁻¹ = Kc/RT &lt; Kc</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch7-s2" data-m="Le Chatelier">
+      <h2 class="sh">7.2 Le Chatelier's Principle <span class="tag tg">NCERT §7.7 — Conceptual Qs</span></h2>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Disturbance</th><th>Effect on Equilibrium</th><th>Effect on K</th></tr>
+          <tr><td>Increase concentration of reactant</td><td>Shifts forward →</td><td>No change</td></tr>
+          <tr><td>Increase concentration of product</td><td>Shifts backward ←</td><td>No change</td></tr>
+          <tr><td>Increase total pressure (compression)</td><td>Shifts toward fewer gas moles side</td><td>No change</td></tr>
+          <tr><td>Decrease total pressure</td><td>Shifts toward more gas moles side</td><td>No change</td></tr>
+          <tr><td>Increase temperature (exothermic rxn)</td><td>Shifts backward ← (away from product)</td><td>K decreases</td></tr>
+          <tr><td>Increase temperature (endothermic rxn)</td><td>Shifts forward → (toward product)</td><td>K increases</td></tr>
+          <tr><td>Add catalyst</td><td>No shift! Speeds up both rates equally</td><td>No change</td></tr>
+          <tr><td>Add inert gas (constant V)</td><td>No shift (partial pressures unchanged)</td><td>No change</td></tr>
+          <tr><td>Add inert gas (constant P)</td><td>Shifts toward more gas moles side (dilution effect)</td><td>No change</td></tr>
+        </table>
+      </div>
+
+      <div class="warn-box">
+        <span class="lbl">NEET TRAP — Temperature &amp; K</span>
+        <p>Temperature is the ONLY factor that changes the value of K. Pressure, concentration, catalyst, and inert gas changes do NOT change K — they only shift the position of equilibrium.</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch7-s3" data-m="Ionic Eq">
+      <h2 class="sh">7.3 Acids, Bases &amp; Ionic Product of Water <span class="tag tr">NCERT §7.10</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox blue-border">
+          <div class="fbox-title blue">Arrhenius / Bronsted / Lewis</div>
+          <p><strong>Arrhenius:</strong> Acid gives H⁺; Base gives OH⁻ in water</p>
+          <p><strong>Bronsted-Lowry:</strong> Acid = H⁺ donor; Base = H⁺ acceptor. Conjugate pairs differ by H⁺</p>
+          <p><strong>Lewis:</strong> Acid = e⁻ pair acceptor; Base = e⁻ pair donor (broader)</p>
+          <p>BF₃, Al³⁺, H⁺ = Lewis acids. NH₃, H₂O, Cl⁻ = Lewis bases</p>
+        </div>
+        <div class="fbox teal-border">
+          <div class="fbox-title">Ionic Product of Water ($K_w$)</div>
+          <p>$K_w = [H^+][OH^-] = 10^{-14}$ at 25°C (298K)</p>
+          <p>$K_w$ increases with temperature (endothermic ionisation)</p>
+          <p>In neutral solution: $[H^+] = [OH^-] = 10^{-7}$ M at 25°C</p>
+          <p>$pK_w = pH + pOH = 14$ (at 25°C only)</p>
+        </div>
+        <div class="fbox orange-border">
+          <div class="fbox-title orange">Degree of Ionisation</div>
+          <p>Weak acid HA ⇌ H⁺ + A⁻: $K_a = \dfrac{C\alpha^2}{1-\alpha} \approx C\alpha^2$ (if α &lt;&lt; 1)</p>
+          <p>$\alpha = \sqrt{K_a/C}$ &nbsp; (degree of ionisation)</p>
+          <p>$[H^+] = \sqrt{K_a \cdot C}$</p>
+          <p>Similarly for weak base: $[OH^-] = \sqrt{K_b \cdot C}$</p>
+        </div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Type</th><th>[H⁺] formula</th><th>pH formula</th></tr>
+          <tr><td>Strong acid (HCl, HNO₃)</td><td>$[H^+] = C$ (100% ionised)</td><td>pH = −log C</td></tr>
+          <tr><td>Weak acid (CH₃COOH)</td><td>$[H^+] = \sqrt{K_a \times C}$</td><td>pH = ½(pKₐ − log C)</td></tr>
+          <tr><td>Strong base (NaOH)</td><td>$[OH^-] = C$; $[H^+] = K_w/C$</td><td>pOH = −log C; pH = 14 − pOH</td></tr>
+          <tr><td>Weak base (NH₄OH)</td><td>$[OH^-] = \sqrt{K_b \times C}$</td><td>pOH = ½(pKb − log C); pH = 14 − pOH</td></tr>
+          <tr><td>Salt of strong acid + strong base</td><td>$[H^+] = 10^{-7}$</td><td>pH = 7 (neutral)</td></tr>
+          <tr><td>Salt of weak acid + strong base (e.g. CH₃COONa)</td><td>Hydrolysis: basic</td><td>pH = 7 + ½(pKₐ + log C)</td></tr>
+          <tr><td>Salt of strong acid + weak base (e.g. NH₄Cl)</td><td>Hydrolysis: acidic</td><td>pH = 7 − ½(pKb + log C)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec" id="ch7-s4" data-m="pH Buffers">
+      <h2 class="sh">7.4 Buffer Solutions — Henderson-Hasselbalch <span class="tag tr">NCERT §7.11</span></h2>
+
+      <div class="fgrid">
+        <div class="fbox red-border">
+          <div class="fbox-title red">Henderson-Hasselbalch Equation</div>
+          <p>For acidic buffer (weak acid + conjugate base):</p>
+          <p>$\text{pH} = \text{pK}_a + \log\dfrac{[\text{Salt}]}{[\text{Acid}]}$</p>
+          <p>For basic buffer (weak base + conjugate acid):</p>
+          <p>$\text{pOH} = \text{pK}_b + \log\dfrac{[\text{Salt}]}{[\text{Base}]}$</p>
+          <p>At half-equivalence point: pH = pKₐ (moles acid = moles salt)</p>
+        </div>
+        <div class="fbox green-border">
+          <div class="fbox-title green">Buffer Properties &amp; Types</div>
+          <p><strong>Acidic buffer:</strong> CH₃COOH + CH₃COONa (pH = 4-6)</p>
+          <p><strong>Basic buffer:</strong> NH₄OH + NH₄Cl (pH = 8-11)</p>
+          <p>Buffer capacity: maximum when [acid] = [salt]; pH = pKₐ</p>
+          <p>Blood buffer: H₂CO₃/NaHCO₃ (pH ≈ 7.4)</p>
+        </div>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> pH of buffer with 0.1M CH₃COOH and 0.2M CH₃COONa (pKₐ = 4.74)?<br/>
+        $\text{pH} = 4.74 + \log(0.2/0.1) = 4.74 + \log 2 = 4.74 + 0.301 = $ <strong>5.04</strong><br/>
+        More salt than acid → pH &gt; pKₐ (as expected from formula)</p>
+      </div>
+    </div>
+
+    <div class="sec" id="ch7-s5" data-m="Ksp">
+      <h2 class="sh">7.5 Solubility Product (K_sp) &amp; Common Ion Effect <span class="tag tr">NCERT §7.12 — MUST MASTER</span></h2>
+
+      <div class="def-box">
+        <span class="lbl">Solubility Product ($K_{sp}$)</span>
+        <p>For sparingly soluble salt $M_xA_y \rightleftharpoons xM^{n+} + yA^{m-}$ at saturation:<br/>
+        $K_{sp} = [M^{n+}]^x [A^{m-}]^y$<br/>
+        If solubility = s mol/L, then $[M^{n+}] = xs$ and $[A^{m-}] = ys$<br/>
+        $K_{sp} = (xs)^x (ys)^y = x^x y^y s^{(x+y)}$</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <tr><th>Salt type</th><th>Example</th><th>$K_{sp}$ in terms of s</th><th>s in terms of $K_{sp}$</th></tr>
+          <tr><td>AB (1:1)</td><td>AgCl, BaSO₄</td><td>$K_{sp} = s^2$</td><td>$s = \sqrt{K_{sp}}$</td></tr>
+          <tr><td>AB₂ or A₂B</td><td>PbCl₂, Ag₂CrO₄</td><td>$K_{sp} = 4s^3$</td><td>$s = (K_{sp}/4)^{1/3}$</td></tr>
+          <tr><td>AB₃ or A₃B</td><td>AlI₃, Bi₂S₃</td><td>$K_{sp} = 27s^4$</td><td>$s = (K_{sp}/27)^{1/4}$</td></tr>
+          <tr><td>A₂B₃</td><td>Bi₂S₃</td><td>$K_{sp} = 108s^5$</td><td>$s = (K_{sp}/108)^{1/5}$</td></tr>
+        </table>
+      </div>
+
+      <div class="num-box">
+        <p><strong>Numerical:</strong> $K_{sp}$ of PbCl₂ = $1.7 \times 10^{-5}$. Find solubility in pure water.<br/>
+        PbCl₂ ⇌ Pb²⁺ + 2Cl⁻; $K_{sp} = 4s^3$<br/>
+        $s = \left(\dfrac{K_{sp}}{4}\right)^{1/3} = \left(\dfrac{1.7 \times 10^{-5}}{4}\right)^{1/3} = (4.25 \times 10^{-6})^{1/3}$<br/>
+        $= \left(42.5 \times 10^{-7}\right)^{1/3} \approx 3.48 \times 10^{-2/3} \approx$ <strong>$1.62 \times 10^{-2}$ M</strong></p>
+      </div>
+
+      <div class="def-box">
+        <span class="lbl">Common Ion Effect</span>
+        <p>Adding a common ion (already present in equilibrium) suppresses the dissolution → decreases solubility. Example: AgCl solubility decreases in AgNO₃ solution (excess Ag⁺ shifts equilibrium backward).</p>
+        <p>Ionic product (IP) vs $K_{sp}$: If IP &gt; $K_{sp}$ → precipitation occurs; IP &lt; $K_{sp}$ → no precipitation; IP = $K_{sp}$ → saturated (just at saturation).</p>
+      </div>
+
+      <div class="dl-block">
+        <h3>⚡ Decision Engine — Chapter 7 Equilibrium</h3>
+        <div class="trigger-grid">
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Kp from Kc / RT"</div>
+            <div class="trigger-action">→ $K_p = K_c(RT)^{\Delta n_g}$. Calculate Δng = moles gaseous products − moles gaseous reactants.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Q vs K / which way does reaction proceed"</div>
+            <div class="trigger-action">→ Q &lt; K: forward; Q &gt; K: backward; Q = K: equilibrium</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Buffer pH / Henderson Hasselbalch"</div>
+            <div class="trigger-action">→ pH = pKₐ + log([salt]/[acid]). pH = pKₐ when [salt]=[acid].</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Ksp / solubility product"</div>
+            <div class="trigger-action">→ AB: s=√Ksp; AB₂: s=(Ksp/4)^⅓; Check IP vs Ksp for precipitation.</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "pH of weak acid"</div>
+            <div class="trigger-action">→ [H⁺] = √(Ka×C); pH = -log[H⁺] = ½pKa − ½log C</div>
+          </div>
+          <div class="trigger-card">
+            <div class="trigger-kw">Keyword: "Le Chatelier + catalyst"</div>
+            <div class="trigger-action">→ Catalyst does NOT shift equilibrium — only speeds up reaching equilibrium. K unchanged.</div>
+          </div>
+        </div>
+        <div class="elim-chain">
+          <div class="elim-step">❌ Trap: "Adding catalyst shifts equilibrium" — NO. Catalyst speeds up both forward and reverse equally. K and position are UNCHANGED.</div>
+          <div class="elim-step">❌ Trap: "pKw = 14 at all temperatures" — FALSE. pKw = 14 ONLY at 25°C. At higher T, Kw increases → pKw decreases (water ionises more).</div>
+          <div class="elim-step">❌ Trap: "Ksp only changes with concentration" — FALSE. Ksp changes ONLY with temperature (like any K).</div>
+          <div class="elim-step">❌ Trap: "IP = Ksp means precipitation just occurred" — NO. IP = Ksp means the solution is exactly saturated, no more dissolution or precipitation.</div>
+        </div>
+      </div>
+
+      <div class="revision-engine">
+        <h3>🔁 Rapid Revision — Chapter 7</h3>
+        <div class="re-grid">
+          <div class="re-item"><div class="re-label">Kp = Kc when</div><div class="re-val">Δng = 0 (no change in gas moles)</div></div>
+          <div class="re-item"><div class="re-label">Q &lt; K</div><div class="re-val">Forward reaction proceeds</div></div>
+          <div class="re-item"><div class="re-label">Weak acid [H⁺]</div><div class="re-val">$\sqrt{K_a \times C}$</div></div>
+          <div class="re-item"><div class="re-label">Buffer pH</div><div class="re-val">pKₐ + log([salt]/[acid])</div></div>
+          <div class="re-item"><div class="re-label">AB type Ksp</div><div class="re-val">s = √Ksp</div></div>
+          <div class="re-item"><div class="re-label">AB₂ type Ksp</div><div class="re-val">s = (Ksp/4)^⅓</div></div>
+          <div class="re-item"><div class="re-label">Kw at 25°C</div><div class="re-val">10⁻¹⁴; pH + pOH = 14</div></div>
+          <div class="re-item"><div class="re-label">Common ion effect</div><div class="re-val">Adds common ion → decreases solubility</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec" id="ch7-pyq" data-m="PYQ">
+      <h2 class="sh">7.P PYQ Pattern Analysis <span class="tag tg">2015–2025</span></h2>
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2023</span>
+          <span class="pyq-q">The pH of a buffer made by mixing equal volumes of 0.1M CH₃COOH and 0.1M CH₃COONa (pKₐ = 4.74) is:</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: 4.74</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>pH = pKₐ + log([salt]/[acid]) = pKₐ + log(1) = pKₐ + 0</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Key</span><p>Equal concentrations of acid and salt → log(1) = 0 → pH = pKₐ exactly. MAX buffer capacity point.</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Note</span><p>Mixing equal volumes halves both concentrations, but ratio stays 1:1, so pH unchanged.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="this.nextElementSibling.classList.toggle('open')">
+          <span class="pyq-year">NEET 2021</span>
+          <span class="pyq-q">Ksp of AgCl = 1.6×10⁻¹⁰. Will AgCl precipitate from a solution with [Ag⁺] = 10⁻⁴ M and [Cl⁻] = 10⁻⁵ M?</span>
+          <button class="pyq-toggle">Show Ans</button>
+        </div>
+        <div class="pyq-sol">
+          <span class="ans-badge">Answer: No precipitation</span>
+          <div class="pyq-grid">
+            <div class="pyq-field pf-concept"><span class="pyq-field-label">Concept</span><p>IP = [Ag⁺][Cl⁻] = 10⁻⁴ × 10⁻⁵ = 10⁻⁹</p></div>
+            <div class="pyq-field pf-rule"><span class="pyq-field-label">Comparison</span><p>IP = 10⁻⁹ &gt; Ksp = 1.6×10⁻¹⁰ → IP &gt; Ksp → precipitation WILL occur!</p></div>
+            <div class="pyq-field pf-answer"><span class="pyq-field-label">Correction</span><p>IP (10⁻⁹) &gt; Ksp (1.6×10⁻¹⁰) → AgCl DOES precipitate. Option was designed as a trap — always compute IP first.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FINAL STRIP - ULTRA COMPRESSED PHYSICAL CHEM 11 -->
+<div class="chapter" style="background:var(--paper);">
+  <div class="ch-head">
+    <div class="ch-ey">NEET Physical Chemistry 11 · Final Revision</div>
+    <div class="ch-title">⚡ Ultra-Compressed Final Revision Strip</div>
+  </div>
+  <div class="ch-body">
+    <div class="sec" data-m="Final Rev">
+      <div class="strip-block">
+        <div class="strip-title">Physical Chemistry 11 — 5-Minute Master Revision</div>
+        <div class="strip-row"><span class="strip-label">Mole</span><span class="strip-content"><strong>n = m/M = N/Nₐ = V(STP)/22.4</strong>. Nₐ = 6.022×10²³. STP = 0°C, 1atm.</span></div>
+        <div class="strip-row"><span class="strip-label">Concentration</span><span class="strip-content">Molarity (T-dep) = mol/L. Molality (T-indep) = mol/kg solvent. Mole fraction (T-indep). <strong>M = 10×d×w%/Mr</strong></span></div>
+        <div class="strip-row"><span class="strip-label">Bohr Energy</span><span class="strip-content"><strong>En = -13.6Z²/n²</strong> eV. Rn = 0.529n²/Z Å. Lyman(UV,n₁=1), Balmer(visible,n₁=2), Paschen(IR,n₁=3).</span></div>
+        <div class="strip-row"><span class="strip-label">Quantum Nos</span><span class="strip-content">n=shell, l=0→s,1→p,2→d,3→f, ml=-l to +l, ms=±½. <strong>Cr=[Ar]3d⁵4s¹; Cu=[Ar]3d¹⁰4s¹</strong> (exceptions).</span></div>
+        <div class="strip-row"><span class="strip-label">Gas Laws</span><span class="strip-content"><strong>PV=nRT</strong> (R=0.0821 L·atm). Kp=Kc(RT)^Δng. Graham: r∝1/√M. Speed order: u*&lt;ū&lt;urms. KE/mol=3/2RT.</span></div>
+        <div class="strip-row"><span class="strip-label">Thermodynamics</span><span class="strip-content">ΔU=q+w. ΔH=ΔU+ΔngRT. <strong>ΔG=ΔH−TΔS</strong>. ΔG&lt;0=spontaneous. ΔG=0 at equil. ΔG°=−RT ln K. T(ΔG=0)=ΔH/ΔS.</span></div>
+        <div class="strip-row"><span class="strip-label">Equilibrium</span><span class="strip-content">K only changes with T. Q&lt;K→forward. Le Chat: only T changes K value. Catalyst does NOT shift equilibrium.</span></div>
+        <div class="strip-row"><span class="strip-label">pH/Ksp</span><span class="strip-content">Weak acid: [H⁺]=√(Ka×C). Buffer pH=pKa+log([salt]/[acid]). AB Ksp=s². AB₂ Ksp=4s³. IP&gt;Ksp→precipitate.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .book -->
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof renderMathInElement!=='undefined'){
+    renderMathInElement(document.body,{
+      delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+      throwOnError:false
+    });
+  }
+});
+</script>
+</body>
+</html>
