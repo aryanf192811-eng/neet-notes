@@ -101,45 +101,67 @@
     .ch-title{font-size:21px;font-weight:600;color:#faf7f2;line-height:1.25;}
     .ch-title em{font-style:italic;color:var(--zoo2);}
     .ch-nav{display:flex;gap:8px;flex-wrap:wrap;padding:14px 36px;background:var(--paper3);border-bottom:1px solid rgba(160,100,100,0.3);}
-    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;}
+    .ch-nav a{font-family:var(--hand);font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px;border:1.5px solid var(--ink3);color:var(--ink3);text-decoration:none;transition:background 0.2s;}
+    .ch-nav a:hover{background:var(--zoo-bg);color:var(--zoo);border-color:var(--zoo);}
+    
+    /* Document Body grid */
     .ch-body{background-image:linear-gradient(var(--mline) 1px,transparent 1px),repeating-linear-gradient(transparent,transparent 31px,var(--rule) 31px,var(--rule) 32px);background-size:54px 100%,100% 32px;background-position:0 0,0 16px;box-shadow:inset 0 4px 12px rgba(0,0,0,0.04);}
     .sec{padding:44px 40px 40px 72px;border-bottom:1px dashed rgba(180,110,110,0.4);position:relative;}
     .sec::before{content:attr(data-m);position:absolute;left:10px;top:34px;font-family:var(--hand);font-size:10px;color:rgba(160,80,80,0.25);writing-mode:vertical-lr;transform:rotate(180deg);letter-spacing:1px;text-transform:uppercase;}
-    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+    h2.sh{font-family:var(--body);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:22px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--zoo-bg);padding-bottom:10px;}
+    h3.ss{font-family:var(--body);font-size:18px;font-weight:600;color:var(--ink2);margin:24px 0 12px;}
+    
     p{font-family:var(--prose);font-size:17.5px;line-height:2.05;color:var(--ink2);margin-bottom:14px;}
     .tag{font-family:var(--hand);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:2px;border:1.5px solid;}
-    .tg{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    
+    /* Box Styles */
     .zoo-box{background:rgba(184,48,48,0.07);border-left:4px solid var(--zoo);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0;}
     .zoo-box .lbl{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--zoo);margin-bottom:4px;display:block;}
     .bonus-box{background:rgba(120,40,180,0.07);border:1.5px solid var(--purple);border-radius:6px;padding:18px 22px;margin:24px 0;position:relative;}
     .bonus-box::before{content:"✨ Bonus Concept";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
     .ncert-box{background:rgba(26,122,32,0.06);border:1.5px solid var(--green);border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
-    .ncert-box::before{content:"📗 NCERT Direct";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .ncert-box::before{content:"📗 NCERT Deep Dive";font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid #1a4a8c;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
+    .trigger-box::before{content:"🔍 Memory Connect";font-family:var(--hand);font-size:9px;letter-spacing:2px;color:#1a4a8c;position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    .cg-card{background:var(--paper);border:1.5px solid #d4c0c0;border-radius:6px;padding:20px 24px;margin:18px 0;}
+    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--zoo);margin-bottom:10px;border-bottom:1px solid rgba(184,48,48,0.2);padding-bottom:5px;}
+    
+    /* Lists */
+    ul.pl{margin:10px 0 20px;}
+    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;padding:5px 0 5px 26px;position:relative;list-style:none;}
+    .pl li::before{content:"—";position:absolute;left:0;color:var(--zoo);font-weight:600;}
+    .pl.bold li strong{color:var(--zoo);background:var(--zoo-bg);padding:0 4px;border-radius:2px;}
+    
+    /* Tables */
+    .tbl{overflow-x:auto;margin:24px 0;}
+    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
+    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;text-transform:uppercase;}
+    td{padding:9px 14px;border-bottom:1px solid rgba(180,100,100,0.25);color:var(--ink2);vertical-align:top;}
+    td strong{color:var(--zoo);}
+    
+    /* PYQ Cards */
     .pyq-card{background:var(--paper);border:1.5px solid #d4c0c0;border-radius:6px;margin:20px 0;overflow:hidden;}
     .pyq-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--paper2);cursor:pointer;}
     .pyq-year{font-family:var(--hand);font-size:9px;letter-spacing:2px;background:var(--zoo);color:#fff;padding:3px 10px;border-radius:2px;}
-    .pyq-sol{padding:18px 22px;background:var(--paper3);display:none;border-top:1px dashed var(--zoo);}
+    .pyq-q{flex-grow:1;margin:0 15px;font-family:var(--prose);font-weight:600;font-size:16px;}
+    .pyq-sol{padding:18px 22px;background:var(--paper3);display:none;border-top:1px dashed var(--zoo);font-size:16.5px;}
     .pyq-sol.open{display:block;}
-    .score-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 28px;}
-    .score-pill{display:flex;align-items:center;gap:7px;font-family:var(--hand);font-size:10px;padding:6px 14px;border-radius:3px;border:1.5px solid;}
-    .sp-r{border-color:var(--red);color:var(--red);background:var(--hl-r);}
-    .svg-wrap{text-align:center;margin:26px 0;overflow-x:auto;}
-    .tbl{overflow-x:auto;margin:20px 0;}
-    table{width:100%;border-collapse:collapse;font-family:var(--prose);font-size:15.5px;}
-    th{background:var(--ink);color:var(--paper);padding:10px 14px;text-align:left;font-family:var(--hand);font-size:10px;text-transform:uppercase;}
-    td{padding:9px 14px;border-bottom:1px solid rgba(180,100,100,0.25);color:var(--ink2);}
-    .trigger-box{background:rgba(100,160,255,0.07);border:1.5px solid #1a4a8c;border-radius:6px;padding:18px 22px;margin:20px 0;position:relative;}
-    .trigger-box::before{content:"🔍 Trigger Words";font-family:var(--hand);font-size:9px;letter-spacing:2px;color:#1a4a8c;position:absolute;top:-9px;left:14px;background:var(--paper);padding:0 6px;}
+    
+    .tg{color:var(--green);border-color:var(--green);background:var(--hl-g);}
+    .tp{color:var(--purple);border-color:var(--purple);background:var(--hl-p);}
+    .tr{color:var(--red);border-color:var(--red);background:var(--hl-r);}
+    .tb{color:var(--blue);border-color:var(--blue);background:var(--hl-b);}
+    .to{color:var(--orange);border-color:var(--orange);background:var(--hl-o);}
+
     .back-dash{font-family:var(--hand);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);text-decoration:none;padding:4px 8px;border:1px solid var(--ink3);border-radius:4px;}
     .theme-switch{position:relative;width:44px;height:24px;flex-shrink:0;display:inline-flex;align-items:center;margin-left:12px;}
     .theme-switch input{opacity:0;width:0;height:0;position:absolute;}
     .theme-track{position:absolute;inset:0;background:rgba(0,0,0,0.06);border:1.5px solid rgba(0,0,0,0.1);border-radius:24px;cursor:pointer;}
     .theme-track::before{content:'☀';position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--zoo);}
     [data-theme="dark"] .theme-track::before{content:'☾';transform:translateX(20px);background:#1a1212;color:var(--red);}
-    .cg-card{background:var(--paper);border:1.5px solid #d4c0c0;border-radius:6px;padding:20px 24px;margin:18px 0;}
-    .cg-title{font-family:var(--hand);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--zoo);margin-bottom:10px;border-bottom:1px solid rgba(184,48,48,0.2);padding-bottom:5px;}
-    .pl li{font-family:var(--prose);font-size:16.5px;line-height:1.88;padding:5px 0 5px 26px;position:relative;list-style:none;}
-    .pl li::before{content:"—";position:absolute;left:0;color:var(--zoo);font-weight:600;}
+    .svg-wrap{text-align:center;margin:26px 0;overflow-x:auto;}
+    
+    code{background:rgba(0,0,0,0.05);padding:2px 5px;border-radius:3px;font-family:monospace;color:var(--zoo);}
   </style>
 </head>
 <body>
@@ -147,7 +169,7 @@
 <div class="top-bar" style="display:flex;justify-content:space-between;padding:12px 0 20px;">
   <a href="../index.html" class="back-dash">← Back to Hub</a>
   <div style="display:flex;align-items:center;gap:12px;">
-    <span class="tag tp" style="font-size:8px;">Deep Analysis Mode</span>
+    <span class="tag tp" style="font-size:8px;">Ultra-Deep Output</span>
     <label class="theme-switch">
       <input type="checkbox" id="themeCb" onchange="setTheme(this.checked)">
       <span class="theme-track"></span>
@@ -156,15 +178,15 @@
 </div>
 
 <div class="cover">
-  <span class="cover-tag">Zoology Deep-Dive</span>
+  <span class="cover-tag">Detailed Zoology Engine</span>
   <div class="cover-inner">
-    <div class="cover-subject" style="font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">NEET Biology · Zoology · Complete System</div>
-    <h1>Zoology — <em>The Complete<br/>Intelligence Layer</em></h1>
-    <p class="cover-desc">Animal Kingdom · Structural Organisation · Human Physiology · Reproduction. Integrated with 2009–2025 PYQ analysis and bonus legacy content for deep conceptual mastery.</p>
+    <div class="cover-subject" style="font-family:var(--hand);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;">NEET Biology · Comprehensive Unit</div>
+    <h1>Zoology — <em>The Ultimate<br/>Deep Dive Edition</em></h1>
+    <p class="cover-desc">An encyclopedic revision of all 11+ non-chordate phyla, chordate subclasses, full human physiology pathways, and the complete reproduction ecosystem. Including exhaustive NCERT traps, line-by-line analyses, and extensive PYQ teardowns.</p>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;">
-      <span class="tag tg">NCERT 11 &amp; 12 Fully Mapped</span>
-      <span class="tag tc">Bonus Content Included</span>
-      <span class="tag tt">Deep Analysis &amp; Decision Triggers</span>
+      <span class="tag tg">NCERT All Lines Verified</span>
+      <span class="tag tr">Exhaustive Phylum Logic</span>
+      <span class="tag to">Every Hormone & Enzyme</span>
     </div>
   </div>
 </div>
@@ -172,307 +194,497 @@
 <div class="toc">
   <div class="toc-section-lbl">Unit 1 — Animal Kingdom &amp; Structural Org</div>
   <div class="toc-grid">
-    <a href="#animal-kingdom">1. Phyla Master Classification</a>
-    <a href="#non-chordates">2. Non-Chordates (Porifera to Hemichordata)</a>
-    <a href="#chordates">3. Chordata (Cyclostomes to Mammals)</a>
-    <a href="#animal-morph">4. [BONUS] Frog &amp; Cockroach</a>
+    <a href="#basis-of-class">1. Basis of Classification (Traps &amp; Truths)</a>
+    <a href="#porifera-to-aschelminthes">2. Lower Non-Chordates (Porifera → Aschelminthes)</a>
+    <a href="#annelida-to-echino">3. Advanced Non-Chordates (Annelida → Hemichordata)</a>
+    <a href="#chordata-classification">4. Chordata Subphyla (Protochordates → Vertebrates)</a>
+    <a href="#vertebrata-classes">5. Vertebrata (Fishes, Amphibians, Reptiles, Birds, Mammals)</a>
+    <a href="#bonus-morphology">6. [BONUS] Structural Org: Frog &amp; Cockroach</a>
   </div>
   <div style="height:1px;background:rgba(180,100,100,0.2);margin:14px 0;"></div>
-  <div class="toc-section-lbl">Unit 2 — Human Physiology Master System</div>
+  <div class="toc-section-lbl">Unit 2 — Human Physiology Mastery</div>
   <div class="toc-grid">
-    <a href="#digestion">5. [BONUS] Digestion &amp; Absorption</a>
-    <a href="#breathing">6. Breathing &amp; Gas Exchange</a>
-    <a href="#circulation">7. Body Fluids &amp; Cardiac Engine</a>
-    <a href="#excretion">8. Excretory System &amp; RAAS</a>
-    <a href="#locomotion">9. Locomotion &amp; Sliding Filament</a>
-    <a href="#neural">10. Neural Control &amp; Nerve Impulse</a>
-    <a href="#chemical">11. Chemical Coordination &amp; Hormones</a>
+    <a href="#digestion-absorption">7. Digestion &amp; Absorption (Complete Alimentary Map)</a>
+    <a href="#breathing-exchange">8. Breathing &amp; Exchange (Volumes &amp; Dissociation)</a>
+    <a href="#body-fluids">9. Body Fluids &amp; Circulation (ECG &amp; Clotting Cascade)</a>
+    <a href="#excretory-products">10. Excretory Products (Counter Current &amp; RAAS)</a>
+    <a href="#locomotion-movement">11. Locomotion &amp; Movement (Sliding Filament &amp; Joints)</a>
+    <a href="#neural-control">12. Neural Control (Impulse Generation &amp; CNS/PNS)</a>
+    <a href="#chemical-coord">13. Chemical Coordination (Endocrine System &amp; Actions)</a>
   </div>
   <div style="height:1px;background:rgba(180,100,100,0.2);margin:14px 0;"></div>
-  <div class="toc-section-lbl">Unit 3 — Reproduction &amp; Health</div>
+  <div class="toc-section-lbl">Unit 3 — Human Reproduction Ecosystem</div>
   <div class="toc-grid">
-    <a href="#human-repro">12. Human Reproduction System</a>
-    <a href="#menstrual">13. Menstrual Cycle Analysis</a>
-    <a href="#repro-health">14. Reproductive Health &amp; ART</a>
+    <a href="#male-female-anatomy">14. Reproductive Anatomy &amp; Gametogenesis</a>
+    <a href="#menstrual-fertilization">15. Menstrual Cycle, Fertilization &amp; Implantation</a>
+    <a href="#pregnancy-parturition">16. Pregnancy, Embryonic Dev, &amp; Parturition</a>
+    <a href="#reproductive-health">17. Reproductive Health (Contraception, MTP, STDs, ART)</a>
   </div>
 </div>
 
 <script>
-function toggle(el){el.nextElementSibling.classList.toggle('open');}
+function toggle(el){
+  var s=el.nextElementSibling;
+  s.classList.toggle('open');
+}
 </script>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- UNIT 1: ANIMAL KINGDOM & MORPHOLOGY                   -->
+<!-- UNIT 1: ANIMAL KINGDOM & STRUCTURAL ORGANISATION          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 
-<div class="chapter" id="animal-kingdom">
+<div class="chapter" id="basis-of-class">
   <div class="ch-head">
     <div class="ch-ey">Unit 1 · NCERT Class 11 Ch 4 &amp; 7</div>
     <div class="ch-title">Animal Kingdom &amp; <em>Classification</em></div>
   </div>
   <div class="ch-nav">
-    <a href="#animal-kingdom">Overview</a>
-    <a href="#non-chordates">Non-Chordates</a>
-    <a href="#chordates">Chordates</a>
-    <a href="#animal-morph">Morphology</a>
+    <a href="#basis-of-class">1. Basis of Classification</a>
+    <a href="#porifera-to-aschelminthes">2. Lower Non-Chordates</a>
+    <a href="#annelida-to-echino">3. Higher Non-Chordates</a>
+    <a href="#chordata-classification">4. Chordates</a>
+    <a href="#vertebrata-classes">5. Vertebrates</a>
+    <a href="#bonus-morphology">6. Morphology</a>
   </div>
   <div class="ch-body">
 
-    <!-- FREQUENCY MAP -->
-    <div class="sec" data-m="overview">
-      <h2 class="sh">NEET Frequency — Animal Kingdom <span class="tag tg">~4 Q/paper</span></h2>
-      <div class="score-strip">
-        <div class="score-pill sp-r">🔴 Phylum Examples (NCERT) — 12+ times</div>
-        <div class="score-pill sp-r">🔴 Basis of Classification — 8+ times</div>
-        <div class="score-pill sp-r">🔴 Chordata Classes Comparison — 7+ times</div>
-        <div class="score-pill sp-o">🟠 Water Vascular vs Canal System — 5+ times</div>
-        <div class="score-pill sp-o">🟠 Reptile/Amphibian Heart traps — 4+ times</div>
+    <!-- 1. BASIS OF CLASSIFICATION -->
+    <div class="sec" data-m="basis">
+      <h2 class="sh">1. Basis of Classification (NCERT Truths & Traps)</h2>
+      <div class="trigger-box">
+        <p><strong>Levels of Organisation:</strong></p>
+        <ul class="pl">
+          <li><strong>Cellular:</strong> Porifera (cells arranged as loose aggregates).</li>
+          <li><strong>Tissue:</strong> Coelenterata (Cnidaria) &amp; Ctenophora.</li>
+          <li><strong>Organ:</strong> Platyhelminthes (first to have organs) and other higher phyla.</li>
+          <li><strong>Organ System:</strong> Aschelminthes to Chordates. (Annelids, Arthropods, Molluscs, Echinoderms).</li>
+        </ul>
       </div>
 
-      <div class="trigger-box">
-        <p><strong>Decision Triggers:</strong> If "Choanocytes" → <strong>Porifera</strong>. If "Cnidoblasts/Metagenesis" → <strong>Cnidaria</strong>. If "Comb plates" → <strong>Ctenophora</strong>. If "Flame cells" → <strong>Platyhelminthes</strong>. If "Water vascular system" → <strong>Echinodermata</strong>.</p>
+      <div class="cg-card">
+        <div class="cg-title">Symmetry & Coelom Deep Dive</div>
+        <table style="border:none; margin-top:10px;">
+          <tr style="border-bottom:1px dashed var(--zoo);"><td style="padding-bottom:10px; border-bottom:0;"><strong>Symmetry:</strong></td><td style="padding-bottom:10px; border-bottom:0;">
+            <p><strong>Asymmetrical:</strong> Porifera (mostly).</p>
+            <p><strong>Radial:</strong> Any plane passing through the central axis divides the organism into identical halves. Examples: Coelenterates, Ctenophores, Echinoderms (adults only).</p>
+            <p><strong>Bilateral:</strong> Body can be divided into identical left and right halves in only one plane. Examples: Annelids, Arthropods, etc. (Platyhelminthes onwards).</p>
+          </td></tr>
+          <tr><td style="padding-top:15px; border-bottom:0;"><strong>Coelom:</strong></td><td style="padding-top:15px; border-bottom:0;">
+            <p><strong>Acoelomate:</strong> No body cavity (solid body). Platyhelminthes.</p>
+            <p><strong>Pseudocoelomate:</strong> Body cavity is not lined by mesoderm; mesoderm is present as scattered pouches between ectoderm and endoderm. <em>Ex: Aschelminthes</em>.</p>
+            <p><strong>Eucoelomate (True Coelom):</strong> Body cavity lined by mesoderm. <em>Ex: Annelida, Mollusca, Arthropoda, Echinodermata, Hemichordata, Chordata</em>.</p>
+          </td></tr>
+        </table>
+      </div>
+      
+      <div class="zoo-box">
+        <span class="lbl">🚨 NEET Pyq Trap: Notochord Origin</span>
+        <p>Notochord is a <strong>mesodermally</strong> derived rod-like structure formed on the dorsal side during embryonic development in some animals. Animals without it = Non-chordates (Porifera to Echinoderms). Hemichordates have a stomochord (not a true notochord).</p>
       </div>
     </div>
 
-    <!-- PHYLUM MASTER GRID -->
-    <div class="sec" id="non-chordates">
-      <h2 class="sh">Phylum Master Grid — Non-Chordates</h2>
+    <!-- 2. LOWER NON-CHORDATES -->
+    <div class="sec" id="porifera-to-aschelminthes">
+      <h2 class="sh">2. Lower Non-Chordates (Porifera to Aschelminthes)</h2>
+      
+      <h3 class="ss">Phylum 1: Porifera (Sponges)</h3>
+      <p>Generally marine, asymmetrical. Cellular level. <strong>Water transport or canal system</strong>: Water enters through minute pores (<strong>ostia</strong>) in the body wall into a central cavity, <strong>spongocoel</strong>, from where it goes out through the <strong>osculum</strong>. This pathway aids in food gathering, respiratory exchange, and removal of waste.</p>
+      <ul class="pl">
+        <li><strong>Choanocytes (collar cells):</strong> Line the spongocoel and the canals. Unique to sponges.</li>
+        <li><strong>Digestion:</strong> Intracellular.</li>
+        <li><strong>Skeleton:</strong> Made up of spicules or spongin fibers.</li>
+        <li><strong>Reproduction:</strong> Asexual (fragmentation) &amp; Sexual. Hermaphrodite. Internal fertilization, indirect development (has a larval stage morphologically distinct from the adult).</li>
+        <li><strong>Examples:</strong> <em>Sycon</em> (Scypha), <em>Spongilla</em> (Freshwater sponge), <em>Euspongia</em> (Bath sponge).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 2: Coelenterata (Cnidaria)</h3>
+      <p>Aquatic, mostly marine, sessile or free-swimming, radially symmetrical. Name derived from <strong>cnidoblasts or cnidocytes</strong> (contain stinging capsules or nematocysts) present on tentacles and body, used for anchorage, defense, and capture of prey.</p>
+      <ul class="pl">
+        <li><strong>Forms:</strong> Polyp (sessile, cylindrical e.g., Hydra, Adamsia) and Medusa (umbrella-shaped, free-swimming e.g., Aurelia/jellyfish).</li>
+        <li><strong>Metagenesis (Alternation of generation):</strong> Found in <em>Obelia</em>. Polyps produce medusae asexually; medusae form polyps sexually.</li>
+        <li><strong>Skeleton:</strong> Corals have a skeleton composed of calcium carbonate.</li>
+        <li><strong>Examples:</strong> <em>Physalia</em> (Portuguese man-of-war), <em>Adamsia</em> (Sea anemone), <em>Pennatula</em> (Sea-pen), <em>Gorgonia</em> (Sea-fan), <em>Meandrina</em> (Brain coral).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 3: Ctenophora (Sea Walnuts / Comb Jellies)</h3>
+      <p>Exclusively marine, radially symmetrical, diploblastic, tissue level. Body bears eight external rows of ciliated <strong>comb plates</strong>, which help in locomotion.</p>
+      <ul class="pl">
+        <li><strong>Bioluminescence:</strong> The property of a living organism to emit light is well-marked.</li>
+        <li><strong>Reproduction:</strong> Sexes are not separate. Sexual reproduction only. External fertilization with indirect development.</li>
+        <li><strong>Examples:</strong> <em>Pleurobrachia</em> and <em>Ctenoplana</em>.</li>
+      </ul>
+
+      <h3 class="ss">Phylum 4: Platyhelminthes (Flatworms)</h3>
+      <p>Dorso-ventrally flattened body. Mostly endoparasites in animals including humans. Bilaterally symmetrical, triploblastic, <strong>acoelomate</strong> with organ level. Hooks and suckers are present in parasitic forms. Some absorb nutrients directly through body surface.</p>
+      <ul class="pl">
+        <li><strong>Flame Cells:</strong> Specialized cells that help in osmoregulation and excretion.</li>
+        <li><strong>Reproduction:</strong> Sexes are not separate. Internal fertilization. Many larval stages. <em>Planaria</em> possesses high regeneration capacity.</li>
+        <li><strong>Examples:</strong> <em>Taenia</em> (Tapeworm), <em>Fasciola</em> (Liver fluke).</li>
+      </ul>
+
+      <h3 class="ss" style="color:var(--zoo);">Phylum 5: Aschelminthes (Roundworms)</h3>
+      <p>Circular in cross-section. Free-living, aquatic/terrestrial, or parasitic in plants/animals. Organ-system level, bilateral symmetry, triploblastic, <strong>pseudocoelomate</strong>.</p>
+      <ul class="pl">
+        <li><strong>Alimentary Canal:</strong> Complete with a well-developed muscular pharynx.</li>
+        <li><strong>Excretion:</strong> An excretory tube removes body wastes from the body cavity through the excretory pore.</li>
+        <li><strong>Reproduction:</strong> Dioecious (sexes are separate). Females are often <strong>longer</strong> than males. Internal fertilization, direct or indirect development.</li>
+        <li><strong>Examples:</strong> <em>Ascaris</em> (Roundworm), <em>Wuchereria</em> (Filaria worm), <em>Ancylostoma</em> (Hookworm).</li>
+      </ul>
+
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2020</span>
+          <span class="pyq-q">Identify the correct statement with reference to Ascaris:</span>
+          <button class="tag tg">View</button>
+        </div>
+        <div class="pyq-sol">
+          <p><strong>Correct Statement:</strong> Presence of neither true coelom nor metamerism. (It is pseudocoelomate and unsegmented!)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. HIGHER NON-CHORDATES -->
+    <div class="sec" id="annelida-to-echino">
+      <h2 class="sh">3. Higher Non-Chordates (Annelida to Hemichordata)</h2>
+      
+      <h3 class="ss">Phylum 6: Annelida</h3>
+      <p>Aquatic or terrestrial, free-living or parasitic. Organ-system level. Bilateral, triploblastic, metamerically segmented, and coelomate. Body surface is distinctly marked out into segments or metameres.</p>
+      <ul class="pl">
+        <li><strong>Locomotion:</strong> Longitudinal &amp; circular muscles. Aquatic annelids like <em>Nereis</em> possess lateral appendages, <strong>parapodia</strong>, which help in swimming.</li>
+        <li><strong>Circulation:</strong> A closed circulatory system is present.</li>
+        <li><strong>Excretion/Osmoregulation:</strong> <strong>Nephridia</strong> (sing. nephridium).</li>
+        <li><strong>Nervous System:</strong> Paired ganglia connected by lateral nerves to a double ventral nerve cord.</li>
+        <li><strong>Reproduction:</strong> <em>Nereis</em> is dioecious. Earthworms &amp; Leeches are monoecious.</li>
+        <li><strong>Examples:</strong> <em>Nereis</em>, <em>Pheretima</em> (Earthworm), <em>Hirudinaria</em> (Blood sucking leech).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 7: Arthropoda (Largest Phylum)</h3>
+      <p>Over two-thirds of all named species on earth. Organ-system level, bilateral, triploblastic, segmented, coelomate.</p>
+      <ul class="pl">
+        <li><strong>Body/Skeleton:</strong> Covered by chitinous exoskeleton. Body consists of head, thorax, and abdomen. They have jointed appendages (arthro = joint, poda = appendages).</li>
+        <li><strong>Respiration:</strong> Gills, book gills, book lungs or tracheal system.</li>
+        <li><strong>Circulation & Excretion:</strong> Open circulatory system. Excretion via <strong>Malpighian tubules</strong>.</li>
+        <li><strong>Sensory Organs:</strong> Antennae, eyes (compound and simple), statocysts (balance organs).</li>
+        <li><strong>Examples:</strong> Economically important: <em>Apis</em> (Honey bee), <em>Bombyx</em> (Silkworm), <em>Laccifer</em> (Lac insect). Vectors: <em>Anopheles, Culex, Aedes</em>. Gregarious pest: <em>Locusta</em>. Living fossil: <em>Limulus</em> (King crab).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 8: Mollusca (Second Largest Phylum)</h3>
+      <p>Terrestrial or aquatic. Organ-system level, bilateral, triploblastic, coelomate. Unsegmented with a distinct head, muscular foot, and visceral hump. A soft and spongy layer of skin forms a mantle over the visceral hump. Space between hump and mantle is the mantle cavity (contains feather-like gills for respiration/excretion).</p>
+      <ul class="pl">
+        <li><strong>Head & Mouth:</strong> Anterior head region has sensory tentacles. Mouth contains a file-like rasping organ for feeding, called <strong>radula</strong>.</li>
+        <li><strong>Reproduction:</strong> Usually dioecious and oviparous with indirect development.</li>
+        <li><strong>Examples:</strong> <em>Pila</em> (Apple snail), <em>Pinctada</em> (Pearl oyster), <em>Sepia</em> (Cuttlefish), <em>Loligo</em> (Squid), <em>Octopus</em> (Devil fish), <em>Aplysia</em> (Sea hare), <em>Dentalium</em> (Tusk shell), <em>Chaetopleura</em> (Chiton).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 9: Echinodermata</h3>
+      <p>An endoskeleton of calcareous ossicles (Echinodermata = spiny bodied). All are marine with organ-system level. Adult is <strong>radially symmetrical</strong> but larvae are <strong>bilaterally symmetrical</strong>.</p>
+      <ul class="pl">
+        <li><strong>Digestive System:</strong> Complete with mouth on the lower (ventral) side and anus on the upper (dorsal) side.</li>
+        <li><strong>Unique Feature:</strong> The presence of a <strong>water vascular system</strong> which helps in locomotion, capture and transport of food, and respiration.</li>
+        <li><strong>Excretory System:</strong> Absent.</li>
+        <li><strong>Reproduction:</strong> Dioecious. External fertilization. Development is indirect with free-swimming larva.</li>
+        <li><strong>Examples:</strong> <em>Asterias</em> (Star fish), <em>Echinus</em> (Sea urchin), <em>Antedon</em> (Sea lily), <em>Cucumaria</em> (Sea cucumber), <em>Ophiura</em> (Brittle star).</li>
+      </ul>
+
+      <h3 class="ss">Phylum 10: Hemichordata</h3>
+      <p>Earlier considered a sub-phylum under Chordata, now a separate phylum under non-chordata. Contains a small group of worm-like marine animals. Cylindrical body composed of an anterior proboscis, a collar, and a long trunk.</p>
+      <ul class="pl">
+        <li><strong>Circulation & Respiration:</strong> Open circulatory system. Respiration through gills.</li>
+        <li><strong>Excretion:</strong> <strong>Proboscis gland</strong>.</li>
+        <li><strong>Examples:</strong> <em>Balanoglossus</em>, <em>Saccoglossus</em>.</li>
+      </ul>
+      
+      <div class="ncert-box">
+        <p><strong>NCERT Exact Language:</strong> Hemichordates have a rudimentary structure in the collar region called **stomochord**, a structure similar to notochord. (But it is not a homologous true notochord derived from mesoderm).</p>
+      </div>
+    </div>
+
+    <!-- 4. CHORDATES & CLASSIFICATION -->
+    <div class="sec" id="chordata-classification">
+      <h2 class="sh">4. Phylum Chordata &amp; Subphyla</h2>
+      <p>Animals belonging to phylum Chordata are characterized by the presence of a <strong>notochord, a dorsal hollow nerve cord, and paired pharyngeal gill slits</strong>. They have a post-anal tail and a closed circulatory system.</p>
+
+      <div class="cg-card">
+        <div class="cg-title">Subphyla of Chordata</div>
+        <ul class="pl bold">
+          <li><strong>Urochordata (Tunicata):</strong> Notochord is present <strong>only in larval tail</strong>. Examples: <em>Ascidia</em>, <em>Salpa</em>, <em>Doliolum</em>.</li>
+          <li><strong>Cephalochordata:</strong> Notochord extends from head to tail region and is persistent throughout their life. Example: <em>Branchiostoma</em> (Amphioxus or Lancelet).</li>
+          <li><strong>Vertebrata:</strong> Possess notochord during the embryonic period. Notochord is replaced by a cartilaginous or bony vertebral column in the adult. <em>(All vertebrates are chordates, but all chordates are not vertebrates).</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 5. VERTEBRATA CLASSES -->
+    <div class="sec" id="vertebrata-classes">
+      <h2 class="sh">5. Vertebrata (Fishes to Mammals)</h2>
+      
       <div class="tbl">
         <table>
           <thead>
-            <tr><th>Phylum</th><th>Symmetry</th><th>Coelom</th><th>Unique Feature</th><th>Key Examples (Common Name)</th></tr>
+            <tr><th>Class</th><th>Heart</th><th>Respiration/Key Anatomy</th><th>Special Features</th><th>Examples</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>Porifera</strong></td><td>Asymmetrical</td><td>Acoelomate</td><td>Canal system, Choanocytes</td><td><em>Sycon</em> (Scypha), <em>Spongilla</em> (Freshwater), <em>Euspongia</em> (Bath)</td></tr>
-            <tr><td><strong>Cnidaria</strong></td><td>Radial</td><td>Acoelomate</td><td>Cnidoblasts, Polyp/Medusa, Metagenesis</td><td><em>Physalia</em> (Portuguese man-of-war), <em>Adamsia</em> (Sea anemone), <em>Meandrina</em> (Brain coral)</td></tr>
-            <tr><td><strong>Ctenophora</strong></td><td>Radial</td><td>Acoelomate</td><td>8 Comb plates, Bioluminescence</td><td><em>Pleurobrachia</em>, <em>Ctenoplana</em></td></tr>
-            <tr><td><strong>Platyhelminthes</strong></td><td>Bilateral</td><td>Acoelomate</td><td>Flame cells (osmoregulation), Flat body</td><td><em>Taenia</em> (Tapeworm), <em>Fasciola</em> (Liver fluke)</td></tr>
-            <tr><td><strong>Aschelminthes</strong></td><td>Bilateral</td><td><strong>Pseudocoelomate</strong></td><td>Muscular pharynx, Sexual dimorphism</td><td><em>Ascaris</em> (Roundworm), <em>Wuchereria</em> (Filaria worm), <em>Ancylostoma</em> (Hookworm)</td></tr>
-            <tr><td><strong>Annelida</strong></td><td>Bilateral</td><td>Coelomate</td><td>Metamerism, Nephridia, Parapodia (Nereis)</td><td><em>Nereis</em> (Aquatic), <em>Pheretima</em> (Earthworm), <em>Hirudinaria</em> (Blood sucking leech)</td></tr>
-            <tr><td><strong>Arthropoda</strong></td><td>Bilateral</td><td>Coelomate</td><td>Chitinous exoskeleton, Jointed appendages</td><td><em>Apis</em> (Honey bee), <em>Bombyx</em> (Silkworm), <em>Laccifer</em> (Lac insect)</td></tr>
-            <tr><td><strong>Mollusca</strong></td><td>Bilateral</td><td>Coelomate</td><td>Mantle, Radula (rasping organ)</td><td><em>Pila</em> (Apple snail), <em>Pinctada</em> (Pearl oyster), <em>Sepia</em> (Cuttlefish), <em>Octopus</em> (Devil fish)</td></tr>
-            <tr><td><strong>Echinodermata</strong></td><td>Radial (adult)</td><td>Coelomate</td><td><strong>Water vascular system</strong>, Calcareous ossicles</td><td><em>Asterias</em> (Star fish), <em>Echinus</em> (Sea urchin), <em>Antedon</em> (Sea lily)</td></tr>
-            <tr><td><strong>Hemichordata</strong></td><td>Bilateral</td><td>Coelomate</td><td>Proboscis gland (excretion), Stomochord</td><td><em>Balanoglossus</em>, <em>Saccoglossus</em></td></tr>
+            <tr><td><strong>Cyclostomata</strong></td><td>2-ch</td><td>6-15 pairs gills. Circulation closed.</td><td>Ectoparasites on fishes. Sucking/circular mouth, NO jaws. Ectoparasitic. Marine, but migrate to fresh water to spawn, then die.</td><td><em>Petromyzon</em> (Lamprey), <em>Myxine</em> (Hagfish)</td></tr>
+            <tr><td><strong>Chondrichthyes</strong></td><td>2-ch</td><td>Gills without operculum. Skin has placoid scales.</td><td>Cartilaginous. Mouth ventral. Notochord persistent. Swim constantly due to absence of air bladder. Poikilothermous. Internal fert (many viviparous). Male pelvic fins bear claspers.</td><td><em>Scoliodon</em> (Dog fish), <em>Pristis</em> (Saw fish), <em>Carcharodon</em> (Great white shark), <em>Trygon</em> (Sting ray)</td></tr>
+            <tr><td><strong>Osteichthyes</strong></td><td>2-ch</td><td>4 pairs of gills with operculum. Skin has cycloid/ctenoid scales.</td><td>Bony. Mouth mostly terminal. <strong>Air bladder present</strong> (regulates buoyancy). Mostly oviparous with external fertilization.</td><td>Marine: <em>Exocoetus</em>, <em>Hippocampus</em>. FW: <em>Labeo</em>, <em>Catla</em>, <em>Clarias</em>. Aquar: <em>Betta</em>, <em>Pterophyllum</em>.</td></tr>
+            <tr><td><strong>Amphibia</strong></td><td>3-ch</td><td>Skin, lungs, gills.</td><td>Dual life. No scales. Eyes have eyelids. Tympanum = ear. Alimentary, urinary, repro tracts open into a common cloaca. External fertilization.</td><td><em>Bufo</em> (Toad), <em>Rana</em> (Frog), <em>Hyla</em> (Tree frog), <em>Salamandra</em>, <em>Ichthyophis</em> (Limbless).</td></tr>
+            <tr><td><strong>Reptilia</strong></td><td>3-ch*</td><td>Lungs. *Crocodiles have 4-chambered heart.</td><td>Creeping. Dry cornified skin, epidermal scales or scutes. Tympanum represents ear. Snakes/lizards shed scales as skin cast. Internal fert, oviparous.</td><td><em>Chelone</em>, <em>Testudo</em>, <em>Chameleon</em>, <em>Calotes</em>, <em>Crocodilus</em>, <em>Alligator</em>, <em>Naja</em>, <em>Vipera</em>.</td></tr>
+            <tr><td><strong>Aves</strong></td><td>4-ch</td><td>Lungs. Air sacs connected to lungs supplement respiration.</td><td>Feathers. Forelimbs modified into wings. Hindlimbs have scales. Endoskeleton ossified, long bones are hollow with air cavities (pneumatic). Homoiothermous. No skin glands except oil gland at tail base.</td><td><em>Corvus</em>, <em>Columba</em>, <em>Psittacula</em>, <em>Struthio</em>, <em>Pavo</em>, <em>Aptenodytes</em>, <em>Neophron</em>.</td></tr>
+            <tr><td><strong>Mammalia</strong></td><td>4-ch</td><td>Lungs.</td><td><strong>Mammary glands</strong> (milk producing). Hair on skin. External ear (pinnae). Homoiothermous. Different types of teeth in jaw (heterodont). Internal fert, mostly viviparous.</td><td>Oviparous: <em>Ornithorhynchus</em>. Viviparous: <em>Macropus</em>, <em>Pteropus</em>, <em>Camelus</em>, <em>Macaca</em>, <em>Canis</em>, <em>Elephas</em>.</td></tr>
           </tbody>
+        </table>
+      </div>
+      
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2021/2022</span>
+          <span class="pyq-q">Match the following columns mapping animal names and features:</span>
+          <button class="tag tg">View</button>
+        </div>
+        <div class="pyq-sol">
+          <p><strong>Aptenodytes</strong> (Penguin) - Aves - Pneumatic bones absent (Exception!). <br/><strong>Pteropus</strong> (Flying fox) - Mammalia - Hair and Pinna. <br/><strong>Pterophyllum</strong> (Angel fish) - Osteichthyes - Operculum and Air bladder.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. BONUS FORM: MORPHOLOGY -->
+    <div class="sec" id="bonus-morphology">
+      <h2 class="sh">6. [BONUS] Structural Org: Frog &amp; Cockroach</h2>
+      
+      <div class="bonus-box">
+        <span class="lbl">🐸 Frog (Rana tigrina) System-by-System Map</span>
+        <ul class="pl">
+          <li><strong>Morphology:</strong> Skin is moist, highly vascularized (cutaneous respiration). Ventral side is pale yellow, dorsal is olive green. Males have sound-producing <strong>vocal sacs</strong> and a copulatory pad on the first digit of the forelimbs.</li>
+          <li><strong>Digestive:</strong> Alimentary canal is short (carnivores have short intestines). Liver secretes bile, stored in gallbladder. Pancreas produces pancreatic juice. Food passes to rectum → <strong>Cloaca</strong>.</li>
+          <li><strong>Respiration:</strong> Water = Cutaneous (skin). Land = Buccal cavity, skin, lungs (pulmonary). In aestivation/hibernation = strictly cutaneous.</li>
+          <li><strong>Circulatory:</strong> Closed. 3-chambered heart (2 atria, 1 ventricle). <strong>Sinus venosus</strong> receives blood from vena cava, joins right atrium. Ventricle opens into a sac-like <strong>conus arteriosus</strong>. Special venous connections: Hepatic portal system and Renal portal system. RBCs are nucleated and biconvex.</li>
+          <li><strong>Excretory:</strong> A pair of compact mesonephric kidneys. <strong>Ureotelic</strong> (excretes urea). Ureters act as urinogenital ducts in males. Emerge and open into the cloaca.</li>
+          <li><strong>Nervous:</strong> CNS (brain in cranium, spinal cord), PNS (10 pairs cranial nerves), ANS. Brain divided into forebrain (olfactory lobes, paired cerebral hemispheres, unpaired diencephalon), midbrain (optic lobes), hindbrain (cerebellum and medulla oblongata).</li>
+          <li><strong>Sensory:</strong> Tympanum (receives sound). Eyes have a nictitating membrane to protect in water.</li>
+          <li><strong>Reproduction:</strong> Male: 2 testes attached to the upper kidney via mesorchium. 10-12 vasa efferentia enter kidneys, open into Bidder's canal, communicate with urinogenital duct. Female: Ovaries situated near kidneys but no functional connection. Oviducts open separately into the cloaca. External fertilization. Larva = Tadpole (ammonotelic).</li>
+        </ul>
+      </div>
+
+      <div class="bonus-box">
+        <span class="lbl">🪳 Cockroach (Periplaneta americana) Map</span>
+        <ul class="pl">
+          <li><strong>Exoskeleton:</strong> Entire body covered by hard chitinous exoskeleton. Hardened plates called sclerites (tergites dorsally and sternites ventrally) joined by a thin, flexible articular membrane (arthrodial membrane).</li>
+          <li><strong>Head:</strong> Formed by fusion of six segments. Bears compound eyes, feelers (antennae), and biting/chewing mouthparts: Upper lip (labrum), lower lip (labium), paired mandibles, paired maxillae, hypopharynx (tongue).</li>
+          <li><strong>Thorax:</strong> Prothorax, mesothorax, metathorax. Forewings (mesothoracic) called tegmina are opaque/leathery and cover the hindwings when at rest. Hindwings (metathoracic) are transparent and used in flight.</li>
+          <li><strong>Digestive:</strong> Foregut lined by cuticle. Crop stores food. Proventriculus/Gizzard has an outer layer of thick circular muscles and thick inner cuticle forming six highly chitinous plate-like teeth (grinding). Hepatic caeca (6-8 blind tubules) secrete digestive juice.</li>
+          <li><strong>Circulation & Respiration:</strong> Open system. Hemolymph (colorless plasma + hemocytes). Heart consists of an elongated muscular tube differentiated into 13 funnel-shaped chambers with ostia. Respiratory system consists of 10 pairs of spiracles leading to tracheal tubes.</li>
+          <li><strong>Excretion:</strong> <strong>Malpighian tubules</strong> (100-150 yellow, thin, filamentous rings at the junction of midgut and hindgut). Uricotelic (excrete uric acid).</li>
+          <li><strong>Vision:</strong> Each eye consists of ~2000 hexagonal <strong>ommatidia</strong>. They receive multiple images. Referred to as mosaic vision (more sensitivity but less resolution, common during night).</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- UNIT 2: HUMAN PHYSIOLOGY MASTERY                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<div class="chapter" id="digestion-absorption">
+  <div class="ch-head">
+    <div class="ch-ey">Unit 2 · NCERT Class 11 Ch 16-22</div>
+    <div class="ch-title">Human Physiology — <em>The Blueprint</em></div>
+  </div>
+  <div class="ch-nav">
+    <a href="#digestion-absorption">7. Digestion</a>
+    <a href="#breathing-exchange">8. Breathing</a>
+    <a href="#body-fluids">9. Circulation</a>
+    <a href="#excretory-products">10. Excretion</a>
+    <a href="#locomotion-movement">11. Locomotion</a>
+    <a href="#neural-control">12. Neural</a>
+    <a href="#chemical-coord">13. Endocrine</a>
+  </div>
+  <div class="ch-body">
+
+    <!-- 7. DIGESTION -->
+    <div class="sec" data-m="digestion">
+      <h2 class="sh">7. [BONUS] Digestion &amp; Absorption</h2>
+      <p><strong>Dentition:</strong> Thecodont (embedded in jaw sockets), Diphyodont (two sets of teeth - deciduous/milk and permanent), Heterodont (Incisors, Canines, Premolars, Molars). Dental formula for human adult is <strong>2123/2123</strong> (total 32). Boy/Child dental formula is <strong>2102/2102</strong> (Premolars absent). Hard chewing surface made of enamel.</p>
+
+      <div class="cg-card">
+        <div class="cg-title">Histology of Alimentary Canal (Outside to Inside)</div>
+        <ul class="pl">
+          <li><strong>Serosa:</strong> Outermost layer, made of thin mesothelium with connective tissue.</li>
+          <li><strong>Muscularis:</strong> Smooth muscles usually arranged into an inner circular and outer longitudinal layer.</li>
+          <li><strong>Sub-mucosa:</strong> Loose connective tissue containing nerves, blood, and lymph vessels. In duodenum, glands (Brunner's glands) are present here.</li>
+          <li><strong>Mucosa:</strong> Innermost lining. Forms rugae in stomach and villi in small intestine. Goblet cells secrete mucus. Gastric glands in stomach, Crypts of Lieberkuhn in intestine.</li>
+        </ul>
+      </div>
+
+      <div class="trigger-box">
+        <p><strong>Enzymatic Master Map:</strong></p>
+        <p>• <strong>Saliva:</strong> Salivary amylase (ptyalin) acts at pH 6.8. Contains lysozyme (antibacterial).</p>
+        <p>• <strong>Stomach (pH 1.8):</strong> Pepsinogen is activated by HCl to Pepsin. Rennin is found in gastric juice of infants for milk protein.</p>
+        <p>• <strong>Pancreas:</strong> Inactive enzymes include trypsinogen, chymotrypsinogen, procarboxypeptidases, amylases, lipases, nucleases. Trypsinogen is activated by <strong>enterokinase</strong> (secreted by intestinal mucosa).</p>
+        <p>• <strong>Intestinal Juice (Succus entericus):</strong> Dipeptidases, lipases, nucleosidases. Secretions of brush border cells + goblet cells.</p>
+      </div>
+
+      <div class="zoo-box">
+        <span class="lbl">🚨 NEET Pyq Trap: Absorption Logic</span>
+        <p>Small amounts of monosaccharides like glucose, amino acids, and some electrolytes like chloride are generally absorbed by <strong>simple diffusion</strong>. Fructose and some amino acids are absorbed with the help of carrier ions like Na+ (<strong>facilitated transport</strong>). Absorption of water, significant amino acids and glucose into blood requires energy (<strong>active transport</strong>). Fatty acids and glycerol first form micelles (into intestinal mucosa) then chylomicrons which are transported into lymph vessels (lacteals) in villi.</p>
+      </div>
+    </div>
+
+    <!-- 8. BREATHING -->
+    <div class="sec" id="breathing-exchange">
+      <h2 class="sh">8. Breathing &amp; Exchange of Gases</h2>
+      <p>Human respiratory system: Nostrils → nasal passage → pharynx → larynx → trachea → primary, secondary, tertiary bronchi → bronchioles → alveoli. Trachea, primary, secondary and tertiary bronchi, and initial bronchioles are supported by <strong>incomplete cartilaginous rings</strong>.</p>
+      
+      <div class="cg-card">
+        <div class="cg-title">Respiratory Volumes and Capacities (5-Star)</div>
+        <table style="border:none; margin-top:10px;">
+          <tr style="border-bottom:1px dashed var(--zoo);"><td style="padding-bottom:10px; border-bottom:0;"><strong>Tidal Volume (TV)</strong></td><td style="padding-bottom:10px; border-bottom:0;">500 mL. Volume inspired/expired during normal respiration.</td></tr>
+          <tr style="border-bottom:1px dashed var(--zoo);"><td style="padding:10px 0; border-bottom:0;"><strong>IRV &amp; ERV</strong></td><td style="padding:10px 0; border-bottom:0;">IRV: 2500-3000 mL. ERV: 1000-1100 mL. (Additional volumes).</td></tr>
+          <tr style="border-bottom:1px dashed var(--zoo);"><td style="padding:10px 0; border-bottom:0;"><strong>Residual Volume (RV)</strong></td><td style="padding:10px 0; border-bottom:0;">1100-1200 mL. Volume remaining in lungs even after forcible expiration.</td></tr>
+          <tr><td style="padding-top:10px; border-bottom:0;"><strong>Vital Capacity (VC)</strong></td><td style="padding-top:10px; border-bottom:0;">ERV + TV + IRV. Maximum volume breathed in after a forced expiration.</td></tr>
         </table>
       </div>
 
       <div class="zoo-box">
-        <span class="lbl">🎯 Deep Analysis: The "Closed" Circulation Trap</span>
-        <p>Most Molluscs have an open circulatory system, <strong>EXCEPT Cephalopods</strong> (Octopus, Squid) which have a closed system. Annelids generally have a closed system. Arthropods always have an open system. This distinction is a 5-star NEET target.</p>
+        <span class="lbl">🔬 Oxygen Dissociation Curve &amp; Transport</span>
+        <p>A sigmoid curve. <strong>Right shift</strong> (Favors Dissociation from Hb): High pCO2, High H+ concentration (lower pH), High temperature. Occurs at the tissues. <strong>Left shift</strong> (Favors Association): High pO2, Low pCO2, High pH, Low temp. Occurs at alveoli.</p>
       </div>
 
       <div class="pyq-card">
         <div class="pyq-head" onclick="toggle(this)">
-          <span class="pyq-year">NEET 2023</span>
-          <span class="pyq-q">Radial symmetry is NOT found in adults of which phylum?</span>
-          <button class="tag tg">Show Answer</button>
+          <span class="pyq-year">NEET 2019</span>
+          <span class="pyq-q">Which of the following is an occupational respiratory disorder?</span>
+          <button class="tag tg">View</button>
         </div>
         <div class="pyq-sol">
-          <p><strong>Answer: Hemichordata</strong>. Adults of Cnidaria, Ctenophora, and Echinodermata exhibit radial symmetry. Hemichordates are strictly bilateral throughout their life cycle.</p>
+          <p><strong>Silicosis / Asbestosis</strong>. These involve proliferation of fibrous tissues (fibrosis) leading to serious lung damage due to chronic exposure to dust in grinding/stone-breaking industries.</p>
         </div>
       </div>
     </div>
 
-    <!-- CHORDATA MASTER -->
-    <div class="sec" id="chordates">
-      <h2 class="sh">Chordata Deep Dive — Classes Comparison</h2>
-      <div class="tbl">
-        <table>
-          <thead>
-            <tr><th>Class</th><th>Heart</th><th>Respiration</th><th>Special Feature</th><th>Examples</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Cyclostomata</strong></td><td>2-ch</td><td>6-15 pairs gills</td><td>Sucking/circular mouth, no jaws</td><td><em>Petromyzon</em> (Lamprey), <em>Myxine</em> (Hagfish)</td></tr>
-            <tr><td><strong>Chondrichthyes</strong></td><td>2-ch</td><td>Gills without operculum</td><td>Cartilaginous, Placoid scales, Air bladder absent</td><td><em>Scoliodon</em> (Dog fish), <em>Pristis</em> (Saw fish), <em>Trygon</em> (Sting ray)</td></tr>
-            <tr><td><strong>Osteichthyes</strong></td><td>2-ch</td><td>Gills with operculum</td><td>Bony, Cycloid scales, <strong>Air bladder present</strong></td><td><em>Exocoetus</em> (Flying fish), <em>Hippocampus</em> (Sea horse), <em>Labeo</em> (Rohu)</td></tr>
-            <tr><td><strong>Amphibia</strong></td><td>3-ch</td><td>Skin, lungs, gills</td><td>Dual life, Tympanum represents ear</td><td><em>Bufo</em> (Toad), <em>Rana</em> (Frog), <em>Hyla</em> (Tree frog), <em>Salamandra</em></td></tr>
-            <tr><td><strong>Reptilia</strong></td><td>3-ch*</td><td>Lungs</td><td>Creeping mode, Scutes, *Crocodile=4ch</td><td><em>Chelone</em> (Turtle), <em>Testudo</em> (Tortoise), <em>Naja</em> (Cobra), <em>Vipera</em></td></tr>
-            <tr><td><strong>Aves</strong></td><td>4-ch</td><td>Lungs with air sacs</td><td>Pneumatic bones (hollow), Feathers</td><td><em>Corvus</em> (Crow), <em>Columba</em> (Pigeon), <em>Struthio</em> (Ostrich)</td></tr>
-            <tr><td><strong>Mammalia</strong></td><td>4-ch</td><td>Lungs</td><td><strong>Mammary glands</strong>, Hair, Pinna</td><td><em>Ornithorhynchus</em> (Platypus - Oviparous!), <em>Macropus</em> (Kangaroo)</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- 9. CIRCULATION -->
+    <div class="sec" id="body-fluids">
+      <h2 class="sh">9. Body Fluids &amp; Circulation</h2>
+      <p>Blood is a special connective tissue. Plasma (55%), Formed Elements (45%).</p>
+      <ul class="pl">
+        <li><strong>Plasma Proteins:</strong> Fibrinogen (clotting), Globulins (defense mechanisms), Albumins (osmotic balance).</li>
+        <li><strong>Erythrocytes (RBCs):</strong> Most abundant (5 - 5.5 million/mm3). Formed in red bone marrow. Biconcave, enucleated. 12-16 g Hb per 100 ml blood. Life span 120 days. Destroyed in spleen (graveyard of RBCs).</li>
+        <li><strong>Leukocytes (WBCs):</strong> 6000-8000/mm3. Neutrophils (60-65% - phagocytic), Eosinophils (2-3% - resist infections/allergies), Basophils (0.5-1% - secrete histamine, serotonin, heparin, involved in inflammation), Lymphocytes (B and T forms, 20-25% - immune responses), Monocytes (6-8% - phagocytic).</li>
+        <li><strong>Blood Groups:</strong> ABO grouping based on antigens A and B on RBCs. Erythroblastosis fetalis: Rh-ve mother with Rh+ve fetus. Resolved by anti-Rh antibodies immediately post delivery.</li>
+      </ul>
 
-      <div class="ncert-box">
-        <p><strong>NCERT Direct:</strong> Homoiothermous (warm-blooded) animals = Aves and Mammalia. Poikilothermous (cold-blooded) = Fishes, Amphibians, Reptiles. <em>Ornithorhynchus</em> is the only egg-laying mammal mentioned in NCERT.</p>
-      </div>
-    </div>
-
-    <!-- BONUS: MORPHOLOGY -->
-    <div class="sec" id="animal-morph">
-      <h2 class="sh">Animal Morphology — Frog &amp; Cockroach <span class="tag tp">Bonus Content</span></h2>
-      <div class="bonus-box">
-        <p><strong>Frog (Rana tigrina) Deep Analysis:</strong></p>
-        <ul class="pl">
-          <li><strong>Skin:</strong> Highly vascular, moist (Cutaneous respiration). Mucus glands present.</li>
-          <li><strong>Heart:</strong> 3 chambers (2 atria + 1 ventricle). Sinus venosus and Conus arteriosus present.</li>
-          <li><strong>Excretion:</strong> Ureotelic. Kidneys are mesonephric.</li>
-          <li><strong>Reproduction:</strong> External fertilisation in water. Larva = Tadpole (Ammonotelic).</li>
-          <li><strong>Special:</strong> Males have vocal sacs and copulatory pads on the first digit of forelimbs.</li>
-        </ul>
-        <p style="margin-top:10px;"><strong>Cockroach (Periplaneta americana) Highlights:</strong></p>
-        <ul class="pl">
-          <li><strong>Exoskeleton:</strong> Chitinous sclerites (Dorsal-Tergites, Ventral-Sternites).</li>
-          <li><strong>Vision:</strong> Mosaic vision (4000 ommatidia) — High sensitivity but low resolution.</li>
-          <li><strong>Circulation:</strong> 13-chambered tubular heart. Open system.</li>
-          <li><strong>Respiration:</strong> Tracheal system. 10 pairs of spiracles.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- UNIT 2: HUMAN PHYSIOLOGY MASTER SYSTEM                 -->
-<!-- ═══════════════════════════════════════════════════════ -->
-
-<div class="chapter" id="digestion">
-  <div class="ch-head">
-    <div class="ch-ey">Unit 2 · NCERT Class 11 Ch 16–22</div>
-    <div class="ch-title">Human Physiology — <em>The Decision Engine</em></div>
-  </div>
-  <div class="ch-nav">
-    <a href="#digestion">Digestion</a>
-    <a href="#breathing">Breathing</a>
-    <a href="#circulation">Circulation</a>
-    <a href="#excretion">Excretion</a>
-    <a href="#locomotion">Locomotion</a>
-    <a href="#neural">Neural</a>
-    <a href="#chemical">Chemical</a>
-  </div>
-  <div class="ch-body">
-
-    <!-- DIGESTION BONUS -->
-    <div class="sec" data-m="digestion">
-      <h2 class="sh">[BONUS] Digestion &amp; Absorption <span class="tag tp">Legacy NCERT</span></h2>
-      <div class="bonus-box">
-        <span class="lbl">🎯 Enzyme Master Map</span>
-        <ul class="pl">
-          <li><strong>Saliva:</strong> Salivary Amylase (Ptyalin) — Starch to Maltose (pH 6.8).</li>
-          <li><strong>Stomach:</strong> Pepsin (Proteins → Peptones), Rennin (Infants, Milk protein).</li>
-          <li><strong>Pancreas:</strong> Trypsinogen, Chymotrypsinogen, Procarboxypeptidases, Amylases, Lipases, Nucleases.</li>
-          <li><strong>Intestine:</strong> Dipeptidases, Maltase, Lactase, Sucrase, Nucleosidases.</li>
-        </ul>
-        <p style="margin-top:10px;"><strong>Absorption Logic:</strong> Glucose/AA = Active or Facilitated. Fructose = Facilitated. Fats/Glycerol = Micelles → Chylomicrons → Lacteals (Lymph).</p>
-      </div>
-    </div>
-
-    <!-- BREATHING -->
-    <div class="sec" id="breathing">
-      <h2 class="sh">Breathing &amp; Gas Exchange <span class="tag tg">High Yield</span></h2>
-      <div class="cg-card">
-        <div class="cg-title">The Volume Trap (Average Values)</div>
-        <p style="font-size:15px;line-height:1.6;">TV (500mL) · IRV (2500-3000) · ERV (1000-1100) · RV (1100-1200) · <strong>VC (TV+IRV+ERV)</strong> · TLC (VC+RV)</p>
-      </div>
-
-      <div class="zoo-box">
-        <span class="lbl">🎯 O2-Dissociation Curve Analysis</span>
-        <p>A <strong>Right Shift</strong> happens when Oxygen affinity decreases (more unloading). Triggers: ↑ pCO2, ↑ [H+]/↓ pH, ↑ Temperature, ↑ 2,3-BPG.</p>
-      </div>
-
-      <div class="ncert-box">
-        <p><strong>Transport of CO2:</strong> 70% as Bicarbonate ions, 20-25% as Carbamino-hemoglobin, 7% as dissolved state in Plasma.</p>
-      </div>
-    </div>
-
-    <!-- CIRCULATION -->
-    <div class="sec" id="circulation">
-      <h2 class="sh">Body Fluids &amp; Circulation <span class="tag tr">Max Detail</span></h2>
-      
       <div class="svg-wrap">
         <svg width="400" height="150" viewBox="0 0 400 150" style="background:#fff;border-radius:4px;border:1px solid #ccc;">
+          <!-- ECG line -->
           <polyline points="0,110 40,110 50,90 60,110 100,110 105,130 115,30 125,130 130,110 170,110 185,125 210,110 250,110" fill="none" stroke="var(--zoo)" stroke-width="2.5"/>
-          <text x="45" y="85" font-family="var(--hand)" font-size="10" fill="var(--zoo)">P</text>
-          <text x="110" y="25" font-family="var(--hand)" font-size="10" fill="var(--zoo)">QRS</text>
-          <text x="195" y="105" font-family="var(--hand)" font-size="10" fill="var(--zoo)">T</text>
-          <text x="260" y="130" font-family="var(--hand)" font-size="10" fill="#666">ECG: The Heart's Electrical Signature</text>
+          <text x="45" y="85" font-family="var(--hand)" font-size="10" fill="var(--zoo)">P-Wave (Atrial Depol)</text>
+          <text x="135" y="45" font-family="var(--hand)" font-size="10" fill="var(--zoo)">QRS (Vent Depol)</text>
+          <text x="185" y="145" font-family="var(--hand)" font-size="10" fill="var(--zoo)">T-Wave (Repol)</text>
         </svg>
       </div>
 
-      <div class="tbl">
-        <table>
-          <thead>
-            <tr><th>ECG Component</th><th>Biological Event</th><th>PYQ Trap</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>P-Wave</strong></td><td>Atrial Depolarization</td><td>Starts Atrial Systole</td></tr>
-            <tr><td><strong>QRS Complex</strong></td><td>Ventricular Depolarization</td><td>Masks Atrial Repolarization!</td></tr>
-            <tr><td><strong>T-Wave</strong></td><td>Ventricular Repolarization</td><td>End of Systole</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="trigger-box">
-        <p><strong>Blood Clotting:</strong> Prothrombin —(Thrombokinase)—> Thrombin. Fibrinogen —(Thrombin)—> Fibrin. <strong>Ca++</strong> ions are mandatory for clotting.</p>
+      <div class="ncert-box">
+        <p><strong>Cardiac Cycle &amp; Output:</strong> Time = 0.8 seconds. Cardiac Output = Stroke Volume (70 mL) × Heart Rate (72 bpm) ≈ 5000 mL or 5 liters/minute. SAN (Sino-atrial node) is the pacemaker. The first heart sound (lub) is associated with closure of tricuspid/bicuspid valves; the second (dup) with closure of semilunar valves.</p>
       </div>
     </div>
 
-    <!-- EXCRETION -->
-    <div class="sec" id="excretion">
-      <h2 class="sh">Excretory Products &amp; Elimination</h2>
+    <!-- 10. EXCRETION -->
+    <div class="sec" id="excretory-products">
+      <h2 class="sh">10. Excretory Products &amp; Elimination</h2>
+      <p>Kidneys are retroperitoneal, situated between last thoracic and third lumbar vertebra. Outer cortex and inner medulla. Columns of Bertin are cortical extensions between medullary pyramids. Nephron is structural and functional unit (~1 million per kidney).</p>
+
       <div class="cg-card">
-        <div class="cg-title">The Nephron Engine</div>
+        <div class="cg-title">Functions of the Tubules</div>
         <ul class="pl">
-          <li><strong>PCT:</strong> 70-80% electrolytes &amp; water reabsorbed. Main site of pH balance.</li>
-          <li><strong>Loop of Henle:</strong> Descending = permeable to Water (concentrates filtrate). Ascending = permeable to Electrolytes (dilutes filtrate).</li>
-          <li><strong>DCT:</strong> Conditional reabsorption of Na+ &amp; Water under <strong>ADH/Aldosterone</strong>.</li>
+          <li><strong>PCT:</strong> Lined by simple cuboidal brush border epithelium (increases surface area). Reabsorbs 70-80% electrolytes and water. Maintains pH by secreting H+, NH3, K+.</li>
+          <li><strong>Henle's Loop:</strong> Descending limb is permeable to water, impermeable to electrolytes (concentrates filtrate). Ascending limb is impermeable to water, permeable to electrolytes (dilutes filtrate).</li>
+          <li><strong>DCT:</strong> Conditional reabsorption of Na+ and water (regulated by aldosterone & ADH). Secretes H+, K+, NH3.</li>
+          <li><strong>Collecting Duct:</strong> Extends from cortex to inner parts of medulla. Large amounts of water are reabsorbed. Allows passage of small amounts of urea into medullary interstitium to keep osmolarity.</li>
         </ul>
       </div>
 
       <div class="zoo-box">
-        <span class="lbl">🎯 RAAS Mechanism (The Blood Pressure Rescue)</span>
-        <p>↓ BP → JGA cells release <strong>Renin</strong> → Angiotensinogen to Angiotensin I → II. Angiotensin II is a powerful vasoconstrictor and triggers Aldosterone (Na+ reabsorption).</p>
+        <span class="lbl">🔬 Regulation mechanisms (RAAS vs ANF)</span>
+        <p><strong>RAAS:</strong> Fall in GFR/BP → Juxtaglomerular (JG) cells release Renin. Renin converts Angiotensinogen (liver) → Angiotensin I → Angiotensin II. Angiotensin II is a powerful vasoconstrictor (increases BP & GFR) and activates Adrenal Cortex to release Aldosterone (causes Na+ & Water reabsorption in DCT). <br/> <strong>ANF (Atrial Natriuretic Factor):</strong> Antagonistic to RAAS. Released by heart atria when blood flow is high. Causes vasodilation to decrease BP.</p>
       </div>
     </div>
 
-    <!-- LOCOMOTION -->
-    <div class="sec" id="locomotion">
-      <h2 class="sh">Locomotion &amp; Movement</h2>
-      <div class="ncert-box">
-        <p><strong>Sliding Filament Theory:</strong> During contraction, H-zone narrows/disappears, I-band shortens, <strong>A-band remains constant</strong>. Ca++ binds to Troponin to expose active sites on Actin.</p>
-      </div>
+    <!-- 11. LOCOMOTION -->
+    <div class="sec" id="locomotion-movement">
+      <h2 class="sh">11. Locomotion &amp; Movement</h2>
+      <p>Macaque skeleton = 206 bones in adults. Axial (80) &amp; Appendicular (126).</p>
+      
       <div class="cg-card">
-        <div class="cg-title">Joint Master List (NEET Must-Know)</div>
-        <p style="font-size:15px;line-height:1.7;">
-          <strong>Ball &amp; Socket:</strong> Shoulder/Hip · <strong>Hinge:</strong> Knee/Elbow · <strong>Pivot:</strong> Atlas/Axis · <strong>Gliding:</strong> Carpals · <strong>Saddle:</strong> Carpal &amp; Metacarpal of Thumb
-        </p>
+        <div class="cg-title">Sarcomere Engine — Sliding Filament Theory</div>
+        <p>Muscle fibre > Myofibril > Sarcomere. A dark band = 'A' band (Anisotropic, contains Myosin + overlapping Actin). A light band = 'I' band (Isotropic, contains only Actin). A 'Z' line bisects each I band.</p>
+        <p style="margin-top:10px;"><strong>Mechanism:</strong> Motor neuron releases Acetylcholine at neuromuscular junction → Action potential generated in sarcolemma → <strong>Ca++</strong> ions released from sarcoplasmic reticulum → Ca++ binds to <strong>Troponin</strong> subunit on actin filaments to expose active sites → Myosin cross-bridge binds to actin using ATP hydrolysis. During contraction, the 'I' bands shorten, 'H' zones disappear, but the 'A' bands retain their length.</p>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Joints &amp; Disorders:</strong></p>
+        <ul class="pl">
+          <li><strong>Myasthenia gravis:</strong> Auto-immune disorder affecting neuromuscular junction.</li>
+          <li><strong>Muscular dystrophy:</strong> Genetic disorder, progressive degeneration of skeletal muscle.</li>
+          <li><strong>Tetany:</strong> Rapid spasms due to low Ca++ in body fluid.</li>
+          <li><strong>Gout:</strong> Inflammation of joints due to accumulation of <strong>uric acid crystals</strong>.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- NEURAL -->
-    <div class="sec" id="neural">
-      <h2 class="sh">Neural Control &amp; Coordination</h2>
+    <!-- 12. NEURAL -->
+    <div class="sec" id="neural-control">
+      <h2 class="sh">12. Neural Control &amp; Coordination</h2>
+      <p>Neuron has three parts: cell body, dendrites, axon. Multipolar (cerebral cortex), Bipolar (retina), Unipolar (embryonic stage).</p>
+      
       <div class="trigger-box">
-        <p><strong>Impulse Conduction:</strong> Resting state = -70mV (K+ permeable, Na+ tight). Depolarization = Na+ influx (channels open). Repolarization = K+ efflux.</p>
+        <p><strong>Resting &amp; Action Potential:</strong></p>
+        <p>• <strong>Resting State (-70mV):</strong> Axonal membrane is more permeable to K+ and relatively impermeable to Na+. Axoplasm contains high K+ and negatively charged proteins. The sodium-potassium pump transports 3 Na+ outwards for 2 K+ inwards.</p>
+        <p>• <strong>Depolarization (+30mV):</strong> Stimulus causes influx of Na+ into the cell (Na+ channels open). Interior becomes positive.</p>
+        <p>• <strong>Repolarization:</strong> Na+ channels close, K+ channels open. Efflux of K+ restores resting potential.</p>
       </div>
+
       <div class="zoo-box">
-        <span class="lbl">🎯 Parasympathetic vs Sympathetic</span>
-        <p>Sympathetic (Fight/Flight) = ↑ Heart rate, Dilate pupil, Inhibits digestion. Parasympathetic (Rest/Digest) = ↓ Heart rate, Constrict pupil, Stimulates digestion.</p>
+        <span class="lbl">🧠 Brain Structures (NEET Targets)</span>
+        <ul class="pl">
+          <li><strong>Hypothalamus:</strong> Base of thalamus. Controls body temp, urge for eating and drinking. Contains neurosecretory cells.</li>
+          <li><strong>Limbic System:</strong> Amygdala + Hippocampus + inner parts of cerebral hemispheres. Controls emotional reactions (excitement, pleasure, rage, fear) and motivation.</li>
+          <li><strong>Midbrain:</strong> Corpora quadrigemina (four round swellings).</li>
+          <li><strong>Cerebellum:</strong> Very convoluted surface for additional neurons. Coordinates posture/balance.</li>
+          <li><strong>Medulla:</strong> Contains centers which control respiration, cardiovascular reflexes, and gastric secretions.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- CHEMICAL -->
-    <div class="sec" id="chemical">
-      <h2 class="sh">Chemical Coordination &amp; Hormones</h2>
+    <!-- 13. ENDOCRINE -->
+    <div class="sec" id="chemical-coord">
+      <h2 class="sh">13. Chemical Coordination &amp; Integration</h2>
+      
       <div class="tbl">
         <table>
           <thead>
-            <tr><th>Gland</th><th>Hormone</th><th>Effect/Disorder</th></tr>
+            <tr><th>Gland</th><th>Hormones Formed</th><th>Functions &amp; NEET Traps</th></tr>
           </thead>
           <tbody>
-            <tr><td>Thyroid</td><td>T3, T4</td><td>Goitre (Hypo), Exophthalmic Goitre (Hyper)</td></tr>
-            <tr><td>Adrenal Cortex</td><td>Cortisol/Aldo</td><td>Addison's (Hypo)</td></tr>
-            <tr><td>Pancreas</td><td>Insulin/Glucagon</td><td>Diabetes Mellitus (Insulin deficiency)</td></tr>
-            <tr><td>Pars Distalis</td><td>GH</td><td>Gigantism (Hyper), Dwarfism (Hypo), Acromegaly (Adult hyper)</td></tr>
+            <tr><td><strong>Hypothalamus</strong></td><td>Releasing & Inhibiting (GnRH, Somatostatin)</td><td>Controls Pituitary. <em>Synthesizes</em> Oxytocin and Vasopressin (they are just stored in posterior pituitary).</td></tr>
+            <tr><td><strong>Pituitary (Pars distalis/Anterior)</strong></td><td>GH, PRL, TSH, ACTH, LH, FSH</td><td>LH surge causes ovulation. GH hypo = dwarfism, hyper = gigantism/acromegaly.</td></tr>
+            <tr><td><strong>Pineal</strong></td><td>Melatonin</td><td>Regulates 24-hr diurnal rhythm (sleep-wake cycle), body temperature, pigmentation.</td></tr>
+            <tr><td><strong>Thyroid</strong></td><td>T3, T4, TCT (Thyrocalcitonin)</td><td>Requires Iodine. Hypo = Goitre, Cretinism. Hyper = Exophthalmic goitre (Graves' disease). TCT reduces blood Ca++.</td></tr>
+            <tr><td><strong>Parathyroid</strong></td><td>PTH</td><td>Increases blood Ca++ (Hypercalcemic). Acts on bones (resorption), kidneys, and intestine. Antagonistic to TCT.</td></tr>
+            <tr><td><strong>Thymus</strong></td><td>Thymosins</td><td>Differentiation of T-lymphocytes (cell-mediated immunity). Degenerates in old age.</td></tr>
+            <tr><td><strong>Adrenal Cortex</strong></td><td>Glucocorticoids (Cortisol), Mineralocorticoids (Aldosterone)</td><td>Cortisol: Anti-inflammatory, suppresses immunity, stimulates gluconeogenesis. Aldosterone: Na+/Water reabsorption. Hypo = Addison's disease.</td></tr>
+            <tr><td><strong>Adrenal Medulla</strong></td><td>Adrenaline, Noradrenaline</td><td>Fight, Flight, Fright hormones. Increase heart rate, pupil dilation, piloerection.</td></tr>
+            <tr><td><strong>Pancreas</strong></td><td>Insulin, Glucagon</td><td>Alpha cells = Glucagon (Hyperglycemic). Beta cells = Insulin (Hypoglycemic). Diabetes Mellitus = Loss of glucose in urine + ketone bodies.</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="bonus-box">
-        <span class="lbl">Hormone Action Mechanism</span>
-        <p><strong>Peptides/Protein Hormones:</strong> Bind to membrane receptor → Generate cAMP/IP3 (second messengers). No entry into cell.</p>
-        <p><strong>Steroid/Iodothyronines:</strong> Cross membrane → Form Hormone-Receptor complex in Nucleus → Direct Gene Regulation.</p>
+
+      <div class="cg-card">
+        <div class="cg-title">Mechanism of Hormone Action</div>
+        <ul class="pl bold">
+          <li><strong>Protein/Peptide Hormones:</strong> (Insulin, Glucagon, Pituitary, Hypothalamic). Cannot enter target cells. Bind to cell membrane receptors. Generate <strong>Second Messengers</strong> (e.g., cyclic AMP, IP3, Ca++) which regulate cellular metabolism.</li>
+          <li><strong>Steroid Hormones & Iodothyronines:</strong> (Cortisol, Testosterone, Estradiol, Progesterone, T3/T4). Lipid soluble cross cell membrane. Bind to <strong>Intracellular receptors</strong> (mostly nuclear). The hormone-receptor complex interacts with the genome to regulate gene expression or chromosome function.</li>
+        </ul>
       </div>
     </div>
 
@@ -480,91 +692,134 @@ function toggle(el){el.nextElementSibling.classList.toggle('open');}
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- UNIT 3: REPRODUCTION & HEALTH                          -->
+<!-- UNIT 3: HUMAN REPRODUCTION ECOSYSTEM                   -->
 <!-- ═══════════════════════════════════════════════════════ -->
 
-<div class="chapter" id="human-repro">
+<div class="chapter" id="male-female-anatomy">
   <div class="ch-head">
-    <div class="ch-ey">Unit 3 · NCERT Class 12 Ch 3–4</div>
-    <div class="ch-title">Reproduction &amp; <em>Health</em></div>
+    <div class="ch-ey">Unit 3 · NCERT Class 12 Ch 2 &amp; 3</div>
+    <div class="ch-title">Human Reproduction &amp; <em>Health</em></div>
   </div>
   <div class="ch-nav">
-    <a href="#human-repro">Anatomy</a>
-    <a href="#menstrual">Menstrual Cycle</a>
-    <a href="#repro-health">Health &amp; ART</a>
+    <a href="#male-female-anatomy">14. Gametogenesis</a>
+    <a href="#menstrual-fertilization">15. Menstrual Cycle &amp; Fertilization</a>
+    <a href="#pregnancy-parturition">16. Pregnancy</a>
+    <a href="#reproductive-health">17. Repro Health</a>
   </div>
   <div class="ch-body">
 
-    <!-- ANATOMY & GAMETOGENESIS -->
-    <div class="sec" data-m="anatomy">
-      <h2 class="sh">Anatomy &amp; Gametogenesis <span class="tag tr">Critical Unit</span></h2>
+    <!-- 14. ANATOMY & GAMETOGENESIS -->
+    <div class="sec" data-m="gametogenesis">
+      <h2 class="sh">14. Reproductive Anatomy &amp; Gametogenesis</h2>
+      
       <div class="trigger-box">
-        <p><strong>Male:</strong> Testis (Scrotum, 2-2.5°C lower) → Seminiferous Tubules (Sperm production) → Rete Testis → Vasa efferentia → Epididymis → Vas deferens.</p>
-        <p><strong>Female:</strong> Ovary → Fallopian Tube (Infundibulum, Ampulla, Isthmus) → Uterus → Cervix.</p>
+        <p><strong>Male Duct Pathway (Sperm route):</strong></p>
+        <p>Seminiferous Tubules → Rete Testis → Vasa Efferentia → Epididymis → Vas Deferens → Ejaculatory Duct → Urethra → Urethral meatus.</p>
+        <p><strong>Accessory Glands:</strong> Paired seminal vesicles, a prostate gland, paired bulbourethral glands. Secretions form seminal plasma (rich in fructose, calcium, enzymes).</p>
       </div>
 
       <div class="cg-card">
         <div class="cg-title">Spermatogenesis vs Oogenesis</div>
-        <ul class="pl">
-          <li><strong>Spermatogenesis:</strong> Starts at puberty. Continuous. 1 spermatogonium → 4 sperms.</li>
-          <li><strong>Oogenesis:</strong> Starts at <strong>embryonic stage</strong>. Discontinuous (stops at Prophase I until puberty, then Metaphase II until fertilisation). 1 oogonium → 1 ovum + polar bodies.</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- MENSTRUAL CYCLE SVG -->
-    <div class="sec" id="menstrual">
-      <h2 class="sh">The Menstrual Cycle Engine <span class="tag tp">SVG Analysis</span></h2>
-      <div class="svg-wrap">
-        <svg width="450" height="200" viewBox="0 0 450 200" style="background:#fff;border-radius:4px;border:1px solid #ddd;">
-          <!-- Day markers -->
-          <text x="10" y="190" font-family="var(--hand)" font-size="9" fill="#999">Day 1</text>
-          <text x="210" y="190" font-family="var(--hand)" font-size="9" fill="var(--red)">Day 14 (Ovulation)</text>
-          <text x="410" y="190" font-family="var(--hand)" font-size="9" fill="#999">Day 28</text>
-          
-          <!-- LH Surge -->
-          <path d="M 10 160 Q 180 155 210 20 Q 240 155 440 160" fill="none" stroke="var(--zoo)" stroke-width="2.5" />
-          <text x="215" y="40" font-family="var(--hand)" font-size="10" fill="var(--zoo)">LH Surge</text>
-          
-          <!-- Progesterone -->
-          <path d="M 10 170 Q 200 170 300 80 Q 380 80 440 170" fill="none" stroke="var(--blue)" stroke-width="2" stroke-dasharray="4" />
-          <text x="310" y="100" font-family="var(--hand)" font-size="10" fill="var(--blue)">Progesterone (Luteal)</text>
-          
-          <text x="20" y="30" font-family="var(--hand)" font-size="11" fill="#333">Hormonal Synchronization Chart</text>
-        </svg>
+        <table style="border:none; margin-top:10px;">
+          <tr style="border-bottom:1px dashed var(--zoo);"><td style="padding-bottom:10px; border-bottom:0;"><strong>Spermatogenesis:</strong></td><td style="padding-bottom:10px; border-bottom:0;">Starts at puberty. Spermatogonia (2n) → Primary spermatocyte (2n) → <em>Meiosis I</em> → Secondary spermatocytes (n) → <em>Meiosis II</em> → Spermatids (n).<br/><strong>Spermiogenesis:</strong> Transformation of spermatids into spermatozoa (sperm).<br/><strong>Spermiation:</strong> Release of sperm from seminiferous tubules.</td></tr>
+          <tr><td style="padding-top:15px; border-bottom:0;"><strong>Oogenesis:</strong></td><td style="padding-top:15px; border-bottom:0;">Initiated during embryonic stage. Primary oocytes (2n) are arrested in <strong>Prophase I (Diplotene)</strong> of meiosis. <br/> At puberty (only 60-80K primary follicles left per ovary). Primary follicle matures into Graafian follicle. Primary oocyte completes Meiosis I just before ovulation → produces a large Secondary oocyte (n) and a tiny first polar body. Meiosis II is only completed <em>after</em> sperm entry.</td></tr>
+        </table>
       </div>
 
       <div class="zoo-box">
-        <span class="lbl">🎯 Day-by-Day Logic</span>
-        <p><strong>Proliferative Phase (Day 5-13):</strong> Estrogen ↑. Regeneration of Endometrium. <strong>Ovulation (Day 14):</strong> Peak of LH, FSH, and Estrogen. <strong>Luteal Phase (Day 15-28):</strong> Progesterone ↑ (secreted by Corpus Luteum).</p>
+        <span class="lbl">🔬 Sperm Structure</span>
+        <p><strong>Head:</strong> Contains haploid nucleus and Acrosome (filled with hydrolytic enzymes for fertilization). <strong>Middle piece:</strong> Contains numerous mitochondria (powerhouse for motility). <strong>Tail:</strong> Facilitates swimming.</p>
       </div>
     </div>
 
-    <!-- REPRODUCTIVE HEALTH -->
-    <div class="sec" id="repro-health">
-      <h2 class="sh">Reproductive Health &amp; ART</h2>
+    <!-- 15. MENSTRUAL & FERTILIZATION -->
+    <div class="sec" id="menstrual-fertilization">
+      <h2 class="sh">15. Menstrual Cycle, Fertilization &amp; Implantation</h2>
+      
+      <div class="svg-wrap">
+        <p style="font-family:var(--hand);font-size:11px;color:var(--zoo);margin-bottom:8px;">Hormonal Synchronization Graph (Menstrual Cycle)</p>
+        <svg width="400" height="200" viewBox="0 0 400 200" style="background:#fff;border-radius:4px;border:1px solid #ccc;">
+          <!-- Axes -->
+          <line x1="40" y1="170" x2="380" y2="170" stroke="#aaa" stroke-width="1.5"/>
+          <line x1="40" y1="20" x2="40" y2="170" stroke="#aaa" stroke-width="1.5"/>
+          <text x="210" y="188" font-family="var(--prose)" font-size="12" fill="var(--ink2)" text-anchor="middle">Day 14 (Ovulation)</text>
+          <line x1="210" y1="20" x2="210" y2="170" stroke="var(--mline)" stroke-dasharray="4,4"/>
+          <!-- Pituitary Hormones -->
+          <polyline points="40,140 160,110 200,40 210,30 220,110 380,140" fill="none" stroke="var(--blue)" stroke-width="2"/>
+          <text x="50" y="130" font-family="var(--hand)" font-size="10" fill="var(--blue)">LH Surge</text>
+          <!-- Ovarian Hormones -->
+          <polyline points="40,150 180,60 210,90 300,50 380,160" fill="none" stroke="var(--purple)" stroke-width="2"/>
+          <text x="310" y="65" font-family="var(--hand)" font-size="10" fill="var(--purple)">Progesterone (Luteal)</text>
+        </svg>
+      </div>
+
+      <div class="ncert-box">
+        <p><strong>Phases of the Menstrual Cycle:</strong></p>
+        <ul class="pl">
+          <li><strong>Menstrual phase (Day 1-5):</strong> Endometrial lining breaks down due to lack of progesterone.</li>
+          <li><strong>Follicular / Proliferative phase (Day 6-13):</strong> Primary follicle grows. Endometrium regenerates. Both LH & FSH increase. Estrogen levels rise.</li>
+          <li><strong>Ovulatory phase (Day 14):</strong> Peak of LH (<strong>LH Surge</strong>) induces rupture of Graafian follicle and release of secondary oocyte.</li>
+          <li><strong>Luteal / Secretory phase (Day 15-28):</strong> Ruptured follicle becomes <strong>Corpus luteum</strong>, which secretes large amounts of <strong>Progesterone</strong> (essential for maintenance of endometrium for implantation).</li>
+        </ul>
+      </div>
+
+      <p><strong>Fertilization:</strong> Takes place in the ampullary region of the fallopian tube. Sperm comes in contact with the <strong>zona pellucida</strong> layer of the ovum, inducing changes that block entry of additional sperms (prevents polyspermy). Acrosomal secretions help the sperm enter the cytoplasm, inducing completion of Meiosis II of the secondary oocyte.</p>
+    </div>
+
+    <!-- 16. PREGNANCY & PARTURITION -->
+    <div class="sec" id="pregnancy-parturition">
+      <h2 class="sh">16. Pregnancy &amp; Parturition</h2>
+      <p>Zygote → Cleavage (mitosis) → Blastomeres (2, 4, 8, 16 cells). The 8 to 16 blastomere stage is a solid ball called <strong>Morula</strong>. It continues dividing to form a <strong>Blastocyst</strong>. The outer layer (Trophoblast) attaches to the endometrium, while the Inner Cell Mass differentiates into the embryo. This attachment is called <strong>Implantation</strong>.</p>
+      
+      <div class="zoo-box">
+        <span class="lbl">🚨 NEET Pyq Trap: Placental Hormones</span>
+        <p>Placenta acts as an endocrine tissue. It produces: <strong>hCG</strong> (Human Chorionic Gonadotropin), <strong>hPL</strong> (Human Placental Lactogen), Estrogens, Progestogens. Later in pregnancy, <strong>Relaxin</strong> is secreted from the ovary. <br/> <em>Note: hCG, hPL, and Relaxin are produced ONLY during pregnancy!</em></p>
+      </div>
+
+      <div class="trigger-box">
+        <p><strong>Parturition &amp; Lactation:</strong></p>
+        <p>Gestation period is ~9 months. Vigorous uterine contractions lead to expulsion of the baby. Signals originate from the fully developed fetus and the placenta inducing mild contractions (<strong>Fetal ejection reflex</strong>). This triggers release of <strong>Oxytocin</strong> from the maternal posterior pituitary. Oxytocin causes stronger contractions (positive feedback loop).<br/> Mammary glands produce milk towards the end of pregnancy (<strong>Lactation</strong>). Initial milk is <strong>Colostrum</strong> (rich in IgA antibodies for passive immunity).</p>
+      </div>
+    </div>
+
+    <!-- 17. REPRODUCTIVE HEALTH -->
+    <div class="sec" id="reproductive-health">
+      <h2 class="sh">17. Reproductive Health (Contraception &amp; ART)</h2>
+
       <div class="tbl">
         <table>
           <thead>
-            <tr><th>Method</th><th>Mechanism/Example</th><th>NEET Favorite</th></tr>
+            <tr><th>Method</th><th>Examples</th><th>Mode of Action</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>Natural</strong></td><td>Periodic Abstinence, Lactational Amenorrhea</td><td>No side effects, high failure rate</td></tr>
-            <tr><td><strong>IUD (Intra Uterine)</strong></td><td>Non-Med: Lippes Loop, Cu: CuT, Cu7, Multiload 375</td><td>Cu ions suppress sperm motility</td></tr>
-            <tr><td><strong>Hormonal IUD</strong></td><td>Progestasert, LNG-20</td><td>Uterus unsuitable for implantation</td></tr>
-            <tr><td><strong>Surgical</strong></td><td>Vasectomy (Male), Tubectomy (Female)</td><td>Terminal/Permanent</td></tr>
+            <tr><td><strong>Natural</strong></td><td>Periodic abstinence, Withdrawal, Lactational amenorrhea.</td><td>Avoiding chance of sperm-ovum meeting. High failure rate.</td></tr>
+            <tr><td><strong>Barriers</strong></td><td>Condoms, Diaphragms, Cervical caps, Vaults.</td><td>Physical barrier. Condoms also protect against STIs.</td></tr>
+            <tr><td><strong>IUDs (Intra Uterine Devices)</strong></td><td>Non-medicated (Lippes loop), Copper Tx (CuT, Cu7, Multiload 375), Hormone releasing (Progestasert, LNG-20).</td><td>Increase phagocytosis. Cu ions suppress sperm motility & fertilizing capacity. Hormone IUDs make uterus unsuitable for implantation and cervix hostile.</td></tr>
+            <tr><td><strong>Oral Pills</strong></td><td>Saheli (Non-steroidal), Mala-D.</td><td>Progestogens or Progestogen-estrogen combinations. Inhibit ovulation & implantation, and alter quality of cervical mucus (prevent sperm entry).</td></tr>
+            <tr><td><strong>Surgical</strong></td><td>Vasectomy (Male), Tubectomy (Female).</td><td>Highly effective but poor reversibility. Blocks gamete transport.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="ncert-box">
-        <p><strong>ART (Assisted Reproductive Technology):</strong></p>
-        <ul class="pl">
-          <li><strong>IVF / ZIFT:</strong> Zygote/Embryo (up to 8 blastomeres) transferred to <strong>Fallopian Tube</strong>.</li>
-          <li><strong>IUT:</strong> Embryo (>8 blastomeres) transferred to <strong>Uterus</strong>.</li>
-          <li><strong>GIFT:</strong> Gamete (Ovum) transferred to Fallopian Tube.</li>
-          <li><strong>ICSI:</strong> Sperm directly injected into ovum.</li>
-        </ul>
+      <h3 class="ss" style="color:var(--zoo);">Infertility &amp; ART (Assisted Reproductive Technologies)</h3>
+      <ul class="pl">
+        <li><strong>IVF (In Vitro Fertilization):</strong> Fertilization outside the body. Often followed by ET (Embryo Transfer).</li>
+        <li><strong>ZIFT (Zygote Intra Fallopian Transfer):</strong> Zygote or early embryo (up to 8 blastomeres) transferred to Fallopian tube.</li>
+        <li><strong>IUT (Intra Uterine Transfer):</strong> Embryo with more than 8 blastomeres transferred directly to Uterus.</li>
+        <li><strong>GIFT (Gamete Intra Fallopian Transfer):</strong> Transfer of an ovum collected from a donor into the fallopian tube of another female who cannot produce one.</li>
+        <li><strong>ICSI (Intracytoplasmic Sperm Injection):</strong> Sperm is directly injected into the ovum in the lab.</li>
+        <li><strong>AI (Artificial Insemination):</strong> Semen collected and artificially introduced into vagina or uterus (IUI - Intra-uterine insemination). Used when sperm count is very low.</li>
+      </ul>
+      
+      <div class="pyq-card">
+        <div class="pyq-head" onclick="toggle(this)">
+          <span class="pyq-year">NEET 2020 / 2023</span>
+          <span class="pyq-q">Identify the correct matching for ART procedures:</span>
+          <button class="tag tg">View</button>
+        </div>
+        <div class="pyq-sol">
+          <p><strong>ZIFT</strong>: Transfer of zygote / early embryo (≤8 blastomeres) to the Fallopian tube. <br/><strong>IUT</strong>: Transfer of embryo (>8 blastomeres) to the Uterus. <br/><em>Mnemonic: Small embryo goes to small tube, large embryo goes to large uterus.</em></p>
+        </div>
       </div>
     </div>
 
@@ -576,3 +831,4 @@ function toggle(el){el.nextElementSibling.classList.toggle('open');}
 </script>
 </body>
 </html>
+
